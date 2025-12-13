@@ -1,10 +1,12 @@
 
-baseURL = "https://aiplorer-blog.pages.dev/"
+baseURL = "https://aiplorer.com/"
 languageCode = "en-us"
-title = "Aiplorer Blog"
+title = "Aiplorer"
 theme = "ananke"
-buildFuture = true
-paginate = 10
+paginate = 12
+enableRobotsTXT = true
+buildFuture = false
 
 [params]
+  description = "Aiplorer: Discover AI, apps, and useful tools—curated for builders."
   mainSections = ["posts"]
