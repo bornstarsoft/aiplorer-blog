@@ -1,0 +1,8 @@
+{{- $href := .Get "href" -}}
+{{- $title := .Get "title" -}}
+{{- $label := .Get "label" -}}
+<a class="aiplorer-card" href="{{ $href | relURL }}">
+  {{ with $label }}<span class="aiplorer-card__label">{{ . }}</span>{{ end }}
+  <strong class="aiplorer-card__title">{{ $title }}</strong>
+  <span class="aiplorer-card__body">{{ .Inner | markdownify }}</span>
+</a>

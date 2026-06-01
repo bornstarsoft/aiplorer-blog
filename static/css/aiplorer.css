@@ -1,0 +1,118 @@
+.aiplorer-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1rem;
+  margin: 1.5rem auto;
+  text-align: left;
+}
+
+.aiplorer-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 10rem;
+  padding: 1.1rem;
+  border: 1px solid #d7dee8;
+  border-top: 4px solid #23756b;
+  border-radius: 8px;
+  background: #fff;
+  color: #23313d;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(31, 41, 55, 0.06);
+}
+
+.aiplorer-card:hover,
+.aiplorer-card:focus {
+  border-color: #23756b;
+  color: #111827;
+  transform: translateY(-1px);
+}
+
+.aiplorer-card__label {
+  margin-bottom: 0.45rem;
+  color: #7a3416;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.aiplorer-card__title {
+  color: #111827;
+  font-size: 1.08rem;
+  line-height: 1.3;
+}
+
+.aiplorer-card__body {
+  margin-top: 0.55rem;
+  color: #4b5563;
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.aiplorer-card__body p {
+  margin: 0;
+}
+
+.aiplorer-tool-facts {
+  padding: 1rem;
+  border: 1px solid #d7dee8;
+  border-radius: 8px;
+  background: #f8fafc;
+  color: #23313d;
+}
+
+.aiplorer-tool-facts p {
+  margin: 0 0 1rem;
+}
+
+.aiplorer-tool-facts p:last-child {
+  margin-bottom: 0;
+}
+
+.aiplorer-tool-facts ul {
+  margin: 0 0 1rem;
+  padding-left: 1.2rem;
+}
+
+.aiplorer-tool-link {
+  font-weight: 700;
+}
+
+.aiplorer-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 72rem;
+}
+
+.aiplorer-footer__brand {
+  font-size: 1rem;
+}
+
+.aiplorer-footer__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  justify-content: center;
+}
+
+.aiplorer-footer__nav a,
+.aiplorer-footer__license a {
+  color: #d1d5db;
+  text-decoration: none;
+}
+
+.aiplorer-footer__nav a:hover,
+.aiplorer-footer__license a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.aiplorer-footer__license {
+  margin: 1em 0 0;
+  color: #bbb;
+  font-size: 0.8em;
+  text-align: center;
+}

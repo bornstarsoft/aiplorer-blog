@@ -3,10 +3,39 @@ baseURL = "https://aiplorer.com/"
 languageCode = "en-us"
 title = "Aiplorer"
 theme = "ananke"
-paginate = 12
+pagination.pagerSize = 12
 enableRobotsTXT = true
 buildFuture = false
 
 [params]
-  description = "Aiplorer: Discover AI, apps, and useful tools—curated for builders."
+  description = "Aiplorer helps everyday users explore AI tools, guides, and use cases for work and creativity."
   mainSections = ["posts"]
+  custom_css = ["css/aiplorer.css?v=20260601"]
+
+[params.ananke]
+  show_recent_posts = false
+
+[[menu.main]]
+  name = "AI Tools"
+  url = "/ai-tools/"
+  weight = 10
+
+[[menu.main]]
+  name = "Guides"
+  url = "/guides/"
+  weight = 20
+
+[[menu.main]]
+  name = "Use Cases"
+  url = "/use-cases/"
+  weight = 30
+
+[[menu.main]]
+  name = "Blog"
+  url = "/blog/"
+  weight = 40
+
+[[menu.main]]
+  name = "About"
+  url = "/about/"
+  weight = 50
