@@ -143,9 +143,11 @@ The repository contains `CNAME` with:
 www.bornstarai.com
 ```
 
-This does not match `baseURL = "https://aiplorer.com/"`. Do not change it in
-Phase 0 without confirming the current hosting setup, but treat it as a deploy
-configuration risk for Phase 1.
+This does not match `baseURL = "https://aiplorer.com/"`. Phase 0.5 inspection
+found no root `.github` Pages workflow and the README identifies Cloudflare
+Pages as the hosting path, so this `CNAME` appears stale for the current
+Cloudflare Pages assumption. It was left in place to avoid changing any possible
+legacy GitHub Pages behavior until the live hosting setup is confirmed.
 
 ## Current Public Content Inventory
 

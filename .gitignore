@@ -6,6 +6,7 @@
 # Hugo 관련
 /public/
 /resources/
+.hugo_build.lock
 hugo_stats.json
 
 # 백업 파일

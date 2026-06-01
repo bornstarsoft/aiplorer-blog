@@ -3,7 +3,7 @@ baseURL = "https://aiplorer.com/"
 languageCode = "en-us"
 title = "Aiplorer"
 theme = "ananke"
-paginate = 12
+pagination.pagerSize = 12
 enableRobotsTXT = true
 buildFuture = false
 
