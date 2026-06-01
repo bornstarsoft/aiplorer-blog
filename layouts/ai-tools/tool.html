@@ -1,0 +1,41 @@
+{{ define "header" }}{{ partials.Include "page-header.html" . }}{{ end }}
+{{ define "main" }}
+  <article class="flex-l mw8 center ph3 flex-wrap justify-between">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+        AI Tool
+      </aside>
+      <h1 class="f1 athelas mt3 mb1">{{ .Title }}</h1>
+      {{ with .Params.description }}
+        <p class="f4 lh-copy mid-gray measure">{{ . }}</p>
+      {{ end }}
+    </header>
+
+    <div class="nested-copy-line-height lh-copy f4 nested-links mid-gray pr4-l w-two-thirds-l">
+      {{ .Content }}
+    </div>
+
+    <aside class="w-30-l mt5">
+      <div class="aiplorer-tool-facts">
+        {{ with .Params.category }}
+          <p><strong>Category</strong><br>{{ . }}</p>
+        {{ end }}
+        {{ with .Params.bestFor }}
+          <p><strong>Best for</strong></p>
+          <ul>
+            {{ range . }}<li>{{ . }}</li>{{ end }}
+          </ul>
+        {{ end }}
+        {{ with .Params.pricingNote }}
+          <p><strong>Pricing note</strong><br>{{ . }}</p>
+        {{ end }}
+        {{ with .Params.officialUrl }}
+          <p><a class="aiplorer-tool-link" href="{{ . }}" rel="noopener nofollow" target="_blank">Official website</a></p>
+        {{ end }}
+        {{ with .Params.lastReviewed }}
+          <p><strong>Last reviewed</strong><br>{{ . }}</p>
+        {{ end }}
+      </div>
+    </aside>
+  </article>
+{{ end }}
