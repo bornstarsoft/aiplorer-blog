@@ -42,4 +42,7 @@ Tool features, pricing, and policies can change. Always check each official webs
 {{< card title="ChatGPT" href="/ai-tools/tools/chatgpt/" label="Reviewed" >}}
 An AI assistant from OpenAI that can be useful for writing, brainstorming, learning, coding help, and everyday productivity.
 {{< /card >}}
+{{< card title="Claude" href="/ai-tools/tools/claude/" label="Reviewed" >}}
+An AI assistant from Anthropic that can be useful for writing, summarizing, brainstorming, learning, coding help, and everyday productivity.
+{{< /card >}}
 {{< /card-grid >}}
