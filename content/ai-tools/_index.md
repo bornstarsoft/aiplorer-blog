@@ -38,6 +38,8 @@ Tool features, pricing, and policies can change. Always check each official webs
 
 ## Reviewed Tool Pages
 
+Browse the full reviewed tool index at [Reviewed AI Tools](/ai-tools/tools/), or open one of the first reviewed pages below.
+
 {{< card-grid >}}
 {{< card title="ChatGPT" href="/ai-tools/tools/chatgpt/" label="Reviewed" >}}
 An AI assistant from OpenAI that can be useful for writing, brainstorming, learning, coding help, and everyday productivity.
