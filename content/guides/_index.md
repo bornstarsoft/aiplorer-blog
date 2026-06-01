@@ -8,7 +8,7 @@ Aiplorer guides are for everyday users who want practical, beginner-friendly hel
 ## Starter Guide Topics
 
 {{< card-grid >}}
-{{< card title="How to Choose the Right AI Tool" href="/ai-tools/" label="Start here" >}}
+{{< card title="Start With Tool Categories" href="/ai-tools/" label="Start here" >}}
 Compare tools by task, learning curve, pricing model, and official support.
 {{< /card >}}
 {{< card title="AI Writing Tools for Beginners" href="/ai-tools/writing-tools/" label="Writing" >}}
@@ -21,5 +21,9 @@ Explore tools for study planning, concept explanations, research, and practice.
 Look for practical help with marketing, customer messages, documents, and operations.
 {{< /card >}}
 {{< /card-grid >}}
+
+## In Review
+
+A draft guide titled "How to Choose the Right AI Tool" is prepared for manual review. It will be linked here only after publication review is complete.
 
 Detailed guides will be added after the site structure is stable and each recommendation can be reviewed carefully.

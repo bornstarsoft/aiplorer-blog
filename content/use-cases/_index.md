@@ -22,4 +22,8 @@ Use AI-assisted workflows to reduce recurring manual tasks.
 {{< /card >}}
 {{< /card-grid >}}
 
+## In Review
+
+Draft use-case pages are prepared for "How to Use AI to Write Better Emails" and "How to Summarize Long Documents with AI." They will be linked here only after publication review is complete.
+
 Each future use case should explain useful tool categories, realistic steps, limitations, and when to check official product information.
