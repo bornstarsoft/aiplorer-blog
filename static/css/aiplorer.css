@@ -53,6 +53,31 @@
   margin: 0;
 }
 
+.aiplorer-tool-facts {
+  padding: 1rem;
+  border: 1px solid #d7dee8;
+  border-radius: 8px;
+  background: #f8fafc;
+  color: #23313d;
+}
+
+.aiplorer-tool-facts p {
+  margin: 0 0 1rem;
+}
+
+.aiplorer-tool-facts p:last-child {
+  margin-bottom: 0;
+}
+
+.aiplorer-tool-facts ul {
+  margin: 0 0 1rem;
+  padding-left: 1.2rem;
+}
+
+.aiplorer-tool-link {
+  font-weight: 700;
+}
+
 .aiplorer-footer {
   display: flex;
   flex-wrap: wrap;
