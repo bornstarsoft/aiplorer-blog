@@ -3,24 +3,68 @@
 Date: 2026-06-01
 
 The repository README describes this project as a Hugo static site powered by
-Cloudflare Pages. No root GitHub Pages workflow was found during Phase 1A.
+Cloudflare Pages. No root `.github` workflow directory or project-level
+Cloudflare config file was found during the Phase 4C repo inspection, so live
+Cloudflare Pages settings must be verified manually in the Cloudflare dashboard.
 
-The root `CNAME` file currently contains:
+## Repo-Level Assumptions
 
-```txt
-www.bornstarai.com
-```
+- Canonical base URL in `config.toml`: `https://aiplorer.com/`.
+- Expected Cloudflare Pages build command: `hugo`.
+- Expected build output directory: `public`.
+- Generated output is ignored by `.gitignore` with `/public/`, `/resources/`,
+  and `.hugo_build.lock`.
+- Hugo generated `robots.txt` because `enableRobotsTXT = true`.
+- Hugo generated `sitemap.xml` with `https://aiplorer.com/` URLs.
 
-This does not match `baseURL = "https://aiplorer.com/"`. Under the current
-Cloudflare Pages assumption, the file should not affect the Hugo build output,
-but the live custom domain must be confirmed in Cloudflare Pages before a
-production launch.
+## CNAME Decision
 
-Do not guess live DNS settings from the repository alone. Confirm:
+The tracked root `CNAME` file contained `www.bornstarai.com`, which did not
+match the Aiplorer base URL. It also was not copied into Hugo's generated
+`public/` output. Because the repo evidence points to Cloudflare Pages rather
+than root GitHub Pages deployment, the stale root `CNAME` file was removed in
+Phase 4C to avoid misleading future deployment work.
 
-- Cloudflare Pages project name and production branch.
-- Custom domain entries for `aiplorer.com` and `www.aiplorer.com`.
-- Redirect behavior from `www.aiplorer.com` to `aiplorer.com`.
-- Whether this repository is also connected to any GitHub Pages deployment.
+This does not verify live DNS or Cloudflare dashboard settings. Confirm the
+production custom domain in Cloudflare Pages before launch.
 
-Production domain verification remains a required pre-launch checklist item.
+## Production Route Check
+
+A clean production `hugo` build generated the current MVP service routes:
+
+- `/`
+- `/ai-tools/`
+- `/ai-tools/tools/`
+- `/ai-tools/tools/chatgpt/`
+- `/ai-tools/tools/claude/`
+- `/ai-tools/tools/gemini/`
+- `/guides/`
+- `/guides/how-to-choose-the-right-ai-tool/`
+- `/use-cases/`
+- `/use-cases/how-to-use-ai-to-write-better-emails/`
+- `/use-cases/how-to-summarize-long-documents-with-ai/`
+- `/blog/`
+- `/about/`
+- `/contact/`
+- `/privacy/`
+- `/terms/`
+
+The production sitemap includes the published service pages above. `robots.txt`
+allows crawling and points to `https://aiplorer.com/sitemap.xml`.
+
+## Draft Exposure Result
+
+The draft example tool page is not generated in normal production output and is
+not included in the normal production sitemap. It appears only when building
+with `hugo --buildDrafts`, as expected for editorial review.
+
+## Remaining Manual Checks
+
+- Confirm Cloudflare Pages project, repository, and production branch.
+- Confirm build command `hugo` and output directory `public`.
+- Confirm Cloudflare Hugo version compatibility with local Hugo.
+- Connect `aiplorer.com` as the production custom domain.
+- Confirm `www.aiplorer.com` redirect behavior.
+- Confirm SSL/TLS and live `/sitemap.xml` after deployment.
+- Confirm Google Search Console domain property and sitemap submission.
+- Enable Cloudflare Web Analytics only if intentionally approved.
