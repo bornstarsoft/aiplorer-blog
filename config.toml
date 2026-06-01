@@ -10,3 +10,28 @@ buildFuture = false
 [params]
   description = "Aiplorer: Discover AI, apps, and useful tools—curated for builders."
   mainSections = ["posts"]
+
+[[menu.main]]
+  name = "AI Tools"
+  url = "/ai-tools/"
+  weight = 10
+
+[[menu.main]]
+  name = "Guides"
+  url = "/guides/"
+  weight = 20
+
+[[menu.main]]
+  name = "Use Cases"
+  url = "/use-cases/"
+  weight = 30
+
+[[menu.main]]
+  name = "Blog"
+  url = "/blog/"
+  weight = 40
+
+[[menu.main]]
+  name = "About"
+  url = "/about/"
+  weight = 50
