@@ -68,3 +68,46 @@ with `hugo --buildDrafts`, as expected for editorial review.
 - Confirm SSL/TLS and live `/sitemap.xml` after deployment.
 - Confirm Google Search Console domain property and sitemap submission.
 - Enable Cloudflare Web Analytics only if intentionally approved.
+
+## Phase 4D Live Verification
+
+Date: 2026-06-01
+
+The local repository was clean at commit `981dcbe` on branch
+`aiplorer-revamp-phase0`. After fetching `origin`, the current branch was found
+to diverge from `origin/main`: `origin/main` had commits not present locally on
+this branch, and the current branch had the Aiplorer revamp commits not present
+on `origin/main`. No push was performed because a safe fast-forward deployment
+push to `main` could not be confirmed from this branch, and force pushing is not
+allowed.
+
+Local production build status:
+
+- `hugo --cleanDestinationDir` passed.
+- Generated output remained ignored and unstaged.
+- The known legacy raw HTML warning for
+  `content/posts/2025-11-07-ai-233254.md` still appears.
+
+Live domain checks:
+
+- `https://aiplorer.com/` returned HTTP `200`.
+- `https://www.aiplorer.com/` redirected once to `https://aiplorer.com/` and
+  returned HTTP `200`.
+- SSL verification succeeded for the tested live URLs.
+- `https://aiplorer.com/robots.txt` returned HTTP `200` and referenced
+  `https://aiplorer.com/sitemap.xml`.
+- `https://aiplorer.com/sitemap.xml` returned HTTP `200`.
+
+Live deployment gap:
+
+- The new service MVP routes such as `/ai-tools/`, `/ai-tools/tools/`,
+  `/guides/`, and `/use-cases/` returned HTTP `404` on the live domain during
+  this check.
+- Expected live phrases such as "Explore AI Tools for Work and Creativity" and
+  "Reviewed AI Tools" were not found on the live pages during this check.
+- The draft example route `/ai-tools/tools/example-ai-assistant/` also returned
+  HTTP `404` and was not found in the live sitemap, which is the expected public
+  behavior.
+
+Before production launch, confirm the deployment branch in Cloudflare Pages and
+promote the reviewed Aiplorer revamp commits through a safe non-force workflow.
