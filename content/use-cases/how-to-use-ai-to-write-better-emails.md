@@ -61,4 +61,6 @@ AI-generated email drafts can be useful starting points, but they should not rep
 
 Start with the [Reviewed AI Tools](/ai-tools/tools/) index and the guide [How to Choose the Right AI Tool](/guides/how-to-choose-the-right-ai-tool/). General assistants can be useful for email drafting and rewriting, but the right choice depends on your task, workflow, comfort level, and current tool availability.
 
+If your email depends on a long thread, report, or set of notes, you may also want to read [How to Summarize Long Documents with AI](/use-cases/how-to-summarize-long-documents-with-ai/) before writing your reply.
+
 Features, pricing, model access, and availability may change. Check official websites for current details before relying on a specific tool or feature.

@@ -61,4 +61,6 @@ For contracts, legal documents, medical documents, financial documents, company 
 
 Start with the [Reviewed AI Tools](/ai-tools/tools/) index and the guide [How to Choose the Right AI Tool](/guides/how-to-choose-the-right-ai-tool/). General assistants can be useful for summaries and follow-up questions, but the right choice depends on your task, workflow, sensitivity level, and current tool availability.
 
-If you are summarizing a long email before replying, the related use case [How to Use AI to Write Better Emails](/use-cases/how-to-use-ai-to-write-better-emails/) may also help. Features, pricing, model access, and availability may change, so check official websites before relying on a specific tool or feature.
+If you are summarizing a long email before replying, the related use case [How to Use AI to Write Better Emails](/use-cases/how-to-use-ai-to-write-better-emails/) may also help. You can also browse the broader [AI Tools](/ai-tools/) section by task category.
+
+Features, pricing, model access, and availability may change, so check official websites before relying on a specific tool or feature.
