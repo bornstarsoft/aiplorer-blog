@@ -140,3 +140,53 @@ Integrated branch verification:
 
 Next step: push `aiplorer-revamp-main-integration` and merge it into `main`
 through a safe reviewed workflow. Do not force push or overwrite `main`.
+
+## Phase 4G Post-Merge Production Verification
+
+Date: 2026-06-01
+
+The GitHub PR from `aiplorer-revamp-main-integration` into `main` was merged.
+Local `main` was updated from `origin/main` and fast-forwarded to merge commit
+`189c79a`.
+
+Local post-merge validation:
+
+- `hugo --cleanDestinationDir` passed.
+- `hugo --buildDrafts` passed.
+- Production output was restored with `hugo --cleanDestinationDir`.
+- `git diff --check` passed.
+- Generated output remained ignored and unstaged.
+- The known legacy raw HTML warning for
+  `content/posts/2025-11-07-ai-233254.md` still appears.
+
+Live domain checks:
+
+- `https://aiplorer.com/` returned HTTP `200`.
+- `https://www.aiplorer.com/` redirected once to `https://aiplorer.com/` and
+  returned HTTP `200`.
+- SSL verification succeeded for tested live URLs.
+- `https://aiplorer.com/robots.txt` returned HTTP `200` and referenced
+  `https://aiplorer.com/sitemap.xml`.
+- `https://aiplorer.com/sitemap.xml` returned HTTP `200`.
+
+Live deployment gap after merge:
+
+- The expected homepage phrase "Explore AI Tools for Work and Creativity" was
+  not found on the live homepage during this check.
+- The live sitemap did not list the new service MVP routes during this check.
+- Several expected service routes still returned HTTP `404`, including
+  `/ai-tools/`, `/ai-tools/tools/chatgpt/`, `/ai-tools/tools/gemini/`,
+  `/guides/`, `/guides/how-to-choose-the-right-ai-tool/`, `/use-cases/`, the
+  two use-case pages, `/privacy/`, and `/terms/`.
+- `/ai-tools/tools/` and `/ai-tools/tools/claude/` returned HTTP `200`, but the
+  broader route and sitemap checks show the live deployment was not yet fully
+  aligned with the merged `main` branch.
+- The draft example route `/ai-tools/tools/example-ai-assistant/` returned HTTP
+  `404` and was not found in the live sitemap, which remains the expected public
+  behavior.
+
+Next recommended action: check the Cloudflare Pages deployment dashboard for
+the latest `main` build status, production branch setting, build command, output
+directory, and any failed deployment logs. After a successful Cloudflare
+deployment from merge commit `189c79a`, repeat the live route and sitemap
+verification.
