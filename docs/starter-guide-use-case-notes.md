@@ -26,13 +26,13 @@ reviewStatus: "reviewed"
 lastReviewed: "2026-06-01"
 ```
 
-The document summarization use-case page remains intentionally draft-only:
+Phase 3D reviewed and published the second use case:
 
 ```yaml
 content/use-cases/how-to-summarize-long-documents-with-ai.md
-draft: true
-reviewStatus: "draft"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-06-01"
 ```
 
 ## Guide Review Result
@@ -50,6 +50,19 @@ as the first live Aiplorer use-case page. It links only to reviewed public tool
 pages, the reviewed tool index, the AI Tools index, and the first published
 guide. It includes practical caution that AI-generated email drafts should be
 reviewed, edited, and personalized before sending.
+
+## Document Summary Use-Case Review Result
+
+`How to Summarize Long Documents with AI` was reviewed on 2026-06-01 and
+published as the second live Aiplorer use-case page. It links only to reviewed
+public tool pages, the reviewed tool index, the AI Tools index, the first
+published guide, and the first published email use case.
+
+The page includes safety notes for personal data, company confidential
+information, contracts, medical documents, legal documents, financial documents,
+and business-critical documents. It makes clear that AI summaries may miss
+context, details, or nuance, and that AI should assist review rather than
+replace reading the original document or professional judgment.
 
 ## Review Requirements
 
@@ -79,6 +92,10 @@ practical steps, clear caveats, and no promises of exact AI results.
 The first published use case establishes the initial live use-case quality bar:
 common task situations, a short repeatable workflow, safe prompt examples, and
 clear reminders that AI should not replace human judgment.
+
+The email and document-summary use cases now establish the live use-case quality
+bar together: useful task framing, cautious tool language, safe prompt examples,
+sensitive-information warnings, and reminders to verify AI output.
 
 Future additions should happen in small manually reviewed batches, not bulk
 content drops.
