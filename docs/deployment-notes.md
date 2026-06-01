@@ -111,3 +111,32 @@ Live deployment gap:
 
 Before production launch, confirm the deployment branch in Cloudflare Pages and
 promote the reviewed Aiplorer revamp commits through a safe non-force workflow.
+
+## Phase 4E Main Integration Preparation
+
+Date: 2026-06-01
+
+Integration branch: `aiplorer-revamp-main-integration`
+
+The integration branch was created from the latest fetched `origin/main`.
+A local safety branch was also created at
+`backup/aiplorer-revamp-phase0-before-main-integration` before integration work.
+
+The 18 revamp commits from `aiplorer-revamp-phase0` were cherry-picked onto the
+integration branch in chronological order. No cherry-pick conflicts occurred.
+
+Integrated branch verification:
+
+- `hugo --cleanDestinationDir` passed.
+- `hugo --buildDrafts` passed.
+- Production output was restored with `hugo --cleanDestinationDir`.
+- `git diff --check` passed.
+- All expected MVP service routes were generated in production output.
+- The draft example tool page was not generated in production output and was
+  not listed in the production sitemap.
+- `content/posts` retained the same file count as `origin/main` during this
+  check, and `git diff --name-status origin/main...HEAD -- content/posts`
+  showed no post changes.
+
+Next step: push `aiplorer-revamp-main-integration` and merge it into `main`
+through a safe reviewed workflow. Do not force push or overwrite `main`.
