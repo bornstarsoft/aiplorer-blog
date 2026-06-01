@@ -35,3 +35,11 @@ Support marketing, customer communication, documents, and small business tasks.
 {{< /card-grid >}}
 
 Tool features, pricing, and policies can change. Always check each official website for current details before choosing a tool.
+
+## Reviewed Tool Pages
+
+{{< card-grid >}}
+{{< card title="ChatGPT" href="/ai-tools/tools/chatgpt/" label="Reviewed" >}}
+An AI assistant from OpenAI that can be useful for writing, brainstorming, learning, coding help, and everyday productivity.
+{{< /card >}}
+{{< /card-grid >}}
