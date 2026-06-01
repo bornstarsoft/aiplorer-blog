@@ -5,4 +5,21 @@ description: "Explore practical ways to use AI for everyday work, creativity, le
 
 Use cases start with the task you want to finish, not with a tool name. This section will collect practical AI workflows for writing emails, summarizing documents, brainstorming ideas, studying, preparing resumes, and automating repetitive work.
 
+## Starter Use Cases
+
+{{< card-grid >}}
+{{< card title="Write Better Emails" href="/ai-tools/writing-tools/" label="Writing" >}}
+Use AI to draft, shorten, clarify, and adapt everyday work messages.
+{{< /card >}}
+{{< card title="Summarize Long Documents" href="/ai-tools/productivity-tools/" label="Productivity" >}}
+Use AI to extract key points, questions, and follow-up actions from dense material.
+{{< /card >}}
+{{< card title="Brainstorm Content Ideas" href="/ai-tools/writing-tools/" label="Creative work" >}}
+Use AI to generate outlines, angles, captions, and reusable idea lists.
+{{< /card >}}
+{{< card title="Automate Repetitive Work" href="/ai-tools/automation-tools/" label="Automation" >}}
+Use AI-assisted workflows to reduce recurring manual tasks.
+{{< /card >}}
+{{< /card-grid >}}
+
 Each future use case should explain useful tool categories, realistic steps, limitations, and when to check official product information.

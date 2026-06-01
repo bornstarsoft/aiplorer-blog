@@ -7,13 +7,31 @@ Aiplorer is building a practical directory of AI tools for everyday tasks. This 
 
 ## Categories
 
-- [Writing Tools](/ai-tools/writing-tools/) - AI tools for drafts, emails, outlines, and editing.
-- [Image Tools](/ai-tools/image-tools/) - AI tools for image generation, editing, and design ideas.
-- [Video Tools](/ai-tools/video-tools/) - AI tools for video creation, editing, and short-form ideas.
-- [Coding Tools](/ai-tools/coding-tools/) - AI tools for code help, debugging, and learning programming.
-- [Productivity Tools](/ai-tools/productivity-tools/) - AI tools for summaries, meetings, notes, and documents.
-- [Automation Tools](/ai-tools/automation-tools/) - AI tools for repetitive work and workflow automation.
-- [Learning Tools](/ai-tools/learning-tools/) - AI tools for studying, research, and skill building.
-- [Business Tools](/ai-tools/business-tools/) - AI tools for marketing, customer support, and small business operations.
+{{< card-grid >}}
+{{< card title="Writing Tools" href="/ai-tools/writing-tools/" label="Writing" >}}
+Draft emails, outlines, posts, summaries, and editing passes.
+{{< /card >}}
+{{< card title="Image Tools" href="/ai-tools/image-tools/" label="Visuals" >}}
+Generate images, edit visuals, and explore design directions.
+{{< /card >}}
+{{< card title="Video Tools" href="/ai-tools/video-tools/" label="Video" >}}
+Create clips, plan short-form ideas, and support editing workflows.
+{{< /card >}}
+{{< card title="Coding Tools" href="/ai-tools/coding-tools/" label="Code" >}}
+Explain code, debug errors, draft functions, and practice programming.
+{{< /card >}}
+{{< card title="Productivity Tools" href="/ai-tools/productivity-tools/" label="Work" >}}
+Summarize documents, organize notes, prepare meetings, and handle daily work.
+{{< /card >}}
+{{< card title="Automation Tools" href="/ai-tools/automation-tools/" label="Workflows" >}}
+Connect apps, reduce repetitive tasks, and support repeatable operations.
+{{< /card >}}
+{{< card title="Learning Tools" href="/ai-tools/learning-tools/" label="Learning" >}}
+Study topics, research faster, practice languages, and build new skills.
+{{< /card >}}
+{{< card title="Business Tools" href="/ai-tools/business-tools/" label="Business" >}}
+Support marketing, customer communication, documents, and small business tasks.
+{{< /card >}}
+{{< /card-grid >}}
 
 Tool features, pricing, and policies can change. Always check each official website for current details before choosing a tool.

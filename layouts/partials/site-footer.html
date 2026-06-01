@@ -1,0 +1,21 @@
+<footer class="{{ .Site.Params.background_color_class | compare.Default "bg-black" }} bottom-0 w-100 pa3" role="contentinfo">
+  <div class="aiplorer-footer center">
+    <a class="aiplorer-footer__brand hover-white white-70 no-underline" href="{{ .Site.Home.Permalink }}">
+      &copy; {{ with .Site.Copyright | compare.Default .Site.Title }} {{ . | safe.HTML }} {{ now.Format "2006"}} {{ end }}
+    </a>
+    <nav class="aiplorer-footer__nav" aria-label="Footer">
+      <a href="/ai-tools/">AI Tools</a>
+      <a href="/guides/">Guides</a>
+      <a href="/use-cases/">Use Cases</a>
+      <a href="/blog/">Blog</a>
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms/">Terms</a>
+    </nav>
+    <div>{{ partials.IncludeCached "social/follow.html" . }}</div>
+  </div>
+  <p class="aiplorer-footer__license">
+    Content licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>.
+  </p>
+</footer>

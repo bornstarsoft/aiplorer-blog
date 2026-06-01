@@ -22,3 +22,5 @@ Do not guess live DNS settings from the repository alone. Confirm:
 - Custom domain entries for `aiplorer.com` and `www.aiplorer.com`.
 - Redirect behavior from `www.aiplorer.com` to `aiplorer.com`.
 - Whether this repository is also connected to any GitHub Pages deployment.
+
+Production domain verification remains a required pre-launch checklist item.

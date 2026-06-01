@@ -10,6 +10,10 @@ buildFuture = false
 [params]
   description = "Aiplorer: Discover AI, apps, and useful tools—curated for builders."
   mainSections = ["posts"]
+  custom_css = ["css/aiplorer.css"]
+
+[params.ananke]
+  show_recent_posts = false
 
 [[menu.main]]
   name = "AI Tools"

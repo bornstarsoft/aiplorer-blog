@@ -7,9 +7,26 @@ Aiplorer helps everyday users explore practical AI tools, simple guides, and rea
 
 Find practical AI tools, simple guides, and everyday use cases for writing, design, coding, automation, learning, and productivity.
 
-## Start Exploring
+## Explore by Need
 
-- [AI Tools](/ai-tools/) - Browse practical AI tool categories for common work and creative tasks.
-- [Guides](/guides/) - Learn how to choose and use AI tools with beginner-friendly guidance.
-- [Use Cases](/use-cases/) - Start from a real task and find AI workflows that can help.
-- [Blog](/blog/) - Read the existing Aiplorer article archive while the new hub takes shape.
+{{< card-grid >}}
+{{< card title="AI Tools" href="/ai-tools/" label="Directory" >}}
+Browse practical AI tool categories for writing, images, video, coding, productivity, automation, learning, and business.
+{{< /card >}}
+{{< card title="Guides" href="/guides/" label="How to choose" >}}
+Learn how to compare AI tools, understand tradeoffs, and start with simple workflows.
+{{< /card >}}
+{{< card title="Use Cases" href="/use-cases/" label="Task first" >}}
+Start from everyday tasks like writing emails, summarizing documents, planning study, or preparing job materials.
+{{< /card >}}
+{{< card title="Blog" href="/blog/" label="Archive" >}}
+Read the existing Aiplorer article archive while the new AI tools hub takes shape.
+{{< /card >}}
+{{< /card-grid >}}
+
+## What Aiplorer Focuses On
+
+- Practical tool discovery for everyday users.
+- Simple guidance for work, creativity, learning, automation, and productivity.
+- Realistic use cases instead of fake rankings or unsupported claims.
+- Manual review before publishing detailed tool pages.
