@@ -30,6 +30,8 @@ Use this checklist before publishing any Aiplorer AI tool page.
 
 - `draft` is set to `false` only after manual review.
 - `reviewStatus` is set to `reviewed` only after manual review.
+- `reviewStatus` remains `needs-official-review` if official product details
+  have not been checked.
 - `officialUrl` is present and verified.
 - `lastReviewed` is set to the review date.
 - `category` is present.

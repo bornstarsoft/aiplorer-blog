@@ -122,6 +122,7 @@ Avoid language that implies unverified certainty:
 Use simple editorial states:
 
 - `draft`
+- `needs-official-review`
 - `needs-review`
 - `reviewed`
 - `needs-update`
