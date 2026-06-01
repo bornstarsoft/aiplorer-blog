@@ -45,4 +45,7 @@ An AI assistant from OpenAI that can be useful for writing, brainstorming, learn
 {{< card title="Claude" href="/ai-tools/tools/claude/" label="Reviewed" >}}
 An AI assistant from Anthropic that can be useful for writing, summarizing, brainstorming, learning, coding help, and everyday productivity.
 {{< /card >}}
+{{< card title="Gemini" href="/ai-tools/tools/gemini/" label="Reviewed" >}}
+An AI assistant from Google that can be useful for writing, brainstorming, learning, research support, coding help, and everyday productivity.
+{{< /card >}}
 {{< /card-grid >}}

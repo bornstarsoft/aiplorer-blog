@@ -10,7 +10,7 @@ Phase 2A adds three real AI tool pages as draft validation pages:
 
 Phase 2B reviewed ChatGPT as the first controlled live publish candidate.
 Phase 2C reviewed Claude as the second controlled live publish candidate.
-Gemini remains intentionally unpublished.
+Phase 2D reviewed Gemini as the third controlled live publish candidate.
 
 ## ChatGPT Review Result
 
@@ -62,22 +62,37 @@ reviewStatus: "reviewed"
 lastReviewed: "2026-06-01"
 ```
 
-## Gemini Status
+## Gemini Review Result
 
-Gemini's official URL was opened for a minimal URL check in Phase 2A, but the
-page has not yet received full official review for current product positioning,
-major features, model access, pricing, plans, integrations, regional
-availability, or policy details.
+Gemini was reviewed on 2026-06-01 and published as the third live Aiplorer tool
+page.
+
+Official sources checked:
+
+- `https://gemini.google.com/`
+- `https://gemini.google/overview/`
+- Google Help article: `Use Gemini Apps`
+- `https://gemini.google/subscriptions/`
+
+The page uses only high-level, cautious claims. Specific prices, plan limits,
+model names, feature limits, app availability, Workspace availability,
+integrations, and regional availability were not copied into the page.
 
 Current status:
 
 ```yaml
 content/ai-tools/tools/gemini.md
-draft: true
-reviewStatus: "needs-official-review"
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-06-01"
 ```
 
-Before publishing any of these pages:
+## Starter Quality Bar
+
+ChatGPT, Claude, and Gemini now establish the initial publishing quality bar for
+Aiplorer AI tool pages.
+
+Before publishing future tool pages:
 
 - Verify the official URL again.
 - Review the current official product positioning.
@@ -87,9 +102,9 @@ Before publishing any of these pages:
 - Set `lastReviewed` to the actual review date.
 - Change `reviewStatus` only after manual review.
 - Preview the page locally with `hugo --buildDrafts`.
-- Run `hugo` and confirm the page remains unpublished until `draft` is changed.
+- Run `hugo` and confirm the page route behaves as expected.
 
-Future tool pages should meet or exceed the ChatGPT and Claude page quality bar:
-official sources checked, cautious wording, no fake ratings, no fake rankings,
-no copied marketing text, and no detailed pricing or feature claims unless
-directly verified.
+Future tool pages should meet or exceed the ChatGPT, Claude, and Gemini page
+quality bar: official sources checked, cautious wording, no fake ratings, no
+fake rankings, no copied marketing text, and no detailed pricing or feature
+claims unless directly verified.
