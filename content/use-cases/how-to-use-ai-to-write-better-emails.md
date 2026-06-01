@@ -1,6 +1,6 @@
 ---
 title: "How to Use AI to Write Better Emails"
-description: "A draft use case showing a simple AI workflow for drafting, shortening, and improving everyday emails."
+description: "A beginner-friendly use case for using AI to draft, revise, shorten, and personalize everyday emails."
 contentType: "use-case"
 audience: "Beginners who want practical help writing clearer everyday work emails."
 relatedTools:
@@ -9,38 +9,56 @@ relatedTools:
   - "/ai-tools/tools/claude/"
   - "/ai-tools/tools/gemini/"
 relatedCategories:
-  - "/ai-tools/writing-tools/"
-  - "/ai-tools/productivity-tools/"
-lastReviewed: ""
-reviewStatus: "draft"
-draft: true
+  - "/ai-tools/"
+  - "/guides/how-to-choose-the-right-ai-tool/"
+lastReviewed: "2026-06-01"
+reviewStatus: "reviewed"
+draft: false
 ---
 
 ## Goal
 
-Use AI to turn a rough message into a clearer email without losing your intent, tone, or important details.
+Use AI to turn rough notes into a clearer email while keeping your intent, facts, tone, and judgment in the final edit.
 
-This workflow can work with reviewed general assistants such as [ChatGPT](/ai-tools/tools/chatgpt/), [Claude](/ai-tools/tools/claude/), or [Gemini](/ai-tools/tools/gemini/). Tool features and availability may change, so check official websites before relying on a specific feature.
+This workflow can help with common emails such as work updates, polite requests, follow-ups, short summaries, and clearer versions of messy notes. You can start by comparing reviewed tools such as [ChatGPT](/ai-tools/tools/chatgpt/), [Claude](/ai-tools/tools/claude/), and [Gemini](/ai-tools/tools/gemini/), or browse the [Reviewed AI Tools](/ai-tools/tools/) index.
 
-## Steps
+## Workflow
 
-1. Write the messy version first.
-   Include the purpose, recipient, key facts, deadline, and action you want the reader to take.
+1. Define the email goal.
+   Decide whether you are updating someone, asking for help, following up, summarizing a decision, or turning notes into a message.
 
-2. Ask AI for a clearer draft.
-   Example prompt: "Rewrite this email so it is clear, polite, and concise. Keep the key facts and do not add new promises."
+2. Provide only the context needed.
+   Include the recipient type, key facts, deadline, desired action, and any tone preference. Do not include private or sensitive information unless you understand the tool's policies and risks.
 
-3. Ask for one focused improvement.
-   You might ask for a shorter version, a warmer tone, a firmer request, or a clearer subject line.
+3. Choose the tone.
+   Simple tone choices like polite, direct, friendly, professional, or concise can help the draft fit the situation.
 
-4. Check every factual detail.
+4. Ask for a draft.
+   Ask the tool to keep the facts, avoid adding promises, and make the message easier to read.
+
+5. Review facts and names.
    Names, dates, numbers, attachments, promises, and decisions should be checked manually.
 
-5. Make the final voice yours.
-   AI can help with structure, but the final email should sound like something you would actually send.
+6. Personalize the message.
+   Adjust the wording so it sounds like you, matches the relationship, and does not feel over-polished or generic.
+
+7. Shorten or adjust tone before sending.
+   Ask for a shorter version or a different tone if needed, then do a final human review.
+
+## Prompt Examples
+
+- "Rewrite this email to sound polite and clear."
+- "Turn these notes into a short follow-up email."
+- "Make this message more professional but still friendly."
+- "Shorten this update while keeping the key facts."
+- "Suggest a clear subject line for this email."
+
+## Review Before Sending
+
+AI-generated email drafts can be useful starting points, but they should not replace your judgment. Review, edit, and personalize every draft before sending, especially when the message affects deadlines, commitments, relationships, money, legal issues, health, or sensitive workplace topics.
 
 ## Tools To Consider
 
-Start with the [Reviewed AI Tools](/ai-tools/tools/) index or the broader [Writing Tools](/ai-tools/writing-tools/) category. General assistants can be useful for drafts and rewrites, but important messages should always be reviewed before sending.
+Start with the [Reviewed AI Tools](/ai-tools/tools/) index and the guide [How to Choose the Right AI Tool](/guides/how-to-choose-the-right-ai-tool/). General assistants can be useful for email drafting and rewriting, but the right choice depends on your task, workflow, comfort level, and current tool availability.
 
-Before publishing this use case, review all examples, remove any tool-specific feature assumptions, and confirm the page does not promise exact results.
+Features, pricing, model access, and availability may change. Check official websites for current details before relying on a specific tool or feature.
