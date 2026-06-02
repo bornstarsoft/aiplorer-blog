@@ -400,6 +400,42 @@ Cache note:
 - If the non-query `/ai-tools/` remains stale after normal cache expiry, purge
   the Cloudflare cache and re-check `/ai-tools/`.
 
+## Phase 5U ElevenLabs Production Deployment
+
+Date: 2026-06-02
+
+ElevenLabs was added and reviewed through the draft-first workflow, then the two
+ElevenLabs commits were pushed to `origin/main`:
+
+- `5eccff5 Add ElevenLabs draft tool page`
+- `5492410 Review ElevenLabs tool page for publication`
+
+Local validation before push:
+
+- `hugo --cleanDestinationDir` passed.
+- `hugo --buildDrafts` passed.
+- Production output was restored with `hugo --cleanDestinationDir`.
+- `git diff --check` passed.
+- Generated output remained ignored and unstaged.
+
+Live verification after deployment:
+
+- `/ai-tools/tools/elevenlabs/` returned HTTP `200`.
+- `/ai-tools/`, `/ai-tools/tools/`, and `/sitemap.xml` returned HTTP `200`.
+- `/ai-tools/tools/` included ElevenLabs in the non-query response.
+- `/ai-tools/tools/example-ai-assistant/` returned HTTP `404`.
+- The draft example route remains absent from the live sitemap.
+
+Cache note:
+
+- The non-query `/ai-tools/` and `/sitemap.xml` initially returned HTTP `200`
+  but served pre-ElevenLabs cached content.
+- Cache-busted checks for `/ai-tools/?deploy-check=5492410` and
+  `/sitemap.xml?deploy-check=5492410` returned HTTP `200` and included
+  ElevenLabs.
+- If the non-query URLs remain stale after normal cache expiry, purge the
+  Cloudflare cache and re-check `/ai-tools/` and `/sitemap.xml`.
+
 ## Phase 5L Notion AI Production Deployment
 
 Date: 2026-06-02
