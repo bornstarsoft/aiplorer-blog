@@ -214,3 +214,27 @@ The Canva AI page reminds users to review AI-generated designs, text, images,
 and videos before publishing. It also notes that brand, copyright, privacy,
 commercial-use requirements, and sensitive or confidential content should be
 handled carefully.
+
+## Notion AI Draft Result
+
+Phase 5J added Notion AI as a draft-first validation page.
+
+Current status:
+
+```yaml
+content/ai-tools/tools/notion-ai.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+```
+
+Notion AI remains unpublished pending official review. It should not be linked
+from `/ai-tools/`, `/ai-tools/tools/`, category pages, or global navigation
+until it meets the existing reviewed tool quality bar.
+
+Before publication, review official Notion sources, confirm current product
+positioning, check pricing and plan language, and avoid unverified claims about
+workspace availability, Notion plan availability, AI usage limits, model access,
+integrations, or exact feature availability. The page should continue reminding
+users to review AI-generated notes, summaries, and drafts before relying on
+them and to handle sensitive or confidential content carefully.
