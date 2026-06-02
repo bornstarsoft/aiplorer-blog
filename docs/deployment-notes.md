@@ -288,3 +288,40 @@ Cache note:
   Microsoft Copilot.
 - If the non-query URLs remain stale after normal cache expiry, purge the
   Cloudflare cache and re-check `/ai-tools/` and `/sitemap.xml`.
+
+## Phase 5I Canva AI Production Deployment
+
+Date: 2026-06-02
+
+Canva AI was added and reviewed through the draft-first workflow, then the two
+Canva AI commits were pushed to `origin/main`:
+
+- `f1f34bf Add Canva AI draft tool page`
+- `d36bf62 Review Canva AI tool page for publication`
+
+Local validation before push:
+
+- `hugo --cleanDestinationDir` passed.
+- `hugo --buildDrafts` passed.
+- Production output was restored with `hugo --cleanDestinationDir`.
+- `git diff --check` passed.
+- Generated output remained ignored and unstaged.
+
+Live verification after deployment:
+
+- `/ai-tools/tools/canva-ai/` returned HTTP `200`.
+- `/ai-tools/`, `/ai-tools/tools/`, and `/sitemap.xml` returned HTTP `200`.
+- `/ai-tools/tools/example-ai-assistant/` returned HTTP `404`.
+- The draft example route remains absent from the live sitemap.
+
+Cache note:
+
+- The non-query `/ai-tools/`, `/ai-tools/tools/`, and `/sitemap.xml` initially
+  returned HTTP `200` but served pre-Canva cached content.
+- Cache-busted checks for `/ai-tools/?deploy-check=d36bf62`,
+  `/ai-tools/tools/?deploy-check=d36bf62`, and
+  `/sitemap.xml?deploy-check=d36bf62` returned HTTP `200` and included Canva
+  AI.
+- If the non-query URLs remain stale after normal cache expiry, purge the
+  Cloudflare cache and re-check `/ai-tools/`, `/ai-tools/tools/`, and
+  `/sitemap.xml`.
