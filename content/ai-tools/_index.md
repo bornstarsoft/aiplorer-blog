@@ -50,4 +50,7 @@ An AI assistant from Anthropic that can be useful for writing, summarizing, brai
 {{< card title="Gemini" href="/ai-tools/tools/gemini/" label="Reviewed" >}}
 An AI assistant from Google that can be useful for writing, brainstorming, learning, research support, coding help, and everyday productivity.
 {{< /card >}}
+{{< card title="Perplexity" href="/ai-tools/tools/perplexity/" label="Reviewed" >}}
+An AI-powered search and research assistant that can help users ask questions, explore topics, and review source-linked answers.
+{{< /card >}}
 {{< /card-grid >}}

@@ -1,6 +1,6 @@
 ---
 title: "Perplexity"
-description: "Perplexity is an AI-powered answer and research assistant that may help users explore topics, ask follow-up questions, and review source links."
+description: "Perplexity is an AI-powered search and research assistant that can help users ask questions, explore topics, and review source-linked answers."
 type: "ai-tools"
 layout: "tool"
 category: "Productivity Tools"
@@ -12,10 +12,10 @@ bestFor:
   - Finding source links to check manually
 beginnerFriendly: null
 freePlan: null
-pricingNote: "Pricing, plans, features, and availability may change. Check the official Perplexity website for current details."
+pricingNote: "Pricing, plans, features, limits, and availability may change. Check the official Perplexity website and subscription information for current details."
 officialUrl: "https://www.perplexity.ai/"
-lastReviewed: ""
-draft: true
+lastReviewed: "2026-06-02"
+draft: false
 useCases:
   - Ask for a first-pass explanation of a topic
   - Collect source links for manual review
@@ -25,29 +25,36 @@ useCases:
 pros:
   - May be useful as a starting point for research-oriented questions
   - Can help beginners turn broad questions into more specific follow-up checks
+  - Provides source-linked answers that users can review against original sources
 limitations:
   - AI-generated answers can be incomplete, outdated, or incorrect
   - Source links and summaries should be checked against original sources
-  - Pricing, plans, model access, and feature availability may change
+  - Users should avoid entering sensitive or confidential information unless they understand the tool's privacy and data handling policies
+  - Pricing, plans, model access, limits, and feature availability may change
 similarTools:
   - ChatGPT
   - Claude
   - Gemini
-reviewStatus: "needs-official-review"
+reviewStatus: "reviewed"
 sourceNotes:
-  - "Draft placeholder. Official Perplexity sources still need to be reviewed before publication."
+  - "Checked https://www.perplexity.ai/ on 2026-06-02 for official URL and product access point."
+  - "Checked Perplexity Help Center article 'What is Perplexity?' on 2026-06-02 for high-level search, research assistant, and source-linked answer positioning."
+  - "Checked Perplexity Help Center article 'Getting Started with Perplexity' on 2026-06-02 for high-level use case categories."
+  - "Checked Perplexity Help Center article 'Practical Tips for Using Perplexity' on 2026-06-02 for high-level research, summarization, and prompting guidance."
+  - "Checked Perplexity Help Center article 'Which Perplexity Subscription Plan is right for you?' on 2026-06-02, but did not copy specific prices, limits, model names, plan comparisons, or feature availability claims."
+  - "Checked Perplexity Help Center Privacy & Data collection page on 2026-06-02 for privacy-related documentation categories."
 ---
 
 ## Overview
 
-Perplexity is a draft candidate for Aiplorer's reviewed tool pages. It may be useful for people who want an AI-powered answer and research assistant for exploring topics, asking follow-up questions, and finding source links to review.
+Perplexity is an AI-powered search and research assistant. It can be useful for people who want to ask questions, explore topics, review source-linked answers, and prepare follow-up research.
 
 ## Useful For
 
-Beginners may use a research assistant like Perplexity to get a first-pass explanation, collect sources to check, compare possible angles, or prepare better questions before reading original material. It should be treated as a starting point rather than a final authority.
+Beginners may use Perplexity to get a first-pass explanation, collect source links to check, compare possible angles, summarize background information, or prepare better questions before reading original material. It should be treated as a starting point rather than a final authority.
 
 ## Notes
 
-This page is not published yet. Before publication, Aiplorer should review official Perplexity sources, confirm the official URL, and check current product positioning, pricing language, and major use cases.
+Features, pricing, plan limits, model access, source behavior, and availability may change. Check the official Perplexity website and help center for current details before choosing a plan or relying on a specific feature.
 
-AI-generated answers can be incomplete or incorrect. Users should check source links, read original sources when accuracy matters, and verify important research before relying on it.
+AI-generated answers can be incomplete, outdated, or incorrect. Users should check source links, read original sources when accuracy matters, and verify important research before relying on it. Do not enter sensitive or confidential information unless you understand the tool's privacy and data handling policies.

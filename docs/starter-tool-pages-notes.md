@@ -109,24 +109,37 @@ quality bar: official sources checked, cautious wording, no fake ratings, no
 fake rankings, no copied marketing text, and no detailed pricing or feature
 claims unless directly verified.
 
-## Perplexity Draft Result
+## Perplexity Review Result
 
-Phase 5A added Perplexity as a draft-first validation page.
+Phase 5A added Perplexity as a draft-first validation page. Phase 5B reviewed
+Perplexity against official sources and published it as the fourth live
+Aiplorer tool page.
+
+Official sources checked:
+
+- `https://www.perplexity.ai/`
+- Perplexity Help Center article: `What is Perplexity?`
+- Perplexity Help Center article: `Getting Started with Perplexity`
+- Perplexity Help Center article: `Practical Tips for Using Perplexity`
+- Perplexity Help Center article: `Which Perplexity Subscription Plan is right
+  for you?`
+- Perplexity Help Center collection: `Privacy & Data`
+
+The page uses only high-level, cautious claims. Specific prices, plan limits,
+model names, exact source availability, citation quality, integrations, and
+feature availability were not copied into the page.
 
 Current status:
 
 ```yaml
 content/ai-tools/tools/perplexity.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-06-02"
 ```
 
-Perplexity remains unpublished pending official review. It should not be linked
-from `/ai-tools/`, `/ai-tools/tools/`, category pages, or global navigation
-until it meets the ChatGPT, Claude, and Gemini quality bar.
-
-Before publication, review official Perplexity sources, confirm current product
-positioning, check pricing and plan language, and keep research/answer claims
-cautious. The page should remind users to verify source links and original
-sources because AI-generated answers may be incomplete or incorrect.
+The Perplexity page includes caution notes that AI-generated answers may be
+incomplete, outdated, or incorrect. Users should verify source links and original
+sources when accuracy matters, and should avoid entering sensitive or
+confidential information unless they understand the tool's privacy and data
+handling policies.
