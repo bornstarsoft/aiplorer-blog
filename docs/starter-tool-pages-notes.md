@@ -251,27 +251,39 @@ workspace, team, school, and organization settings may affect availability,
 privacy, and data handling, and that sensitive or confidential content should
 be handled carefully.
 
-## Grammarly Draft Result
+## Grammarly Review Result
 
-Phase 5M added Grammarly as a draft-first validation page.
+Phase 5M added Grammarly as a draft-first validation page. Phase 5N reviewed
+Grammarly against official Grammarly sources and published it as the eighth
+live Aiplorer tool page.
+
+Official sources checked:
+
+- `https://www.grammarly.com/`
+- `https://www.grammarly.com/ai-writing-assistant`
+- `https://www.grammarly.com/ai-chat`
+- `https://support.grammarly.com/`
+- `https://support.grammarly.com/hc/en-us/articles/20916119474829-Privacy-and-security-FAQs`
+- `https://support.grammarly.com/hc/en-us/articles/115000090011-How-much-does-Grammarly-Pro-cost`
+- `https://www.grammarly.com/blog/trust-security/`
+
+The page uses only high-level, cautious claims. Specific prices, plan
+comparisons, AI feature availability, grammar-checking accuracy,
+plagiarism-related availability, enterprise availability, team availability,
+browser extension availability, app availability, integration details, model
+details, Superhuman suite availability, and exact feature availability were not
+copied into the page.
 
 Current status:
 
 ```yaml
 content/ai-tools/tools/grammarly.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-06-02"
 ```
 
-Grammarly remains unpublished pending official review. It should not be linked
-from `/ai-tools/`, `/ai-tools/tools/`, category pages, or global navigation
-until it meets the existing reviewed tool quality bar.
-
-Before publication, review official Grammarly sources, confirm current product
-positioning, check pricing and plan language, and avoid unverified claims about
-AI feature availability, grammar-checking accuracy, plagiarism-related
-features, enterprise availability, integrations, browser extension availability,
-app availability, model access, or exact feature availability. The page should
-continue reminding users to review suggested edits before accepting them and to
-handle sensitive or confidential text carefully.
+The Grammarly page reminds users to review suggested edits before accepting
+them. It also notes that tone, style, correctness, context, privacy, workplace
+or school policies, and sensitive or confidential text still require careful
+human judgment.

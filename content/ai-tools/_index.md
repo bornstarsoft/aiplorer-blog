@@ -62,4 +62,7 @@ AI-related features within Canva that can support design ideas, writing, visual 
 {{< card title="Notion AI" href="/ai-tools/tools/notion-ai/" label="Reviewed" >}}
 AI-related features within Notion that can support writing, summarizing, organizing notes, and productivity workflows.
 {{< /card >}}
+{{< card title="Grammarly" href="/ai-tools/tools/grammarly/" label="Reviewed" >}}
+A writing and communication assistant that can support drafting, rewriting, clarity, tone, grammar support, and everyday communication.
+{{< /card >}}
 {{< /card-grid >}}
