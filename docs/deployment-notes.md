@@ -253,3 +253,38 @@ Live verification after deployment:
   from the sitemap.
 
 No Perplexity deployment cache issue was observed during this verification.
+
+## Phase 5F Microsoft Copilot Production Deployment
+
+Date: 2026-06-02
+
+Microsoft Copilot was added and reviewed through the draft-first workflow, then
+the two Microsoft Copilot commits were pushed to `origin/main`:
+
+- `de69b5a Add Microsoft Copilot draft tool page`
+- `1408af7 Review Microsoft Copilot tool page for publication`
+
+Local validation before push:
+
+- `hugo --cleanDestinationDir` passed.
+- `hugo --buildDrafts` passed.
+- Production output was restored with `hugo --cleanDestinationDir`.
+- `git diff --check` passed.
+- Generated output remained ignored and unstaged.
+
+Live verification after deployment:
+
+- `/ai-tools/tools/microsoft-copilot/` returned HTTP `200`.
+- `/ai-tools/tools/` returned HTTP `200` and lists Microsoft Copilot.
+- `/ai-tools/tools/example-ai-assistant/` returned HTTP `404`.
+- The draft example route remains absent from the live sitemap.
+
+Cache note:
+
+- The non-query `/ai-tools/` page and `/sitemap.xml` initially returned HTTP
+  `200` but served pre-Copilot cached content.
+- Cache-busted checks for `/ai-tools/?deploy-check=1408af7` and
+  `/sitemap.xml?deploy-check=1408af7` returned HTTP `200` and included
+  Microsoft Copilot.
+- If the non-query URLs remain stale after normal cache expiry, purge the
+  Cloudflare cache and re-check `/ai-tools/` and `/sitemap.xml`.
