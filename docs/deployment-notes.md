@@ -436,6 +436,42 @@ Cache note:
 - If the non-query URLs remain stale after normal cache expiry, purge the
   Cloudflare cache and re-check `/ai-tools/` and `/sitemap.xml`.
 
+## Audio Tools Category Production Deployment
+
+Date: 2026-06-02
+
+The Audio Tools category commit was pushed to `origin/main`:
+
+- `51cd5e2 Add Audio Tools category for Aiplorer`
+
+Local validation before push:
+
+- `hugo --cleanDestinationDir` passed.
+- `hugo --buildDrafts` passed.
+- Production output was restored with `hugo --cleanDestinationDir`.
+- `git diff --check` passed.
+- Generated output remained ignored and unstaged.
+
+Live verification after deployment:
+
+- `/ai-tools/audio-tools/` returned HTTP `200`.
+- `/ai-tools/`, `/ai-tools/tools/elevenlabs/`, and `/sitemap.xml` returned
+  HTTP `200`.
+- `/ai-tools/` included the Audio Tools category card.
+- `/sitemap.xml` included `/ai-tools/audio-tools/`.
+- `/ai-tools/tools/example-ai-assistant/` returned HTTP `404`.
+- The draft example route remains absent from the live sitemap.
+
+Cache note:
+
+- The non-query `/ai-tools/tools/elevenlabs/` initially returned HTTP `200` but
+  served the pre-Audio Tools category value.
+- The cache-busted check for
+  `/ai-tools/tools/elevenlabs/?deploy-check=51cd5e2` returned HTTP `200` and
+  showed `Category: Audio Tools`.
+- If the non-query ElevenLabs page remains stale after normal cache expiry,
+  purge the Cloudflare cache and re-check `/ai-tools/tools/elevenlabs/`.
+
 ## Phase 5L Notion AI Production Deployment
 
 Date: 2026-06-02
