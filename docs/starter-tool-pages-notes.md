@@ -250,3 +250,28 @@ database-related content, and drafts before relying on them. It also notes that
 workspace, team, school, and organization settings may affect availability,
 privacy, and data handling, and that sensitive or confidential content should
 be handled carefully.
+
+## Grammarly Draft Result
+
+Phase 5M added Grammarly as a draft-first validation page.
+
+Current status:
+
+```yaml
+content/ai-tools/tools/grammarly.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+```
+
+Grammarly remains unpublished pending official review. It should not be linked
+from `/ai-tools/`, `/ai-tools/tools/`, category pages, or global navigation
+until it meets the existing reviewed tool quality bar.
+
+Before publication, review official Grammarly sources, confirm current product
+positioning, check pricing and plan language, and avoid unverified claims about
+AI feature availability, grammar-checking accuracy, plagiarism-related
+features, enterprise availability, integrations, browser extension availability,
+app availability, model access, or exact feature availability. The page should
+continue reminding users to review suggested edits before accepting them and to
+handle sensitive or confidential text carefully.
