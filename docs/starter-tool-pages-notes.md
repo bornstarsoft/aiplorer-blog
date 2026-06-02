@@ -143,3 +143,29 @@ incomplete, outdated, or incorrect. Users should verify source links and origina
 sources when accuracy matters, and should avoid entering sensitive or
 confidential information unless they understand the tool's privacy and data
 handling policies.
+
+## Microsoft Copilot Draft Result
+
+Phase 5D added Microsoft Copilot as a draft-first validation page.
+
+Current status:
+
+```yaml
+content/ai-tools/tools/microsoft-copilot.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+```
+
+Microsoft Copilot remains unpublished pending official review. It should not be
+linked from `/ai-tools/`, `/ai-tools/tools/`, category pages, or global
+navigation until it meets the ChatGPT, Claude, Gemini, and Perplexity quality
+bar.
+
+Before publication, review official Microsoft Copilot sources, confirm current
+product positioning, check pricing and plan language, and avoid unverified
+claims about Microsoft 365 availability, Windows availability, Edge
+availability, Bing availability, model access, integrations, account
+requirements, or exact feature availability. The page should continue reminding
+users to review AI-generated work and handle sensitive or confidential
+information carefully.
