@@ -287,3 +287,27 @@ The Grammarly page reminds users to review suggested edits before accepting
 them. It also notes that tone, style, correctness, context, privacy, workplace
 or school policies, and sensitive or confidential text still require careful
 human judgment.
+
+## DeepL Draft Status
+
+Phase 5P added DeepL as a draft-first validation page.
+
+Current status:
+
+```yaml
+content/ai-tools/tools/deepl.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+```
+
+DeepL remains unpublished pending official review. Before publication, official
+DeepL sources must be checked for current product positioning, pricing language,
+supported language claims, document translation options, API references, DeepL
+Write references, privacy or security claims, app or extension availability,
+and exact feature availability.
+
+The draft follows the existing reviewed tool quality bar by using cautious
+wording, avoiding pricing and feature certainty, avoiding unsupported
+translation accuracy claims, and reminding users to review translated or
+rewritten text before publishing, sending, or using it for important decisions.
