@@ -65,4 +65,7 @@ AI-related features within Notion that can support writing, summarizing, organiz
 {{< card title="Grammarly" href="/ai-tools/tools/grammarly/" label="Reviewed" >}}
 A writing and communication assistant that can support drafting, rewriting, clarity, tone, grammar support, and everyday communication.
 {{< /card >}}
+{{< card title="DeepL" href="/ai-tools/tools/deepl/" label="Reviewed" >}}
+A language AI tool that can support translation, rewriting, and multilingual writing workflows.
+{{< /card >}}
 {{< /card-grid >}}

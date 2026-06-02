@@ -288,26 +288,40 @@ them. It also notes that tone, style, correctness, context, privacy, workplace
 or school policies, and sensitive or confidential text still require careful
 human judgment.
 
-## DeepL Draft Status
+## DeepL Review Result
 
-Phase 5P added DeepL as a draft-first validation page.
+Phase 5P added DeepL as a draft-first validation page. Phase 5Q reviewed DeepL
+against official DeepL sources and published it as the ninth live Aiplorer tool
+page.
+
+Official sources checked:
+
+- `https://www.deepl.com/en/translator`
+- `https://www.deepl.com/en/write`
+- `https://www.deepl.com/en/pro`
+- `https://www.deepl.com/en/products/api`
+- `https://developers.deepl.com/docs/resources/usage-limits`
+- `https://support.deepl.com/hc/en-us/articles/360019924499-About-DeepL-plans`
+- `https://support.deepl.com/hc/en-us/articles/360021200939-DeepL-API-plans`
+- `https://www.deepl.com/en/pro-data-security`
+
+The page uses only high-level, cautious claims. Specific prices, plan
+comparisons, supported language counts, translation accuracy claims, document
+translation limits, API feature claims, DeepL Write availability details, DeepL
+Pro privacy or security guarantees, data retention guarantees, app availability,
+extension availability, integration details, model details, and exact feature
+availability were not copied into the page.
 
 Current status:
 
 ```yaml
 content/ai-tools/tools/deepl.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-06-02"
 ```
 
-DeepL remains unpublished pending official review. Before publication, official
-DeepL sources must be checked for current product positioning, pricing language,
-supported language claims, document translation options, API references, DeepL
-Write references, privacy or security claims, app or extension availability,
-and exact feature availability.
-
-The draft follows the existing reviewed tool quality bar by using cautious
-wording, avoiding pricing and feature certainty, avoiding unsupported
-translation accuracy claims, and reminding users to review translated or
-rewritten text before publishing, sending, or using it for important decisions.
+The DeepL page reminds users to review translated or rewritten text before
+publishing, sending, or relying on it. It also notes that legal, medical,
+financial, contractual, business-critical, sensitive, or confidential text
+requires careful handling and may need qualified human review.
