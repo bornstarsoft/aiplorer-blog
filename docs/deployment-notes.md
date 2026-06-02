@@ -325,3 +325,40 @@ Cache note:
 - If the non-query URLs remain stale after normal cache expiry, purge the
   Cloudflare cache and re-check `/ai-tools/`, `/ai-tools/tools/`, and
   `/sitemap.xml`.
+
+## Phase 5L Notion AI Production Deployment
+
+Date: 2026-06-02
+
+Notion AI was added and reviewed through the draft-first workflow, then the two
+Notion AI commits were pushed to `origin/main`:
+
+- `26d3f6f Add Notion AI draft tool page`
+- `19a5074 Review Notion AI tool page for publication`
+
+Local validation before push:
+
+- `hugo --cleanDestinationDir` passed.
+- `hugo --buildDrafts` passed.
+- Production output was restored with `hugo --cleanDestinationDir`.
+- `git diff --check` passed.
+- Generated output remained ignored and unstaged.
+
+Live verification after deployment:
+
+- `/ai-tools/tools/notion-ai/` returned HTTP `200`.
+- `/ai-tools/`, `/ai-tools/tools/`, and `/sitemap.xml` returned HTTP `200`.
+- `/ai-tools/tools/example-ai-assistant/` returned HTTP `404`.
+- The draft example route remains absent from the live sitemap.
+
+Cache note:
+
+- The non-query `/ai-tools/`, `/ai-tools/tools/`, and `/sitemap.xml` initially
+  returned HTTP `200` but served pre-Notion cached content.
+- Cache-busted checks for `/ai-tools/?deploy-check=19a5074`,
+  `/ai-tools/tools/?deploy-check=19a5074`, and
+  `/sitemap.xml?deploy-check=19a5074` returned HTTP `200` and included Notion
+  AI.
+- If the non-query URLs remain stale after normal cache expiry, purge the
+  Cloudflare cache and re-check `/ai-tools/`, `/ai-tools/tools/`, and
+  `/sitemap.xml`.
