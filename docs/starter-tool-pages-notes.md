@@ -215,26 +215,38 @@ and videos before publishing. It also notes that brand, copyright, privacy,
 commercial-use requirements, and sensitive or confidential content should be
 handled carefully.
 
-## Notion AI Draft Result
+## Notion AI Review Result
 
-Phase 5J added Notion AI as a draft-first validation page.
+Phase 5J added Notion AI as a draft-first validation page. Phase 5K reviewed
+Notion AI against official Notion sources and published it as the seventh live
+Aiplorer tool page.
+
+Official sources checked:
+
+- `https://www.notion.com/product/ai`
+- `https://www.notion.com/help/notion-ai-faqs`
+- `https://www.notion.com/help/guides/category/notion-ai`
+- `https://www.notion.com/pricing`
+- `https://www.notion.com/help/security-and-privacy`
+- `https://www.notion.com/help/`
+
+The page uses only high-level, cautious claims. Specific prices, plan
+comparisons, workspace availability, Notion plan availability, AI usage limits,
+model access, database availability, Q&A availability, integration details,
+organization availability, team availability, and exact feature availability
+were not copied into the page.
 
 Current status:
 
 ```yaml
 content/ai-tools/tools/notion-ai.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-06-02"
 ```
 
-Notion AI remains unpublished pending official review. It should not be linked
-from `/ai-tools/`, `/ai-tools/tools/`, category pages, or global navigation
-until it meets the existing reviewed tool quality bar.
-
-Before publication, review official Notion sources, confirm current product
-positioning, check pricing and plan language, and avoid unverified claims about
-workspace availability, Notion plan availability, AI usage limits, model access,
-integrations, or exact feature availability. The page should continue reminding
-users to review AI-generated notes, summaries, and drafts before relying on
-them and to handle sensitive or confidential content carefully.
+The Notion AI page reminds users to review AI-generated notes, summaries,
+database-related content, and drafts before relying on them. It also notes that
+workspace, team, school, and organization settings may affect availability,
+privacy, and data handling, and that sensitive or confidential content should
+be handled carefully.

@@ -59,4 +59,7 @@ An AI assistant from Microsoft that can support everyday questions, writing help
 {{< card title="Canva AI" href="/ai-tools/tools/canva-ai/" label="Reviewed" >}}
 AI-related features within Canva that can support design ideas, writing, visual content drafts, and creative workflow planning.
 {{< /card >}}
+{{< card title="Notion AI" href="/ai-tools/tools/notion-ai/" label="Reviewed" >}}
+AI-related features within Notion that can support writing, summarizing, organizing notes, and productivity workflows.
+{{< /card >}}
 {{< /card-grid >}}
