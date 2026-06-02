@@ -222,3 +222,34 @@ by the Cloudflare cache purge.
 Next manual action: submit or re-submit `https://aiplorer.com/sitemap.xml` in
 Google Search Console, inspect priority service URLs, and monitor sitemap,
 indexing, and 404 reports for the first 2-3 days after deployment.
+
+## Phase 5C Perplexity Production Deployment
+
+Date: 2026-06-02
+
+Perplexity was added and reviewed through the draft-first workflow, then the two
+Perplexity commits were pushed to `origin/main`:
+
+- `5101b6a Add Perplexity draft tool page`
+- `28aa221 Review Perplexity tool page for publication`
+
+Local validation before push:
+
+- `hugo --cleanDestinationDir` passed.
+- `hugo --buildDrafts` passed.
+- Production output was restored with `hugo --cleanDestinationDir`.
+- `git diff --check` passed.
+- Generated output remained ignored and unstaged.
+
+Live verification after deployment:
+
+- `/ai-tools/` returned HTTP `200` and includes Perplexity in the reviewed tool
+  cards.
+- `/ai-tools/tools/` returned HTTP `200` and lists Perplexity.
+- `/ai-tools/tools/perplexity/` returned HTTP `200`.
+- `/sitemap.xml` returned HTTP `200` and includes
+  `https://aiplorer.com/ai-tools/tools/perplexity/`.
+- `/ai-tools/tools/example-ai-assistant/` returned HTTP `404` and remains absent
+  from the sitemap.
+
+No Perplexity deployment cache issue was observed during this verification.
