@@ -364,6 +364,42 @@ Cache note:
 - If the non-query sitemap remains stale after normal cache expiry, purge the
   Cloudflare cache and re-check `/sitemap.xml`.
 
+## Phase 5R DeepL Production Deployment
+
+Date: 2026-06-02
+
+DeepL was added and reviewed through the draft-first workflow, then the two
+DeepL commits were pushed to `origin/main`:
+
+- `10a56a7 Add DeepL draft tool page`
+- `38a3298 Review DeepL tool page for publication`
+
+Local validation before push:
+
+- `hugo --cleanDestinationDir` passed.
+- `hugo --buildDrafts` passed.
+- Production output was restored with `hugo --cleanDestinationDir`.
+- `git diff --check` passed.
+- Generated output remained ignored and unstaged.
+
+Live verification after deployment:
+
+- `/ai-tools/tools/deepl/` returned HTTP `200`.
+- `/ai-tools/`, `/ai-tools/tools/`, and `/sitemap.xml` returned HTTP `200`.
+- `/ai-tools/tools/` included DeepL in the non-query response.
+- `/sitemap.xml` included `/ai-tools/tools/deepl/` in the non-query response.
+- `/ai-tools/tools/example-ai-assistant/` returned HTTP `404`.
+- The draft example route remains absent from the live sitemap.
+
+Cache note:
+
+- The non-query `/ai-tools/` initially returned HTTP `200` but served
+  pre-DeepL cached content.
+- Cache-busted checks for `/ai-tools/?deploy-check=38a3298` and
+  `/sitemap.xml?deploy-check=38a3298` returned HTTP `200` and included DeepL.
+- If the non-query `/ai-tools/` remains stale after normal cache expiry, purge
+  the Cloudflare cache and re-check `/ai-tools/`.
+
 ## Phase 5L Notion AI Production Deployment
 
 Date: 2026-06-02
