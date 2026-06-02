@@ -68,4 +68,7 @@ A writing and communication assistant that can support drafting, rewriting, clar
 {{< card title="DeepL" href="/ai-tools/tools/deepl/" label="Reviewed" >}}
 A language AI tool that can support translation, rewriting, and multilingual writing workflows.
 {{< /card >}}
+{{< card title="ElevenLabs" href="/ai-tools/tools/elevenlabs/" label="Reviewed" >}}
+An AI audio and voice platform that can support narration, voice, and audio content workflows.
+{{< /card >}}
 {{< /card-grid >}}
