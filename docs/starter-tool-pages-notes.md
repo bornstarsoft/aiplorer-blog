@@ -325,3 +325,27 @@ The DeepL page reminds users to review translated or rewritten text before
 publishing, sending, or relying on it. It also notes that legal, medical,
 financial, contractual, business-critical, sensitive, or confidential text
 requires careful handling and may need qualified human review.
+
+## ElevenLabs Draft Status
+
+Phase 5S added ElevenLabs as a draft-first validation page.
+
+Current status:
+
+```yaml
+content/ai-tools/tools/elevenlabs.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+```
+
+ElevenLabs remains unpublished pending official review. Before publication,
+official ElevenLabs sources must be checked for current product positioning,
+pricing language, credit limits, commercial-use terms, voice cloning references,
+dubbing references, API references, licensing or copyright terms, safety policy
+details, and exact feature availability.
+
+Special caution areas include voice rights, consent, copyright, brand use,
+licensing, commercial-use requirements, credits, safety policies, sensitive or
+private content, and third-party voice content. The draft avoids fake rankings,
+unsupported feature claims, and public links until review is complete.
