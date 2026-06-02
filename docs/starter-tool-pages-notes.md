@@ -108,3 +108,25 @@ Future tool pages should meet or exceed the ChatGPT, Claude, and Gemini page
 quality bar: official sources checked, cautious wording, no fake ratings, no
 fake rankings, no copied marketing text, and no detailed pricing or feature
 claims unless directly verified.
+
+## Perplexity Draft Result
+
+Phase 5A added Perplexity as a draft-first validation page.
+
+Current status:
+
+```yaml
+content/ai-tools/tools/perplexity.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+```
+
+Perplexity remains unpublished pending official review. It should not be linked
+from `/ai-tools/`, `/ai-tools/tools/`, category pages, or global navigation
+until it meets the ChatGPT, Claude, and Gemini quality bar.
+
+Before publication, review official Perplexity sources, confirm current product
+positioning, check pricing and plan language, and keep research/answer claims
+cautious. The page should remind users to verify source links and original
+sources because AI-generated answers may be incomplete or incorrect.
