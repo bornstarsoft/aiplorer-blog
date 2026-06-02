@@ -75,6 +75,7 @@ Use one primary category:
 - Writing Tools
 - Image Tools
 - Video Tools
+- Audio Tools
 - Coding Tools
 - Productivity Tools
 - Automation Tools

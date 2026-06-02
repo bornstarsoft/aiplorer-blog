@@ -17,6 +17,9 @@ Generate images, edit visuals, and explore design directions.
 {{< card title="Video Tools" href="/ai-tools/video-tools/" label="Video" >}}
 Create clips, plan short-form ideas, and support editing workflows.
 {{< /card >}}
+{{< card title="Audio Tools" href="/ai-tools/audio-tools/" label="Audio" >}}
+Explore voice, narration, transcription, dubbing, podcasts, and creative audio workflows.
+{{< /card >}}
 {{< card title="Coding Tools" href="/ai-tools/coding-tools/" label="Code" >}}
 Explain code, debug errors, draft functions, and practice programming.
 {{< /card >}}

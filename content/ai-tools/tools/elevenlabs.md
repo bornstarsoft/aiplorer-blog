@@ -3,7 +3,7 @@ title: "ElevenLabs"
 description: "ElevenLabs is an AI audio and voice platform that can support narration, voice, and audio content workflows."
 type: "ai-tools"
 layout: "tool"
-category: "Video Tools"
+category: "Audio Tools"
 bestFor:
   - Drafting narration ideas
   - Planning audio content workflows
