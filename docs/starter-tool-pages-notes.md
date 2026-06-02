@@ -178,3 +178,29 @@ The Microsoft Copilot page reminds users that AI-generated work should be
 reviewed before use. It also notes that work, school, and organization accounts
 may have different access, privacy, and data handling policies, and that users
 should handle sensitive or confidential information carefully.
+
+## Canva AI Draft Result
+
+Phase 5G added Canva AI as a draft-first validation page.
+
+Current status:
+
+```yaml
+content/ai-tools/tools/canva-ai.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+```
+
+Canva AI remains unpublished pending official review. It should not be linked
+from `/ai-tools/`, `/ai-tools/tools/`, category pages, or global navigation
+until it meets the ChatGPT, Claude, Gemini, Perplexity, and Microsoft Copilot
+quality bar.
+
+Before publication, review official Canva sources, confirm current product
+positioning, check pricing and plan language, and avoid unverified claims about
+Magic Studio availability, image generation availability, video generation
+availability, Brand Kit availability, team availability, model access,
+integrations, or exact feature availability. The page should continue reminding
+users to review AI-generated designs, text, and images before publishing and to
+check brand, copyright, privacy, and commercial-use requirements carefully.
