@@ -53,4 +53,7 @@ An AI assistant from Google that can be useful for writing, brainstorming, learn
 {{< card title="Perplexity" href="/ai-tools/tools/perplexity/" label="Reviewed" >}}
 An AI-powered search and research assistant that can help users ask questions, explore topics, and review source-linked answers.
 {{< /card >}}
+{{< card title="Microsoft Copilot" href="/ai-tools/tools/microsoft-copilot/" label="Reviewed" >}}
+An AI assistant from Microsoft that can support everyday questions, writing help, brainstorming, learning, and productivity tasks.
+{{< /card >}}
 {{< /card-grid >}}

@@ -144,28 +144,37 @@ sources when accuracy matters, and should avoid entering sensitive or
 confidential information unless they understand the tool's privacy and data
 handling policies.
 
-## Microsoft Copilot Draft Result
+## Microsoft Copilot Review Result
 
-Phase 5D added Microsoft Copilot as a draft-first validation page.
+Phase 5D added Microsoft Copilot as a draft-first validation page. Phase 5E
+reviewed Microsoft Copilot against official Microsoft sources and published it
+as the fifth live Aiplorer tool page.
+
+Official sources checked:
+
+- `https://copilot.microsoft.com/`
+- `https://support.microsoft.com/en-us/microsoft-copilot`
+- `https://www.microsoft.com/en-us/microsoft-365-copilot/pricing`
+- `https://www.microsoft.com/en-us/microsoft-copilot/organizations`
+- `https://www.microsoft.com/en-us/microsoft-365-copilot/personal`
+- `https://support.microsoft.com/en-us/microsoft-365-copilot`
+- `https://learn.microsoft.com/en-us/copilot/`
+
+The page uses only high-level, cautious claims. Specific prices, plan
+comparisons, Microsoft 365 entitlement details, Windows availability, Edge
+availability, Bing availability, model access, organization availability,
+integrations, and exact feature availability were not copied into the page.
 
 Current status:
 
 ```yaml
 content/ai-tools/tools/microsoft-copilot.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-06-02"
 ```
 
-Microsoft Copilot remains unpublished pending official review. It should not be
-linked from `/ai-tools/`, `/ai-tools/tools/`, category pages, or global
-navigation until it meets the ChatGPT, Claude, Gemini, and Perplexity quality
-bar.
-
-Before publication, review official Microsoft Copilot sources, confirm current
-product positioning, check pricing and plan language, and avoid unverified
-claims about Microsoft 365 availability, Windows availability, Edge
-availability, Bing availability, model access, integrations, account
-requirements, or exact feature availability. The page should continue reminding
-users to review AI-generated work and handle sensitive or confidential
-information carefully.
+The Microsoft Copilot page reminds users that AI-generated work should be
+reviewed before use. It also notes that work, school, and organization accounts
+may have different access, privacy, and data handling policies, and that users
+should handle sensitive or confidential information carefully.
