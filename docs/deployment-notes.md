@@ -326,6 +326,44 @@ Cache note:
   Cloudflare cache and re-check `/ai-tools/`, `/ai-tools/tools/`, and
   `/sitemap.xml`.
 
+## Phase 5O Grammarly Production Deployment
+
+Date: 2026-06-02
+
+Grammarly was added and reviewed through the draft-first workflow, then the two
+Grammarly commits were pushed to `origin/main`:
+
+- `54e18eb Add Grammarly draft tool page`
+- `e9ee140 Review Grammarly tool page for publication`
+
+Local validation before push:
+
+- `hugo --cleanDestinationDir` passed.
+- `hugo --buildDrafts` passed.
+- Production output was restored with `hugo --cleanDestinationDir`.
+- `git diff --check` passed.
+- Generated output remained ignored and unstaged.
+
+Live verification after deployment:
+
+- `/ai-tools/tools/grammarly/` returned HTTP `200`.
+- `/ai-tools/`, `/ai-tools/tools/`, and `/sitemap.xml` returned HTTP `200`.
+- `/ai-tools/` and `/ai-tools/tools/` included Grammarly in non-query
+  responses.
+- `/ai-tools/tools/example-ai-assistant/` returned HTTP `404`.
+- The draft example route remains absent from the live sitemap.
+
+Cache note:
+
+- The non-query `/sitemap.xml` initially returned HTTP `200` but served
+  pre-Grammarly cached content.
+- Cache-busted checks for `/ai-tools/?deploy-check=e9ee140`,
+  `/ai-tools/tools/?deploy-check=e9ee140`, and
+  `/sitemap.xml?deploy-check=e9ee140` returned HTTP `200` and included
+  Grammarly.
+- If the non-query sitemap remains stale after normal cache expiry, purge the
+  Cloudflare cache and re-check `/sitemap.xml`.
+
 ## Phase 5L Notion AI Production Deployment
 
 Date: 2026-06-02
