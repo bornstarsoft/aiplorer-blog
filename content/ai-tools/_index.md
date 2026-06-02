@@ -56,4 +56,7 @@ An AI-powered search and research assistant that can help users ask questions, e
 {{< card title="Microsoft Copilot" href="/ai-tools/tools/microsoft-copilot/" label="Reviewed" >}}
 An AI assistant from Microsoft that can support everyday questions, writing help, brainstorming, learning, and productivity tasks.
 {{< /card >}}
+{{< card title="Canva AI" href="/ai-tools/tools/canva-ai/" label="Reviewed" >}}
+AI-related features within Canva that can support design ideas, writing, visual content drafts, and creative workflow planning.
+{{< /card >}}
 {{< /card-grid >}}

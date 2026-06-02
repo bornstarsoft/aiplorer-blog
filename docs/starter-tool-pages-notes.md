@@ -179,28 +179,38 @@ reviewed before use. It also notes that work, school, and organization accounts
 may have different access, privacy, and data handling policies, and that users
 should handle sensitive or confidential information carefully.
 
-## Canva AI Draft Result
+## Canva AI Review Result
 
-Phase 5G added Canva AI as a draft-first validation page.
+Phase 5G added Canva AI as a draft-first validation page. Phase 5H reviewed
+Canva AI against official Canva sources and published it as the sixth live
+Aiplorer tool page.
+
+Official sources checked:
+
+- `https://www.canva.com/canva-ai/`
+- `https://www.canva.com/ai-assistant/`
+- `https://www.canva.com/help/canva-ai/`
+- `https://www.canva.com/help/ai-access/`
+- `https://www.canva.com/en/pricing/`
+- `https://www.canva.com/help/`
+- `https://www.canva.com/policies/ai-safety/`
+
+The page uses only high-level, cautious claims. Specific prices, plan
+comparisons, AI usage limits, Magic Studio availability, image generation
+availability, video generation availability, Brand Kit availability, team or
+workspace availability, model access, copyright status, commercial-use rights,
+integrations, and exact feature availability were not copied into the page.
 
 Current status:
 
 ```yaml
 content/ai-tools/tools/canva-ai.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-06-02"
 ```
 
-Canva AI remains unpublished pending official review. It should not be linked
-from `/ai-tools/`, `/ai-tools/tools/`, category pages, or global navigation
-until it meets the ChatGPT, Claude, Gemini, Perplexity, and Microsoft Copilot
-quality bar.
-
-Before publication, review official Canva sources, confirm current product
-positioning, check pricing and plan language, and avoid unverified claims about
-Magic Studio availability, image generation availability, video generation
-availability, Brand Kit availability, team availability, model access,
-integrations, or exact feature availability. The page should continue reminding
-users to review AI-generated designs, text, and images before publishing and to
-check brand, copyright, privacy, and commercial-use requirements carefully.
+The Canva AI page reminds users to review AI-generated designs, text, images,
+and videos before publishing. It also notes that brand, copyright, privacy,
+commercial-use requirements, and sensitive or confidential content should be
+handled carefully.
