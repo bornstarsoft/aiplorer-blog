@@ -326,6 +326,51 @@ Cache note:
   Cloudflare cache and re-check `/ai-tools/`, `/ai-tools/tools/`, and
   `/sitemap.xml`.
 
+## Presentation Tools Category Production Deployment
+
+Date: 2026-06-05
+
+The Presentation Tools category commit was pushed to `origin/main`:
+
+- `bf4b15c Add Presentation Tools category for Aiplorer`
+
+Local validation before push:
+
+- `hugo --cleanDestinationDir` passed.
+- `hugo --buildDrafts` passed.
+- Production output was restored with `hugo --cleanDestinationDir`.
+- `git diff --check` passed.
+- Generated output remained ignored and unstaged.
+- Production output included `/ai-tools/presentation-tools/`.
+- Production sitemap included `/ai-tools/presentation-tools/`.
+- Gamma, Beautiful.ai, Pitch, and SlidesAI production pages showed
+  `Category: Presentation Tools`.
+- Tome remained absent from production output and sitemap, while appearing only
+  in the draft build.
+
+Live verification after deployment:
+
+- `/ai-tools/presentation-tools/` returned HTTP `200`.
+- `/ai-tools/` returned HTTP `200` and linked to Presentation Tools.
+- `/ai-tools/tools/gamma/`, `/ai-tools/tools/beautiful-ai/`,
+  `/ai-tools/tools/pitch/`, and `/ai-tools/tools/slidesai/` returned HTTP
+  `200`.
+- `/ai-tools/tools/tome/` and `/ai-tools/tools/example-ai-assistant/` returned
+  HTTP `404`.
+
+Cache note:
+
+- The cache-busted checks for Gamma, Beautiful.ai, Pitch, and sitemap using
+  `?deploy-check=bf4b15c` returned fresh content.
+- Plain `/ai-tools/tools/slidesai/` already showed
+  `Category: Presentation Tools`.
+- Plain `/ai-tools/tools/gamma/`, `/ai-tools/tools/beautiful-ai/`,
+  `/ai-tools/tools/pitch/`, and `/sitemap.xml` initially served stale cached
+  content.
+- If the non-query URLs remain stale after normal cache expiry, purge the exact
+  Cloudflare URLs for Gamma, Beautiful.ai, Pitch, and sitemap, then re-check
+  without query parameters.
+
 ## Presentation Tools Batch Production Deployment
 
 Date: 2026-06-05
