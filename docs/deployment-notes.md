@@ -326,6 +326,45 @@ Cache note:
   Cloudflare cache and re-check `/ai-tools/`, `/ai-tools/tools/`, and
   `/sitemap.xml`.
 
+## Presentation Tools Batch Production Deployment
+
+Date: 2026-06-05
+
+The Presentation Tools draft and review commits were pushed to `origin/main`:
+
+- `9612be5 Add Presentation Tools draft batch`
+- `e9d18bb Review Presentation Tools draft batch for publication`
+
+Local validation before push:
+
+- `hugo --cleanDestinationDir` passed.
+- `hugo --buildDrafts` passed.
+- Production output was restored with `hugo --cleanDestinationDir`.
+- `git diff --check` passed.
+- Generated output remained ignored and unstaged.
+
+Live verification after deployment:
+
+- `/ai-tools/tools/gamma/`, `/ai-tools/tools/beautiful-ai/`,
+  `/ai-tools/tools/pitch/`, and `/ai-tools/tools/slidesai/` returned HTTP
+  `200`.
+- `/ai-tools/tools/tome/` and `/ai-tools/tools/example-ai-assistant/` returned
+  HTTP `404`.
+- The cache-busted `/ai-tools/?deploy-check=e9d18bb` and
+  `/ai-tools/tools/?deploy-check=e9d18bb` pages included Gamma, Beautiful.ai,
+  Pitch, and SlidesAI.
+- The cache-busted `/sitemap.xml?deploy-check=e9d18bb` included the four
+  published presentation tool URLs and excluded Tome.
+
+Cache note:
+
+- The non-query `/ai-tools/`, `/ai-tools/tools/`, and `/sitemap.xml` initially
+  returned HTTP `200` but served pre-presentation-batch cached listing or
+  sitemap content.
+- If the non-query URLs remain stale after normal cache expiry, purge the
+  Cloudflare cache and re-check `/ai-tools/`, `/ai-tools/tools/`, and
+  `/sitemap.xml`.
+
 ## Automation Tools Batch Production Deployment
 
 Date: 2026-06-05
