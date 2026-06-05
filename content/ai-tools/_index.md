@@ -27,7 +27,7 @@ Explain code, debug errors, draft functions, and practice programming.
 Summarize documents, organize notes, prepare meetings, and handle daily work.
 {{< /card >}}
 {{< card title="Automation Tools" href="/ai-tools/automation-tools/" label="Workflows" >}}
-Connect apps, reduce repetitive tasks, and support repeatable operations.
+Connect apps, reduce repetitive tasks, and test repeatable workflows.
 {{< /card >}}
 {{< card title="Learning Tools" href="/ai-tools/learning-tools/" label="Learning" >}}
 Study topics, research faster, practice languages, and build new skills.
