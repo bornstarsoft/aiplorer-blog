@@ -11,23 +11,30 @@
     </section>
 
     <section class="mw8 center ph3 ph5-l pb5">
-      <div class="aiplorer-card-grid">
-        {{ range $reviewedTools.ByTitle }}
-          <a class="aiplorer-card" href="{{ .RelPermalink }}">
-            {{ with .Params.category }}<span class="aiplorer-card__label">{{ . }}</span>{{ end }}
-            <strong class="aiplorer-card__title">{{ .Title }}</strong>
-            {{ with .Params.description }}
-              <span class="aiplorer-card__body">{{ . }}</span>
-            {{ end }}
-            <span class="aiplorer-card__body">
-              {{ with .Params.lastReviewed }}Last reviewed: {{ . }}{{ end }}
-              {{ with .Params.reviewStatus }}<br>Review status: {{ . }}{{ end }}
-            </span>
-          </a>
-        {{ else }}
-          <p>No reviewed tools are published yet.</p>
+      {{ if $reviewedTools }}
+        {{ range $group := $reviewedTools.GroupByParam "category" }}
+          <section class="mb5">
+            <h2 class="f3 mt0 mb3">{{ $group.Key }}</h2>
+            <div class="aiplorer-card-grid">
+              {{ range $group.Pages.ByTitle }}
+                <a class="aiplorer-card" href="{{ .RelPermalink }}">
+                  {{ with .Params.category }}<span class="aiplorer-card__label">{{ . }}</span>{{ end }}
+                  <strong class="aiplorer-card__title">{{ .Title }}</strong>
+                  {{ with .Params.description }}
+                    <span class="aiplorer-card__body">{{ . }}</span>
+                  {{ end }}
+                  <span class="aiplorer-card__body">
+                    {{ with .Params.lastReviewed }}Last reviewed: {{ . }}{{ end }}
+                    {{ with .Params.reviewStatus }}<br>Review status: {{ . }}{{ end }}
+                  </span>
+                </a>
+              {{ end }}
+            </div>
+          </section>
         {{ end }}
-      </div>
+      {{ else }}
+        <p>No reviewed tools are published yet.</p>
+      {{ end }}
     </section>
   </article>
 {{ end }}
