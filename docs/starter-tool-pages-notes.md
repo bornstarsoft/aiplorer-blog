@@ -435,3 +435,51 @@ credits, operations, pricing, limits, security, and changing availability. The
 page reminds users to test automated workflows before relying on them, review
 connected-account access and data handling, and handle sensitive or
 confidential information carefully.
+
+## Automation Tools Draft Batch Result
+
+Phase 5Z added five Automation Tools pages as draft-first validation pages:
+
+- n8n
+- IFTTT
+- Pipedream
+- Bardeen
+- Relay.app
+
+Current status:
+
+```yaml
+content/ai-tools/tools/n8n.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+
+content/ai-tools/tools/ifttt.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+
+content/ai-tools/tools/pipedream.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+
+content/ai-tools/tools/bardeen.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+
+content/ai-tools/tools/relay-app.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+```
+
+These pages remain unpublished pending official source review. Future review
+must check each tool's official product, pricing, help, integration, AI, API,
+security, limit, and availability sources before publication.
+
+Special caution areas include automation testing, workflow reliability,
+connected accounts, app permissions, customer data, business data, workflow
+errors, pricing, limits, security, and changing availability. These draft pages
+must not be linked publicly until each one is manually reviewed and published.
