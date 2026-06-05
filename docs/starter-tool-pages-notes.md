@@ -399,28 +399,39 @@ changing availability. The page reminds users to test automated workflows
 before relying on them, review connected-account access and data handling, and
 handle sensitive or confidential information carefully.
 
-## Make Draft Result
+## Make Review Result
 
-Phase 5X added Make as a draft-first validation page. It remains unpublished
-pending official review.
+Phase 5X added Make as a draft-first validation page. Phase 5Y reviewed Make
+against official Make sources and published it as the twelfth live Aiplorer
+tool page.
+
+Official sources checked:
+
+- `https://www.make.com/en`
+- `https://www.make.com/en/pricing`
+- `https://help.make.com/`
+- `https://help.make.com/operations`
+- `https://www.make.com/en/security`
 
 Current status:
 
 ```yaml
 content/ai-tools/tools/make.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-06-02"
 ```
 
-Official Make sources must be checked before publishing. Future review should
-verify the official product positioning and current plan, pricing, integration,
-operation limit, scenario limit, app permission, AI feature, team, enterprise,
-API, security, help, and data handling information without copying unstable
-details into the page.
+The page uses only high-level, cautious claims. Specific prices, plan
+comparisons, app or integration counts, credit limits, operation limits,
+scenario limits, AI feature availability, team availability, enterprise
+availability, API details, security guarantees, compliance details, data
+retention details, uptime claims, and exact feature availability were not
+copied into the page.
 
 Special caution areas include workflow reliability, connected accounts, app
 permissions, customer data, business data, account data, workflow errors,
-pricing, limits, security, and changing availability. The draft reminds users
-to test automated workflows before relying on them and to handle sensitive or
+credits, operations, pricing, limits, security, and changing availability. The
+page reminds users to test automated workflows before relying on them, review
+connected-account access and data handling, and handle sensitive or
 confidential information carefully.

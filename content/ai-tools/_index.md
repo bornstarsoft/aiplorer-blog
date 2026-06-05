@@ -77,4 +77,7 @@ An AI audio and voice platform that can support narration, voice, and audio cont
 {{< card title="Zapier" href="/ai-tools/tools/zapier/" label="Reviewed" >}}
 An automation platform that can help users plan, build, and test workflows across connected apps.
 {{< /card >}}
+{{< card title="Make" href="/ai-tools/tools/make/" label="Reviewed" >}}
+A visual automation platform that can help users plan, build, and test workflows across connected apps.
+{{< /card >}}
 {{< /card-grid >}}

@@ -2,13 +2,19 @@
 
 Date: 2026-06-05
 
-The Automation Tools category now has Zapier as its first reviewed
-representative tool.
+The Automation Tools category has Zapier as its first reviewed representative
+tool, with Make added as the second reviewed representative.
 
-Current reviewed representative:
+Current reviewed representatives:
 
 ```yaml
 content/ai-tools/tools/zapier.md
+category: "Automation Tools"
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-06-02"
+
+content/ai-tools/tools/make.md
 category: "Automation Tools"
 draft: false
 reviewStatus: "reviewed"

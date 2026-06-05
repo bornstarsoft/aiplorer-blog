@@ -13,6 +13,9 @@ Automation can affect connected accounts, customer data, business data, and oper
 {{< card title="Zapier" href="/ai-tools/tools/zapier/" label="Reviewed" >}}
 An automation platform that can help users plan, build, and test workflows across connected apps.
 {{< /card >}}
+{{< card title="Make" href="/ai-tools/tools/make/" label="Reviewed" >}}
+A visual automation platform that can help users plan, build, and test workflows across connected apps.
+{{< /card >}}
 {{< /card-grid >}}
 
 Browse the full reviewed tool index at [Reviewed AI Tools](/ai-tools/tools/).
