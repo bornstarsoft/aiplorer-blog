@@ -326,6 +326,47 @@ Cache note:
   Cloudflare cache and re-check `/ai-tools/`, `/ai-tools/tools/`, and
   `/sitemap.xml`.
 
+## Automation Tools Batch Production Deployment
+
+Date: 2026-06-05
+
+The reviewed tools index polish and Automation Tools batch commits were pushed
+to `origin/main`:
+
+- `ae23eb6 Polish Aiplorer reviewed tools index`
+- `d11f5bd Add Automation Tools draft batch`
+- `9745fa6 Review Automation Tools draft batch for publication`
+
+Local validation before push:
+
+- `hugo --cleanDestinationDir` passed.
+- `hugo --buildDrafts` passed.
+- Production output was restored with `hugo --cleanDestinationDir`.
+- `git diff --check` passed.
+- Generated output remained ignored and unstaged.
+
+Live verification after deployment:
+
+- `/ai-tools/` returned HTTP `200` and included n8n, IFTTT, Pipedream,
+  Bardeen, and Relay.app.
+- `/ai-tools/tools/n8n/`, `/ai-tools/tools/ifttt/`,
+  `/ai-tools/tools/pipedream/`, `/ai-tools/tools/bardeen/`, and
+  `/ai-tools/tools/relay-app/` returned HTTP `200`.
+- `/sitemap.xml` returned HTTP `200` and included all five new tool URLs.
+- `/ai-tools/tools/example-ai-assistant/` returned HTTP `404`.
+- The draft example route remains absent from the live sitemap.
+
+Cache note:
+
+- The non-query `/ai-tools/tools/` and `/ai-tools/automation-tools/` initially
+  returned HTTP `200` but served pre-batch cached listing content.
+- Cache-busted checks for `/ai-tools/tools/?deploy-check=9745fa6` and
+  `/ai-tools/automation-tools/?deploy-check=9745fa6` returned HTTP `200` and
+  included the reviewed Automation Tools batch.
+- If the non-query listing URLs remain stale after normal cache expiry, purge
+  the Cloudflare cache and re-check `/ai-tools/tools/` and
+  `/ai-tools/automation-tools/`.
+
 ## Phase 5O Grammarly Production Deployment
 
 Date: 2026-06-02
