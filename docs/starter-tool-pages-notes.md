@@ -520,3 +520,58 @@ errors, pricing, limits, security, and changing availability. The pages remind
 users to test automated workflows before relying on them, review
 connected-account access and data handling, and handle sensitive or
 confidential information carefully.
+
+## Presentation Tools Draft Batch Result
+
+Phase 5AA added five presentation and creative productivity pages as
+draft-first validation pages:
+
+- Gamma
+- Tome
+- Beautiful.ai
+- Pitch
+- SlidesAI
+
+Current status:
+
+```yaml
+content/ai-tools/tools/gamma.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+
+content/ai-tools/tools/tome.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+
+content/ai-tools/tools/beautiful-ai.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+
+content/ai-tools/tools/pitch.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+
+content/ai-tools/tools/slidesai.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+```
+
+These pages remain unpublished pending official source review. They use the
+current `Productivity Tools` category because Aiplorer does not yet have a
+dedicated Presentation Tools category. A future Presentation Tools category may
+be considered after official review and publication planning.
+
+Future review must check each tool's official product, pricing, help, AI,
+export, template, collaboration, branding, integration, privacy, license,
+commercial-use, and availability sources before publication.
+
+Special caution areas include reviewing generated slides, checking facts and
+sources, brand usage, image and asset license rights, privacy, commercial-use
+requirements, sensitive or confidential content, and changing availability.
+These draft pages must not be linked publicly until each one is manually
+reviewed and published.
