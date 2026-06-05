@@ -605,3 +605,60 @@ requirements, sensitive or confidential content, and changing availability.
 The pages remind users to review generated slides, facts, source material,
 brand rules, media licenses, privacy requirements, and sensitive content before
 sharing or publishing presentation content.
+
+## Research Learning Tools Draft Batch
+
+Phase 5AC added five research and learning pages as draft-first validation
+pages:
+
+- NotebookLM
+- Elicit
+- Consensus
+- SciSpace
+- You.com
+
+Current status:
+
+```yaml
+content/ai-tools/tools/notebooklm.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+
+content/ai-tools/tools/elicit.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+
+content/ai-tools/tools/consensus.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+
+content/ai-tools/tools/scispace.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+
+content/ai-tools/tools/you-com.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+```
+
+The pages use the existing `Learning Tools` category. They remain unpublished
+until official-source review is completed.
+
+Official sources must be checked before publishing. Specific prices, plan
+limits, research accuracy, citation accuracy, paper coverage, source
+availability, model details, workspace availability, export support,
+collaboration features, API details, security or privacy guarantees, and exact
+feature availability should not be claimed unless verified directly from
+official sources and necessary for the reviewed page.
+
+Special caution areas include checking original sources, verifying citations,
+reviewing AI-generated summaries, academic integrity, privacy, sensitive
+documents, high-stakes research topics, and changing availability. The pages
+remind users to review original sources, source context, citations, privacy
+requirements, academic or workplace policies, and expert-review needs before
+relying on AI-generated research or learning output.
