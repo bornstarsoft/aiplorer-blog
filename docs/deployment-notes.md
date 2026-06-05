@@ -472,6 +472,43 @@ Cache note:
 - If the non-query ElevenLabs page remains stale after normal cache expiry,
   purge the Cloudflare cache and re-check `/ai-tools/tools/elevenlabs/`.
 
+## Homepage Bookmark Hub Production Deployment
+
+Date: 2026-06-05
+
+The homepage bookmark hub commit was pushed to `origin/main`:
+
+- `24d5575 Polish Aiplorer homepage as AI bookmark hub`
+
+Local validation before push:
+
+- `hugo --cleanDestinationDir` passed.
+- `hugo --buildDrafts` passed.
+- Production output was restored with `hugo --cleanDestinationDir`.
+- `git diff --check` passed.
+- Generated output remained ignored and unstaged.
+
+Live verification after deployment:
+
+- `/` returned HTTP `200`.
+- `/ai-tools/`, `/ai-tools/tools/`, and `/sitemap.xml` returned HTTP `200`.
+- `/ai-tools/tools/example-ai-assistant/` returned HTTP `404`.
+- The draft example route remains absent from the live sitemap.
+
+Cache note:
+
+- The non-query `/` initially returned HTTP `200` but served pre-bookmark-hub
+  cached content.
+- Header check for `/` showed `cf-cache-status: HIT`, `age: 2179`, and
+  `last-modified: Fri, 05 Jun 2026 06:55:27 GMT`.
+- Cache-busted `/?deploy-check=24d5575` returned HTTP `200` and included
+  `Quick AI Bookmarks`, reviewed tool links, category links, and guide/use-case
+  links.
+- Header check for the cache-busted homepage showed `cf-cache-status: HIT`,
+  `age: 14`, and `last-modified: Fri, 05 Jun 2026 07:31:32 GMT`.
+- If the non-query homepage remains stale after normal cache expiry, purge the
+  Cloudflare cache and re-check `/`.
+
 ## Phase 5L Notion AI Production Deployment
 
 Date: 2026-06-02
