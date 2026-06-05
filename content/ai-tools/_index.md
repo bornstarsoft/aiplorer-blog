@@ -74,4 +74,7 @@ A language AI tool that can support translation, rewriting, and multilingual wri
 {{< card title="ElevenLabs" href="/ai-tools/tools/elevenlabs/" label="Reviewed" >}}
 An AI audio and voice platform that can support narration, voice, and audio content workflows.
 {{< /card >}}
+{{< card title="Zapier" href="/ai-tools/tools/zapier/" label="Reviewed" >}}
+An automation platform that can help users plan, build, and test workflows across connected apps.
+{{< /card >}}
 {{< /card-grid >}}

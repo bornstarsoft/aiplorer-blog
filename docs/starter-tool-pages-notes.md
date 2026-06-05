@@ -362,27 +362,39 @@ AI-generated audio before publishing or sharing it, and to check official
 ElevenLabs pages for current details before choosing a plan or relying on a
 specific feature.
 
-## Zapier Draft Result
+## Zapier Review Result
 
-Phase 5U added Zapier as a draft-first validation page. It remains unpublished
-pending official review.
+Phase 5U added Zapier as a draft-first validation page. Phase 5V reviewed
+Zapier against official Zapier sources and published it as the eleventh live
+Aiplorer tool page.
+
+Official sources checked:
+
+- `https://zapier.com/`
+- `https://zapier.com/features`, which redirected to `https://zapier.com/workflows`
+- `https://zapier.com/pricing`
+- `https://help.zapier.com/`
+- `https://help.zapier.com/hc/en-us/categories/8496209877261`
+- `https://zapier.com/security`, which returned 404 during review
+- `https://help.zapier.com/hc/en-us/articles/8496181993613-Security-and-Compliance`
 
 Current status:
 
 ```yaml
 content/ai-tools/tools/zapier.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-06-02"
 ```
 
-Official Zapier sources must be checked before publishing. Future review should
-verify the official product positioning and current plan, pricing, integration,
-automation limit, app permission, AI feature, team, enterprise, API, help, and
-data handling information without copying unstable details into the page.
+The page uses only high-level, cautious claims. Specific prices, plan
+comparisons, task limits, workflow limits, app or integration counts, AI feature
+availability, team availability, enterprise availability, API details, security
+guarantees, Trust Center document details, and exact feature availability were
+not copied into the page.
 
 Special caution areas include automation reliability, app permissions, customer
 data, business data, account data, workflow failure cases, pricing, limits, and
-changing availability. The draft reminds users to test automated workflows
-before relying on them and to handle sensitive or confidential information
-carefully.
+changing availability. The page reminds users to test automated workflows
+before relying on them, review connected-account access and data handling, and
+handle sensitive or confidential information carefully.
