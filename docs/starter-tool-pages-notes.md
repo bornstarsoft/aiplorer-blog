@@ -521,24 +521,51 @@ users to test automated workflows before relying on them, review
 connected-account access and data handling, and handle sensitive or
 confidential information carefully.
 
-## Presentation Tools Draft Batch Result
+## Presentation Tools Batch Review Result
 
 Phase 5AA added five presentation and creative productivity pages as
-draft-first validation pages:
+draft-first validation pages. The batch review checked official sources and
+published four pages:
 
 - Gamma
-- Tome
 - Beautiful.ai
 - Pitch
 - SlidesAI
 
-Current status:
+Tome remains unpublished because current direct checks for the official Tome
+site and help center returned HTTP `404` during review.
+
+Official sources checked:
+
+- Gamma: `https://gamma.app/`, `https://gamma.app/pricing`,
+  `https://help.gamma.app/en/articles/11047840-how-can-i-import-slides-or-documents-into-gamma`,
+  `https://help.gamma.app/id/articles/8032935`, and
+  `https://gamma.app/privacy`
+- Tome: `https://tome.app/` and `https://tome.app/help/en`; both returned
+  HTTP `404` in direct checks, so the page remains unpublished pending a fresh
+  official-source availability review
+- Beautiful.ai: `https://www.beautiful.ai/`,
+  `https://www.beautiful.ai/pricing-page`,
+  `https://support.beautiful.ai/hc/en-us/`,
+  `https://support.beautiful.ai/hc/en-us/articles/360032556611-Security-Policy`,
+  and `https://www.beautiful.ai/security`
+- Pitch: `https://pitch.com/`, `https://pitch.com/pricing/us`,
+  `https://help.pitch.com/`,
+  `https://help.pitch.com/en/articles/13621309-pitch-plans-and-pricing`,
+  `https://help.pitch.com/en/articles/12771746-pitch-s-ai-actions`,
+  `https://help.pitch.com/en/articles/8541722-start-a-new-presentation-with-ai`,
+  and `https://pitch.com/privacy-policy`
+- SlidesAI: `https://www.slidesai.io/`,
+  `https://www.slidesai.io/pricing`, and
+  `https://www.slidesai.io/privacy-policy`
+
+Current status after review:
 
 ```yaml
 content/ai-tools/tools/gamma.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-06-02"
 
 content/ai-tools/tools/tome.md
 draft: true
@@ -546,32 +573,35 @@ reviewStatus: "needs-official-review"
 lastReviewed: ""
 
 content/ai-tools/tools/beautiful-ai.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-06-02"
 
 content/ai-tools/tools/pitch.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-06-02"
 
 content/ai-tools/tools/slidesai.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-06-02"
 ```
 
-These pages remain unpublished pending official source review. They use the
-current `Productivity Tools` category because Aiplorer does not yet have a
-dedicated Presentation Tools category. A future Presentation Tools category may
-be considered after official review and publication planning.
+These pages use the current `Productivity Tools` category because Aiplorer does
+not yet have a dedicated Presentation Tools category. A future Presentation
+Tools category may be considered after official review and publication
+planning.
 
-Future review must check each tool's official product, pricing, help, AI,
-export, template, collaboration, branding, integration, privacy, license,
-commercial-use, and availability sources before publication.
+The published pages use only high-level, cautious claims. Specific prices, plan
+comparisons, plan limits, AI feature availability, export support, template
+availability, collaboration features, presentation generation quality,
+integration details, branding features, security guarantees, commercial-use
+rights, and exact feature availability were not copied into the pages.
 
 Special caution areas include reviewing generated slides, checking facts and
 sources, brand usage, image and asset license rights, privacy, commercial-use
 requirements, sensitive or confidential content, and changing availability.
-These draft pages must not be linked publicly until each one is manually
-reviewed and published.
+The pages remind users to review generated slides, facts, source material,
+brand rules, media licenses, privacy requirements, and sensitive content before
+sharing or publishing presentation content.

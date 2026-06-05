@@ -95,4 +95,16 @@ An automation tool that can help users plan, build, and test repeatable workflow
 {{< card title="Relay.app" href="/ai-tools/tools/relay-app/" label="Reviewed" >}}
 An automation and workflow tool that can help users plan, build, and test repeatable workflows across connected apps and teams.
 {{< /card >}}
+{{< card title="Gamma" href="/ai-tools/tools/gamma/" label="Reviewed" >}}
+An AI presentation and content creation tool that can help users draft slide-style documents, decks, websites, and visual narratives.
+{{< /card >}}
+{{< card title="Beautiful.ai" href="/ai-tools/tools/beautiful-ai/" label="Reviewed" >}}
+A presentation design tool that can help users draft and organize slide decks, visual reports, and business presentations.
+{{< /card >}}
+{{< card title="Pitch" href="/ai-tools/tools/pitch/" label="Reviewed" >}}
+A presentation workspace that can help users plan, draft, and organize slide decks for teams, business updates, and creative work.
+{{< /card >}}
+{{< card title="SlidesAI" href="/ai-tools/tools/slidesai/" label="Reviewed" >}}
+An AI presentation drafting tool that can help users turn notes, topics, or rough text into slide deck drafts.
+{{< /card >}}
 {{< /card-grid >}}

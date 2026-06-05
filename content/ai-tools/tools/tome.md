@@ -37,15 +37,16 @@ similarTools:
   - Pitch
 reviewStatus: "needs-official-review"
 sourceNotes:
-  - "Draft page added for future review. Official Tome product, pricing, help, AI, export, template, collaboration, branding, integration, privacy, license, and availability sources still need to be checked before publication."
-  - "Do not publish until exact claims about pricing, plan limits, AI features, export support, template availability, collaboration features, presentation generation quality, integrations, branding features, commercial-use rights, and availability have been avoided or verified against official Tome sources."
+  - "Attempted official-source review on 2026-06-02. Direct checks for https://tome.app/ and https://tome.app/help/en returned 404, so this page remains unpublished."
+  - "Historical official Tome help pages appeared in search results, but the current official site/help availability must be rechecked before publication."
+  - "Do not publish until exact claims about pricing, plan limits, AI features, export support, template availability, collaboration features, presentation generation quality, integrations, branding features, commercial-use rights, and availability have been avoided or verified against currently reachable official Tome sources."
 ---
 
 ## Overview
 
 Tome is a presentation and storytelling tool that may help users draft visual narratives, pitch materials, and slide-style content. It can be useful when a person wants to shape an idea into a presentation draft, explore a pitch flow, or prepare early content before final review.
 
-This is a draft page. Official Tome sources still need to be reviewed before publication, especially for current plans, pricing, AI-related features, export support, templates, collaboration features, branding options, integrations, privacy details, license terms, and availability.
+This is a draft page. Current official Tome site and help availability still need to be rechecked before publication, especially for current plans, pricing, AI-related features, export support, templates, collaboration features, branding options, integrations, privacy details, license terms, and availability.
 
 ## Useful For
 
