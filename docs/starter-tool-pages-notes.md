@@ -361,3 +361,28 @@ private content, and third-party voice content. The page reminds users to review
 AI-generated audio before publishing or sharing it, and to check official
 ElevenLabs pages for current details before choosing a plan or relying on a
 specific feature.
+
+## Zapier Draft Result
+
+Phase 5U added Zapier as a draft-first validation page. It remains unpublished
+pending official review.
+
+Current status:
+
+```yaml
+content/ai-tools/tools/zapier.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+```
+
+Official Zapier sources must be checked before publishing. Future review should
+verify the official product positioning and current plan, pricing, integration,
+automation limit, app permission, AI feature, team, enterprise, API, help, and
+data handling information without copying unstable details into the page.
+
+Special caution areas include automation reliability, app permissions, customer
+data, business data, account data, workflow failure cases, pricing, limits, and
+changing availability. The draft reminds users to test automated workflows
+before relying on them and to handle sensitive or confidential information
+carefully.
