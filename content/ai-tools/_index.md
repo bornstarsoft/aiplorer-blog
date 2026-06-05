@@ -20,6 +20,9 @@ Create clips, plan short-form ideas, and support editing workflows.
 {{< card title="Audio Tools" href="/ai-tools/audio-tools/" label="Audio" >}}
 Explore voice, narration, transcription, dubbing, podcasts, and creative audio workflows.
 {{< /card >}}
+{{< card title="Presentation Tools" href="/ai-tools/presentation-tools/" label="Slides" >}}
+Draft slide decks, pitch materials, visual stories, and presentation workflows.
+{{< /card >}}
 {{< card title="Coding Tools" href="/ai-tools/coding-tools/" label="Code" >}}
 Explain code, debug errors, draft functions, and practice programming.
 {{< /card >}}

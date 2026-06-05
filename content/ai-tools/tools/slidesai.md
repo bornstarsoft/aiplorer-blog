@@ -3,7 +3,7 @@ title: "SlidesAI"
 description: "SlidesAI is an AI presentation drafting tool that can help users turn notes, topics, or rough text into slide deck drafts."
 type: "ai-tools"
 layout: "tool"
-category: "Productivity Tools"
+category: "Presentation Tools"
 bestFor:
   - Drafting slide outlines from notes
   - Preparing lesson or report decks

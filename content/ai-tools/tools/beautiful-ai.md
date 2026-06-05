@@ -3,7 +3,7 @@ title: "Beautiful.ai"
 description: "Beautiful.ai is a presentation design tool that can help users draft and organize slide decks, visual reports, and business presentations."
 type: "ai-tools"
 layout: "tool"
-category: "Productivity Tools"
+category: "Presentation Tools"
 bestFor:
   - Drafting slide deck structures
   - Planning business presentations

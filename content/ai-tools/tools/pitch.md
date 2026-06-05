@@ -3,7 +3,7 @@ title: "Pitch"
 description: "Pitch is a presentation workspace that can help users plan, draft, and organize slide decks for teams, business updates, and creative work."
 type: "ai-tools"
 layout: "tool"
-category: "Productivity Tools"
+category: "Presentation Tools"
 bestFor:
   - Planning team presentation drafts
   - Organizing business update decks

@@ -3,7 +3,7 @@ title: "Gamma"
 description: "Gamma is an AI presentation and content creation tool that can help users draft slide-style documents, decks, websites, and visual narratives."
 type: "ai-tools"
 layout: "tool"
-category: "Productivity Tools"
+category: "Presentation Tools"
 bestFor:
   - Drafting presentation outlines
   - Planning slide-style documents
