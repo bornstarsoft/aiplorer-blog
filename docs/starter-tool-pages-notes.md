@@ -398,3 +398,29 @@ data, business data, account data, workflow failure cases, pricing, limits, and
 changing availability. The page reminds users to test automated workflows
 before relying on them, review connected-account access and data handling, and
 handle sensitive or confidential information carefully.
+
+## Make Draft Result
+
+Phase 5X added Make as a draft-first validation page. It remains unpublished
+pending official review.
+
+Current status:
+
+```yaml
+content/ai-tools/tools/make.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+```
+
+Official Make sources must be checked before publishing. Future review should
+verify the official product positioning and current plan, pricing, integration,
+operation limit, scenario limit, app permission, AI feature, team, enterprise,
+API, security, help, and data handling information without copying unstable
+details into the page.
+
+Special caution areas include workflow reliability, connected accounts, app
+permissions, customer data, business data, account data, workflow errors,
+pricing, limits, security, and changing availability. The draft reminds users
+to test automated workflows before relying on them and to handle sensitive or
+confidential information carefully.
