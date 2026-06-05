@@ -1,21 +1,21 @@
 ---
 title: "Relay.app"
-description: "Relay.app is an automation and workflow tool that may help users connect apps and coordinate repeatable work."
+description: "Relay.app is an automation and workflow tool that can help users plan, build, and test repeatable workflows across connected apps and teams."
 type: "ai-tools"
 layout: "tool"
 category: "Automation Tools"
 bestFor:
   - Planning app-to-app workflows
-  - Coordinating repeatable workflow drafts
+  - Coordinating repeatable workflow automations
   - Testing business process automations
   - Connecting everyday work tools
-  - Documenting automation risks before rollout
+  - Reviewing app permissions, approvals, and workflow risks before rollout
 beginnerFriendly: null
 freePlan: null
-pricingNote: "Plans, pricing, limits, integrations, AI-related features, security details, and availability may change. Check the official Relay.app website for current details."
+pricingNote: "Plans, pricing, step usage, AI credits, limits, integrations, AI-related features, security details, and availability may change. Check the official Relay.app product, docs, pricing, and security pages for current details."
 officialUrl: "https://www.relay.app/"
-lastReviewed: ""
-draft: true
+lastReviewed: "2026-06-02"
+draft: false
 useCases:
   - Draft an automation workflow before building it
   - Connect routine updates between work apps
@@ -23,30 +23,31 @@ useCases:
   - Compare automation needs before choosing a tool
   - Document workflow risks before rollout
 pros:
-  - May help users think through repeatable workflows across apps
-  - Can be useful for automation planning, testing, and workflow documentation
-  - May fit users exploring connected workflow ideas
+  - Can be useful for people who want to plan and test app-to-app workflows
+  - Can support automation planning, workflow documentation, and repeatable process design
+  - May fit users exploring team workflow ideas with careful permission and approval review
 limitations:
   - Automated workflows should be tested before relying on them
   - Connected accounts, app permissions, customer data, and business data should be handled carefully
   - Workflow errors, missing data, duplicate actions, and permission issues can affect real operations
-  - Plans, pricing, limits, integrations, AI-related features, API details, security details, enterprise options, and exact availability may change
-  - Official Relay.app sources must be reviewed before this page is published
+  - Plans, pricing, step usage, AI credits, limits, integrations, AI-related features, API details, security details, enterprise options, and exact availability may change
 similarTools:
   - Zapier
   - Make
   - Pipedream
-reviewStatus: "needs-official-review"
+reviewStatus: "reviewed"
 sourceNotes:
-  - "Draft page added for future review. Official Relay.app product, pricing, help, integration, AI, API, security, limit, and availability sources still need to be checked before publication."
-  - "Do not publish until exact claims about pricing, limits, integrations, AI features, API details, security guarantees, enterprise features, and availability have been avoided or verified against official Relay.app sources."
+  - "Checked https://www.relay.app/ and https://www.relay.app/how-it-works on 2026-06-02 for official Relay.app positioning around workflows, app connections, AI-related automation, approvals, and repeatable business processes."
+  - "Checked https://www.relay.app/pricing on 2026-06-02 for plan, pricing, step usage, AI credit, integration, team, and availability context without copying exact prices, plan comparisons, credit limits, step limits, or feature availability into this page."
+  - "Checked https://docs.relay.app/, https://docs.relay.app/getting-started/faq, and https://docs.relay.app/getting-started/helpful-resources on 2026-06-02 for official help, workflow, app integration, troubleshooting, and usage context."
+  - "Checked https://www.relay.app/security and https://www.relay.app/privacy on 2026-06-02 for official security and privacy context, but did not copy security guarantees, compliance details, data handling guarantees, API details, or exact feature availability into this page."
 ---
 
 ## Overview
 
-Relay.app is an automation and workflow tool that may help users connect apps and coordinate repeatable work. It can be useful when a person wants to map an app-to-app process, reduce repetitive handoffs, or document an automation idea before testing it.
+Relay.app is an automation and workflow tool that can help users plan, build, and test repeatable workflows across connected apps and teams. It can be useful when a person wants to map an app-to-app process, reduce repetitive handoffs, or document an automation idea before using it in a real process.
 
-This is a draft page. Official Relay.app sources still need to be reviewed before publication, especially for current plans, pricing, integrations, limits, AI-related features, permissions, security details, API details, and availability.
+Relay.app has product and documentation areas for workflows, agents, app connections, approvals, step usage, AI credits, and AI-related workflow support, but details can change. Users should check official Relay.app product, docs, pricing, security, and privacy pages before relying on a specific feature, integration, plan, credit model, step behavior, permission behavior, or security detail.
 
 ## Useful For
 

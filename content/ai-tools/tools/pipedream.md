@@ -1,21 +1,21 @@
 ---
 title: "Pipedream"
-description: "Pipedream is an automation and workflow tool that may help users connect apps and build repeatable workflows."
+description: "Pipedream is an automation and integration platform that can help users plan, build, and test workflows across connected apps, APIs, and services."
 type: "ai-tools"
 layout: "tool"
 category: "Automation Tools"
 bestFor:
   - Planning app-to-app workflows
-  - Building repeatable automation drafts
+  - Building repeatable workflow automations
   - Testing workflow ideas
-  - Connecting everyday work tools
-  - Documenting automation risks before rollout
+  - Connecting apps, APIs, and everyday work tools
+  - Reviewing credits, permissions, and workflow risks before rollout
 beginnerFriendly: null
 freePlan: null
-pricingNote: "Plans, pricing, limits, integrations, AI-related features, API details, security details, and availability may change. Check the official Pipedream website for current details."
+pricingNote: "Plans, pricing, credits, limits, integrations, API-related options, AI-related features, security details, and availability may change. Check the official Pipedream product, docs, pricing, limits, and security pages for current details."
 officialUrl: "https://pipedream.com/"
-lastReviewed: ""
-draft: true
+lastReviewed: "2026-06-02"
+draft: false
 useCases:
   - Draft an automation workflow before building it
   - Connect routine updates between work apps
@@ -23,30 +23,31 @@ useCases:
   - Compare automation needs before choosing a tool
   - Document workflow risks before rollout
 pros:
-  - May help users think through repeatable workflows across apps
-  - Can be useful for automation planning, testing, and workflow documentation
-  - May fit users exploring connected workflow ideas
+  - Can be useful for people who want to plan and test app, API, or service workflows
+  - Can support automation planning, workflow documentation, and repeatable process design
+  - May fit users exploring developer-friendly workflow ideas with careful permission review
 limitations:
   - Automated workflows should be tested before relying on them
   - Connected accounts, app permissions, customer data, and business data should be handled carefully
   - Workflow errors, missing data, duplicate actions, and permission issues can affect real operations
-  - Plans, pricing, limits, integrations, AI-related features, API details, security details, enterprise options, and exact availability may change
-  - Official Pipedream sources must be reviewed before this page is published
+  - Plans, pricing, credits, limits, integrations, AI-related features, API details, security details, enterprise options, and exact availability may change
 similarTools:
   - Zapier
   - Make
   - n8n
-reviewStatus: "needs-official-review"
+reviewStatus: "reviewed"
 sourceNotes:
-  - "Draft page added for future review. Official Pipedream product, pricing, help, integration, AI, API, security, limit, and availability sources still need to be checked before publication."
-  - "Do not publish until exact claims about pricing, limits, integrations, AI features, API details, security guarantees, enterprise features, and availability have been avoided or verified against official Pipedream sources."
+  - "Checked https://pipedream.com/ on 2026-06-02 for official Pipedream positioning around workflows, apps, APIs, integrations, and AI-related use cases."
+  - "Checked https://pipedream.com/docs and https://pipedream.com/docs/workflows/limits on 2026-06-02 for official workflow, API, integration, credit, and limit context."
+  - "Checked https://pipedream.com/pricing and https://pipedream.com/docs/pricing on 2026-06-02 for plan, pricing, credit, workflow, connect, and usage context without copying exact prices, plan comparisons, credit limits, API limits, or feature availability into this page."
+  - "Checked https://pipedream.com/docs/privacy-and-security on 2026-06-02 for official privacy and security context, but did not copy security guarantees, compliance details, data retention details, API details, or exact feature availability into this page."
 ---
 
 ## Overview
 
-Pipedream is an automation and workflow tool that may help users connect apps and build repeatable workflows. It can be useful when a person wants to map an app-to-app process, reduce repetitive handoffs, or document an automation idea before testing it.
+Pipedream is an automation and integration platform that can help users plan, build, and test workflows across connected apps, APIs, and services. It can be useful when a person wants to map an app-to-app process, reduce repetitive handoffs, or document an automation idea before using it in a real process.
 
-This is a draft page. Official Pipedream sources still need to be reviewed before publication, especially for current plans, pricing, integrations, limits, AI-related features, permissions, security details, API details, and availability.
+Pipedream has product and documentation areas for workflows, app connections, API-related usage, credits, limits, and AI-related workflows, but details can change. Users should check official Pipedream product, docs, pricing, limits, and security pages before relying on a specific feature, integration, plan, credit model, API option, or security detail.
 
 ## Useful For
 

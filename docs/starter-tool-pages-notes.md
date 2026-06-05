@@ -436,9 +436,10 @@ page reminds users to test automated workflows before relying on them, review
 connected-account access and data handling, and handle sensitive or
 confidential information carefully.
 
-## Automation Tools Draft Batch Result
+## Automation Tools Batch Review Result
 
-Phase 5Z added five Automation Tools pages as draft-first validation pages:
+Phase 5Z added five Automation Tools pages as draft-first validation pages.
+The batch review checked official sources and published all five pages:
 
 - n8n
 - IFTTT
@@ -446,40 +447,76 @@ Phase 5Z added five Automation Tools pages as draft-first validation pages:
 - Bardeen
 - Relay.app
 
-Current status:
+Official sources checked:
+
+- n8n: `https://n8n.io/`, `https://n8n.io/pricing/`,
+  `https://docs.n8n.io/`, `https://docs.n8n.io/workflows/`,
+  `https://docs.n8n.io/privacy-security/what-you-can-do/`, and
+  `https://n8n.io/legal/security/`
+- IFTTT: `https://ifttt.com/`, `https://ifttt.com/plans`,
+  `https://help.ifttt.com/`,
+  `https://help.ifttt.com/hc/en-us/articles/360053706813-IFTTT-Plans-at-a-glance`,
+  `https://help.ifttt.com/hc/en-us/articles/1260803229749-IFTTT-Service-Rate-Limits`,
+  `https://ifttt.com/privacy`, and `https://ifttt.com/terms`
+- Pipedream: `https://pipedream.com/`, `https://pipedream.com/docs`,
+  `https://pipedream.com/pricing`,
+  `https://pipedream.com/docs/pricing`,
+  `https://pipedream.com/docs/workflows/limits`, and
+  `https://pipedream.com/docs/privacy-and-security`
+- Bardeen: `https://www.bardeen.ai/`,
+  `https://www.bardeen.ai/pricing`,
+  `https://support.bardeen.ai/hc/en-us`,
+  `https://support.bardeen.ai/hc/en-us/articles/26834918574349-Triggers-Actions`,
+  `https://support.bardeen.ai/hc/en-us/articles/23925118331277-Creating-Autobooks`,
+  `https://support.bardeen.ai/hc/en-us/articles/23925100946573-Connecting-Apps-with-Bardeen`,
+  `https://www.bardeen.ai/security`, and
+  `https://www.bardeen.ai/privacy-policy`
+- Relay.app: `https://www.relay.app/`,
+  `https://www.relay.app/how-it-works`,
+  `https://www.relay.app/pricing`, `https://docs.relay.app/`,
+  `https://docs.relay.app/getting-started/faq`,
+  `https://docs.relay.app/getting-started/helpful-resources`,
+  `https://www.relay.app/security`, and
+  `https://www.relay.app/privacy`
+
+Current status after review:
 
 ```yaml
 content/ai-tools/tools/n8n.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-06-02"
 
 content/ai-tools/tools/ifttt.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-06-02"
 
 content/ai-tools/tools/pipedream.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-06-02"
 
 content/ai-tools/tools/bardeen.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-06-02"
 
 content/ai-tools/tools/relay-app.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-06-02"
 ```
 
-These pages remain unpublished pending official source review. Future review
-must check each tool's official product, pricing, help, integration, AI, API,
-security, limit, and availability sources before publication.
+The pages use only high-level, cautious claims. Specific prices, plan
+comparisons, task limits, operation limits, credit limits, workflow limits, app
+or integration counts, API details, security guarantees, compliance details,
+enterprise availability, AI feature availability, and exact feature
+availability were not copied into the pages.
 
 Special caution areas include automation testing, workflow reliability,
 connected accounts, app permissions, customer data, business data, workflow
-errors, pricing, limits, security, and changing availability. These draft pages
-must not be linked publicly until each one is manually reviewed and published.
+errors, pricing, limits, security, and changing availability. The pages remind
+users to test automated workflows before relying on them, review
+connected-account access and data handling, and handle sensitive or
+confidential information carefully.

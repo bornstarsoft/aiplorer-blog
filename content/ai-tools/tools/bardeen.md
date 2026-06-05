@@ -1,6 +1,6 @@
 ---
 title: "Bardeen"
-description: "Bardeen is an automation tool that may help users connect apps and reduce repetitive workflow steps."
+description: "Bardeen is an automation tool that can help users plan, build, and test repeatable workflows across connected apps and browser-based work."
 type: "ai-tools"
 layout: "tool"
 category: "Automation Tools"
@@ -9,13 +9,13 @@ bestFor:
   - Reducing repetitive browser or work tasks
   - Testing workflow ideas
   - Connecting everyday work tools
-  - Documenting automation risks before rollout
+  - Reviewing app permissions and workflow risks before rollout
 beginnerFriendly: null
 freePlan: null
-pricingNote: "Plans, pricing, limits, integrations, AI-related features, security details, and availability may change. Check the official Bardeen website for current details."
+pricingNote: "Plans, pricing, credits, limits, integrations, AI-related features, browser-related behavior, security details, and availability may change. Check the official Bardeen product, pricing, support, and security pages for current details."
 officialUrl: "https://www.bardeen.ai/"
-lastReviewed: ""
-draft: true
+lastReviewed: "2026-06-02"
+draft: false
 useCases:
   - Draft an automation workflow before building it
   - Connect routine updates between work apps
@@ -23,30 +23,31 @@ useCases:
   - Compare automation needs before choosing a tool
   - Document permission and data risks before rollout
 pros:
-  - May help users think through repetitive workflow steps
-  - Can be useful for automation planning, testing, and workflow documentation
-  - May fit users exploring connected work or browser workflow ideas
+  - Can be useful for people who want to plan and test repetitive app or browser workflows
+  - Can support automation planning, workflow documentation, and repeatable process design
+  - May fit users exploring connected work or browser workflow ideas with careful permission review
 limitations:
   - Automated workflows should be tested before relying on them
   - Connected accounts, app permissions, customer data, and business data should be handled carefully
   - Workflow errors, missing data, duplicate actions, and permission issues can affect real operations
-  - Plans, pricing, limits, integrations, AI-related features, API details, security details, enterprise options, and exact availability may change
-  - Official Bardeen sources must be reviewed before this page is published
+  - Plans, pricing, credits, limits, integrations, AI-related features, browser behavior, API details, security details, enterprise options, and exact availability may change
 similarTools:
   - Zapier
   - Make
   - IFTTT
-reviewStatus: "needs-official-review"
+reviewStatus: "reviewed"
 sourceNotes:
-  - "Draft page added for future review. Official Bardeen product, pricing, help, integration, AI, API, security, limit, and availability sources still need to be checked before publication."
-  - "Do not publish until exact claims about pricing, limits, integrations, AI features, API details, security guarantees, enterprise features, and availability have been avoided or verified against official Bardeen sources."
+  - "Checked https://www.bardeen.ai/ on 2026-06-02 for official Bardeen positioning around automation, browser-based work, scraping, enrichment, AI-related research, and workflow support."
+  - "Checked https://www.bardeen.ai/pricing on 2026-06-02 for plan, pricing, credit, AI-related, team, and availability context without copying exact prices, plan comparisons, credit limits, or feature availability into this page."
+  - "Checked https://support.bardeen.ai/hc/en-us, https://support.bardeen.ai/hc/en-us/articles/26834918574349-Triggers-Actions, https://support.bardeen.ai/hc/en-us/articles/23925118331277-Creating-Autobooks, and https://support.bardeen.ai/hc/en-us/articles/23925100946573-Connecting-Apps-with-Bardeen on 2026-06-02 for official help, trigger, action, Autobook, Playbook, connection, and permission context."
+  - "Checked https://www.bardeen.ai/security and https://www.bardeen.ai/privacy-policy on 2026-06-02 for official security and privacy context, but did not copy security guarantees, compliance details, data handling guarantees, API details, or exact feature availability into this page."
 ---
 
 ## Overview
 
-Bardeen is an automation tool that may help users connect apps and reduce repetitive workflow steps. It can be useful when a person wants to map a recurring process, reduce manual handoffs, or document an automation idea before testing it.
+Bardeen is an automation tool that can help users plan, build, and test repeatable workflows across connected apps and browser-based work. It can be useful when a person wants to map a recurring process, reduce manual handoffs, or document an automation idea before using it in a real process.
 
-This is a draft page. Official Bardeen sources still need to be reviewed before publication, especially for current plans, pricing, integrations, limits, AI-related features, permissions, security details, API details, and availability.
+Bardeen has product and support areas for automations, Playbooks, Autobooks, triggers, actions, app connections, permissions, and AI-related workflow support, but details can change. Users should check official Bardeen product, pricing, support, security, and privacy pages before relying on a specific feature, integration, plan, credit model, permission behavior, or security detail.
 
 ## Useful For
 

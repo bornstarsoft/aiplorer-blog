@@ -3,7 +3,9 @@
 Date: 2026-06-05
 
 The Automation Tools category has Zapier as its first reviewed representative
-tool, with Make added as the second reviewed representative.
+tool, with Make added as the second reviewed representative. The automation
+draft batch later added n8n, IFTTT, Pipedream, Bardeen, and Relay.app as
+reviewed representatives after official-source review.
 
 Current reviewed representatives:
 
@@ -15,6 +17,36 @@ reviewStatus: "reviewed"
 lastReviewed: "2026-06-02"
 
 content/ai-tools/tools/make.md
+category: "Automation Tools"
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-06-02"
+
+content/ai-tools/tools/n8n.md
+category: "Automation Tools"
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-06-02"
+
+content/ai-tools/tools/ifttt.md
+category: "Automation Tools"
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-06-02"
+
+content/ai-tools/tools/pipedream.md
+category: "Automation Tools"
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-06-02"
+
+content/ai-tools/tools/bardeen.md
+category: "Automation Tools"
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-06-02"
+
+content/ai-tools/tools/relay-app.md
 category: "Automation Tools"
 draft: false
 reviewStatus: "reviewed"

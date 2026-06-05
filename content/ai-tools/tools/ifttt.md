@@ -1,6 +1,6 @@
 ---
 title: "IFTTT"
-description: "IFTTT is an automation tool that may help users connect services and build simple repeatable workflows."
+description: "IFTTT is an automation tool that can help users plan, build, and test simple repeatable workflows across connected services."
 type: "ai-tools"
 layout: "tool"
 category: "Automation Tools"
@@ -9,13 +9,13 @@ bestFor:
   - Reducing repetitive manual tasks
   - Testing everyday automation ideas
   - Connecting personal or work tools
-  - Documenting workflow risks before rollout
+  - Reviewing service permissions and workflow risks before rollout
 beginnerFriendly: null
 freePlan: null
-pricingNote: "Plans, pricing, limits, service availability, AI-related features, security details, and availability may change. Check the official IFTTT website for current details."
+pricingNote: "Plans, pricing, limits, connected service availability, AI-related features, privacy terms, and availability may change. Check the official IFTTT product, plans, help, and terms pages for current details."
 officialUrl: "https://ifttt.com/"
-lastReviewed: ""
-draft: true
+lastReviewed: "2026-06-02"
+draft: false
 useCases:
   - Draft a simple automation idea before building it
   - Connect routine updates between services
@@ -23,30 +23,31 @@ useCases:
   - Compare automation needs before choosing a tool
   - Document permission and data risks before rollout
 pros:
-  - May help users think through simple connected workflows
-  - Can be useful for everyday automation planning and testing
-  - May fit users exploring lightweight automation ideas
+  - Can be useful for people who want to plan and test simple connected workflows
+  - Can support everyday automation planning and repeatable task reduction
+  - May fit users exploring lightweight automation ideas with careful service permission review
 limitations:
   - Automated workflows should be tested before relying on them
   - Connected accounts, service permissions, customer data, and business data should be handled carefully
   - Workflow errors, missing data, duplicate actions, and permission issues can affect real operations
-  - Plans, pricing, limits, integrations, AI-related features, API details, security details, enterprise options, and exact availability may change
-  - Official IFTTT sources must be reviewed before this page is published
+  - Plans, pricing, limits, connected service availability, AI-related features, platform details, privacy terms, and exact availability may change
 similarTools:
   - Zapier
   - Make
   - Bardeen
-reviewStatus: "needs-official-review"
+reviewStatus: "reviewed"
 sourceNotes:
-  - "Draft page added for future review. Official IFTTT product, pricing, help, integration, AI, API, security, limit, and availability sources still need to be checked before publication."
-  - "Do not publish until exact claims about pricing, limits, integrations, AI features, API details, security guarantees, enterprise features, and availability have been avoided or verified against official IFTTT sources."
+  - "Checked https://ifttt.com/ on 2026-06-02 for official IFTTT positioning as an automation service for connecting services and creating Applets."
+  - "Checked https://ifttt.com/plans and https://help.ifttt.com/hc/en-us/articles/360053706813-IFTTT-Plans-at-a-glance on 2026-06-02 for plan, pricing, limit, and AI-related context without copying exact prices, plan comparisons, limits, or feature availability into this page."
+  - "Checked https://help.ifttt.com/ and https://help.ifttt.com/hc/en-us/articles/1260803229749-IFTTT-Service-Rate-Limits on 2026-06-02 for official help and rate-limit context."
+  - "Checked https://ifttt.com/privacy and https://ifttt.com/terms on 2026-06-02 for official privacy and terms context, but did not copy privacy guarantees, security guarantees, platform-service details, or exact feature availability into this page."
 ---
 
 ## Overview
 
-IFTTT is an automation tool that may help users connect services and build simple repeatable workflows. It can be useful when a person wants to map a lightweight connected process, reduce repetitive handoffs, or document an automation idea before testing it.
+IFTTT is an automation tool that can help users plan, build, and test simple repeatable workflows across connected services. It can be useful when a person wants to map a lightweight connected process, reduce repetitive handoffs, or document an automation idea before using it in a real process.
 
-This is a draft page. Official IFTTT sources still need to be reviewed before publication, especially for current plans, pricing, integrations, limits, AI-related features, permissions, security details, API details, and availability.
+IFTTT has product and help areas for Applets, connected services, plans, rate limits, and AI-related services, but details can change. Users should check official IFTTT product, plans, help, privacy, and terms pages before relying on a specific feature, connected service, plan, limit, or data handling detail.
 
 ## Useful For
 
