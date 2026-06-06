@@ -33,7 +33,7 @@ Summarize documents, organize notes, prepare meetings, and handle daily work.
 Connect apps, reduce repetitive tasks, and test repeatable workflows.
 {{< /card >}}
 {{< card title="Learning Tools" href="/ai-tools/learning-tools/" label="Learning" >}}
-Study topics, research faster, practice languages, and build new skills.
+Study topics, review sources, summarize material, and build new skills.
 {{< /card >}}
 {{< card title="Business Tools" href="/ai-tools/business-tools/" label="Business" >}}
 Support marketing, customer communication, documents, and small business tasks.
