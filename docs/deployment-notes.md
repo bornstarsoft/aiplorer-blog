@@ -55,6 +55,25 @@ Live diagnostic result:
   `/ai-tools/tools/example-ai-assistant/` returned HTTP `404`, and those draft
   routes were absent from the live sitemap.
 
+Follow-up after manual Cloudflare Production deployment/cache review and Purge
+Everything:
+
+- Local source and production build remained correct for commit `4c8b840`, with
+  all five Coding Tools pages and sitemap entries present in `public/`.
+- `/ai-tools/` refreshed at the header level with `cf-cache-status: EXPIRED`,
+  but its body still did not include GitHub Copilot, Cursor, Windsurf, Replit,
+  or Tabnine.
+- `/ai-tools/tools/` and `/sitemap.xml` still returned HTTP `200` with
+  `cf-cache-status: HIT`, older `age` values, and body content missing the
+  Coding Tools batch.
+- Plain `/ai-tools/tools/cursor/` and `/ai-tools/tools/replit/` still returned
+  cached HTTP `404` responses, while their cache-busted URLs with
+  `deploy-check=4c8b840` returned HTTP `200`.
+- Cache-busted `/ai-tools/`, `/ai-tools/tools/`, and `/sitemap.xml` still did
+  not include the Coding Tools batch.
+- Draft routes for SciSpace, Tome, and the example assistant continued to return
+  HTTP `404` and remained absent from the live sitemap.
+
 Recommended Cloudflare follow-up:
 
 - Confirm the latest Production deployment commit is `536998b`.
