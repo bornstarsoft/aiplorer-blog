@@ -326,6 +326,57 @@ Cache note:
   Cloudflare cache and re-check `/ai-tools/`, `/ai-tools/tools/`, and
   `/sitemap.xml`.
 
+## Research Learning Tools Batch Production Deployment
+
+Date: 2026-06-06
+
+The Research/Learning draft and review commits were pushed to `origin/main`:
+
+- `9f4b570 Add Research Learning Tools draft batch`
+- `e9f06c9 Review Research Learning Tools draft batch for publication`
+
+Local validation before push:
+
+- `hugo --cleanDestinationDir` passed.
+- `hugo --buildDrafts` passed.
+- Production output was restored with `hugo --cleanDestinationDir`.
+- `git diff --check` passed.
+- Generated output remained ignored and unstaged.
+- Production output included NotebookLM, Elicit, Consensus, and You.com.
+- Production output excluded SciSpace.
+- Draft output included SciSpace.
+
+Live verification after deployment:
+
+- `/ai-tools/tools/notebooklm/`, `/ai-tools/tools/elicit/`,
+  `/ai-tools/tools/consensus/`, and `/ai-tools/tools/you-com/` returned HTTP
+  `200`.
+- `/ai-tools/tools/` returned HTTP `200`, but the non-query page initially
+  served stale cached content without the four published tools under Learning
+  Tools.
+- `/sitemap.xml` returned HTTP `200` and included the four published tool URLs.
+- `/ai-tools/tools/scispace/`, `/ai-tools/tools/tome/`, and
+  `/ai-tools/tools/example-ai-assistant/` returned HTTP `404`.
+- SciSpace, Tome, and the draft example route remained absent from the live
+  sitemap.
+
+Cache note:
+
+- The non-query `/ai-tools/` and `/ai-tools/tools/` returned HTTP `200` but
+  served stale cached content without NotebookLM, Elicit, Consensus, and
+  You.com.
+- Header check for `/ai-tools/` showed `cf-cache-status: HIT`, `age: 382`, and
+  `last-modified: Sat, 06 Jun 2026 01:29:51 GMT`.
+- Header check for `/ai-tools/tools/` showed `cf-cache-status: HIT`,
+  `age: 2005`, and `last-modified: Sat, 06 Jun 2026 01:29:48 GMT`.
+- Cache-busted `/ai-tools/?deploy-check=e9f06c9` returned HTTP `200` and
+  included NotebookLM, Elicit, Consensus, and You.com.
+- Cache-busted `/ai-tools/tools/?deploy-check=e9f06c9` and
+  `/sitemap.xml?deploy-check=e9f06c9` returned HTTP `200` and were correct.
+- If the non-query AI Tools landing or reviewed tools index remains stale after
+  normal cache expiry, purge the exact Cloudflare URLs for `/ai-tools/` and
+  `/ai-tools/tools/`, then re-check without query parameters.
+
 ## Presentation Tools Category Production Deployment
 
 Date: 2026-06-05
