@@ -74,6 +74,21 @@ Everything:
 - Draft routes for SciSpace, Tome, and the example assistant continued to return
   HTTP `404` and remained absent from the live sitemap.
 
+Follow-up after manual Cloudflare Pages redeploy:
+
+- Local source and production build remained correct, with `2bc525b`,
+  `4c8b840`, and `536998b` present in `main`.
+- All five direct Coding Tools routes returned HTTP `200` without query
+  parameters: GitHub Copilot, Cursor, Windsurf, Replit, and Tabnine.
+- `/ai-tools/` and `/ai-tools/tools/` returned HTTP `200` with
+  `cf-cache-status: HIT`, but their body content still did not include the
+  Coding Tools batch.
+- `/sitemap.xml` returned HTTP `200` with `cf-cache-status: MISS`, but its body
+  still did not include the five Coding Tools URLs.
+- No concrete Cloudflare Pages deployment preview URL was available during this
+  diagnostic pass, so preview-vs-custom-domain comparison could not be
+  completed.
+
 Recommended Cloudflare follow-up:
 
 - Confirm the latest Production deployment commit is `536998b`.
