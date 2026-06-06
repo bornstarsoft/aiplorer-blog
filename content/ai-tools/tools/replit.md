@@ -1,6 +1,6 @@
 ---
 title: "Replit"
-description: "Replit is a development platform with AI-related coding support that may help users draft, learn, and build software projects."
+description: "Replit is a development platform with AI-related coding support that can help users draft, learn, and build software projects."
 type: "ai-tools"
 layout: "tool"
 category: "Coding Tools"
@@ -12,10 +12,10 @@ bestFor:
   - Checking security, privacy, and project risks before use
 beginnerFriendly: null
 freePlan: null
-pricingNote: "Plans, pricing, AI feature availability, workspace options, deployment options, model access, team options, security details, data handling, and feature availability may change. Check official Replit pages for current details before publishing."
+pricingNote: "Plans, pricing, credits, AI feature availability, workspace options, deployment options, model access, team options, security details, data handling, and feature availability may change. Check official Replit pages for current details."
 officialUrl: "https://replit.com/"
-lastReviewed: ""
-draft: true
+lastReviewed: "2026-06-06"
+draft: false
 useCases:
   - Draft code ideas for human review
   - Explore beginner programming projects
@@ -29,24 +29,26 @@ pros:
 limitations:
   - Generated code should be reviewed, tested, and security-checked before use
   - Secrets, private projects, licenses, dependencies, deployment settings, and workplace policies should be handled carefully
-  - Plans, pricing, AI feature availability, workspace options, deployment options, model access, team options, security details, data handling, completion quality, and exact availability may change
-  - Official Replit sources must be reviewed before this page is published
+  - Plans, pricing, credits, AI feature availability, workspace options, deployment options, model access, team options, security details, data handling, completion quality, and exact availability may change
 similarTools:
   - GitHub Copilot
   - Cursor
   - Windsurf
   - Tabnine
-reviewStatus: "needs-official-review"
+reviewStatus: "reviewed"
 sourceNotes:
-  - "Official Replit sources must be checked before publication."
-  - "Do not publish until claims about pricing, plan limits, model access, coding accuracy, IDE or workspace availability, repository or project access, enterprise availability, security guarantees, data handling guarantees, deployment support, completion quality, and exact feature availability have been avoided or verified against official sources."
+  - "Checked https://replit.com/ on 2026-06-06 for official product access point."
+  - "Checked https://docs.replit.com/learn/foundations/introduction-to-ai, https://docs.replit.com/core-concepts/agent/, and https://docs.replit.com/learn/build-with-agent on 2026-06-06 for official AI, Agent, planning, code, app-building, review, testing, and checkpoint context without copying exact feature availability, quality claims, or plan details into this page."
+  - "Checked https://docs.replit.com/billing/ai-billing and https://docs.replit.com/billing/deployment-pricing on 2026-06-06 for AI billing, credits, Agent usage, deployment pricing, and spending-control context without copying exact prices, credits, caps, plan comparisons, or feature availability into this page."
+  - "Checked https://docs.replit.com/teams/information-security/overview and https://docs.replit.com/references/security/shared-responsibility-model on 2026-06-06 for official security, privacy, shared responsibility, and data-protection context without copying security guarantees into this page."
+  - "Checked https://replit.com/privacy-policy and https://docs.replit.com/replitai/replit-ai-integrations on 2026-06-06 for privacy and AI integration context without copying data handling guarantees, model availability, or API details into this page."
 ---
 
 ## Overview
 
-Replit is a development platform with AI-related coding support that may help users draft, learn, and build software projects. It can be useful when a person wants to explore a coding idea, prepare a small project, or learn through a developer workflow.
+Replit is a development platform with AI-related coding support that can help users draft, learn, and build software projects. It can be useful when a person wants to explore a coding idea, prepare a small project, or learn through a developer workflow.
 
-This is a draft page. Official Replit sources must be checked before publication, especially for current plans, pricing, AI feature availability, workspace options, deployment options, model access, team options, security details, data handling, and availability.
+Replit has product areas for AI-assisted app building, development workspaces, published apps, and cloud services, but exact availability can change. Users should check official Replit pages before relying on a specific plan, billing model, workspace option, deployment option, model, or privacy setting.
 
 ## Useful For
 
@@ -56,6 +58,6 @@ Coding and development platforms should be treated as project support, not as a 
 
 ## Notes
 
-Features, plans, pricing, AI feature availability, workspace options, deployment options, model access, team options, security details, data handling, and availability can change. Check official Replit pages for current details before choosing a plan or relying on a specific capability.
+Features, plans, pricing, credits, AI feature availability, workspace options, deployment options, model access, team options, security details, data handling, and availability can change. Check official Replit pages for current details before choosing a plan or relying on a specific capability.
 
 Be careful with secrets, private projects, customer data, proprietary code, license obligations, dependencies, deployment settings, workplace policies, and code review standards. Test generated code and review permissions, edge cases, and security requirements before using it.

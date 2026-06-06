@@ -1,6 +1,6 @@
 ---
 title: "GitHub Copilot"
-description: "GitHub Copilot is an AI coding assistant that may help users draft code, review coding ideas, and work through developer workflows."
+description: "GitHub Copilot is an AI coding assistant from GitHub that can help users draft code, review coding ideas, and work through developer workflows."
 type: "ai-tools"
 layout: "tool"
 category: "Coding Tools"
@@ -12,10 +12,10 @@ bestFor:
   - Checking security, licensing, and policy risks before use
 beginnerFriendly: null
 freePlan: null
-pricingNote: "Plans, pricing, model access, IDE availability, repository access, enterprise options, security details, data handling, and feature availability may change. Check official GitHub Copilot pages for current details before publishing."
+pricingNote: "Plans, pricing, usage billing, model access, IDE availability, repository access, enterprise options, security details, data handling, and feature availability may change. Check official GitHub Copilot pages for current details."
 officialUrl: "https://github.com/features/copilot"
-lastReviewed: ""
-draft: true
+lastReviewed: "2026-06-06"
+draft: false
 useCases:
   - Draft code snippets for human review
   - Explore possible fixes or implementation ideas
@@ -29,24 +29,26 @@ pros:
 limitations:
   - Generated code should be reviewed, tested, and security-checked before use
   - Code correctness, licensing, secrets, private repositories, and workplace policy should be handled carefully
-  - Plans, pricing, model access, IDE availability, repository access, enterprise options, security details, data handling, completion quality, and exact availability may change
-  - Official GitHub Copilot sources must be reviewed before this page is published
+  - Plans, pricing, usage billing, model access, IDE availability, repository access, enterprise options, security details, data handling, completion quality, and exact availability may change
 similarTools:
   - Cursor
   - Windsurf
   - Replit
   - Tabnine
-reviewStatus: "needs-official-review"
+reviewStatus: "reviewed"
 sourceNotes:
-  - "Official GitHub Copilot sources must be checked before publication."
-  - "Do not publish until claims about pricing, plan limits, model access, coding accuracy, IDE availability, repository access, enterprise availability, security guarantees, data handling guarantees, completion quality, and exact feature availability have been avoided or verified against official sources."
+  - "Checked https://github.com/features/copilot on 2026-06-06 for official product access point and high-level Copilot positioning."
+  - "Checked https://docs.github.com/en/copilot on 2026-06-06 for official GitHub Copilot documentation categories and high-level feature context."
+  - "Checked https://docs.github.com/en/copilot/overview-of-github-copilot/about-github-copilot-individual on 2026-06-06 for high-level AI coding assistant, IDE suggestions, chat, command-line help, pull-request description, and code-change context without copying productivity claims or exact feature availability into this page."
+  - "Checked https://docs.github.com/en/copilot/get-started/plans and https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing on 2026-06-06 for plan, pricing, usage billing, AI credit, model, and feature context without copying exact prices, limits, model availability, or plan comparisons into this page."
+  - "Checked https://docs.github.com/en/copilot/concepts/about-copilot-coding-agent on 2026-06-06 for cloud agent, repository, pull-request, task, security, risk, and limitation context without copying exact plan availability, repository access rules, security details, model details, or feature availability into this page."
 ---
 
 ## Overview
 
-GitHub Copilot is an AI coding assistant that may help users draft code, review coding ideas, and work through developer workflows. It can be useful when a person wants support thinking through implementation ideas, code explanations, or possible next steps before manual review.
+GitHub Copilot is an AI coding assistant from GitHub that can help users draft code, review coding ideas, and work through developer workflows. It can be useful when a person wants support thinking through implementation ideas, code explanations, or possible next steps before manual review.
 
-This is a draft page. Official GitHub Copilot sources must be checked before publication, especially for current plans, pricing, model access, IDE availability, repository access, enterprise options, security details, data handling, and availability.
+GitHub Copilot has product areas for editor assistance, chat, command-line help, code review, and agent-style work, but exact availability can vary by plan, environment, account type, and product changes. Users should check official GitHub Copilot pages before relying on a specific capability.
 
 ## Useful For
 
@@ -56,6 +58,6 @@ Coding assistants should be treated as development support, not as a guarantee t
 
 ## Notes
 
-Features, plans, pricing, model access, IDE availability, repository access, enterprise options, security details, data handling, and availability can change. Check official GitHub Copilot pages for current details before choosing a plan or relying on a specific capability.
+Features, plans, pricing, usage billing, model access, IDE availability, repository access, enterprise options, security details, data handling, and availability can change. Check official GitHub Copilot pages for current details before choosing a plan or relying on a specific capability.
 
 Be careful with secrets, private repositories, customer data, proprietary code, license obligations, security requirements, workplace policies, and code review standards. Test generated code and review dependencies, permissions, and edge cases before using it.

@@ -71,6 +71,21 @@ An AI research and learning tool that can help users explore questions, papers, 
 {{< card title="You.com" href="/ai-tools/tools/you-com/" label="Reviewed" >}}
 An AI search and assistant platform that can help users explore questions, compare sources, and support research or learning workflows.
 {{< /card >}}
+{{< card title="GitHub Copilot" href="/ai-tools/tools/github-copilot/" label="Reviewed" >}}
+An AI coding assistant from GitHub that can help users draft code, review coding ideas, and work through developer workflows.
+{{< /card >}}
+{{< card title="Cursor" href="/ai-tools/tools/cursor/" label="Reviewed" >}}
+An AI code editor and coding tool that can help users draft, edit, explain, and review code inside a developer workflow.
+{{< /card >}}
+{{< card title="Windsurf" href="/ai-tools/tools/windsurf/" label="Reviewed" >}}
+An AI-powered coding tool that can help users draft code, explore codebase changes, and support developer workflows.
+{{< /card >}}
+{{< card title="Replit" href="/ai-tools/tools/replit/" label="Reviewed" >}}
+A development platform with AI-related coding support that can help users draft, learn, and build software projects.
+{{< /card >}}
+{{< card title="Tabnine" href="/ai-tools/tools/tabnine/" label="Reviewed" >}}
+An AI coding assistant that can help users draft code completions, review coding ideas, and support developer workflows.
+{{< /card >}}
 {{< card title="Microsoft Copilot" href="/ai-tools/tools/microsoft-copilot/" label="Reviewed" >}}
 An AI assistant from Microsoft that can support everyday questions, writing help, brainstorming, learning, and productivity tasks.
 {{< /card >}}

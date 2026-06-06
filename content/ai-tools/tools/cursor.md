@@ -1,6 +1,6 @@
 ---
 title: "Cursor"
-description: "Cursor is an AI coding tool that may help users draft, edit, explain, and review code inside a developer workflow."
+description: "Cursor is an AI code editor and coding tool that can help users draft, edit, explain, and review code inside a developer workflow."
 type: "ai-tools"
 layout: "tool"
 category: "Coding Tools"
@@ -12,10 +12,10 @@ bestFor:
   - Checking security, privacy, and repository risks before use
 beginnerFriendly: null
 freePlan: null
-pricingNote: "Plans, pricing, model access, IDE availability, repository access, team options, security details, data handling, and feature availability may change. Check official Cursor pages for current details before publishing."
+pricingNote: "Plans, pricing, usage billing, model access, editor availability, repository access, team options, security details, data handling, and feature availability may change. Check official Cursor pages for current details."
 officialUrl: "https://cursor.com/"
-lastReviewed: ""
-draft: true
+lastReviewed: "2026-06-06"
+draft: false
 useCases:
   - Draft a code change before manual review
   - Ask questions about code structure
@@ -29,24 +29,24 @@ pros:
 limitations:
   - Generated code should be reviewed, tested, and security-checked before use
   - Code correctness, secrets, private repositories, licenses, and workplace policies should be handled carefully
-  - Plans, pricing, model access, IDE availability, repository access, team options, security details, data handling, completion quality, and exact availability may change
-  - Official Cursor sources must be reviewed before this page is published
+  - Plans, pricing, usage billing, model access, editor availability, repository access, team options, security details, data handling, completion quality, and exact availability may change
 similarTools:
   - GitHub Copilot
   - Windsurf
   - Replit
   - Tabnine
-reviewStatus: "needs-official-review"
+reviewStatus: "reviewed"
 sourceNotes:
-  - "Official Cursor sources must be checked before publication."
-  - "Do not publish until claims about pricing, plan limits, model access, coding accuracy, IDE availability, repository access, team or enterprise availability, security guarantees, data handling guarantees, completion quality, and exact feature availability have been avoided or verified against official sources."
+  - "Checked https://cursor.com/ and https://cursor.com/en-US/product on 2026-06-06 for official Cursor product positioning around AI code editing, agents, codebase context, terminal, git, checkpoints, and developer workflow context without copying ranking, benchmark, or exact feature claims."
+  - "Checked https://cursor.com/en-US/pricing and https://docs.cursor.com/account/pricing on 2026-06-06 for plan, pricing, usage billing, team, enterprise, and model-usage context without copying exact prices, request limits, token details, plan comparisons, or feature availability into this page."
+  - "Checked https://cursor.com/data-use, https://cursor.com/privacy, and https://www.cursor.com/security on 2026-06-06 for official privacy, data-use, privacy mode, and security context without copying privacy/security guarantees into this page."
 ---
 
 ## Overview
 
-Cursor is an AI coding tool that may help users draft, edit, explain, and review code inside a developer workflow. It can be useful when a person wants to explore implementation ideas, ask questions about code, or prepare code changes for manual review.
+Cursor is an AI code editor and coding tool that can help users draft, edit, explain, and review code inside a developer workflow. It can be useful when a person wants to explore implementation ideas, ask questions about code, or prepare code changes for manual review.
 
-This is a draft page. Official Cursor sources must be checked before publication, especially for current plans, pricing, model access, IDE availability, repository access, team options, security details, data handling, and availability.
+Cursor has product areas for code editing, agents, codebase context, terminal workflows, and team/enterprise use, but exact availability can change. Users should check official Cursor pages before relying on a specific feature, plan, model, or privacy setting.
 
 ## Useful For
 
@@ -56,6 +56,6 @@ Coding tools should be treated as development support, not as a guarantee that c
 
 ## Notes
 
-Features, plans, pricing, model access, IDE availability, repository access, team options, security details, data handling, and availability can change. Check official Cursor pages for current details before choosing a plan or relying on a specific capability.
+Features, plans, pricing, usage billing, model access, editor availability, repository access, team options, security details, data handling, and availability can change. Check official Cursor pages for current details before choosing a plan or relying on a specific capability.
 
 Be careful with secrets, private repositories, customer data, proprietary code, license obligations, security requirements, workplace policies, and code review standards. Test generated code and review dependencies, permissions, and edge cases before using it.

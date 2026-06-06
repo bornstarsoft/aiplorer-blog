@@ -692,10 +692,10 @@ remind users to review original sources, source context, citations, privacy
 requirements, academic or workplace policies, and expert-review needs before
 relying on AI-generated research or learning output.
 
-## Coding Tools Draft Batch
+## Coding Tools Batch Review Result
 
 Phase 5AD added five coding and developer AI pages as draft-first validation
-pages:
+pages. The batch review checked official sources and published all five pages:
 
 - GitHub Copilot
 - Cursor
@@ -707,39 +707,77 @@ Current status:
 
 ```yaml
 content/ai-tools/tools/github-copilot.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-06-06"
 
 content/ai-tools/tools/cursor.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-06-06"
 
 content/ai-tools/tools/windsurf.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-06-06"
 
 content/ai-tools/tools/replit.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-06-06"
 
 content/ai-tools/tools/tabnine.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-06-06"
 ```
 
-The pages use the existing `Coding Tools` category. They remain unpublished
-until official-source review is completed.
+The pages use the existing `Coding Tools` category.
 
-Official sources must be checked before publishing. Specific prices, plan
-limits, model access, coding accuracy, IDE availability, repository access,
-enterprise availability, security guarantees, data handling guarantees,
-completion quality, and exact feature availability should not be claimed unless
-verified directly from official sources and necessary for the reviewed page.
+Official sources checked:
+
+- GitHub Copilot: `https://github.com/features/copilot`,
+  `https://docs.github.com/en/copilot`,
+  `https://docs.github.com/en/copilot/overview-of-github-copilot/about-github-copilot-individual`,
+  `https://docs.github.com/en/copilot/get-started/plans`,
+  `https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing`,
+  and `https://docs.github.com/en/copilot/concepts/about-copilot-coding-agent`
+- Cursor: `https://cursor.com/`, `https://cursor.com/en-US/product`,
+  `https://cursor.com/en-US/pricing`,
+  `https://docs.cursor.com/account/pricing`, `https://cursor.com/data-use`,
+  `https://cursor.com/privacy`, and `https://www.cursor.com/security`
+- Windsurf: `https://windsurf.com/`,
+  `https://docs.windsurf.com/windsurf/getting-started`,
+  `https://docs.windsurf.com/windsurf/accounts/usage`,
+  `https://docs.windsurf.com/windsurf/accounts/quota`,
+  `https://windsurf.com/security`,
+  `https://docs.windsurf.com/security/reporting`, and
+  `https://windsurf.com/privacy-policy`
+- Replit: `https://replit.com/`,
+  `https://docs.replit.com/learn/foundations/introduction-to-ai`,
+  `https://docs.replit.com/core-concepts/agent/`,
+  `https://docs.replit.com/learn/build-with-agent`,
+  `https://docs.replit.com/billing/ai-billing`,
+  `https://docs.replit.com/billing/deployment-pricing`,
+  `https://docs.replit.com/teams/information-security/overview`,
+  `https://docs.replit.com/references/security/shared-responsibility-model`,
+  `https://replit.com/privacy-policy`, and
+  `https://docs.replit.com/replitai/replit-ai-integrations`
+- Tabnine: `https://www.tabnine.com/`, `https://docs.tabnine.com/`,
+  `https://www.tabnine.com/pricing`,
+  `https://docs.tabnine.com/main/welcome/readme/tabnine-subscription-plans`,
+  `https://www.tabnine.com/code-privacy`,
+  `https://docs.tabnine.com/main/welcome/readme/personalization`,
+  `https://docs.tabnine.com/main/welcome/readme/ai-models`,
+  `https://docs.tabnine.com/main/welcome/readme/protection`, and
+  `https://www.tabnine.com/privacy-policy/`
+
+The published pages avoid exact prices, plan comparisons, plan limits, credit
+limits, model access details, coding accuracy claims, IDE availability claims,
+repository access details, enterprise availability claims, security guarantees,
+data handling guarantees, license-safety guarantees, completion quality claims,
+and exact feature availability unless the detail was both official and
+necessary.
 
 Special caution areas include reviewing generated code, testing correctness,
 checking security, protecting secrets and private repositories, reviewing
