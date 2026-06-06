@@ -17,6 +17,56 @@ Cloudflare Pages settings must be verified manually in the Cloudflare dashboard.
 - Hugo generated `robots.txt` because `enableRobotsTXT = true`.
 - Hugo generated `sitemap.xml` with `https://aiplorer.com/` URLs.
 
+## Coding Tools Deployment Diagnostics
+
+Date: 2026-06-06
+
+The Coding Tools draft and review commits were pushed to `origin/main`:
+
+- `039a878 Add Coding Tools draft batch`
+- `536998b Review Coding Tools draft batch for publication`
+
+Local validation after push:
+
+- `main` was clean and aligned with `origin/main`.
+- The five Coding Tools pages were `draft: false`, `reviewStatus: "reviewed"`,
+  and `lastReviewed: "2026-06-06"`.
+- `hugo --cleanDestinationDir` passed.
+- Local production output included `/ai-tools/tools/github-copilot/`,
+  `/ai-tools/tools/cursor/`, `/ai-tools/tools/windsurf/`,
+  `/ai-tools/tools/replit/`, and `/ai-tools/tools/tabnine/`.
+- Local production `sitemap.xml` included all five Coding Tools URLs.
+- Local `/ai-tools/` and `/ai-tools/tools/` output included the five tools, with
+  the reviewed tools index grouped under `Coding Tools`.
+- `git diff --check` passed and the working tree stayed clean.
+
+Live diagnostic result:
+
+- `/ai-tools/`, `/ai-tools/tools/`, and `/sitemap.xml` returned HTTP `200`, but
+  their body content did not yet include the Coding Tools batch.
+- `/ai-tools/tools/github-copilot/`, `/ai-tools/tools/windsurf/`,
+  `/ai-tools/tools/replit/`, and `/ai-tools/tools/tabnine/` returned HTTP `200`.
+- The plain `/ai-tools/tools/cursor/` URL returned a cached HTTP `404` with
+  `cf-cache-status: HIT`, while
+  `/ai-tools/tools/cursor/?deploy-check=536998b` returned HTTP `200`.
+- Cache-busted listing and sitemap checks for commit `536998b` still did not
+  show the Coding Tools batch during this diagnostic pass.
+- `/ai-tools/tools/scispace/`, `/ai-tools/tools/tome/`, and
+  `/ai-tools/tools/example-ai-assistant/` returned HTTP `404`, and those draft
+  routes were absent from the live sitemap.
+
+Recommended Cloudflare follow-up:
+
+- Confirm the latest Production deployment commit is `536998b`.
+- Confirm the deployment status is successful.
+- Confirm the Cloudflare Pages build command is `hugo` and the output directory
+  is `public`.
+- If Production is not on `536998b`, wait for or retry deployment from latest
+  `main`.
+- If Production is on `536998b`, purge `/ai-tools/`, `/ai-tools/tools/`,
+  `/sitemap.xml`, and `/ai-tools/tools/cursor/`, then re-check without query
+  parameters.
+
 ## CNAME Decision
 
 The tracked root `CNAME` file contained `www.bornstarai.com`, which did not
