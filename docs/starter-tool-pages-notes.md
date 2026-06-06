@@ -606,34 +606,36 @@ The pages remind users to review generated slides, facts, source material,
 brand rules, media licenses, privacy requirements, and sensitive content before
 sharing or publishing presentation content.
 
-## Research Learning Tools Draft Batch
+## Research Learning Tools Batch Review Result
 
 Phase 5AC added five research and learning pages as draft-first validation
-pages:
+pages. The batch review checked official sources and published four pages:
 
 - NotebookLM
 - Elicit
 - Consensus
-- SciSpace
 - You.com
+
+SciSpace remains unpublished because direct official product and pricing pages
+were not reliably accessible during review.
 
 Current status:
 
 ```yaml
 content/ai-tools/tools/notebooklm.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-06-02"
 
 content/ai-tools/tools/elicit.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-06-02"
 
 content/ai-tools/tools/consensus.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-06-02"
 
 content/ai-tools/tools/scispace.md
 draft: true
@@ -641,20 +643,47 @@ reviewStatus: "needs-official-review"
 lastReviewed: ""
 
 content/ai-tools/tools/you-com.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-06-02"
 ```
 
-The pages use the existing `Learning Tools` category. They remain unpublished
-until official-source review is completed.
+The pages use the existing `Learning Tools` category.
 
-Official sources must be checked before publishing. Specific prices, plan
-limits, research accuracy, citation accuracy, paper coverage, source
-availability, model details, workspace availability, export support,
-collaboration features, API details, security or privacy guarantees, and exact
-feature availability should not be claimed unless verified directly from
-official sources and necessary for the reviewed page.
+Official sources checked:
+
+- NotebookLM: `https://notebooklm.google.com/`,
+  `https://notebooklm.google/`,
+  `https://support.google.com/notebooklm/answer/16164461`,
+  `https://support.google.com/notebooklm/answer/16206563`, and
+  `https://support.google.com/notebooklm/answer/16337734`
+- Elicit: `https://elicit.com/`, `https://support.elicit.com/en`,
+  `https://support.elicit.com/en/articles/11821377`,
+  `https://elicit.com/pricing`, `https://elicit.com/operations/policies`,
+  `https://elicit.com/operations/privacy`, and `https://docs.elicit.com/`
+- Consensus: `https://consensus.app/`,
+  `https://help.consensus.app/en/articles/9922726-why-do-people-choose-consensus`,
+  `https://help.consensus.app/en/articles/9922660-how-to-search-best-practices`,
+  `https://consensus.app/pricing`,
+  `https://help.consensus.app/en/articles/10087865-subscription-plans`,
+  `https://help.consensus.app/en/articles/10093291-security`, and
+  `https://consensus.app/blog/privacy-policy/`
+- SciSpace: attempted `https://typeset.io/` and
+  `https://typeset.io/pricing`, which redirected to `scispace.com` pages that
+  required JavaScript verification in this review; checked
+  `https://trust.scispace.com/` for trust-center context only
+- You.com: `https://you.com/`, `https://home.you.com/support/knowledge-base`,
+  `https://you.com/plans`, `https://you.com/pricing`,
+  `https://about.you.com/legal/privacy`, and
+  `https://home.you.com/security`
+
+The published pages avoid exact prices, plan comparisons, plan limits, source
+coverage, research accuracy, citation accuracy, paper coverage, model details,
+upload limits, export support, workspace features, API details,
+privacy/security guarantees, and exact feature availability unless the detail
+was both official and necessary. SciSpace should not be published until
+official product, pricing, help, privacy, and security sources can be checked
+reliably.
 
 Special caution areas include checking original sources, verifying citations,
 reviewing AI-generated summaries, academic integrity, privacy, sensitive

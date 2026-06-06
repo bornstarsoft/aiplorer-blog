@@ -39,8 +39,10 @@ similarTools:
   - Perplexity
 reviewStatus: "needs-official-review"
 sourceNotes:
-  - "Official SciSpace sources must be checked before publication."
-  - "Do not publish until claims about pricing, plan limits, research accuracy, citation accuracy, paper coverage, source availability, document support, export support, collaboration features, workspace options, API details, model details, and exact feature availability have been avoided or verified against official sources."
+  - "Attempted official-source review on 2026-06-02. Direct checks for https://typeset.io/ and https://typeset.io/pricing redirected to https://scispace.com/ and https://scispace.com/pricing, but the accessible page content required JavaScript verification."
+  - "Checked https://trust.scispace.com/ on 2026-06-02 for official trust-center context, but did not copy privacy/security guarantees or compliance details into this page."
+  - "Official SciSpace product, pricing, help, privacy, and security sources must be rechecked before publication."
+  - "Do not publish until claims about pricing, plan limits, research accuracy, citation accuracy, paper coverage, source availability, document support, export support, collaboration features, workspace options, API details, model details, privacy/security details, and exact feature availability have been avoided or verified against official sources."
 ---
 
 ## Overview

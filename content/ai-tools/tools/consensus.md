@@ -1,6 +1,6 @@
 ---
 title: "Consensus"
-description: "Consensus is a research and learning tool that may help users explore questions, papers, and evidence summaries."
+description: "Consensus is an AI research and learning tool that can help users explore questions, papers, and evidence summaries."
 type: "ai-tools"
 layout: "tool"
 category: "Learning Tools"
@@ -12,10 +12,10 @@ bestFor:
   - Checking citation, privacy, and academic integrity risks
 beginnerFriendly: null
 freePlan: null
-pricingNote: "Plans, pricing, research features, paper coverage, citation behavior, source availability, and availability may change. Check official Consensus pages for current details before publishing."
+pricingNote: "Plans, pricing, research features, paper coverage, citation behavior, source availability, integrations, and availability may change. Check official Consensus pages for current details."
 officialUrl: "https://consensus.app/"
-lastReviewed: ""
-draft: true
+lastReviewed: "2026-06-02"
+draft: false
 useCases:
   - Explore a question before reading original sources
   - Prepare a cautious evidence review
@@ -30,24 +30,26 @@ limitations:
   - AI-generated summaries, evidence statements, citations, and conclusions should be reviewed against original sources
   - Paper coverage, source availability, citation behavior, and research features may change
   - Academic integrity, privacy, sensitive documents, and high-stakes research topics should be handled carefully
-  - Plans, pricing, export support, collaboration features, workspace options, model details, API details, and exact availability may change
-  - Official Consensus sources must be reviewed before this page is published
+  - Plans, pricing, export support, integrations, collaboration features, workspace options, model details, API details, and exact availability may change
 similarTools:
   - Elicit
   - SciSpace
   - NotebookLM
   - Perplexity
-reviewStatus: "needs-official-review"
+reviewStatus: "reviewed"
 sourceNotes:
-  - "Official Consensus sources must be checked before publication."
-  - "Do not publish until claims about pricing, plan limits, research accuracy, citation accuracy, paper coverage, source availability, export support, collaboration features, workspace options, API details, model details, and exact feature availability have been avoided or verified against official sources."
+  - "Checked https://consensus.app/ on 2026-06-02 for official product access point and high-level AI for research positioning."
+  - "Checked https://help.consensus.app/en/articles/9922726-why-do-people-choose-consensus on 2026-06-02 for official high-level academic search, research-question, paper, and citation context without copying exact paper counts, user counts, research accuracy claims, or ranking claims into this page."
+  - "Checked https://help.consensus.app/en/articles/9922660-how-to-search-best-practices on 2026-06-02 for official search workflow and best-practice context without copying exact plan limits, source coverage, or feature availability into this page."
+  - "Checked https://consensus.app/pricing and https://help.consensus.app/en/articles/10087865-subscription-plans on 2026-06-02 for pricing and subscription context without copying exact prices, plan comparisons, usage limits, or feature availability into this page."
+  - "Checked https://help.consensus.app/en/articles/10093291-security and https://consensus.app/blog/privacy-policy/ on 2026-06-02 for privacy and security context without copying privacy/security guarantees into this page."
 ---
 
 ## Overview
 
-Consensus is a research and learning tool that may help users explore questions, papers, and evidence summaries. It can be useful when a person wants a starting point for research discovery before reading original sources and checking citations directly.
+Consensus is an AI research and learning tool that can help users explore questions, papers, and evidence summaries. It can be useful when a person wants a starting point for research discovery before reading original sources and checking citations directly.
 
-This is a draft page. Official Consensus sources must be checked before publication, especially for current plans, pricing, research features, paper coverage, citation behavior, source availability, export support, workspace options, API details, model details, privacy details, and availability.
+Consensus is research-focused, but users should still verify generated summaries, citations, evidence statements, and conclusions against the original papers before relying on them.
 
 ## Useful For
 
@@ -57,6 +59,6 @@ Research discovery tools should be treated as a starting point, not as a guarant
 
 ## Notes
 
-Features, plans, pricing, paper coverage, citation behavior, research workflows, export support, collaboration features, workspace options, API details, model details, privacy details, and availability can change. Check official Consensus pages for current details before choosing a plan or relying on a specific capability.
+Features, plans, pricing, paper coverage, citation behavior, research workflows, export support, integrations, collaboration features, workspace options, API details, model details, privacy details, and availability can change. Check official Consensus pages for current details before choosing a plan or relying on a specific capability.
 
 Be careful with sensitive, confidential, unpublished, academic, medical, legal, financial, customer, or business information. Review original papers, citations, source context, academic integrity rules, privacy requirements, and expert-review needs before relying on AI-generated research output.

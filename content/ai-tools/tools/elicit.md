@@ -1,6 +1,6 @@
 ---
 title: "Elicit"
-description: "Elicit is a research workflow tool that may help users explore papers, organize research questions, and prepare literature-review notes."
+description: "Elicit is an AI research workflow tool that can help users explore papers, organize research questions, and prepare literature-review notes."
 type: "ai-tools"
 layout: "tool"
 category: "Learning Tools"
@@ -12,10 +12,10 @@ bestFor:
   - Reviewing citation, privacy, and academic integrity risks
 beginnerFriendly: null
 freePlan: null
-pricingNote: "Plans, pricing, research features, paper coverage, citation behavior, export support, workspace options, and availability may change. Check official Elicit pages for current details before publishing."
+pricingNote: "Plans, pricing, research features, paper coverage, citation behavior, export support, workspace options, API options, and availability may change. Check official Elicit pages for current details."
 officialUrl: "https://elicit.com/"
-lastReviewed: ""
-draft: true
+lastReviewed: "2026-06-02"
+draft: false
 useCases:
   - Explore a research question before reading papers in depth
   - Prepare a list of sources to check manually
@@ -31,23 +31,26 @@ limitations:
   - Paper coverage, source availability, citation behavior, and research features may change
   - Academic integrity, privacy, sensitive documents, and unpublished research should be handled carefully
   - Plans, pricing, export support, collaboration features, workspace options, model details, API details, and exact availability may change
-  - Official Elicit sources must be reviewed before this page is published
 similarTools:
   - Consensus
   - SciSpace
   - NotebookLM
   - Perplexity
-reviewStatus: "needs-official-review"
+reviewStatus: "reviewed"
 sourceNotes:
-  - "Official Elicit sources must be checked before publication."
-  - "Do not publish until claims about pricing, plan limits, research accuracy, citation accuracy, paper coverage, source availability, export support, collaboration features, workspace options, API details, model details, and exact feature availability have been avoided or verified against official sources."
+  - "Checked https://elicit.com/ on 2026-06-02 for official Elicit positioning as AI for scientific research and high-level search, reports, systematic review, library, and alerts context without copying exact paper counts, accuracy claims, performance claims, or feature availability into this page."
+  - "Checked https://support.elicit.com/en on 2026-06-02 for official help-center categories covering getting started, best practices, systematic reviews, reports, library, account, and billing context."
+  - "Checked https://support.elicit.com/en/articles/11821377 on 2026-06-02 for high-level Research Agent context without copying exact feature availability or coverage claims."
+  - "Checked https://elicit.com/pricing on 2026-06-02 for plan, pricing, export, API, collaboration, and workflow context without copying exact prices, plan comparisons, limits, API availability, or feature availability into this page."
+  - "Checked https://elicit.com/operations/policies and https://elicit.com/operations/privacy on 2026-06-02 for official policy and privacy context without copying privacy guarantees or legal/security details into this page."
+  - "Checked https://docs.elicit.com/ on 2026-06-02 for official API documentation context without copying API limits or plan-specific details into this page."
 ---
 
 ## Overview
 
-Elicit is a research workflow tool that may help users explore papers, organize research questions, and prepare literature-review notes. It can be useful when a person wants to structure early research exploration before manually reading and checking original papers.
+Elicit is an AI research workflow tool that can help users explore papers, organize research questions, and prepare literature-review notes. It can be useful when a person wants to structure early research exploration before manually reading and checking original papers.
 
-This is a draft page. Official Elicit sources must be checked before publication, especially for current plans, pricing, research features, paper coverage, citation behavior, source availability, export support, workspace options, API details, model details, privacy details, and availability.
+Elicit offers research-oriented workflows, but users should still verify generated summaries, citations, extracted details, and conclusions against the original source material before relying on them.
 
 ## Useful For
 

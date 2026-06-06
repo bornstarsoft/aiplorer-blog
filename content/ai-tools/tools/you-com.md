@@ -1,6 +1,6 @@
 ---
 title: "You.com"
-description: "You.com is an AI search and assistant tool that may help users explore questions, compare sources, and support research or learning workflows."
+description: "You.com is an AI search and assistant platform that can help users explore questions, compare sources, and support research or learning workflows."
 type: "ai-tools"
 layout: "tool"
 category: "Learning Tools"
@@ -12,10 +12,10 @@ bestFor:
   - Reviewing privacy, citation, and accuracy risks before use
 beginnerFriendly: null
 freePlan: null
-pricingNote: "Plans, pricing, AI features, source behavior, search features, model access, workspace options, and availability may change. Check official You.com pages for current details before publishing."
+pricingNote: "Plans, pricing, AI features, source behavior, search features, API options, model access, workspace options, and availability may change. Check official You.com pages for current details."
 officialUrl: "https://you.com/"
-lastReviewed: ""
-draft: true
+lastReviewed: "2026-06-02"
+draft: false
 useCases:
   - Explore a question before checking sources directly
   - Draft research notes for human review
@@ -31,23 +31,25 @@ limitations:
   - Original sources should be checked directly before relying on any answer
   - Academic integrity, privacy, sensitive searches, and source context should be handled carefully
   - Plans, pricing, AI feature availability, source behavior, model access, workspace options, API details, and exact availability may change
-  - Official You.com sources must be reviewed before this page is published
 similarTools:
   - Perplexity
   - ChatGPT
   - NotebookLM
   - Consensus
-reviewStatus: "needs-official-review"
+reviewStatus: "reviewed"
 sourceNotes:
-  - "Official You.com sources must be checked before publication."
-  - "Do not publish until claims about pricing, plan limits, research accuracy, citation accuracy, source behavior, source availability, model details, workspace availability, export support, collaboration features, API details, and exact feature availability have been avoided or verified against official sources."
+  - "Checked https://you.com/ on 2026-06-02 for official You.com positioning around web search APIs, content extraction, source-backed answers, and AI-assisted web research context without copying exact benchmark, pricing, API, security, or availability claims into this page."
+  - "Checked https://home.you.com/support/knowledge-base on 2026-06-02 for official support categories covering getting started, features, account management, model access, uploads, agents, sharing, and privacy controls without copying exact feature availability into this page."
+  - "Checked https://you.com/plans and https://you.com/pricing on 2026-06-02 for plan, pricing, agent, API, source, and model-access context without copying exact prices, plan comparisons, limits, or feature availability into this page."
+  - "Checked https://about.you.com/legal/privacy on 2026-06-02 for official privacy context and sensitive-information cautions."
+  - "Checked https://home.you.com/security on 2026-06-02 for official security context without copying security guarantees, compliance details, or availability claims into this page."
 ---
 
 ## Overview
 
-You.com is an AI search and assistant tool that may help users explore questions, compare sources, and support research or learning workflows. It can be useful when a person wants an early starting point before checking source material directly.
+You.com is an AI search and assistant platform that can help users explore questions, compare sources, and support research or learning workflows. It can be useful when a person wants an early starting point before checking source material directly.
 
-This is a draft page. Official You.com sources must be checked before publication, especially for current plans, pricing, AI features, source behavior, search features, model access, workspace options, API details, privacy details, and availability.
+You.com includes web-search and research-oriented product areas, but users should still verify AI-generated answers, summaries, citations, and source references against original sources before relying on them.
 
 ## Useful For
 
