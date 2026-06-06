@@ -691,3 +691,58 @@ documents, high-stakes research topics, and changing availability. The pages
 remind users to review original sources, source context, citations, privacy
 requirements, academic or workplace policies, and expert-review needs before
 relying on AI-generated research or learning output.
+
+## Coding Tools Draft Batch
+
+Phase 5AD added five coding and developer AI pages as draft-first validation
+pages:
+
+- GitHub Copilot
+- Cursor
+- Windsurf
+- Replit
+- Tabnine
+
+Current status:
+
+```yaml
+content/ai-tools/tools/github-copilot.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+
+content/ai-tools/tools/cursor.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+
+content/ai-tools/tools/windsurf.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+
+content/ai-tools/tools/replit.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+
+content/ai-tools/tools/tabnine.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+```
+
+The pages use the existing `Coding Tools` category. They remain unpublished
+until official-source review is completed.
+
+Official sources must be checked before publishing. Specific prices, plan
+limits, model access, coding accuracy, IDE availability, repository access,
+enterprise availability, security guarantees, data handling guarantees,
+completion quality, and exact feature availability should not be claimed unless
+verified directly from official sources and necessary for the reviewed page.
+
+Special caution areas include reviewing generated code, testing correctness,
+checking security, protecting secrets and private repositories, reviewing
+licenses and dependencies, following workplace policy, and monitoring changing
+availability. The pages remind users to test and review generated code before
+using it in real projects.
