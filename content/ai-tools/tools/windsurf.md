@@ -15,6 +15,7 @@ freePlan: null
 pricingNote: "Plans, pricing, usage allowances, model access, editor availability, repository access, team options, security details, data handling, and feature availability may change. Check official Windsurf pages for current details."
 officialUrl: "https://windsurf.com/"
 lastReviewed: "2026-06-06"
+lastmod: "2026-06-07"
 draft: false
 useCases:
   - Draft code ideas before human review

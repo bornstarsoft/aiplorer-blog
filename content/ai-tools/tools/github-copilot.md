@@ -15,6 +15,7 @@ freePlan: null
 pricingNote: "Plans, pricing, usage billing, model access, IDE availability, repository access, enterprise options, security details, data handling, and feature availability may change. Check official GitHub Copilot pages for current details."
 officialUrl: "https://github.com/features/copilot"
 lastReviewed: "2026-06-06"
+lastmod: "2026-06-07"
 draft: false
 useCases:
   - Draft code snippets for human review

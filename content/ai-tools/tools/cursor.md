@@ -15,6 +15,7 @@ freePlan: null
 pricingNote: "Plans, pricing, usage billing, model access, editor availability, repository access, team options, security details, data handling, and feature availability may change. Check official Cursor pages for current details."
 officialUrl: "https://cursor.com/"
 lastReviewed: "2026-06-06"
+lastmod: "2026-06-07"
 draft: false
 useCases:
   - Draft a code change before manual review

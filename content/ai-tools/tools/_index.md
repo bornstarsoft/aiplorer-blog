@@ -5,7 +5,7 @@ type: "ai-tools"
 layout: "tools"
 ---
 
-Aiplorer's reviewed tool pages are manually checked before publication. This index is organized by category and does not use fake rankings, fake ratings, scores, or unsupported "best" claims.
+Aiplorer's reviewed tool pages are manually checked before publication. This index is organized by category for browsing and does not use fake rankings, fake ratings, scores, or unsupported "best" claims.
 
 Tool features, pricing, plans, and availability may change. Always check the official website before choosing a tool or relying on a specific feature.
 

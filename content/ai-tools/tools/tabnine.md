@@ -15,6 +15,7 @@ freePlan: null
 pricingNote: "Plans, pricing, model access, IDE availability, repository access, team or enterprise options, security details, data handling, license-related features, and feature availability may change. Check official Tabnine pages for current details."
 officialUrl: "https://www.tabnine.com/"
 lastReviewed: "2026-06-06"
+lastmod: "2026-06-07"
 draft: false
 useCases:
   - Draft code completions for human review

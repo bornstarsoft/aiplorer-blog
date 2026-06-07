@@ -15,6 +15,7 @@ freePlan: null
 pricingNote: "Plans, pricing, credits, AI feature availability, workspace options, deployment options, model access, team options, security details, data handling, and feature availability may change. Check official Replit pages for current details."
 officialUrl: "https://replit.com/"
 lastReviewed: "2026-06-06"
+lastmod: "2026-06-07"
 draft: false
 useCases:
   - Draft code ideas for human review

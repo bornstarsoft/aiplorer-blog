@@ -197,6 +197,20 @@ Follow-up comparing latest production preview and custom domain:
   issue remains a Pages production artifact, route generation, or deployment
   selection issue rather than a custom-domain cache issue.
 
+Follow-up aggregate refresh action:
+
+- A minimal public-content refresh was prepared to force new generated output
+  for `/ai-tools/`, `/ai-tools/tools/`, and `sitemap.xml`.
+- The refresh lightly updated `/ai-tools/` copy with Coding Tools caution
+  language around generated code, secrets, licenses, security, and workplace
+  policy.
+- The refresh lightly updated `/ai-tools/tools/` intro copy to clarify that the
+  reviewed index is grouped by category for browsing and is not a ranking.
+- The five reviewed Coding Tools pages received `lastmod: "2026-06-07"` so the
+  sitemap and aggregate build artifacts have fresh source metadata.
+- No tool claims, rankings, pricing details, draft status, legacy posts, or
+  unrelated tool pages were changed.
+
 Recommended Cloudflare follow-up:
 
 - Confirm the latest Production deployment commit is the latest pushed `main`

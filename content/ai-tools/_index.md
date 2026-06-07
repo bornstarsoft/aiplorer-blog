@@ -40,7 +40,7 @@ Support marketing, customer communication, documents, and small business tasks.
 {{< /card >}}
 {{< /card-grid >}}
 
-Tool features, pricing, and policies can change. Always check each official website for current details before choosing a tool.
+Tool features, pricing, and policies can change. Always check each official website for current details before choosing a tool. Reviewed Coding Tools should still be used with care around generated code, secrets, licenses, security, and workplace policy.
 
 ## Reviewed Tool Pages
 
