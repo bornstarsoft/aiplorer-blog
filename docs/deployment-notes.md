@@ -106,6 +106,18 @@ Follow-up with Cloudflare Pages preview URL:
 - Draft routes for SciSpace, Tome, and the example assistant continued to return
   HTTP `404` and stayed absent from the live sitemap.
 
+Follow-up after setting `HUGO_VERSION=0.152.2` in Cloudflare Pages:
+
+- Local Hugo version was `0.152.2`, matching the updated Cloudflare Pages
+  setting.
+- Local production output still included the Coding Tools batch in `/ai-tools/`,
+  `/ai-tools/tools/`, and `sitemap.xml`.
+- The custom-domain direct routes for all five Coding Tools returned HTTP `200`.
+- The custom domain and production preview URL still did not include the Coding
+  Tools batch in `/ai-tools/`, `/ai-tools/tools/`, or `sitemap.xml`.
+- Matching the Cloudflare Hugo version to local did not resolve the stale
+  listing/sitemap artifact issue during this diagnostic pass.
+
 Recommended Cloudflare follow-up:
 
 - Confirm the latest Production deployment commit is `536998b`.
