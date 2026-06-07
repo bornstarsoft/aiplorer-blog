@@ -118,16 +118,36 @@ Follow-up after setting `HUGO_VERSION=0.152.2` in Cloudflare Pages:
 - Matching the Cloudflare Hugo version to local did not resolve the stale
   listing/sitemap artifact issue during this diagnostic pass.
 
+Follow-up after Cloudflare build artifact verification:
+
+- Local `hugo --cleanDestinationDir --gc --minify` passed with Hugo `0.152.2`.
+- Local generated files contained the Coding Tools batch in
+  `public/ai-tools/index.html`, `public/ai-tools/tools/index.html`, and
+  `public/sitemap.xml`.
+- The custom-domain direct routes for GitHub Copilot, Cursor, Windsurf, Replit,
+  and Tabnine returned HTTP `200`.
+- The custom-domain `/sitemap.xml` included the five Coding Tools URLs during
+  this check, but `/ai-tools/` and `/ai-tools/tools/` still did not include the
+  batch.
+- The production preview URL `https://f18e1427.aiplorer-blog.pages.dev` still
+  did not include the Coding Tools batch in `/ai-tools/`, `/ai-tools/tools/`,
+  or `sitemap.xml`.
+- This suggests the local build artifact is correct, but Cloudflare is still
+  serving stale or mismatched listing artifacts for at least the production
+  preview and some custom-domain routes.
+
 Recommended Cloudflare follow-up:
 
-- Confirm the latest Production deployment commit is `536998b`.
+- Confirm the latest Production deployment commit is the latest pushed `main`
+  commit, not only the Coding Tools content commit `536998b`.
 - Confirm the deployment status is successful.
-- Confirm the Cloudflare Pages build command is `hugo` and the output directory
-  is `public`.
-- If Production is not on `536998b`, wait for or retry deployment from latest
-  `main`.
-- If Production is on `536998b`, purge `/ai-tools/`, `/ai-tools/tools/`,
-  `/sitemap.xml`, and `/ai-tools/tools/cursor/`, then re-check without query
+- Confirm the Cloudflare Pages build command is
+  `hugo --cleanDestinationDir --gc --minify` and the output directory is
+  `public`.
+- If Production is not on the latest pushed `main`, wait for or retry
+  deployment from latest `main`.
+- If Production is on latest `main`, purge `/ai-tools/`, `/ai-tools/tools/`,
+  `/sitemap.xml`, and any stale direct tool routes, then re-check without query
   parameters.
 
 ## CNAME Decision
