@@ -136,6 +136,27 @@ Follow-up after Cloudflare build artifact verification:
   serving stale or mismatched listing artifacts for at least the production
   preview and some custom-domain routes.
 
+Follow-up after Cloudflare diagnostic grep and Purge Everything:
+
+- Cloudflare diagnostic build logs reportedly confirmed Hugo `0.152.2` and
+  found `github-copilot`, `cursor`, `windsurf`, `replit`, and `tabnine` in
+  `public/ai-tools/index.html`, `public/ai-tools/tools/index.html`, and
+  `public/sitemap.xml`.
+- The build finished successfully, deployed, and the Cloudflare build command
+  was restored to `hugo --cleanDestinationDir --gc --minify`.
+- After Cloudflare Purge Everything, all five direct Coding Tools routes
+  returned HTTP `200` with fresh `cf-cache-status: MISS` responses.
+- `/ai-tools/` and `/ai-tools/tools/` returned HTTP `200` with recent cache
+  headers, but their body content still did not include GitHub Copilot, Cursor,
+  Windsurf, Replit, or Tabnine.
+- `/sitemap.xml` returned HTTP `200` with `cf-cache-status: MISS`, but its body
+  still did not include the five Coding Tools URLs during this re-check.
+- Draft routes for SciSpace, Tome, and the example assistant returned HTTP
+  `404` and stayed absent from the sitemap.
+- Because both local and Cloudflare diagnostic artifacts contained the expected
+  strings, the remaining issue points to Cloudflare serving, routing, or cache
+  rules rather than Hugo source or build generation.
+
 Recommended Cloudflare follow-up:
 
 - Confirm the latest Production deployment commit is the latest pushed `main`
