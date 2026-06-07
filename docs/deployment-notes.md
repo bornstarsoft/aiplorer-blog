@@ -175,6 +175,28 @@ Follow-up after disabling the Cloudflare `HTML cache` rule:
   remaining issue still points to Cloudflare serving, routing, deployment
   selection, or another rule outside the disabled HTML cache rule.
 
+Follow-up comparing latest production preview and custom domain:
+
+- Latest Production commit checked: `d5fab0b`.
+- Latest Production preview URL checked:
+  `https://8b7e800d.aiplorer-blog.pages.dev`.
+- Local source and production build remained correct, with all five Coding
+  Tools present in `public/ai-tools/index.html`,
+  `public/ai-tools/tools/index.html`, and `public/sitemap.xml`.
+- The latest production preview returned HTTP `200` for all five direct Coding
+  Tools routes, but `/ai-tools/`, `/ai-tools/tools/`, and `sitemap.xml` still
+  did not include the Coding Tools batch.
+- The custom domain matched the preview behavior: all five direct routes
+  returned HTTP `200`, while `/ai-tools/`, `/ai-tools/tools/`, and
+  `sitemap.xml` still did not include the Coding Tools batch.
+- The bypass cache rule was active on the custom domain, with HTML/XML routes
+  showing `cf-cache-status: DYNAMIC` instead of stale `HIT`.
+- Draft routes for SciSpace, Tome, and the example assistant returned HTTP
+  `404` and remained absent from the custom-domain sitemap.
+- Because the latest production preview is also stale for aggregate pages, the
+  issue remains a Pages production artifact, route generation, or deployment
+  selection issue rather than a custom-domain cache issue.
+
 Recommended Cloudflare follow-up:
 
 - Confirm the latest Production deployment commit is the latest pushed `main`
