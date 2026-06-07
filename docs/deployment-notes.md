@@ -89,6 +89,23 @@ Follow-up after manual Cloudflare Pages redeploy:
   diagnostic pass, so preview-vs-custom-domain comparison could not be
   completed.
 
+Follow-up with Cloudflare Pages preview URL:
+
+- Production preview URL checked:
+  `https://f18e1427.aiplorer-blog.pages.dev`.
+- Local source and production build still included all five Coding Tools pages
+  and sitemap entries.
+- The custom domain and the production preview URL both returned HTTP `200` for
+  `/ai-tools/`, `/ai-tools/tools/`, and `/sitemap.xml`, but neither body
+  included GitHub Copilot, Cursor, Windsurf, Replit, or Tabnine.
+- The custom domain and production preview URL both returned HTTP `200` for the
+  direct Cursor and Replit routes.
+- Because the production preview is also stale for the listing pages and
+  sitemap, this points to a Cloudflare Pages production artifact or build
+  environment issue rather than only a custom-domain cache/rules issue.
+- Draft routes for SciSpace, Tome, and the example assistant continued to return
+  HTTP `404` and stayed absent from the live sitemap.
+
 Recommended Cloudflare follow-up:
 
 - Confirm the latest Production deployment commit is `536998b`.
