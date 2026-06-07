@@ -157,6 +157,24 @@ Follow-up after Cloudflare diagnostic grep and Purge Everything:
   strings, the remaining issue points to Cloudflare serving, routing, or cache
   rules rather than Hugo source or build generation.
 
+Follow-up after disabling the Cloudflare `HTML cache` rule:
+
+- The broad `HTML cache` rule for `https://aiplorer.com/*` was disabled.
+- The `Static assets 30d` rule remained active for CSS, JavaScript, images,
+  fonts, and other static assets.
+- Cloudflare Purge Everything was run after the cache rule change.
+- Local Hugo `0.152.2` output still included GitHub Copilot, Cursor, Windsurf,
+  Replit, and Tabnine in `public/ai-tools/index.html`,
+  `public/ai-tools/tools/index.html`, and `public/sitemap.xml`.
+- All five direct Coding Tools routes returned HTTP `200`.
+- `/ai-tools/` and `/ai-tools/tools/` still did not include the five Coding
+  Tools after the cache rule change.
+- `/sitemap.xml` still did not include the five Coding Tools during this
+  re-check.
+- Because the diagnostic build artifact was already proven correct, the
+  remaining issue still points to Cloudflare serving, routing, deployment
+  selection, or another rule outside the disabled HTML cache rule.
+
 Recommended Cloudflare follow-up:
 
 - Confirm the latest Production deployment commit is the latest pushed `main`
