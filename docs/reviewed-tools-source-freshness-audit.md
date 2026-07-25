@@ -24,8 +24,8 @@ Aiplorer has 55 reviewed public tool pages and three draft-only pages.
 
 | Last reviewed | Reviewed pages |
 | --- | ---: |
-| 2026-06-02 | 8 |
-| 2026-07-25 | 47 |
+| 2026-06-02 | 4 |
+| 2026-07-25 | 51 |
 | **Total** | **55** |
 
 All 55 reviewed pages have:
@@ -160,17 +160,45 @@ while continuing to document a conversational AI platform. Its reviewed page
 was broadened from a search-assistant description to search-and-research
 products without promising API access or performance.
 
+## Completed Presentation Freshness Batch
+
+The fifth re-review batch covered the reviewed Presentation Tools:
+
+- Gamma
+- Beautiful.ai
+- Pitch
+- SlidesAI
+
+All four pages were reviewed against current official sources on 2026-07-25
+and remain published. Their high-level presentation descriptions remain
+accurate, while source notes and review dates were refreshed.
+
+Gamma now covers a broader set of visual-content and programmatic creation
+workflows. Beautiful.ai continues to emphasize AI-assisted presentation
+creation, Smart Slides, brand controls, and team workflows. Pitch now documents
+Pitch Agent, richer external sharing, and visitor analytics. SlidesAI now
+documents presentation creation across its web app, Google Slides, PowerPoint,
+and a ChatGPT-related workflow.
+
+The pages add current cautions around AI data-use controls, workspace and
+sharing permissions, cloud storage, third-party AI providers, visitor
+analytics, consent, account connections, uploaded source material, and
+third-party processing. They continue to avoid pricing, limit, quality, export,
+commercial-use, privacy, security, and availability guarantees.
+
 ## Later Batches
 
 Continue with this order:
 
-1. Presentation Tools
-2. Audio, Image, Video, Writing, and Business Tools reviewed on 2026-07-25
+1. Canva AI
+2. Grammarly
+3. DeepL
+4. ElevenLabs
 
-Presentation Tools were reviewed in early June and include fast-changing
-limits, exports, collaboration, media rights, models, or product scope. The
-July batches are newer and can follow unless a product announces a major
-change first.
+These are the four remaining reviewed pages dated 2026-06-02. Review them as a
+small cross-category freshness batch, then return to risk-based monitoring of
+the 51 pages already reviewed on 2026-07-25 unless a product announces a major
+identity, shutdown, pricing-model, privacy, or availability change first.
 
 ## Draft Policy
 
@@ -186,7 +214,7 @@ Production builds and the production sitemap must continue to exclude:
 
 ## Next Phase
 
-Run an official-source freshness review of the four reviewed Presentation
-Tools: Gamma, Beautiful.ai, Pitch, and SlidesAI. Preserve Tome as a draft
-unless stable official product, help, pricing, privacy, and security sources
-support a separate publication review.
+Run an official-source freshness review of Canva AI, Grammarly, DeepL, and
+ElevenLabs, the four remaining reviewed pages dated 2026-06-02. Preserve
+SciSpace and Tome as drafts unless stable official product, help, pricing,
+privacy, security, and policy sources support separate publication reviews.

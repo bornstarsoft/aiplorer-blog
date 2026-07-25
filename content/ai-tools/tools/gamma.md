@@ -12,9 +12,10 @@ bestFor:
   - Reviewing presentation risks before publishing
 beginnerFriendly: null
 freePlan: null
-pricingNote: "Plans, pricing, credits, AI-related features, export options, templates, collaboration features, branding options, privacy details, and availability may change. Check the official Gamma product, pricing, help, privacy, and legal pages for current details."
+pricingNote: "Plans, pricing, credits, AI-related features, export options, templates, collaboration features, branding options, workspace and AI data-use settings, privacy details, and availability may change. Check the official Gamma product, pricing, help, privacy, and legal pages for current details."
 officialUrl: "https://gamma.app/"
-lastReviewed: "2026-06-02"
+lastReviewed: "2026-07-25"
+lastmod: "2026-07-25"
 draft: false
 useCases:
   - Draft a presentation outline before designing final slides
@@ -29,6 +30,7 @@ pros:
 limitations:
   - Generated slides, text, facts, images, and layouts should be reviewed before use
   - Brand usage, image rights, license requirements, privacy, and commercial-use requirements should be checked carefully
+  - Workspace permissions, sharing visibility, connected services, and AI data-use settings should be reviewed before adding sensitive content
   - Plans, pricing, credits, AI feature availability, export support, templates, collaboration features, branding features, integrations, privacy details, legal terms, and exact availability may change
 similarTools:
   - Tome
@@ -36,17 +38,17 @@ similarTools:
   - Pitch
 reviewStatus: "reviewed"
 sourceNotes:
-  - "Checked https://gamma.app/ on 2026-06-02 for official Gamma positioning around AI presentations, documents, websites, graphics, sharing, collaboration, and export context."
-  - "Checked https://gamma.app/pricing on 2026-06-02 for plan, pricing, credit, export, collaboration, branding, and availability context without copying exact prices, plan comparisons, credit limits, or feature availability into this page."
-  - "Checked https://help.gamma.app/en/articles/11047840-how-can-i-import-slides-or-documents-into-gamma and https://help.gamma.app/id/articles/8032935 on 2026-06-02 for official import, presentation, and editing context."
-  - "Checked https://gamma.app/privacy and Gamma legal footer links on 2026-06-02 for cautious privacy, legal, and data-handling context, but did not copy privacy guarantees, security guarantees, commercial-use rights, or exact feature availability into this page."
+  - "Checked https://gamma.app/ and https://help.gamma.app/en/ on 2026-07-25 for current official positioning around presentations, documents, websites, graphics, social content, programmatic creation, editing, sharing, collaboration, and export without copying model, language, usage, performance, or availability claims."
+  - "Checked https://gamma.app/pricing on 2026-07-25 for current plan, credit, export, collaboration, branding, workspace, API, and availability context without copying exact prices, plan comparisons, credit limits, slide limits, model access, or feature availability into this page."
+  - "Checked https://help.gamma.app/en/articles/11047226-how-do-collaboration-and-sharing-settings-work-in-gamma and https://help.gamma.app/en/articles/12281928-does-gamma-use-my-content-to-train-its-ai-features on 2026-07-25 for current sharing, workspace permission, discoverability, AI data-use control, account, and plan-dependent setting context."
+  - "Checked https://help.gamma.app/en/articles/11048534-how-does-gamma-protect-my-data-and-privacy and https://gamma.app/privacy on 2026-07-25 for current content storage, connected-account, privacy, AI improvement, retention, and business-customer context without copying privacy, security, deletion, retention, or training guarantees."
 ---
 
 ## Overview
 
 Gamma is an AI presentation and content creation tool that can help users draft slide-style documents, decks, websites, and visual narratives. It can be useful when a person wants to shape an idea into a presentation draft, plan a pitch, or prepare an early visual story before final review.
 
-Gamma has product and help areas for presentations, documents, websites, importing content, sharing, AI-related creation, and export workflows, but details can change. Users should check official Gamma product, pricing, help, privacy, and legal pages before relying on a specific feature, export option, template, integration, plan, credit model, or data-handling detail.
+Gamma has product and help areas for presentations, documents, websites, visual content, programmatic creation, importing, sharing, AI-related creation, and export workflows, but details can change. Users should check official Gamma product, pricing, help, privacy, and legal pages before relying on a specific feature, export option, template, integration, plan, credit model, workspace setting, or data-handling detail.
 
 ## Useful For
 
@@ -58,4 +60,4 @@ Presentation tools should be treated as drafting support, not as a guarantee tha
 
 Features, plans, pricing, credits, AI-related features, export options, templates, collaboration features, branding options, integrations, privacy details, license terms, and availability can change. Check official Gamma pages for current details before choosing a plan or relying on a specific capability.
 
-Be careful with sensitive, customer, business, account, or confidential content. Review facts, sources, brand guidelines, image and asset licenses, privacy requirements, commercial-use requirements, and human editing needs before sharing generated presentation content.
+Be careful with sensitive, customer, business, account, or confidential content. Review workspace permissions, link visibility, connected services, and current AI data-use controls before adding material. Check facts, sources, brand guidelines, image and asset licenses, privacy requirements, commercial-use requirements, and human editing needs before sharing generated presentation content.

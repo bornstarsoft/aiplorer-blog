@@ -14,7 +14,8 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Plans, pricing, AI-related features, export options, templates, collaboration features, branding options, security details, and availability may change. Check the official Beautiful.ai product, pricing, support, security, and privacy pages for current details."
 officialUrl: "https://www.beautiful.ai/"
-lastReviewed: "2026-06-02"
+lastReviewed: "2026-07-25"
+lastmod: "2026-07-25"
 draft: false
 useCases:
   - Draft a slide deck before final design review
@@ -29,6 +30,7 @@ pros:
 limitations:
   - Generated slides, text, facts, images, and layouts should be reviewed before use
   - Brand usage, image rights, license requirements, privacy, and commercial-use requirements should be checked carefully
+  - Account, workspace, sharing, cloud storage, source-material, and AI-provider settings or policies should be reviewed before adding sensitive content
   - Plans, pricing, AI feature availability, export support, templates, collaboration features, branding features, integrations, security details, privacy details, and exact availability may change
 similarTools:
   - Gamma
@@ -36,10 +38,10 @@ similarTools:
   - Pitch
 reviewStatus: "reviewed"
 sourceNotes:
-  - "Checked https://www.beautiful.ai/ on 2026-06-02 for official Beautiful.ai positioning around AI presentations, Smart Slides, business presentations, templates, workflows, brand control, data visualization, and integrations."
-  - "Checked https://www.beautiful.ai/pricing-page on 2026-06-02 for plan, pricing, export, template, collaboration, branding, enterprise, and availability context without copying exact prices, plan comparisons, limits, or feature availability into this page."
-  - "Checked https://support.beautiful.ai/hc/en-us/ and https://support.beautiful.ai/hc/en-us/articles/360032556611-Security-Policy on 2026-06-02 for official support, presentation, sharing, permission, privacy, and security context."
-  - "Checked https://www.beautiful.ai/security on 2026-06-02 for official security and AI-management context, but did not copy security guarantees, compliance details, data-handling guarantees, or exact feature availability into this page."
+  - "Checked https://www.beautiful.ai/ and https://support.beautiful.ai/hc/en-us/ on 2026-07-25 for current official positioning around AI-assisted presentation creation, editable outlines, Smart Slides, templates, brand controls, sharing, collaboration, and presentation workflows without copying quality, speed, language, template-count, or availability claims."
+  - "Checked https://www.beautiful.ai/pricing on 2026-07-25 for current plan, AI-related, export, collaboration, branding, workspace, analytics, and availability context without copying exact prices, trials, plan comparisons, limits, seat counts, language counts, or feature availability into this page."
+  - "Checked https://www.beautiful.ai/security and https://support.beautiful.ai/hc/en-us/articles/360032556611-Security-Policy on 2026-07-25 for current cloud storage, account access, internal support, AI-provider, security, and organization context without copying compliance, privacy, security, access, retention, or data-handling guarantees."
+  - "Checked https://www.beautiful.ai/privacy-policy and https://www.beautiful.ai/terms-of-service-ai on 2026-07-25 for current presentation-data, customer-account, third-party AI provider, privacy, and policy context without copying ownership, commercial-use, privacy, retention, or security guarantees."
 ---
 
 ## Overview
@@ -58,4 +60,4 @@ Presentation tools should be treated as drafting support, not as a guarantee tha
 
 Features, plans, pricing, AI-related features, export options, templates, collaboration features, branding options, integrations, privacy details, security details, license terms, and availability can change. Check official Beautiful.ai pages for current details before choosing a plan or relying on a specific capability.
 
-Be careful with sensitive, customer, business, account, or confidential content. Review facts, sources, brand guidelines, image and asset licenses, privacy requirements, commercial-use requirements, and human editing needs before sharing generated presentation content.
+Be careful with sensitive, customer, business, account, or confidential content. Review account and workspace policies, sharing permissions, source-material handling, cloud storage, and current AI-provider terms before adding material. Check facts, sources, brand guidelines, image and asset licenses, privacy requirements, commercial-use requirements, and human editing needs before sharing generated presentation content.

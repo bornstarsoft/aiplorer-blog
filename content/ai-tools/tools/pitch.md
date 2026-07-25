@@ -12,9 +12,10 @@ bestFor:
   - Reviewing brand, fact, and privacy risks before sharing
 beginnerFriendly: null
 freePlan: null
-pricingNote: "Plans, pricing, AI credits, export options, templates, collaboration features, branding options, privacy details, and availability may change. Check the official Pitch product, pricing, help, and privacy pages for current details."
+pricingNote: "Plans, pricing, AI credits, export options, templates, collaboration features, branding options, sharing and analytics settings, privacy details, and availability may change. Check the official Pitch product, pricing, help, and privacy pages for current details."
 officialUrl: "https://pitch.com/"
-lastReviewed: "2026-06-02"
+lastReviewed: "2026-07-25"
+lastmod: "2026-07-25"
 draft: false
 useCases:
   - Draft a presentation outline before building final slides
@@ -29,6 +30,7 @@ pros:
 limitations:
   - Generated or assisted slides, text, facts, images, and layouts should be reviewed before use
   - Brand usage, image rights, license requirements, privacy, and commercial-use requirements should be checked carefully
+  - Sharing links, visitor analytics, consent, workspace permissions, and AI settings should be reviewed before distributing sensitive presentations
   - Plans, pricing, AI credits, AI feature availability, export support, templates, collaboration features, branding features, integrations, privacy details, and exact availability may change
 similarTools:
   - Gamma
@@ -36,17 +38,17 @@ similarTools:
   - Beautiful.ai
 reviewStatus: "reviewed"
 sourceNotes:
-  - "Checked https://pitch.com/ on 2026-06-02 for official Pitch positioning around AI presentation workspace, slide creation, presentation collaboration, brand support, and team workflows."
-  - "Checked https://pitch.com/pricing/us and https://help.pitch.com/en/articles/13621309-pitch-plans-and-pricing on 2026-06-02 for plan, pricing, AI credit, export, branding, collaboration, and availability context without copying exact prices, plan comparisons, limits, or feature availability into this page."
-  - "Checked https://help.pitch.com/, https://help.pitch.com/en/articles/12771746-pitch-s-ai-actions, and https://help.pitch.com/en/articles/8541722-start-a-new-presentation-with-ai on 2026-06-02 for official help and AI presentation context."
-  - "Checked https://pitch.com/privacy-policy on 2026-06-02 for official privacy and security context, but did not copy privacy guarantees, security guarantees, data-processing details, or exact feature availability into this page."
+  - "Checked https://pitch.com/ and https://help.pitch.com/en/ on 2026-07-25 for current official presentation-workspace positioning around AI-assisted creation and editing, collaboration, brand workflows, sharing, analytics, and delivery without copying user counts, time-savings, template counts, quality, or availability claims."
+  - "Checked https://pitch.com/pricing/us and https://help.pitch.com/en/articles/13621309-pitch-plans-and-pricing on 2026-07-25 for current plan, AI credit, export, branding, collaboration, workspace, guest, and availability context without copying exact prices, discounts, plan comparisons, credit limits, seat limits, or feature availability into this page."
+  - "Checked https://help.pitch.com/en/articles/14981091-pitch-agent and https://help.pitch.com/en/articles/8541722-start-a-new-presentation-with-ai on 2026-07-25 for current Pitch Agent, uploaded-context, AI action, workspace control, prompt, third-party provider, sensitive-data, and changing-availability context."
+  - "Checked https://help.pitch.com/en/articles/6117988-presentation-analytics-and-privacy, https://help.pitch.com/en/articles/3748926-share-an-external-link-to-your-presentation, and the official privacy link at https://pitch.com/privacy-policy on 2026-07-25 for current sharing, visitor analytics, consent, privacy-notice, link-control, and legal context without copying privacy, security, analytics, or compliance guarantees."
 ---
 
 ## Overview
 
 Pitch is a presentation workspace that can help users plan, draft, and organize slide decks for teams, business updates, and creative work. It can be useful when a person wants to shape an idea into a deck draft, prepare a team presentation, or organize visual content before final review.
 
-Pitch has product and help areas for AI-assisted slide creation, presentation collaboration, exports, branding, importing, sharing, and privacy, but details can change. Users should check official Pitch product, pricing, help, and privacy pages before relying on a specific feature, export option, template, collaboration workflow, branding option, integration, plan, AI credit model, or data-handling detail.
+Pitch has product and help areas for AI-assisted slide creation and editing, presentation collaboration, exports, branding, importing, sharing links, visitor analytics, and privacy, but details can change. Users should check official Pitch product, pricing, help, and privacy pages before relying on a specific feature, export option, template, collaboration workflow, branding option, integration, plan, AI credit model, analytics setting, or data-handling detail.
 
 ## Useful For
 
@@ -58,4 +60,4 @@ Presentation tools should be treated as drafting support, not as a guarantee tha
 
 Features, plans, pricing, AI credits, AI-related features, export options, templates, collaboration features, branding options, integrations, privacy details, license terms, and availability can change. Check official Pitch pages for current details before choosing a plan or relying on a specific capability.
 
-Be careful with sensitive, customer, business, account, or confidential content. Review facts, sources, brand guidelines, image and asset licenses, privacy requirements, commercial-use requirements, and human editing needs before sharing generated presentation content.
+Be careful with sensitive, customer, business, account, or confidential content. Review workspace AI controls, link access, visitor analytics, consent choices, and privacy-notice obligations before sharing a presentation. Check facts, sources, brand guidelines, image and asset licenses, privacy requirements, commercial-use requirements, and human editing needs before sharing generated presentation content.

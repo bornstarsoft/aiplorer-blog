@@ -1499,3 +1499,74 @@ information.
 
 SciSpace remains `draft: true` with
 `reviewStatus: "needs-official-review"` and is not linked publicly.
+
+## Presentation Tools Source Freshness Review
+
+The four reviewed `Presentation Tools` pages were rechecked against current
+official sources on 2026-07-25:
+
+- Gamma
+- Beautiful.ai
+- Pitch
+- SlidesAI
+
+All four pages remain published with:
+
+```yaml
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-07-25"
+```
+
+Official sources checked:
+
+- Gamma: `https://gamma.app/`, `https://gamma.app/pricing`,
+  `https://help.gamma.app/en/`,
+  `https://help.gamma.app/en/articles/11047226-how-do-collaboration-and-sharing-settings-work-in-gamma`,
+  `https://help.gamma.app/en/articles/12281928-does-gamma-use-my-content-to-train-its-ai-features`,
+  `https://help.gamma.app/en/articles/11048534-how-does-gamma-protect-my-data-and-privacy`,
+  and `https://gamma.app/privacy`
+- Beautiful.ai: `https://www.beautiful.ai/`,
+  `https://www.beautiful.ai/pricing`,
+  `https://support.beautiful.ai/hc/en-us/`,
+  `https://www.beautiful.ai/security`,
+  `https://support.beautiful.ai/hc/en-us/articles/360032556611-Security-Policy`,
+  `https://www.beautiful.ai/privacy-policy`, and
+  `https://www.beautiful.ai/terms-of-service-ai`
+- Pitch: `https://pitch.com/`, `https://pitch.com/pricing/us`,
+  `https://help.pitch.com/en/`,
+  `https://help.pitch.com/en/articles/13621309-pitch-plans-and-pricing`,
+  `https://help.pitch.com/en/articles/14981091-pitch-agent`,
+  `https://help.pitch.com/en/articles/8541722-start-a-new-presentation-with-ai`,
+  `https://help.pitch.com/en/articles/6117988-presentation-analytics-and-privacy`,
+  `https://help.pitch.com/en/articles/3748926-share-an-external-link-to-your-presentation`,
+  and `https://pitch.com/privacy-policy`
+- SlidesAI: `https://www.slidesai.io/`,
+  `https://www.slidesai.io/pricing`,
+  `https://www.slidesai.io/chatgpt-presentation-maker`,
+  `https://help.slidesai.io/`, and
+  `https://www.slidesai.io/privacy-policy`
+
+Gamma's official product scope now includes presentations, documents,
+websites, graphics, social content, and programmatic creation. Its Aiplorer
+page remains presentation-focused while adding cautions around sharing,
+workspace permissions, connected services, and AI data-use settings.
+
+Beautiful.ai remains a presentation platform with AI-assisted workflows,
+Smart Slides, templates, brand controls, collaboration, and sharing. Pitch
+remains a collaborative presentation workspace and now documents Pitch Agent,
+external sharing, and visitor analytics. SlidesAI now documents creation paths
+across its web app, Google Slides, PowerPoint, and a ChatGPT-related workflow.
+
+Published copy continues to avoid exact pricing, plan comparisons, credits,
+input or slide limits, model claims, generation-quality claims, export
+guarantees, template or language counts, collaboration guarantees,
+commercial-use guarantees, privacy or security guarantees, and exact feature
+availability. Special caution areas include reviewing generated slides, facts,
+sources, visuals, brand rules, image and asset licenses, account and workspace
+permissions, link visibility, analytics and consent, cloud storage, uploaded
+source material, AI data-use controls, connected accounts, and third-party
+processing before publishing or sharing.
+
+Tome remains `draft: true` with
+`reviewStatus: "needs-official-review"` and is not linked publicly.

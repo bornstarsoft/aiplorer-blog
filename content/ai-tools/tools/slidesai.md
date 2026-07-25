@@ -12,9 +12,10 @@ bestFor:
   - Reviewing facts, brand use, and license risks before sharing
 beginnerFriendly: null
 freePlan: null
-pricingNote: "Plans, pricing, AI credits, input limits, AI-related features, export options, add-in availability, privacy details, and availability may change. Check the official SlidesAI product, pricing, and privacy pages for current details."
+pricingNote: "Plans, pricing, AI credits, input limits, AI-related features, export options, web app and add-in availability, account permissions, privacy details, and availability may change. Check the official SlidesAI product, pricing, help, and privacy pages for current details."
 officialUrl: "https://www.slidesai.io/"
-lastReviewed: "2026-06-02"
+lastReviewed: "2026-07-25"
+lastmod: "2026-07-25"
 draft: false
 useCases:
   - Draft a slide deck from rough notes or topics
@@ -29,6 +30,7 @@ pros:
 limitations:
   - Generated slides, text, facts, images, and layouts should be reviewed before use
   - Brand usage, image rights, license requirements, privacy, and commercial-use requirements should be checked carefully
+  - Account permissions, connected presentation services, uploaded source material, and third-party processing should be reviewed before adding sensitive content
   - Plans, pricing, AI credits, input limits, AI feature availability, export support, templates, collaboration features, branding features, add-in availability, privacy details, and exact availability may change
 similarTools:
   - Gamma
@@ -36,16 +38,17 @@ similarTools:
   - Beautiful.ai
 reviewStatus: "reviewed"
 sourceNotes:
-  - "Checked https://www.slidesai.io/ on 2026-06-02 for official SlidesAI positioning around AI presentation generation, Google Slides, PowerPoint, and presentation drafting from text."
-  - "Checked https://www.slidesai.io/pricing on 2026-06-02 for plan, pricing, AI credit, input, team, institution, document upload, and availability context without copying exact prices, plan comparisons, limits, or feature availability into this page."
-  - "Checked https://www.slidesai.io/privacy-policy on 2026-06-02 for official privacy, data-sharing, add-in, PowerPoint add-in, and third-party processing context, but did not copy privacy guarantees, security guarantees, commercial-use rights, or exact feature availability into this page."
+  - "Checked https://www.slidesai.io/ on 2026-07-25 for current official positioning around presentation drafting from topics, notes, prompts, text, and documents across its web app, Google Slides, PowerPoint, and ChatGPT-related workflow without copying install counts, presentation counts, quality, speed, language, export, or availability claims."
+  - "Checked https://www.slidesai.io/pricing on 2026-07-25 for current plan, pricing, AI credit, input, document upload, team, institution, and availability context without copying exact prices, discounts, plan comparisons, credit limits, presentation limits, input limits, or feature availability into this page."
+  - "Checked https://www.slidesai.io/chatgpt-presentation-maker and https://help.slidesai.io/ on 2026-07-25 for current outline-review, account connection, Google Slides, add-on, presentation creation, and changing-availability context without copying account-safety, ownership, commercial-use, quality, or feature guarantees."
+  - "Checked https://www.slidesai.io/privacy-policy on 2026-07-25 for current user-input, third-party processing, Google and Microsoft account, OAuth, add-on, PowerPoint, retention, and data-handling context without copying privacy, security, deletion, retention, ownership, or commercial-use guarantees."
 ---
 
 ## Overview
 
 SlidesAI is an AI presentation drafting tool that can help users turn notes, topics, or rough text into slide deck drafts. It can be useful when a person wants to prepare an early presentation outline, organize written ideas, or create a first pass before final review.
 
-SlidesAI has product and policy areas for AI presentation generation, Google Slides, PowerPoint, pricing, credits, input limits, add-ins, and privacy, but details can change. Users should check official SlidesAI product, pricing, and privacy pages before relying on a specific feature, export option, add-in, plan, credit model, input limit, or data-handling detail.
+SlidesAI has product and policy areas for AI presentation generation through a web app, Google Slides, PowerPoint, and a ChatGPT-related workflow, along with pricing, credits, input limits, add-ins, account connections, and privacy, but details can change. Users should check official SlidesAI product, pricing, help, and privacy pages before relying on a specific feature, export option, add-in, connected account, plan, credit model, input limit, or data-handling detail.
 
 ## Useful For
 
@@ -57,4 +60,4 @@ Presentation tools should be treated as drafting support, not as a guarantee tha
 
 Features, plans, pricing, AI credits, input limits, AI-related features, export options, templates, collaboration features, branding options, integrations, privacy details, license terms, and availability can change. Check official SlidesAI pages for current details before choosing a plan or relying on a specific capability.
 
-Be careful with sensitive, customer, business, account, or confidential content. Review facts, sources, brand guidelines, image and asset licenses, privacy requirements, commercial-use requirements, and human editing needs before sharing generated presentation content.
+Be careful with sensitive, customer, business, account, or confidential content. Review requested account permissions, connected presentation services, uploaded source material, and current third-party processing details before adding content. Check facts, sources, brand guidelines, image and asset licenses, privacy requirements, commercial-use requirements, and human editing needs before sharing generated presentation content.
