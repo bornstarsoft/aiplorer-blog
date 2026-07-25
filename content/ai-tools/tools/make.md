@@ -14,7 +14,7 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Plans, pricing, credits, operation behavior, scenario limits, app availability, AI-related features, security details, and product availability may change. Check the official Make pricing, help, and security pages for current details."
 officialUrl: "https://www.make.com/en"
-lastReviewed: "2026-06-02"
+lastReviewed: "2026-07-25"
 draft: false
 useCases:
   - Draft an automation workflow before building it
@@ -37,10 +37,10 @@ similarTools:
   - Notion AI
 reviewStatus: "reviewed"
 sourceNotes:
-  - "Checked https://www.make.com/en on 2026-06-02 for official Make positioning as a visual AI automation platform and high-level workflow, app connection, AI automation, business process, and security context."
-  - "Checked https://www.make.com/en/pricing on 2026-06-02 for plan, pricing, credits, operations, scenarios, AI, integration, team, enterprise, and API context without copying exact prices, plan comparisons, app counts, credit limits, operation limits, scenario limits, API limits, or AI feature availability into this page."
-  - "Checked https://help.make.com/ and https://help.make.com/operations on 2026-06-02 for official help, scenario, error handling, credits, operations, bundles, and debugging context."
-  - "Checked https://www.make.com/en/security on 2026-06-02 for official security context, but did not copy security guarantees, compliance details, uptime claims, data retention details, API details, enterprise claims, or exact feature availability into this page."
+  - "Checked https://www.make.com/en on 2026-07-25 for current official Make positioning as a visual AI automation platform and high-level workflow, app connection, AI automation, and business process context."
+  - "Checked https://www.make.com/en/pricing on 2026-07-25 for current plan, pricing, credits, scenarios, AI, integration, team, enterprise, and API context without copying exact prices, plan comparisons, app counts, credit limits, scenario limits, API limits, or AI feature availability into this page."
+  - "Checked https://help.make.com/ and https://help.make.com/operations on 2026-07-25 for current official help, scenario, error handling, credits, operations, and debugging context."
+  - "Checked https://www.make.com/en/security on 2026-07-25 for current official security context. Security guarantees, compliance details, uptime claims, data retention details, API details, enterprise claims, and exact feature availability were not copied into this page."
 ---
 
 ## Overview

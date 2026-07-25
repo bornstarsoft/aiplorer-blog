@@ -14,7 +14,7 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Plans, pricing, credits, limits, integrations, API-related options, AI-related features, security details, and availability may change. Check the official Pipedream product, docs, pricing, limits, and security pages for current details."
 officialUrl: "https://pipedream.com/"
-lastReviewed: "2026-06-02"
+lastReviewed: "2026-07-25"
 draft: false
 useCases:
   - Draft an automation workflow before building it
@@ -37,10 +37,10 @@ similarTools:
   - n8n
 reviewStatus: "reviewed"
 sourceNotes:
-  - "Checked https://pipedream.com/ on 2026-06-02 for official Pipedream positioning around workflows, apps, APIs, integrations, and AI-related use cases."
-  - "Checked https://pipedream.com/docs and https://pipedream.com/docs/workflows/limits on 2026-06-02 for official workflow, API, integration, credit, and limit context."
-  - "Checked https://pipedream.com/pricing and https://pipedream.com/docs/pricing on 2026-06-02 for plan, pricing, credit, workflow, connect, and usage context without copying exact prices, plan comparisons, credit limits, API limits, or feature availability into this page."
-  - "Checked https://pipedream.com/docs/privacy-and-security on 2026-06-02 for official privacy and security context, but did not copy security guarantees, compliance details, data retention details, API details, or exact feature availability into this page."
+  - "Checked https://pipedream.com/ on 2026-07-25 for current official Pipedream positioning around workflows, apps, APIs, integrations, AI-related use cases, and its announced relationship with Workday."
+  - "Checked https://pipedream.com/docs and https://pipedream.com/docs/workflows/limits on 2026-07-25 for current official workflow, API, integration, credit, and limit context."
+  - "Checked https://pipedream.com/pricing and https://pipedream.com/docs/pricing on 2026-07-25 for current plan, pricing, credit, workflow, Connect, and usage context without copying exact prices, plan comparisons, credit limits, API limits, or feature availability into this page."
+  - "Checked https://pipedream.com/docs/privacy-and-security and https://pipedream.com/docs/privacy-and-security/best-practices on 2026-07-25 for current official privacy, security, credential, logging, and workflow-code guidance. Security guarantees, compliance details, data retention guarantees, API details, and exact feature availability were not copied into this page."
 ---
 
 ## Overview

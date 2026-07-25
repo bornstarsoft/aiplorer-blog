@@ -14,7 +14,7 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Plans, pricing, limits, connected service availability, AI-related features, privacy terms, and availability may change. Check the official IFTTT product, plans, help, and terms pages for current details."
 officialUrl: "https://ifttt.com/"
-lastReviewed: "2026-06-02"
+lastReviewed: "2026-07-25"
 draft: false
 useCases:
   - Draft a simple automation idea before building it
@@ -37,10 +37,10 @@ similarTools:
   - Bardeen
 reviewStatus: "reviewed"
 sourceNotes:
-  - "Checked https://ifttt.com/ on 2026-06-02 for official IFTTT positioning as an automation service for connecting services and creating Applets."
-  - "Checked https://ifttt.com/plans and https://help.ifttt.com/hc/en-us/articles/360053706813-IFTTT-Plans-at-a-glance on 2026-06-02 for plan, pricing, limit, and AI-related context without copying exact prices, plan comparisons, limits, or feature availability into this page."
-  - "Checked https://help.ifttt.com/ and https://help.ifttt.com/hc/en-us/articles/1260803229749-IFTTT-Service-Rate-Limits on 2026-06-02 for official help and rate-limit context."
-  - "Checked https://ifttt.com/privacy and https://ifttt.com/terms on 2026-06-02 for official privacy and terms context, but did not copy privacy guarantees, security guarantees, platform-service details, or exact feature availability into this page."
+  - "Checked https://ifttt.com/ on 2026-07-25 for current official IFTTT positioning as an automation service for connecting apps, devices, and services through Applets."
+  - "Checked https://ifttt.com/plans on 2026-07-25 for current plan, pricing, limit, connected-account, and AI-related context without copying exact prices, plan comparisons, limits, or feature availability into this page."
+  - "Checked https://ifttt.com/help and https://help.ifttt.com/hc/en-us/articles/1260803229749-IFTTT-Service-Rate-Limits on 2026-07-25 for current official help and rate-limit context."
+  - "Checked https://help.ifttt.com/hc/en-us/articles/34293367205403-Account-Security-at-IFTTT, https://ifttt.com/privacy, and https://ifttt.com/terms on 2026-07-25 for current official account security, privacy, and terms context. Privacy guarantees, security guarantees, data retention guarantees, platform-service details, and exact feature availability were not copied into this page."
 ---
 
 ## Overview

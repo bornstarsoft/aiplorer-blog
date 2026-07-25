@@ -1292,3 +1292,73 @@ research answers, and recommendations; checking original sources and factual
 claims; handling sensitive or confidential information carefully; and
 reviewing current data controls, connected-app settings, workspace policies,
 and organization requirements before use.
+
+## Automation Tools Source Freshness Review
+
+The seven reviewed `Automation Tools` pages were rechecked against current
+official sources on 2026-07-25:
+
+- Zapier
+- Make
+- n8n
+- IFTTT
+- Pipedream
+- Bardeen
+- Relay.app
+
+All seven pages remain published with:
+
+```yaml
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-07-25"
+```
+
+Official sources checked:
+
+- Zapier: `https://zapier.com/`, `https://zapier.com/workflows`,
+  `https://zapier.com/pricing`, `https://help.zapier.com/`, and
+  `https://help.zapier.com/hc/en-us/articles/8496181993613-Security-and-Compliance`
+- Make: `https://www.make.com/en`, `https://www.make.com/en/pricing`,
+  `https://help.make.com/`, `https://help.make.com/operations`, and
+  `https://www.make.com/en/security`
+- n8n: `https://n8n.io/`, `https://n8n.io/pricing/`,
+  `https://docs.n8n.io/`, `https://docs.n8n.io/workflows/`,
+  `https://docs.n8n.io/privacy-security/what-you-can-do/`, and
+  `https://n8n.io/legal/security/`
+- IFTTT: `https://ifttt.com/`, `https://ifttt.com/plans`,
+  `https://ifttt.com/help`,
+  `https://help.ifttt.com/hc/en-us/articles/1260803229749-IFTTT-Service-Rate-Limits`,
+  `https://help.ifttt.com/hc/en-us/articles/34293367205403-Account-Security-at-IFTTT`,
+  `https://ifttt.com/privacy`, and `https://ifttt.com/terms`
+- Pipedream: `https://pipedream.com/`, `https://pipedream.com/docs`,
+  `https://pipedream.com/docs/workflows/limits`,
+  `https://pipedream.com/pricing`, `https://pipedream.com/docs/pricing`,
+  `https://pipedream.com/docs/privacy-and-security`, and
+  `https://pipedream.com/docs/privacy-and-security/best-practices`
+- Bardeen: `https://www.bardeen.ai/`,
+  `https://www.bardeen.ai/pricing`,
+  `https://support.bardeen.ai/hc/en-us`,
+  `https://www.bardeen.ai/security`, and
+  `https://www.bardeen.ai/privacy-policy`
+- Relay.app: `https://www.relay.app/`,
+  `https://docs.relay.app/workspace-and-account/export-your-relay.app-data`,
+  `https://www.relay.app/security`, and `https://www.relay.app/privacy`
+
+Zapier, Make, n8n, IFTTT, and Pipedream retained conservative high-level
+descriptions. Bardeen was narrowed to its current research, data, and business
+workflow emphasis.
+
+Relay.app's official site now announces that free-user access ends on August
+15, 2026 and paying-customer access ends on September 14, 2026. Its reviewed
+page remains public at the existing URL as transition guidance for current
+users, with official export and migration cautions. It is no longer presented
+as a new adoption option.
+
+Published copy continues to avoid exact pricing, credits, limits, app counts,
+feature availability promises, API details, security guarantees, privacy
+guarantees, and data retention guarantees. Special caution areas include
+testing automations and migrated workflows; reviewing app permissions,
+credentials, and connected accounts; protecting customer and business data;
+checking failure, duplicate, and missing-data behavior; and following workplace,
+security, privacy, and legal requirements.

@@ -1,62 +1,62 @@
 ---
 title: "Relay.app"
-description: "Relay.app is an automation and workflow tool that can help users plan, build, and test repeatable workflows across connected apps and teams."
+description: "Relay.app is in an announced shutdown period. Existing users should follow its official export and transition guidance before their access ends."
 type: "ai-tools"
 layout: "tool"
 category: "Automation Tools"
 bestFor:
-  - Planning app-to-app workflows
-  - Coordinating repeatable workflow automations
-  - Testing business process automations
-  - Connecting everyday work tools
-  - Reviewing app permissions, approvals, and workflow risks before rollout
+  - Exporting existing Relay.app workspace information
+  - Reviewing workflows before rebuilding them elsewhere
+  - Planning and testing replacement automations
+  - Documenting connected accounts and permissions
+  - Checking official shutdown and data-deletion guidance
 beginnerFriendly: null
 freePlan: null
-pricingNote: "Plans, pricing, step usage, AI credits, limits, integrations, AI-related features, security details, and availability may change. Check the official Relay.app product, docs, pricing, and security pages for current details."
+pricingNote: "Relay.app has announced that free-user access ends on August 15, 2026 and paying-customer access ends on September 14, 2026. New signups and upgrades are disabled. Existing users should check the official shutdown and export guidance for current transition details."
 officialUrl: "https://www.relay.app/"
-lastReviewed: "2026-06-02"
+lastReviewed: "2026-07-25"
 draft: false
 useCases:
-  - Draft an automation workflow before building it
-  - Connect routine updates between work apps
-  - Prepare a repeatable process for testing
-  - Compare automation needs before choosing a tool
-  - Document workflow risks before rollout
+  - Export existing workflows, run history, and table data
+  - Document current automations before migration
+  - Rebuild and test workflows in another service
+  - Review connected accounts and stored credentials
+  - Plan a transition before the published shutdown deadline
 pros:
-  - Can be useful for people who want to plan and test app-to-app workflows
-  - Can support automation planning, workflow documentation, and repeatable process design
-  - May fit users exploring team workflow ideas with careful permission and approval review
+  - Official guidance describes ways existing users can export important workspace information
+  - Existing workflows remain available during the applicable wind-down window
+  - The published transition guidance can help users document a migration plan
 limitations:
-  - Automated workflows should be tested before relying on them
-  - Connected accounts, app permissions, customer data, and business data should be handled carefully
-  - Workflow errors, missing data, duplicate actions, and permission issues can affect real operations
-  - Plans, pricing, step usage, AI credits, limits, integrations, AI-related features, API details, security details, enterprise options, and exact availability may change
+  - Relay.app says free-user access ends on August 15, 2026 and paying-customer access ends on September 14, 2026
+  - New signups and free-to-paid upgrades have been disabled
+  - Workspace data that is not exported is scheduled for deletion after the applicable wind-down period
+  - Replacement workflows should be reviewed and tested before users disconnect accounts or rely on the new process
+  - Shutdown dates, export instructions, support details, and exact availability should be confirmed on the official Relay.app page
 similarTools:
   - Zapier
   - Make
   - Pipedream
 reviewStatus: "reviewed"
 sourceNotes:
-  - "Checked https://www.relay.app/ and https://www.relay.app/how-it-works on 2026-06-02 for official Relay.app positioning around workflows, app connections, AI-related automation, approvals, and repeatable business processes."
-  - "Checked https://www.relay.app/pricing on 2026-06-02 for plan, pricing, step usage, AI credit, integration, team, and availability context without copying exact prices, plan comparisons, credit limits, step limits, or feature availability into this page."
-  - "Checked https://docs.relay.app/, https://docs.relay.app/getting-started/faq, and https://docs.relay.app/getting-started/helpful-resources on 2026-06-02 for official help, workflow, app integration, troubleshooting, and usage context."
-  - "Checked https://www.relay.app/security and https://www.relay.app/privacy on 2026-06-02 for official security and privacy context, but did not copy security guarantees, compliance details, data handling guarantees, API details, or exact feature availability into this page."
+  - "Checked https://www.relay.app/ on 2026-07-25 for the official shutdown announcement, wind-down dates, disabled signup and upgrade status, export guidance, account deletion details, and transition support information."
+  - "Checked https://docs.relay.app/workspace-and-account/export-your-relay.app-data on 2026-07-25 for official export guidance covering workspace workflows, run history, and table data."
+  - "Checked https://www.relay.app/security and https://www.relay.app/privacy on 2026-07-25 for official security and privacy context during the transition. Security guarantees, data handling guarantees beyond the shutdown notice, and assumptions about post-shutdown availability were not added."
 ---
 
 ## Overview
 
-Relay.app is an automation and workflow tool that can help users plan, build, and test repeatable workflows across connected apps and teams. It can be useful when a person wants to map an app-to-app process, reduce repetitive handoffs, or document an automation idea before using it in a real process.
+Relay.app has announced that it is shutting down. The official notice says access ends on August 15, 2026 for free users and September 14, 2026 for paying customers. New signups and free-to-paid upgrades have been disabled, so this page should be used as transition context for existing users rather than as a recommendation to start a new Relay.app workflow.
 
-Relay.app has product and documentation areas for workflows, agents, app connections, approvals, step usage, AI credits, and AI-related workflow support, but details can change. Users should check official Relay.app product, docs, pricing, security, and privacy pages before relying on a specific feature, integration, plan, credit model, step behavior, permission behavior, or security detail.
+Existing users should check the official Relay.app shutdown page and export instructions promptly. The notice describes exports for workflows and other workspace information, but users should verify that their own data is complete and usable before relying on a migration.
 
 ## Useful For
 
-Beginners may use Relay.app to think through workflow ideas, such as moving information between apps, preparing follow-up steps, routing routine updates, or reducing repeated manual work. Any automation should be tested carefully before it is used for real customer, business, account, or operational workflows.
+Existing users may use the remaining wind-down period to inventory workflows, export available data, document connected accounts, and rebuild automations in another service. Replacement workflows should be tested carefully before they are used for real customer, business, account, or operational processes.
 
-Automation tools should be treated as workflow support, not as a guarantee that a process is complete, reliable, secure, correctly permissioned, or appropriate for every team.
+Do not assume an exported workflow, prompt, history, or table is complete or directly portable. Review triggers, actions, permissions, credentials, schedules, error handling, and downstream effects in the replacement workflow.
 
 ## Notes
 
-Features, plans, pricing, integrations, limits, AI-related features, API options, security details, and availability can change. Check official Relay.app pages for current details before choosing a plan or relying on a specific capability.
+Check the official Relay.app announcement for current shutdown dates, export steps, account deletion details, and support availability. The announced dates and transition instructions may change.
 
-Be careful with sensitive, customer, business, account, or confidential data. Review connected accounts, app permissions, workplace policies, data handling requirements, security requirements, and failure cases before depending on an automated workflow.
+Be careful with sensitive, customer, business, account, or confidential data during export and migration. Review connected accounts, revoke access when appropriate, protect exported files, follow workplace and legal requirements, and verify replacement workflows before depending on them.

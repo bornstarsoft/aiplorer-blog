@@ -1,20 +1,20 @@
 ---
 title: "Bardeen"
-description: "Bardeen is an automation tool that can help users plan, build, and test repeatable workflows across connected apps and browser-based work."
+description: "Bardeen is an automation and workflow tool that can help users plan and test repeatable research, data, and business workflows."
 type: "ai-tools"
 layout: "tool"
 category: "Automation Tools"
 bestFor:
   - Planning app-to-app workflows
-  - Reducing repetitive browser or work tasks
+  - Reducing repetitive research or data tasks
   - Testing workflow ideas
   - Connecting everyday work tools
   - Reviewing app permissions and workflow risks before rollout
 beginnerFriendly: null
 freePlan: null
-pricingNote: "Plans, pricing, credits, limits, integrations, AI-related features, browser-related behavior, security details, and availability may change. Check the official Bardeen product, pricing, support, and security pages for current details."
+pricingNote: "Plans, pricing, credits, limits, data and research features, integrations, AI-related features, security details, and availability may change. Check the official Bardeen product, pricing, support, and security pages for current details."
 officialUrl: "https://www.bardeen.ai/"
-lastReviewed: "2026-06-02"
+lastReviewed: "2026-07-25"
 draft: false
 useCases:
   - Draft an automation workflow before building it
@@ -23,31 +23,31 @@ useCases:
   - Compare automation needs before choosing a tool
   - Document permission and data risks before rollout
 pros:
-  - Can be useful for people who want to plan and test repetitive app or browser workflows
+  - Can be useful for people who want to plan and test repetitive research, data, or app workflows
   - Can support automation planning, workflow documentation, and repeatable process design
-  - May fit users exploring connected work or browser workflow ideas with careful permission review
+  - May fit users exploring connected research or business workflow ideas with careful permission review
 limitations:
   - Automated workflows should be tested before relying on them
   - Connected accounts, app permissions, customer data, and business data should be handled carefully
   - Workflow errors, missing data, duplicate actions, and permission issues can affect real operations
-  - Plans, pricing, credits, limits, integrations, AI-related features, browser behavior, API details, security details, enterprise options, and exact availability may change
+  - Plans, pricing, credits, limits, data and research features, integrations, AI-related features, API details, security details, enterprise options, and exact availability may change
 similarTools:
   - Zapier
   - Make
   - IFTTT
 reviewStatus: "reviewed"
 sourceNotes:
-  - "Checked https://www.bardeen.ai/ on 2026-06-02 for official Bardeen positioning around automation, browser-based work, scraping, enrichment, AI-related research, and workflow support."
-  - "Checked https://www.bardeen.ai/pricing on 2026-06-02 for plan, pricing, credit, AI-related, team, and availability context without copying exact prices, plan comparisons, credit limits, or feature availability into this page."
-  - "Checked https://support.bardeen.ai/hc/en-us, https://support.bardeen.ai/hc/en-us/articles/26834918574349-Triggers-Actions, https://support.bardeen.ai/hc/en-us/articles/23925118331277-Creating-Autobooks, and https://support.bardeen.ai/hc/en-us/articles/23925100946573-Connecting-Apps-with-Bardeen on 2026-06-02 for official help, trigger, action, Autobook, Playbook, connection, and permission context."
-  - "Checked https://www.bardeen.ai/security and https://www.bardeen.ai/privacy-policy on 2026-06-02 for official security and privacy context, but did not copy security guarantees, compliance details, data handling guarantees, API details, or exact feature availability into this page."
+  - "Checked https://www.bardeen.ai/ on 2026-07-25 for current official Bardeen positioning around workflow automation, web research, scraping, enrichment, connected data, and AI-related business workflows."
+  - "Checked https://www.bardeen.ai/pricing on 2026-07-25 for current plan, pricing, credit, research, data, AI-related, team, and availability context without copying exact prices, plan comparisons, credit limits, or feature availability into this page."
+  - "Checked https://support.bardeen.ai/hc/en-us on 2026-07-25 for current official help and connected-workflow support context."
+  - "Checked https://www.bardeen.ai/security and https://www.bardeen.ai/privacy-policy on 2026-07-25 for current official security and privacy context. Security guarantees, compliance details, data handling guarantees, API details, and exact feature availability were not copied into this page."
 ---
 
 ## Overview
 
-Bardeen is an automation tool that can help users plan, build, and test repeatable workflows across connected apps and browser-based work. It can be useful when a person wants to map a recurring process, reduce manual handoffs, or document an automation idea before using it in a real process.
+Bardeen is an automation and workflow tool that can help users plan and test repeatable research, data, and business workflows. It can be useful when a person wants to map a recurring process, reduce manual handoffs, or document an automation idea before using it in a real process.
 
-Bardeen has product and support areas for automations, Playbooks, Autobooks, triggers, actions, app connections, permissions, and AI-related workflow support, but details can change. Users should check official Bardeen product, pricing, support, security, and privacy pages before relying on a specific feature, integration, plan, credit model, permission behavior, or security detail.
+Bardeen has product and support areas for automation, web research, data collection and enrichment, app connections, permissions, and AI-related workflow support, but details can change. Users should check official Bardeen product, pricing, support, security, and privacy pages before relying on a specific feature, integration, plan, credit model, permission behavior, or security detail.
 
 ## Useful For
 

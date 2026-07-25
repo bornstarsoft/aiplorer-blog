@@ -14,7 +14,7 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Plans, pricing, limits, integrations, AI-related features, hosting options, security details, and availability may change. Check the official n8n product, pricing, docs, and security pages for current details."
 officialUrl: "https://n8n.io/"
-lastReviewed: "2026-06-02"
+lastReviewed: "2026-07-25"
 draft: false
 useCases:
   - Draft an automation workflow before building it
@@ -37,10 +37,10 @@ similarTools:
   - Pipedream
 reviewStatus: "reviewed"
 sourceNotes:
-  - "Checked https://n8n.io/ on 2026-06-02 for official n8n positioning as a workflow automation platform and high-level app, API, workflow, and AI-related context."
-  - "Checked https://n8n.io/pricing/ on 2026-06-02 for plan, pricing, hosting, limit, integration, AI-related, and enterprise context without copying exact prices, plan comparisons, limits, or feature availability into this page."
-  - "Checked https://docs.n8n.io/ and https://docs.n8n.io/workflows/ on 2026-06-02 for official workflow, node, credential, execution, and integration context."
-  - "Checked https://docs.n8n.io/privacy-security/what-you-can-do/ and https://n8n.io/legal/security/ on 2026-06-02 for official security and privacy context, but did not copy security guarantees, compliance details, hosting-specific guarantees, API details, or exact feature availability into this page."
+  - "Checked https://n8n.io/ on 2026-07-25 for current official n8n positioning around workflow automation, visual and code-based building, hosting choices, integrations, and AI-related workflows."
+  - "Checked https://n8n.io/pricing/ on 2026-07-25 for current plan, pricing, hosting, execution, integration, AI-related, and enterprise context without copying exact prices, plan comparisons, credits, limits, or feature availability into this page."
+  - "Checked https://docs.n8n.io/ and https://docs.n8n.io/workflows/ on 2026-07-25 for current official workflow, node, credential, execution, and integration context."
+  - "Checked https://docs.n8n.io/privacy-security/what-you-can-do/ and https://n8n.io/legal/security/ on 2026-07-25 for current official security and privacy context. Security guarantees, compliance details, hosting-specific guarantees, API details, data handling guarantees, and exact feature availability were not copied into this page."
 ---
 
 ## Overview

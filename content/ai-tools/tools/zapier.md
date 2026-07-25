@@ -14,7 +14,7 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Plans, pricing, task limits, workflow limits, app availability, AI-related features, security details, and product availability may change. Check the official Zapier pricing, help, and security pages for current details."
 officialUrl: "https://zapier.com/"
-lastReviewed: "2026-06-02"
+lastReviewed: "2026-07-25"
 draft: false
 useCases:
   - Draft an automation idea before building it
@@ -37,11 +37,10 @@ similarTools:
   - ChatGPT
 reviewStatus: "reviewed"
 sourceNotes:
-  - "Checked https://zapier.com/ on 2026-06-02 for official Zapier positioning, automation platform context, app connection references, AI-related product areas, and workflow use-case context."
-  - "Checked https://zapier.com/features, which redirected to https://zapier.com/workflows, on 2026-06-02 for high-level workflow automation concepts without copying app counts, task metrics, customer results, or feature-specific claims into this page."
-  - "Checked https://zapier.com/pricing on 2026-06-02 for plan, pricing, task, product, and AI-related context without copying exact prices, plan comparisons, task limits, workflow limits, or AI feature availability into this page."
-  - "Checked https://help.zapier.com/ and https://help.zapier.com/hc/en-us/categories/8496209877261 on 2026-06-02 for official help categories covering getting started, Zaps, tools, AI, custom logic, apps, and account/security topics."
-  - "The requested https://zapier.com/security URL returned 404 during review, so the official Zapier Security and Compliance help article at https://help.zapier.com/hc/en-us/articles/8496181993613-Security-and-Compliance was checked instead. Security guarantees, compliance details, Trust Center document details, API details, and exact feature availability were not copied into this page."
+  - "Checked https://zapier.com/ and https://zapier.com/workflows on 2026-07-25 for current official Zapier positioning, connected-workflow context, and AI-related product areas without copying app counts, performance claims, or feature-specific availability into this page."
+  - "Checked https://zapier.com/pricing on 2026-07-25 for current plan, pricing, task, product, and AI-related context without copying exact prices, plan comparisons, task limits, workflow limits, or AI feature availability into this page."
+  - "Checked https://help.zapier.com/ on 2026-07-25 for current official help covering workflow setup, troubleshooting, connected apps, account access, and security topics."
+  - "Checked https://help.zapier.com/hc/en-us/articles/8496181993613-Security-and-Compliance on 2026-07-25 for current official security and compliance context. Security guarantees, compliance details, API details, data handling guarantees, and exact feature availability were not copied into this page."
 ---
 
 ## Overview

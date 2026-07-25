@@ -24,9 +24,9 @@ Aiplorer has 55 reviewed public tool pages and three draft-only pages.
 
 | Last reviewed | Reviewed pages |
 | --- | ---: |
-| 2026-06-02 | 19 |
+| 2026-06-02 | 12 |
 | 2026-06-06 | 5 |
-| 2026-07-25 | 31 |
+| 2026-07-25 | 38 |
 | **Total** | **55** |
 
 All 55 reviewed pages have:
@@ -92,20 +92,42 @@ Wording remains cautious. The review did not introduce rankings, ratings,
 affiliate links, unsupported "best" claims, or privacy and security
 guarantees.
 
+## Completed Automation Freshness Batch
+
+The second re-review batch covered Automation Tools:
+
+- Zapier
+- Make
+- n8n
+- IFTTT
+- Pipedream
+- Bardeen
+- Relay.app
+
+All seven pages were reviewed against current official sources on 2026-07-25.
+Zapier, Make, n8n, IFTTT, and Pipedream kept their cautious high-level public
+descriptions. Bardeen was adjusted to reflect its current research, data, and
+business workflow emphasis.
+
+Relay.app required a material status update. Its official site announces a
+shutdown with access ending on August 15, 2026 for free users and September 14,
+2026 for paying customers. The existing reviewed URL remains available as
+transition guidance, but the page no longer presents Relay.app as a new
+adoption option.
+
 ## Later Batches
 
 Continue with this order:
 
-1. Automation Tools
-2. Coding Tools
-3. Learning Tools
-4. Presentation Tools
-5. Audio, Image, Video, Writing, and Business Tools reviewed on 2026-07-25
+1. Coding Tools
+2. Learning Tools
+3. Presentation Tools
+4. Audio, Image, Video, Writing, and Business Tools reviewed on 2026-07-25
 
-Automation, Coding, Learning, and Presentation Tools were reviewed in early
-June and include fast-changing limits, integrations, models, rights, or product
-scope. The July batches are newer and can follow unless a product announces a
-major change first.
+Coding, Learning, and Presentation Tools were reviewed in early June and
+include fast-changing limits, integrations, models, rights, or product scope.
+The July batches are newer and can follow unless a product announces a major
+change first.
 
 ## Draft Policy
 
@@ -121,6 +143,6 @@ Production builds and the production sitemap must continue to exclude:
 
 ## Next Phase
 
-Run an official-source freshness review of the seven Automation Tools. Review
-only Zapier, Make, n8n, IFTTT, Pipedream, Bardeen, and Relay.app; preserve
-current routes and publish no draft page as part of that phase.
+Run an official-source freshness review of the five Coding Tools. Review only
+GitHub Copilot, Cursor, Windsurf, Replit, and Tabnine; preserve current routes
+and publish no draft page as part of that phase.
