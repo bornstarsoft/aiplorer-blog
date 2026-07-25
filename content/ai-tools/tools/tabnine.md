@@ -1,6 +1,6 @@
 ---
 title: "Tabnine"
-description: "Tabnine is an AI coding assistant that can help users draft code completions, review coding ideas, and support developer workflows."
+description: "Tabnine is an AI coding platform that can help users draft code, review coding ideas, and support developer workflows."
 type: "ai-tools"
 layout: "tool"
 category: "Coding Tools"
@@ -14,8 +14,8 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Plans, pricing, model access, IDE availability, repository access, team or enterprise options, security details, data handling, license-related features, and feature availability may change. Check official Tabnine pages for current details."
 officialUrl: "https://www.tabnine.com/"
-lastReviewed: "2026-06-06"
-lastmod: "2026-06-07"
+lastReviewed: "2026-07-25"
+lastmod: "2026-07-25"
 draft: false
 useCases:
   - Draft code completions for human review
@@ -38,15 +38,15 @@ similarTools:
   - Replit
 reviewStatus: "reviewed"
 sourceNotes:
-  - "Checked https://www.tabnine.com/ and https://docs.tabnine.com/ on 2026-06-06 for official Tabnine product positioning around AI coding assistance, code completions, chat, IDE use, personalization, deployment, and developer workflow context without copying ranking, adoption, productivity, or quality claims into this page."
-  - "Checked https://www.tabnine.com/pricing and https://docs.tabnine.com/main/welcome/readme/tabnine-subscription-plans on 2026-06-06 for plan, pricing, team, enterprise, model, deployment, and token/usage context without copying exact prices, limits, plan comparisons, or feature availability into this page."
-  - "Checked https://www.tabnine.com/code-privacy, https://docs.tabnine.com/main/welcome/readme/personalization, and https://docs.tabnine.com/main/welcome/readme/ai-models on 2026-06-06 for official code privacy, personalization, models, and third-party-model context without copying privacy/security guarantees into this page."
-  - "Checked https://docs.tabnine.com/main/welcome/readme/protection and https://www.tabnine.com/privacy-policy/ on 2026-06-06 for official license-risk, provenance/protection, and privacy context without copying license-safety, security, or data-handling guarantees into this page."
+  - "Checked https://www.tabnine.com/ and https://www.tabnine.com/platform/ on 2026-07-25 for current official AI coding platform, code generation, review, testing, documentation, IDE, command-line, personalization, and deployment context without copying ranking, adoption, productivity, or quality claims."
+  - "Checked https://www.tabnine.com/pricing/ on 2026-07-25 for current plan, pricing, model, deployment, team, and enterprise context without copying exact prices, limits, plan comparisons, model availability, or feature availability."
+  - "Checked https://www.tabnine.com/code-privacy/ and https://www.tabnine.com/privacy-policy/ on 2026-07-25 for current privacy, deployment, model-provider, code, and data-use context without copying privacy, retention, data-handling, or security guarantees."
+  - "Checked https://www.tabnine.com/protection/ and https://trust.tabnine.com/ on 2026-07-25 for current license-risk, provenance, security, and trust context without copying license-safety, compliance, or security guarantees."
 ---
 
 ## Overview
 
-Tabnine is an AI coding assistant that can help users draft code completions, review coding ideas, and support developer workflows. It can be useful when a person wants to explore implementation ideas or prepare code drafts before manual review.
+Tabnine is an AI coding platform that can help users draft code, review coding ideas, and support developer workflows. It can be useful when a person wants to explore implementation ideas or prepare code drafts before manual review.
 
 Tabnine has product areas for code completions, chat, personalization, deployment options, team administration, and license-risk support, but exact availability can change. Users should check official Tabnine pages before relying on a specific plan, model, deployment option, privacy setting, or license-related feature.
 

@@ -25,8 +25,7 @@ Aiplorer has 55 reviewed public tool pages and three draft-only pages.
 | Last reviewed | Reviewed pages |
 | --- | ---: |
 | 2026-06-02 | 12 |
-| 2026-06-06 | 5 |
-| 2026-07-25 | 38 |
+| 2026-07-25 | 43 |
 | **Total** | **55** |
 
 All 55 reviewed pages have:
@@ -115,19 +114,39 @@ shutdown with access ending on August 15, 2026 for free users and September 14,
 transition guidance, but the page no longer presents Relay.app as a new
 adoption option.
 
+## Completed Coding Freshness Batch
+
+The third re-review batch covered Coding Tools:
+
+- GitHub Copilot
+- Cursor
+- Windsurf
+- Replit
+- Tabnine
+
+All five pages were reviewed against current official sources on 2026-07-25.
+GitHub Copilot, Cursor, Replit, and Tabnine remain published with cautious
+high-level descriptions. Source notes were refreshed, and account,
+organization, privacy mode, codebase indexing, model-provider, data-use, and
+budget cautions were strengthened where relevant.
+
+Windsurf required a material identity update. Cognition's official product page
+states that Devin Desktop is the new name for Windsurf. Aiplorer preserves the
+existing `/ai-tools/tools/windsurf/` URL, points its official link to Devin
+Desktop, and explains the rename without creating a duplicate tool page.
+
 ## Later Batches
 
 Continue with this order:
 
-1. Coding Tools
-2. Learning Tools
-3. Presentation Tools
-4. Audio, Image, Video, Writing, and Business Tools reviewed on 2026-07-25
+1. Learning Tools
+2. Presentation Tools
+3. Audio, Image, Video, Writing, and Business Tools reviewed on 2026-07-25
 
-Coding, Learning, and Presentation Tools were reviewed in early June and
-include fast-changing limits, integrations, models, rights, or product scope.
-The July batches are newer and can follow unless a product announces a major
-change first.
+Learning and Presentation Tools were reviewed in early June and include
+fast-changing limits, sources, models, rights, or product scope. The July
+batches are newer and can follow unless a product announces a major change
+first.
 
 ## Draft Policy
 
@@ -143,6 +162,7 @@ Production builds and the production sitemap must continue to exclude:
 
 ## Next Phase
 
-Run an official-source freshness review of the five Coding Tools. Review only
-GitHub Copilot, Cursor, Windsurf, Replit, and Tabnine; preserve current routes
-and publish no draft page as part of that phase.
+Run an official-source freshness review of the four reviewed Learning Tools:
+NotebookLM, Elicit, Consensus, and You.com. Preserve SciSpace as a draft unless
+stable official product, help, pricing, privacy, and security sources support a
+separate publication review.

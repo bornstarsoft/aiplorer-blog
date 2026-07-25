@@ -14,8 +14,8 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Plans, pricing, usage billing, model access, IDE availability, repository access, enterprise options, security details, data handling, and feature availability may change. Check official GitHub Copilot pages for current details."
 officialUrl: "https://github.com/features/copilot"
-lastReviewed: "2026-06-06"
-lastmod: "2026-06-07"
+lastReviewed: "2026-07-25"
+lastmod: "2026-07-25"
 draft: false
 useCases:
   - Draft code snippets for human review
@@ -38,11 +38,9 @@ similarTools:
   - Tabnine
 reviewStatus: "reviewed"
 sourceNotes:
-  - "Checked https://github.com/features/copilot on 2026-06-06 for official product access point and high-level Copilot positioning."
-  - "Checked https://docs.github.com/en/copilot on 2026-06-06 for official GitHub Copilot documentation categories and high-level feature context."
-  - "Checked https://docs.github.com/en/copilot/overview-of-github-copilot/about-github-copilot-individual on 2026-06-06 for high-level AI coding assistant, IDE suggestions, chat, command-line help, pull-request description, and code-change context without copying productivity claims or exact feature availability into this page."
-  - "Checked https://docs.github.com/en/copilot/get-started/plans and https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing on 2026-06-06 for plan, pricing, usage billing, AI credit, model, and feature context without copying exact prices, limits, model availability, or plan comparisons into this page."
-  - "Checked https://docs.github.com/en/copilot/concepts/about-copilot-coding-agent on 2026-06-06 for cloud agent, repository, pull-request, task, security, risk, and limitation context without copying exact plan availability, repository access rules, security details, model details, or feature availability into this page."
+  - "Checked https://github.com/features/copilot and https://docs.github.com/en/copilot on 2026-07-25 for current official positioning across editor, GitHub, command-line, code-review, and agent workflows without copying productivity, ranking, or exact feature claims."
+  - "Checked https://docs.github.com/en/copilot/get-started/plans and https://docs.github.com/en/billing/concepts/product-billing/github-copilot-billing on 2026-07-25 for current plan, usage-billing, credit, model, and organization context without copying exact prices, allowances, limits, model availability, or plan comparisons."
+  - "Checked https://docs.github.com/en/copilot/responsible-use and https://docs.github.com/en/copilot/concepts/preparing-for-new-features-and-models on 2026-07-25 for official output-review, testing, intellectual-property, security, model-provider, preview-feature, and changing-availability cautions."
 ---
 
 ## Overview
@@ -61,4 +59,4 @@ Coding assistants should be treated as development support, not as a guarantee t
 
 Features, plans, pricing, usage billing, model access, IDE availability, repository access, enterprise options, security details, data handling, and availability can change. Check official GitHub Copilot pages for current details before choosing a plan or relying on a specific capability.
 
-Be careful with secrets, private repositories, customer data, proprietary code, license obligations, security requirements, workplace policies, and code review standards. Test generated code and review dependencies, permissions, and edge cases before using it.
+Be careful with secrets, private repositories, customer data, proprietary code, license obligations, security requirements, workplace policies, and code review standards. Review current account, organization, model-provider, data-use, repository, and budget controls before sending proprietary code. Test generated code and review dependencies, permissions, and edge cases before using it.

@@ -1,6 +1,6 @@
 ---
 title: "Windsurf"
-description: "Windsurf is an AI-powered coding tool that can help users draft code, explore codebase changes, and support developer workflows."
+description: "Windsurf has been renamed Devin Desktop. It is an AI-assisted development environment for reviewing and coordinating coding work across an IDE and coding agents."
 type: "ai-tools"
 layout: "tool"
 category: "Coding Tools"
@@ -12,10 +12,10 @@ bestFor:
   - Checking security, privacy, and workplace-policy risks before use
 beginnerFriendly: null
 freePlan: null
-pricingNote: "Plans, pricing, usage allowances, model access, editor availability, repository access, team options, security details, data handling, and feature availability may change. Check official Windsurf pages for current details."
-officialUrl: "https://windsurf.com/"
-lastReviewed: "2026-06-06"
-lastmod: "2026-06-07"
+pricingNote: "Plans, pricing, usage allowances, agent or model access, editor availability, repository access, team options, security details, data handling, and feature availability may change. Check official Devin Desktop pages for current details."
+officialUrl: "https://devin.ai/desktop"
+lastReviewed: "2026-07-25"
+lastmod: "2026-07-25"
 draft: false
 useCases:
   - Draft code ideas before human review
@@ -38,27 +38,26 @@ similarTools:
   - Tabnine
 reviewStatus: "reviewed"
 sourceNotes:
-  - "Checked https://windsurf.com/ on 2026-06-06 for official product access point."
-  - "Checked https://docs.windsurf.com/windsurf/getting-started on 2026-06-06 for official AI IDE, Cascade, terminal, MCP, memories, context awareness, workflows, app deploys, install, and onboarding context without copying exact OS, extension, model, or feature availability into this page."
-  - "Checked https://docs.windsurf.com/windsurf/accounts/usage and https://docs.windsurf.com/windsurf/accounts/quota on 2026-06-06 for plan, pricing, usage, quota, upgrade, team, and enterprise context without copying exact prices, allowances, quota details, or feature availability into this page."
-  - "Checked https://windsurf.com/security and https://docs.windsurf.com/security/reporting on 2026-06-06 for security and vulnerability-reporting context without copying security guarantees into this page."
-  - "Checked https://windsurf.com/privacy-policy on 2026-06-06 for official privacy context without copying data handling guarantees into this page."
+  - "Checked https://devin.ai/desktop on 2026-07-25 for the official statement that Devin Desktop is the new name for Windsurf and for current high-level IDE, local-agent, cloud-agent, review, and developer-workflow positioning."
+  - "Checked https://docs.devin.ai/desktop/getting-started on 2026-07-25 for current Devin Desktop editor, agent, model, terminal, review, and onboarding context without copying exact platform, model, extension, or feature availability."
+  - "Checked https://devin.ai/pricing on 2026-07-25 for current plan, pricing, usage, model, agent, team, and enterprise context without copying exact prices, quotas, limits, model availability, or plan comparisons."
+  - "Checked https://cognition.com/legal/privacy-policy on 2026-07-25 for current privacy context without copying privacy, retention, data-handling, or security guarantees."
 ---
 
 ## Overview
 
-Windsurf is an AI-powered coding tool that can help users draft code, explore codebase changes, and support developer workflows. It can be useful when a person wants to prepare implementation ideas, debugging notes, or refactoring plans before manual review.
+Windsurf has been renamed Devin Desktop. The existing Aiplorer URL is retained for continuity, while the official product page now uses the Devin Desktop name.
 
-Windsurf has product areas for editor workflows, AI assistance, terminal use, context awareness, workflows, and app deployment, but exact availability can change. Users should check official Windsurf pages before relying on a specific feature, plan, model, quota, or privacy setting.
+Devin Desktop is an AI-assisted development environment for reviewing and coordinating coding work across an IDE and coding agents. Exact agent, model, editor, plan, usage, repository, and privacy options can change. Users should check official Devin Desktop pages before relying on a specific capability.
 
 ## Useful For
 
-Beginners and developers may use Windsurf-style workflows to draft code ideas, ask about code changes, prepare debugging notes, or explore refactoring options. Any generated code should be reviewed, tested, and security-checked before it is used in a real project.
+Beginners and developers may use Windsurf or Devin Desktop workflows to draft code ideas, ask about code changes, prepare debugging notes, or explore refactoring options. Any generated code should be reviewed, tested, and security-checked before it is used in a real project.
 
 Coding assistants should be treated as development support, not as a guarantee that code is correct, secure, licensed appropriately, or safe to deploy.
 
 ## Notes
 
-Features, plans, pricing, usage allowances, model access, editor availability, repository access, team options, security details, data handling, and availability can change. Check official Windsurf pages for current details before choosing a plan or relying on a specific capability.
+Windsurf is now named Devin Desktop. Features, plans, pricing, usage allowances, agent or model access, editor availability, repository access, team options, security details, data handling, and availability can change. Check official Devin Desktop pages for current details before choosing a plan or relying on a specific capability.
 
 Be careful with secrets, private repositories, customer data, proprietary code, license obligations, security requirements, workplace policies, and code review standards. Test generated code and review dependencies, permissions, and edge cases before using it.

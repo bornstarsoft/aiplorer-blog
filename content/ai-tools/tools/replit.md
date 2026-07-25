@@ -14,8 +14,8 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Plans, pricing, credits, AI feature availability, workspace options, deployment options, model access, team options, security details, data handling, and feature availability may change. Check official Replit pages for current details."
 officialUrl: "https://replit.com/"
-lastReviewed: "2026-06-06"
-lastmod: "2026-06-07"
+lastReviewed: "2026-07-25"
+lastmod: "2026-07-25"
 draft: false
 useCases:
   - Draft code ideas for human review
@@ -38,11 +38,10 @@ similarTools:
   - Tabnine
 reviewStatus: "reviewed"
 sourceNotes:
-  - "Checked https://replit.com/ on 2026-06-06 for official product access point."
-  - "Checked https://docs.replit.com/learn/foundations/introduction-to-ai, https://docs.replit.com/core-concepts/agent/, and https://docs.replit.com/learn/build-with-agent on 2026-06-06 for official AI, Agent, planning, code, app-building, review, testing, and checkpoint context without copying exact feature availability, quality claims, or plan details into this page."
-  - "Checked https://docs.replit.com/billing/ai-billing and https://docs.replit.com/billing/deployment-pricing on 2026-06-06 for AI billing, credits, Agent usage, deployment pricing, and spending-control context without copying exact prices, credits, caps, plan comparisons, or feature availability into this page."
-  - "Checked https://docs.replit.com/teams/information-security/overview and https://docs.replit.com/references/security/shared-responsibility-model on 2026-06-06 for official security, privacy, shared responsibility, and data-protection context without copying security guarantees into this page."
-  - "Checked https://replit.com/privacy-policy and https://docs.replit.com/replitai/replit-ai-integrations on 2026-06-06 for privacy and AI integration context without copying data handling guarantees, model availability, or API details into this page."
+  - "Checked https://replit.com/ and https://replit.com/products/agent on 2026-07-25 for current official development-platform, Agent, app-building, code, testing, and deployment context without copying quality, model, or exact feature claims."
+  - "Checked https://replit.com/pricing and https://docs.replit.com/billing/ai-billing on 2026-07-25 for current plan, credit, usage-based billing, Agent mode, deployment, and spending-control context without copying exact prices, credits, caps, model availability, plan comparisons, or feature availability."
+  - "Checked https://docs.replit.com/teams/information-security/overview and https://docs.replit.com/references/security/project-security-center on 2026-07-25 for current security, shared-responsibility, dependency, scan, review, and publishing context without copying security guarantees."
+  - "Checked https://replit.com/privacy-policy and https://replit.com/terms-of-service/ on 2026-07-25 for current privacy, account, public or private code, third-party integration, ownership, and data-use context without copying privacy, licensing, or data-handling guarantees."
 ---
 
 ## Overview

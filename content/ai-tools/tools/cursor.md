@@ -1,6 +1,6 @@
 ---
 title: "Cursor"
-description: "Cursor is an AI code editor and coding tool that can help users draft, edit, explain, and review code inside a developer workflow."
+description: "Cursor is an AI coding tool and agent that can help users draft, edit, explain, and review code inside a developer workflow."
 type: "ai-tools"
 layout: "tool"
 category: "Coding Tools"
@@ -14,8 +14,8 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Plans, pricing, usage billing, model access, editor availability, repository access, team options, security details, data handling, and feature availability may change. Check official Cursor pages for current details."
 officialUrl: "https://cursor.com/"
-lastReviewed: "2026-06-06"
-lastmod: "2026-06-07"
+lastReviewed: "2026-07-25"
+lastmod: "2026-07-25"
 draft: false
 useCases:
   - Draft a code change before manual review
@@ -38,14 +38,14 @@ similarTools:
   - Tabnine
 reviewStatus: "reviewed"
 sourceNotes:
-  - "Checked https://cursor.com/ and https://cursor.com/en-US/product on 2026-06-06 for official Cursor product positioning around AI code editing, agents, codebase context, terminal, git, checkpoints, and developer workflow context without copying ranking, benchmark, or exact feature claims."
-  - "Checked https://cursor.com/en-US/pricing and https://docs.cursor.com/account/pricing on 2026-06-06 for plan, pricing, usage billing, team, enterprise, and model-usage context without copying exact prices, request limits, token details, plan comparisons, or feature availability into this page."
-  - "Checked https://cursor.com/data-use, https://cursor.com/privacy, and https://www.cursor.com/security on 2026-06-06 for official privacy, data-use, privacy mode, and security context without copying privacy/security guarantees into this page."
+  - "Checked https://cursor.com/ on 2026-07-25 for current official positioning around coding agents, code editing, codebase context, terminal, cloud work, review, and developer workflows without copying ranking, benchmark, or exact feature claims."
+  - "Checked https://cursor.com/pricing and https://docs.cursor.com/account/pricing on 2026-07-25 for current plan, pricing, usage, model, team, and enterprise context without copying exact prices, allowances, request limits, plan comparisons, or feature availability."
+  - "Checked https://cursor.com/data-use, https://cursor.com/privacy, and https://cursor.com/security on 2026-07-25 for current privacy mode, data-use, codebase-indexing, provider, retention, and security context without copying privacy, retention, or security guarantees."
 ---
 
 ## Overview
 
-Cursor is an AI code editor and coding tool that can help users draft, edit, explain, and review code inside a developer workflow. It can be useful when a person wants to explore implementation ideas, ask questions about code, or prepare code changes for manual review.
+Cursor is an AI coding tool and agent that can help users draft, edit, explain, and review code inside a developer workflow. It can be useful when a person wants to explore implementation ideas, ask questions about code, or prepare code changes for manual review.
 
 Cursor has product areas for code editing, agents, codebase context, terminal workflows, and team/enterprise use, but exact availability can change. Users should check official Cursor pages before relying on a specific feature, plan, model, or privacy setting.
 
@@ -59,4 +59,4 @@ Coding tools should be treated as development support, not as a guarantee that c
 
 Features, plans, pricing, usage billing, model access, editor availability, repository access, team options, security details, data handling, and availability can change. Check official Cursor pages for current details before choosing a plan or relying on a specific capability.
 
-Be careful with secrets, private repositories, customer data, proprietary code, license obligations, security requirements, workplace policies, and code review standards. Test generated code and review dependencies, permissions, and edge cases before using it.
+Be careful with secrets, private repositories, customer data, proprietary code, license obligations, security requirements, workplace policies, and code review standards. Review current Privacy Mode, model-provider, codebase-indexing, workspace, and data-use settings before sending proprietary code. Test generated code and review dependencies, permissions, and edge cases before using it.

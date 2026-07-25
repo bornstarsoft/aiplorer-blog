@@ -1362,3 +1362,70 @@ testing automations and migrated workflows; reviewing app permissions,
 credentials, and connected accounts; protecting customer and business data;
 checking failure, duplicate, and missing-data behavior; and following workplace,
 security, privacy, and legal requirements.
+
+## Coding Tools Source Freshness Review
+
+The five reviewed `Coding Tools` pages were rechecked against current official
+sources on 2026-07-25:
+
+- GitHub Copilot
+- Cursor
+- Windsurf
+- Replit
+- Tabnine
+
+All five pages remain published with:
+
+```yaml
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-07-25"
+```
+
+Official sources checked:
+
+- GitHub Copilot: `https://github.com/features/copilot`,
+  `https://docs.github.com/en/copilot`,
+  `https://docs.github.com/en/copilot/get-started/plans`,
+  `https://docs.github.com/en/billing/concepts/product-billing/github-copilot-billing`,
+  `https://docs.github.com/en/copilot/responsible-use`, and
+  `https://docs.github.com/en/copilot/concepts/preparing-for-new-features-and-models`
+- Cursor: `https://cursor.com/`, `https://cursor.com/pricing`,
+  `https://docs.cursor.com/account/pricing`, `https://cursor.com/data-use`,
+  `https://cursor.com/privacy`, and `https://cursor.com/security`
+- Windsurf / Devin Desktop: `https://devin.ai/desktop`,
+  `https://docs.devin.ai/desktop/getting-started`,
+  `https://devin.ai/pricing`, and
+  `https://cognition.com/legal/privacy-policy`
+- Replit: `https://replit.com/`, `https://replit.com/products/agent`,
+  `https://replit.com/pricing`, `https://docs.replit.com/billing/ai-billing`,
+  `https://docs.replit.com/teams/information-security/overview`,
+  `https://docs.replit.com/references/security/project-security-center`,
+  `https://replit.com/privacy-policy`, and
+  `https://replit.com/terms-of-service/`
+- Tabnine: `https://www.tabnine.com/`,
+  `https://www.tabnine.com/platform/`,
+  `https://www.tabnine.com/pricing/`,
+  `https://www.tabnine.com/code-privacy/`,
+  `https://www.tabnine.com/privacy-policy/`,
+  `https://www.tabnine.com/protection/`, and
+  `https://trust.tabnine.com/`
+
+GitHub Copilot, Cursor, Replit, and Tabnine retained conservative high-level
+descriptions. GitHub Copilot and Cursor received stronger cautions around
+current organization, model-provider, privacy, indexing, data-use, repository,
+and budget controls.
+
+Windsurf required a material identity update. Cognition's official product page
+states that Devin Desktop is the new name for Windsurf. The existing
+`/ai-tools/tools/windsurf/` route remains unchanged for continuity, while its
+official link and page copy now explain the Devin Desktop name.
+
+Published copy continues to avoid exact pricing, credits, usage limits, model
+availability, IDE support promises, repository-access promises, enterprise
+availability, completion-quality claims, license-safety claims, privacy or
+security guarantees, and data-handling guarantees. Special caution areas
+include reviewing, testing, and security-checking generated code; protecting
+secrets, private repositories, proprietary code, and customer data; reviewing
+licenses, dependencies, permissions, and workplace policy; and checking current
+account, organization, provider, privacy, indexing, and data-use settings.
