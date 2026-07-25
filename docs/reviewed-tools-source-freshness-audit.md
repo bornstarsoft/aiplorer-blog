@@ -239,6 +239,37 @@ redirect to current Devin pages. Current product, getting-started, pricing, and
 privacy pages support the existing cautious transition description. The
 Aiplorer `/ai-tools/tools/windsurf/` URL remains unchanged for continuity.
 
+## Priority 2 Productivity Monitoring Check
+
+ChatGPT, Claude, Gemini, Perplexity, Microsoft Copilot, and Notion AI were
+rechecked on 2026-07-26 against their current official product, plan, help,
+privacy, data-control, or security documentation.
+
+The six public pages continue to use accurate high-level positioning and avoid
+exact prices, limits, model-access claims, retention claims, and privacy or
+security guarantees. Their existing cautions still cover output review,
+sensitive or confidential information, connected services, account and
+workspace differences, changing availability, and applicable workplace
+policies. No public page change was required in this monitoring pass.
+
+Microsoft's current consumer Copilot documentation gives additional detail
+about training and personalization controls that can vary by account, product
+context, and region. The existing Aiplorer page already distinguishes personal,
+work, school, and organization contexts and directs users to current privacy
+and data-handling policies, so no narrower or region-specific claim was added.
+
+Official source groups checked:
+
+- ChatGPT: `chatgpt.com`, ChatGPT pricing, OpenAI Data Controls FAQ, and the
+  OpenAI Privacy Policy
+- Claude: Claude product and plan pages plus the Anthropic Privacy Center
+- Gemini: Gemini product overview, plan/help pages, and Gemini Apps Privacy Hub
+- Perplexity: product, subscription, getting-started, and data-collection help
+  pages
+- Microsoft Copilot: consumer product overview, Microsoft 365 comparison, and
+  privacy FAQ pages
+- Notion AI: product, FAQ, pricing, AI security, and general security pages
+
 ## Ongoing Monitoring
 
 Return to risk-based monitoring of all 60 reviewed pages. Prioritize a page
