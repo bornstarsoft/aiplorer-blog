@@ -34,6 +34,7 @@ Use this checklist before publishing any Aiplorer AI tool page.
   have not been checked.
 - `officialUrl` is present and verified.
 - `lastReviewed` is set to the review date.
+- `lastmod` is set to the completed publication or material re-review date.
 - `category` is present.
 - `bestFor` includes practical user goals.
 - `pricingNote` reminds users to check official information.

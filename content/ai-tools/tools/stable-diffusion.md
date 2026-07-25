@@ -15,6 +15,7 @@ freePlan: null
 pricingNote: "Products, services, pricing, usage limits, access options, licensing terms, commercial-use rules, and availability may change. Check official Stability AI pages for current details."
 officialUrl: "https://stability.ai/core-models"
 lastReviewed: "2026-07-25"
+lastmod: "2026-07-25"
 draft: false
 useCases:
   - Explore an early visual concept

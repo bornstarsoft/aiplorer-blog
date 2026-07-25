@@ -15,6 +15,7 @@ freePlan: null
 pricingNote: "Pricing, plans, and availability may change. Check the official Claude pricing page for current details."
 officialUrl: "https://claude.ai/"
 lastReviewed: "2026-07-25"
+lastmod: "2026-07-25"
 draft: false
 useCases:
   - Improve a rough document draft

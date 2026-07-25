@@ -15,6 +15,7 @@ freePlan: null
 pricingNote: "Plans, pricing, limits, included AI capabilities, connected-product access, and availability may change. Check official HubSpot pages for current details."
 officialUrl: "https://www.hubspot.com/products/artificial-intelligence"
 lastReviewed: "2026-07-25"
+lastmod: "2026-07-25"
 draft: false
 useCases:
   - Draft marketing or sales material for human review

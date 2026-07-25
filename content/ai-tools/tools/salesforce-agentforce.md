@@ -15,6 +15,7 @@ freePlan: null
 pricingNote: "Plans, pricing, usage limits, AI agent capabilities, connected-product access, and availability may change. Check official Salesforce pages for current details."
 officialUrl: "https://www.salesforce.com/agentforce/"
 lastReviewed: "2026-07-25"
+lastmod: "2026-07-25"
 draft: false
 useCases:
   - Plan customer-service workflow drafts

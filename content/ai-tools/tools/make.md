@@ -15,6 +15,7 @@ freePlan: null
 pricingNote: "Plans, pricing, credits, operation behavior, scenario limits, app availability, AI-related features, security details, and product availability may change. Check the official Make pricing, help, and security pages for current details."
 officialUrl: "https://www.make.com/en"
 lastReviewed: "2026-07-25"
+lastmod: "2026-07-25"
 draft: false
 useCases:
   - Draft an automation workflow before building it

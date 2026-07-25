@@ -15,6 +15,7 @@ freePlan: null
 pricingNote: "Plans, pricing, usage limits, recording and transcription options, integrations, and availability may change. Check official Otter.ai pages for current details."
 officialUrl: "https://otter.ai/"
 lastReviewed: "2026-07-26"
+lastmod: "2026-07-26T00:00:00+09:00"
 draft: false
 useCases:
   - Prepare a transcript draft for human review

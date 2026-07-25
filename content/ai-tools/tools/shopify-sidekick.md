@@ -15,6 +15,7 @@ freePlan: null
 pricingNote: "Plans, pricing, usage limits, commerce capabilities, store access, and availability may change. Check official Shopify pages for current details."
 officialUrl: "https://www.shopify.com/sidekick"
 lastReviewed: "2026-07-25"
+lastmod: "2026-07-25"
 draft: false
 useCases:
   - Draft store or product content for human review

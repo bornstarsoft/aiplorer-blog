@@ -15,6 +15,7 @@ freePlan: null
 pricingNote: "Plans, pricing, limits, connected service availability, AI-related features, privacy terms, and availability may change. Check the official IFTTT product, plans, help, and terms pages for current details."
 officialUrl: "https://ifttt.com/"
 lastReviewed: "2026-07-25"
+lastmod: "2026-07-25"
 draft: false
 useCases:
   - Draft a simple automation idea before building it

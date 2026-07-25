@@ -15,6 +15,7 @@ freePlan: null
 pricingNote: "Plans, pricing, limits, integrations, AI-related features, hosting options, security details, and availability may change. Check the official n8n product, pricing, docs, and security pages for current details."
 officialUrl: "https://n8n.io/"
 lastReviewed: "2026-07-25"
+lastmod: "2026-07-25"
 draft: false
 useCases:
   - Draft an automation workflow before building it

@@ -15,6 +15,7 @@ freePlan: null
 pricingNote: "Plans, pricing, limits, supported products, AI capabilities, and availability may change. Check official Zoho pages for current details."
 officialUrl: "https://www.zoho.com/zia/"
 lastReviewed: "2026-07-25"
+lastmod: "2026-07-25"
 draft: false
 useCases:
   - Draft business messages for human review

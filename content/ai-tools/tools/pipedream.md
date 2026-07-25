@@ -15,6 +15,7 @@ freePlan: null
 pricingNote: "Plans, pricing, credits, limits, integrations, API-related options, AI-related features, security details, and availability may change. Check the official Pipedream product, docs, pricing, limits, and security pages for current details."
 officialUrl: "https://pipedream.com/"
 lastReviewed: "2026-07-25"
+lastmod: "2026-07-25"
 draft: false
 useCases:
   - Draft an automation workflow before building it

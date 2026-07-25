@@ -15,6 +15,7 @@ freePlan: null
 pricingNote: "Pricing, plans, and availability may change. Check the official Gemini or Google AI plan pages for current details."
 officialUrl: "https://gemini.google.com/"
 lastReviewed: "2026-07-25"
+lastmod: "2026-07-25"
 draft: false
 useCases:
   - Brainstorm content or project ideas

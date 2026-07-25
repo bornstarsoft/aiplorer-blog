@@ -15,6 +15,7 @@ freePlan: null
 pricingNote: "Plans, pricing, usage limits, meeting features, integrations, and availability may change. Check official Read AI pages for current details."
 officialUrl: "https://www.read.ai/meetings"
 lastReviewed: "2026-07-26"
+lastmod: "2026-07-26T00:00:00+09:00"
 draft: false
 useCases:
   - Prepare a first-pass transcript or meeting summary

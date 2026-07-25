@@ -15,6 +15,7 @@ freePlan: null
 pricingNote: "Pricing, plans, and availability may change. Check the official ChatGPT pricing page for current details."
 officialUrl: "https://chatgpt.com/"
 lastReviewed: "2026-07-25"
+lastmod: "2026-07-25"
 draft: false
 useCases:
   - Draft a clearer version of a rough email

@@ -15,6 +15,7 @@ freePlan: null
 pricingNote: "Plans, pricing, AI usage, workspace access, feature access, and availability may change. Check the official Notion pricing and help pages for current details."
 officialUrl: "https://www.notion.com/product/ai"
 lastReviewed: "2026-07-25"
+lastmod: "2026-07-25"
 draft: false
 useCases:
   - Draft a first version of a workspace note

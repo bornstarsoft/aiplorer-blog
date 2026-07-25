@@ -15,6 +15,7 @@ freePlan: null
 pricingNote: "Plans, pricing, usage limits, capture methods, integrations, and availability may change. Check official Fireflies.ai pages for current details."
 officialUrl: "https://fireflies.ai/notetaker"
 lastReviewed: "2026-07-26"
+lastmod: "2026-07-26T00:00:00+09:00"
 draft: false
 useCases:
   - Prepare a first-pass meeting transcript for review

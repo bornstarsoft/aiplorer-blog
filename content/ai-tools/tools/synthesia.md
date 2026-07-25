@@ -15,6 +15,7 @@ freePlan: null
 pricingNote: "Plans, pricing, usage limits, video options, export support, licensing terms, commercial-use rules, and availability may change. Check official Synthesia pages for current details."
 officialUrl: "https://www.synthesia.io/"
 lastReviewed: "2026-07-25"
+lastmod: "2026-07-25"
 draft: false
 useCases:
   - Prepare a rough training or presentation video concept

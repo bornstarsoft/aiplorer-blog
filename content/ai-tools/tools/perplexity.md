@@ -15,6 +15,7 @@ freePlan: null
 pricingNote: "Pricing, plans, features, limits, and availability may change. Check the official Perplexity website and subscription information for current details."
 officialUrl: "https://www.perplexity.ai/"
 lastReviewed: "2026-07-25"
+lastmod: "2026-07-25"
 draft: false
 useCases:
   - Ask for a first-pass explanation of a topic

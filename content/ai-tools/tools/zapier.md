@@ -15,6 +15,7 @@ freePlan: null
 pricingNote: "Plans, pricing, task limits, workflow limits, app availability, AI-related features, security details, and product availability may change. Check the official Zapier pricing, help, and security pages for current details."
 officialUrl: "https://zapier.com/"
 lastReviewed: "2026-07-25"
+lastmod: "2026-07-25"
 draft: false
 useCases:
   - Draft an automation idea before building it

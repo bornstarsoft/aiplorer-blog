@@ -15,6 +15,7 @@ freePlan: null
 pricingNote: "Plans, pricing, account requirements, features, integrations, and availability may change. Check the official Microsoft Copilot pages for current details."
 officialUrl: "https://copilot.microsoft.com/"
 lastReviewed: "2026-07-25"
+lastmod: "2026-07-25"
 draft: false
 useCases:
   - Ask questions while exploring a topic

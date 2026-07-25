@@ -67,6 +67,7 @@ Publish only after manual review.
 | `limitations` | Known limits, caveats, or user-fit concerns. |
 | `similarTools` | Related tools to compare later. |
 | `sourceNotes` | Internal notes about official pages checked. |
+| `lastmod` | Publication or material re-review date for rendered metadata and sitemap freshness. Add it only after a real review or content change. |
 
 ## Allowed Categories
 
@@ -115,6 +116,9 @@ Avoid language that implies unverified certainty:
 - Do not publish affiliate links in this phase.
 - Do not use automation to publish tool pages directly.
 - Tool pages must include `lastReviewed`.
+- Reviewed public pages should include `lastmod` matching the completed
+  publication or material re-review date. Do not advance it without a real
+  review or content change.
 - Tool pages must clearly link to the official website.
 - Tool pages should explain who the tool is useful for, not just repeat product
   claims.

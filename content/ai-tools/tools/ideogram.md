@@ -15,6 +15,7 @@ freePlan: null
 pricingNote: "Plans, pricing, usage limits, image options, output support, licensing terms, commercial-use rules, and availability may change. Check official Ideogram pages for current details."
 officialUrl: "https://ideogram.ai/"
 lastReviewed: "2026-07-25"
+lastmod: "2026-07-25"
 draft: false
 useCases:
   - Prepare a rough visual concept before production
