@@ -10,7 +10,7 @@ ranking, scoring, or unattended content changes.
 
 The monitoring baseline is:
 
-- 55 reviewed public tool pages
+- 60 reviewed public tool pages
 - 10 public tool categories
 - 3 draft-only pages: SciSpace, Tome, and Example AI Assistant
 - current official-source review dates of 2026-07-25 or 2026-07-26

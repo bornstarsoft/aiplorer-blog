@@ -10,9 +10,9 @@ tool maintenance. It replaces the original first-days launch checklist.
 
 - Production and canonical domain: `https://aiplorer.com/`
 - `https://www.aiplorer.com/` redirects with HTTP 301 to the apex domain.
-- 55 reviewed public tool pages are grouped across 10 public categories.
+- 60 reviewed public tool pages are grouped across 10 public categories.
 - SciSpace, Tome, and Example AI Assistant remain draft-only.
-- The production sitemap contains 883 unique URLs and excludes all three
+- The production sitemap contains 888 unique URLs and excludes all three
   drafts.
 - Production HTML contains no unresolved internal link target in the
   2026-07-26 structure audit.

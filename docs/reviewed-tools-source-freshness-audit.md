@@ -241,7 +241,7 @@ Aiplorer `/ai-tools/tools/windsurf/` URL remains unchanged for continuity.
 
 ## Ongoing Monitoring
 
-Return to risk-based monitoring of all 55 reviewed pages. Prioritize a page
+Return to risk-based monitoring of all 60 reviewed pages. Prioritize a page
 when an official source announces a major product identity change, shutdown,
 pricing or credit model change, privacy or training-policy change, security or
 data-residency change, or material availability change.
