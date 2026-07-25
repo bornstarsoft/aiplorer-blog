@@ -420,6 +420,53 @@ commercial-use conclusions, ownership guarantees, privacy or security
 guarantees, or feature-availability promises were added during this monitoring
 pass.
 
+## Priority 3 Video Monitoring Check
+
+Runway, Pika, Luma AI, Descript, and Synthesia were rechecked on 2026-07-26
+against current official product, help, pricing, privacy, security, terms, or
+acceptable-use pages.
+
+Runway now presents a broader creative platform spanning video, image, and
+audio generation and editing. Its public page was broadened while retaining
+the Video Tools category and existing review, consent, rights, privacy, and
+commercial-use cautions.
+
+Pika now presents video creation together with emerging agent and workflow
+experiments. Its public page was broadened cautiously and now calls out
+identity, likeness, consent, impersonation, and experimental availability
+boundaries more directly.
+
+Luma AI's current official materials identify Luma App as its consumer
+creative workspace and emphasize video, image, and agent-supported creative
+workflows. Its public page was updated without copying model names, plan
+details, or availability promises, and now reminds users to review agent
+actions and third-party model boundaries.
+
+Descript now places its AI co-editor more prominently within its video and
+audio editing workflow. Its public page was refreshed to reflect that
+positioning and the official beta guidance that the co-editor may make
+incorrect assumptions, overpromise, or require revision.
+
+Synthesia required no public page change. Its existing business-video
+positioning and cautions around scripts, facts, voice and likeness consent,
+copyright, workplace policy, privacy, and sensitive business content remain
+consistent with current official materials.
+
+Official source groups checked:
+
+- Runway: product, pricing, help, privacy, data-security, and terms pages
+- Pika: product, pricing, FAQ, privacy, data-privacy, and terms pages
+- Luma AI: product, official AI-assistant information, app, pricing, terms,
+  privacy, and legal pages
+- Descript: product, AI co-editor help, pricing, help, privacy, security, and
+  account-data pages
+- Synthesia: product, features, pricing, help, privacy, security, and
+  acceptable-use pages
+
+No exact prices, credits, limits, model lists, output-quality claims,
+commercial-use conclusions, rights guarantees, privacy or security guarantees,
+or feature-availability promises were added during this monitoring pass.
+
 ## Ongoing Monitoring
 
 Return to risk-based monitoring of all 60 reviewed pages. Prioritize a page
