@@ -12,9 +12,10 @@ bestFor:
   - Supporting language learning and communication
 beginnerFriendly: null
 freePlan: null
-pricingNote: "Plans, pricing, supported languages, document translation options, API options, and availability may change. Check the official DeepL pricing, help, and product pages for current details."
+pricingNote: "Plans, pricing, supported languages, document or speech translation options, API options, apps, integrations, data processing terms, and availability may change. Check the official DeepL pricing, help, product, and security pages for current details."
 officialUrl: "https://www.deepl.com/en/translator"
-lastReviewed: "2026-06-02"
+lastReviewed: "2026-07-26"
+lastmod: "2026-07-26T00:00:00+09:00"
 draft: false
 useCases:
   - Translate a short message before human review
@@ -30,25 +31,25 @@ limitations:
   - Translated or rewritten text should be reviewed before publishing or sending
   - Legal, medical, financial, contractual, or business-critical translations should be checked carefully
   - Sensitive or confidential text should be handled carefully
-  - Plans, supported languages, document translation options, API options, writing features, apps, extensions, integrations, privacy terms, and exact feature availability may change
+  - Processing regions, subprocessors, data residency, retention, and training terms should be checked for the current account and plan before handling sensitive material
+  - Plans, supported languages, document or speech translation options, API options, writing features, apps, extensions, integrations, privacy terms, and exact feature availability may change
 similarTools:
   - Grammarly
   - ChatGPT
   - Microsoft Copilot
 reviewStatus: "reviewed"
 sourceNotes:
-  - "Checked https://www.deepl.com/en/translator on 2026-06-02 for official DeepL Translator positioning, text translation, file translation references, and high-level language AI platform context."
-  - "Checked https://www.deepl.com/en/write on 2026-06-02 for official DeepL Write positioning and high-level writing support references."
-  - "Checked https://www.deepl.com/en/pro, https://support.deepl.com/hc/en-us/articles/360019924499-About-DeepL-plans, and https://support.deepl.com/hc/en-us/articles/360021200939-DeepL-API-plans on 2026-06-02 for plan and product-area context without copying pricing, plan comparisons, or exact limits."
-  - "Checked https://www.deepl.com/en/products/api and https://developers.deepl.com/docs/resources/usage-limits on 2026-06-02 for API and usage-limit context without copying exact API feature claims or limits."
-  - "Checked https://www.deepl.com/en/pro-data-security on 2026-06-02 for official security context, but did not copy privacy guarantees, data retention guarantees, compliance claims, app availability, extension availability, integrations, model details, or translation accuracy claims into this page."
+  - "Checked https://www.deepl.com/en/translator and https://www.deepl.com/en/write on 2026-07-26 for current official text, file, speech, writing, style, and tone workflow context without copying language counts, accuracy claims, document limits, or feature availability promises."
+  - "Checked https://www.deepl.com/en/pro and https://www.deepl.com/en/products/api on 2026-07-26 for current Translator, Write, Voice, API, app, integration, and business workflow context without copying exact pricing, limits, model claims, or plan entitlements."
+  - "Checked https://support.deepl.com/hc/en-us/articles/26380849099932-DeepL-infrastructure-and-data-protection and https://www.deepl.com/en/pro-data-security on 2026-07-26 for current hybrid infrastructure, AWS subprocessor transition, processing-region, data-residency, privacy, security, and plan-dependent context."
+  - "Exact prices, plan comparisons, supported language counts, translation or writing accuracy claims, document or speech limits, API feature guarantees, app or integration availability, model details, privacy guarantees, security guarantees, retention guarantees, and regional processing guarantees were not copied into this page."
 ---
 
 ## Overview
 
 DeepL is a language AI tool that can support translation, rewriting, and multilingual writing workflows. It may be useful for people who need help preparing drafts across languages, comparing wording options, or improving translated text before a human review.
 
-DeepL offers product areas for translation, writing support, professional plans, and API workflows, but the exact features, plans, limits, privacy terms, and availability may change. Users should check official DeepL pages before relying on a specific feature.
+DeepL's current official pages cover Translator, Write, Voice, document workflows, APIs, apps, and integrations, but the exact features, plans, limits, processing terms, and availability may change. Users should check official DeepL product, help, pricing, security, and privacy pages before relying on a specific capability.
 
 ## Useful For
 
@@ -60,4 +61,4 @@ Translation and rewriting tools should be treated as language assistance, not as
 
 Translated or rewritten text should be reviewed before publishing, sending, or using it in important decisions. Legal, medical, financial, contractual, and business-critical translations should be checked carefully by a qualified person when accuracy matters.
 
-Do not enter sensitive or confidential text unless you understand the relevant privacy, workplace, organization, and data handling policies. Check official DeepL product, pricing, help, API, and security pages for current details before choosing a plan or relying on a specific feature.
+Do not enter sensitive or confidential text unless you understand the relevant privacy, workplace, organization, processing-region, subprocessor, data residency, retention, and data handling policies for the current account and plan. Check official DeepL product, pricing, help, API, security, and infrastructure pages for current details before choosing a plan or relying on a specific feature.

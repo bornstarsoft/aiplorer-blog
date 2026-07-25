@@ -1570,3 +1570,73 @@ processing before publishing or sharing.
 
 Tome remains `draft: true` with
 `reviewStatus: "needs-official-review"` and is not linked publicly.
+
+## Canva Grammarly DeepL ElevenLabs Source Freshness Review
+
+The four remaining reviewed pages dated 2026-06-02 were rechecked against
+current official sources on 2026-07-26:
+
+- Canva AI
+- Grammarly
+- DeepL
+- ElevenLabs
+
+All four pages remain published with:
+
+```yaml
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-07-26"
+```
+
+Official sources checked:
+
+- Canva AI: `https://www.canva.com/canva-ai/`,
+  `https://www.canva.com/pricing/`,
+  `https://www.canva.com/help/ai-access/`,
+  `https://www.canva.com/help/`,
+  `https://www.canva.com/policies/ai-safety/`,
+  `https://www.canva.com/policies/ai-product-terms/`, and
+  `https://www.canva.com/policies/acceptable-use-policy/`
+- Grammarly: `https://www.grammarly.com/`,
+  `https://www.grammarly.com/ai-writing-assistant`,
+  `https://www.grammarly.com/plans`,
+  `https://support.grammarly.com/hc/en-us/articles/20916119474829-Privacy-and-security-FAQs`,
+  `https://support.grammarly.com/hc/en-us/articles/25555503115277-Product-Improvement-and-Training-Control`,
+  and `https://www.grammarly.com/privacy`
+- DeepL: `https://www.deepl.com/en/translator`,
+  `https://www.deepl.com/en/write`, `https://www.deepl.com/en/pro`,
+  `https://www.deepl.com/en/products/api`,
+  `https://support.deepl.com/hc/en-us/articles/26380849099932-DeepL-infrastructure-and-data-protection`,
+  and `https://www.deepl.com/en/pro-data-security`
+- ElevenLabs: `https://elevenlabs.io/`,
+  `https://elevenlabs.io/docs/overview/intro`,
+  `https://elevenlabs.io/pricing`,
+  `https://elevenlabs.io/docs/overview/administration/billing`,
+  `https://elevenlabs.io/safety`,
+  `https://elevenlabs.io/docs/help-center/legal/can-i-publish-the-content-i-generate-on-the-platform`,
+  `https://elevenlabs.io/docs/help-center/legal/what-are-no-go-voices`,
+  `https://elevenlabs.io/docs/help-center/legal/is-my-data-used-to-improve-eleven-labs-ai-models`,
+  and `https://elevenlabs.io/docs/eleven-agents/customization/privacy`
+
+Canva AI remains a cautious creative-workflow page while adding current
+connected-tool, licensed-content, provenance, technology-partner, AI usage,
+privacy-setting, and input/output responsibility cautions. Grammarly remains a
+writing-assistance page while adding current agent-style workflow, citation,
+detector, product-improvement, and training-control cautions.
+
+DeepL remains a language-assistance page while reflecting its broader
+Translator, Write, Voice, API, app, and integration scope. Its page adds
+current processing-region, subprocessor, data-residency, retention, and
+plan-specific infrastructure cautions. ElevenLabs remains an Audio Tools page
+while reflecting its broader creative, speech, transcription, generative
+audio, agent, and API scope. Its page adds disclosure, consent, recording,
+retention, redaction, data-use, provenance, impersonation, attribution, and
+license cautions.
+
+Published copy continues to avoid exact pricing, usage or credit limits, model
+details, accuracy or quality claims, feature availability promises,
+commercial-use conclusions, privacy or security guarantees, and
+data-retention guarantees. Users should continue to review generated text,
+translations, designs, images, audio, citations, detector results, and agent
+outputs before publishing, sharing, or relying on them.

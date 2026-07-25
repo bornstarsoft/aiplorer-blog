@@ -24,8 +24,8 @@ Aiplorer has 55 reviewed public tool pages and three draft-only pages.
 
 | Last reviewed | Reviewed pages |
 | --- | ---: |
-| 2026-06-02 | 4 |
 | 2026-07-25 | 51 |
+| 2026-07-26 | 4 |
 | **Total** | **55** |
 
 All 55 reviewed pages have:
@@ -186,19 +186,42 @@ analytics, consent, account connections, uploaded source material, and
 third-party processing. They continue to avoid pricing, limit, quality, export,
 commercial-use, privacy, security, and availability guarantees.
 
-## Later Batches
+## Completed Cross-Category Freshness Batch
 
-Continue with this order:
+The final freshness batch covered the four remaining reviewed pages:
 
-1. Canva AI
-2. Grammarly
-3. DeepL
-4. ElevenLabs
+- Canva AI
+- Grammarly
+- DeepL
+- ElevenLabs
 
-These are the four remaining reviewed pages dated 2026-06-02. Review them as a
-small cross-category freshness batch, then return to risk-based monitoring of
-the 51 pages already reviewed on 2026-07-25 unless a product announces a major
-identity, shutdown, pricing-model, privacy, or availability change first.
+All four pages were reviewed against current official sources on 2026-07-26
+and remain published. All 55 reviewed public tool pages now have a current
+official-source review dated 2026-07-25 or 2026-07-26.
+
+Canva AI now reflects its current conversational creation scope and adds
+cautions around connected tools, licensed content, provenance, technology
+partners, and privacy settings. Grammarly now reflects generative assistance
+and agent-style writing workflows, with stronger cautions around citations,
+detectors, product improvement, and training controls.
+
+DeepL now documents its broader Translator, Write, Voice, API, app, and
+integration scope while adding plan-specific infrastructure, processing-region,
+subprocessor, and data-residency cautions. ElevenLabs now reflects its broader
+creative, speech, transcription, generative audio, agent, and API scope while
+adding disclosure, consent, recording, retention, redaction, data-use,
+provenance, and impersonation cautions.
+
+The pages continue to avoid exact pricing, limits, model details, quality or
+accuracy claims, feature availability promises, commercial-use conclusions,
+privacy or security guarantees, and data-retention guarantees.
+
+## Ongoing Monitoring
+
+Return to risk-based monitoring of all 55 reviewed pages. Prioritize a page
+when an official source announces a major product identity change, shutdown,
+pricing or credit model change, privacy or training-policy change, security or
+data-residency change, or material availability change.
 
 ## Draft Policy
 
@@ -214,7 +237,7 @@ Production builds and the production sitemap must continue to exclude:
 
 ## Next Phase
 
-Run an official-source freshness review of Canva AI, Grammarly, DeepL, and
-ElevenLabs, the four remaining reviewed pages dated 2026-06-02. Preserve
-SciSpace and Tome as drafts unless stable official product, help, pricing,
-privacy, security, and policy sources support separate publication reviews.
+Validate and deploy the completed freshness review, then monitor the 55
+reviewed pages by risk and change signals. Preserve SciSpace and Tome as drafts
+unless stable official product, help, pricing, privacy, security, and policy
+sources support separate publication reviews.
