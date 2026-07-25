@@ -1050,3 +1050,61 @@ sources and citations, confirming claims and audience fit, following brand and
 copyright requirements, protecting private or customer data, and recognizing
 that search-oriented suggestions do not guarantee rankings, visibility,
 traffic, conversions, or business results.
+
+## Business Tools Draft Batch
+
+Five `Business Tools` pages were added as draft-first candidates:
+
+- HubSpot Breeze
+- Salesforce Agentforce
+- Zoho Zia
+- Shopify Sidekick
+- Fin
+
+Current status:
+
+```yaml
+content/ai-tools/tools/hubspot-breeze.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+
+content/ai-tools/tools/salesforce-agentforce.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+
+content/ai-tools/tools/zoho-zia.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+
+content/ai-tools/tools/shopify-sidekick.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+
+content/ai-tools/tools/fin.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+```
+
+These pages remain unpublished. They are not linked from the AI Tools landing
+page, Business Tools category page, reviewed-tools index, or global navigation.
+The former Shopify Magic URL currently redirects to Shopify Sidekick, so the
+draft uses the current Sidekick name. Official Fin and Intercom pages indicate
+that Fin is the current name used for the customer-service AI product and
+company context.
+
+Before publication, review each vendor's official product, pricing, help,
+privacy, security, and terms pages. Avoid or verify claims about exact pricing,
+plans, limits, credits, AI capabilities, CRM, commerce, or customer-service
+features, integrations, connected-account behavior, permissions, enterprise
+availability, security or data-handling guarantees, and exact availability.
+
+Special caution areas include testing generated business content and automated
+actions; reviewing customer-facing messages and decisions; protecting customer,
+employee, account, store, order, and confidential business data; checking
+connected-account permissions; defining escalation and rollback steps; and
+following privacy, legal, brand, license, compliance, and workplace policies.
