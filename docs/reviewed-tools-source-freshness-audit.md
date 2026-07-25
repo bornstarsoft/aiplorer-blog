@@ -270,6 +270,39 @@ Official source groups checked:
   privacy FAQ pages
 - Notion AI: product, FAQ, pricing, AI security, and general security pages
 
+## Priority 2 Coding Monitoring Check
+
+GitHub Copilot, Cursor, Windsurf/Devin Desktop, Replit, and Tabnine were
+rechecked on 2026-07-26 against current official product, documentation,
+pricing, data-use, privacy, security, responsible-use, or trust pages.
+
+The five public pages continue to use accurate high-level positioning and avoid
+exact prices, usage allowances, model-access claims, IDE promises, repository
+access promises, license-safety conclusions, and privacy or security
+guarantees. Their existing cautions still require generated-code review,
+testing, dependency checks, secret protection, private-repository care,
+license review, security review, and compliance with workplace policy. No
+public page change was required in this monitoring pass.
+
+GitHub's current official materials distinguish individual and organization
+data-use controls and describe contextual code or workspace information used
+to provide Copilot features. The existing Aiplorer page already directs users
+to current account, organization, model-provider, repository, data-use, and
+budget controls before proprietary code is sent, so no plan-specific claim was
+added.
+
+Official source groups checked:
+
+- GitHub Copilot: product, documentation, responsible-use, model-change, and
+  data-use information
+- Cursor: product, pricing, data-use, privacy, and security pages
+- Windsurf/Devin Desktop: product, getting-started, pricing, and Cognition
+  privacy pages
+- Replit: product, Agent, information-security, project-security, and privacy
+  pages
+- Tabnine: product, code-privacy, privacy-policy, license-protection, and trust
+  pages
+
 ## Ongoing Monitoring
 
 Return to risk-based monitoring of all 60 reviewed pages. Prioritize a page
