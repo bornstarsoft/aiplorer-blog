@@ -152,4 +152,19 @@ An audio and video editing tool that may help users plan, draft, and review spok
 {{< card title="Synthesia" href="/ai-tools/tools/synthesia/" label="Reviewed" >}}
 An AI video platform that may help users plan structured video drafts for training, presentations, and business communication.
 {{< /card >}}
+{{< card title="Adobe Firefly" href="/ai-tools/tools/adobe-firefly/" label="Reviewed" >}}
+An AI image and creative workflow tool that may help users explore visual concepts, image drafts, and design directions.
+{{< /card >}}
+{{< card title="Midjourney" href="/ai-tools/tools/midjourney/" label="Reviewed" >}}
+An AI image creation tool that may help users explore visual concepts, art directions, and image drafts.
+{{< /card >}}
+{{< card title="Ideogram" href="/ai-tools/tools/ideogram/" label="Reviewed" >}}
+An AI image creation tool that may help users explore visual concepts, image drafts, and design directions.
+{{< /card >}}
+{{< card title="Leonardo AI" href="/ai-tools/tools/leonardo-ai/" label="Reviewed" >}}
+An AI image and creative workflow tool that may help users explore visual concepts, image drafts, and design ideas.
+{{< /card >}}
+{{< card title="Stable Diffusion" href="/ai-tools/tools/stable-diffusion/" label="Reviewed" >}}
+A family of AI image models and related workflows that may help users explore visual concepts, image drafts, and creative directions.
+{{< /card >}}
 {{< /card-grid >}}

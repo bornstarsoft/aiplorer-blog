@@ -873,9 +873,10 @@ reviewing copyright and media licenses; following brand and workplace policy;
 protecting private, customer, employee, business, or confidential content; and
 checking current pricing, limits, privacy, security, and availability.
 
-## Image Tools Draft Batch
+## Image Tools Batch Review Result
 
-Phase 5AG added five `Image Tools` pages as draft-first validation pages:
+Phase 5AG added five `Image Tools` pages as draft-first validation pages. Phase
+5AH reviewed current official sources and published all five pages:
 
 - Adobe Firefly
 - Midjourney
@@ -887,40 +888,76 @@ Current status:
 
 ```yaml
 content/ai-tools/tools/adobe-firefly.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-07-25"
 
 content/ai-tools/tools/midjourney.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-07-25"
 
 content/ai-tools/tools/ideogram.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-07-25"
 
 content/ai-tools/tools/leonardo-ai.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-07-25"
 
 content/ai-tools/tools/stable-diffusion.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-07-25"
 ```
 
-The pages use the existing `Image Tools` category. They are not linked from
-public category, landing, navigation, or reviewed-index pages and must remain
-unpublished until official-source review is complete.
+The pages use the existing `Image Tools` category. Published pages are linked
+from the AI Tools landing page and Image Tools category page and are listed
+automatically in the reviewed-tools index. They were not added to global
+navigation.
 
-Official product, pricing, documentation or help, privacy, security, licensing,
-commercial-use, model, and policy sources must be checked for each tool before
-publication. Draft copy avoids exact prices, plan or usage limits, generation
+Official sources checked:
+
+- Adobe Firefly: `https://www.adobe.com/products/firefly.html`,
+  `https://helpx.adobe.com/firefly/web.html`,
+  `https://helpx.adobe.com/firefly/web/get-started/learn-the-basics/adobe-firefly-overview.html`,
+  `https://www.adobe.com/creativecloud/plans.html`,
+  `https://helpx.adobe.com/creative-cloud/apps/generative-ai/generative-credits-faq.html`,
+  `https://www.adobe.com/privacy/policy.html`, and
+  `https://www.adobe.com/cc-shared/assets/pdf/legal/servicetou/adobe-generative-ai-product-specific-terms-en-us-20260423.pdf`
+- Midjourney: `https://www.midjourney.com/`,
+  `https://docs.midjourney.com/hc/en-us`,
+  `https://docs.midjourney.com/hc/en-us/articles/27870484040333-Comparing-Midjourney-Plans`,
+  `https://docs.midjourney.com/hc/en-us/articles/32083055291277-Terms-of-Service`,
+  and `https://docs.midjourney.com/hc/en-us/articles/32083472637453-Privacy-Policy`
+- Ideogram: `https://ideogram.ai/`, `https://docs.ideogram.ai/`,
+  `https://docs.ideogram.ai/faq`, `https://ideogram.ai/pricing`,
+  `https://docs.ideogram.ai/plans-and-pricing/available-plans`,
+  `https://about.ideogram.ai/legal/tos`, and
+  `https://about.ideogram.ai/legal/privacy`
+- Leonardo AI: `https://leonardo.ai/`, `https://leonardo.ai/pricing`,
+  `https://intercom.help/leonardo-ai/en/`,
+  `https://intercom.help/leonardo-ai/en/articles/8942360-how-to-generate-images-with-leonardo-ai`,
+  `https://intercom.help/leonardo-ai/en/articles/8044029-private-public-images`,
+  `https://leonardo.ai/terms-of-service`, and
+  `https://leonardo.ai/privacy-policy`
+- Stable Diffusion and Stability AI: `https://stability.ai/core-models`,
+  `https://platform.stability.ai/docs/getting-started/stable-image`,
+  `https://kb.stability.ai/knowledge-base/self-hosting-101-deploying-stable-diffusion-models`,
+  `https://platform.stability.ai/pricing`, `https://stability.ai/license`,
+  `https://stability.ai/terms-of-service`, and
+  `https://stability.ai/privacypolicy`
+
+Stable Diffusion is described as a family of image models and related
+workflows, not as one fixed hosted application. Users must check the current
+license and terms for the specific model, service, access method, or hosted
+implementation they plan to use.
+
+Published copy avoids exact prices, plan or usage limits, detailed generation
 and editing feature claims, output claims, integrations, access and hosting
-details, model details, security guarantees, licensing guarantees,
+details, model specifications, security guarantees, licensing guarantees,
 commercial-use rights, and exact availability.
 
 Special caution areas include reviewing generated and edited images; checking

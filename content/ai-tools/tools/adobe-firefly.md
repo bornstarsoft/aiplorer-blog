@@ -14,8 +14,8 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Plans, pricing, usage limits, image options, output support, licensing terms, commercial-use rules, and availability may change. Check official Adobe Firefly pages for current details."
 officialUrl: "https://www.adobe.com/products/firefly.html"
-lastReviewed: ""
-draft: true
+lastReviewed: "2026-07-25"
+draft: false
 useCases:
   - Prepare a rough visual concept before production
   - Explore image ideas for a design brief
@@ -31,23 +31,24 @@ limitations:
   - Facts, text, brand use, likeness and consent, copyright, media licenses, and commercial-use requirements should be checked carefully
   - Sensitive, private, customer, or confidential images and prompts should be handled carefully
   - Plans, pricing, limits, image options, outputs, integrations, model details, security details, and availability may change
-  - Official Adobe Firefly sources must be reviewed before this page is published
+  - Official Adobe Firefly pages should be checked for current product, plan, licensing, privacy, security, and availability details
 similarTools:
   - Midjourney
   - Ideogram
   - Leonardo AI
   - Canva AI
-reviewStatus: "needs-official-review"
+reviewStatus: "reviewed"
 sourceNotes:
-  - "Draft-first page. Official Adobe Firefly product, pricing, help or documentation, privacy, security, licensing, and policy sources must be checked before publication."
-  - "Do not publish until claims about pricing, plan limits, image generation or editing features, outputs, integrations, model details, licensing, commercial use, privacy, security, and exact availability have been avoided or verified against official sources."
+  - "Checked https://www.adobe.com/products/firefly.html, https://helpx.adobe.com/firefly/web.html, and https://helpx.adobe.com/firefly/web/get-started/learn-the-basics/adobe-firefly-overview.html on 2026-07-25 for official Firefly product and creative workflow context."
+  - "Checked https://www.adobe.com/creativecloud/plans.html and https://helpx.adobe.com/creative-cloud/apps/generative-ai/generative-credits-faq.html on 2026-07-25 for current plan, pricing, credit, limit, and access context without copying exact details into this page."
+  - "Checked https://www.adobe.com/privacy/policy.html and https://www.adobe.com/cc-shared/assets/pdf/legal/servicetou/adobe-generative-ai-product-specific-terms-en-us-20260423.pdf on 2026-07-25 for privacy, input, output, licensing, consent, and commercial-use context without copying guarantees or detailed legal conclusions."
 ---
 
 ## Overview
 
 Adobe Firefly is an AI image and creative workflow tool that may help users explore visual concepts, image drafts, and design directions. It may be useful for creators, marketers, designers, educators, and teams preparing early visual ideas before final production.
 
-This is a draft page. Official Adobe Firefly sources must be checked before publication, especially for current plans, pricing, limits, image and editing options, outputs, integrations, model details, privacy, security, licensing, commercial-use rules, and availability.
+Official Adobe Firefly sources were reviewed for this page on 2026-07-25. Current plans, pricing, limits, image and editing options, outputs, integrations, model details, privacy, security, licensing, commercial-use rules, and availability should still be checked before choosing or relying on the service.
 
 ## Useful For
 

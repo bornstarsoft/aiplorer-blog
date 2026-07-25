@@ -14,8 +14,8 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Plans, pricing, usage limits, image options, output support, licensing terms, commercial-use rules, and availability may change. Check official Ideogram pages for current details."
 officialUrl: "https://ideogram.ai/"
-lastReviewed: ""
-draft: true
+lastReviewed: "2026-07-25"
+draft: false
 useCases:
   - Prepare a rough visual concept before production
   - Explore image ideas for a creative brief
@@ -31,23 +31,24 @@ limitations:
   - Facts, text, brand use, likeness and consent, copyright, media licenses, and commercial-use requirements should be checked carefully
   - Sensitive, private, customer, or confidential images and prompts should be handled carefully
   - Plans, pricing, limits, image options, outputs, integrations, model details, security details, and availability may change
-  - Official Ideogram sources must be reviewed before this page is published
+  - Official Ideogram pages should be checked for current product, plan, licensing, privacy, security, and availability details
 similarTools:
   - Adobe Firefly
   - Midjourney
   - Leonardo AI
   - Stable Diffusion
-reviewStatus: "needs-official-review"
+reviewStatus: "reviewed"
 sourceNotes:
-  - "Draft-first page. Official Ideogram product, pricing, help or documentation, privacy, security, licensing, and policy sources must be checked before publication."
-  - "Do not publish until claims about pricing, plan limits, image generation or editing features, outputs, integrations, model details, licensing, commercial use, privacy, security, and exact availability have been avoided or verified against official sources."
+  - "Checked https://ideogram.ai/, https://docs.ideogram.ai/, and https://docs.ideogram.ai/faq on 2026-07-25 for official image creation, help, and creative workflow context."
+  - "Checked https://ideogram.ai/pricing and https://docs.ideogram.ai/plans-and-pricing/available-plans on 2026-07-25 for current plan, credit, limit, visibility, and availability context without copying exact details into this page."
+  - "Checked https://about.ideogram.ai/legal/tos and https://about.ideogram.ai/legal/privacy on 2026-07-25 for input, output, consent, intellectual-property, privacy, and service-change context without copying guarantees or detailed legal conclusions."
 ---
 
 ## Overview
 
 Ideogram is an AI image creation tool that may help users explore visual concepts, image drafts, and design directions. It may be useful for creators, marketers, designers, educators, and teams preparing early visual ideas before final production.
 
-This is a draft page. Official Ideogram sources must be checked before publication, especially for current plans, pricing, limits, image and editing options, outputs, integrations, model details, privacy, security, licensing, commercial-use rules, and availability.
+Official Ideogram sources were reviewed for this page on 2026-07-25. Current plans, pricing, limits, image and editing options, outputs, integrations, model details, privacy, security, licensing, commercial-use rules, and availability should still be checked before choosing or relying on the service.
 
 ## Useful For
 

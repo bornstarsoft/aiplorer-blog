@@ -1,6 +1,6 @@
 ---
 title: "Stable Diffusion"
-description: "Stable Diffusion is associated with AI image generation workflows that may help users explore visual concepts, image drafts, and creative directions."
+description: "Stable Diffusion is a family of AI image models and related workflows that may help users explore visual concepts, image drafts, and creative directions."
 type: "ai-tools"
 layout: "tool"
 category: "Image Tools"
@@ -13,9 +13,9 @@ bestFor:
 beginnerFriendly: null
 freePlan: null
 pricingNote: "Products, services, pricing, usage limits, access options, licensing terms, commercial-use rules, and availability may change. Check official Stability AI pages for current details."
-officialUrl: "https://stability.ai/"
-lastReviewed: ""
-draft: true
+officialUrl: "https://stability.ai/core-models"
+lastReviewed: "2026-07-25"
+draft: false
 useCases:
   - Explore an early visual concept
   - Prepare rough image ideas before production
@@ -31,23 +31,24 @@ limitations:
   - Facts, text, brand use, likeness and consent, copyright, media licenses, and commercial-use requirements should be checked carefully
   - Sensitive, private, customer, or confidential images, prompts, systems, and files should be handled carefully
   - Products, pricing, limits, access options, hosting details, dependencies, model details, security details, and availability may change
-  - Official Stability AI sources must be reviewed before this page is published
+  - Official Stability AI pages and the license for the specific model or service should be checked before use
 similarTools:
   - Adobe Firefly
   - Midjourney
   - Ideogram
   - Leonardo AI
-reviewStatus: "needs-official-review"
+reviewStatus: "reviewed"
 sourceNotes:
-  - "Draft-first page. Official Stability AI product, pricing, help or documentation, privacy, security, licensing, model, and policy sources must be checked before publication."
-  - "Do not publish until claims about products, pricing, plan or usage limits, access and hosting options, image features, outputs, dependencies, model details, licensing, commercial use, privacy, security, and exact availability have been avoided or verified against official sources."
+  - "Checked https://stability.ai/core-models, https://platform.stability.ai/docs/getting-started/stable-image, and https://kb.stability.ai/knowledge-base/self-hosting-101-deploying-stable-diffusion-models on 2026-07-25 for official Stable Diffusion model-family, hosted-service, and self-hosted workflow context."
+  - "Checked https://platform.stability.ai/pricing on 2026-07-25 for current service, credit, model, and availability context without copying exact details into this page."
+  - "Checked https://stability.ai/license, https://stability.ai/terms-of-service, and https://stability.ai/privacypolicy on 2026-07-25 for model-specific licensing, input, output, privacy, and service-change context without copying guarantees or detailed legal conclusions."
 ---
 
 ## Overview
 
-Stable Diffusion is associated with AI image generation workflows that may help users explore visual concepts, image drafts, and creative directions. It may be relevant to creators, developers, designers, educators, and teams comparing image workflow approaches before real project use.
+Stable Diffusion is a family of AI image models and related workflows that may help users explore visual concepts, image drafts, and creative directions. It may be relevant to creators, developers, designers, educators, and teams comparing hosted or self-managed image workflow approaches before real project use.
 
-This is a draft page. Official Stability AI sources must be checked before publication, especially for current products, services, pricing, limits, access and hosting options, image features, outputs, dependencies, model details, privacy, security, licensing, commercial-use rules, and availability.
+Official Stability AI sources were reviewed for this page on 2026-07-25. Current products, services, pricing, limits, access and hosting options, image features, outputs, dependencies, model details, privacy, security, licensing, commercial-use rules, and availability should still be checked before choosing or relying on a specific model or service.
 
 ## Useful For
 

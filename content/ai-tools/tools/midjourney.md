@@ -14,8 +14,8 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Plans, pricing, usage limits, image options, output support, licensing terms, commercial-use rules, and availability may change. Check official Midjourney pages for current details."
 officialUrl: "https://www.midjourney.com/"
-lastReviewed: ""
-draft: true
+lastReviewed: "2026-07-25"
+draft: false
 useCases:
   - Explore an early visual concept
   - Prepare rough image ideas before production
@@ -31,23 +31,24 @@ limitations:
   - Facts, text, brand use, likeness and consent, copyright, media licenses, and commercial-use requirements should be checked carefully
   - Sensitive, private, customer, or confidential images and prompts should be handled carefully
   - Plans, pricing, limits, image options, outputs, access methods, model details, security details, and availability may change
-  - Official Midjourney sources must be reviewed before this page is published
+  - Official Midjourney pages should be checked for current product, plan, licensing, privacy, security, and availability details
 similarTools:
   - Adobe Firefly
   - Ideogram
   - Leonardo AI
   - Stable Diffusion
-reviewStatus: "needs-official-review"
+reviewStatus: "reviewed"
 sourceNotes:
-  - "Draft-first page. Official Midjourney product, pricing, help or documentation, privacy, security, licensing, and policy sources must be checked before publication."
-  - "Do not publish until claims about pricing, plan limits, image features, outputs, access methods, model details, licensing, commercial use, privacy, security, and exact availability have been avoided or verified against official sources."
+  - "Checked https://www.midjourney.com/ and https://docs.midjourney.com/hc/en-us on 2026-07-25 for official image creation, access, help, and workflow context."
+  - "Checked https://docs.midjourney.com/hc/en-us/articles/27870484040333-Comparing-Midjourney-Plans on 2026-07-25 for current plan, usage, visibility, limit, and rights context without copying exact details into this page."
+  - "Checked https://docs.midjourney.com/hc/en-us/articles/32083055291277-Terms-of-Service and https://docs.midjourney.com/hc/en-us/articles/32083472637453-Privacy-Policy on 2026-07-25 for input, output, consent, intellectual-property, privacy, and service-change context without copying guarantees or detailed legal conclusions."
 ---
 
 ## Overview
 
 Midjourney is an AI image creation tool that may help users explore visual concepts, art directions, and image drafts. It may be useful for creators, marketers, designers, educators, and teams preparing early image ideas before final production.
 
-This is a draft page. Official Midjourney sources must be checked before publication, especially for current plans, pricing, limits, image options, outputs, access methods, model details, privacy, security, licensing, commercial-use rules, and availability.
+Official Midjourney sources were reviewed for this page on 2026-07-25. Current plans, pricing, limits, image options, outputs, access methods, model details, privacy, security, licensing, commercial-use rules, and availability should still be checked before choosing or relying on the service.
 
 ## Useful For
 
