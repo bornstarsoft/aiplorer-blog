@@ -14,7 +14,8 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Relay.app has announced that free-user access ends on August 15, 2026 and paying-customer access ends on September 14, 2026. New signups and upgrades are disabled. Existing users should check the official shutdown and export guidance for current transition details."
 officialUrl: "https://www.relay.app/"
-lastReviewed: "2026-07-25"
+lastReviewed: "2026-07-26"
+lastmod: "2026-07-26T00:00:00+09:00"
 draft: false
 useCases:
   - Export existing workflows, run history, and table data
@@ -38,9 +39,9 @@ similarTools:
   - Pipedream
 reviewStatus: "reviewed"
 sourceNotes:
-  - "Checked https://www.relay.app/ on 2026-07-25 for the official shutdown announcement, wind-down dates, disabled signup and upgrade status, export guidance, account deletion details, and transition support information."
-  - "Checked https://docs.relay.app/workspace-and-account/export-your-relay.app-data on 2026-07-25 for official export guidance covering workspace workflows, run history, and table data."
-  - "Checked https://www.relay.app/security and https://www.relay.app/privacy on 2026-07-25 for official security and privacy context during the transition. Security guarantees, data handling guarantees beyond the shutdown notice, and assumptions about post-shutdown availability were not added."
+  - "Checked https://www.relay.app/ on 2026-07-26 for the current official shutdown announcement, wind-down dates, disabled signup and upgrade status, export guidance, account deletion details, connected-app credential deletion, and transition support information."
+  - "Checked https://docs.relay.app/workspace-and-account/export-your-relay.app-data on 2026-07-26 for current workspace, workflow, run-history, table, prompt, JSON, screenshot, account, and workspace export or deletion guidance without treating exports as complete or directly portable."
+  - "Checked https://www.relay.app/legal, https://www.relay.app/security, and https://www.relay.app/privacy on 2026-07-26. Their www URLs redirected to apex paths that returned HTTP 404 in direct checks, so this review relies on the live shutdown notice and export documentation for current transition and data-deletion context and does not add privacy or security guarantees."
 ---
 
 ## Overview

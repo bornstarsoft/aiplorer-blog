@@ -216,6 +216,29 @@ The pages continue to avoid exact pricing, limits, model details, quality or
 accuracy claims, feature availability promises, commercial-use conclusions,
 privacy or security guarantees, and data-retention guarantees.
 
+## Priority 1 Monitoring Check
+
+Relay.app and Windsurf were rechecked on 2026-07-26 as the first active
+transition monitoring pair.
+
+Relay.app's live shutdown notice continues to state the same August and
+September 2026 wind-down dates, disabled signup and upgrade status, export
+options, account and data deletion behavior, connected-app credential deletion,
+and transition support. Its current export documentation remains reachable and
+adds detailed workspace, workflow, run-history, table, prompt, JSON, screenshot,
+account, and workspace guidance. The former `www` legal, security, and privacy
+URLs now redirect to apex paths that returned HTTP 404 in direct checks, so
+they are no longer treated as live supporting sources. The public page remains
+transition guidance and should be rechecked before the first announced access
+deadline.
+
+The Devin Desktop product page continues to state that Devin Desktop is the new
+name for Windsurf, while Cognition's announcement describes it as the next
+generation of Windsurf. The former Windsurf product, docs, and pricing URLs
+redirect to current Devin pages. Current product, getting-started, pricing, and
+privacy pages support the existing cautious transition description. The
+Aiplorer `/ai-tools/tools/windsurf/` URL remains unchanged for continuity.
+
 ## Ongoing Monitoring
 
 Return to risk-based monitoring of all 55 reviewed pages. Prioritize a page

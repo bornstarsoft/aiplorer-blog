@@ -14,8 +14,8 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Plans, pricing, usage allowances, agent or model access, editor availability, repository access, team options, security details, data handling, and feature availability may change. Check official Devin Desktop pages for current details."
 officialUrl: "https://devin.ai/desktop"
-lastReviewed: "2026-07-25"
-lastmod: "2026-07-25"
+lastReviewed: "2026-07-26"
+lastmod: "2026-07-26T00:00:00+09:00"
 draft: false
 useCases:
   - Draft code ideas before human review
@@ -38,10 +38,10 @@ similarTools:
   - Tabnine
 reviewStatus: "reviewed"
 sourceNotes:
-  - "Checked https://devin.ai/desktop on 2026-07-25 for the official statement that Devin Desktop is the new name for Windsurf and for current high-level IDE, local-agent, cloud-agent, review, and developer-workflow positioning."
-  - "Checked https://docs.devin.ai/desktop/getting-started on 2026-07-25 for current Devin Desktop editor, agent, model, terminal, review, and onboarding context without copying exact platform, model, extension, or feature availability."
-  - "Checked https://devin.ai/pricing on 2026-07-25 for current plan, pricing, usage, model, agent, team, and enterprise context without copying exact prices, quotas, limits, model availability, or plan comparisons."
-  - "Checked https://cognition.com/legal/privacy-policy on 2026-07-25 for current privacy context without copying privacy, retention, data-handling, or security guarantees."
+  - "Checked https://devin.ai/desktop and https://cognition.com/blog/introducing-devin-desktop on 2026-07-26 for the current official statement that Devin Desktop is the new name and next generation of Windsurf, while the Windsurf IDE foundation and existing Aiplorer URL remain relevant transition context."
+  - "Checked https://docs.devin.ai/desktop/getting-started on 2026-07-26 for current Devin Desktop editor, local-agent, terminal, review, onboarding, platform, extension, and prerelease context without copying exact requirements, models, or feature availability."
+  - "Checked https://devin.ai/pricing on 2026-07-26 for current plan, pricing, usage, model, agent, collaboration, team, and enterprise context without copying exact prices, quotas, limits, model availability, or plan comparisons."
+  - "Checked https://cognition.com/legal/privacy-policy on 2026-07-26 for current privacy, user-content, account, organization, model-improvement, retention, transfer, and security context without copying privacy, retention, data-handling, or security guarantees."
 ---
 
 ## Overview
