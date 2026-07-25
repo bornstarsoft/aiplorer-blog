@@ -303,6 +303,39 @@ Official source groups checked:
 - Tabnine: product, code-privacy, privacy-policy, license-protection, and trust
   pages
 
+## Priority 2 Automation Monitoring Check
+
+Zapier, Make, n8n, IFTTT, Pipedream, Bardeen, and Relay.app were rechecked on
+2026-07-26 against current official product, documentation, pricing, help,
+privacy, security, or shutdown-transition pages.
+
+Zapier, Make, n8n, IFTTT, Pipedream, and Relay.app required no public page
+change. Their existing descriptions and cautions remain consistent with
+current official positioning. The pages continue to require workflow testing
+and careful handling of connected accounts, app permissions, customer or
+business data, workflow failures, changing limits, pricing, security details,
+and availability.
+
+Bardeen's current official positioning more strongly emphasizes go-to-market
+teams and workflows for lead research, data enrichment, outreach preparation,
+customer success, and revenue operations. Its public page was narrowed to
+reflect that current focus while retaining the Automation Tools category and
+the existing permission, data, reliability, pricing, and security cautions.
+
+Official source groups checked:
+
+- Zapier: product, features, pricing, help, and security pages
+- Make: product, pricing, operations help, and security pages
+- n8n: product, pricing, documentation, and security pages
+- IFTTT: product, plans, account-security, privacy, and terms pages
+- Pipedream: product, privacy-and-security, and security best-practice pages
+- Bardeen: product, pricing, help, security, and privacy pages
+- Relay.app: current shutdown notice and transition guidance
+
+No exact prices, limits, integration counts, feature-availability promises,
+retention guarantees, or privacy and security guarantees were added during
+this monitoring pass.
+
 ## Ongoing Monitoring
 
 Return to risk-based monitoring of all 60 reviewed pages. Prioritize a page
