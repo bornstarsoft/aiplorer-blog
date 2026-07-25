@@ -10,6 +10,8 @@ settings.
 Process the queue only as Search Console quota allows. Record the inspection
 result before requesting indexing, and request indexing only for an intended
 public URL whose rendered page, canonical, and sitemap entry are correct.
+Record authenticated inspection results in
+`docs/search-console-url-inspection-results.md`.
 
 ## Public Readiness Check
 
