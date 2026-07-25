@@ -13,8 +13,9 @@ bestFor:
 beginnerFriendly: null
 freePlan: null
 pricingNote: "Plans, pricing, credits, usage limits, export options, licensing terms, commercial-use rules, and availability may change. Check official Runway pages for current details."
-officialUrl: "https://runwayml.com/"
+officialUrl: "https://runway.com/"
 lastReviewed: "2026-07-25"
+lastmod: "2026-07-26T00:00:00+09:00"
 draft: false
 useCases:
   - Prepare a rough visual concept before production
@@ -39,6 +40,7 @@ similarTools:
   - Synthesia
 reviewStatus: "reviewed"
 sourceNotes:
+  - "Confirmed on 2026-07-26 that the former official domain https://runwayml.com/ redirects to the current official Runway site at https://runway.com/."
   - "Checked https://runwayml.com/ on 2026-07-25 for official product positioning and high-level creative and video workflow context."
   - "Checked https://runwayml.com/pricing and https://help.runwayml.com/hc/en-us/articles/21664961171475-Which-plan-is-right-for-me on 2026-07-25 for current plan, credit, limit, and export context without copying exact details into this page."
   - "Checked https://help.runwayml.com/hc/en-us and https://help.runwayml.com/hc/en-us/articles/37425232841875-Getting-Started-with-Generative-Video on 2026-07-25 for official help and generative video workflow context."

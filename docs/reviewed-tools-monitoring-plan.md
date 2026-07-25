@@ -140,6 +140,12 @@ For each monitoring batch, record:
 The source freshness audit remains the historical review log. This plan governs
 the next recurring review cycle.
 
+The official URL health baseline is recorded in
+`docs/reviewed-tools-official-url-health.md`. Recheck official destinations
+before each scheduled review batch and when a rename, shutdown, acquisition, or
+domain move is announced. Treat command-line HTTP 403 responses as a prompt for
+manual browser verification, not as automatic evidence that a link is broken.
+
 ## Draft Policy
 
 SciSpace and Tome remain draft pending stable, sufficient official sources.
