@@ -12,10 +12,10 @@ bestFor:
   - Reviewing account permissions and data risks
 beginnerFriendly: null
 freePlan: null
-pricingNote: "Plans, pricing, limits, supported products, AI capabilities, and availability may change. Check official Zoho pages for current details before publishing."
+pricingNote: "Plans, pricing, limits, supported products, AI capabilities, and availability may change. Check official Zoho pages for current details."
 officialUrl: "https://www.zoho.com/zia/"
-lastReviewed: ""
-draft: true
+lastReviewed: "2026-07-25"
+draft: false
 useCases:
   - Draft business messages for human review
   - Prepare workflow or reporting notes
@@ -31,24 +31,23 @@ limitations:
   - Supported products, AI capabilities, connected-account behavior, and availability may change
   - Customer, employee, account, and confidential business data should be handled carefully
   - Plans, pricing, limits, integrations, security details, and exact availability may change
-  - Official Zoho sources must be reviewed before this page is published
 similarTools:
   - HubSpot Breeze
   - Salesforce Agentforce
   - Notion AI
   - Microsoft Copilot
-reviewStatus: "needs-official-review"
+reviewStatus: "reviewed"
 sourceNotes:
-  - "Draft-first page. The official Zoho Zia page was checked to confirm the current product name and official URL."
-  - "Official Zoho product, pricing, help, privacy, security, and terms pages must be reviewed before publication."
-  - "Do not publish until claims about plans, pricing, limits, supported products, AI capabilities, permissions, data handling, integrations, security, and availability have been avoided or verified against official sources."
+  - "Checked https://www.zoho.com/zia/, https://www.zoho.com/zia/generative/, https://www.zoho.com/zia/ask.html, and https://help.zoho.com/portal/en/kb/zia/frequently-asked-questions on 2026-07-25 for official Zia positioning, supported-workflow context, and availability context."
+  - "Checked https://www.zoho.com/privacy.html and https://www.zoho.com/security.html on 2026-07-25 for official privacy and security context."
+  - "Did not copy exact prices, plan or usage limits, supported-product lists, AI capability details, permission behavior, integrations, security or data-handling guarantees, model details, or exact availability claims."
 ---
 
 ## Overview
 
 Zoho Zia is an AI assistant for business software that may help users prepare drafts, review information, and support business workflows. It may be useful for teams exploring AI assistance for routine business tasks.
 
-This is a draft page. Official Zoho sources must be checked before publication, especially for current plans, pricing, limits, supported products, AI capabilities, permissions, data handling, security details, and availability.
+Zoho's plans, pricing, limits, supported products, AI capabilities, permissions, data handling, security terms, and availability may change. Check official Zoho pages before relying on a specific capability or policy.
 
 ## Useful For
 

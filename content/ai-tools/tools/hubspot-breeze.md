@@ -12,10 +12,10 @@ bestFor:
   - Reviewing customer-data and permission risks
 beginnerFriendly: null
 freePlan: null
-pricingNote: "Plans, pricing, limits, included AI capabilities, connected-product access, and availability may change. Check official HubSpot pages for current details before publishing."
+pricingNote: "Plans, pricing, limits, included AI capabilities, connected-product access, and availability may change. Check official HubSpot pages for current details."
 officialUrl: "https://www.hubspot.com/products/artificial-intelligence"
-lastReviewed: ""
-draft: true
+lastReviewed: "2026-07-25"
+draft: false
 useCases:
   - Draft marketing or sales material for human review
   - Prepare customer-service response ideas
@@ -31,24 +31,23 @@ limitations:
   - Connected-account behavior, permissions, AI capabilities, and product availability may change
   - Customer, employee, sales, marketing, and confidential business data should be handled carefully
   - Plans, pricing, limits, integrations, security details, and exact availability may change
-  - Official HubSpot sources must be reviewed before this page is published
 similarTools:
   - Salesforce Agentforce
   - Zoho Zia
   - Zapier
   - Notion AI
-reviewStatus: "needs-official-review"
+reviewStatus: "reviewed"
 sourceNotes:
-  - "Draft-first page. The official HubSpot AI product page was checked to confirm the current Breeze name and official URL."
-  - "Official HubSpot product, pricing, help, privacy, security, and terms pages must be reviewed before publication."
-  - "Do not publish until claims about plans, pricing, limits, AI capabilities, connected products, permissions, data handling, integrations, security, and availability have been avoided or verified against official sources."
+  - "Checked https://www.hubspot.com/products/artificial-intelligence, https://knowledge.hubspot.com/ai/understand-breeze, and https://www.hubspot.com/pricing on 2026-07-25 for official Breeze positioning, account-access context, and current plan context."
+  - "Checked https://www.hubspot.com/security-and-compliance, https://legal.hubspot.com/privacy-policy, and https://legal.hubspot.com/legal-center on 2026-07-25 for official security, privacy, and terms context."
+  - "Did not copy exact prices, plan or usage limits, AI capability details, connected-product coverage, permission behavior, integrations, security or data-handling guarantees, model details, or exact availability claims."
 ---
 
 ## Overview
 
 HubSpot Breeze is a set of AI-related business tools that may help users prepare marketing, sales, and customer-service work for review. It may be useful for teams exploring how AI support could fit into existing business workflows.
 
-This is a draft page. Official HubSpot sources must be checked before publication, especially for current plans, pricing, limits, product access, permissions, data handling, security details, and availability.
+HubSpot's plans, pricing, limits, product access, permissions, data handling, security terms, and availability may change. Check official HubSpot pages before relying on a specific capability or policy.
 
 ## Useful For
 

@@ -12,10 +12,10 @@ bestFor:
   - Evaluating store permissions and data risks
 beginnerFriendly: null
 freePlan: null
-pricingNote: "Plans, pricing, usage limits, commerce capabilities, store access, and availability may change. Check official Shopify pages for current details before publishing."
+pricingNote: "Plans, pricing, usage limits, commerce capabilities, store access, and availability may change. Check official Shopify pages for current details."
 officialUrl: "https://www.shopify.com/sidekick"
-lastReviewed: ""
-draft: true
+lastReviewed: "2026-07-25"
+draft: false
 useCases:
   - Draft store or product content for human review
   - Prepare commerce workflow ideas
@@ -31,24 +31,23 @@ limitations:
   - Commerce capabilities, store access, permissions, and availability may change
   - Customer, order, product, payment-related, and confidential business data should be handled carefully
   - Plans, pricing, limits, integrations, security details, and exact availability may change
-  - Official Shopify sources must be reviewed before this page is published
 similarTools:
   - HubSpot Breeze
   - Fin
   - Canva AI
   - Zapier
-reviewStatus: "needs-official-review"
+reviewStatus: "reviewed"
 sourceNotes:
-  - "Draft-first page. The former Shopify Magic URL was checked and currently redirects to the official Shopify Sidekick page, so this draft uses the current Sidekick name."
-  - "Official Shopify product, pricing, help, privacy, security, and terms pages must be reviewed before publication."
-  - "Do not publish until claims about plans, pricing, limits, commerce capabilities, store access, permissions, data handling, integrations, security, brand use, and availability have been avoided or verified against official sources."
+  - "Checked https://www.shopify.com/sidekick, https://help.shopify.com/en/manual/shopify-admin/productivity-tools/sidekick, https://help.shopify.com/en/manual/shopify-admin/productivity-tools/sidekick/set-up, and https://www.shopify.com/pricing on 2026-07-25 for official Sidekick positioning, review-and-approval behavior, permission context, and current plan context."
+  - "Checked https://help.shopify.com/en/manual/privacy-and-security/, https://www.shopify.com/security, and https://www.shopify.com/legal/privacy on 2026-07-25 for official privacy, merchant-responsibility, and security context."
+  - "Did not copy exact prices, plan or usage limits, commerce capability details, store-access behavior, integrations, security or data-handling guarantees, generated-app details, brand or commercial claims, or exact availability claims."
 ---
 
 ## Overview
 
 Shopify Sidekick is an AI assistant for commerce workflows that may help merchants prepare store content and business tasks for review. It may be useful for exploring how AI support could fit into store management, marketing, and operational planning.
 
-This is a draft page. Official Shopify sources must be checked before publication, especially for current plans, pricing, limits, commerce capabilities, store access, permissions, data handling, security details, and availability.
+Shopify's plans, pricing, limits, commerce capabilities, store access, permissions, data handling, security terms, and availability may change. Check official Shopify pages before relying on a specific capability or policy.
 
 ## Useful For
 

@@ -12,10 +12,10 @@ bestFor:
   - Evaluating permissions and connected-data risks
 beginnerFriendly: null
 freePlan: null
-pricingNote: "Plans, pricing, usage limits, AI agent capabilities, connected-product access, and availability may change. Check official Salesforce pages for current details before publishing."
+pricingNote: "Plans, pricing, usage limits, AI agent capabilities, connected-product access, and availability may change. Check official Salesforce pages for current details."
 officialUrl: "https://www.salesforce.com/agentforce/"
-lastReviewed: ""
-draft: true
+lastReviewed: "2026-07-25"
+draft: false
 useCases:
   - Plan customer-service workflow drafts
   - Prepare sales or operational process ideas
@@ -31,24 +31,23 @@ limitations:
   - Agent capabilities, connected-product behavior, permissions, and availability may change
   - Customer, employee, account, and confidential business data should be handled carefully
   - Plans, pricing, limits, integrations, security details, and exact availability may change
-  - Official Salesforce sources must be reviewed before this page is published
 similarTools:
   - HubSpot Breeze
   - Zoho Zia
   - Zapier
   - Make
-reviewStatus: "needs-official-review"
+reviewStatus: "reviewed"
 sourceNotes:
-  - "Draft-first page. The official Salesforce Agentforce page was checked to confirm the current product name and official URL."
-  - "Official Salesforce product, documentation, pricing, help, privacy, security, and terms pages must be reviewed before publication."
-  - "Do not publish until claims about plans, pricing, limits, agent capabilities, connected products, permissions, data handling, integrations, security, and availability have been avoided or verified against official sources."
+  - "Checked https://www.salesforce.com/agentforce/, https://www.salesforce.com/agentforce/how-it-works/, and https://www.salesforce.com/agentforce/pricing/ on 2026-07-25 for official product positioning, workflow context, and current pricing-model context."
+  - "Checked https://help.salesforce.com/s/articleView?id=005315874&language=en_US&type=1, https://www.salesforce.com/en-us/wp-content/uploads/sites/4/documents/legal/Privacy/agentforce-privacy-FAQ.pdf, and https://compliance.salesforce.com/en/documents/a006e000014OxLFAA0 on 2026-07-25 for official shared-responsibility, privacy, permission, and security context."
+  - "Did not copy exact prices, plan or credit limits, agent capability details, connected-product coverage, permission behavior, integrations, security or data-handling guarantees, model details, enterprise availability, or exact availability claims."
 ---
 
 ## Overview
 
 Salesforce Agentforce is an AI agent and business workflow product that may help teams prepare customer, employee, and operational workflows for review. It may be useful for organizations considering how AI-assisted actions could fit into existing business processes.
 
-This is a draft page. Official Salesforce sources must be checked before publication, especially for current plans, pricing, limits, agent capabilities, connected-product access, permissions, data handling, security details, and availability.
+Salesforce's plans, pricing, limits, agent capabilities, connected-product access, permissions, data handling, security terms, and availability may change. Check official Salesforce pages before relying on a specific capability or policy.
 
 ## Useful For
 

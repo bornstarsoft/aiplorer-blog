@@ -1051,9 +1051,10 @@ copyright requirements, protecting private or customer data, and recognizing
 that search-oriented suggestions do not guarantee rankings, visibility,
 traffic, conversions, or business results.
 
-## Business Tools Draft Batch
+## Business Tools Batch Review Result
 
-Five `Business Tools` pages were added as draft-first candidates:
+Five `Business Tools` pages were added as draft-first candidates and then
+reviewed against current official sources:
 
 - HubSpot Breeze
 - Salesforce Agentforce
@@ -1065,43 +1066,76 @@ Current status:
 
 ```yaml
 content/ai-tools/tools/hubspot-breeze.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-07-25"
 
 content/ai-tools/tools/salesforce-agentforce.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-07-25"
 
 content/ai-tools/tools/zoho-zia.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-07-25"
 
 content/ai-tools/tools/shopify-sidekick.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-07-25"
 
 content/ai-tools/tools/fin.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-07-25"
 ```
 
-These pages remain unpublished. They are not linked from the AI Tools landing
-page, Business Tools category page, reviewed-tools index, or global navigation.
-The former Shopify Magic URL currently redirects to Shopify Sidekick, so the
-draft uses the current Sidekick name. Official Fin and Intercom pages indicate
-that Fin is the current name used for the customer-service AI product and
-company context.
+All five pages passed conservative official-source review. They are linked from
+the AI Tools landing page and Business Tools category page and are listed
+automatically in the reviewed-tools index. They were not added to global
+navigation.
 
-Before publication, review each vendor's official product, pricing, help,
-privacy, security, and terms pages. Avoid or verify claims about exact pricing,
-plans, limits, credits, AI capabilities, CRM, commerce, or customer-service
-features, integrations, connected-account behavior, permissions, enterprise
-availability, security or data-handling guarantees, and exact availability.
+Official sources checked:
+
+- HubSpot Breeze: `https://www.hubspot.com/products/artificial-intelligence`,
+  `https://knowledge.hubspot.com/ai/understand-breeze`,
+  `https://www.hubspot.com/pricing`,
+  `https://www.hubspot.com/security-and-compliance`,
+  `https://legal.hubspot.com/privacy-policy`, and
+  `https://legal.hubspot.com/legal-center`
+- Salesforce Agentforce: `https://www.salesforce.com/agentforce/`,
+  `https://www.salesforce.com/agentforce/how-it-works/`,
+  `https://www.salesforce.com/agentforce/pricing/`,
+  `https://help.salesforce.com/s/articleView?id=005315874&language=en_US&type=1`,
+  `https://www.salesforce.com/en-us/wp-content/uploads/sites/4/documents/legal/Privacy/agentforce-privacy-FAQ.pdf`,
+  and `https://compliance.salesforce.com/en/documents/a006e000014OxLFAA0`
+- Zoho Zia: `https://www.zoho.com/zia/`,
+  `https://www.zoho.com/zia/generative/`,
+  `https://www.zoho.com/zia/ask.html`,
+  `https://help.zoho.com/portal/en/kb/zia/frequently-asked-questions`,
+  `https://www.zoho.com/privacy.html`, and
+  `https://www.zoho.com/security.html`
+- Shopify Sidekick: `https://www.shopify.com/sidekick`,
+  `https://help.shopify.com/en/manual/shopify-admin/productivity-tools/sidekick`,
+  `https://help.shopify.com/en/manual/shopify-admin/productivity-tools/sidekick/set-up`,
+  `https://www.shopify.com/pricing`,
+  `https://help.shopify.com/en/manual/privacy-and-security/`,
+  `https://www.shopify.com/security`, and
+  `https://www.shopify.com/legal/privacy`
+- Fin: `https://fin.ai/`, `https://fin.ai/customer-agent`,
+  `https://fin.ai/pricing`,
+  `https://www.intercom.com/help/en/articles/7120684-fin-ai-agent-explained`,
+  `https://www.intercom.com/help/en/articles/7837535-fin-ai-agent-faqs`,
+  `https://www.intercom.com/legal/privacy`,
+  `https://www.intercom.com/security`, and
+  `https://www.intercom.com/legal/terms-and-policies`
+
+Published copy avoids exact pricing, plans, limits, credits, AI capability
+details, CRM, commerce, or customer-service feature details, integrations,
+connected-account behavior, permission guarantees, enterprise availability,
+security or data-handling guarantees, model details, performance claims, and
+exact availability.
 
 Special caution areas include testing generated business content and automated
 actions; reviewing customer-facing messages and decisions; protecting customer,

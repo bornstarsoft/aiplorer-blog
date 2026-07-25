@@ -182,4 +182,19 @@ A content planning and search-oriented writing tool that may help users prepare 
 {{< card title="Frase" href="/ai-tools/tools/frase/" label="Reviewed" >}}
 A content research and writing workflow tool that may help users prepare briefs, organize source notes, and draft search-oriented content.
 {{< /card >}}
+{{< card title="HubSpot Breeze" href="/ai-tools/tools/hubspot-breeze/" label="Reviewed" >}}
+A set of AI-related business tools that may help users prepare marketing, sales, and customer-service work for review.
+{{< /card >}}
+{{< card title="Salesforce Agentforce" href="/ai-tools/tools/salesforce-agentforce/" label="Reviewed" >}}
+An AI agent and business workflow product that may help teams prepare customer, employee, and operational workflows for review.
+{{< /card >}}
+{{< card title="Zoho Zia" href="/ai-tools/tools/zoho-zia/" label="Reviewed" >}}
+An AI assistant for business software that may help users prepare drafts, review information, and support business workflows.
+{{< /card >}}
+{{< card title="Shopify Sidekick" href="/ai-tools/tools/shopify-sidekick/" label="Reviewed" >}}
+An AI assistant for commerce workflows that may help merchants prepare store content and business tasks for review.
+{{< /card >}}
+{{< card title="Fin" href="/ai-tools/tools/fin/" label="Reviewed" >}}
+An AI customer-service tool that may help teams prepare and manage customer-support interactions for review.
+{{< /card >}}
 {{< /card-grid >}}
