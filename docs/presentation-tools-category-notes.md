@@ -1,9 +1,11 @@
 # Presentation Tools Category Notes
 
-Date: 2026-06-05
+Date: 2026-07-25
 
 The Presentation Tools category was added after four presentation-related tool
-pages were reviewed and published.
+pages were reviewed and published. The category page now includes reviewed
+cards for all four public representatives and links to the full reviewed-tools
+index.
 
 Current reviewed representatives:
 
@@ -56,3 +58,7 @@ used for other Aiplorer tool pages:
   image and asset licenses, privacy, sensitive content, and changing
   availability.
 - Publish only after manual review and validation.
+
+The category page must not mention or link Tome as a reviewed tool while this
+draft status remains. Production builds and the production sitemap must
+continue to exclude Tome.
