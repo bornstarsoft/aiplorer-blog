@@ -9,7 +9,7 @@ are based on tool front matter in `content/ai-tools/tools/`.
 
 ## Current Tool Counts
 
-Aiplorer currently has 55 reviewed public tool pages and three draft-only tool
+Aiplorer currently has 60 reviewed public tool pages and three draft-only tool
 pages.
 
 | Category | Reviewed tools | Count |
@@ -18,13 +18,13 @@ pages.
 | Writing Tools | Grammarly, DeepL, Jasper, Copy.ai, Writesonic, Surfer, Frase | 7 |
 | Audio Tools | ElevenLabs, Murf AI, Speechify, Suno, Udio, Adobe Podcast | 6 |
 | Image Tools | Canva AI, Adobe Firefly, Midjourney, Ideogram, Leonardo AI, Stable Diffusion | 6 |
-| Productivity Tools | ChatGPT, Claude, Gemini, Perplexity, Microsoft Copilot, Notion AI | 6 |
+| Productivity Tools | ChatGPT, Claude, Gemini, Perplexity, Microsoft Copilot, Notion AI, Otter.ai, Fireflies.ai, Fathom, Granola, Read AI | 11 |
 | Business Tools | HubSpot Breeze, Salesforce Agentforce, Zoho Zia, Shopify Sidekick, Fin | 5 |
 | Coding Tools | GitHub Copilot, Cursor, Windsurf, Replit, Tabnine | 5 |
 | Video Tools | Runway, Pika, Luma AI, Descript, Synthesia | 5 |
 | Learning Tools | NotebookLM, Elicit, Consensus, You.com | 4 |
 | Presentation Tools | Gamma, Beautiful.ai, Pitch, SlidesAI | 4 |
-| **Total** |  | **55** |
+| **Total** |  | **60** |
 
 The reviewed index at `/ai-tools/tools/` groups published tools by category.
 The AI Tools landing page links to the ten public categories and the reviewed
@@ -82,8 +82,10 @@ SlidesAI while Tome remains unpublished.
 
 Strongest coverage:
 
+- Productivity Tools has 11 reviewed pages after the meeting and
+  transcription workflow batch.
 - Automation Tools and Writing Tools each have seven reviewed pages.
-- Audio, Image, and Productivity Tools each have six reviewed pages.
+- Audio and Image Tools each have six reviewed pages.
 - Business, Coding, and Video Tools each have five reviewed pages.
 
 Stable but smaller categories:
@@ -122,19 +124,17 @@ category routes:
 ```txt
 https://aiplorer.com/ai-tools/
 https://aiplorer.com/ai-tools/tools/
-https://aiplorer.com/ai-tools/audio-tools/
 https://aiplorer.com/ai-tools/productivity-tools/
-https://aiplorer.com/ai-tools/presentation-tools/
 ```
 
-Recent Audio Tools pages:
+Recent Productivity Tools pages:
 
 ```txt
-https://aiplorer.com/ai-tools/tools/murf-ai/
-https://aiplorer.com/ai-tools/tools/speechify/
-https://aiplorer.com/ai-tools/tools/suno/
-https://aiplorer.com/ai-tools/tools/udio/
-https://aiplorer.com/ai-tools/tools/adobe-podcast/
+https://aiplorer.com/ai-tools/tools/otter-ai/
+https://aiplorer.com/ai-tools/tools/fireflies-ai/
+https://aiplorer.com/ai-tools/tools/fathom/
+https://aiplorer.com/ai-tools/tools/granola/
+https://aiplorer.com/ai-tools/tools/read-ai/
 ```
 
 Draft routes must not be submitted for indexing.
@@ -143,8 +143,8 @@ Draft routes must not be submitted for indexing.
 
 ### 1. Run Risk-Based Monitoring
 
-The first complete freshness cycle is finished. All 55 reviewed pages were
-rechecked against official sources on 2026-07-25 or 2026-07-26. Use
+The first complete freshness cycle is finished. All 60 reviewed pages were
+reviewed or rechecked against official sources on 2026-07-25 or 2026-07-26. Use
 `docs/reviewed-tools-monitoring-plan.md` for the recurring cadence, change
 triggers, validation gate, and review log.
 
@@ -170,8 +170,6 @@ after reviewed-page changes.
 
 Only after category maintenance, possible future directions include:
 
-- Meeting and transcription workflows: Otter.ai, Fireflies.ai, Fathom,
-  Granola, Read AI
 - Design and creative workflows: Figma AI, Kittl, Photoroom, Clipdrop,
   Microsoft Designer
 - Data and analysis workflows: Julius AI, Rows AI, Akkio, Obviously AI,
@@ -182,13 +180,14 @@ should not be added publicly without the normal draft-first and official-source
 review process. A new category should be created only when the existing
 taxonomy cannot describe a candidate cleanly.
 
-The non-public source and caution plan for the meeting and transcription
-candidates is recorded in `docs/meeting-transcription-draft-batch-plan.md`.
-No candidate page has been created or approved for publication.
+The meeting and transcription batch is now published under Productivity Tools.
+Its draft-first source and caution record remains in
+`docs/meeting-transcription-draft-batch-plan.md`.
 
 ## Recommended Direction
 
 The immediate next phase is risk-based maintenance rather than another bulk
-publication batch. Monitor active transitions first, keep Search Console and
-sitemap health under review, and keep SciSpace and Tome unpublished unless
-their official sources become stable enough for conservative review.
+publication batch. Complete manual Search Console follow-up for the five recent
+meeting tools when an authenticated session is available, monitor active
+transitions, and keep SciSpace and Tome unpublished unless their official
+sources become stable enough for conservative review.
