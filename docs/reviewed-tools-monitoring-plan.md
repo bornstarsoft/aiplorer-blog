@@ -20,6 +20,15 @@ Every reviewed page currently has `draft: false`, `reviewStatus: "reviewed"`,
 a non-empty `lastReviewed`, an official URL, source notes, and an allowed
 category. Production output and the sitemap exclude all three draft pages.
 
+Supporting baselines:
+
+- `docs/reviewed-tools-source-freshness-audit.md`
+- `docs/reviewed-tools-official-url-health.md`
+- `docs/reviewed-tools-metadata-consistency-audit.md`
+- `docs/reviewed-tools-discovery-link-audit.md`
+- `docs/reviewed-tools-card-copy-consistency-audit.md`
+- `docs/production-monitoring-checklist.md`
+
 ## Monitoring Triggers
 
 Re-review a page before its normal cadence when an official source announces
@@ -81,6 +90,57 @@ Focus on product identity, official URLs, major workflow changes, rights and
 consent requirements, source verification, sensitive content, and public
 availability. This cadence is an editorial maintenance target, not a claim
 about product stability.
+
+## Maintenance Cycle Checklist
+
+Use this order for each scheduled or event-driven review batch:
+
+### 1. Inventory And Scope
+
+- Confirm the intended reviewed pages, drafts, and category assignments.
+- Keep existing `/ai-tools/tools/<slug>/` routes stable.
+- Limit the batch to the named tools and avoid unrelated content changes.
+
+### 2. Official Source And URL Review
+
+- Recheck each `officialUrl` and its final destination.
+- Review relevant official product, help, pricing, privacy, security, policy,
+  and legal pages.
+- Treat command-line access failures as manual browser-review prompts, not
+  automatic product or URL failures.
+- Record material identity, availability, plan, rights, privacy, or security
+  changes without expanding claims beyond the official evidence.
+
+### 3. Page And Metadata Review
+
+- Confirm `draft`, `reviewStatus`, `category`, `sourceNotes`, `lastReviewed`,
+  and `lastmod` reflect the completed review decision.
+- Do not advance review dates solely for apparent freshness.
+- Confirm rendered title, description, canonical, robots, Open Graph URL, and
+  official link agree with front matter.
+- Preserve cautious wording around quality, pricing, limits, data handling,
+  licensing, security, and availability.
+
+### 4. Discovery And Card Review
+
+- Confirm each reviewed tool appears once on `/ai-tools/`, once on
+  `/ai-tools/tools/`, and once on its assigned category page.
+- Confirm no draft route is linked by a production discovery page.
+- Keep concise card summaries consistent with the reviewed product identity,
+  scope, availability, and caution status. Exact wording does not need to
+  match the tool description.
+- Retain transition-specific summaries when a rename, migration, or shutdown
+  is the most important current context.
+
+### 5. Build, Sitemap, And Deployment Review
+
+- Run the validation gate below and restore production output last.
+- Confirm the production sitemap contains intended reviewed routes and no
+  draft route.
+- After deployment, check changed routes, aggregate listings, the relevant
+  category, and the sitemap on the custom domain.
+- Investigate build artifacts and cache or routing rules before changing
+  content solely to address a stale aggregate response.
 
 ## Page Review Procedure
 
