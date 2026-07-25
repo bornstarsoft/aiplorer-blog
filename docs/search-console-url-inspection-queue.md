@@ -11,6 +11,31 @@ Process the queue only as Search Console quota allows. Record the inspection
 result before requesting indexing, and request indexing only for an intended
 public URL whose rendered page, canonical, and sitemap entry are correct.
 
+## Public Readiness Check
+
+The five Priority 1 routes passed a public readiness check on 2026-07-26. This
+check is not a Search Console URL Inspection result and does not report
+Google-selected canonicals or indexing status.
+
+| Route | HTTP | Self-canonical | Current body | Sitemap |
+| --- | ---: | --- | --- | --- |
+| `/ai-tools/` | 200 | Yes | Current reviewed cards present | Present |
+| `/ai-tools/tools/` | 200 | Yes | Current grouped index present | Present |
+| `/ai-tools/productivity-tools/` | 200 | Yes | Current reviewed cards present | Present |
+| `/ai-tools/coding-tools/` | 200 | Yes | Current reviewed cards present | Present |
+| `/ai-tools/automation-tools/` | 200 | Yes | Current reviewed cards present | Present |
+
+All five responses used the apex domain with a trailing slash. Their response
+headers showed `cf-cache-status: DYNAMIC`, no `Age` header, and
+`cache-control: public, max-age=0, must-revalidate`. The `www` version of the
+AI Tools route returned HTTP 301 to the matching apex URL.
+
+SciSpace, Tome, and Example AI Assistant returned HTTP 404 and were absent from
+the live sitemap. No indexing request was made. The authenticated Search
+Console inspection remains pending because the available browser session
+blocked access to `search.google.com`; do not infer Google indexing or
+canonical-selection results from this public check.
+
 ## Priority 1: Aggregate And Category Routes
 
 Inspect these first because they lead crawlers to multiple reviewed pages:
