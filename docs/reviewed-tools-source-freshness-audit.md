@@ -24,8 +24,8 @@ Aiplorer has 55 reviewed public tool pages and three draft-only pages.
 
 | Last reviewed | Reviewed pages |
 | --- | ---: |
-| 2026-06-02 | 12 |
-| 2026-07-25 | 43 |
+| 2026-06-02 | 8 |
+| 2026-07-25 | 47 |
 | **Total** | **55** |
 
 All 55 reviewed pages have:
@@ -135,18 +135,42 @@ states that Devin Desktop is the new name for Windsurf. Aiplorer preserves the
 existing `/ai-tools/tools/windsurf/` URL, points its official link to Devin
 Desktop, and explains the rename without creating a duplicate tool page.
 
+## Completed Learning Freshness Batch
+
+The fourth re-review batch covered the reviewed Learning Tools:
+
+- NotebookLM
+- Elicit
+- Consensus
+- You.com
+
+All four pages were reviewed against current official sources on 2026-07-25
+and remain published. Source notes and review dates were refreshed without
+adding paper-count, coverage, research-accuracy, citation-accuracy, model,
+pricing, limit, privacy, retention, security, or availability guarantees.
+
+NotebookLM received stronger cautions around notebook sharing, feedback,
+connected Google services, account types, and organization settings. Elicit
+and Consensus remain research-oriented tools with newer agent and deeper review
+workflows, while their public pages continue to require original-source
+verification.
+
+You.com now emphasizes web search and research APIs on its main product site
+while continuing to document a conversational AI platform. Its reviewed page
+was broadened from a search-assistant description to search-and-research
+products without promising API access or performance.
+
 ## Later Batches
 
 Continue with this order:
 
-1. Learning Tools
-2. Presentation Tools
-3. Audio, Image, Video, Writing, and Business Tools reviewed on 2026-07-25
+1. Presentation Tools
+2. Audio, Image, Video, Writing, and Business Tools reviewed on 2026-07-25
 
-Learning and Presentation Tools were reviewed in early June and include
-fast-changing limits, sources, models, rights, or product scope. The July
-batches are newer and can follow unless a product announces a major change
-first.
+Presentation Tools were reviewed in early June and include fast-changing
+limits, exports, collaboration, media rights, models, or product scope. The
+July batches are newer and can follow unless a product announces a major
+change first.
 
 ## Draft Policy
 
@@ -162,7 +186,7 @@ Production builds and the production sitemap must continue to exclude:
 
 ## Next Phase
 
-Run an official-source freshness review of the four reviewed Learning Tools:
-NotebookLM, Elicit, Consensus, and You.com. Preserve SciSpace as a draft unless
-stable official product, help, pricing, privacy, and security sources support a
-separate publication review.
+Run an official-source freshness review of the four reviewed Presentation
+Tools: Gamma, Beautiful.ai, Pitch, and SlidesAI. Preserve Tome as a draft
+unless stable official product, help, pricing, privacy, and security sources
+support a separate publication review.

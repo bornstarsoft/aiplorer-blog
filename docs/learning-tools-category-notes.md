@@ -1,6 +1,6 @@
 # Learning Tools Category Notes
 
-Date: 2026-06-06
+Date: 2026-07-25
 
 The Learning Tools category now has four reviewed representative tools:
 
@@ -32,3 +32,28 @@ Category copy should keep these cautions visible:
   documents carefully.
 - Check official pages for current features, pricing, plans, source behavior,
   citation behavior, and availability.
+
+## Source Freshness Review
+
+NotebookLM, Elicit, Consensus, and You.com were rechecked against current
+official sources on 2026-07-25. All four remain published with cautious
+high-level descriptions and updated source notes.
+
+NotebookLM remains centered on user-selected sources, but its output types,
+source discovery, connected Google services, account access, sharing, and data
+handling can differ by account or organization. Users should review sharing,
+feedback, connected-service, and organization settings before adding sensitive
+material.
+
+Elicit and Consensus retain research-oriented workflows, including newer agent
+and deeper review paths. Their pages continue to avoid paper-count, coverage,
+accuracy, or citation guarantees and direct readers back to original sources.
+
+You.com now emphasizes web search and research APIs while still documenting a
+conversational AI platform. Its page uses broader search-and-research wording
+without promising API access, source quality, retention, security, or feature
+availability.
+
+SciSpace remains draft and is not linked publicly. Revisit it separately only
+when stable official product, help, pricing, privacy, security, and policy
+sources are sufficient for conservative publication review.

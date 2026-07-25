@@ -14,7 +14,8 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Plans, pricing, feature availability, source handling, document support, account access, workspace options, and availability may change. Check official NotebookLM pages for current details."
 officialUrl: "https://notebooklm.google.com/"
-lastReviewed: "2026-06-02"
+lastReviewed: "2026-07-25"
+lastmod: "2026-07-25"
 draft: false
 useCases:
   - Organize notes before studying or writing
@@ -38,11 +39,10 @@ similarTools:
   - Perplexity
 reviewStatus: "reviewed"
 sourceNotes:
-  - "Checked https://notebooklm.google.com/ on 2026-06-02 for official app access point."
-  - "Checked https://notebooklm.google/ on 2026-06-02 for official NotebookLM product access point."
-  - "Checked https://support.google.com/notebooklm/answer/16164461 on 2026-06-02 for high-level NotebookLM positioning, source-based research assistant context, availability caveats, data handling context, and copyright cautions without copying exact supported regions, languages, account rules, feature availability, or privacy guarantees into this page."
-  - "Checked https://support.google.com/notebooklm/answer/16206563 on 2026-06-02 for high-level notebook, source, chat, generated-output, export, sharing, professional-advice, and copyright context without copying exact feature details, limits, or availability into this page."
-  - "Checked https://support.google.com/notebooklm/answer/16337734 on 2026-06-02 for work and school account context without copying exact plan, license, limit, data-protection, or availability claims into this page."
+  - "Checked https://notebooklm.google.com/ and https://support.google.com/notebooklm/answer/16164461 on 2026-07-25 for current official app access, source-based research-assistant positioning, account, availability, generated-output, professional-advice, and copyright context without copying exact regions, languages, or feature claims."
+  - "Checked https://support.google.com/notebooklm/answer/16215270 and https://support.google.com/notebooklm/answer/16179559 on 2026-07-25 for current source, citation, chat, connected-Google-service, source-discovery, generated-output, and changing-availability context without copying exact file types, limits, or feature availability."
+  - "Checked https://support.google.com/notebooklm/answer/17004255 on 2026-07-25 for current privacy, feedback, data-use, cross-service, terms, and copyright context without copying privacy, retention, ownership, or data-handling guarantees."
+  - "Checked https://support.google.com/notebooklm/answer/16337734 on 2026-07-25 for current work and school account, license, administration, data-protection, feature, and usage context without copying exact plan, limit, privacy, or availability claims."
 ---
 
 ## Overview
@@ -61,4 +61,4 @@ Research and learning tools should be treated as support for reading and thinkin
 
 Features, plans, pricing, source handling, document support, account access, workspace options, collaboration features, export support, privacy details, model details, and availability can change. Check official NotebookLM pages for current details before choosing a plan or relying on a specific capability.
 
-Be careful with sensitive, confidential, unpublished, classroom, customer, business, medical, legal, financial, or personally identifying information. Review original sources, citations, summaries, privacy requirements, and academic or workplace policies before relying on AI-generated research or learning output.
+Be careful with sensitive, confidential, unpublished, classroom, customer, business, medical, legal, financial, or personally identifying information. Review notebook sharing, feedback, connected Google service, account, and organization settings before adding source material. Check original sources, citations, summaries, privacy requirements, and academic or workplace policies before relying on AI-generated research or learning output.

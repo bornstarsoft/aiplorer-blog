@@ -1429,3 +1429,73 @@ include reviewing, testing, and security-checking generated code; protecting
 secrets, private repositories, proprietary code, and customer data; reviewing
 licenses, dependencies, permissions, and workplace policy; and checking current
 account, organization, provider, privacy, indexing, and data-use settings.
+
+## Learning Tools Source Freshness Review
+
+The four reviewed `Learning Tools` pages were rechecked against current
+official sources on 2026-07-25:
+
+- NotebookLM
+- Elicit
+- Consensus
+- You.com
+
+All four pages remain published with:
+
+```yaml
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-07-25"
+```
+
+Official sources checked:
+
+- NotebookLM: `https://notebooklm.google.com/`,
+  `https://support.google.com/notebooklm/answer/16164461`,
+  `https://support.google.com/notebooklm/answer/16215270`,
+  `https://support.google.com/notebooklm/answer/16179559`,
+  `https://support.google.com/notebooklm/answer/17004255`, and
+  `https://support.google.com/notebooklm/answer/16337734`
+- Elicit: `https://elicit.com/`, `https://support.elicit.com/en`,
+  `https://support.elicit.com/en/articles/14859739-new-in-elicit-a-new-way-to-research`,
+  `https://elicit.com/pricing`, `https://docs.elicit.com/`,
+  `https://elicit.com/operations/policies`, and
+  `https://elicit.com/operations/privacy`
+- Consensus: `https://consensus.app/`,
+  `https://help.consensus.app/en/articles/9922660-how-to-search-best-practices`,
+  `https://help.consensus.app/en/articles/12641232-research-agent`,
+  `https://help.consensus.app/en/articles/10055108-consensus-research-database`,
+  `https://consensus.app/pricing/`,
+  `https://help.consensus.app/en/articles/10087865-subscription-plans`,
+  `https://consensus.app/home/privacy-policy/`, and
+  `https://consensus.app/home/resources/consensus-responsible-ai/`
+- You.com: `https://you.com/`,
+  `https://home.you.com/support/what-is-you.com`,
+  `https://home.you.com/support/knowledge-base`,
+  `https://about.you.com/pricing`,
+  `https://about.you.com/legal/privacy`, and
+  `https://home.you.com/security`
+
+NotebookLM remains source-centered, with stronger cautions around sharing,
+feedback, connected Google services, account types, organization settings, and
+sensitive source material. Elicit and Consensus retain research-focused
+descriptions while their newer agent and deeper review workflows remain subject
+to original-source verification.
+
+You.com now emphasizes web search and research APIs on its main product site
+while still documenting a conversational AI platform. Its page now describes
+broader AI search and research products without claiming exact API access,
+pricing, source quality, accuracy, retention, security, or availability.
+
+Published copy continues to avoid exact pricing, plans, usage limits, paper or
+source counts, coverage claims, research or citation accuracy claims, model
+details, upload or export promises, collaboration promises, API access details,
+privacy or security guarantees, and data-retention guarantees. Special caution
+areas include checking original papers and web sources, verifying citations and
+source context, reviewing AI summaries and extracted details, following
+academic integrity and workplace policies, and protecting confidential,
+unpublished, legal, medical, financial, customer, or personally identifying
+information.
+
+SciSpace remains `draft: true` with
+`reviewStatus: "needs-official-review"` and is not linked publicly.

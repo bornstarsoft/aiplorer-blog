@@ -1,6 +1,6 @@
 ---
 title: "You.com"
-description: "You.com is an AI search and assistant platform that can help users explore questions, compare sources, and support research or learning workflows."
+description: "You.com provides AI search and research products that can help users explore questions, compare sources, and support research or learning workflows."
 type: "ai-tools"
 layout: "tool"
 category: "Learning Tools"
@@ -12,9 +12,10 @@ bestFor:
   - Reviewing privacy, citation, and accuracy risks before use
 beginnerFriendly: null
 freePlan: null
-pricingNote: "Plans, pricing, AI features, source behavior, search features, API options, model access, workspace options, and availability may change. Check official You.com pages for current details."
+pricingNote: "Plans, pricing, chat or API features, source behavior, search features, model access, workspace options, and availability may change. Check official You.com pages for current details."
 officialUrl: "https://you.com/"
-lastReviewed: "2026-06-02"
+lastReviewed: "2026-07-25"
+lastmod: "2026-07-25"
 draft: false
 useCases:
   - Explore a question before checking sources directly
@@ -30,7 +31,7 @@ limitations:
   - AI-generated answers, summaries, citations, and source references should be reviewed before use
   - Original sources should be checked directly before relying on any answer
   - Academic integrity, privacy, sensitive searches, and source context should be handled carefully
-  - Plans, pricing, AI feature availability, source behavior, model access, workspace options, API details, and exact availability may change
+  - Plans, pricing, chat or API feature availability, source behavior, model access, workspace options, and exact availability may change
 similarTools:
   - Perplexity
   - ChatGPT
@@ -38,18 +39,17 @@ similarTools:
   - Consensus
 reviewStatus: "reviewed"
 sourceNotes:
-  - "Checked https://you.com/ on 2026-06-02 for official You.com positioning around web search APIs, content extraction, source-backed answers, and AI-assisted web research context without copying exact benchmark, pricing, API, security, or availability claims into this page."
-  - "Checked https://home.you.com/support/knowledge-base on 2026-06-02 for official support categories covering getting started, features, account management, model access, uploads, agents, sharing, and privacy controls without copying exact feature availability into this page."
-  - "Checked https://you.com/plans and https://you.com/pricing on 2026-06-02 for plan, pricing, agent, API, source, and model-access context without copying exact prices, plan comparisons, limits, or feature availability into this page."
-  - "Checked https://about.you.com/legal/privacy on 2026-06-02 for official privacy context and sensitive-information cautions."
-  - "Checked https://home.you.com/security on 2026-06-02 for official security context without copying security guarantees, compliance details, or availability claims into this page."
+  - "Checked https://you.com/ and https://home.you.com/support/what-is-you.com on 2026-07-25 for current official positioning across web search and research APIs, the conversational AI platform, agents, source-backed work, and research workflows without copying benchmark, accuracy, performance, or exact feature claims."
+  - "Checked https://home.you.com/support/knowledge-base on 2026-07-25 for current chat-platform, account, model, upload, agent, project, source-control, sharing, privacy-control, API, and changing-feature context without copying exact availability."
+  - "Checked https://about.you.com/pricing on 2026-07-25 for current API pricing, usage, retention-option, and enterprise context without copying exact prices, limits, plan comparisons, retention guarantees, security guarantees, or availability."
+  - "Checked https://about.you.com/legal/privacy and https://home.you.com/security on 2026-07-25 for current prompt, sensitive-information, service-provider, account, privacy, data-use, and security context without copying privacy, retention, compliance, or security guarantees."
 ---
 
 ## Overview
 
-You.com is an AI search and assistant platform that can help users explore questions, compare sources, and support research or learning workflows. It can be useful when a person wants an early starting point before checking source material directly.
+You.com provides AI search and research products that can help users explore questions, compare sources, and support research or learning workflows. It can be useful when a person wants an early starting point before checking source material directly.
 
-You.com includes web-search and research-oriented product areas, but users should still verify AI-generated answers, summaries, citations, and source references against original sources before relying on them.
+You.com currently presents both a conversational AI platform and web search or research APIs, but exact access, plans, source behavior, and availability can change. Users should still verify AI-generated answers, summaries, citations, and source references against original sources before relying on them.
 
 ## Useful For
 
@@ -59,6 +59,6 @@ AI search and research tools should be treated as support for exploration, not a
 
 ## Notes
 
-Features, plans, pricing, AI feature availability, source behavior, search features, model access, workspace options, API details, privacy details, and availability can change. Check official You.com pages for current details before choosing a plan or relying on a specific capability.
+Features, plans, pricing, chat or API feature availability, source behavior, search features, model access, workspace options, privacy details, and availability can change. Check official You.com pages for current details before choosing a plan or relying on a specific capability.
 
 Be careful with sensitive, confidential, personal, academic, customer, business, medical, legal, or financial information. Review original sources, citations, source context, privacy requirements, academic or workplace policies, and expert-review needs before relying on AI-generated search or research output.

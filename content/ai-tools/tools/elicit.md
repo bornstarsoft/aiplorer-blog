@@ -14,7 +14,8 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Plans, pricing, research features, paper coverage, citation behavior, export support, workspace options, API options, and availability may change. Check official Elicit pages for current details."
 officialUrl: "https://elicit.com/"
-lastReviewed: "2026-06-02"
+lastReviewed: "2026-07-25"
+lastmod: "2026-07-25"
 draft: false
 useCases:
   - Explore a research question before reading papers in depth
@@ -38,12 +39,10 @@ similarTools:
   - Perplexity
 reviewStatus: "reviewed"
 sourceNotes:
-  - "Checked https://elicit.com/ on 2026-06-02 for official Elicit positioning as AI for scientific research and high-level search, reports, systematic review, library, and alerts context without copying exact paper counts, accuracy claims, performance claims, or feature availability into this page."
-  - "Checked https://support.elicit.com/en on 2026-06-02 for official help-center categories covering getting started, best practices, systematic reviews, reports, library, account, and billing context."
-  - "Checked https://support.elicit.com/en/articles/11821377 on 2026-06-02 for high-level Research Agent context without copying exact feature availability or coverage claims."
-  - "Checked https://elicit.com/pricing on 2026-06-02 for plan, pricing, export, API, collaboration, and workflow context without copying exact prices, plan comparisons, limits, API availability, or feature availability into this page."
-  - "Checked https://elicit.com/operations/policies and https://elicit.com/operations/privacy on 2026-06-02 for official policy and privacy context without copying privacy guarantees or legal/security details into this page."
-  - "Checked https://docs.elicit.com/ on 2026-06-02 for official API documentation context without copying API limits or plan-specific details into this page."
+  - "Checked https://elicit.com/ and https://support.elicit.com/en on 2026-07-25 for current official scientific-research positioning and Research Agent, paper search, reports, systematic-review, library, alert, account, and billing context without copying paper counts, accuracy, performance, or exact feature claims."
+  - "Checked https://support.elicit.com/en/articles/14859739-new-in-elicit-a-new-way-to-research on 2026-07-25 for the current Research Agent entry point and broader source workflow without copying coverage, quality, or availability claims."
+  - "Checked https://elicit.com/pricing and https://docs.elicit.com/ on 2026-07-25 for current plan, usage, export, collaboration, API, MCP, research workflow, and billing context without copying exact prices, limits, plan comparisons, API access rules, or feature availability."
+  - "Checked https://elicit.com/operations/policies and https://elicit.com/operations/privacy on 2026-07-25 for current terms, privacy, data-processing, API-policy, and security context without copying privacy, retention, or security guarantees."
 ---
 
 ## Overview

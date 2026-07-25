@@ -14,7 +14,8 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Plans, pricing, research features, paper coverage, citation behavior, source availability, integrations, and availability may change. Check official Consensus pages for current details."
 officialUrl: "https://consensus.app/"
-lastReviewed: "2026-06-02"
+lastReviewed: "2026-07-25"
+lastmod: "2026-07-25"
 draft: false
 useCases:
   - Explore a question before reading original sources
@@ -38,11 +39,10 @@ similarTools:
   - Perplexity
 reviewStatus: "reviewed"
 sourceNotes:
-  - "Checked https://consensus.app/ on 2026-06-02 for official product access point and high-level AI for research positioning."
-  - "Checked https://help.consensus.app/en/articles/9922726-why-do-people-choose-consensus on 2026-06-02 for official high-level academic search, research-question, paper, and citation context without copying exact paper counts, user counts, research accuracy claims, or ranking claims into this page."
-  - "Checked https://help.consensus.app/en/articles/9922660-how-to-search-best-practices on 2026-06-02 for official search workflow and best-practice context without copying exact plan limits, source coverage, or feature availability into this page."
-  - "Checked https://consensus.app/pricing and https://help.consensus.app/en/articles/10087865-subscription-plans on 2026-06-02 for pricing and subscription context without copying exact prices, plan comparisons, usage limits, or feature availability into this page."
-  - "Checked https://help.consensus.app/en/articles/10093291-security and https://consensus.app/blog/privacy-policy/ on 2026-06-02 for privacy and security context without copying privacy/security guarantees into this page."
+  - "Checked https://consensus.app/ and https://help.consensus.app/en/articles/9922660-how-to-search-best-practices on 2026-07-25 for current official AI-for-research positioning, paper search, research-question, source, citation, Pro, and Deep workflow context without copying paper counts, accuracy, ranking, or exact feature claims."
+  - "Checked https://help.consensus.app/en/articles/12641232-research-agent and https://help.consensus.app/en/articles/10055108-consensus-research-database on 2026-07-25 for current Research Agent, corpus, full-text or metadata, uploaded-library, evidence-synthesis, and source-availability context without copying exact coverage or quality claims."
+  - "Checked https://consensus.app/pricing/ and https://help.consensus.app/en/articles/10087865-subscription-plans on 2026-07-25 for current plan, pricing, usage, team, search-mode, and feature context without copying exact prices, limits, plan comparisons, or availability."
+  - "Checked https://consensus.app/home/privacy-policy/ and https://consensus.app/home/resources/consensus-responsible-ai/ on 2026-07-25 for current privacy, prompt, content, data-use, responsible-research, and security context without copying privacy, training, retention, accuracy, or security guarantees."
 ---
 
 ## Overview
