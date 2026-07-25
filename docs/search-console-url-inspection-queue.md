@@ -68,6 +68,28 @@ current product name. All five responses showed
 `cf-cache-status: DYNAMIC`, no `Age` header, and
 `cache-control: public, max-age=0, must-revalidate`.
 
+### Priority 4: Transition And Canonical Samples
+
+The transition and canonical sample routes passed a public readiness check on
+2026-07-26.
+
+| Route | HTTP | Canonical | Robots | Sitemap |
+| --- | ---: | --- | --- | --- |
+| `/ai-tools/tools/relay-app/` | 200 | Self | `index, follow` | Present |
+| `/` | 200 | Self | `index, follow` | Present |
+| `/posts/` | 200 | Self | `index, follow` | Present |
+| `/posts/page/2/` | 200 | Self | `index, follow` | Not listed |
+| `/posts/page/25/` | 200 | Self | `index, follow` | Not listed |
+
+The Relay.app page contained its current shutdown and transition guidance.
+Pagination pages used self-canonicals and were not listed separately in the
+sitemap. `/posts/page/1/` returned the intended Hugo alias document with a
+canonical and immediate meta refresh to `/posts/`; it was also absent from the
+sitemap.
+
+All checked responses showed `cf-cache-status: DYNAMIC`, no `Age` header, and
+`cache-control: public, max-age=0, must-revalidate`.
+
 SciSpace, Tome, and Example AI Assistant returned HTTP 404 and were absent from
 the live sitemap. No indexing request was made. The authenticated Search
 Console inspection remains pending because the available browser session
