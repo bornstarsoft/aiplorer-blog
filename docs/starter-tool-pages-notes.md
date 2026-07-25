@@ -1142,3 +1142,59 @@ actions; reviewing customer-facing messages and decisions; protecting customer,
 employee, account, store, order, and confidential business data; checking
 connected-account permissions; defining escalation and rollback steps; and
 following privacy, legal, brand, license, compliance, and workplace policies.
+
+## Audio Tools Draft Batch
+
+Five `Audio Tools` pages were added as draft-first candidates:
+
+- Murf AI
+- Speechify
+- Suno
+- Udio
+- Adobe Podcast
+
+Current status:
+
+```yaml
+content/ai-tools/tools/murf-ai.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+
+content/ai-tools/tools/speechify.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+
+content/ai-tools/tools/suno.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+
+content/ai-tools/tools/udio.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+
+content/ai-tools/tools/adobe-podcast.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+```
+
+These pages remain unpublished. They are not linked from the AI Tools landing
+page, Audio Tools category page, reviewed-tools index, or global navigation.
+
+Before publication, review each vendor's official product, pricing, help,
+privacy, security, safety, rights, and terms pages. Avoid or verify claims about
+exact pricing, plans, credits, limits, voice or music features, supported
+languages or formats, cloning, dubbing, uploads, downloads, APIs, integrations,
+transcription or enhancement accuracy, model details, licensing, ownership,
+commercial use, security or data handling, and exact availability.
+
+Special caution areas include reviewing generated and enhanced audio;
+confirming facts, scripts, lyrics, transcripts, captions, and pronunciation;
+checking voice and likeness rights, recording consent, copyright, samples,
+music and media licenses, trademarks, brand use, and commercial-use rules; and
+protecting sensitive, private, customer, employee, interview, confidential, or
+unreleased recordings, documents, lyrics, and audio.
