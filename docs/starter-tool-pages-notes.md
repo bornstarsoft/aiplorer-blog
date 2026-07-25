@@ -1640,3 +1640,39 @@ commercial-use conclusions, privacy or security guarantees, and
 data-retention guarantees. Users should continue to review generated text,
 translations, designs, images, audio, citations, detector results, and agent
 outputs before publishing, sharing, or relying on them.
+
+## Meeting And Transcription Tools Draft Batch
+
+Five draft-first `Productivity Tools` pages were added on 2026-07-26:
+
+- Otter.ai
+- Fireflies.ai
+- Fathom
+- Granola
+- Read AI
+
+All five pages remain unpublished with:
+
+```yaml
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+```
+
+The pages use only cautious, high-level descriptions of meeting notes,
+transcription, summaries, and follow-up workflows. They do not claim exact
+pricing, plan or usage limits, recording or transcription behavior, accuracy,
+integrations, platform support, privacy, security, retention, data handling, or
+feature availability.
+
+Official product, help or documentation, pricing, privacy, security, and legal
+sources must be checked separately for every candidate before publication.
+Special review areas include participant notice and consent, applicable
+recording law, workplace policy, transcript and summary accuracy, speaker
+identification, decisions and action items, connected-account permissions,
+sharing controls, retention and deletion, customer and employee data, and
+sensitive or confidential conversations.
+
+The draft pages are not linked from `/ai-tools/`, `/ai-tools/tools/`, category
+pages, or global navigation. No Meeting Tools category was created; the batch
+uses the existing `Productivity Tools` category pending official-source review.
