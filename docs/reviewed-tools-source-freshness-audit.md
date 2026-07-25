@@ -467,6 +467,59 @@ No exact prices, credits, limits, model lists, output-quality claims,
 commercial-use conclusions, rights guarantees, privacy or security guarantees,
 or feature-availability promises were added during this monitoring pass.
 
+## Priority 3 Audio Monitoring Check
+
+ElevenLabs, Murf AI, Speechify, Suno, Udio, and Adobe Podcast were rechecked on
+2026-07-26 against current official product, help, pricing, privacy, security,
+terms, rights, safety, or data-use pages.
+
+ElevenLabs required no public page change because it had already been refreshed
+on the same date for its current creative, agent, API, voice-rights, recording,
+retention, redaction, safety, and data-use boundaries.
+
+Murf AI now presents a broader voice platform covering studio voiceovers,
+dubbing, developer use, and conversational voice agents. Its public page was
+broadened and now calls out agent testing, recording and disclosure rules,
+escalation, connected-system permissions, and unexpected responses.
+
+Speechify has repositioned from a primarily text-to-speech reader to a voice AI
+productivity tool covering listening, dictation, questions, notes, podcasts,
+and document workflows. Its public page was broadened while adding source
+verification and sensitive meeting, recording, and document cautions.
+
+Suno now presents a broader music creation and production workspace with remix,
+editing, and multitrack workflows. Its public page was broadened and now
+directs users to review current upload, custom-model, user-content, and service
+data-use policies before providing source material.
+
+Udio remains in a rights-holder partnership transition. Its current official
+help states that download availability has changed, so its public page now
+warns users to confirm current export behavior before relying on that workflow.
+
+Adobe Podcast's current help documents browser-based recording, transcription,
+enhancement, optional video, and text-based editing. Its public page was
+broadened cautiously and now notes that enhancement results can depend on
+recording quality, speaker clarity, and background noise.
+
+Official source groups checked:
+
+- ElevenLabs: product, documentation, pricing, billing, safety, legal,
+  data-use, and agent-privacy pages
+- Murf AI: product, voice-agent, pricing, help, developer documentation, legal,
+  privacy, security, and terms pages
+- Speechify: product, repositioning announcement, pricing, help, privacy, and
+  terms pages
+- Suno: product, pricing, help, custom-model, model-training disclosure, terms,
+  privacy, and community-guideline pages
+- Udio: product, pricing, help, upload, rights-holder partnership, terms, and
+  privacy pages
+- Adobe Podcast: product, features, FAQ, privacy, terms, and security pages
+
+No exact prices, credits, limits, voice or model lists, output-quality claims,
+commercial-use conclusions, ownership guarantees, privacy or security
+guarantees, or unsupported feature-availability promises were added during
+this monitoring pass.
+
 ## Ongoing Monitoring
 
 Return to risk-based monitoring of all 60 reviewed pages. Prioritize a page

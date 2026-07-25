@@ -117,7 +117,7 @@ A writing and communication assistant that can support drafting, rewriting, clar
 A language AI tool that can support translation, rewriting, and multilingual writing workflows.
 {{< /card >}}
 {{< card title="ElevenLabs" href="/ai-tools/tools/elevenlabs/" label="Reviewed" >}}
-An AI audio and voice platform that can support narration, voice, and audio content workflows.
+An AI audio and communication platform that can support narration, transcription, voice, generative audio, and agent workflows.
 {{< /card >}}
 {{< card title="Zapier" href="/ai-tools/tools/zapier/" label="Reviewed" >}}
 An automation platform that can help users plan, build, and test workflows across connected apps.
@@ -213,18 +213,18 @@ An AI assistant for commerce workflows that may help merchants prepare store con
 An AI customer agent that may help teams prepare and manage service, inbound sales, and commerce interactions for review.
 {{< /card >}}
 {{< card title="Murf AI" href="/ai-tools/tools/murf-ai/" label="Reviewed" >}}
-An AI voice and audio tool that may help users prepare narration, voiceover, and spoken-content drafts.
+An AI voice platform that may help users create voiceover drafts, explore dubbing, and plan conversational voice-agent workflows.
 {{< /card >}}
 {{< card title="Speechify" href="/ai-tools/tools/speechify/" label="Reviewed" >}}
-A text-to-speech and reading tool that may help users listen to written material and prepare spoken-audio workflows.
+A voice AI productivity tool that may help users listen to text, dictate drafts, ask questions about content, and prepare spoken-audio workflows.
 {{< /card >}}
 {{< card title="Suno" href="/ai-tools/tools/suno/" label="Reviewed" >}}
-An AI music creation tool that may help users explore song, sound, and music-production ideas.
+An AI music creation and production workspace that may help users explore songs, remixes, sound, and multitrack music ideas.
 {{< /card >}}
 {{< card title="Udio" href="/ai-tools/tools/udio/" label="Reviewed" >}}
 An AI music creation tool that may help users explore song, sound, and music-production drafts.
 {{< /card >}}
 {{< card title="Adobe Podcast" href="/ai-tools/tools/adobe-podcast/" label="Reviewed" >}}
-An audio recording and editing tool that may help users prepare, review, and improve spoken-audio drafts.
+A web-based audio and optional video recording, transcription, enhancement, and text-based editing tool for spoken-media drafts.
 {{< /card >}}
 {{< /card-grid >}}

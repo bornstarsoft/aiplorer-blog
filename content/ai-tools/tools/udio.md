@@ -14,7 +14,8 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Plans, pricing, credit or usage limits, music features, upload and download options, licensing terms, commercial-use rules, and availability may change. Check official Udio pages for current details."
 officialUrl: "https://www.udio.com/"
-lastReviewed: "2026-07-25"
+lastReviewed: "2026-07-26"
+lastmod: "2026-07-26T00:00:00+09:00"
 draft: false
 useCases:
   - Explore a rough song concept
@@ -29,6 +30,7 @@ pros:
 limitations:
   - Generated music, lyrics, facts, audio quality, and creative direction should be reviewed before use
   - Copyright, samples, performer and voice rights, consent, likeness, trademarks, licensing, and commercial-use requirements should be checked carefully
+  - Udio is in a rights-holder partnership transition, and current official help says download availability has changed
   - Private, unreleased, third-party, customer, or confidential audio and lyrics should be handled carefully
   - Plans, pricing, credits, limits, music features, uploads, downloads, model details, security details, and availability may change
 similarTools:
@@ -38,16 +40,16 @@ similarTools:
   - Canva AI
 reviewStatus: "reviewed"
 sourceNotes:
-  - "Checked https://www.udio.com/, https://www.udio.com/pricing, and https://help.udio.com/ on 2026-07-25 for official Udio positioning and current product and plan context."
-  - "Checked https://help.udio.com/en/articles/10754328-create-music-with-your-own-audio, https://help.udio.com/en/articles/12683565-changes-associated-with-the-universal-music-group-umg-partnership, https://www.udio.com/terms-of-service, and https://www.udio.com/privacy-policy on 2026-07-25 for official upload, changing-feature, rights, privacy, and terms context."
-  - "Did not copy exact prices, plan or credit limits, music feature or model details, upload or download details, ownership or licensing terms, commercial-use rights, copyright conclusions, security or data-handling guarantees, or exact availability claims."
+  - "Checked https://www.udio.com/, https://www.udio.com/pricing, and https://help.udio.com/ on 2026-07-26 for current music-creation, plan, and support context without copying exact details into this page."
+  - "Checked https://help.udio.com/en/articles/10754328-create-music-with-your-own-audio, https://help.udio.com/en/articles/12683565-changes-associated-with-the-universal-music-group-umg-partnership, and https://help.udio.com/en/articles/12874375-udio-warner-music-group-wmg-partnership on 2026-07-26 for current upload, download, transition, partnership, and changing-feature context."
+  - "Checked https://www.udio.com/terms-of-service and https://www.udio.com/privacy-policy on 2026-07-26 for rights, privacy, user-content, and terms context without copying guarantees or detailed legal conclusions into this page."
 ---
 
 ## Overview
 
 Udio is an AI music creation tool that may help users explore song, sound, and music-production drafts. It may be useful for turning an early creative direction into a rough audio draft for further human review and editing.
 
-Udio plans, pricing, credits, limits, music features, uploads, downloads, ownership terms, licensing terms, commercial-use rules, privacy terms, safety policies, and availability may change. Check official Udio pages before relying on a specific feature, right, or policy.
+Udio is in a rights-holder partnership transition, and its official help states that download availability has changed. Plans, pricing, credits, limits, music features, uploads, downloads, ownership terms, licensing terms, commercial-use rules, privacy terms, safety policies, and availability may change. Check official Udio pages before relying on a specific feature, export workflow, right, or policy.
 
 ## Useful For
 
@@ -57,6 +59,6 @@ AI music tools should not be treated as proof that output is original, non-infri
 
 ## Notes
 
-Features, plans, pricing, credits, limits, music options, uploads, downloads, model details, ownership terms, licensing terms, privacy terms, safety policies, and availability can change. Check official Udio pages for current information.
+Features, partnership-transition terms, plans, pricing, credits, limits, music options, uploads, downloads, model details, ownership terms, licensing terms, privacy terms, safety policies, and availability can change. Check official Udio pages for current information, especially before relying on downloading or exporting work.
 
 Review copyright, samples, lyrics, performer and voice rights, consent, likeness, trademarks, brand use, commercial-use requirements, and sensitive or unreleased audio before sharing generated music.

@@ -7,26 +7,28 @@ AI audio tools can support voice, narration, transcription, dubbing, podcast pla
 
 Generated, enhanced, transcribed, or rewritten audio should be reviewed before it is published or shared. Check voice and likeness rights, recording consent, copyright, samples, music and media licenses, brand use, and commercial-use requirements. Handle sensitive, private, customer, employee, interview, confidential, or unreleased recordings and text carefully.
 
+Voice-agent workflows should be tested before deployment. Review disclosure and recording requirements, escalation behavior, connected-system permissions, and unexpected responses before using an agent with callers or business data.
+
 ## Reviewed Audio Tools
 
 {{< card-grid >}}
 {{< card title="ElevenLabs" href="/ai-tools/tools/elevenlabs/" label="Reviewed" >}}
-An AI audio and voice platform that can support narration, voice, and audio content workflows.
+An AI audio and communication platform that can support narration, transcription, voice, generative audio, and agent workflows.
 {{< /card >}}
 {{< card title="Murf AI" href="/ai-tools/tools/murf-ai/" label="Reviewed" >}}
-An AI voice and audio tool that may help users prepare narration, voiceover, and spoken-content drafts.
+An AI voice platform that may help users create voiceover drafts, explore dubbing, and plan conversational voice-agent workflows.
 {{< /card >}}
 {{< card title="Speechify" href="/ai-tools/tools/speechify/" label="Reviewed" >}}
-A text-to-speech and reading tool that may help users listen to written material and prepare spoken-audio workflows.
+A voice AI productivity tool that may help users listen to text, dictate drafts, ask questions about content, and prepare spoken-audio workflows.
 {{< /card >}}
 {{< card title="Suno" href="/ai-tools/tools/suno/" label="Reviewed" >}}
-An AI music creation tool that may help users explore song, sound, and music-production ideas.
+An AI music creation and production workspace that may help users explore songs, remixes, sound, and multitrack music ideas.
 {{< /card >}}
 {{< card title="Udio" href="/ai-tools/tools/udio/" label="Reviewed" >}}
 An AI music creation tool that may help users explore song, sound, and music-production drafts.
 {{< /card >}}
 {{< card title="Adobe Podcast" href="/ai-tools/tools/adobe-podcast/" label="Reviewed" >}}
-An audio recording and editing tool that may help users prepare, review, and improve spoken-audio drafts.
+A web-based audio and optional video recording, transcription, enhancement, and text-based editing tool for spoken-media drafts.
 {{< /card >}}
 {{< /card-grid >}}
 
