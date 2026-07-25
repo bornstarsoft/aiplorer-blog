@@ -784,3 +784,58 @@ checking security, protecting secrets and private repositories, reviewing
 licenses and dependencies, following workplace policy, and monitoring changing
 availability. The pages remind users to test and review generated code before
 using it in real projects.
+
+## Video Creative Tools Draft Batch
+
+Phase 5AE added five Video Tools pages as draft-first validation pages:
+
+- Runway
+- Pika
+- Luma AI
+- Descript
+- Synthesia
+
+Current status:
+
+```yaml
+content/ai-tools/tools/runway.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+
+content/ai-tools/tools/pika.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+
+content/ai-tools/tools/luma-ai.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+
+content/ai-tools/tools/descript.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+
+content/ai-tools/tools/synthesia.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+```
+
+The pages use the existing `Video Tools` category. They are not linked from
+public category, landing, navigation, or reviewed-index pages and must remain
+unpublished until official-source review is complete.
+
+Official product, pricing, documentation or help, privacy, security, licensing,
+and policy sources must be checked for each tool before publication. Draft copy
+avoids exact prices, plan limits, credits, generation or editing feature claims,
+output and export claims, integrations, model details, security guarantees,
+licensing guarantees, commercial-use rights, and exact availability.
+
+Special caution areas include reviewing generated video, audio, images, scripts,
+text, and captions; checking facts; confirming voice and likeness consent;
+reviewing copyright and media licenses; following brand and workplace policy;
+protecting private, customer, employee, business, or confidential content; and
+checking current pricing, limits, privacy, security, and availability.
