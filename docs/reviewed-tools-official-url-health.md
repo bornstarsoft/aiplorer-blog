@@ -9,9 +9,10 @@ licensing review.
 
 ## Scope And Method
 
-The audit covered the `officialUrl` value on all 55 reviewed public tool pages.
+The audit covered the `officialUrl` value on all 60 reviewed public tool pages.
 Each URL was requested with redirects enabled, and the final status and
-destination were recorded.
+destination were recorded. Browser inspection was used when an official site
+blocked or did not complete a command-line request.
 
 The three draft-only pages were inventoried separately. Their URLs were not
 treated as reviewed publication sources, and the audit does not authorize
@@ -19,12 +20,14 @@ publishing them.
 
 ## Result
 
-- 45 reviewed official URLs returned HTTP 200 directly or after an expected
+- 49 reviewed official URLs returned HTTP 200 directly or after an expected
   redirect.
 - 10 reviewed official URLs returned HTTP 403 to command-line requests.
+- Adobe Firefly did not complete either command-line retry, but its official
+  page loaded successfully through browser inspection at the existing URL.
 - No reviewed official URL returned HTTP 404.
 - No reviewed official URL returned a 5xx server error.
-- All 55 requests completed without a transport error.
+- No reviewed official URL redirected to an unexpected product or domain.
 
 An HTTP 403 from an automated command-line request is not, by itself, evidence
 that an official page is unavailable. These destinations use access controls
@@ -41,8 +44,23 @@ that can block non-browser clients:
 - Midjourney
 - Perplexity
 
-Their existing official URLs remain unchanged. Future editorial reviews should
-continue to verify these sources manually in a browser.
+Browser inspection confirmed that all 10 destinations still load their
+official product pages or expected account destinations. Their existing
+official URLs remain unchanged. Future editorial reviews should continue to
+verify these sources manually in a browser.
+
+Adobe Firefly returned a command-line transport timeout rather than an HTTP
+error. Browser inspection confirmed that the existing Adobe product URL still
+loads the official Firefly page, so no public URL change was made.
+
+The five reviewed meeting and transcription tools added after the previous
+55-tool baseline all returned HTTP 200:
+
+- Fathom
+- Fireflies.ai
+- Granola
+- Otter.ai
+- Read AI
 
 ## Redirect Review
 
