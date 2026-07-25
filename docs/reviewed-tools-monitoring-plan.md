@@ -29,6 +29,9 @@ Supporting baselines:
 - `docs/reviewed-tools-card-copy-consistency-audit.md`
 - `docs/production-monitoring-checklist.md`
 
+The concrete next review windows and batch groupings are maintained in
+`docs/reviewed-tools-maintenance-calendar.md`.
+
 ## Monitoring Triggers
 
 Re-review a page before its normal cadence when an official source announces
