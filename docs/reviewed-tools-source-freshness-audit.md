@@ -617,6 +617,29 @@ data-residency change, or material availability change.
 The recurring cadence, trigger rules, validation gate, and current priority
 queue are documented in `docs/reviewed-tools-monitoring-plan.md`.
 
+## Draft Source Readiness Check
+
+SciSpace and Tome were rechecked on 2026-07-26 without changing their draft
+pages or publication status.
+
+SciSpace's official product and pricing pages were readable through a browser
+check and continued to describe a research platform and related tools. Its
+trust center was also present. Direct command-line requests returned HTTP 403
+for the product, pricing, and privacy pages and HTTP 429 for the trust center.
+The privacy and terms pages did not provide enough readable policy content in
+the browser extraction for a complete conservative review. SciSpace therefore
+remains draft pending a stable review of its product, help, privacy, terms, and
+security sources.
+
+Tome's product, help, pricing, and privacy URLs returned HTTP 404 in current
+direct checks. Search results still exposed older help-center material, but
+that historical or cached material is not sufficient evidence of current
+product availability. Tome remains draft pending a reachable current product
+site and supporting official sources.
+
+Neither draft received a `lastReviewed` or `lastmod` value because no complete
+publication review was performed.
+
 ## Draft Policy
 
 Do not publish SciSpace or Tome merely to complete a batch. Revisit them only
