@@ -197,4 +197,19 @@ An AI assistant for commerce workflows that may help merchants prepare store con
 {{< card title="Fin" href="/ai-tools/tools/fin/" label="Reviewed" >}}
 An AI customer-service tool that may help teams prepare and manage customer-support interactions for review.
 {{< /card >}}
+{{< card title="Murf AI" href="/ai-tools/tools/murf-ai/" label="Reviewed" >}}
+An AI voice and audio tool that may help users prepare narration, voiceover, and spoken-content drafts.
+{{< /card >}}
+{{< card title="Speechify" href="/ai-tools/tools/speechify/" label="Reviewed" >}}
+A text-to-speech and reading tool that may help users listen to written material and prepare spoken-audio workflows.
+{{< /card >}}
+{{< card title="Suno" href="/ai-tools/tools/suno/" label="Reviewed" >}}
+An AI music creation tool that may help users explore song, sound, and music-production ideas.
+{{< /card >}}
+{{< card title="Udio" href="/ai-tools/tools/udio/" label="Reviewed" >}}
+An AI music creation tool that may help users explore song, sound, and music-production drafts.
+{{< /card >}}
+{{< card title="Adobe Podcast" href="/ai-tools/tools/adobe-podcast/" label="Reviewed" >}}
+An audio recording and editing tool that may help users prepare, review, and improve spoken-audio drafts.
+{{< /card >}}
 {{< /card-grid >}}

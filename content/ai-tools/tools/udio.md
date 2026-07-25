@@ -12,10 +12,10 @@ bestFor:
   - Documenting music-rights and consent checks
 beginnerFriendly: null
 freePlan: null
-pricingNote: "Plans, pricing, credit or usage limits, music features, upload and download options, licensing terms, commercial-use rules, and availability may change. Check official Udio pages for current details before publishing."
+pricingNote: "Plans, pricing, credit or usage limits, music features, upload and download options, licensing terms, commercial-use rules, and availability may change. Check official Udio pages for current details."
 officialUrl: "https://www.udio.com/"
-lastReviewed: ""
-draft: true
+lastReviewed: "2026-07-25"
+draft: false
 useCases:
   - Explore a rough song concept
   - Prepare a music draft for later editing
@@ -31,24 +31,23 @@ limitations:
   - Copyright, samples, performer and voice rights, consent, likeness, trademarks, licensing, and commercial-use requirements should be checked carefully
   - Private, unreleased, third-party, customer, or confidential audio and lyrics should be handled carefully
   - Plans, pricing, credits, limits, music features, uploads, downloads, model details, security details, and availability may change
-  - Official Udio sources must be reviewed before this page is published
 similarTools:
   - Suno
   - ElevenLabs
   - Adobe Podcast
   - Canva AI
-reviewStatus: "needs-official-review"
+reviewStatus: "reviewed"
 sourceNotes:
-  - "Draft-first page. The official Udio website and help center were checked to confirm the current product name, official URL, and high-level AI music positioning."
-  - "Official Udio product, pricing, help, privacy, safety, copyright, licensing, and terms pages must be reviewed before publication."
-  - "Do not publish until claims about plans, pricing, credits, limits, music features, uploads, downloads, model details, ownership, licensing, commercial use, copyright, security, data handling, and availability have been avoided or verified against official sources."
+  - "Checked https://www.udio.com/, https://www.udio.com/pricing, and https://help.udio.com/ on 2026-07-25 for official Udio positioning and current product and plan context."
+  - "Checked https://help.udio.com/en/articles/10754328-create-music-with-your-own-audio, https://help.udio.com/en/articles/12683565-changes-associated-with-the-universal-music-group-umg-partnership, https://www.udio.com/terms-of-service, and https://www.udio.com/privacy-policy on 2026-07-25 for official upload, changing-feature, rights, privacy, and terms context."
+  - "Did not copy exact prices, plan or credit limits, music feature or model details, upload or download details, ownership or licensing terms, commercial-use rights, copyright conclusions, security or data-handling guarantees, or exact availability claims."
 ---
 
 ## Overview
 
 Udio is an AI music creation tool that may help users explore song, sound, and music-production drafts. It may be useful for turning an early creative direction into a rough audio draft for further human review and editing.
 
-This is a draft page. Official Udio sources must be checked before publication, especially for current plans, pricing, credits, limits, music features, uploads, downloads, ownership, licensing, commercial-use rules, privacy, safety, and availability.
+Udio plans, pricing, credits, limits, music features, uploads, downloads, ownership terms, licensing terms, commercial-use rules, privacy terms, safety policies, and availability may change. Check official Udio pages before relying on a specific feature, right, or policy.
 
 ## Useful For
 

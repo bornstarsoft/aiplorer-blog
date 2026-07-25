@@ -1143,9 +1143,10 @@ employee, account, store, order, and confidential business data; checking
 connected-account permissions; defining escalation and rollback steps; and
 following privacy, legal, brand, license, compliance, and workplace policies.
 
-## Audio Tools Draft Batch
+## Audio Tools Batch Review Result
 
-Five `Audio Tools` pages were added as draft-first candidates:
+Five `Audio Tools` pages were added as draft-first candidates and then
+reviewed against current official sources:
 
 - Murf AI
 - Speechify
@@ -1157,40 +1158,68 @@ Current status:
 
 ```yaml
 content/ai-tools/tools/murf-ai.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-07-25"
 
 content/ai-tools/tools/speechify.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-07-25"
 
 content/ai-tools/tools/suno.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-07-25"
 
 content/ai-tools/tools/udio.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-07-25"
 
 content/ai-tools/tools/adobe-podcast.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-07-25"
 ```
 
-These pages remain unpublished. They are not linked from the AI Tools landing
-page, Audio Tools category page, reviewed-tools index, or global navigation.
+All five pages passed conservative official-source review. They are linked from
+the AI Tools landing page and Audio Tools category page and are listed
+automatically in the reviewed-tools index. They were not added to global
+navigation.
 
-Before publication, review each vendor's official product, pricing, help,
-privacy, security, safety, rights, and terms pages. Avoid or verify claims about
-exact pricing, plans, credits, limits, voice or music features, supported
-languages or formats, cloning, dubbing, uploads, downloads, APIs, integrations,
-transcription or enhancement accuracy, model details, licensing, ownership,
-commercial use, security or data handling, and exact availability.
+Official sources checked:
+
+- Murf AI: `https://murf.ai/`, `https://murf.ai/pricing`,
+  `https://help.murf.ai/`, `https://murf.ai/legal/privacy-policy`,
+  `https://murf.ai/legal/data-protection-and-security-policy`, and
+  `https://murf.ai/legal/terms-of-service`
+- Speechify: `https://speechify.com/`,
+  `https://speechify.com/text-to-speech-online/`,
+  `https://speechify.com/pricing/`, `https://help.speechify.com/`,
+  `https://speechify.com/privacy/`, and `https://speechify.com/terms/`
+- Suno: `https://suno.com/`, `https://suno.com/pricing`,
+  `https://help.suno.com/`, `https://help.suno.com/en/categories/550145`,
+  `https://suno.com/terms`, `https://suno.com/privacy`, and
+  `https://suno.com/community-guidelines`
+- Udio: `https://www.udio.com/`, `https://www.udio.com/pricing`,
+  `https://help.udio.com/`,
+  `https://help.udio.com/en/articles/10754328-create-music-with-your-own-audio`,
+  `https://help.udio.com/en/articles/12683565-changes-associated-with-the-universal-music-group-umg-partnership`,
+  `https://www.udio.com/terms-of-service`, and
+  `https://www.udio.com/privacy-policy`
+- Adobe Podcast: `https://podcast.adobe.com/`,
+  `https://podcast.adobe.com/en/features`,
+  `https://helpx.adobe.com/podcast/adobe-podcast-faq.html`,
+  `https://www.adobe.com/privacy/policy.html`,
+  `https://www.adobe.com/legal/terms.html`, and
+  `https://www.adobe.com/trust/security.html`
+
+Published copy avoids exact pricing, plans, credits, limits, voice or music
+feature details, supported languages or formats, cloning, dubbing, uploads,
+downloads, APIs, integrations, transcription or enhancement accuracy, model
+details, licensing or ownership terms, commercial-use rights, copyright
+conclusions, security or data-handling guarantees, and exact availability.
 
 Special caution areas include reviewing generated and enhanced audio;
 confirming facts, scripts, lyrics, transcripts, captions, and pronunciation;

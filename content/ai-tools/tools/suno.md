@@ -12,10 +12,10 @@ bestFor:
   - Documenting music-rights and consent checks
 beginnerFriendly: null
 freePlan: null
-pricingNote: "Plans, pricing, usage limits, music features, upload and download options, licensing terms, commercial-use rules, and availability may change. Check official Suno pages for current details before publishing."
+pricingNote: "Plans, pricing, usage limits, music features, upload and download options, licensing terms, commercial-use rules, and availability may change. Check official Suno pages for current details."
 officialUrl: "https://suno.com/"
-lastReviewed: ""
-draft: true
+lastReviewed: "2026-07-25"
+draft: false
 useCases:
   - Explore a rough song or sound concept
   - Prepare a music idea for later production
@@ -31,24 +31,23 @@ limitations:
   - Copyright, samples, performer and voice rights, consent, likeness, trademarks, licensing, and commercial-use requirements should be checked carefully
   - Private, unreleased, third-party, customer, or confidential audio and lyrics should be handled carefully
   - Plans, pricing, limits, music features, uploads, downloads, model details, security details, and availability may change
-  - Official Suno sources must be reviewed before this page is published
 similarTools:
   - Udio
   - ElevenLabs
   - Adobe Podcast
   - Canva AI
-reviewStatus: "needs-official-review"
+reviewStatus: "reviewed"
 sourceNotes:
-  - "Draft-first page. The official Suno website and about page were checked to confirm the current product name, official URL, and high-level AI music positioning."
-  - "Official Suno product, pricing, help, privacy, safety, copyright, licensing, and terms pages must be reviewed before publication."
-  - "Do not publish until claims about plans, pricing, limits, music features, uploads, downloads, model details, ownership, licensing, commercial use, copyright, security, data handling, and availability have been avoided or verified against official sources."
+  - "Checked https://suno.com/, https://suno.com/pricing, and https://help.suno.com/ on 2026-07-25 for official Suno positioning and current product and plan context."
+  - "Checked https://help.suno.com/en/categories/550145, https://suno.com/terms, https://suno.com/privacy, and https://suno.com/community-guidelines on 2026-07-25 for official rights, ownership, privacy, safety, and terms context."
+  - "Did not copy exact prices, plan or credit limits, music feature or model details, upload or download details, ownership or licensing terms, commercial-use rights, copyright conclusions, security or data-handling guarantees, or exact availability claims."
 ---
 
 ## Overview
 
 Suno is an AI music creation tool that may help users explore song, sound, and music-production ideas. It may be useful for turning an early creative direction into a rough audio draft for further human review and production.
 
-This is a draft page. Official Suno sources must be checked before publication, especially for current plans, pricing, limits, music features, uploads, downloads, ownership, licensing, commercial-use rules, privacy, safety, and availability.
+Suno plans, pricing, limits, music features, uploads, downloads, ownership terms, licensing terms, commercial-use rules, privacy terms, safety policies, and availability may change. Check official Suno pages before relying on a specific feature, right, or policy.
 
 ## Useful For
 

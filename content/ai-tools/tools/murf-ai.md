@@ -12,10 +12,10 @@ bestFor:
   - Documenting voice-rights and consent checks
 beginnerFriendly: null
 freePlan: null
-pricingNote: "Plans, pricing, usage limits, voice options, audio features, licensing terms, and availability may change. Check official Murf AI pages for current details before publishing."
+pricingNote: "Plans, pricing, usage limits, voice options, audio features, licensing terms, and availability may change. Check official Murf AI pages for current details."
 officialUrl: "https://murf.ai/"
-lastReviewed: ""
-draft: true
+lastReviewed: "2026-07-25"
+draft: false
 useCases:
   - Prepare a rough narration draft
   - Plan a voiceover workflow
@@ -31,24 +31,23 @@ limitations:
   - Voice rights, consent, likeness, copyright, brand use, licensing, and commercial-use requirements should be checked carefully
   - Sensitive, private, customer, employee, or third-party recordings and text should be handled carefully
   - Plans, pricing, limits, voice options, dubbing, cloning, API access, integrations, security details, and availability may change
-  - Official Murf AI sources must be reviewed before this page is published
 similarTools:
   - ElevenLabs
   - Speechify
   - Adobe Podcast
   - Descript
-reviewStatus: "needs-official-review"
+reviewStatus: "reviewed"
 sourceNotes:
-  - "Draft-first page. The official Murf AI website and help center were checked to confirm the current product name, official URL, and high-level AI voice positioning."
-  - "Official Murf AI product, pricing, help, privacy, security, ethics, and terms pages must be reviewed before publication."
-  - "Do not publish until claims about plans, pricing, limits, voice options, cloning, dubbing, API access, integrations, licensing, commercial use, security, data handling, and availability have been avoided or verified against official sources."
+  - "Checked https://murf.ai/, https://murf.ai/pricing, and https://help.murf.ai/ on 2026-07-25 for official Murf AI positioning and current product and plan context."
+  - "Checked https://murf.ai/legal/privacy-policy, https://murf.ai/legal/data-protection-and-security-policy, and https://murf.ai/legal/terms-of-service on 2026-07-25 for official privacy, security, consent, rights, and terms context."
+  - "Did not copy exact prices, plan or usage limits, voice options, cloning or dubbing availability, API or integration details, licensing or commercial-use rights, security or data-handling guarantees, model details, or exact availability claims."
 ---
 
 ## Overview
 
 Murf AI is an AI voice and audio tool that may help users prepare narration, voiceover, and spoken-content drafts. It may be useful for exploring an audio concept before final recording, editing, and production.
 
-This is a draft page. Official Murf AI sources must be checked before publication, especially for current plans, pricing, limits, voice options, audio features, licensing, consent requirements, privacy, security, and availability.
+Murf AI plans, pricing, limits, voice options, audio features, licensing terms, consent requirements, privacy terms, security details, and availability may change. Check official Murf AI pages before relying on a specific feature, right, or policy.
 
 ## Useful For
 
