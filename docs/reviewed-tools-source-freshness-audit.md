@@ -336,6 +336,47 @@ No exact prices, limits, integration counts, feature-availability promises,
 retention guarantees, or privacy and security guarantees were added during
 this monitoring pass.
 
+## Priority 2 Business Monitoring Check
+
+HubSpot Breeze, Salesforce Agentforce, Zoho Zia, Shopify Sidekick, and Fin were
+rechecked on 2026-07-26 against current official product, help, pricing,
+privacy, security, trust, or legal pages.
+
+HubSpot Breeze, Salesforce Agentforce, Zoho Zia, and Shopify Sidekick required
+no public page change. Their existing high-level descriptions remain
+consistent with current official positioning and already require human review,
+workflow testing, permission checks, careful customer and business data
+handling, and current plan and policy verification.
+
+HubSpot's current documentation continues to define Breeze as its AI across
+the platform, including assistant and agent experiences, while its AI product
+page now emphasizes Agent Hub. The existing Aiplorer page remains deliberately
+broad enough to cover this structure without promising access to a specific
+assistant, agent, plan, credit model, or connected product.
+
+Fin's current official materials position it as a Customer Agent across
+customer service, inbound sales, and commerce rather than only as a
+customer-service tool. Its public page was broadened to reflect those
+customer-facing workflow areas while retaining human review, escalation,
+permissions, customer-data, pricing, reliability, security, and availability
+cautions.
+
+Official source groups checked:
+
+- HubSpot Breeze: AI product, Breeze help, pricing, security and compliance,
+  privacy, and legal pages
+- Salesforce Agentforce: product, how-it-works, pricing, privacy FAQ, and
+  security and compliance documentation
+- Zoho Zia: product, generative-AI, help, privacy, and security pages
+- Shopify Sidekick: product, help, pricing, security, and privacy pages
+- Fin: product, Customer Agent, pricing, help, security, trust, privacy, and
+  legal pages
+
+No exact prices, limits, credits, customer-agent capabilities, connected
+product or channel lists, performance claims, model details, retention
+guarantees, or privacy and security guarantees were added during this
+monitoring pass.
+
 ## Ongoing Monitoring
 
 Return to risk-based monitoring of all 60 reviewed pages. Prioritize a page
