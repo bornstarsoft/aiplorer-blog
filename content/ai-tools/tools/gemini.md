@@ -14,7 +14,7 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Pricing, plans, and availability may change. Check the official Gemini or Google AI plan pages for current details."
 officialUrl: "https://gemini.google.com/"
-lastReviewed: "2026-06-01"
+lastReviewed: "2026-07-25"
 draft: false
 useCases:
   - Brainstorm content or project ideas
@@ -27,16 +27,16 @@ pros:
   - May help beginners move from a rough question to a clearer next step
 limitations:
   - Outputs should be checked for accuracy, context, and suitability before use
+  - Sensitive or confidential information should be handled carefully, especially when using connected apps or work and school accounts
   - Plans, apps, model access, connected services, and feature availability may change
 similarTools:
   - ChatGPT
   - Claude
 reviewStatus: "reviewed"
 sourceNotes:
-  - "Checked https://gemini.google.com/ on 2026-06-01 for official URL and product access point."
-  - "Checked https://gemini.google/overview/ on 2026-06-01 for high-level positioning, use cases, and limitations."
-  - "Checked Google Help article 'Use Gemini Apps' on 2026-06-01 for high-level use case categories and safety caution."
-  - "Checked https://gemini.google/subscriptions/ on 2026-06-01, but did not copy specific prices, limits, model names, plan details, app availability, Workspace availability, or integration details."
+  - "Checked https://gemini.google.com/, https://gemini.google/overview/, and https://support.google.com/gemini/answer/13275745 on 2026-07-25 for the official product access point and high-level writing, planning, summarizing, learning, and connected-app context."
+  - "Checked https://gemini.google/subscriptions/ and https://support.google.com/gemini/answer/16275805 on 2026-07-25 for current plan, limit, model-access, account, and availability context without copying exact details into this page."
+  - "Checked https://support.google.com/gemini/answer/13594961 on 2026-07-25 for current Gemini Apps privacy, activity, connected-app, and sensitive-information cautions without adding privacy, retention, or security guarantees."
 ---
 
 ## Overview

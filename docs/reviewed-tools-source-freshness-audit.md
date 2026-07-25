@@ -24,10 +24,9 @@ Aiplorer has 55 reviewed public tool pages and three draft-only pages.
 
 | Last reviewed | Reviewed pages |
 | --- | ---: |
-| 2026-06-01 | 3 |
-| 2026-06-02 | 22 |
+| 2026-06-02 | 19 |
 | 2026-06-06 | 5 |
-| 2026-07-25 | 25 |
+| 2026-07-25 | 31 |
 | **Total** | **55** |
 
 All 55 reviewed pages have:
@@ -53,9 +52,9 @@ All ten category pages now include reviewed links or cards and cautious
 category-specific guidance. No category needs a bulk tool batch merely to have
 a reviewed representative.
 
-## First Freshness Batch
+## Completed First Freshness Batch
 
-The recommended first re-review batch is Productivity Tools:
+The first re-review batch covered Productivity Tools:
 
 - ChatGPT
 - Claude
@@ -64,23 +63,23 @@ The recommended first re-review batch is Productivity Tools:
 - Microsoft Copilot
 - Notion AI
 
-ChatGPT, Claude, and Gemini have the oldest reviewed date, 2026-06-01. The
-other three were reviewed on 2026-06-02 and belong to the same fast-changing
-category, so reviewing the six together keeps the work coherent.
+All six pages passed conservative official-source re-review on 2026-07-25.
+Their high-level public descriptions remained accurate enough to keep. Review
+dates and source notes were refreshed, and sensitive-information cautions were
+strengthened for ChatGPT, Claude, and Gemini.
 
-A simple URL reachability check on 2026-07-25 returned:
+A preliminary command-line URL reachability check returned:
 
 - HTTP 200: Gemini, Microsoft Copilot, Notion AI
 - HTTP 403 from command-line requests: ChatGPT, Claude, Perplexity
 
-The 403 results do not establish that the official URLs are invalid. They
-indicate that the next review should use browser-accessible official product,
-help, pricing, privacy, and security pages rather than relying on command-line
-reachability alone.
+The 403 results did not establish that the official URLs were invalid. The
+official product and documentation pages were subsequently reviewed through
+browser-accessible sources.
 
 ## Review Priorities
 
-For the Productivity Tools batch, recheck:
+The Productivity Tools review rechecked:
 
 - official product identity and current official URL
 - pricing and plan pages without copying exact prices or limits unless needed
@@ -89,14 +88,13 @@ For the Productivity Tools batch, recheck:
 - source and citation cautions where search or research features are involved
 - generated text, code, and factual output review requirements
 
-Keep wording cautious. A successful freshness review may update only
-`lastReviewed` and `sourceNotes` when the public description remains accurate.
-Do not introduce rankings, ratings, affiliate links, unsupported "best"
-claims, or privacy and security guarantees.
+Wording remains cautious. The review did not introduce rankings, ratings,
+affiliate links, unsupported "best" claims, or privacy and security
+guarantees.
 
 ## Later Batches
 
-After Productivity Tools, use this order:
+Continue with this order:
 
 1. Automation Tools
 2. Coding Tools
@@ -123,6 +121,6 @@ Production builds and the production sitemap must continue to exclude:
 
 ## Next Phase
 
-Run an official-source freshness review of the six Productivity Tools. Review
-only those six, preserve current routes, and publish no draft page as part of
-that phase.
+Run an official-source freshness review of the seven Automation Tools. Review
+only Zapier, Make, n8n, IFTTT, Pipedream, Bardeen, and Relay.app; preserve
+current routes and publish no draft page as part of that phase.

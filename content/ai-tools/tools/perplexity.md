@@ -14,7 +14,7 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Pricing, plans, features, limits, and availability may change. Check the official Perplexity website and subscription information for current details."
 officialUrl: "https://www.perplexity.ai/"
-lastReviewed: "2026-06-02"
+lastReviewed: "2026-07-25"
 draft: false
 useCases:
   - Ask for a first-pass explanation of a topic
@@ -37,12 +37,9 @@ similarTools:
   - Gemini
 reviewStatus: "reviewed"
 sourceNotes:
-  - "Checked https://www.perplexity.ai/ on 2026-06-02 for official URL and product access point."
-  - "Checked Perplexity Help Center article 'What is Perplexity?' on 2026-06-02 for high-level search, research assistant, and source-linked answer positioning."
-  - "Checked Perplexity Help Center article 'Getting Started with Perplexity' on 2026-06-02 for high-level use case categories."
-  - "Checked Perplexity Help Center article 'Practical Tips for Using Perplexity' on 2026-06-02 for high-level research, summarization, and prompting guidance."
-  - "Checked Perplexity Help Center article 'Which Perplexity Subscription Plan is right for you?' on 2026-06-02, but did not copy specific prices, limits, model names, plan comparisons, or feature availability claims."
-  - "Checked Perplexity Help Center Privacy & Data collection page on 2026-06-02 for privacy-related documentation categories."
+  - "Checked https://www.perplexity.ai/ and https://www.perplexity.ai/help-center/en/articles/10354975-getting-started-with-perplexity on 2026-07-25 for the official product access point and current question, topic-exploration, research, and privacy-setting context."
+  - "Checked https://www.perplexity.ai/help-center/en/articles/11187416-which-perplexity-subscription-plan-is-right-for-you on 2026-07-25 for current plan, feature, limit, model-access, API, and availability context without copying exact details into this page."
+  - "Checked https://www.perplexity.ai/help-center/en/articles/11564572-data-collection-at-perplexity on 2026-07-25 for current data-collection and opt-out documentation context without adding privacy, retention, training, or security guarantees."
 ---
 
 ## Overview

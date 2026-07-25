@@ -14,7 +14,7 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Pricing, plans, and availability may change. Check the official ChatGPT pricing page for current details."
 officialUrl: "https://chatgpt.com/"
-lastReviewed: "2026-06-01"
+lastReviewed: "2026-07-25"
 draft: false
 useCases:
   - Draft a clearer version of a rough email
@@ -27,16 +27,16 @@ pros:
   - May help beginners start from a rough idea instead of a blank page
 limitations:
   - Outputs should be checked for accuracy and context before use
+  - Sensitive or confidential information should be handled carefully, with current data controls and privacy terms reviewed before use
   - Plans, tools, model access, and feature availability may change
 similarTools:
   - Claude
   - Gemini
 reviewStatus: "reviewed"
 sourceNotes:
-  - "Checked https://chatgpt.com/ on 2026-06-01 for official URL and product access point."
-  - "Checked OpenAI Help article 'What is ChatGPT: FAQ' on 2026-06-01 for high-level everyday task positioning."
-  - "Checked OpenAI Help article 'ChatGPT Capabilities Overview' on 2026-06-01 for high-level capability categories."
-  - "Checked https://chatgpt.com/pricing/ on 2026-06-01, but did not copy specific prices, limits, model names, or plan details."
+  - "Checked https://chatgpt.com/ and https://help.openai.com/en/articles/12677804-what-is-chatgpt-faq on 2026-07-25 for the official product access point and high-level everyday task positioning."
+  - "Checked https://chatgpt.com/pricing/ on 2026-07-25 for current plan, feature, limit, model-access, privacy, and availability context without copying exact details into this page."
+  - "Checked https://help.openai.com/en/articles/7730893-data-controls-faq and https://openai.com/policies/privacy-policy/ on 2026-07-25 for current data-control and privacy context without adding privacy, retention, or security guarantees."
 ---
 
 ## Overview
@@ -50,3 +50,5 @@ Beginners may use ChatGPT to create a first draft, ask for simpler explanations,
 ## Notes
 
 Features, pricing, model access, and availability may change. Check the official ChatGPT website and pricing page for current details before choosing a plan or relying on a specific feature.
+
+Handle sensitive or confidential information carefully and review current OpenAI data controls, privacy terms, and any applicable workplace policies before use.

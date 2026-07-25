@@ -14,7 +14,7 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Plans, pricing, account requirements, features, integrations, and availability may change. Check the official Microsoft Copilot pages for current details."
 officialUrl: "https://copilot.microsoft.com/"
-lastReviewed: "2026-06-02"
+lastReviewed: "2026-07-25"
 draft: false
 useCases:
   - Ask questions while exploring a topic
@@ -38,8 +38,9 @@ similarTools:
   - Perplexity
 reviewStatus: "reviewed"
 sourceNotes:
-  - "Reviewed official Microsoft Copilot, Microsoft Support, Microsoft 365 Copilot, Microsoft Copilot for organizations, and Microsoft Learn pages on 2026-06-02."
-  - "Specific prices, plan comparisons, Microsoft 365 entitlement details, Windows availability, Edge availability, Bing availability, model access, integrations, and exact feature availability were not copied into this page."
+  - "Checked https://copilot.microsoft.com/ and the official Microsoft Copilot overview at https://explore.microsoft.com/en-us/microsoft-copilot/learn on 2026-07-25 for the product access point and high-level everyday assistant positioning."
+  - "Checked https://support.microsoft.com/en-US/Microsoft-365-Copilot/what-s-the-difference-between-microsoft-copilot-free-and-copilot-in-microsoft-365 and https://www.microsoft.com/en-us/microsoft-365-copilot/pricing/individuals on 2026-07-25 for current Copilot experience, account, plan, pricing, integration, and availability context without copying exact details into this page."
+  - "Checked https://support.microsoft.com/en-us/microsoft-copilot/privacy-faq-for-microsoft-copilot on 2026-07-25 for current consumer Copilot privacy and conversation-history context without adding privacy, retention, or security guarantees."
 ---
 
 ## Overview

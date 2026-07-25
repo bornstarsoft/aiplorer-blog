@@ -14,7 +14,7 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Plans, pricing, AI usage, workspace access, feature access, and availability may change. Check the official Notion pricing and help pages for current details."
 officialUrl: "https://www.notion.com/product/ai"
-lastReviewed: "2026-06-02"
+lastReviewed: "2026-07-25"
 draft: false
 useCases:
   - Draft a first version of a workspace note
@@ -37,11 +37,9 @@ similarTools:
   - Microsoft Copilot
 reviewStatus: "reviewed"
 sourceNotes:
-  - "Checked https://www.notion.com/product/ai on 2026-06-02 for official Notion AI positioning and high-level workspace productivity categories."
-  - "Checked https://www.notion.com/help/notion-ai-faqs, https://www.notion.com/help/, and the official Notion AI help/guides area on 2026-06-02 for high-level writing, workspace, notes, database, search, and help documentation categories."
-  - "Checked https://www.notion.com/pricing on 2026-06-02, but did not copy specific prices, plan comparisons, AI usage limits, availability rules, model details, or feature access claims."
-  - "Checked https://www.notion.com/help/security-and-privacy on 2026-06-02 for security and privacy documentation context."
-  - "Specific pricing, plan limits, workspace availability, Notion plan availability, AI usage limits, model access, database availability, Q&A availability, organization availability, team availability, integrations, and exact feature availability were not copied into this page."
+  - "Checked https://www.notion.com/product/ai and https://www.notion.com/help/notion-ai-faqs on 2026-07-25 for current Notion AI positioning and high-level workspace, writing, search, notes, database, connected-app, and productivity context."
+  - "Checked https://www.notion.com/pricing on 2026-07-25 for current plan, pricing, AI usage, workspace access, and availability context without copying exact details into this page."
+  - "Checked https://www.notion.com/help/notion-ai-security-practices and https://www.notion.com/help/security-and-privacy on 2026-07-25 for current AI privacy, security, permission, subprocessor, and data-handling documentation context without adding privacy, retention, training, compliance, or security guarantees."
 ---
 
 ## Overview

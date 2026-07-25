@@ -1227,3 +1227,68 @@ checking voice and likeness rights, recording consent, copyright, samples,
 music and media licenses, trademarks, brand use, and commercial-use rules; and
 protecting sensitive, private, customer, employee, interview, confidential, or
 unreleased recordings, documents, lyrics, and audio.
+
+## Productivity Tools Source Freshness Review
+
+The six reviewed `Productivity Tools` pages were rechecked against current
+official sources on 2026-07-25:
+
+- ChatGPT
+- Claude
+- Gemini
+- Perplexity
+- Microsoft Copilot
+- Notion AI
+
+All six pages remain published with:
+
+```yaml
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-07-25"
+```
+
+Official sources checked:
+
+- ChatGPT: `https://chatgpt.com/`,
+  `https://help.openai.com/en/articles/12677804-what-is-chatgpt-faq`,
+  `https://chatgpt.com/pricing/`,
+  `https://help.openai.com/en/articles/7730893-data-controls-faq`, and
+  `https://openai.com/policies/privacy-policy/`
+- Claude: `https://claude.ai/`, `https://www.anthropic.com/claude`,
+  `https://support.claude.com/en/articles/8114491-get-started-with-claude`,
+  `https://support.claude.com/en/articles/7996845-what-are-some-things-i-can-use-claude-for`,
+  `https://support.claude.com/en/articles/11049762-choose-a-claude-plan`,
+  and `https://privacy.claude.com/en/`
+- Gemini: `https://gemini.google.com/`, `https://gemini.google/overview/`,
+  `https://support.google.com/gemini/answer/13275745`,
+  `https://gemini.google/subscriptions/`,
+  `https://support.google.com/gemini/answer/16275805`, and
+  `https://support.google.com/gemini/answer/13594961`
+- Perplexity: `https://www.perplexity.ai/`,
+  `https://www.perplexity.ai/help-center/en/articles/10354975-getting-started-with-perplexity`,
+  `https://www.perplexity.ai/help-center/en/articles/11187416-which-perplexity-subscription-plan-is-right-for-you`,
+  and
+  `https://www.perplexity.ai/help-center/en/articles/11564572-data-collection-at-perplexity`
+- Microsoft Copilot: `https://copilot.microsoft.com/`,
+  `https://explore.microsoft.com/en-us/microsoft-copilot/learn`,
+  `https://support.microsoft.com/en-US/Microsoft-365-Copilot/what-s-the-difference-between-microsoft-copilot-free-and-copilot-in-microsoft-365`,
+  `https://www.microsoft.com/en-us/microsoft-365-copilot/pricing/individuals`,
+  and
+  `https://support.microsoft.com/en-us/microsoft-copilot/privacy-faq-for-microsoft-copilot`
+- Notion AI: `https://www.notion.com/product/ai`,
+  `https://www.notion.com/help/notion-ai-faqs`,
+  `https://www.notion.com/pricing`,
+  `https://www.notion.com/help/notion-ai-security-practices`, and
+  `https://www.notion.com/help/security-and-privacy`
+
+The high-level public descriptions remained suitable. The review updated dates
+and source notes without adding exact pricing, plan limits, model names,
+feature availability promises, connected-product guarantees, privacy or
+security guarantees, or unsupported accuracy claims.
+
+Special caution areas include reviewing generated drafts, summaries, code,
+research answers, and recommendations; checking original sources and factual
+claims; handling sensitive or confidential information carefully; and
+reviewing current data controls, connected-app settings, workspace policies,
+and organization requirements before use.

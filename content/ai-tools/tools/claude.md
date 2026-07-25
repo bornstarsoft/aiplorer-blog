@@ -14,7 +14,7 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Pricing, plans, and availability may change. Check the official Claude pricing page for current details."
 officialUrl: "https://claude.ai/"
-lastReviewed: "2026-06-01"
+lastReviewed: "2026-07-25"
 draft: false
 useCases:
   - Improve a rough document draft
@@ -27,16 +27,17 @@ pros:
   - May support users who want a conversational assistant for iterative drafts
 limitations:
   - Outputs should be reviewed before being used in important work
+  - Sensitive or confidential information should be handled carefully, with current privacy terms and account settings reviewed before use
   - Plans, tools, model access, and feature availability may change
 similarTools:
   - ChatGPT
   - Gemini
 reviewStatus: "reviewed"
 sourceNotes:
-  - "Checked https://claude.ai/ on 2026-06-01 for official URL and product access point."
-  - "Checked https://www.anthropic.com/claude on 2026-06-01; it redirected to the official Claude product overview."
-  - "Checked Anthropic Help article 'What are some things I can use Claude for?' on 2026-06-01 for high-level use case categories."
-  - "Checked https://claude.ai/pricing on 2026-06-01, but did not copy specific prices, limits, model names, or plan details."
+  - "Checked https://claude.ai/, https://www.anthropic.com/claude, and https://support.claude.com/en/articles/8114491-get-started-with-claude on 2026-07-25 for the official product access point and high-level Claude positioning."
+  - "Checked https://support.claude.com/en/articles/7996845-what-are-some-things-i-can-use-claude-for on 2026-07-25 for current writing, learning, summarizing, coding, and brainstorming context."
+  - "Checked https://support.claude.com/en/articles/11049762-choose-a-claude-plan on 2026-07-25 for current plan, pricing, usage, and availability context without copying exact details into this page."
+  - "Checked https://privacy.claude.com/en/ on 2026-07-25 for current consumer privacy documentation context without adding privacy, retention, or security guarantees."
 ---
 
 ## Overview
@@ -50,3 +51,5 @@ Beginners may use Claude to shape rough ideas into clearer text, compare possibl
 ## Notes
 
 Features, pricing, model access, and availability may change. Check the official Claude website and pricing page for current details before choosing a plan or relying on a specific feature.
+
+Handle sensitive or confidential information carefully and review current Anthropic privacy documentation, account settings, and any applicable workplace policies before use.

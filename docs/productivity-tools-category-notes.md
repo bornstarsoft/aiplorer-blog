@@ -28,3 +28,15 @@ sources are checked. Official review should avoid unsupported claims about
 pricing, plan limits, model access, connected-product behavior, integrations,
 privacy or security guarantees, data handling, accuracy, or exact feature
 availability.
+
+## Source Freshness Review
+
+All six reviewed representatives were rechecked against current official
+product, help, pricing, privacy, and security documentation on 2026-07-25.
+Their high-level public descriptions remained suitable. Review dates and
+source notes were refreshed without adding exact prices, limits, model names,
+feature promises, privacy guarantees, or security guarantees.
+
+The next periodic review should continue to watch changing plan boundaries,
+connected-app behavior, workspace and organization access, source behavior,
+data controls, and model availability.
