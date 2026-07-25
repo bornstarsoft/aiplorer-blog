@@ -14,8 +14,8 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Plans, pricing, usage limits, capture methods, integrations, and availability may change. Check official Fireflies.ai pages for current details."
 officialUrl: "https://fireflies.ai/notetaker"
-lastReviewed: ""
-draft: true
+lastReviewed: "2026-07-26"
+draft: false
 useCases:
   - Prepare a first-pass meeting transcript for review
   - Organize notes after a team or customer conversation
@@ -31,24 +31,24 @@ limitations:
   - Recording or processing conversations may require notice, consent, and compliance with workplace policy
   - Connected accounts, app permissions, shared links, retention, deletion, and business data should be handled carefully
   - Plans, pricing, limits, capture methods, integrations, and exact availability may change
-  - Official Fireflies.ai sources must be reviewed before this page is published
+  - Users should check current official Fireflies.ai pages before choosing a plan or relying on a specific workflow
 similarTools:
   - Otter.ai
   - Fathom
   - Granola
   - Read AI
-reviewStatus: "needs-official-review"
+reviewStatus: "reviewed"
 sourceNotes:
-  - "Draft prepared on 2026-07-26 using https://fireflies.ai/notetaker as the official product identity entry point only; this is not a completed publication review."
-  - "Official product, guide, pricing, privacy, security, and legal pages must be checked before publication."
-  - "Do not publish until claims about plans, pricing, limits, capture methods, transcription behavior, accuracy, integrations, permissions, retention, data handling, privacy, security, and availability have been avoided or verified against official sources."
+  - "Checked https://fireflies.ai/notetaker, https://fireflies.ai/pricing, and https://guide.fireflies.ai/ on 2026-07-26 for current meeting transcription, summaries, capture methods, support, plan, and availability context."
+  - "Checked https://fireflies.ai/security, https://fireflies.ai/privacy-policy, and https://fireflies.ai/terms-of-service on 2026-07-26 for current permissions, data-control, privacy, security, and legal context without adding guarantees."
+  - "Published copy avoids exact pricing, usage or storage limits, language counts, transcription accuracy, capture availability, integration promises, retention guarantees, privacy or security guarantees, and exact feature availability."
 ---
 
 ## Overview
 
 Fireflies.ai is a meeting transcription and notes tool that may help users prepare conversation records, organize summaries, and draft follow-up material. It can be useful as a starting point for documenting team, customer, or project discussions before a person reviews the original conversation.
 
-This is a draft page. Official Fireflies.ai product, guide, pricing, privacy, security, and legal sources must be reviewed before publication.
+Fireflies.ai features, capture methods, plans, and policies may change. Users should check the official product, guide, pricing, privacy, security, and legal pages before relying on a specific workflow.
 
 ## Useful For
 

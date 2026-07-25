@@ -14,8 +14,8 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Plans, pricing, usage limits, recording and transcription options, integrations, and availability may change. Check official Otter.ai pages for current details."
 officialUrl: "https://otter.ai/"
-lastReviewed: ""
-draft: true
+lastReviewed: "2026-07-26"
+draft: false
 useCases:
   - Prepare a transcript draft for human review
   - Organize meeting notes and follow-up questions
@@ -31,24 +31,24 @@ limitations:
   - Recording and transcription may require participant notice or consent under applicable law and workplace policy
   - Connected accounts, permissions, sharing settings, retention, deletion, and data handling should be reviewed carefully
   - Plans, pricing, limits, integrations, platform support, and exact availability may change
-  - Official Otter.ai sources must be reviewed before this page is published
+  - Users should check current official Otter.ai pages before choosing a plan or relying on a specific workflow
 similarTools:
   - Fireflies.ai
   - Fathom
   - Granola
   - Read AI
-reviewStatus: "needs-official-review"
+reviewStatus: "reviewed"
 sourceNotes:
-  - "Draft prepared on 2026-07-26 using https://otter.ai/ as the official product identity entry point only; this is not a completed publication review."
-  - "Official product, help, pricing, privacy, security, and legal pages must be checked before publication."
-  - "Do not publish until claims about plans, pricing, usage limits, recording behavior, transcription behavior, accuracy, integrations, platform support, retention, data handling, privacy, security, and availability have been avoided or verified against official sources."
+  - "Checked https://otter.ai/, https://otter.ai/pricing, and https://help.otter.ai/ on 2026-07-26 for current meeting transcription, notes, summaries, capture options, support, plan, and availability context."
+  - "Checked https://otter.ai/privacy-security, https://otter.ai/privacy-policy, and https://otter.ai/terms-of-service on 2026-07-26 for current consent, sharing, retention, privacy, security, and legal context without adding guarantees."
+  - "Published copy avoids exact pricing, usage limits, language counts, transcription accuracy, integration availability, platform support promises, retention guarantees, privacy or security guarantees, and exact feature availability."
 ---
 
 ## Overview
 
 Otter.ai is a meeting transcription and note-taking tool that may help users prepare transcript drafts, organize notes, and review follow-up items. It can be useful when a person wants a first-pass record of a meeting, interview, or discussion before checking the original conversation.
 
-This is a draft page. Official Otter.ai product, help, pricing, privacy, security, and legal sources must be reviewed before publication.
+Otter.ai features, capture methods, plans, and policies may change. Users should check the official product, help, pricing, privacy, security, and legal pages before relying on a specific workflow.
 
 ## Useful For
 

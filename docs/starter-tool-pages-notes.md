@@ -1641,9 +1641,10 @@ data-retention guarantees. Users should continue to review generated text,
 translations, designs, images, audio, citations, detector results, and agent
 outputs before publishing, sharing, or relying on them.
 
-## Meeting And Transcription Tools Draft Batch
+## Meeting And Transcription Tools Official-Source Review
 
-Five draft-first `Productivity Tools` pages were added on 2026-07-26:
+Five draft-first `Productivity Tools` pages were added and reviewed on
+2026-07-26:
 
 - Otter.ai
 - Fireflies.ai
@@ -1651,28 +1652,50 @@ Five draft-first `Productivity Tools` pages were added on 2026-07-26:
 - Granola
 - Read AI
 
-All five pages remain unpublished with:
+All five pages passed conservative official-source review and are prepared for
+publication with:
 
 ```yaml
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-07-26"
 ```
 
-The pages use only cautious, high-level descriptions of meeting notes,
-transcription, summaries, and follow-up workflows. They do not claim exact
-pricing, plan or usage limits, recording or transcription behavior, accuracy,
-integrations, platform support, privacy, security, retention, data handling, or
-feature availability.
+Official sources checked:
 
-Official product, help or documentation, pricing, privacy, security, and legal
-sources must be checked separately for every candidate before publication.
-Special review areas include participant notice and consent, applicable
-recording law, workplace policy, transcript and summary accuracy, speaker
+- Otter.ai: `https://otter.ai/`, `https://otter.ai/pricing`,
+  `https://help.otter.ai/`, `https://otter.ai/privacy-security`,
+  `https://otter.ai/privacy-policy`, and
+  `https://otter.ai/terms-of-service`
+- Fireflies.ai: `https://fireflies.ai/notetaker`,
+  `https://fireflies.ai/pricing`, `https://guide.fireflies.ai/`,
+  `https://fireflies.ai/security`, `https://fireflies.ai/privacy-policy`,
+  and `https://fireflies.ai/terms-of-service`
+- Fathom: `https://www.fathom.ai/`, `https://www.fathom.ai/pricing`,
+  `https://help.fathom.video/`,
+  `https://help.fathom.video/en/articles/294272`,
+  `https://www.fathom.ai/privacy`, and `https://www.fathom.ai/terms`
+- Granola: `https://www.granola.ai/`, `https://www.granola.ai/pricing`,
+  `https://docs.granola.ai/`, `https://www.granola.ai/security`,
+  `https://docs.granola.ai/help-center/consent-security-privacy/security-privacy-data-faqs`,
+  and `https://docs.granola.ai/help-center/policies/privacy-policy`
+- Read AI: `https://www.read.ai/meetings`,
+  `https://www.read.ai/plans-pricing`, `https://support.read.ai/`,
+  `https://support.read.ai/hc/en-us/articles/47039983705235-Admitting-and-Removing-Read-from-a-Meeting`,
+  `https://support.read.ai/hc/en-us/articles/25702259763091-Security-Privacy-Overview`,
+  and `https://www.read.ai/privacy-policy`
+
+Published copy uses cautious, high-level descriptions of meeting notes,
+transcription, summaries, and follow-up workflows. It does not claim exact
+pricing, plan or usage limits, recording or transcription accuracy, language
+counts, integrations, platform support, privacy, security, retention, data
+handling, or exact feature availability.
+
+Special caution areas include participant notice and consent, applicable
+recording law, workplace policy, transcript and summary review, speaker
 identification, decisions and action items, connected-account permissions,
 sharing controls, retention and deletion, customer and employee data, and
 sensitive or confidential conversations.
 
-The draft pages are not linked from `/ai-tools/`, `/ai-tools/tools/`, category
-pages, or global navigation. No Meeting Tools category was created; the batch
-uses the existing `Productivity Tools` category pending official-source review.
+No Meeting Tools category was created. The reviewed pages use the existing
+`Productivity Tools` category and are not added to global navigation.

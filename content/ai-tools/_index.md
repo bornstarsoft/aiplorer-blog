@@ -95,6 +95,21 @@ AI-related features within Canva that can support design ideas, writing, visual 
 {{< card title="Notion AI" href="/ai-tools/tools/notion-ai/" label="Reviewed" >}}
 AI-related features within Notion that can support writing, summarizing, organizing notes, and productivity workflows.
 {{< /card >}}
+{{< card title="Otter.ai" href="/ai-tools/tools/otter-ai/" label="Reviewed" >}}
+A meeting transcription and note-taking tool that may help users prepare transcripts, summaries, and follow-up notes for review.
+{{< /card >}}
+{{< card title="Fireflies.ai" href="/ai-tools/tools/fireflies-ai/" label="Reviewed" >}}
+A meeting transcription and notes tool that may help users prepare conversation records, summaries, and follow-up material for review.
+{{< /card >}}
+{{< card title="Fathom" href="/ai-tools/tools/fathom/" label="Reviewed" >}}
+A meeting transcription and notes tool that may help users prepare conversation summaries, transcript drafts, and follow-up notes for review.
+{{< /card >}}
+{{< card title="Granola" href="/ai-tools/tools/granola/" label="Reviewed" >}}
+A meeting notes tool that may help users prepare, organize, and review notes and follow-up material from conversations.
+{{< /card >}}
+{{< card title="Read AI" href="/ai-tools/tools/read-ai/" label="Reviewed" >}}
+A meeting productivity tool that may help users prepare transcripts, summaries, and follow-up material from conversations for review.
+{{< /card >}}
 {{< card title="Grammarly" href="/ai-tools/tools/grammarly/" label="Reviewed" >}}
 A writing and communication assistant that can support drafting, rewriting, clarity, tone, grammar support, and everyday communication.
 {{< /card >}}

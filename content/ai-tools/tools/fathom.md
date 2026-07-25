@@ -14,8 +14,8 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Plans, pricing, usage limits, meeting support, integrations, and availability may change. Check official Fathom pages for current details."
 officialUrl: "https://www.fathom.ai/"
-lastReviewed: ""
-draft: true
+lastReviewed: "2026-07-26"
+draft: false
 useCases:
   - Prepare a first-pass meeting summary
   - Review a transcript draft after a conversation
@@ -31,24 +31,25 @@ limitations:
   - Meeting capture and transcription may require participant notice, consent, and workplace approval
   - Connected-account permissions, sharing, retention, deletion, and sensitive business data require careful review
   - Plans, pricing, limits, meeting support, integrations, and exact availability may change
-  - Official Fathom sources must be reviewed before this page is published
+  - Users should check current official Fathom pages before choosing a plan or relying on a specific workflow
 similarTools:
   - Otter.ai
   - Fireflies.ai
   - Granola
   - Read AI
-reviewStatus: "needs-official-review"
+reviewStatus: "reviewed"
 sourceNotes:
-  - "Draft prepared on 2026-07-26 using https://www.fathom.ai/ as the current official product identity entry point only; this is not a completed publication review."
-  - "The former https://fathom.video/ product root redirected to https://www.fathom.ai/ during draft planning; current product, help, pricing, privacy, security, and legal destinations must be rechecked before publication."
-  - "Do not publish until claims about plans, pricing, usage limits, meeting support, capture behavior, transcription behavior, accuracy, integrations, permissions, retention, data handling, privacy, security, and availability have been avoided or verified against official sources."
+  - "Checked https://www.fathom.ai/, https://www.fathom.ai/pricing, and https://help.fathom.video/ on 2026-07-26 for current meeting notes, transcripts, summaries, capture options, support, plan, and availability context."
+  - "Checked https://help.fathom.video/en/articles/294272, https://www.fathom.ai/privacy, and https://www.fathom.ai/terms on 2026-07-26 for current recording-consent, sharing, meeting-content, privacy, and legal context without adding guarantees."
+  - "The former https://fathom.video/ product root redirects to https://www.fathom.ai/ while official help and account destinations may continue using fathom.video subdomains."
+  - "Published copy avoids exact pricing, usage limits, transcription accuracy, capture availability, integration promises, retention guarantees, privacy or security guarantees, and exact feature availability."
 ---
 
 ## Overview
 
 Fathom is a meeting transcription and notes tool that may help users prepare transcript drafts, organize summaries, and review follow-up items. It can be useful when a person needs a starting point for documenting a customer, team, or project conversation.
 
-This is a draft page. Official Fathom product, help, pricing, privacy, security, and legal sources must be reviewed before publication.
+Fathom features, capture methods, plans, and policies may change. Users should check the official product, help, pricing, privacy, security, and legal pages before relying on a specific workflow.
 
 ## Useful For
 

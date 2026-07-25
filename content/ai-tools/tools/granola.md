@@ -14,8 +14,8 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Plans, pricing, usage limits, meeting-note features, integrations, and availability may change. Check official Granola pages for current details."
 officialUrl: "https://www.granola.ai/"
-lastReviewed: ""
-draft: true
+lastReviewed: "2026-07-26"
+draft: false
 useCases:
   - Prepare a first-pass meeting note
   - Organize discussion points after a conversation
@@ -31,24 +31,24 @@ limitations:
   - Processing meeting conversations may require participant notice, consent, and compliance with workplace policy
   - Account permissions, sharing, retention, deletion, and sensitive meeting information should be reviewed carefully
   - Plans, pricing, limits, meeting-note features, integrations, and exact availability may change
-  - Official Granola sources must be reviewed before this page is published
+  - Users should check current official Granola pages before choosing a plan or relying on a specific workflow
 similarTools:
   - Otter.ai
   - Fireflies.ai
   - Fathom
   - Read AI
-reviewStatus: "needs-official-review"
+reviewStatus: "reviewed"
 sourceNotes:
-  - "Draft prepared on 2026-07-26 using https://www.granola.ai/ as the official product identity entry point only; this is not a completed publication review."
-  - "Official product, documentation, pricing, privacy, security, and legal pages must be checked before publication."
-  - "Do not publish until claims about plans, pricing, limits, meeting-note behavior, transcription behavior, accuracy, integrations, permissions, retention, data handling, privacy, security, and availability have been avoided or verified against official sources."
+  - "Checked https://www.granola.ai/, https://www.granola.ai/pricing, and https://docs.granola.ai/ on 2026-07-26 for current meeting-note positioning, documentation, plan, and availability context."
+  - "Checked https://www.granola.ai/security, https://docs.granola.ai/help-center/consent-security-privacy/security-privacy-data-faqs, and https://docs.granola.ai/help-center/policies/privacy-policy on 2026-07-26 for current consent, audio-processing, sharing, data, privacy, and security context without adding guarantees."
+  - "Published copy avoids exact pricing, history or usage limits, transcription accuracy, platform or integration promises, audio-deletion or retention guarantees, privacy or security guarantees, and exact feature availability."
 ---
 
 ## Overview
 
 Granola is a meeting notes tool that may help users prepare, organize, and review notes and follow-up material from conversations. It can be useful as a starting point for documenting project, team, or business discussions before a person checks important details.
 
-This is a draft page. Official Granola product, documentation, pricing, privacy, security, and legal sources must be reviewed before publication.
+Granola features, capture methods, plans, and policies may change. Users should check the official product, documentation, pricing, privacy, security, and legal pages before relying on a specific workflow.
 
 ## Useful For
 

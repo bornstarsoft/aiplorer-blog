@@ -4,8 +4,10 @@ Date: 2026-07-26
 
 ## Status
 
-This is a draft-first readiness plan only. It does not add tool pages, publish
-tools, create a category, or approve any product claim.
+The draft-first sequence was completed locally on 2026-07-26. Five draft pages
+were created in commit `7e54dca`, then reviewed against official sources.
+Otter.ai, Fireflies.ai, Fathom, Granola, and Read AI passed conservative review
+and were prepared for publication without creating a new category.
 
 The proposed candidates are:
 
@@ -23,9 +25,8 @@ Do not create a Meeting Tools category during the draft phase.
 
 ## Official Source Entry Points
 
-The following official entry points were reachable on 2026-07-26. Their
-presence is enough to prepare future drafts, but it is not a completed
-official-source review.
+The following official entry points were reachable and used for the
+official-source review on 2026-07-26.
 
 ### Otter.ai
 
@@ -75,15 +76,16 @@ remain on older subdomains.
 
 ## Draft Rules
 
-If the batch is created later, every page must start with:
+Every page initially started with:
 
 - `draft: true`
 - `reviewStatus: "needs-official-review"`
 - `lastReviewed: ""`
 - category `Productivity Tools`
 
-The drafts must remain absent from `/ai-tools/`, `/ai-tools/tools/`, category
-cards, global navigation, production output, and the production sitemap.
+The pages remained absent from public listings and production output until
+official-source review was complete. Publication does not add them to global
+navigation or create a Meeting Tools category.
 
 ## Review Boundaries
 
@@ -107,15 +109,17 @@ Users should review generated notes, transcripts, summaries, decisions, and
 action items before sharing or relying on them. They should obtain any required
 participant consent and follow applicable law and workplace policy.
 
-## Recommended Sequence
+## Review Result
 
-1. Create the five pages as unpublished drafts only.
-2. Validate that drafts appear only with `hugo --buildDrafts`.
-3. Review each candidate independently against its official product, help,
-   pricing, privacy, security, and legal sources.
-4. Publish only candidates whose official-source review supports a cautious,
-   useful page.
-5. Keep uncertain candidates as drafts without public links.
+All five candidates passed conservative official-source review on 2026-07-26.
+Their published copy avoids exact prices, limits, language counts, accuracy
+claims, integration guarantees, capture or platform promises, retention
+guarantees, privacy or security guarantees, and exact feature availability.
+
+The pages retain cautions around participant notice and consent, applicable
+recording law, workplace policy, transcript and summary review, speaker labels,
+decisions and action items, connected-account permissions, sharing, retention,
+deletion, and sensitive meeting content.
 
 Search Console follow-up remains separate and should resume only after a user
 signs in to the browser session.
