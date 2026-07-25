@@ -50,6 +50,20 @@ The existing post files and public post URLs were not changed. A site-level site
 - The draft build includes SciSpace, Tome, and Example AI Assistant as expected.
 - The restored production build excludes all three draft pages from output and the sitemap.
 
+## Deployment Verification
+
+Commit `d088dc1` was pushed to GitHub `main` and deployed through Cloudflare
+Pages on 2026-07-26.
+
+- The plain live sitemap returned `200`.
+- It contained 883 entries and 883 unique URLs.
+- Its URL set matched the local production sitemap.
+- `cf-cache-status` was `DYNAMIC`.
+- GitHub Copilot, Cursor, Windsurf, Replit, and Tabnine remained public and
+  present in the sitemap.
+- SciSpace, Tome, and Example AI Assistant remained `404` and absent from the
+  sitemap.
+
 ## Follow-Up
 
 - Submit or recheck `https://aiplorer.com/sitemap.xml` in Search Console after deployment.

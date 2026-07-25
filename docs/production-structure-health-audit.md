@@ -13,11 +13,14 @@ The production build generated:
 
 - 910 HTML files
 - 27,115 internal link references
-- 885 sitemap URLs
+- 883 unique sitemap URLs after permalink de-duplication
 
-All internal link targets resolved to generated files. Every sitemap URL mapped
-to a production output, and the sitemap contained no SciSpace, Tome, or Example
-AI Assistant draft URL.
+The initial sitemap contained 885 entries because two legacy permalinks were
+each emitted twice. The site-level sitemap template now emits each permalink
+once without changing either legacy post source or public route. All internal
+link targets resolved to generated files. Every unique sitemap URL mapped to a
+production output, and the sitemap contained no SciSpace, Tome, or Example AI
+Assistant draft URL.
 
 ## Canonical Review
 
