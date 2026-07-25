@@ -14,8 +14,8 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Plans, pricing, usage limits, writing options, search-related features, integrations, and availability may change. Check official Writesonic pages for current details."
 officialUrl: "https://writesonic.com/"
-lastReviewed: ""
-draft: true
+lastReviewed: "2026-07-25"
+draft: false
 useCases:
   - Prepare a rough article or marketing draft
   - Explore content angles before research
@@ -32,23 +32,23 @@ limitations:
   - Search-oriented suggestions do not guarantee visibility, ranking, traffic, or business results
   - Sensitive, private, customer, business, or confidential content should be handled carefully
   - Plans, pricing, limits, writing options, search-related features, integrations, security details, and availability may change
-  - Official Writesonic sources must be reviewed before this page is published
 similarTools:
   - Jasper
   - Copy.ai
   - Surfer
   - Frase
-reviewStatus: "needs-official-review"
+reviewStatus: "reviewed"
 sourceNotes:
-  - "Draft-first page. Official Writesonic product, pricing, help or documentation, privacy, security, terms, and policy sources must be checked before publication."
-  - "Do not publish until claims about pricing, plan limits, writing or search-related features, integrations, model access, data handling, security, licensing, commercial use, search performance, and exact availability have been avoided or verified against official sources."
+  - "Checked https://writesonic.com/, https://writesonic.com/pricing, and https://docs.writesonic.com/ on 2026-07-25 for official AI search, content workflow, pricing, and documentation context."
+  - "Checked https://writesonic.com/legal/privacy-policy, https://writesonic.com/legal/terms, and https://writesonic.trust.site/ on 2026-07-25 for official privacy, terms, and trust context."
+  - "Did not copy exact prices, plan or usage limits, writing or search-feature details, integrations, model access, security guarantees, data handling guarantees, licensing terms, commercial-use rights, search-performance claims, or availability claims."
 ---
 
 ## Overview
 
 Writesonic is an AI writing and content workflow tool that may help users prepare drafts, explore content ideas, and plan search-oriented writing for review. It may be useful for writers, marketers, and teams preparing early content before research, editing, and approval.
 
-This is a draft page. Official Writesonic sources must be checked before publication, especially for current plans, pricing, limits, writing options, search-related features, integrations, data handling, security, licensing, and availability.
+Writesonic's plans, pricing, limits, writing options, search-related features, integrations, data handling, security terms, licensing, and availability may change. Check official Writesonic pages before relying on a specific capability or policy.
 
 ## Useful For
 

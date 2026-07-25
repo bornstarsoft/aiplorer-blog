@@ -14,8 +14,8 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Plans, pricing, usage limits, content options, search-related data, integrations, and availability may change. Check official Surfer pages for current details."
 officialUrl: "https://surferseo.com/"
-lastReviewed: ""
-draft: true
+lastReviewed: "2026-07-25"
+draft: false
 useCases:
   - Prepare a content brief for human review
   - Organize an outline before drafting
@@ -32,23 +32,23 @@ limitations:
   - Search-oriented recommendations do not guarantee rankings, visibility, traffic, conversions, or business results
   - Sensitive, private, customer, business, or confidential content should be handled carefully
   - Plans, pricing, limits, content options, search-related data, integrations, security details, and availability may change
-  - Official Surfer sources must be reviewed before this page is published
 similarTools:
   - Frase
   - Writesonic
   - Jasper
   - Grammarly
-reviewStatus: "needs-official-review"
+reviewStatus: "reviewed"
 sourceNotes:
-  - "Draft-first page. Official Surfer product, pricing, help or documentation, privacy, security, terms, and policy sources must be checked before publication."
-  - "Do not publish until claims about pricing, plan limits, content or AI features, search-related data, integrations, model access, data handling, security, search performance, and exact availability have been avoided or verified against official sources."
+  - "Checked https://surferseo.com/, https://surferseo.com/pricing/, and https://docs.surferseo.com/ on 2026-07-25 for official content planning, search-oriented workflow, pricing, and documentation context."
+  - "Checked https://docs.surferseo.com/en/articles/5700347-content-editor-overview, https://surferseo.com/legal/privacy-policy-general/, and https://surferseo.com/legal/ on 2026-07-25 for official product, privacy, and legal context."
+  - "Did not copy exact prices, plan or document limits, content or AI feature details, search-related data details, integrations, model access, security guarantees, data handling guarantees, search-performance claims, or availability claims."
 ---
 
 ## Overview
 
 Surfer is a content planning and search-oriented writing tool that may help users prepare briefs, organize drafts, and review content ideas. It may be useful for writers, editors, and marketers planning content before research, drafting, and final approval.
 
-This is a draft page. Official Surfer sources must be checked before publication, especially for current plans, pricing, limits, content options, search-related data, integrations, privacy, security, and availability.
+Surfer's plans, pricing, limits, content options, search-related data, integrations, privacy terms, security details, and availability may change. Check official Surfer pages before relying on a specific capability or policy.
 
 ## Useful For
 

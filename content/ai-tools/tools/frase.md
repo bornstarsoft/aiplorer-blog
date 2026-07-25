@@ -14,8 +14,8 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Plans, pricing, usage limits, research options, writing features, search-related data, integrations, and availability may change. Check official Frase pages for current details."
 officialUrl: "https://www.frase.io/"
-lastReviewed: ""
-draft: true
+lastReviewed: "2026-07-25"
+draft: false
 useCases:
   - Prepare a content brief for human review
   - Organize research questions and source notes
@@ -32,23 +32,23 @@ limitations:
   - Search-oriented suggestions do not guarantee rankings, visibility, traffic, conversions, or business results
   - Sensitive, private, customer, business, or confidential content should be handled carefully
   - Plans, pricing, limits, research options, writing features, search-related data, integrations, security details, and availability may change
-  - Official Frase sources must be reviewed before this page is published
 similarTools:
   - Surfer
   - Writesonic
   - Jasper
   - Elicit
-reviewStatus: "needs-official-review"
+reviewStatus: "reviewed"
 sourceNotes:
-  - "Draft-first page. Official Frase product, pricing, help or documentation, privacy, security, terms, and policy sources must be checked before publication."
-  - "Do not publish until claims about pricing, plan limits, research, writing or AI features, search-related data, integrations, model access, data handling, security, search performance, and exact availability have been avoided or verified against official sources."
+  - "Checked https://www.frase.io/, https://www.frase.io/pricing, https://help.frase.io/article/176-creating-a-document, and https://help.frase.io/article/172-run-your-entire-content-workflow-in-frase on 2026-07-25 for official content research, writing workflow, pricing, and help context."
+  - "Checked https://www.frase.io/company/privacy, https://www.frase.io/company/terms, and https://www.frase.io/security on 2026-07-25 for official privacy, terms, and security context."
+  - "Did not copy exact prices, plan or usage limits, research, writing or AI feature details, search-related data details, integrations, model access, security guarantees, data handling guarantees, search-performance claims, or availability claims."
 ---
 
 ## Overview
 
 Frase is a content research and writing workflow tool that may help users prepare briefs, organize source notes, and draft search-oriented content. It may be useful for writers, editors, and marketers planning content before deeper research and final review.
 
-This is a draft page. Official Frase sources must be checked before publication, especially for current plans, pricing, limits, research options, writing features, search-related data, integrations, privacy, security, and availability.
+Frase's plans, pricing, limits, research options, writing features, search-related data, integrations, privacy terms, security details, and availability may change. Check official Frase pages before relying on a specific capability or policy.
 
 ## Useful For
 

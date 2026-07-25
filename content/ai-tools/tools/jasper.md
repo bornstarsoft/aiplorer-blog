@@ -14,8 +14,8 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Plans, pricing, usage limits, writing options, collaboration features, brand features, integrations, and availability may change. Check official Jasper pages for current details."
 officialUrl: "https://www.jasper.ai/"
-lastReviewed: ""
-draft: true
+lastReviewed: "2026-07-25"
+draft: false
 useCases:
   - Prepare a rough marketing copy draft for review
   - Explore alternate messaging for a campaign
@@ -31,23 +31,23 @@ limitations:
   - Facts, citations, claims, tone, brand use, copyright, and audience fit require human review
   - Sensitive, private, customer, business, or confidential content should be handled carefully
   - Plans, pricing, limits, writing options, collaboration features, brand features, integrations, security details, and availability may change
-  - Official Jasper sources must be reviewed before this page is published
 similarTools:
   - Copy.ai
   - Writesonic
   - Grammarly
   - ChatGPT
-reviewStatus: "needs-official-review"
+reviewStatus: "reviewed"
 sourceNotes:
-  - "Draft-first page. Official Jasper product, pricing, help or documentation, privacy, security, terms, and policy sources must be checked before publication."
-  - "Do not publish until claims about pricing, plan limits, writing or AI features, collaboration, brand features, integrations, model access, data handling, security, licensing, commercial use, and exact availability have been avoided or verified against official sources."
+  - "Checked https://www.jasper.ai/, https://www.jasper.ai/pricing, and https://help.jasper.ai/hc/en-us on 2026-07-25 for official marketing workflow positioning, current plan context, and help documentation."
+  - "Checked https://www.jasper.ai/trust, https://www.jasper.ai/legal/privacy, and https://www.jasper.ai/legal/terms on 2026-07-25 for official trust, privacy, and terms context."
+  - "Did not copy exact prices, plan limits, credit details, feature availability, collaboration or brand-feature details, integrations, model access, security guarantees, data handling guarantees, licensing terms, commercial-use rights, or availability claims."
 ---
 
 ## Overview
 
 Jasper is an AI writing and content workflow tool that may help users prepare drafts, explore messaging ideas, and organize brand-facing writing. It may be useful for marketers, writers, and teams preparing early content for human review.
 
-This is a draft page. Official Jasper sources must be checked before publication, especially for current plans, pricing, limits, writing options, collaboration features, brand features, integrations, data handling, security, licensing, and availability.
+Jasper's plans, pricing, limits, writing options, collaboration features, brand features, integrations, data handling, security terms, licensing, and availability may change. Check official Jasper pages before relying on a specific capability or policy.
 
 ## Useful For
 

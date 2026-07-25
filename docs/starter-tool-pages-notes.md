@@ -966,10 +966,11 @@ trademarks, media licenses, brand requirements, and commercial-use rules;
 protecting private, customer, business, or confidential images and prompts; and
 checking current pricing, limits, privacy, security, and availability.
 
-## Writing and SEO Tools Draft Batch
+## Writing and SEO Tools Batch Review Result
 
 A draft-first batch was added for five writing and search-oriented content
-tools:
+tools. Current official sources were then reviewed and all five pages were
+published:
 
 - Jasper
 - Copy.ai
@@ -981,41 +982,68 @@ Current status:
 
 ```yaml
 content/ai-tools/tools/jasper.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-07-25"
 
 content/ai-tools/tools/copy-ai.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-07-25"
 
 content/ai-tools/tools/writesonic.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-07-25"
 
 content/ai-tools/tools/surfer.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-07-25"
 
 content/ai-tools/tools/frase.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-07-25"
 ```
 
-The pages use the existing `Writing Tools` category. They remain unpublished
-and are not linked from the AI Tools landing page, reviewed-tools index,
-Writing Tools category page, or global navigation.
+The pages use the existing `Writing Tools` category. Published pages are linked
+from the AI Tools landing page and Writing Tools category page and are listed
+automatically in the reviewed-tools index. They were not added to global
+navigation.
 
-Before publication, official product, pricing, help or documentation, privacy,
-security, terms, and policy sources must be checked for each tool. Review must
-avoid unsupported claims about exact prices, plans, limits, writing or AI
-features, search-related data, integrations, collaboration, brand features,
-model access, security, data handling, licensing, commercial use, search
-performance, and exact availability.
+Official sources checked:
+
+- Jasper: `https://www.jasper.ai/`, `https://www.jasper.ai/pricing`,
+  `https://help.jasper.ai/hc/en-us`, `https://www.jasper.ai/trust`,
+  `https://www.jasper.ai/legal/privacy`, and
+  `https://www.jasper.ai/legal/terms`
+- Copy.ai: `https://www.copy.ai/`, `https://www.copy.ai/prices`,
+  `https://support.copy.ai/en`, `https://trust.copy.ai/`,
+  `https://www.copy.ai/privacy-notice`, and
+  `https://www.copy.ai/terms-of-service`
+- Writesonic: `https://writesonic.com/`, `https://writesonic.com/pricing`,
+  `https://docs.writesonic.com/`,
+  `https://writesonic.com/legal/privacy-policy`,
+  `https://writesonic.com/legal/terms`, and
+  `https://writesonic.trust.site/`
+- Surfer: `https://surferseo.com/`, `https://surferseo.com/pricing/`,
+  `https://docs.surferseo.com/`,
+  `https://docs.surferseo.com/en/articles/5700347-content-editor-overview`,
+  `https://surferseo.com/legal/privacy-policy-general/`, and
+  `https://surferseo.com/legal/`
+- Frase: `https://www.frase.io/`, `https://www.frase.io/pricing`,
+  `https://help.frase.io/article/176-creating-a-document`,
+  `https://help.frase.io/article/172-run-your-entire-content-workflow-in-frase`,
+  `https://www.frase.io/company/privacy`,
+  `https://www.frase.io/company/terms`, and
+  `https://www.frase.io/security`
+
+Published copy avoids exact prices, plans, limits, writing or AI feature
+details, search-related data details, integrations, collaboration and brand
+feature details, model access, security or data handling guarantees, licensing
+terms, commercial-use rights, search-performance claims, and exact
+availability.
 
 Special caution areas include reviewing generated text, checking original
 sources and citations, confirming claims and audience fit, following brand and

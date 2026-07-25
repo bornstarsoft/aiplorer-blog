@@ -167,4 +167,19 @@ An AI image and creative workflow tool that may help users explore visual concep
 {{< card title="Stable Diffusion" href="/ai-tools/tools/stable-diffusion/" label="Reviewed" >}}
 A family of AI image models and related workflows that may help users explore visual concepts, image drafts, and creative directions.
 {{< /card >}}
+{{< card title="Jasper" href="/ai-tools/tools/jasper/" label="Reviewed" >}}
+An AI writing and content workflow tool that may help users prepare drafts, explore messaging ideas, and organize brand-facing writing.
+{{< /card >}}
+{{< card title="Copy.ai" href="/ai-tools/tools/copy-ai/" label="Reviewed" >}}
+An AI go-to-market and content workflow tool that may help users prepare business content drafts, explore messaging, and organize repeatable writing tasks.
+{{< /card >}}
+{{< card title="Writesonic" href="/ai-tools/tools/writesonic/" label="Reviewed" >}}
+An AI writing and content workflow tool that may help users prepare drafts, explore content ideas, and plan search-oriented writing for review.
+{{< /card >}}
+{{< card title="Surfer" href="/ai-tools/tools/surfer/" label="Reviewed" >}}
+A content planning and search-oriented writing tool that may help users prepare briefs, organize drafts, and review content ideas.
+{{< /card >}}
+{{< card title="Frase" href="/ai-tools/tools/frase/" label="Reviewed" >}}
+A content research and writing workflow tool that may help users prepare briefs, organize source notes, and draft search-oriented content.
+{{< /card >}}
 {{< /card-grid >}}
