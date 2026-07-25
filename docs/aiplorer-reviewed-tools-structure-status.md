@@ -118,26 +118,11 @@ Current policy:
 
 ## Search Console Follow-Up
 
-Manual URL Inspection can prioritize recently added or changed aggregate and
-category routes:
-
-```txt
-https://aiplorer.com/ai-tools/
-https://aiplorer.com/ai-tools/tools/
-https://aiplorer.com/ai-tools/productivity-tools/
-```
-
-Recent Productivity Tools pages:
-
-```txt
-https://aiplorer.com/ai-tools/tools/otter-ai/
-https://aiplorer.com/ai-tools/tools/fireflies-ai/
-https://aiplorer.com/ai-tools/tools/fathom/
-https://aiplorer.com/ai-tools/tools/granola/
-https://aiplorer.com/ai-tools/tools/read-ai/
-```
-
-Draft routes must not be submitted for indexing.
+Use `docs/search-console-url-inspection-queue.md` for the current selective
+manual queue. It prioritizes aggregate and category routes, recent meeting and
+Coding Tools pages, transition pages, and representative canonical samples.
+Draft, alternate-host, and cache-busted URLs must not be submitted for
+indexing.
 
 ## Recommended Next Work
 
