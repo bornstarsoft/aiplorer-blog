@@ -31,7 +31,7 @@ limitations:
   - Facts, voice and likeness consent, copyright, media licenses, brand use, and commercial-use requirements should be checked carefully
   - Sensitive, private, customer, or confidential recordings and documents should be handled carefully
   - Plans, pricing, limits, editing options, exports, integrations, security details, and availability may change
-  - Official Descript sources must be reviewed before this page is published
+  - Official Descript pages should be checked for current product, plan, licensing, privacy, security, and availability details
 similarTools:
   - Runway
   - Pika
@@ -49,7 +49,7 @@ sourceNotes:
 
 Descript is an audio and video editing tool that may help users plan, draft, and review spoken-media workflows. It may be useful for creators, educators, marketers, and teams preparing video, podcast, narration, script, or caption drafts before final production.
 
-This is a draft page. Official Descript sources must be checked before publication, especially for current plans, pricing, limits, editing and AI options, transcription or caption behavior, exports, integrations, voice options, privacy, security, licensing, commercial-use rules, and availability.
+Official Descript sources were reviewed for this page on 2026-07-25. Current plans, pricing, limits, editing and AI options, transcription or caption behavior, exports, integrations, voice options, privacy, security, licensing, commercial-use rules, and availability should still be checked before choosing or relying on the service.
 
 ## Useful For
 

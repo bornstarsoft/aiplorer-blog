@@ -31,7 +31,7 @@ limitations:
   - Facts, voice and likeness consent, copyright, media licenses, brand use, and commercial-use requirements should be checked carefully
   - Sensitive, private, employee, customer, or confidential content should be handled carefully
   - Plans, pricing, limits, video options, exports, integrations, security details, and availability may change
-  - Official Synthesia sources must be reviewed before this page is published
+  - Official Synthesia pages should be checked for current product, plan, licensing, privacy, security, and availability details
 similarTools:
   - Runway
   - Pika
@@ -49,7 +49,7 @@ sourceNotes:
 
 Synthesia is an AI video platform that may help users plan structured video drafts for training, presentations, and business communication. It may be useful for teams preparing scripts and video concepts before final review and production.
 
-This is a draft page. Official Synthesia sources must be checked before publication, especially for current plans, pricing, limits, video and AI options, outputs, exports, integrations, voice or likeness options, privacy, security, licensing, commercial-use rules, and availability.
+Official Synthesia sources were reviewed for this page on 2026-07-25. Current plans, pricing, limits, video and AI options, outputs, exports, integrations, voice or likeness options, privacy, security, licensing, commercial-use rules, and availability should still be checked before choosing or relying on the service.
 
 ## Useful For
 

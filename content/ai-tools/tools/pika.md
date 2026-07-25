@@ -31,7 +31,7 @@ limitations:
   - Facts, brand use, likeness and consent, copyright, media licenses, and commercial-use requirements should be checked carefully
   - Sensitive, private, customer, or confidential content should be handled carefully
   - Plans, pricing, credits, limits, output options, model details, security details, and availability may change
-  - Official Pika sources must be reviewed before this page is published
+  - Official Pika pages should be checked for current product, plan, licensing, privacy, security, and availability details
 similarTools:
   - Runway
   - Luma AI
@@ -49,7 +49,7 @@ sourceNotes:
 
 Pika is an AI video creation tool that may help users explore short visual concepts, motion ideas, and video drafts. It may be useful for creators and teams preparing early creative options before a final production workflow.
 
-This is a draft page. Official Pika sources must be checked before publication, especially for current plans, pricing, credits, limits, video options, outputs, model details, privacy, security, licensing, commercial-use rules, and availability.
+Official Pika sources were reviewed for this page on 2026-07-25. Current plans, pricing, credits, limits, video options, outputs, model details, privacy, security, licensing, commercial-use rules, and availability should still be checked before choosing or relying on the service.
 
 ## Useful For
 
