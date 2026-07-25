@@ -160,6 +160,10 @@ Only after category maintenance, possible future directions include:
 - Data and analysis workflows: Julius AI, Rows AI, Akkio, Obviously AI,
   Polymer
 
+The draft-first scope, category mapping, official-source gate, and caution
+requirements for the design and creative candidates are recorded in
+`docs/design-creative-draft-batch-plan.md`.
+
 These are candidate names only. They are not reviewed recommendations and
 should not be added publicly without the normal draft-first and official-source
 review process. A new category should be created only when the existing
