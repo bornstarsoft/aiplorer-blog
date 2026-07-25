@@ -66,15 +66,16 @@ Categories with reviewed-card sections and current caution copy:
 - Image Tools
 - Video Tools
 - Audio Tools
+- Presentation Tools
 - Coding Tools
 - Productivity Tools
 - Automation Tools
 - Learning Tools
 - Business Tools
 
-Presentation Tools has four reviewed representatives and a dedicated category
-route, but its category page still uses lightweight introductory copy without
-a reviewed-card section. This is the clearest remaining category-page gap.
+All ten public category pages now have reviewed-card sections and current
+caution copy. Presentation Tools links to Gamma, Beautiful.ai, Pitch, and
+SlidesAI while Tome remains unpublished.
 
 ## Category Balance
 
@@ -122,6 +123,7 @@ https://aiplorer.com/ai-tools/
 https://aiplorer.com/ai-tools/tools/
 https://aiplorer.com/ai-tools/audio-tools/
 https://aiplorer.com/ai-tools/productivity-tools/
+https://aiplorer.com/ai-tools/presentation-tools/
 ```
 
 Recent Audio Tools pages:
@@ -138,11 +140,13 @@ Draft routes must not be submitted for indexing.
 
 ## Recommended Next Work
 
-### 1. Polish Presentation Tools Category
+### 1. Review Source Freshness
 
-Add reviewed cards for Gamma, Beautiful.ai, Pitch, and SlidesAI to
-`/ai-tools/presentation-tools/`. Keep the existing fact-checking, brand,
-privacy, media-license, and image-rights cautions. Do not expose Tome.
+Start with the six Productivity Tools because ChatGPT, Claude, and Gemini have
+the oldest reviewed date, while Perplexity, Microsoft Copilot, and Notion AI
+share the same fast-changing product category. Recheck official product, help,
+pricing, privacy, and security sources without adding exact claims unless they
+are necessary and directly verified.
 
 ### 2. Recheck Remaining Real Drafts
 
@@ -150,11 +154,12 @@ Revisit SciSpace and Tome only when stable official product, help, pricing,
 privacy, and terms sources are available. Keep both unpublished if those
 sources remain incomplete or inconsistent.
 
-### 3. Review Source Freshness
+### 3. Continue Category-Based Freshness Checks
 
-Prioritize pages with fast-changing plans, rights, model access, or product
-scope. Audio, image, video, automation, coding, and business tools deserve
-periodic source checks even when the public copy remains deliberately general.
+After Productivity Tools, prioritize Automation, Coding, Learning, and
+Presentation Tools, followed by the categories reviewed on 2026-07-25. Plans,
+rights, model access, integrations, and product scope can change even when the
+public copy remains deliberately general.
 
 ### 4. Consider Future Draft-First Batches
 
@@ -174,6 +179,7 @@ taxonomy cannot describe a candidate cleanly.
 
 ## Recommended Direction
 
-The immediate next phase should polish the Presentation Tools category. After
-that, pause bulk expansion long enough to recheck source freshness, Search
-Console coverage, sitemap health, and the two real draft candidates.
+The immediate next phase should recheck the six Productivity Tools against
+current official sources. Continue to monitor Search Console coverage and
+sitemap health, and keep SciSpace and Tome unpublished unless their official
+sources become stable enough for conservative review.
