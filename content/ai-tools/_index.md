@@ -78,7 +78,7 @@ An AI coding assistant from GitHub that can help users draft code, review coding
 An AI code editor and coding tool that can help users draft, edit, explain, and review code inside a developer workflow.
 {{< /card >}}
 {{< card title="Windsurf" href="/ai-tools/tools/windsurf/" label="Reviewed" >}}
-An AI-powered coding tool that can help users draft code, explore codebase changes, and support developer workflows.
+Windsurf is now named Devin Desktop. This reviewed page preserves the existing URL while covering the current product identity and coding-workflow cautions.
 {{< /card >}}
 {{< card title="Replit" href="/ai-tools/tools/replit/" label="Reviewed" >}}
 A development platform with AI-related coding support that can help users draft, learn, and build software projects.
@@ -138,7 +138,7 @@ An automation and integration platform that can help users plan, build, and test
 An automation tool that can help users plan, build, and test repeatable workflows across connected apps and browser-based work.
 {{< /card >}}
 {{< card title="Relay.app" href="/ai-tools/tools/relay-app/" label="Reviewed" >}}
-An automation and workflow tool that can help users plan, build, and test repeatable workflows across connected apps and teams.
+Relay.app is in an announced shutdown period. This reviewed page provides cautious export and transition guidance for existing users.
 {{< /card >}}
 {{< card title="Gamma" href="/ai-tools/tools/gamma/" label="Reviewed" >}}
 An AI presentation and content creation tool that can help users draft slide-style documents, decks, websites, and visual narratives.

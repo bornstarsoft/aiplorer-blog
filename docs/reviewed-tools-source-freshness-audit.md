@@ -578,6 +578,35 @@ promises, commercial-use conclusions, privacy or security guarantees, or
 unsupported feature-availability claims were added during this monitoring
 pass.
 
+## Transition Watchlist Consistency Check
+
+Relay.app, Windsurf / Devin Desktop, and Copy.ai / Fullcast were rechecked on
+2026-07-26 against their current official transition destinations.
+
+Relay.app's shutdown notice continues to publish the same wind-down dates,
+disabled signup and upgrade status, export options, account and connected-app
+credential deletion context, and transition support. Its detailed tool page
+remains accurate. The generic Relay.app descriptions on the AI Tools landing
+and Automation Tools category were replaced with shutdown and transition
+wording so aggregate pages no longer present it as a tool for new workflows.
+
+The Devin Desktop product page continues to identify Devin Desktop as the new
+name for Windsurf. Its detailed tool page remains accurate and preserves the
+existing `/ai-tools/tools/windsurf/` URL. The AI Tools landing and Coding Tools
+category cards were updated to make the rename and URL-continuity purpose
+clear.
+
+Copy.ai's official acquisition announcement remains live, and its official
+support destination continues to redirect to Fullcast support. Its detailed
+page and aggregate descriptions already reflect the current go-to-market and
+workflow positioning, so no additional public Copy.ai change was needed.
+
+The next transition checks should occur before Relay.app's first announced
+access deadline, when the Windsurf or Devin Desktop destination changes, or
+when Copy.ai or Fullcast changes product branding, support routing, or public
+availability. No exact plan, pricing, migration, availability, data-deletion,
+privacy, or security guarantee was added during this check.
+
 ## Ongoing Monitoring
 
 Return to risk-based monitoring of all 60 reviewed pages. Prioritize a page

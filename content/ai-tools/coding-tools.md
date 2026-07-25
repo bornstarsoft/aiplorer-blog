@@ -17,7 +17,7 @@ An AI coding assistant that can help users draft, explain, review, and work thro
 An AI-focused code editor that can help users draft, edit, explain, and review code inside development workflows.
 {{< /card >}}
 {{< card title="Windsurf" href="/ai-tools/tools/windsurf/" label="Reviewed" >}}
-An AI coding environment that can help users draft, edit, explain, and review code across development workflows.
+Windsurf is now named Devin Desktop. This reviewed page preserves the existing URL while covering the current product identity and coding-workflow cautions.
 {{< /card >}}
 {{< card title="Replit" href="/ai-tools/tools/replit/" label="Reviewed" >}}
 An online coding and app-building platform that can help users draft, edit, run, and review code in browser-based workflows.
