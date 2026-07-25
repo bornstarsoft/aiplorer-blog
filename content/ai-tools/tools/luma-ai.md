@@ -14,8 +14,8 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Plans, pricing, credits, usage limits, output options, licensing terms, commercial-use rules, and availability may change. Check official Luma AI pages for current details."
 officialUrl: "https://lumalabs.ai/"
-lastReviewed: ""
-draft: true
+lastReviewed: "2026-07-25"
+draft: false
 useCases:
   - Explore an early video or motion concept
   - Prepare rough visual ideas before production
@@ -37,10 +37,12 @@ similarTools:
   - Pika
   - Descript
   - Synthesia
-reviewStatus: "needs-official-review"
+reviewStatus: "reviewed"
 sourceNotes:
-  - "Draft-first page. Official Luma AI product, pricing, help or documentation, privacy, security, licensing, and policy sources must be checked before publication."
-  - "Do not publish until claims about pricing, credits, plan limits, video or visual features, output options, model details, licensing, commercial use, privacy, security, and exact availability have been avoided or verified against official sources."
+  - "Checked https://lumalabs.ai/ on 2026-07-25 for official Luma product positioning and high-level video and visual workflow context."
+  - "Checked https://lumalabs.ai/pricing on 2026-07-25 for the current official pricing route without copying exact prices, credits, plan limits, or feature comparisons into this page."
+  - "Checked https://lumalabs.ai/learning-hub on 2026-07-25 for official Dream Machine learning, getting-started, workflow, and support context."
+  - "Checked https://lumalabs.ai/legal/terms-of-service and https://lumalabs.ai/legal/privacy-policy on 2026-07-25 for current terms, licensing, commercial-use, input/output, privacy, and security context without copying guarantees or detailed legal conclusions into this page."
 ---
 
 ## Overview

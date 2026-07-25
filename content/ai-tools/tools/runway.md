@@ -14,8 +14,8 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Plans, pricing, credits, usage limits, export options, licensing terms, commercial-use rules, and availability may change. Check official Runway pages for current details."
 officialUrl: "https://runwayml.com/"
-lastReviewed: ""
-draft: true
+lastReviewed: "2026-07-25"
+draft: false
 useCases:
   - Prepare a rough visual concept before production
   - Explore story or sequence ideas for a video draft
@@ -37,10 +37,12 @@ similarTools:
   - Luma AI
   - Descript
   - Synthesia
-reviewStatus: "needs-official-review"
+reviewStatus: "reviewed"
 sourceNotes:
-  - "Draft-first page. Official Runway product, pricing, help or documentation, privacy, security, licensing, and policy sources must be checked before publication."
-  - "Do not publish until claims about pricing, credits, plan limits, generation or editing features, exports, integrations, model details, licensing, commercial use, privacy, security, and exact availability have been avoided or verified against official sources."
+  - "Checked https://runwayml.com/ on 2026-07-25 for official product positioning and high-level creative and video workflow context."
+  - "Checked https://runwayml.com/pricing and https://help.runwayml.com/hc/en-us/articles/21664961171475-Which-plan-is-right-for-me on 2026-07-25 for current plan, credit, limit, and export context without copying exact details into this page."
+  - "Checked https://help.runwayml.com/hc/en-us and https://help.runwayml.com/hc/en-us/articles/37425232841875-Getting-Started-with-Generative-Video on 2026-07-25 for official help and generative video workflow context."
+  - "Checked https://runwayml.com/privacy-policy and https://help.runwayml.com/hc/en-us/articles/24300377879827-Understanding-Runway-s-security-and-privacy-standards on 2026-07-25 for privacy and security context without copying guarantees into this page."
 ---
 
 ## Overview

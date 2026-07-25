@@ -785,9 +785,10 @@ licenses and dependencies, following workplace policy, and monitoring changing
 availability. The pages remind users to test and review generated code before
 using it in real projects.
 
-## Video Creative Tools Draft Batch
+## Video Creative Tools Batch Review Result
 
-Phase 5AE added five Video Tools pages as draft-first validation pages:
+Phase 5AE added five Video Tools pages as draft-first validation pages. Phase
+5AF reviewed current official sources and published all five pages:
 
 - Runway
 - Pika
@@ -799,40 +800,72 @@ Current status:
 
 ```yaml
 content/ai-tools/tools/runway.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-07-25"
 
 content/ai-tools/tools/pika.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-07-25"
 
 content/ai-tools/tools/luma-ai.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-07-25"
 
 content/ai-tools/tools/descript.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-07-25"
 
 content/ai-tools/tools/synthesia.md
-draft: true
-reviewStatus: "needs-official-review"
-lastReviewed: ""
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-07-25"
 ```
 
-The pages use the existing `Video Tools` category. They are not linked from
-public category, landing, navigation, or reviewed-index pages and must remain
-unpublished until official-source review is complete.
+The pages use the existing `Video Tools` category. Published pages are linked
+from the AI Tools landing page and Video Tools category page and are listed
+automatically in the reviewed-tools index. They were not added to global
+navigation.
 
-Official product, pricing, documentation or help, privacy, security, licensing,
-and policy sources must be checked for each tool before publication. Draft copy
-avoids exact prices, plan limits, credits, generation or editing feature claims,
-output and export claims, integrations, model details, security guarantees,
-licensing guarantees, commercial-use rights, and exact availability.
+Official sources checked:
+
+- Runway: `https://runwayml.com/`, `https://runwayml.com/pricing`,
+  `https://help.runwayml.com/hc/en-us`,
+  `https://help.runwayml.com/hc/en-us/articles/21664961171475-Which-plan-is-right-for-me`,
+  `https://help.runwayml.com/hc/en-us/articles/37425232841875-Getting-Started-with-Generative-Video`,
+  `https://runwayml.com/privacy-policy`, and
+  `https://help.runwayml.com/hc/en-us/articles/24300377879827-Understanding-Runway-s-security-and-privacy-standards`
+- Pika: `https://pika.art/`, `https://pika.art/pricing`,
+  `https://pika.art/faq`, `https://pika.art/privacy-policy`, and
+  `https://pika.art/terms-of-service`
+- Luma AI: `https://lumalabs.ai/`, `https://lumalabs.ai/pricing`,
+  `https://lumalabs.ai/learning-hub`,
+  `https://lumalabs.ai/legal/terms-of-service`, and
+  `https://lumalabs.ai/legal/privacy-policy`
+- Descript: `https://www.descript.com/`,
+  `https://www.descript.com/pricing`,
+  `https://help.descript.com/hc/en-us/articles/10601763396493-Get-started-with-Descript`,
+  `https://help.descript.com/hc/en-us/articles/27252457732237-AI-Tools-Overview`,
+  `https://help.descript.com/hc/en-us/articles/27841674958221-Track-and-understand-your-Media-minutes-and-AI-Credits`,
+  `https://help.descript.com/hc/en-us/articles/10255819601037-Export-and-publishing-overview`,
+  `https://www.descript.com/privacy`, and
+  `https://www.descript.com/security`
+- Synthesia: `https://www.synthesia.io/`,
+  `https://www.synthesia.io/pricing`, `https://help.synthesia.io/en/`,
+  `https://help.synthesia.io/en/collections/18912126-build-videos`,
+  `https://help.synthesia.io/en/articles/9189319-how-do-i-generate-my-video-in-synthesia`,
+  `https://www.synthesia.io/legal`,
+  `https://www.synthesia.io/legal/privacy-policy`,
+  `https://www.synthesia.io/legal/security-practices`, and
+  `https://www.synthesia.io/legal/acceptable-use-policy`
+
+Published copy avoids exact prices, plan limits, credits, detailed generation
+or editing claims, output and export claims, integrations, model details,
+security guarantees, licensing guarantees, commercial-use rights, and exact
+availability.
 
 Special caution areas include reviewing generated video, audio, images, scripts,
 text, and captions; checking facts; confirming voice and likeness consent;

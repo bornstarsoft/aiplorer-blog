@@ -14,8 +14,8 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Plans, pricing, credits, usage limits, output options, licensing terms, commercial-use rules, and availability may change. Check official Pika pages for current details."
 officialUrl: "https://pika.art/"
-lastReviewed: ""
-draft: true
+lastReviewed: "2026-07-25"
+draft: false
 useCases:
   - Explore an early motion or scene concept
   - Prepare a rough video idea before production
@@ -37,10 +37,12 @@ similarTools:
   - Luma AI
   - Descript
   - Synthesia
-reviewStatus: "needs-official-review"
+reviewStatus: "reviewed"
 sourceNotes:
-  - "Draft-first page. Official Pika product, pricing, help or documentation, privacy, security, licensing, and policy sources must be checked before publication."
-  - "Do not publish until claims about pricing, credits, plan limits, video features, output options, model details, licensing, commercial use, privacy, security, and exact availability have been avoided or verified against official sources."
+  - "Checked https://pika.art/ on 2026-07-25 for official product positioning and high-level AI video and creative workflow context."
+  - "Checked https://pika.art/pricing on 2026-07-25 for current plans, credits, limits, output, and commercial-use context without copying exact details or rights into this page."
+  - "Checked https://pika.art/faq on 2026-07-25 for official product, creation, subscription, and technical-help context."
+  - "Checked https://pika.art/privacy-policy and https://pika.art/terms-of-service on 2026-07-25 for current privacy and terms links without copying guarantees or detailed legal conclusions into this page."
 ---
 
 ## Overview

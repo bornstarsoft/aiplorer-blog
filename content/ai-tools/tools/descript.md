@@ -14,8 +14,8 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Plans, pricing, usage limits, editing options, export support, licensing terms, commercial-use rules, and availability may change. Check official Descript pages for current details."
 officialUrl: "https://www.descript.com/"
-lastReviewed: ""
-draft: true
+lastReviewed: "2026-07-25"
+draft: false
 useCases:
   - Prepare a rough spoken-media draft
   - Plan an audio or video editing workflow
@@ -37,10 +37,12 @@ similarTools:
   - Pika
   - ElevenLabs
   - Synthesia
-reviewStatus: "needs-official-review"
+reviewStatus: "reviewed"
 sourceNotes:
-  - "Draft-first page. Official Descript product, pricing, help or documentation, privacy, security, licensing, and policy sources must be checked before publication."
-  - "Do not publish until claims about pricing, plan limits, editing or AI features, transcription or caption behavior, exports, integrations, voice options, licensing, commercial use, privacy, security, and exact availability have been avoided or verified against official sources."
+  - "Checked https://www.descript.com/ and https://help.descript.com/hc/en-us/articles/10601763396493-Get-started-with-Descript on 2026-07-25 for official audio, video, editing, and creative workflow positioning."
+  - "Checked https://www.descript.com/pricing and https://help.descript.com/hc/en-us/articles/27841674958221-Track-and-understand-your-Media-minutes-and-AI-Credits on 2026-07-25 for current plan, usage, and credit context without copying exact details into this page."
+  - "Checked https://help.descript.com/hc/en-us/articles/27252457732237-AI-Tools-Overview and https://help.descript.com/hc/en-us/articles/10255819601037-Export-and-publishing-overview on 2026-07-25 for official editing, AI-tool, and export context without copying detailed availability claims."
+  - "Checked https://www.descript.com/privacy and https://www.descript.com/security on 2026-07-25 for privacy, data, consent, and security context without copying guarantees into this page."
 ---
 
 ## Overview

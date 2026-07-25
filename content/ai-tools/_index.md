@@ -137,4 +137,19 @@ A presentation workspace that can help users plan, draft, and organize slide dec
 {{< card title="SlidesAI" href="/ai-tools/tools/slidesai/" label="Reviewed" >}}
 An AI presentation drafting tool that can help users turn notes, topics, or rough text into slide deck drafts.
 {{< /card >}}
+{{< card title="Runway" href="/ai-tools/tools/runway/" label="Reviewed" >}}
+An AI video and creative workflow tool that may help users prepare visual concepts, video drafts, and editing plans.
+{{< /card >}}
+{{< card title="Pika" href="/ai-tools/tools/pika/" label="Reviewed" >}}
+An AI video creation tool that may help users explore short visual concepts, motion ideas, and video drafts.
+{{< /card >}}
+{{< card title="Luma AI" href="/ai-tools/tools/luma-ai/" label="Reviewed" >}}
+An AI visual creation tool that may help users explore video concepts, motion ideas, and creative media workflows.
+{{< /card >}}
+{{< card title="Descript" href="/ai-tools/tools/descript/" label="Reviewed" >}}
+An audio and video editing tool that may help users plan, draft, and review spoken-media workflows.
+{{< /card >}}
+{{< card title="Synthesia" href="/ai-tools/tools/synthesia/" label="Reviewed" >}}
+An AI video platform that may help users plan structured video drafts for training, presentations, and business communication.
+{{< /card >}}
 {{< /card-grid >}}

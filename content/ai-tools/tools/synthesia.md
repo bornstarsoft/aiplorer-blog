@@ -14,8 +14,8 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Plans, pricing, usage limits, video options, export support, licensing terms, commercial-use rules, and availability may change. Check official Synthesia pages for current details."
 officialUrl: "https://www.synthesia.io/"
-lastReviewed: ""
-draft: true
+lastReviewed: "2026-07-25"
+draft: false
 useCases:
   - Prepare a rough training or presentation video concept
   - Draft a structured script for human review
@@ -37,10 +37,12 @@ similarTools:
   - Pika
   - Descript
   - ElevenLabs
-reviewStatus: "needs-official-review"
+reviewStatus: "reviewed"
 sourceNotes:
-  - "Draft-first page. Official Synthesia product, pricing, help or documentation, privacy, security, licensing, and policy sources must be checked before publication."
-  - "Do not publish until claims about pricing, plan limits, video or AI features, output options, exports, integrations, voice or likeness options, licensing, commercial use, privacy, security, and exact availability have been avoided or verified against official sources."
+  - "Checked https://www.synthesia.io/ on 2026-07-25 for official AI video, business, training, presentation, and communication workflow positioning."
+  - "Checked https://www.synthesia.io/pricing on 2026-07-25 for current plan, limit, output, and availability context without copying exact pricing or comparisons into this page."
+  - "Checked https://help.synthesia.io/en/, https://help.synthesia.io/en/collections/18912126-build-videos, and https://help.synthesia.io/en/articles/9189319-how-do-i-generate-my-video-in-synthesia on 2026-07-25 for official creation, review, and generation workflow context."
+  - "Checked https://www.synthesia.io/legal, https://www.synthesia.io/legal/privacy-policy, https://www.synthesia.io/legal/security-practices, and https://www.synthesia.io/legal/acceptable-use-policy on 2026-07-25 for privacy, security, consent, likeness, intellectual-property, and acceptable-use context without copying guarantees or detailed legal conclusions into this page."
 ---
 
 ## Overview
