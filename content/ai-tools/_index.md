@@ -183,19 +183,19 @@ An AI image and video creation platform that may help users explore visual conce
 A family of AI image models and related workflows that may help users explore visual concepts, image drafts, and creative directions.
 {{< /card >}}
 {{< card title="Jasper" href="/ai-tools/tools/jasper/" label="Reviewed" >}}
-An AI writing and content workflow tool that may help users prepare drafts, explore messaging ideas, and organize brand-facing writing.
+An AI marketing platform that may help teams plan, create, govern, and review content through agent and content-pipeline workflows.
 {{< /card >}}
 {{< card title="Copy.ai" href="/ai-tools/tools/copy-ai/" label="Reviewed" >}}
 An AI go-to-market and content workflow tool that may help users prepare business content drafts, explore messaging, and organize repeatable writing tasks.
 {{< /card >}}
 {{< card title="Writesonic" href="/ai-tools/tools/writesonic/" label="Reviewed" >}}
-An AI writing and content workflow tool that may help users prepare drafts, explore content ideas, and plan search-oriented writing for review.
+An AI search visibility and content workflow platform that may help teams monitor brand presence, plan search-oriented content, and prepare actions for review.
 {{< /card >}}
 {{< card title="Surfer" href="/ai-tools/tools/surfer/" label="Reviewed" >}}
-A content planning and search-oriented writing tool that may help users prepare briefs, organize drafts, and review content ideas.
+An AI visibility and content optimization platform that may help users research, draft, monitor, and review search-oriented content.
 {{< /card >}}
 {{< card title="Frase" href="/ai-tools/tools/frase/" label="Reviewed" >}}
-A content research and writing workflow tool that may help users prepare briefs, organize source notes, and draft search-oriented content.
+An AI-search content workflow platform that may help teams research, draft, publish, monitor, and revise content with human review.
 {{< /card >}}
 {{< card title="HubSpot Breeze" href="/ai-tools/tools/hubspot-breeze/" label="Reviewed" >}}
 A set of AI-related business tools that may help users prepare marketing, sales, and customer-service work for review.

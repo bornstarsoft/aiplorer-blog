@@ -520,6 +520,64 @@ commercial-use conclusions, ownership guarantees, privacy or security
 guarantees, or unsupported feature-availability promises were added during
 this monitoring pass.
 
+## Priority 3 Writing and SEO Monitoring Check
+
+Grammarly, DeepL, Jasper, Copy.ai, Writesonic, Surfer, and Frase were rechecked
+on 2026-07-26 against current official product, help, pricing, privacy,
+security, trust, legal, acquisition, or documentation pages.
+
+Grammarly and DeepL required no additional public page change because both had
+already been refreshed on the same date for their current product scope and
+data-handling boundaries.
+
+Jasper now presents itself more broadly as an AI marketing platform centered
+on agents, content pipelines, brand context, and AI-search workflows. Its
+public page was broadened and now calls out human approval, connected systems,
+permissions, activation steps, and agent-output review.
+
+Copy.ai's high-level go-to-market and workflow positioning remains accurate.
+Its public page now records that Fullcast acquired Copy.ai and that the current
+official support destination redirects to Fullcast, so branding, support
+paths, rollout details, and availability should be rechecked over time.
+
+Writesonic now presents itself primarily as an AI-search visibility and
+content-action platform spanning traditional and AI search. Its public page
+was broadened and now requires independent review of visibility metrics,
+citations, technical recommendations, outreach, connected accounts, and
+automated actions.
+
+Surfer now presents a broader AI-visibility and content-optimization workflow
+alongside its established content planning tools. Its public page was updated
+to cover monitoring and to require review of metrics, proposed page changes,
+and one-click or automated actions.
+
+Frase now presents a broader AI-search content operating workflow spanning
+research, drafting, publishing, monitoring, revision, and optional autonomy.
+Its public page was broadened and now requires careful review of CMS
+permissions, publishing controls, auto-publish settings, metrics, citations,
+and proposed revisions.
+
+Official source groups checked:
+
+- Grammarly: current product, plans, privacy, product-improvement, and training
+  control pages already checked in the same-date baseline refresh
+- DeepL: current product, API, infrastructure, data-protection, and security
+  pages already checked in the same-date baseline refresh
+- Jasper: product, platform, agents, pricing, help, trust, privacy, and terms
+  pages
+- Copy.ai: product, pricing, Fullcast acquisition, redirected help, trust,
+  privacy, and terms pages
+- Writesonic: product, pricing, documentation, privacy, terms, and trust pages
+- Surfer: product, pricing, documentation, legal, and privacy pages
+- Frase: product, pricing, current and legacy help destinations, privacy,
+  terms, and security pages
+
+No exact prices, limits, model lists, visibility or search-performance claims,
+ranking or citation guarantees, integration promises, automated-publishing
+promises, commercial-use conclusions, privacy or security guarantees, or
+unsupported feature-availability claims were added during this monitoring
+pass.
+
 ## Ongoing Monitoring
 
 Return to risk-based monitoring of all 60 reviewed pages. Prioritize a page

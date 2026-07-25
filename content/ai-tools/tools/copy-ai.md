@@ -14,7 +14,8 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Plans, pricing, usage limits, workflow options, writing features, collaboration options, integrations, and availability may change. Check official Copy.ai pages for current details."
 officialUrl: "https://www.copy.ai/"
-lastReviewed: "2026-07-25"
+lastReviewed: "2026-07-26"
+lastmod: "2026-07-26T00:00:00+09:00"
 draft: false
 useCases:
   - Draft business copy for human review
@@ -30,6 +31,7 @@ limitations:
   - Generated text and workflow output should be reviewed before use
   - Facts, citations, claims, tone, brand requirements, copyright, and audience fit require human judgment
   - Connected accounts and sensitive, private, customer, business, or confidential data should be handled carefully
+  - Copy.ai has joined Fullcast, and its current support destination redirects to Fullcast, so product branding, support paths, and rollout details may change
   - Plans, pricing, limits, workflow options, writing features, collaboration options, integrations, security details, and availability may change
 similarTools:
   - Jasper
@@ -38,16 +40,16 @@ similarTools:
   - ChatGPT
 reviewStatus: "reviewed"
 sourceNotes:
-  - "Checked https://www.copy.ai/, https://www.copy.ai/prices, and https://support.copy.ai/en on 2026-07-25 for official go-to-market, content, workflow, pricing, and help context."
-  - "Checked https://trust.copy.ai/, https://www.copy.ai/privacy-notice, and https://www.copy.ai/terms-of-service on 2026-07-25 for official trust, privacy, and terms context."
-  - "Did not copy exact prices, plan limits, workflow limits, writing or AI feature details, collaboration details, integrations, model access, security guarantees, data handling guarantees, licensing terms, commercial-use rights, or availability claims."
+  - "Checked https://www.copy.ai/, https://www.copy.ai/prices, and https://www.copy.ai/fullcast-acquires-copy-ai on 2026-07-26 for current go-to-market, content, agentic workflow, pricing, and Fullcast acquisition context."
+  - "Checked https://support.copy.ai/en on 2026-07-26 and confirmed that the official support destination redirects to https://support.fullcast.com/copy-ai at review time."
+  - "Checked https://trust.copy.ai/, https://www.copy.ai/privacy-notice, and https://www.copy.ai/terms-of-service on 2026-07-26 for trust, privacy, security, and terms context without copying guarantees or detailed legal conclusions into this page."
 ---
 
 ## Overview
 
 Copy.ai is an AI go-to-market and content workflow tool that may help users prepare business content drafts, explore messaging, and organize repeatable writing tasks. It may be useful for individuals and teams planning early copy before human editing and approval.
 
-Copy.ai's plans, pricing, limits, writing and workflow options, collaboration, integrations, connected-account behavior, privacy terms, security details, licensing, and availability may change. Check official Copy.ai pages before relying on a specific capability or policy.
+Copy.ai has joined Fullcast, and its current support destination redirects to Fullcast. Product branding, support paths, rollout details, plans, pricing, limits, writing and workflow options, collaboration, integrations, connected-account behavior, privacy terms, security details, licensing, and availability may change. Check current official Copy.ai and Fullcast support pages before relying on a specific capability or policy.
 
 ## Useful For
 
@@ -57,6 +59,6 @@ AI writing and workflow tools should be treated as drafting support, not as a gu
 
 ## Notes
 
-Features, plans, pricing, limits, writing and workflow options, collaboration features, integrations, model access, privacy terms, security details, licensing terms, and availability can change. Check official Copy.ai pages for current information.
+Features, branding, support paths, rollout details, plans, pricing, limits, writing and workflow options, collaboration features, integrations, model access, privacy terms, security details, licensing terms, and availability can change. Check current official Copy.ai and redirected support pages for current information.
 
 Review facts, citations, claims, brand voice, copyright, connected-account permissions, customer data, confidential information, and commercial-use requirements before sharing generated content or relying on a workflow.
