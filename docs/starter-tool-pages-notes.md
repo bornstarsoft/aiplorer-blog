@@ -965,3 +965,60 @@ facts and text; confirming likeness and consent; reviewing copyright,
 trademarks, media licenses, brand requirements, and commercial-use rules;
 protecting private, customer, business, or confidential images and prompts; and
 checking current pricing, limits, privacy, security, and availability.
+
+## Writing and SEO Tools Draft Batch
+
+A draft-first batch was added for five writing and search-oriented content
+tools:
+
+- Jasper
+- Copy.ai
+- Writesonic
+- Surfer
+- Frase
+
+Current status:
+
+```yaml
+content/ai-tools/tools/jasper.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+
+content/ai-tools/tools/copy-ai.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+
+content/ai-tools/tools/writesonic.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+
+content/ai-tools/tools/surfer.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+
+content/ai-tools/tools/frase.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+```
+
+The pages use the existing `Writing Tools` category. They remain unpublished
+and are not linked from the AI Tools landing page, reviewed-tools index,
+Writing Tools category page, or global navigation.
+
+Before publication, official product, pricing, help or documentation, privacy,
+security, terms, and policy sources must be checked for each tool. Review must
+avoid unsupported claims about exact prices, plans, limits, writing or AI
+features, search-related data, integrations, collaboration, brand features,
+model access, security, data handling, licensing, commercial use, search
+performance, and exact availability.
+
+Special caution areas include reviewing generated text, checking original
+sources and citations, confirming claims and audience fit, following brand and
+copyright requirements, protecting private or customer data, and recognizing
+that search-oriented suggestions do not guarantee rankings, visibility,
+traffic, conversions, or business results.
