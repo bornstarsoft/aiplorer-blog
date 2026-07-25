@@ -1,6 +1,6 @@
 # Tool Page Publishing Checklist
 
-Date: 2026-06-01
+Updated: 2026-07-26
 
 Use this checklist before publishing any Aiplorer AI tool page.
 
@@ -45,13 +45,23 @@ Use this checklist before publishing any Aiplorer AI tool page.
 - Run `git diff --check`.
 - Preview the page locally.
 - Confirm the generated URL does not conflict with category pages.
-- Confirm the page is linked from an appropriate category only when ready.
+- Confirm the reviewed tool card is added or updated on `/ai-tools/` and the
+  matching category page only when ready.
+- Confirm concise card copy does not contradict the reviewed product identity,
+  scope, availability, or caution status. Exact wording does not need to match
+  the tool description.
+- Confirm `/ai-tools/tools/` groups the page under the expected category.
+- Confirm the reviewed tool appears once in each intended discovery layer and
+  no draft route is linked publicly.
 - Confirm no generated `public/` or `resources/` output is staged.
 
 ## Post-Publish Checks
 
 - Confirm the live page loads after deployment.
+- Confirm the live AI Tools landing, reviewed index, and category page show the
+  intended card and current summary.
 - Confirm official website links open correctly.
 - Submit or inspect sitemap only after deployment is stable.
 - Recheck the page if the official tool changes pricing, plans, branding, or
-  major features.
+  major features, and refresh its landing and category cards when the reviewed
+  description changes materially.
