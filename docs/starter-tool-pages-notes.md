@@ -872,3 +872,59 @@ text, and captions; checking facts; confirming voice and likeness consent;
 reviewing copyright and media licenses; following brand and workplace policy;
 protecting private, customer, employee, business, or confidential content; and
 checking current pricing, limits, privacy, security, and availability.
+
+## Image Tools Draft Batch
+
+Phase 5AG added five `Image Tools` pages as draft-first validation pages:
+
+- Adobe Firefly
+- Midjourney
+- Ideogram
+- Leonardo AI
+- Stable Diffusion
+
+Current status:
+
+```yaml
+content/ai-tools/tools/adobe-firefly.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+
+content/ai-tools/tools/midjourney.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+
+content/ai-tools/tools/ideogram.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+
+content/ai-tools/tools/leonardo-ai.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+
+content/ai-tools/tools/stable-diffusion.md
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+```
+
+The pages use the existing `Image Tools` category. They are not linked from
+public category, landing, navigation, or reviewed-index pages and must remain
+unpublished until official-source review is complete.
+
+Official product, pricing, documentation or help, privacy, security, licensing,
+commercial-use, model, and policy sources must be checked for each tool before
+publication. Draft copy avoids exact prices, plan or usage limits, generation
+and editing feature claims, output claims, integrations, access and hosting
+details, model details, security guarantees, licensing guarantees,
+commercial-use rights, and exact availability.
+
+Special caution areas include reviewing generated and edited images; checking
+facts and text; confirming likeness and consent; reviewing copyright,
+trademarks, media licenses, brand requirements, and commercial-use rules;
+protecting private, customer, business, or confidential images and prompts; and
+checking current pricing, limits, privacy, security, and availability.
