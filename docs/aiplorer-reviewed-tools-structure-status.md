@@ -182,6 +182,10 @@ should not be added publicly without the normal draft-first and official-source
 review process. A new category should be created only when the existing
 taxonomy cannot describe a candidate cleanly.
 
+The non-public source and caution plan for the meeting and transcription
+candidates is recorded in `docs/meeting-transcription-draft-batch-plan.md`.
+No candidate page has been created or approved for publication.
+
 ## Recommended Direction
 
 The immediate next phase is risk-based maintenance rather than another bulk
