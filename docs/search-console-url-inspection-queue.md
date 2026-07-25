@@ -50,6 +50,24 @@ Each rendered page identified `Productivity Tools` as its category. All five
 responses showed `cf-cache-status: DYNAMIC`, no `Age` header, and
 `cache-control: public, max-age=0, must-revalidate`.
 
+### Priority 3: Coding Tools
+
+The five Coding Tools pages passed a public readiness check on 2026-07-26.
+
+| Route | HTTP | Self-canonical | Reviewed index | Category page | Sitemap |
+| --- | ---: | --- | --- | --- | --- |
+| `/ai-tools/tools/github-copilot/` | 200 | Yes | Present | Present | Present |
+| `/ai-tools/tools/cursor/` | 200 | Yes | Present | Present | Present |
+| `/ai-tools/tools/windsurf/` | 200 | Yes | Present | Present | Present |
+| `/ai-tools/tools/replit/` | 200 | Yes | Present | Present | Present |
+| `/ai-tools/tools/tabnine/` | 200 | Yes | Present | Present | Present |
+
+Each rendered page identified `Coding Tools` as its category. The Windsurf
+page retained its existing canonical route and identified Devin Desktop as the
+current product name. All five responses showed
+`cf-cache-status: DYNAMIC`, no `Age` header, and
+`cache-control: public, max-age=0, must-revalidate`.
+
 SciSpace, Tome, and Example AI Assistant returned HTTP 404 and were absent from
 the live sitemap. No indexing request was made. The authenticated Search
 Console inspection remains pending because the available browser session
