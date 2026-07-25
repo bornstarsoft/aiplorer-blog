@@ -377,6 +377,49 @@ product or channel lists, performance claims, model details, retention
 guarantees, or privacy and security guarantees were added during this
 monitoring pass.
 
+## Priority 3 Image Monitoring Check
+
+Adobe Firefly, Canva AI, Ideogram, Leonardo AI, Midjourney, and Stable
+Diffusion were rechecked on 2026-07-26 against current official product, help,
+pricing, privacy, legal, licensing, or safety pages.
+
+Adobe Firefly now presents a substantially broader creative-content workspace
+covering image, video, audio, design, ideation, editing, and a mix of Adobe and
+partner models. Its public page was broadened while retaining the Image Tools
+category and adding a reminder that model terms, data practices, access, and
+availability can differ.
+
+Leonardo AI and Midjourney both now document video creation alongside image
+workflows. Their public pages were broadened to include reviewed video and
+motion use cases, with stronger cautions around public or private visibility,
+remixing, consent, media rights, plan differences, and human review.
+
+Canva AI, Ideogram, and Stable Diffusion required no public page change. Canva
+AI was already refreshed on the same date for its broader creative scope.
+Ideogram remains accurately described as an image creation and design tool.
+Stable Diffusion remains a specific image-model family within Stability AI's
+broader portfolio, and its page already requires users to check the license
+for the exact model or service.
+
+Official source groups checked:
+
+- Adobe Firefly: product, workspace help, plan and credit information, privacy,
+  and generative-AI product terms
+- Canva AI: product, pricing and access help, AI product terms, and AI safety
+  pages
+- Ideogram: product, documentation, pricing, terms, and privacy pages
+- Leonardo AI: product, creation help, video help, pricing, visibility, terms,
+  and privacy pages
+- Midjourney: product, video documentation, plan comparison, terms, and privacy
+  pages
+- Stable Diffusion: Stability AI core models, platform documentation, pricing,
+  model licensing, terms, and privacy pages
+
+No exact prices, credits, limits, model lists, output-quality claims,
+commercial-use conclusions, ownership guarantees, privacy or security
+guarantees, or feature-availability promises were added during this monitoring
+pass.
+
 ## Ongoing Monitoring
 
 Return to risk-based monitoring of all 60 reviewed pages. Prioritize a page

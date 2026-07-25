@@ -14,16 +14,16 @@ Generated and edited images should be reviewed before publishing or sharing. Che
 AI-related features within Canva that can support design ideas, visual content drafts, and creative workflow planning.
 {{< /card >}}
 {{< card title="Adobe Firefly" href="/ai-tools/tools/adobe-firefly/" label="Reviewed" >}}
-An AI image and creative workflow tool that may help users explore visual concepts, image drafts, and design directions.
+An AI creative content platform that may help users explore image, video, audio, design, and visual ideation workflows.
 {{< /card >}}
 {{< card title="Midjourney" href="/ai-tools/tools/midjourney/" label="Reviewed" >}}
-An AI image creation tool that may help users explore visual concepts, art directions, and image drafts.
+An AI image and video creation tool that may help users explore visual concepts, art directions, image drafts, and motion ideas.
 {{< /card >}}
 {{< card title="Ideogram" href="/ai-tools/tools/ideogram/" label="Reviewed" >}}
 An AI image creation tool that may help users explore visual concepts, image drafts, and design directions.
 {{< /card >}}
 {{< card title="Leonardo AI" href="/ai-tools/tools/leonardo-ai/" label="Reviewed" >}}
-An AI image and creative workflow tool that may help users explore visual concepts, image drafts, and design ideas.
+An AI image and video creation platform that may help users explore visual concepts, media drafts, and creative workflows.
 {{< /card >}}
 {{< card title="Stable Diffusion" href="/ai-tools/tools/stable-diffusion/" label="Reviewed" >}}
 A family of AI image models and related workflows that may help users explore visual concepts, image drafts, and creative directions.
