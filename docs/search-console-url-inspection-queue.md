@@ -13,9 +13,12 @@ public URL whose rendered page, canonical, and sitemap entry are correct.
 
 ## Public Readiness Check
 
-The five Priority 1 routes passed a public readiness check on 2026-07-26. This
-check is not a Search Console URL Inspection result and does not report
-Google-selected canonicals or indexing status.
+The public readiness checks below are not Search Console URL Inspection
+results and do not report Google-selected canonicals or indexing status.
+
+### Priority 1: Aggregate And Category Routes
+
+The five Priority 1 routes passed a public readiness check on 2026-07-26.
 
 | Route | HTTP | Self-canonical | Current body | Sitemap |
 | --- | ---: | --- | --- | --- |
@@ -29,6 +32,23 @@ All five responses used the apex domain with a trailing slash. Their response
 headers showed `cf-cache-status: DYNAMIC`, no `Age` header, and
 `cache-control: public, max-age=0, must-revalidate`. The `www` version of the
 AI Tools route returned HTTP 301 to the matching apex URL.
+
+### Priority 2: Recent Productivity Tools
+
+The five recent meeting and transcription pages passed a public readiness
+check on 2026-07-26.
+
+| Route | HTTP | Self-canonical | Reviewed index | Category page | Sitemap |
+| --- | ---: | --- | --- | --- | --- |
+| `/ai-tools/tools/otter-ai/` | 200 | Yes | Present | Present | Present |
+| `/ai-tools/tools/fireflies-ai/` | 200 | Yes | Present | Present | Present |
+| `/ai-tools/tools/fathom/` | 200 | Yes | Present | Present | Present |
+| `/ai-tools/tools/granola/` | 200 | Yes | Present | Present | Present |
+| `/ai-tools/tools/read-ai/` | 200 | Yes | Present | Present | Present |
+
+Each rendered page identified `Productivity Tools` as its category. All five
+responses showed `cf-cache-status: DYNAMIC`, no `Age` header, and
+`cache-control: public, max-age=0, must-revalidate`.
 
 SciSpace, Tome, and Example AI Assistant returned HTTP 404 and were absent from
 the live sitemap. No indexing request was made. The authenticated Search
