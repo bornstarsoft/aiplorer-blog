@@ -11,19 +11,19 @@ Generated code should be reviewed and tested before production use. Protect secr
 
 {{< card-grid >}}
 {{< card title="GitHub Copilot" href="/ai-tools/tools/github-copilot/" label="Reviewed" >}}
-An AI coding assistant that can help users draft, explain, review, and work through code in developer workflows.
+An AI coding assistant from GitHub that can help users draft code, review coding ideas, and work through developer workflows.
 {{< /card >}}
 {{< card title="Cursor" href="/ai-tools/tools/cursor/" label="Reviewed" >}}
-An AI-focused code editor that can help users draft, edit, explain, and review code inside development workflows.
+An AI coding tool and agent that can help users draft, edit, explain, and review code inside a developer workflow.
 {{< /card >}}
 {{< card title="Windsurf" href="/ai-tools/tools/windsurf/" label="Reviewed" >}}
 Windsurf is now named Devin Desktop. This reviewed page preserves the existing URL while covering the current product identity and coding-workflow cautions.
 {{< /card >}}
 {{< card title="Replit" href="/ai-tools/tools/replit/" label="Reviewed" >}}
-An online coding and app-building platform that can help users draft, edit, run, and review code in browser-based workflows.
+A development platform with AI-related coding support that can help users draft, learn, and build software projects.
 {{< /card >}}
 {{< card title="Tabnine" href="/ai-tools/tools/tabnine/" label="Reviewed" >}}
-An AI coding assistant that can help users draft, complete, explain, and review code in developer workflows.
+An AI coding platform that can help users draft code, review coding ideas, and support developer workflows.
 {{< /card >}}
 {{< /card-grid >}}
 

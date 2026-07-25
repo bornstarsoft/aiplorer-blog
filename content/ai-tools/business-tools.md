@@ -23,7 +23,7 @@ An AI assistant for business software that may help users prepare drafts, review
 An AI assistant for commerce workflows that may help merchants prepare store content and business tasks for review.
 {{< /card >}}
 {{< card title="Fin" href="/ai-tools/tools/fin/" label="Reviewed" >}}
-An AI customer agent that may help teams prepare and manage service, inbound sales, and commerce interactions for review.
+An AI customer agent that may help teams prepare and manage customer-service, inbound sales, and commerce interactions for review.
 {{< /card >}}
 {{< /card-grid >}}
 

@@ -20,7 +20,7 @@ An AI research workflow tool that can help users explore papers, organize resear
 An AI research and learning tool that can help users explore questions, papers, and evidence summaries.
 {{< /card >}}
 {{< card title="You.com" href="/ai-tools/tools/you-com/" label="Reviewed" >}}
-An AI search and assistant platform that can help users explore questions, compare sources, and support research or learning workflows.
+AI search and research products that can help users explore questions, compare sources, and support research or learning workflows.
 {{< /card >}}
 {{< /card-grid >}}
 

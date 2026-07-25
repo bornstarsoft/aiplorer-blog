@@ -11,7 +11,7 @@ Generated and edited images should be reviewed before publishing or sharing. Che
 
 {{< card-grid >}}
 {{< card title="Canva AI" href="/ai-tools/tools/canva-ai/" label="Reviewed" >}}
-AI-related features within Canva that can support design ideas, visual content drafts, and creative workflow planning.
+AI-related features within Canva that can support design ideas, writing, visual content drafts, and creative workflow planning.
 {{< /card >}}
 {{< card title="Adobe Firefly" href="/ai-tools/tools/adobe-firefly/" label="Reviewed" >}}
 An AI creative content platform that may help users explore image, video, audio, design, and visual ideation workflows.

@@ -26,7 +26,7 @@ An automation tool that can help users plan, build, and test simple repeatable w
 An automation and integration platform that can help users plan, build, and test workflows across connected apps, APIs, and services.
 {{< /card >}}
 {{< card title="Bardeen" href="/ai-tools/tools/bardeen/" label="Reviewed" >}}
-An automation tool that can help users plan, build, and test repeatable workflows across connected apps and browser-based work.
+An automation and workflow tool that may help go-to-market teams plan and test repeatable lead research, data, and outreach workflows.
 {{< /card >}}
 {{< card title="Relay.app" href="/ai-tools/tools/relay-app/" label="Reviewed" >}}
 Relay.app is in an announced shutdown period. This reviewed page provides cautious export and transition guidance for existing users.

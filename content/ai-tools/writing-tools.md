@@ -13,7 +13,7 @@ AI-search visibility scores, citation suggestions, agent actions, connected acco
 
 {{< card-grid >}}
 {{< card title="Grammarly" href="/ai-tools/tools/grammarly/" label="Reviewed" >}}
-A writing and communication assistant that can support drafting, rewriting, clarity, tone, grammar support, and everyday communication.
+A writing and communication assistant that can support proofreading, drafting, rewriting, clarity, tone, and AI-assisted writing workflows.
 {{< /card >}}
 {{< card title="DeepL" href="/ai-tools/tools/deepl/" label="Reviewed" >}}
 A language AI tool that can support translation, rewriting, and multilingual writing workflows.
