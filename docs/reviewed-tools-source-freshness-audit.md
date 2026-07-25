@@ -223,6 +223,9 @@ when an official source announces a major product identity change, shutdown,
 pricing or credit model change, privacy or training-policy change, security or
 data-residency change, or material availability change.
 
+The recurring cadence, trigger rules, validation gate, and current priority
+queue are documented in `docs/reviewed-tools-monitoring-plan.md`.
+
 ## Draft Policy
 
 Do not publish SciSpace or Tome merely to complete a batch. Revisit them only
@@ -237,7 +240,8 @@ Production builds and the production sitemap must continue to exclude:
 
 ## Next Phase
 
-Validate and deploy the completed freshness review, then monitor the 55
-reviewed pages by risk and change signals. Preserve SciSpace and Tome as drafts
-unless stable official product, help, pricing, privacy, security, and policy
-sources support separate publication reviews.
+The completed freshness review was validated and deployed. Continue with the
+risk-based monitoring plan, beginning with active product transitions and then
+fast-changing access, data, licensing, and availability boundaries. Preserve
+SciSpace and Tome as drafts unless stable official product, help, pricing,
+privacy, security, and policy sources support separate publication reviews.

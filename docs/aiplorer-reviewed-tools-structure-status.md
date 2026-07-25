@@ -1,6 +1,7 @@
 # Aiplorer Reviewed Tools Structure Status
 
 Date: 2026-07-25
+Updated: 2026-07-26
 
 This internal note records the current reviewed-tool structure, remaining
 drafts, category coverage, editorial policy, and recommended next work. Counts
@@ -140,13 +141,17 @@ Draft routes must not be submitted for indexing.
 
 ## Recommended Next Work
 
-### 1. Review Source Freshness
+### 1. Run Risk-Based Monitoring
 
-Start with the six Productivity Tools because ChatGPT, Claude, and Gemini have
-the oldest reviewed date, while Perplexity, Microsoft Copilot, and Notion AI
-share the same fast-changing product category. Recheck official product, help,
-pricing, privacy, and security sources without adding exact claims unless they
-are necessary and directly verified.
+The first complete freshness cycle is finished. All 55 reviewed pages were
+rechecked against official sources on 2026-07-25 or 2026-07-26. Use
+`docs/reviewed-tools-monitoring-plan.md` for the recurring cadence, change
+triggers, validation gate, and review log.
+
+Start with active product transitions such as the Relay.app wind-down and the
+Windsurf-to-Devin Desktop identity change. Then monitor fast-changing access,
+data, privacy, licensing, pricing, and availability boundaries across
+Productivity, Coding, Automation, and Business Tools.
 
 ### 2. Recheck Remaining Real Drafts
 
@@ -154,12 +159,12 @@ Revisit SciSpace and Tome only when stable official product, help, pricing,
 privacy, and terms sources are available. Keep both unpublished if those
 sources remain incomplete or inconsistent.
 
-### 3. Continue Category-Based Freshness Checks
+### 3. Monitor Search And Deployment Health
 
-After Productivity Tools, prioritize Automation, Coding, Learning, and
-Presentation Tools, followed by the categories reviewed on 2026-07-25. Plans,
-rights, model access, integrations, and product scope can change even when the
-public copy remains deliberately general.
+Continue manual Search Console coverage checks, sitemap monitoring, and
+important live-route verification. Preserve the explicit cache bypass for
+`/ai-tools/*` and `/sitemap.xml`, and confirm aggregate pages remain current
+after reviewed-page changes.
 
 ### 4. Consider Future Draft-First Batches
 
@@ -179,7 +184,7 @@ taxonomy cannot describe a candidate cleanly.
 
 ## Recommended Direction
 
-The immediate next phase should recheck the six Productivity Tools against
-current official sources. Continue to monitor Search Console coverage and
-sitemap health, and keep SciSpace and Tome unpublished unless their official
-sources become stable enough for conservative review.
+The immediate next phase is risk-based maintenance rather than another bulk
+publication batch. Monitor active transitions first, keep Search Console and
+sitemap health under review, and keep SciSpace and Tome unpublished unless
+their official sources become stable enough for conservative review.
