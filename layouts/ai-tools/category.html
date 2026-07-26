@@ -1,0 +1,134 @@
+{{ define "header" }}{{ partials.Include "page-header.html" . }}{{ end }}
+
+{{ define "main" }}
+  {{- $categoryName := .Params.toolCategory -}}
+  {{- $aiToolPages := where .Site.RegularPages "Section" "ai-tools" -}}
+  {{- $reviewedTools := where (where $aiToolPages "Params.reviewStatus" "reviewed") "Draft" false -}}
+  {{- $categoryTools := where $reviewedTools "Params.category" $categoryName -}}
+  {{- $categories := partial "aiplorer-category-data.html" . -}}
+  {{- $categoryData := dict
+    "name" $categoryName
+    "path" .RelPermalink
+    "icon" "sparkles"
+    "accent" "blue"
+    "description" .Params.description
+  -}}
+  {{- range where $categories "name" $categoryName -}}
+    {{- $categoryData = . -}}
+  {{- end -}}
+  {{- $recentTools := sort $categoryTools "Params.lastReviewed" "desc" -}}
+
+  <article class="aiplorer-category-page">
+    <section class="aiplorer-category-hero" data-category-accent="{{ $categoryData.accent }}">
+      <div class="aiplorer-shell">
+        <div class="aiplorer-category-hero__icon" data-accent="{{ $categoryData.accent }}">
+          {{ partial "aiplorer-icon.html" $categoryData.icon }}
+        </div>
+        <div class="aiplorer-category-hero__copy">
+          <p class="aiplorer-eyebrow">Reviewed category</p>
+          <h1>{{ .Title }}</h1>
+          <p class="aiplorer-category-hero__lead">{{ .Params.description }}</p>
+          <div class="aiplorer-actions">
+            <a class="aiplorer-button aiplorer-button--primary" href="#reviewed-tools">
+              Browse {{ len $categoryTools }} reviewed tools
+            </a>
+            <a class="aiplorer-button aiplorer-button--light" href="/ai-tools/tools/">
+              Open the full index
+            </a>
+          </div>
+        </div>
+        <dl class="aiplorer-category-hero__facts" aria-label="{{ $categoryName }} directory summary">
+          <div>
+            <dt>{{ len $categoryTools }}</dt>
+            <dd>reviewed services</dd>
+          </div>
+          <div>
+            <dt>Manual</dt>
+            <dd>publication review</dd>
+          </div>
+          {{ if gt (len $recentTools) 0 }}
+            {{ with index $recentTools 0 }}
+              <div>
+                <dt>{{ .Params.lastReviewed }}</dt>
+                <dd>latest review date</dd>
+              </div>
+            {{ end }}
+          {{ end }}
+        </dl>
+      </div>
+    </section>
+
+    <section class="aiplorer-category-overview" aria-labelledby="category-context">
+      <div class="aiplorer-shell">
+        <div class="aiplorer-category-overview__copy">
+          <p class="aiplorer-kicker">Use with context</p>
+          <h2 id="category-context">What to know before choosing</h2>
+          <div class="aiplorer-category-overview__content">{{ .Content }}</div>
+        </div>
+        <aside class="aiplorer-category-review-note">
+          <span class="aiplorer-category-review-note__icon">
+            {{ partial "aiplorer-icon.html" "shield-check" }}
+          </span>
+          <div>
+            <h2>How this list stays useful</h2>
+            <p>Only published pages marked as reviewed appear here. Counts and cards update automatically when the directory changes.</p>
+            <p>Features, plans, policies, and availability can change. Use each tool page as a starting point, then confirm current details with the official source.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="aiplorer-section aiplorer-section--muted" id="reviewed-tools" aria-labelledby="reviewed-tools-heading">
+      <div class="aiplorer-shell">
+        <div class="aiplorer-section-heading">
+          <div>
+            <p class="aiplorer-kicker">Manual review index</p>
+            <h2 id="reviewed-tools-heading">Reviewed {{ $categoryName }}</h2>
+          </div>
+          <span class="aiplorer-section-count">{{ len $categoryTools }} tools</span>
+        </div>
+        {{ if $categoryTools }}
+          <div class="aiplorer-tool-grid">
+            {{ range $categoryTools.ByTitle }}
+              <a class="aiplorer-tool-card" href="{{ .RelPermalink }}">
+                <span class="aiplorer-tool-card__category">Reviewed</span>
+                <h3>{{ .Title }}</h3>
+                {{ with .Params.description }}
+                  <p>{{ . | truncate 155 }}</p>
+                {{ end }}
+                <span class="aiplorer-tool-card__meta">
+                  Checked {{ .Params.lastReviewed }}
+                  <span aria-hidden="true">&rarr;</span>
+                </span>
+              </a>
+            {{ end }}
+          </div>
+        {{ else }}
+          <p class="aiplorer-empty-state">No reviewed tools are published in this category yet.</p>
+        {{ end }}
+      </div>
+    </section>
+
+    <nav class="aiplorer-category-switcher" aria-label="Explore other AI tool categories">
+      <div class="aiplorer-shell">
+        <div class="aiplorer-section-heading">
+          <div>
+            <p class="aiplorer-kicker">Keep exploring</p>
+            <h2>Other AI workflows</h2>
+          </div>
+          <a class="aiplorer-text-link" href="/ai-tools/">All categories <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        <div class="aiplorer-category-switcher__links">
+          {{ range $categories }}
+            {{ if ne .name $categoryName }}
+              <a href="{{ .path }}">
+                <span data-accent="{{ .accent }}">{{ partial "aiplorer-icon.html" .icon }}</span>
+                {{ .name }}
+              </a>
+            {{ end }}
+          {{ end }}
+        </div>
+      </div>
+    </nav>
+  </article>
+{{ end }}
