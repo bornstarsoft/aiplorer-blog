@@ -2,9 +2,16 @@
 
 Date: 2026-07-26
 
-This plan defines a possible draft-first batch for design and creative
-workflows. It does not create tool pages, approve publication, verify product
-claims, or authorize public links.
+This plan defines a draft-first batch for design and creative workflows. It
+does not approve publication, verify product claims, or authorize public
+links.
+
+## Implementation Status
+
+The five candidate pages were added as unpublished drafts on 2026-07-26. They
+remain `draft: true` with `reviewStatus: "needs-official-review"` and an empty
+`lastReviewed` value. No candidate is linked from a production listing,
+category page, or navigation.
 
 ## Candidate Scope
 

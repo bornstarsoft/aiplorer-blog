@@ -1699,3 +1699,36 @@ sensitive or confidential conversations.
 
 No Meeting Tools category was created. The reviewed pages use the existing
 `Productivity Tools` category and are not added to global navigation.
+
+## Design And Creative Draft Batch
+
+Five draft-first candidate pages were added on 2026-07-26:
+
+- Figma AI
+- Kittl
+- Photoroom
+- Clipdrop
+- Microsoft Designer
+
+All five remain unpublished with:
+
+```yaml
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+```
+
+Figma AI uses the provisional `Productivity Tools` category. Kittl, Photoroom,
+Clipdrop, and Microsoft Designer use the provisional `Image Tools` category.
+No new category or public listing was added.
+
+Official product, help, pricing, privacy, security, legal, licensing,
+acceptable-use, and AI-specific sources must be reviewed independently before
+any publication decision. Special caution areas include generated and edited
+visual review, facts and text, copyright, trademarks, likeness and consent,
+brand rules, fonts, templates, stock and uploaded media, commercial use,
+workspace and account permissions, connected services, privacy, confidential
+assets, and changing availability.
+
+The batch scope and publication gate are recorded in
+`docs/design-creative-draft-batch-plan.md`.
