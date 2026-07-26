@@ -448,13 +448,16 @@
       var visibleLabel = isSaved
         ? button.getAttribute("data-label-saved") || "Saved"
         : button.getAttribute("data-label-save") || "Save";
+      var accessibleLabel = isSaved
+        ? "Remove " + title + " from shortlist"
+        : "Save " + title + " to shortlist";
 
       button.classList.toggle("is-saved", isSaved);
       button.setAttribute("aria-pressed", String(isSaved));
-      button.setAttribute(
-        "aria-label",
-        isSaved ? "Remove " + title + " from shortlist" : "Save " + title + " to shortlist"
-      );
+      button.setAttribute("aria-label", accessibleLabel);
+      if (button.hasAttribute("data-shortlist-tooltip")) {
+        button.setAttribute("title", accessibleLabel);
+      }
       if (label) {
         label.textContent = visibleLabel;
       }

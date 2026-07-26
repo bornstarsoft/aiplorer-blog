@@ -1007,6 +1007,55 @@ main#main-content:has(> .aiplorer-content-article) {
 
 .aiplorer-tool-card--directory {
   min-height: 16.5rem;
+  height: 100%;
+  padding-right: 3.5rem;
+}
+
+.aiplorer-directory-card {
+  position: relative;
+  min-width: 0;
+}
+
+.aiplorer-directory-card[hidden] {
+  display: none;
+}
+
+.aiplorer-directory-save {
+  position: absolute;
+  z-index: 2;
+  top: 1rem;
+  right: 1rem;
+  width: 2.15rem;
+  height: 2.15rem;
+  padding: 0;
+  border: 1px solid var(--aiplorer-line);
+  border-radius: 6px;
+  place-items: center;
+  background: var(--aiplorer-soft);
+  color: var(--aiplorer-muted);
+  cursor: pointer;
+}
+
+.aiplorer-shortlist-ready .aiplorer-directory-save {
+  display: inline-grid;
+}
+
+.aiplorer-directory-save:hover,
+.aiplorer-directory-save:focus-visible,
+.aiplorer-directory-save.is-saved {
+  border-color: var(--aiplorer-coral);
+  background: #fff4f1;
+  color: var(--aiplorer-coral);
+}
+
+.aiplorer-directory-save:focus-visible {
+  outline: 3px solid rgba(230, 103, 76, 0.22);
+  outline-offset: 2px;
+}
+
+.aiplorer-directory-save .aiplorer-icon {
+  width: 1rem;
+  height: 1rem;
 }
 
 .aiplorer-tool-card__fit {

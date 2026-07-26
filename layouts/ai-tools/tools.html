@@ -85,7 +85,7 @@
           <a href="/ai-tools/workflows/">Workflows</a>
           <a href="/ai-tools/compare/">Compare</a>
           <a href="/ai-tools/trend-watch/">Trend Watch</a>
-          <a href="/ai-tools/shortlist/">My Shortlist</a>
+          <a href="/ai-tools/shortlist/">My Shortlist <span data-shortlist-count>0</span></a>
         </div>
       </div>
     </section>
@@ -121,24 +121,42 @@
               <div class="aiplorer-tool-grid">
                 {{ range $categoryTools.ByTitle }}
                   {{- $searchText := printf "%s %s %s %s %s" .Title .Params.category .Params.description (delimit .Params.bestFor " ") (delimit .Params.useCases " ") | plainify | lower -}}
-                  <a
-                    class="aiplorer-tool-card aiplorer-tool-card--directory"
-                    href="{{ .RelPermalink }}"
+                  <article
+                    class="aiplorer-directory-card"
                     data-tool-card
                     data-tool-category="{{ .Params.category }}"
                     data-tool-search="{{ $searchText }}"
                   >
-                    <span class="aiplorer-tool-card__category">Reviewed</span>
-                    <h3>{{ .Title }}</h3>
-                    {{ with .Params.description }}
-                      <p>{{ . | truncate 155 }}</p>
-                    {{ end }}
-                    {{ partial "aiplorer-tool-fit.html" . }}
-                    <span class="aiplorer-tool-card__meta">
-                      Checked {{ .Params.lastReviewed }}
-                      <span aria-hidden="true">&rarr;</span>
-                    </span>
-                  </a>
+                    <a
+                      class="aiplorer-tool-card aiplorer-tool-card--directory"
+                      href="{{ .RelPermalink }}"
+                    >
+                      <span class="aiplorer-tool-card__category">Reviewed</span>
+                      <h3>{{ .Title }}</h3>
+                      {{ with .Params.description }}
+                        <p>{{ . | truncate 155 }}</p>
+                      {{ end }}
+                      {{ partial "aiplorer-tool-fit.html" . }}
+                      <span class="aiplorer-tool-card__meta">
+                        Checked {{ .Params.lastReviewed }}
+                        <span aria-hidden="true">&rarr;</span>
+                      </span>
+                    </a>
+                    <button
+                      class="aiplorer-directory-save aiplorer-shortlist-control aiplorer-shortlist-toggle"
+                      type="button"
+                      data-shortlist-path="{{ .RelPermalink }}"
+                      data-shortlist-title="{{ .Title }}"
+                      data-shortlist-tooltip
+                      data-label-save="Save"
+                      data-label-saved="Saved"
+                      title="Save {{ .Title }} to shortlist"
+                      aria-pressed="false"
+                    >
+                      {{ partial "aiplorer-icon.html" "bookmark" }}
+                      <span class="aiplorer-visually-hidden" data-shortlist-label>Save</span>
+                    </button>
+                  </article>
                 {{ end }}
               </div>
             </section>

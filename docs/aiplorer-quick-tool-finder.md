@@ -17,6 +17,8 @@ directory where category browsing alone can become slow.
 - An active task shortcut is visibly identified and reflected in the URL.
 - Each directory result card shows the first reviewed `bestFor` item as a
   compact May fit preview before the visitor opens the full review.
+- Each result also offers a separate local bookmark control so visitors can
+  build a shortlist without losing the current query or category.
 - The same May fit signal appears on homepage, category, related-tool, and
   recently viewed cards so visitors can keep the same selection context while
   moving through Aiplorer.
@@ -44,6 +46,8 @@ directory where category browsing alone can become slow.
   tool is opened again.
 - Filtering runs in the browser. Queries are not stored in an Aiplorer account
   or sent to an Aiplorer database.
+- Directory bookmarks use the existing browser-only shortlist and do not
+  create an account, remote profile, or recommendation signal.
 - Saved search state uses the local `aiplorer-last-tool-search-v1` browser key.
   It does not sync across browsers or devices.
 - Draft tools remain outside production output and cannot appear in finder

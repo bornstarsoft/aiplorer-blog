@@ -105,6 +105,9 @@ Official sources:
 ## Entry points
 
 - Save button on each public reviewed tool page
+- Icon save button on every reviewed Directory card, allowing visitors to keep
+  candidates without leaving a filtered result set
+- Live saved-candidate count in the Directory discovery shortcuts
 - Save button on every row in `/ai-tools/compare/`
 - Local decision stages, candidate-check totals, and per-tool progress in
   `/ai-tools/compare/`
