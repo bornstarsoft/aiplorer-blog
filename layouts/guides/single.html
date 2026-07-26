@@ -1,4 +1,9 @@
-{{ define "header" }}{{ partials.Include "page-header.html" . }}{{ end }}
+{{ define "header" }}
+  <header class="aiplorer-home-header">
+    {{ partials.Include "site-navigation.html" . }}
+  </header>
+{{ end }}
+
 {{ define "main" }}
   {{ partials.Include "aiplorer-content-single.html" . }}
 {{ end }}

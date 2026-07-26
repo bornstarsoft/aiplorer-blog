@@ -15,6 +15,10 @@ relatedCategories:
 lastReviewed: "2026-06-01"
 reviewStatus: "reviewed"
 draft: false
+decisionWorkflow: "research-sources"
+decisionPriority: "sources"
+decisionLabel: "Explore research and source-review tools"
+decisionReason: "Begin with source verification as the priority, then compare reviewed tools that support research and document workflows."
 ---
 
 ## Goal

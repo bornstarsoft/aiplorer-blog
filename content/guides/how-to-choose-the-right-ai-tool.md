@@ -13,6 +13,8 @@ relatedCategories:
 lastReviewed: "2026-06-01"
 reviewStatus: "reviewed"
 draft: false
+decisionLabel: "Choose an AI tool starting path"
+decisionReason: "Start with the work and the review priority that matters most, then explore a small reviewed candidate set."
 ---
 
 ## Overview

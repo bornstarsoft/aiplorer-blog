@@ -14,6 +14,10 @@ relatedCategories:
 lastReviewed: "2026-06-01"
 reviewStatus: "reviewed"
 draft: false
+decisionWorkflow: "writing-communication"
+decisionPriority: "privacy"
+decisionLabel: "Explore writing tools with privacy in mind"
+decisionReason: "Start with writing and communication while keeping private context, account data, and workplace policy in view."
 ---
 
 ## Goal

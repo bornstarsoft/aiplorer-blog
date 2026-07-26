@@ -1,17 +1,137 @@
 {{- $page := . -}}
-<article class="mw8 center ph3">
-  <header class="mt4 w-100">
-    <p class="instapaper_ignoref b helvetica tracked ttu mb0">
-      {{ .CurrentSection.Title }}
-    </p>
-    {{- partials.IncludeCached "social/share.html" . . -}}
-    <h1 class="f1 athelas mt3 mb1">{{ .Title }}</h1>
-  </header>
+{{- $isGuide := eq .Section "guides" -}}
+{{- $contentLabel := cond $isGuide "Practical guide" "Practical use case" -}}
+{{- $contentIcon := cond $isGuide "book-open" "square-check" -}}
+{{- $decisionHref := "/ai-tools/decision-path/" -}}
+{{- with .Params.decisionWorkflow -}}
+  {{- $decisionHref = printf "/ai-tools/decision-path/?workflow=%s" . -}}
+  {{- with $page.Params.decisionPriority -}}
+    {{- $decisionHref = printf "%s&priority=%s" $decisionHref . -}}
+  {{- end -}}
+{{- end -}}
+{{- $decisionLabel := .Params.decisionLabel | default "Choose a reviewed starting path" -}}
+{{- $relatedToolPages := slice -}}
+{{- range (.Params.relatedTools | default (slice)) -}}
+  {{- with site.GetPage . -}}
+    {{- if and (eq .Params.reviewStatus "reviewed") (not .Draft) (eq .Section "ai-tools") -}}
+      {{- $relatedToolPages = $relatedToolPages | append . -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $relatedToolPages = first 3 (sort $relatedToolPages "Title") -}}
 
-  <div class="nested-copy-line-height lh-copy {{ $.Param "post_content_classes" | compare.Default "serif" }} f4 nested-links {{ $.Param "text_color" | compare.Default "mid-gray" }} mw7">
-    {{- .Content -}}
-    {{ with .GetTerms "tags" }}
-      {{- partials.Include "tags.html" $page -}}
-    {{ end }}
-  </div>
+<article class="aiplorer-content-article">
+  <section class="aiplorer-content-article__hero">
+    <div class="aiplorer-shell">
+      <div class="aiplorer-content-article__hero-copy">
+        <a class="aiplorer-content-article__back" href="{{ .CurrentSection.RelPermalink }}">
+          <span aria-hidden="true">&larr;</span> {{ .CurrentSection.Title }}
+        </a>
+        <p class="aiplorer-eyebrow">
+          <span class="aiplorer-eyebrow__icon">{{ partial "aiplorer-icon.html" $contentIcon }}</span>
+          {{ $contentLabel }}
+        </p>
+        <h1>{{ .Title }}</h1>
+        <p class="aiplorer-content-article__lead">{{ .Params.description }}</p>
+        <dl class="aiplorer-content-article__meta" aria-label="{{ .Title }} content details">
+          {{ with .Params.lastReviewed }}
+            <div>
+              <dt>Reviewed</dt>
+              <dd><time datetime="{{ . }}">{{ . }}</time></dd>
+            </div>
+          {{ end }}
+          {{ with .Params.audience }}
+            <div>
+              <dt>For</dt>
+              <dd>{{ . }}</dd>
+            </div>
+          {{ end }}
+        </dl>
+        <div class="aiplorer-actions">
+          <a class="aiplorer-button aiplorer-button--primary" href="{{ $decisionHref }}">
+            {{ $decisionLabel }}
+          </a>
+          <a class="aiplorer-button aiplorer-button--light" href="/ai-tools/tools/">
+            Browse reviewed tools
+          </a>
+        </div>
+      </div>
+      <aside class="aiplorer-content-article__brief" aria-label="How to use this page">
+        <span>{{ partial "aiplorer-icon.html" "shield-check" }}</span>
+        <div>
+          <p class="aiplorer-kicker">Keep human review in the loop</p>
+          <h2>Use the workflow, then verify the output</h2>
+          <p>
+            Check facts, context, sensitive information, and the original
+            source before publishing, sending, or relying on AI-assisted work.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="aiplorer-content-article__main" aria-label="{{ .Title }} article">
+    <div class="aiplorer-shell">
+      <div class="aiplorer-content-article__body">
+        {{ .Content }}
+      </div>
+      <aside class="aiplorer-content-article__rail" aria-label="{{ .Title }} navigation">
+        <div class="aiplorer-content-article__toc">
+          <p class="aiplorer-kicker">On this page</p>
+          {{ .TableOfContents }}
+        </div>
+        <div class="aiplorer-content-article__path">
+          <span>{{ partial "aiplorer-icon.html" "compass" }}</span>
+          <p class="aiplorer-kicker">Next step</p>
+          <h2>{{ $decisionLabel }}</h2>
+          <p>{{ .Params.decisionReason | default "Use two quick choices to narrow the reviewed field without rankings or scores." }}</p>
+          <a href="{{ $decisionHref }}">Open Decision Path <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  {{ if $relatedToolPages }}
+    <section class="aiplorer-section aiplorer-section--muted" aria-labelledby="content-related-tools">
+      <div class="aiplorer-shell">
+        <div class="aiplorer-section-heading">
+          <div>
+            <p class="aiplorer-kicker">Continue with reviewed tools</p>
+            <h2 id="content-related-tools">Related starting points</h2>
+            <p class="aiplorer-section-heading__note">Existing article relationships shown alphabetically, not a ranking or endorsement.</p>
+          </div>
+          <a class="aiplorer-text-link" href="/ai-tools/compare/">Compare reviewed tools <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        <div class="aiplorer-tool-grid">
+          {{ range $relatedToolPages }}
+            <a class="aiplorer-tool-card" href="{{ .RelPermalink }}">
+              <span class="aiplorer-tool-card__category">{{ .Params.category }}</span>
+              <h3>{{ .Title }}</h3>
+              <p>{{ .Params.description | truncate 150 }}</p>
+              <span class="aiplorer-tool-card__meta">
+                Checked {{ .Params.lastReviewed }}
+                <span aria-hidden="true">&rarr;</span>
+              </span>
+            </a>
+          {{ end }}
+        </div>
+      </div>
+    </section>
+  {{ end }}
+
+  <section class="aiplorer-content-article__continue" aria-labelledby="content-continue-heading">
+    <div class="aiplorer-shell">
+      <div>
+        <p class="aiplorer-kicker">From reading to a decision</p>
+        <h2 id="content-continue-heading">Keep the workflow connected</h2>
+        <p>Choose a task-first path, save candidates locally, compare the shortlist, and recheck official details before use.</p>
+      </div>
+      <nav aria-label="Continue exploring Aiplorer">
+        <a href="{{ $decisionHref }}">Decision Path <span aria-hidden="true">&rarr;</span></a>
+        <a href="/ai-tools/shortlist/">My Shortlist <span aria-hidden="true">&rarr;</span></a>
+        <a href="/ai-tools/compare/?view=shortlist">Compare my shortlist <span aria-hidden="true">&rarr;</span></a>
+        <a href="/ai-tools/review-updates/">Latest review checks <span aria-hidden="true">&rarr;</span></a>
+      </nav>
+    </div>
+  </section>
 </article>

@@ -1,0 +1,68 @@
+{{- $isGuide := eq .Section "guides" -}}
+{{- $label := cond $isGuide "Practical AI guidance" "Task-first AI workflows" -}}
+{{- $icon := cond $isGuide "book-open" "square-check" -}}
+{{- $itemLabel := cond $isGuide "reviewed guide" "reviewed use case" -}}
+{{- $reviewedPages := where (where .RegularPages "Params.reviewStatus" "reviewed") "Draft" false -}}
+
+<article class="aiplorer-content-hub">
+  <section class="aiplorer-content-hub__hero">
+    <div class="aiplorer-shell">
+      <div class="aiplorer-content-hub__hero-copy">
+        <p class="aiplorer-eyebrow">
+          <span class="aiplorer-eyebrow__icon">{{ partial "aiplorer-icon.html" $icon }}</span>
+          {{ $label }}
+        </p>
+        <h1>{{ .Title }}</h1>
+        <p class="aiplorer-content-hub__lead">{{ .Params.description }}</p>
+        <div class="aiplorer-actions">
+          <a class="aiplorer-button aiplorer-button--primary" href="#content-hub-start">
+            Explore {{ .Title | lower }}
+          </a>
+          <a class="aiplorer-button aiplorer-button--light" href="/ai-tools/decision-path/">
+            Choose an AI tool path
+          </a>
+          <a class="aiplorer-button aiplorer-button--light" href="/ai-tools/tools/">
+            Browse reviewed tools
+          </a>
+        </div>
+      </div>
+      <dl class="aiplorer-content-hub__facts" aria-label="{{ .Title }} summary">
+        <div>
+          <dt>{{ len $reviewedPages }}</dt>
+          <dd>{{ $itemLabel }}{{ if ne (len $reviewedPages) 1 }}s{{ end }}</dd>
+        </div>
+        <div>
+          <dt>Task first</dt>
+          <dd>start with the work</dd>
+        </div>
+        <div>
+          <dt>Human review</dt>
+          <dd>verify before use</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="aiplorer-content-hub__context" aria-labelledby="content-hub-context-heading">
+    <div class="aiplorer-shell">
+      <span class="aiplorer-content-hub__context-icon">{{ partial "aiplorer-icon.html" "shield-check" }}</span>
+      <div>
+        <h2 id="content-hub-context-heading">Move from a practical task to a reviewed choice</h2>
+        <p>
+          Use these pages to define the work, understand the review checkpoints,
+          and continue into Aiplorer's manually reviewed tool directory. AI
+          output still needs human judgment, and current product details should
+          be checked at the official source.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="aiplorer-content-hub__content" id="content-hub-start">
+    <div class="aiplorer-shell">
+      <div class="aiplorer-content-hub__body">
+        {{ .Content }}
+      </div>
+    </div>
+  </section>
+</article>
