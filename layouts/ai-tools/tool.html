@@ -1,49 +1,186 @@
 {{ define "header" }}{{ partials.Include "page-header.html" . }}{{ end }}
+
 {{ define "main" }}
-  <article class="flex-l mw8 center ph3 flex-wrap justify-between">
-    <header class="mt4 w-100">
-      <p class="instapaper_ignoref b helvetica tracked ttu">
-        AI Tool
-      </p>
-      <h1 class="f1 athelas mt3 mb1">{{ .Title }}</h1>
-      {{ with .Params.description }}
-        <p class="f4 lh-copy mid-gray measure">{{ . }}</p>
-      {{ end }}
-    </header>
+  {{- $page := . -}}
+  {{- $categoryName := .Params.category -}}
+  {{- $categories := partial "aiplorer-category-data.html" . -}}
+  {{- $categoryData := dict
+    "name" $categoryName
+    "path" "/ai-tools/"
+    "icon" "sparkles"
+    "accent" "blue"
+    "description" ""
+  -}}
+  {{- range where $categories "name" $categoryName -}}
+    {{- $categoryData = . -}}
+  {{- end -}}
 
-    <div class="nested-copy-line-height lh-copy f4 nested-links mid-gray pr4-l w-two-thirds-l">
-      {{ .Content }}
-    </div>
+  {{- $aiToolPages := where .Site.RegularPages "Section" "ai-tools" -}}
+  {{- $reviewedTools := where (where $aiToolPages "Params.reviewStatus" "reviewed") "Draft" false -}}
+  {{- $relatedTools := slice -}}
+  {{- range (.Params.similarTools | default (slice)) -}}
+    {{- $relatedName := . -}}
+    {{- range first 1 (where $reviewedTools "Title" $relatedName) -}}
+      {{- if ne .RelPermalink $page.RelPermalink -}}
+        {{- $relatedTools = $relatedTools | append . -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if eq (len $relatedTools) 0 -}}
+    {{- $categoryPeers := where (where $reviewedTools "Params.category" $categoryName) "RelPermalink" "ne" .RelPermalink -}}
+    {{- $relatedTools = first 4 $categoryPeers.ByTitle -}}
+  {{- else -}}
+    {{- $relatedTools = first 4 $relatedTools -}}
+  {{- end -}}
 
-    <aside class="w-30-l mt5" aria-label="Tool details">
-      <div class="aiplorer-tool-facts">
-        {{ with .Params.category }}
-          <p><strong>Category</strong><br>{{ . }}</p>
-        {{ end }}
-        {{ with .Params.bestFor }}
-          <p><strong>Best for</strong></p>
-          <ul>
-            {{ range . }}<li>{{ . }}</li>{{ end }}
-          </ul>
-        {{ end }}
-        {{ with .Params.pricingNote }}
-          <p><strong>Pricing note</strong><br>{{ . }}</p>
-        {{ end }}
-        {{ with .Params.officialUrl }}
-          <p>
-            <a class="aiplorer-tool-link" href="{{ . }}" rel="noopener nofollow" target="_blank">
-              Official {{ $.Title }} website<span class="aiplorer-visually-hidden"> (opens in a new tab)</span>
+  <article class="aiplorer-tool-page">
+    <section class="aiplorer-tool-hero" data-category-accent="{{ $categoryData.accent }}">
+      <div class="aiplorer-shell">
+        <div class="aiplorer-tool-hero__icon" data-accent="{{ $categoryData.accent }}">
+          {{ partial "aiplorer-icon.html" $categoryData.icon }}
+        </div>
+        <div class="aiplorer-tool-hero__copy">
+          <a class="aiplorer-tool-hero__category" href="{{ $categoryData.path }}">
+            {{ $categoryName }}
+          </a>
+          <h1>{{ .Title }}</h1>
+          {{ with .Params.description }}
+            <p class="aiplorer-tool-hero__lead">{{ . }}</p>
+          {{ end }}
+          <div class="aiplorer-actions">
+            {{ with .Params.officialUrl }}
+              <a class="aiplorer-button aiplorer-button--primary aiplorer-button--icon" href="{{ . }}" rel="noopener nofollow" target="_blank">
+                Official website
+                {{ partial "aiplorer-icon.html" "external-link" }}
+                <span class="aiplorer-visually-hidden"> (opens in a new tab)</span>
+              </a>
+            {{ end }}
+            <a class="aiplorer-button aiplorer-button--light" href="{{ $categoryData.path }}">
+              Explore {{ $categoryName }}
             </a>
-          </p>
-        {{ end }}
-        {{ with .Params.lastReviewed }}
-          <p><strong>Last reviewed</strong><br>{{ . }}</p>
-        {{ end }}
-        <p><strong>Aiplorer links</strong><br>
-          <a href="/ai-tools/tools/">Reviewed AI Tools</a><br>
-          <a href="/guides/how-to-choose-the-right-ai-tool/">How to choose a tool</a>
-        </p>
+          </div>
+        </div>
+        <dl class="aiplorer-tool-hero__facts" aria-label="{{ .Title }} review summary">
+          <div>
+            <dt>Reviewed</dt>
+            <dd>publication status</dd>
+          </div>
+          {{ with .Params.lastReviewed }}
+            <div>
+              <dt>{{ . }}</dt>
+              <dd>last checked</dd>
+            </div>
+          {{ end }}
+          <div>
+            <dt>{{ $categoryName }}</dt>
+            <dd>directory category</dd>
+          </div>
+        </dl>
       </div>
-    </aside>
+    </section>
+
+    <section class="aiplorer-tool-main" aria-label="{{ .Title }} overview and selection notes">
+      <div class="aiplorer-shell">
+        <div class="aiplorer-tool-main__content">
+          {{ .Content }}
+        </div>
+        <aside class="aiplorer-tool-sidebar" aria-label="{{ .Title }} at a glance">
+          {{ with .Params.bestFor }}
+            <section>
+              <p class="aiplorer-kicker">May fit</p>
+              <h2>Tasks to consider</h2>
+              <ul>
+                {{ range . }}<li>{{ . }}</li>{{ end }}
+              </ul>
+            </section>
+          {{ end }}
+          {{ with .Params.pricingNote }}
+            <section>
+              <p class="aiplorer-kicker">Pricing context</p>
+              <h2>Check current details</h2>
+              <p>{{ . }}</p>
+            </section>
+          {{ end }}
+          <section>
+            <p class="aiplorer-kicker">Keep exploring</p>
+            <h2>Aiplorer links</h2>
+            <nav aria-label="Related Aiplorer pages">
+              <a href="{{ $categoryData.path }}">{{ $categoryName }}</a>
+              <a href="/ai-tools/tools/">All reviewed AI tools</a>
+              <a href="/guides/how-to-choose-the-right-ai-tool/">How to choose a tool</a>
+            </nav>
+          </section>
+        </aside>
+      </div>
+    </section>
+
+    {{ if or .Params.useCases .Params.pros .Params.limitations }}
+      <section class="aiplorer-tool-decision" aria-labelledby="decision-heading">
+        <div class="aiplorer-shell">
+          <div class="aiplorer-section-heading">
+            <div>
+              <p class="aiplorer-kicker">Decision support</p>
+              <h2 id="decision-heading">What to explore and verify</h2>
+            </div>
+          </div>
+          <div class="aiplorer-tool-decision__grid">
+            {{ with .Params.useCases }}
+              <section class="aiplorer-tool-decision__panel" data-tone="blue">
+                <h3>Ways to explore</h3>
+                <ul>
+                  {{ range . }}<li>{{ . }}</li>{{ end }}
+                </ul>
+              </section>
+            {{ end }}
+            {{ with .Params.pros }}
+              <section class="aiplorer-tool-decision__panel" data-tone="teal">
+                <h3>Potential advantages</h3>
+                <ul>
+                  {{ range . }}<li>{{ . }}</li>{{ end }}
+                </ul>
+              </section>
+            {{ end }}
+            {{ with .Params.limitations }}
+              <section class="aiplorer-tool-decision__panel" data-tone="coral">
+                <h3>Check before use</h3>
+                <ul>
+                  {{ range . }}<li>{{ . }}</li>{{ end }}
+                </ul>
+              </section>
+            {{ end }}
+          </div>
+        </div>
+      </section>
+    {{ end }}
+
+    {{ if $relatedTools }}
+      <section class="aiplorer-section aiplorer-section--muted" aria-labelledby="related-tools-heading">
+        <div class="aiplorer-shell">
+          <div class="aiplorer-section-heading">
+            <div>
+              <p class="aiplorer-kicker">Continue comparing</p>
+              <h2 id="related-tools-heading">Related reviewed tools</h2>
+              <p class="aiplorer-section-heading__note">Existing content relationships, not a ranking or paid placement.</p>
+            </div>
+            <a class="aiplorer-text-link" href="{{ $categoryData.path }}">View {{ $categoryName }} <span aria-hidden="true">&rarr;</span></a>
+          </div>
+          <div class="aiplorer-tool-grid">
+            {{ range $relatedTools }}
+              <a class="aiplorer-tool-card" href="{{ .RelPermalink }}">
+                <span class="aiplorer-tool-card__category">{{ .Params.category }}</span>
+                <h3>{{ .Title }}</h3>
+                {{ with .Params.description }}
+                  <p>{{ . | truncate 155 }}</p>
+                {{ end }}
+                <span class="aiplorer-tool-card__meta">
+                  Checked {{ .Params.lastReviewed }}
+                  <span aria-hidden="true">&rarr;</span>
+                </span>
+              </a>
+            {{ end }}
+          </div>
+        </div>
+      </section>
+    {{ end }}
   </article>
 {{ end }}
