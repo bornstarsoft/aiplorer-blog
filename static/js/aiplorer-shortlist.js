@@ -479,6 +479,13 @@
 
   function updateCandidateStages(saved) {
     var state = readCandidateStageState();
+    var testingCount = 0;
+
+    saved.forEach(function (path) {
+      if (cleanCandidateStage(state[path]) === "testing") {
+        testingCount += 1;
+      }
+    });
 
     document.querySelectorAll("[data-candidate-stage]").forEach(function (control) {
       var path = control.getAttribute("data-candidate-stage");
@@ -512,6 +519,13 @@
 
       output.textContent = stage ? candidateStageLabel(stage) : "Stage not set";
       output.setAttribute("data-stage", stage || "unset");
+    });
+
+    document.querySelectorAll("[data-compare-testing-link]").forEach(function (link) {
+      link.hidden = testingCount === 0;
+    });
+    document.querySelectorAll("[data-compare-testing-count]").forEach(function (count) {
+      count.textContent = String(testingCount);
     });
   }
 

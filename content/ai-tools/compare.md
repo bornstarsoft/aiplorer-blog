@@ -18,3 +18,7 @@ can change after an Aiplorer review.
 When you save candidates, this page also shows the progress of your private
 browser checklist. Checklist progress is not a quality score, product rating, or
 evidence that a tool is suitable for your work.
+
+Each category includes a small same-task test plan. Use it as a starting point
+for comparing candidates under similar conditions, then review the result,
+current official details, and any risks that matter for your work.

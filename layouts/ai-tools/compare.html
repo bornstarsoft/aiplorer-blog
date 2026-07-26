@@ -86,9 +86,15 @@
           <p data-compare-trial-copy>Your local checklist progress will appear here.</p>
           <small>Progress stays in this browser and is not a score, rating, or recommendation.</small>
         </div>
-        <a href="/ai-tools/shortlist/">
-          Open candidate checks <span aria-hidden="true">&rarr;</span>
-        </a>
+        <nav aria-label="Continue private candidate evaluation">
+          <a data-compare-testing-link href="/ai-tools/shortlist/?stage=testing" hidden>
+            Continue testing <span data-compare-testing-count>0</span>
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+          <a href="/ai-tools/shortlist/">
+            Open candidate checks <span aria-hidden="true">&rarr;</span>
+          </a>
+        </nav>
       </div>
     </section>
 
@@ -132,6 +138,17 @@
                   <p>{{ .description }}</p>
                 </div>
                 <a href="{{ .path }}">Open category guide <span aria-hidden="true">&rarr;</span></a>
+              </div>
+
+              <div class="aiplorer-compare-test-plan">
+                <span class="aiplorer-compare-test-plan__icon">
+                  {{ partial "aiplorer-icon.html" "compass" }}
+                </span>
+                <div>
+                  <p class="aiplorer-kicker">Same-task test</p>
+                  <strong>{{ .testTask }}</strong>
+                  <p><span>Check consistently:</span> {{ .testFocus }}</p>
+                </div>
               </div>
 
               <div class="aiplorer-compare-table" role="table" aria-label="{{ .name }} reviewed tool comparison">

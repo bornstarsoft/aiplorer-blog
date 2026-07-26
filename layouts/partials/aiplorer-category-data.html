@@ -4,60 +4,80 @@
     "path" "/ai-tools/writing-tools/"
     "icon" "pen-line"
     "accent" "coral"
-    "description" "Draft, rewrite, translate, and refine everyday communication.")
+    "description" "Draft, rewrite, translate, and refine everyday communication."
+    "testTask" "Give every candidate the same short draft and ask for a clearer version without changing the facts."
+    "testFocus" "Meaning, tone, unsupported claims, and sensitive text handling.")
   (dict
     "name" "Image Tools"
     "path" "/ai-tools/image-tools/"
     "icon" "image"
     "accent" "blue"
-    "description" "Explore visual concepts, image drafts, editing, and design directions.")
+    "description" "Explore visual concepts, image drafts, editing, and design directions."
+    "testTask" "Use the same visual brief, dimensions, and reference constraints with every candidate."
+    "testFocus" "Prompt fit, visible artifacts, brand consistency, and image or license rights.")
   (dict
     "name" "Video Tools"
     "path" "/ai-tools/video-tools/"
     "icon" "video"
     "accent" "violet"
-    "description" "Plan, generate, and edit motion, clips, and visual stories.")
+    "description" "Plan, generate, and edit motion, clips, and visual stories."
+    "testTask" "Use the same short storyboard, duration, and visual constraints with every candidate."
+    "testFocus" "Continuity, timing, text accuracy, editing effort, and media rights.")
   (dict
     "name" "Audio Tools"
     "path" "/ai-tools/audio-tools/"
     "icon" "audio-lines"
     "accent" "gold"
-    "description" "Work with voice, music, transcription, and spoken media.")
+    "description" "Work with voice, music, transcription, and spoken media."
+    "testTask" "Use the same short script or audio sample and the same output requirements."
+    "testFocus" "Clarity, pronunciation, artifacts, consent, voice rights, and private content.")
   (dict
     "name" "Presentation Tools"
     "path" "/ai-tools/presentation-tools/"
     "icon" "presentation"
     "accent" "coral"
-    "description" "Turn rough ideas into clearer decks and visual narratives.")
+    "description" "Turn rough ideas into clearer decks and visual narratives."
+    "testTask" "Give every candidate the same brief and source notes for a five-slide outline."
+    "testFocus" "Fact accuracy, narrative flow, visual rights, brand fit, and export review.")
   (dict
     "name" "Coding Tools"
     "path" "/ai-tools/coding-tools/"
     "icon" "code"
     "accent" "teal"
-    "description" "Draft, explain, review, and debug code with human oversight.")
+    "description" "Draft, explain, review, and debug code with human oversight."
+    "testTask" "Use the same small, scoped task in a disposable project with a clear expected result."
+    "testFocus" "Correctness, tests, security, secrets, dependencies, and license obligations.")
   (dict
     "name" "Productivity Tools"
     "path" "/ai-tools/productivity-tools/"
     "icon" "square-check"
     "accent" "blue"
-    "description" "Summarize, take notes, prepare meetings, and organize work.")
+    "description" "Summarize, take notes, prepare meetings, and organize work."
+    "testTask" "Give every candidate the same sanitized notes or document and request the same output."
+    "testFocus" "Key details, omissions, action items, formatting, and data handling.")
   (dict
     "name" "Automation Tools"
     "path" "/ai-tools/automation-tools/"
     "icon" "workflow"
     "accent" "teal"
-    "description" "Connect apps and test repeatable multi-step workflows.")
+    "description" "Connect apps and test repeatable multi-step workflows."
+    "testTask" "Build the same low-risk workflow with test data and a clearly defined expected result."
+    "testFocus" "Permissions, failure handling, duplicate actions, logs, and rollback.")
   (dict
     "name" "Learning Tools"
     "path" "/ai-tools/learning-tools/"
     "icon" "book-open"
     "accent" "violet"
-    "description" "Research topics, review sources, and build study workflows.")
+    "description" "Research topics, review sources, and build study workflows."
+    "testTask" "Ask the same research question using the same source set or reading material."
+    "testFocus" "Source quality, citation accuracy, summary faithfulness, and academic integrity.")
   (dict
     "name" "Business Tools"
     "path" "/ai-tools/business-tools/"
     "icon" "briefcase"
     "accent" "gold"
-    "description" "Support marketing, service, commerce, and business operations.")
+    "description" "Support marketing, service, commerce, and business operations."
+    "testTask" "Use the same sanitized business brief, audience, constraints, and desired output."
+    "testFocus" "Assumptions, policy fit, customer data, approvals, and business risk.")
 -}}
 {{- return $categories -}}

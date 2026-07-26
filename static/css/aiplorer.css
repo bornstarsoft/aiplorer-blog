@@ -4054,7 +4054,13 @@ main#main-content:has(> .aiplorer-content-article) {
   line-height: 1.4;
 }
 
-.aiplorer-compare-trial-summary > .aiplorer-shell > a {
+.aiplorer-compare-trial-summary nav {
+  display: grid;
+  justify-items: end;
+  gap: 0.35rem;
+}
+
+.aiplorer-compare-trial-summary nav a {
   color: var(--aiplorer-teal);
   font-size: 0.72rem;
   font-weight: 800;
@@ -4062,9 +4068,13 @@ main#main-content:has(> .aiplorer-content-article) {
   white-space: nowrap;
 }
 
-.aiplorer-compare-trial-summary > .aiplorer-shell > a:hover,
-.aiplorer-compare-trial-summary > .aiplorer-shell > a:focus-visible {
+.aiplorer-compare-trial-summary nav a:hover,
+.aiplorer-compare-trial-summary nav a:focus-visible {
   text-decoration: underline;
+}
+
+.aiplorer-compare-trial-summary nav a[hidden] {
+  display: none;
 }
 
 .aiplorer-compare-empty[hidden],
@@ -4132,6 +4142,55 @@ main#main-content:has(> .aiplorer-content-article) {
   font-size: 0.76rem;
   font-weight: 750;
   text-decoration: none;
+}
+
+.aiplorer-compare-test-plan {
+  display: grid;
+  margin-bottom: 1.2rem;
+  padding: 0.85rem 1rem;
+  border-left: 3px solid var(--aiplorer-teal);
+  align-items: center;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.75rem;
+  background: #eef7f5;
+}
+
+.aiplorer-compare-test-plan__icon {
+  display: grid;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 6px;
+  place-items: center;
+  background: #fff;
+  color: var(--aiplorer-teal);
+}
+
+.aiplorer-compare-test-plan__icon .aiplorer-icon {
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
+.aiplorer-compare-test-plan .aiplorer-kicker {
+  margin-bottom: 0.12rem;
+}
+
+.aiplorer-compare-test-plan strong {
+  display: block;
+  color: var(--aiplorer-ink);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.aiplorer-compare-test-plan p:last-child {
+  margin: 0.18rem 0 0;
+  color: var(--aiplorer-muted);
+  font-size: 0.68rem;
+  line-height: 1.45;
+}
+
+.aiplorer-compare-test-plan p:last-child span {
+  color: var(--aiplorer-teal);
+  font-weight: 800;
 }
 
 .aiplorer-compare-table {
@@ -6099,9 +6158,13 @@ main#main-content:has(> .aiplorer-content-article) {
     grid-template-columns: auto minmax(0, 1fr);
   }
 
-  .aiplorer-compare-trial-summary > .aiplorer-shell > a {
+  .aiplorer-compare-trial-summary nav {
+    justify-items: start;
     justify-self: start;
     grid-column: 2;
+  }
+
+  .aiplorer-compare-trial-summary nav a {
     white-space: normal;
   }
 

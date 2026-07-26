@@ -32,6 +32,19 @@ The shortlist view does not score, reorder, or recommend candidates. Removing a
 saved tool updates the focused comparison immediately, and visitors can always
 return to the complete reviewed set.
 
+## Same-task test plans
+
+Every category includes a short, cautious test plan that asks visitors to give
+each candidate a comparable task and review the same practical concerns. The
+plans cover category-specific output checks while retaining shared checkpoints
+for current official details, privacy, permissions, rights, and operational
+risk.
+
+When one or more saved candidates are in the `Testing` stage, the private
+evaluation summary links directly to that shortlist stage. This continuation
+link is derived only from local browser state and does not rank or recommend a
+candidate.
+
 ## Editorial boundary
 
 The page is a shortlist tool, not a recommendation engine. A `bestFor` item
