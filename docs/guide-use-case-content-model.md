@@ -61,16 +61,15 @@ Expected future public routes after publication:
 
 ## Link Rules
 
-Specific tool links should currently be limited to reviewed public pages:
+Specific tool links may point only to reviewed public tool pages with
+`reviewStatus: "reviewed"` and `draft: false`. Do not link draft or uncertain
+tool pages from public guides or use cases.
 
-- `/ai-tools/tools/chatgpt/`
-- `/ai-tools/tools/claude/`
-- `/ai-tools/tools/gemini/`
-- `/ai-tools/tools/`
-
-Broader category links may point to existing Aiplorer category pages such as
-`/ai-tools/writing-tools/`, `/ai-tools/productivity-tools/`, and
-`/ai-tools/learning-tools/`.
+The shared content layout resolves up to three reviewed pages from
+`relatedTools` and displays them alphabetically. Body links should follow the
+same reviewed-only rule. Broader links may point to existing Aiplorer category,
+guide, use-case, Decision Path, shortlist, comparison, or reviewed-index
+pages.
 
 ## Review Status Values
 
