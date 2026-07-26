@@ -32,6 +32,16 @@ a:focus-visible {
   box-shadow: 0 0 0 6px #fff;
 }
 
+.aiplorer-post-summary__title-link {
+  display: inline-block;
+}
+
+.aiplorer-post-summary__title-link:focus-visible {
+  outline: 3px solid #111827;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px #fff;
+}
+
 .aiplorer-card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));

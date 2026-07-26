@@ -1,0 +1,21 @@
+<div class="mb3 pa4 {{ $.Param "text_color" | compare.Default "mid-gray" }} overflow-hidden">
+  {{ if .Date }}
+    <div class="f6">
+      {{ .Date | time.Format (compare.Default "January 2, 2006" .Site.Params.date_format) }}
+    </div>
+  {{ end }}
+  <h2 class="f3 near-black">
+    <a href="{{ .RelPermalink }}" class="aiplorer-post-summary__title-link link black dim">
+      {{ .Title }}
+    </a>
+  </h2>
+  <div class="nested-links f5 lh-copy nested-copy-line-height">
+    {{ .Summary }}
+  </div>
+  {{ $readMore := $.Param "read_more_copy" | compare.Default (lang.Translate "readMore") }}
+  <a href="{{ .RelPermalink }}"
+     class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1"
+     aria-label="{{ printf "%s: %s" $readMore .Title }}">
+    {{ $readMore }}
+  </a>
+</div>
