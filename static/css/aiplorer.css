@@ -788,6 +788,21 @@ main#main-content:has(> .aiplorer-content-article) {
   font-weight: 750;
 }
 
+.aiplorer-home-evaluation__copy > .aiplorer-home-evaluation__next {
+  width: fit-content;
+  margin-top: 0.35rem;
+  padding: 0.28rem 0.45rem;
+  border-left: 3px solid var(--aiplorer-teal);
+  background: #eef8f6;
+  color: var(--aiplorer-ink);
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+.aiplorer-home-evaluation__next[hidden] {
+  display: none;
+}
+
 .aiplorer-home-evaluation__copy > .aiplorer-home-evaluation__review {
   margin-top: 0.15rem;
   color: var(--aiplorer-violet);

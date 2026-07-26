@@ -144,6 +144,9 @@
           <p class="aiplorer-home-evaluation__stage" data-home-evaluation-stage>
             Set a decision stage in your shortlist to keep the next step visible.
           </p>
+          <p class="aiplorer-home-evaluation__next" data-home-evaluation-next hidden>
+            Your next unfinished candidate check will appear here.
+          </p>
           <p
             class="aiplorer-home-evaluation__review"
             data-home-evaluation-review
@@ -167,10 +170,11 @@
         </nav>
       </div>
       <div data-home-review-index hidden aria-hidden="true">
-        {{ range $reviewedTools }}
+        {{ range $reviewedTools.ByTitle }}
           <span
             data-home-review-entry
             data-review-path="{{ .RelPermalink }}"
+            data-review-title="{{ .Title }}"
             data-review-date="{{ .Params.lastReviewed }}"
           ></span>
         {{ end }}

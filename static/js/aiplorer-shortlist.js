@@ -399,14 +399,23 @@
     return "current plans and limits";
   }
 
-  function nextIncompleteTestingCandidate(saved, stageState, trialState) {
-    var items = Array.prototype.slice.call(
-      document.querySelectorAll("[data-shortlist-item]")
-    );
+  function nextIncompleteTestingCandidate(
+    saved,
+    stageState,
+    trialState,
+    candidateItems
+  ) {
+    var items = candidateItems
+      ? Array.prototype.slice.call(candidateItems)
+      : Array.prototype.slice.call(
+          document.querySelectorAll("[data-shortlist-item]")
+        );
 
     for (var index = 0; index < items.length; index += 1) {
       var item = items[index];
-      var path = item.getAttribute("data-shortlist-item");
+      var path =
+        item.getAttribute("data-shortlist-item") ||
+        item.getAttribute("data-review-path");
       if (
         !saved.has(path) ||
         cleanCandidateStage(stageState[path]) !== "testing"
@@ -422,12 +431,49 @@
         return {
           path: path,
           check: nextCheck,
-          title: item.getAttribute("data-shortlist-title") || "Saved candidate"
+          title:
+            item.getAttribute("data-shortlist-title") ||
+            item.getAttribute("data-review-title") ||
+            "Saved candidate"
         };
       }
     }
 
     return null;
+  }
+
+  function focusShortlistCandidateCheck(path, check) {
+    var item = Array.prototype.find.call(
+      document.querySelectorAll("[data-shortlist-item]"),
+      function (candidate) {
+        return candidate.getAttribute("data-shortlist-item") === path;
+      }
+    );
+    var details = item && item.querySelector("details");
+    var input =
+      item &&
+      Array.prototype.find.call(
+        item.querySelectorAll("[data-trial-check]"),
+        function (candidateCheck) {
+          return candidateCheck.value === check;
+        }
+      );
+
+    if (!item || !input) {
+      return "";
+    }
+    if (details) {
+      details.open = true;
+    }
+    window.requestAnimationFrame(function () {
+      var label = input.closest("label");
+      input.focus({ preventScroll: true });
+      if (label) {
+        label.scrollIntoView({ block: "center" });
+      }
+    });
+
+    return item.getAttribute("data-shortlist-title") || "Saved candidate";
   }
 
   function applyCandidateStageViewFromUrl() {
@@ -451,6 +497,52 @@
       );
     } catch (error) {
       // Keep the stored view when URL state cannot be read or replaced.
+    }
+  }
+
+  function applyCandidateCheckFromUrl(saved) {
+    if (!document.querySelector("[data-shortlist-stage-filter]")) {
+      return;
+    }
+
+    try {
+      var url = new URL(window.location.href);
+      var path = url.searchParams.get("candidate");
+      var check = url.searchParams.get("check");
+      if (!path && !check) {
+        return;
+      }
+
+      url.searchParams.delete("candidate");
+      url.searchParams.delete("check");
+      window.history.replaceState(
+        null,
+        "",
+        url.pathname + (url.search ? url.search : "") + url.hash
+      );
+
+      var stageState = readCandidateStageState();
+      var completed = cleanChecks(readTrialState()[path]);
+      if (
+        !saved.has(path) ||
+        cleanCandidateStage(stageState[path]) !== "testing" ||
+        allowedChecks.indexOf(check) === -1 ||
+        completed.indexOf(check) !== -1
+      ) {
+        return;
+      }
+
+      var title = focusShortlistCandidateCheck(path, check);
+      if (title) {
+        announce(
+          title +
+            ": opened next unfinished check, " +
+            candidateCheckLabel(check) +
+            "."
+        );
+      }
+    } catch (error) {
+      // Keep the shortlist usable when URL state cannot be read or replaced.
     }
   }
 
@@ -809,6 +901,7 @@
       "[data-home-evaluation-progressbar-fill]"
     );
     var stageSummary = section.querySelector("[data-home-evaluation-stage]");
+    var nextSummary = section.querySelector("[data-home-evaluation-next]");
     var reviewSummary = section.querySelector("[data-home-evaluation-review]");
     var primary = section.querySelector("[data-home-evaluation-primary]");
     var primaryLabel = section.querySelector("[data-home-evaluation-primary-label]");
@@ -869,6 +962,12 @@
       return total + (matchesResumeStage ? cleanChecks(state[path]).length : 0);
     }, 0);
     var resumeTotal = resumeCount * allowedChecks.length;
+    var nextTestingCandidate = nextIncompleteTestingCandidate(
+      saved,
+      stageState,
+      state,
+      reviewEntries
+    );
 
     section.hidden = saved.size === 0;
     if (heading) {
@@ -909,6 +1008,17 @@
         resumeTotal +
         " checks complete.";
     }
+    if (nextSummary) {
+      nextSummary.hidden = !nextTestingCandidate;
+      if (nextTestingCandidate) {
+        nextSummary.textContent =
+          "Next unfinished check: " +
+          nextTestingCandidate.title +
+          " · " +
+          candidateCheckLabel(nextTestingCandidate.check) +
+          ".";
+      }
+    }
     if (reviewSummary) {
       reviewSummary.hidden = savedReviewEntries.length === 0;
       if (reviewSnapshot === null) {
@@ -942,16 +1052,26 @@
       }
     }
     if (primary && primaryLabel) {
-      var resumeLabels = {
-        testing: "Continue testing",
-        ready: "Review ready candidates",
-        researching: "Continue research",
-        unset: "Set candidate stages"
-      };
+      if (nextTestingCandidate) {
+        primary.href =
+          "/ai-tools/shortlist/?stage=testing&candidate=" +
+          encodeURIComponent(nextTestingCandidate.path) +
+          "&check=" +
+          encodeURIComponent(nextTestingCandidate.check);
+        primaryLabel.textContent =
+          "Continue " + nextTestingCandidate.title + " check";
+      } else {
+        var resumeLabels = {
+          testing: "Continue testing",
+          ready: "Review ready candidates",
+          researching: "Continue research",
+          unset: "Set candidate stages"
+        };
 
-      primary.href = "/ai-tools/shortlist/?stage=" + resumeStage;
-      primaryLabel.textContent =
-        resumeLabels[resumeStage] + (resumeCount ? " " + resumeCount : "");
+        primary.href = "/ai-tools/shortlist/?stage=" + resumeStage;
+        primaryLabel.textContent =
+          resumeLabels[resumeStage] + (resumeCount ? " " + resumeCount : "");
+      }
     }
   }
 
@@ -1280,39 +1400,8 @@
       writeCandidateStageView("testing");
       render();
 
-      var nextCheckItem = Array.prototype.find.call(
-        document.querySelectorAll("[data-shortlist-item]"),
-        function (item) {
-          return item.getAttribute("data-shortlist-item") === nextCheckPath;
-        }
-      );
-      var nextCheckDetails =
-        nextCheckItem && nextCheckItem.querySelector("details");
-      var nextCheckInput =
-        nextCheckItem &&
-        Array.prototype.find.call(
-          nextCheckItem.querySelectorAll("[data-trial-check]"),
-          function (input) {
-            return input.value === nextCheckValue;
-          }
-        );
-
-      if (nextCheckDetails) {
-        nextCheckDetails.open = true;
-      }
-      if (nextCheckInput) {
-        window.requestAnimationFrame(function () {
-          var label = nextCheckInput.closest("label");
-          nextCheckInput.focus({ preventScroll: true });
-          if (label) {
-            label.scrollIntoView({ block: "center" });
-          }
-        });
-      }
-
       var nextCheckTitle =
-        (nextCheckItem &&
-          nextCheckItem.getAttribute("data-shortlist-title")) ||
+        focusShortlistCandidateCheck(nextCheckPath, nextCheckValue) ||
         "Saved candidate";
       announce(
         nextCheckTitle +
@@ -1426,4 +1515,5 @@
 
   applyCandidateStageViewFromUrl();
   render();
+  applyCandidateCheckFromUrl(new Set(readList()));
 })();
