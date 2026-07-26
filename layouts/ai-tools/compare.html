@@ -121,6 +121,12 @@
       </div>
     </nav>
 
+    <p
+      class="aiplorer-visually-hidden"
+      aria-live="polite"
+      data-copy-test-plan-status
+    ></p>
+
     <div class="aiplorer-compare__groups" id="compare-categories">
       <div class="aiplorer-shell">
         <div class="aiplorer-compare-empty" data-compare-shortlist-empty hidden>
@@ -164,6 +170,18 @@
                   <strong>{{ .testTask }}</strong>
                   <p><span>Check consistently:</span> {{ .testFocus }}</p>
                 </div>
+                <button
+                  class="aiplorer-test-plan-copy"
+                  type="button"
+                  data-copy-test-plan
+                  data-copy-test-plan-category="{{ .name }}"
+                  data-copy-test-plan-task="{{ .testTask }}"
+                  data-copy-test-plan-focus="{{ .testFocus }}"
+                  aria-label="Copy the {{ .name }} same-task test plan"
+                >
+                  {{ partial "aiplorer-icon.html" "copy" }}
+                  <span data-copy-test-plan-label>Copy test plan</span>
+                </button>
               </div>
 
               <div class="aiplorer-compare-table" role="table" aria-label="{{ .name }} reviewed tool comparison">

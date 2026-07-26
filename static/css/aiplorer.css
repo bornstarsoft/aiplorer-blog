@@ -4859,7 +4859,7 @@ main#main-content:has(> .aiplorer-content-article) {
   padding: 0.85rem 1rem;
   border-left: 3px solid var(--aiplorer-teal);
   align-items: center;
-  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-columns: auto minmax(0, 1fr) auto;
   gap: 0.75rem;
   background: #eef7f5;
 }
@@ -4900,6 +4900,39 @@ main#main-content:has(> .aiplorer-content-article) {
 .aiplorer-compare-test-plan p:last-child span {
   color: var(--aiplorer-teal);
   font-weight: 800;
+}
+
+.aiplorer-test-plan-copy {
+  display: inline-flex;
+  min-height: 2.15rem;
+  padding: 0.42rem 0.58rem;
+  border: 1px solid var(--aiplorer-teal);
+  border-radius: 6px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.38rem;
+  background: #fff;
+  color: var(--aiplorer-teal);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.64rem;
+  font-weight: 800;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.aiplorer-test-plan-copy:hover,
+.aiplorer-test-plan-copy:focus-visible,
+.aiplorer-test-plan-copy.is-copied {
+  border-color: var(--aiplorer-teal);
+  background: var(--aiplorer-teal);
+  color: #fff;
+}
+
+.aiplorer-test-plan-copy .aiplorer-icon {
+  width: 0.82rem;
+  height: 0.82rem;
+  flex: 0 0 auto;
 }
 
 .aiplorer-compare-table {
@@ -6239,9 +6272,16 @@ main#main-content:has(> .aiplorer-content-article) {
   color: var(--aiplorer-teal);
 }
 
+.aiplorer-shortlist-card__trial-actions {
+  display: flex;
+  margin-top: 0.55rem;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.48rem 0.65rem;
+}
+
 .aiplorer-shortlist-card__trial-lens a {
   display: inline-block;
-  margin-top: 0.48rem;
   color: var(--aiplorer-teal);
   font-size: 0.62rem;
   font-weight: 800;
@@ -7972,6 +8012,16 @@ main#main-content:has(> .aiplorer-content-article) {
   }
 
   .aiplorer-compare-group__heading > a {
+    justify-self: start;
+  }
+
+  .aiplorer-compare-test-plan {
+    align-items: start;
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .aiplorer-compare-test-plan > .aiplorer-test-plan-copy {
+    grid-column: 2;
     justify-self: start;
   }
 

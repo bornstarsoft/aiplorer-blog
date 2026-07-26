@@ -162,7 +162,12 @@
           </a>
         </div>
 
-        <p class="aiplorer-visually-hidden" aria-live="polite" data-shortlist-status></p>
+        <p
+          class="aiplorer-visually-hidden"
+          aria-live="polite"
+          data-shortlist-status
+          data-copy-test-plan-status
+        ></p>
 
         <div class="aiplorer-shortlist-empty" data-shortlist-empty>
           <span>{{ partial "aiplorer-icon.html" "bookmark" }}</span>
@@ -298,9 +303,23 @@
                       <b>Review closely:</b>
                       <span data-shortlist-test-focus>{{ $categoryData.testFocus }}</span>
                     </p>
-                    <a href="/ai-tools/compare/?view=shortlist&amp;category={{ .Params.category | urlquery }}">
-                      Compare saved {{ .Params.category }} <span aria-hidden="true">&rarr;</span>
-                    </a>
+                    <div class="aiplorer-shortlist-card__trial-actions">
+                      <button
+                        class="aiplorer-test-plan-copy"
+                        type="button"
+                        data-copy-test-plan
+                        data-copy-test-plan-category="{{ .Params.category }}"
+                        data-copy-test-plan-task="{{ $categoryData.testTask }}"
+                        data-copy-test-plan-focus="{{ $categoryData.testFocus }}"
+                        aria-label="Copy the {{ .Params.category }} same-task test plan"
+                      >
+                        {{ partial "aiplorer-icon.html" "copy" }}
+                        <span data-copy-test-plan-label>Copy test plan</span>
+                      </button>
+                      <a href="/ai-tools/compare/?view=shortlist&amp;category={{ .Params.category | urlquery }}">
+                        Compare saved {{ .Params.category }} <span aria-hidden="true">&rarr;</span>
+                      </a>
+                    </div>
                   </div>
                   <div class="aiplorer-shortlist-card__trial-items" role="group" aria-label="Candidate checks for {{ .Title }}">
                     <label>

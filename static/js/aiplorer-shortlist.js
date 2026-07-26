@@ -1775,10 +1775,104 @@
   }
 
   function announce(message) {
-    var status = document.querySelector("[data-shortlist-status]");
+    var status =
+      document.querySelector("[data-copy-test-plan-status]") ||
+      document.querySelector("[data-shortlist-status]");
     if (status) {
       status.textContent = message;
     }
+  }
+
+  function categoryTestPlanText(button) {
+    var category = (button.getAttribute("data-copy-test-plan-category") || "AI tools").trim();
+    var task = (button.getAttribute("data-copy-test-plan-task") || "").trim();
+    var focus = (button.getAttribute("data-copy-test-plan-focus") || "").trim();
+
+    return [
+      "Aiplorer same-task test - " + category,
+      "",
+      "Task:",
+      task,
+      "",
+      "Review closely:",
+      focus,
+      "",
+      "Safety and context:",
+      "Use non-sensitive test data, review important outputs, and verify current vendor details, permissions, rights, and workplace requirements before relying on a result."
+    ].join("\n");
+  }
+
+  function fallbackCopyText(value) {
+    return new Promise(function (resolve, reject) {
+      var input = document.createElement("textarea");
+      input.value = value;
+      input.setAttribute("readonly", "");
+      input.style.position = "fixed";
+      input.style.left = "-9999px";
+      input.style.opacity = "0";
+      document.body.appendChild(input);
+      input.select();
+
+      try {
+        if (document.execCommand("copy")) {
+          resolve();
+        } else {
+          reject(new Error("Copy command was not available."));
+        }
+      } catch (error) {
+        reject(error);
+      } finally {
+        document.body.removeChild(input);
+      }
+    });
+  }
+
+  function writeClipboardText(value) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(value).catch(function () {
+        return fallbackCopyText(value);
+      });
+    }
+    return fallbackCopyText(value);
+  }
+
+  function setCopyTestPlanState(button, copied) {
+    var label = button.querySelector("[data-copy-test-plan-label]");
+    var category = button.getAttribute("data-copy-test-plan-category") || "AI tools";
+
+    if (button.aiplorerCopyResetTimer) {
+      window.clearTimeout(button.aiplorerCopyResetTimer);
+    }
+
+    button.classList.toggle("is-copied", copied);
+    button.setAttribute(
+      "aria-label",
+      copied
+        ? category + " test plan copied"
+        : "Copy the " + category + " same-task test plan"
+    );
+    if (label) {
+      label.textContent = copied ? "Copied" : "Copy test plan";
+    }
+
+    if (copied) {
+      button.aiplorerCopyResetTimer = window.setTimeout(function () {
+        setCopyTestPlanState(button, false);
+      }, 2400);
+    }
+  }
+
+  function copyCategoryTestPlan(button) {
+    var category = button.getAttribute("data-copy-test-plan-category") || "AI tools";
+    writeClipboardText(categoryTestPlanText(button))
+      .then(function () {
+        setCopyTestPlanState(button, true);
+        announce(category + " test plan copied to the clipboard.");
+      })
+      .catch(function () {
+        setCopyTestPlanState(button, false);
+        announce("Could not copy the test plan. Please try again.");
+      });
   }
 
   function notifyChange(list) {
@@ -1848,6 +1942,7 @@
 
   document.addEventListener("click", function (event) {
     var homeSearchClear = event.target.closest("[data-home-search-resume-clear]");
+    var copyTestPlan = event.target.closest("[data-copy-test-plan]");
     var exportBackup = event.target.closest("[data-shortlist-export]");
     var exportBrief = event.target.closest("[data-shortlist-export-brief]");
     var importBackup = event.target.closest("[data-shortlist-import-trigger]");
@@ -1861,6 +1956,11 @@
     if (homeSearchClear) {
       clearLastToolSearch();
       updateHomeSearchResume();
+      return;
+    }
+
+    if (copyTestPlan) {
+      copyCategoryTestPlan(copyTestPlan);
       return;
     }
 

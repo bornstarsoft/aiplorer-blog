@@ -42,6 +42,12 @@ page with both `view=shortlist` and the matching category so saved candidates
 can be reviewed together without losing context. These prompts are evaluation
 guidance, not evidence that Aiplorer tested or approved a saved service.
 
+The same-task plan can be copied from both the shortlist and comparison pages.
+The copied text includes the category task, review focus, and a reminder to use
+non-sensitive test data, review important outputs, and verify current vendor
+details, permissions, rights, and workplace requirements. Copying uses only the
+browser clipboard; it does not upload a task or record an evaluation result.
+
 The checks support a return-visit evaluation workflow. They are not ratings,
 scores, endorsements, guarantees, or evidence that a service passed an Aiplorer
 test. Removing a tool from the shortlist also removes its stored check state.
