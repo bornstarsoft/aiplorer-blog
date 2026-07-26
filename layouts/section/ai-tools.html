@@ -60,6 +60,7 @@
           <div>
             <p class="aiplorer-kicker">Latest maintenance cycle</p>
             <h2 id="directory-recent">Recently reviewed</h2>
+            <p class="aiplorer-section-heading__note">Review dates set the order, while each card shows one task-fit example from the full review.</p>
           </div>
           <div class="aiplorer-section-heading__links">
             <a class="aiplorer-text-link" href="/ai-tools/compare/">Compare tools <span aria-hidden="true">&rarr;</span></a>
@@ -73,6 +74,7 @@
               <span class="aiplorer-tool-card__category">{{ .Params.category }}</span>
               <h3>{{ .Title }}</h3>
               <p>{{ .Params.description | truncate 140 }}</p>
+              {{ partial "aiplorer-tool-fit.html" . }}
               <span class="aiplorer-tool-card__meta">
                 Reviewed {{ .Params.lastReviewed }}
                 <span aria-hidden="true">&rarr;</span>

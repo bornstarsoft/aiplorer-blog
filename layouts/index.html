@@ -203,7 +203,7 @@
           <div>
             <p class="aiplorer-kicker">New and recently checked</p>
             <h2 id="recent-heading">Revisit reviewed tools and workflows as AI changes</h2>
-            <p class="aiplorer-section-heading__note">Track tool checks, Guide refreshes, and Use Case reviews with a private browser checkpoint for later activity.</p>
+            <p class="aiplorer-section-heading__note">Each tool card includes one reviewed task-fit example. Track later tool, Guide, and Use Case checks with a private browser checkpoint.</p>
           </div>
           <div class="aiplorer-section-heading__links">
             <a class="aiplorer-text-link" href="/ai-tools/review-updates/">Latest review updates <span aria-hidden="true">&rarr;</span></a>
@@ -216,6 +216,7 @@
               <span class="aiplorer-tool-card__category">{{ .Params.category }}</span>
               <h3>{{ .Title }}</h3>
               <p>{{ .Params.description | truncate 150 }}</p>
+              {{ partial "aiplorer-tool-fit.html" . }}
               <span class="aiplorer-tool-card__meta">
                 Reviewed {{ .Params.lastReviewed }}
                 <span aria-hidden="true">&rarr;</span>

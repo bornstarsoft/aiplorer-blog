@@ -98,7 +98,7 @@
           <div>
             <p class="aiplorer-kicker">Continue with reviewed tools</p>
             <h2 id="content-related-tools">Related starting points</h2>
-            <p class="aiplorer-section-heading__note">Existing article relationships shown alphabetically, not a ranking or endorsement.</p>
+            <p class="aiplorer-section-heading__note">Existing article relationships shown alphabetically, with one reviewed task-fit example rather than a ranking or endorsement.</p>
           </div>
           <a class="aiplorer-text-link" href="/ai-tools/compare/">Compare reviewed tools <span aria-hidden="true">&rarr;</span></a>
         </div>
@@ -108,6 +108,7 @@
               <span class="aiplorer-tool-card__category">{{ .Params.category }}</span>
               <h3>{{ .Title }}</h3>
               <p>{{ .Params.description | truncate 150 }}</p>
+              {{ partial "aiplorer-tool-fit.html" . }}
               <span class="aiplorer-tool-card__meta">
                 Checked {{ .Params.lastReviewed }}
                 <span aria-hidden="true">&rarr;</span>

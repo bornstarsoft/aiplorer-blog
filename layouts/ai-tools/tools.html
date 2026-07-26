@@ -133,12 +133,7 @@
                     {{ with .Params.description }}
                       <p>{{ . | truncate 155 }}</p>
                     {{ end }}
-                    {{ range first 1 .Params.bestFor }}
-                      <span class="aiplorer-tool-card__fit">
-                        <span>May fit</span>
-                        <strong>{{ . }}</strong>
-                      </span>
-                    {{ end }}
+                    {{ partial "aiplorer-tool-fit.html" . }}
                     <span class="aiplorer-tool-card__meta">
                       Checked {{ .Params.lastReviewed }}
                       <span aria-hidden="true">&rarr;</span>

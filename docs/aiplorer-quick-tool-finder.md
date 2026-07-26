@@ -17,6 +17,9 @@ directory where category browsing alone can become slow.
 - An active task shortcut is visibly identified and reflected in the URL.
 - Each directory result card shows the first reviewed `bestFor` item as a
   compact May fit preview before the visitor opens the full review.
+- The same May fit signal appears on homepage, category, related-tool, and
+  recently viewed cards so visitors can keep the same selection context while
+  moving through Aiplorer.
 - Category filtering and category jump links use the same visible result set.
 - The current query is reflected in the URL so browser navigation and shared
   links remain useful.
@@ -32,6 +35,9 @@ directory where category browsing alone can become slow.
   recommendations.
 - The May fit preview is one reviewed task example, not a ranking, endorsement,
   quality score, or claim that the service is suitable for every user.
+- Recently viewed cards store this task-fit text with the existing private
+  browser history. Older saved cards remain valid and gain the signal after the
+  tool is opened again.
 - Filtering runs in the browser. Queries are not stored in an Aiplorer account
   or sent to an Aiplorer database.
 - Draft tools remain outside production output and cannot appear in finder

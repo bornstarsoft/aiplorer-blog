@@ -63,7 +63,8 @@
       title: source.getAttribute("data-recent-title") || "",
       category: source.getAttribute("data-recent-category") || "",
       description: source.getAttribute("data-recent-description") || "",
-      reviewed: source.getAttribute("data-recent-reviewed") || ""
+      reviewed: source.getAttribute("data-recent-reviewed") || "",
+      fit: source.getAttribute("data-recent-fit") || ""
     };
   }
 
@@ -84,6 +85,9 @@
     var category = document.createElement("span");
     var title = document.createElement("strong");
     var description = document.createElement("small");
+    var fit = document.createElement("span");
+    var fitLabel = document.createElement("span");
+    var fitText = document.createElement("strong");
     var meta = document.createElement("span");
     var arrow = document.createElement("span");
 
@@ -93,6 +97,9 @@
     category.textContent = item.category;
     title.textContent = item.title;
     description.textContent = item.description;
+    fit.className = "aiplorer-recent-card__fit";
+    fitLabel.textContent = "May fit";
+    fitText.textContent = item.fit || "";
     meta.className = "aiplorer-recent-card__meta";
     meta.textContent = item.reviewed ? "Checked " + item.reviewed : "Open full review";
     arrow.setAttribute("aria-hidden", "true");
@@ -102,6 +109,11 @@
     link.appendChild(category);
     link.appendChild(title);
     link.appendChild(description);
+    if (item.fit) {
+      fit.appendChild(fitLabel);
+      fit.appendChild(fitText);
+      link.appendChild(fit);
+    }
     link.appendChild(meta);
     return link;
   }

@@ -84,6 +84,7 @@
           <div>
             <p class="aiplorer-kicker">Manual review index</p>
             <h2 id="reviewed-tools-heading">Reviewed {{ $categoryName }}</h2>
+            <p class="aiplorer-section-heading__note">Each card highlights one reviewed task-fit example as a starting point, not a ranking.</p>
           </div>
           <span class="aiplorer-section-count">{{ len $categoryTools }} tools</span>
         </div>
@@ -96,6 +97,7 @@
                 {{ with .Params.description }}
                   <p>{{ . | truncate 155 }}</p>
                 {{ end }}
+                {{ partial "aiplorer-tool-fit.html" . }}
                 <span class="aiplorer-tool-card__meta">
                   Checked {{ .Params.lastReviewed }}
                   <span aria-hidden="true">&rarr;</span>

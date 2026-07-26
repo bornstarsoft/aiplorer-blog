@@ -44,6 +44,10 @@
   {{- end -}}
   {{- $relatedPractical = sort $relatedPractical "Title" "asc" -}}
   {{- $relatedPractical = first 3 (sort $relatedPractical "Params.lastReviewed" "desc") -}}
+  {{- $recentFit := "" -}}
+  {{- range first 1 (.Params.bestFor | default (slice)) -}}
+    {{- $recentFit = . -}}
+  {{- end -}}
 
   <article
     class="aiplorer-tool-page"
@@ -53,6 +57,7 @@
     data-recent-category="{{ $categoryName }}"
     data-recent-description="{{ .Params.description | plainify | truncate 150 }}"
     data-recent-reviewed="{{ .Params.lastReviewed }}"
+    data-recent-fit="{{ $recentFit }}"
   >
     <section class="aiplorer-tool-hero" data-category-accent="{{ $categoryData.accent }}">
       <div class="aiplorer-shell">
@@ -224,7 +229,7 @@
             <div>
               <p class="aiplorer-kicker">Continue comparing</p>
               <h2 id="related-tools-heading">Related reviewed tools</h2>
-              <p class="aiplorer-section-heading__note">Existing content relationships, not a ranking or paid placement.</p>
+              <p class="aiplorer-section-heading__note">Existing content relationships with one reviewed task-fit example, not a ranking or paid placement.</p>
             </div>
             <a class="aiplorer-text-link" href="{{ $categoryData.path }}">View {{ $categoryName }} <span aria-hidden="true">&rarr;</span></a>
           </div>
@@ -236,6 +241,7 @@
                 {{ with .Params.description }}
                   <p>{{ . | truncate 155 }}</p>
                 {{ end }}
+                {{ partial "aiplorer-tool-fit.html" . }}
                 <span class="aiplorer-tool-card__meta">
                   Checked {{ .Params.lastReviewed }}
                   <span aria-hidden="true">&rarr;</span>
