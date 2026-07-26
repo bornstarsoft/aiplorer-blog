@@ -122,7 +122,7 @@
                 {{ range $categoryTools.ByTitle }}
                   {{- $searchText := printf "%s %s %s %s %s" .Title .Params.category .Params.description (delimit .Params.bestFor " ") (delimit .Params.useCases " ") | plainify | lower -}}
                   <a
-                    class="aiplorer-tool-card"
+                    class="aiplorer-tool-card aiplorer-tool-card--directory"
                     href="{{ .RelPermalink }}"
                     data-tool-card
                     data-tool-category="{{ .Params.category }}"
@@ -132,6 +132,12 @@
                     <h3>{{ .Title }}</h3>
                     {{ with .Params.description }}
                       <p>{{ . | truncate 155 }}</p>
+                    {{ end }}
+                    {{ range first 1 .Params.bestFor }}
+                      <span class="aiplorer-tool-card__fit">
+                        <span>May fit</span>
+                        <strong>{{ . }}</strong>
+                      </span>
                     {{ end }}
                     <span class="aiplorer-tool-card__meta">
                       Checked {{ .Params.lastReviewed }}

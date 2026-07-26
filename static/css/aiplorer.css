@@ -821,6 +821,36 @@ main#main-content:has(> .aiplorer-content-article) {
   -webkit-line-clamp: 3;
 }
 
+.aiplorer-tool-card--directory {
+  min-height: 16.5rem;
+}
+
+.aiplorer-tool-card__fit {
+  display: grid;
+  margin: 0 0 1rem;
+  padding-left: 0.7rem;
+  border-left: 3px solid #9acfc7;
+  gap: 0.18rem;
+}
+
+.aiplorer-tool-card__fit > span {
+  color: var(--aiplorer-teal);
+  font-size: 0.64rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.aiplorer-tool-card__fit strong {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--aiplorer-ink);
+  font-size: 0.78rem;
+  font-weight: 750;
+  line-height: 1.4;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
 .aiplorer-tool-card__meta {
   display: flex;
   margin-top: auto;

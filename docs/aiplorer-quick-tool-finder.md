@@ -15,6 +15,8 @@ directory where category browsing alone can become slow.
 - Eight common task shortcuts apply the same query and category filters for
   research, writing, coding, automation, meetings, images, video, and audio.
 - An active task shortcut is visibly identified and reflected in the URL.
+- Each directory result card shows the first reviewed `bestFor` item as a
+  compact May fit preview before the visitor opens the full review.
 - Category filtering and category jump links use the same visible result set.
 - The current query is reflected in the URL so browser navigation and shared
   links remain useful.
@@ -28,10 +30,24 @@ directory where category browsing alone can become slow.
   popularity rank, paid placement, or affiliate priority.
 - Task shortcuts are workflow starting points, not popularity labels or
   recommendations.
+- The May fit preview is one reviewed task example, not a ranking, endorsement,
+  quality score, or claim that the service is suitable for every user.
 - Filtering runs in the browser. Queries are not stored in an Aiplorer account
   or sent to an Aiplorer database.
 - Draft tools remain outside production output and cannot appear in finder
   results.
+
+## Trend Rationale
+
+The Stanford HAI 2026 AI Index describes rapid capability gains and tighter
+performance clustering among leading systems, with competitive attention
+shifting toward reliability and domain-specific performance. Aiplorer responds
+by surfacing task fit from its existing reviewed metadata rather than adding a
+popularity ranking.
+
+Official source checked:
+
+- https://hai.stanford.edu/ai-index/2026-ai-index-report/technical-performance
 
 ## Trend Context
 
