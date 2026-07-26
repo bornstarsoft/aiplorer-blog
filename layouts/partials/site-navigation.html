@@ -18,3 +18,48 @@
     {{ end }}
   </div>
 </nav>
+{{ if eq .Section "ai-tools" }}
+  {{- $path := .RelPermalink -}}
+  {{- $isDirectory := hasPrefix $path "/ai-tools/tools/" -}}
+  {{- $isCompare := eq $path "/ai-tools/compare/" -}}
+  {{- $isWorkflows := eq $path "/ai-tools/workflows/" -}}
+  {{- $isUpdates := eq $path "/ai-tools/review-updates/" -}}
+  {{- $isTrends := eq $path "/ai-tools/trend-watch/" -}}
+  {{- $isOverview := not (or $isDirectory $isCompare $isWorkflows $isUpdates $isTrends) -}}
+  {{- $aiToolPages := where .Site.RegularPages "Section" "ai-tools" -}}
+  {{- $reviewedTools := where (where $aiToolPages "Params.reviewStatus" "reviewed") "Draft" false -}}
+  <nav class="aiplorer-discovery-nav" aria-label="AI tool discovery">
+    <div class="aiplorer-discovery-nav__inner">
+      <a class="aiplorer-discovery-nav__summary" href="/ai-tools/">
+        <strong>AI discovery</strong>
+        <span>{{ len $reviewedTools }} reviewed</span>
+      </a>
+      <div class="aiplorer-discovery-nav__links">
+        <a href="/ai-tools/"{{ if $isOverview }} class="is-active" aria-current="page"{{ end }}>
+          <span class="aiplorer-discovery-nav__icon">{{ partial "aiplorer-icon.html" "compass" }}</span>
+          Overview
+        </a>
+        <a href="/ai-tools/tools/"{{ if $isDirectory }} class="is-active" aria-current="page"{{ end }}>
+          <span class="aiplorer-discovery-nav__icon">{{ partial "aiplorer-icon.html" "square-check" }}</span>
+          Directory
+        </a>
+        <a href="/ai-tools/compare/"{{ if $isCompare }} class="is-active" aria-current="page"{{ end }}>
+          <span class="aiplorer-discovery-nav__icon">{{ partial "aiplorer-icon.html" "sparkles" }}</span>
+          Compare
+        </a>
+        <a href="/ai-tools/workflows/"{{ if $isWorkflows }} class="is-active" aria-current="page"{{ end }}>
+          <span class="aiplorer-discovery-nav__icon">{{ partial "aiplorer-icon.html" "workflow" }}</span>
+          Workflows
+        </a>
+        <a href="/ai-tools/review-updates/"{{ if $isUpdates }} class="is-active" aria-current="page"{{ end }}>
+          <span class="aiplorer-discovery-nav__icon">{{ partial "aiplorer-icon.html" "history" }}</span>
+          Updates
+        </a>
+        <a href="/ai-tools/trend-watch/"{{ if $isTrends }} class="is-active" aria-current="page"{{ end }}>
+          <span class="aiplorer-discovery-nav__icon">{{ partial "aiplorer-icon.html" "sparkles" }}</span>
+          Trends
+        </a>
+      </div>
+    </div>
+  </nav>
+{{ end }}
