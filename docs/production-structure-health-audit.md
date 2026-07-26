@@ -54,6 +54,35 @@ The only remaining shared canonicals were the intentional first-pager aliases:
 No page was missing a canonical, and no canonical used an unexpected host or
 route format.
 
+## Current Structure Recheck
+
+A later 2026-07-26 recheck included the subsequent design, creative, and
+data-analysis publication batches.
+
+- The production build contained 920 HTML files and 25,507 internal link
+  references.
+- Every internal link target resolved to generated production output.
+- The production sitemap contained 893 entries and 893 unique URLs, and every
+  sitemap destination resolved locally.
+- All 920 HTML files had canonical tags. There were 918 unique canonical
+  values.
+- The only shared canonicals remained the intentional `/blog/page/1/` and
+  `/posts/page/1/` aliases.
+- All route-style canonicals used the apex HTTPS host and trailing slashes.
+  The file-style `/404.html` canonical remained the expected exception.
+- The sitemap contained all 65 reviewed tool routes.
+- SciSpace, Tome, Clipdrop, Julius AI, Rows, Obviously AI, Polymer, and Example
+  AI Assistant remained absent from production output and the sitemap.
+
+Live checks returned HTTP `200` with the expected self-canonical for the home
+page, AI Tools landing, reviewed index, Akkio, `/posts/`, representative
+pagination pages, and both preserved legacy brain-training post routes. The
+`www` AI Tools route returned HTTP `301` to the matching apex URL.
+
+No public route, canonical, redirect, layout, tool status, or legacy post
+change was required. The earlier 910-file and 883-URL results remain the
+historical record from the original canonical and sitemap repair.
+
 ## Search Console Context
 
 Self-canonical paginated archive pages reduce ambiguity when Google evaluates
@@ -83,6 +112,7 @@ Confirm:
 - `/posts/page/1/` canonicalizes to `https://aiplorer.com/posts/`
 - `/posts/page/2/` and later use their own canonical URLs
 - all internal links and sitemap destinations resolve locally
-- production excludes SciSpace, Tome, and Example AI Assistant
+- production excludes SciSpace, Tome, Clipdrop, Julius AI, Rows, Obviously AI,
+  Polymer, and Example AI Assistant
 - draft builds continue to include the intended draft pages
 - generated output is not staged
