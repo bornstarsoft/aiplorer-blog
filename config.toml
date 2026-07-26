@@ -10,7 +10,7 @@ buildFuture = false
 [params]
   description = "Aiplorer helps everyday users explore AI tools, guides, and use cases for work and creativity."
   mainSections = ["posts"]
-  custom_css = ["css/aiplorer.css?v=20260726a"]
+  custom_css = ["css/aiplorer.css?v=20260726b"]
 
 [params.ananke]
   show_recent_posts = false
