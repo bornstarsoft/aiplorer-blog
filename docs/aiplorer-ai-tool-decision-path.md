@@ -20,6 +20,8 @@ comparison view in two choices:
   `reviewStatus: "reviewed"`.
 - Candidate tools are displayed alphabetically and are not ranked or scored.
 - The selected workflow and priority are reflected in URL query parameters.
+- Every completed result offers category-specific links to the matching
+  same-task comparison groups and a separate local-shortlist comparison.
 - No account, database, remote profile, recommendation model, or tracking is
   introduced.
 - Shortlist controls use the existing browser-local
@@ -31,4 +33,5 @@ The result is a starting path, not a product recommendation. Each result keeps
 the workflow caution and adds a selected review checkpoint covering source
 verification, privacy and permissions, reliability, rights and publishing, or
 current plans and limits. Visitors must still read the full review and verify
-current details at the official source.
+current details at the official source. Category comparison links evaluate a
+shared task and do not select a winner.

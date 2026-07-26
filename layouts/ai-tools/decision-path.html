@@ -209,7 +209,6 @@
                 <h3>Explore a small candidate set</h3>
                 <p>Tools are shown alphabetically. This is not a ranking, score, endorsement, or claim that every tool fits your situation.</p>
               </div>
-              <a href="/ai-tools/compare/?view=shortlist">Compare my shortlist <span aria-hidden="true">&rarr;</span></a>
             </div>
 
             <div class="aiplorer-decision-tool-grid">
@@ -235,6 +234,26 @@
                   </div>
                 </article>
               {{ end }}
+            </div>
+
+            <div class="aiplorer-decision-result__handoff">
+              <div>
+                <p class="aiplorer-kicker">Test before choosing</p>
+                <strong>Compare related candidates on one repeatable task</strong>
+                <p>Use a category's same-task plan for a broad comparison, or save candidates above and open only your local shortlist.</p>
+              </div>
+              <nav aria-label="Comparison actions for {{ .title }}">
+                {{ range .links }}
+                  <a href="/ai-tools/compare/#compare-{{ .label | anchorize }}">
+                    Compare {{ .label }}
+                    <span aria-hidden="true">&rarr;</span>
+                  </a>
+                {{ end }}
+                <a class="aiplorer-decision-result__shortlist-link" href="/ai-tools/compare/?view=shortlist">
+                  Compare my shortlist
+                  <span aria-hidden="true">&rarr;</span>
+                </a>
+              </nav>
             </div>
 
             <nav class="aiplorer-decision-result__links" aria-label="Related categories for {{ .title }}">
