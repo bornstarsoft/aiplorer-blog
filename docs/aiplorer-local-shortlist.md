@@ -13,8 +13,11 @@ tracking.
 - The storage key is `aiplorer-shortlist-v1`.
 - Candidate checks use `aiplorer-trial-checks-v1` and are keyed by the reviewed
   tool path.
+- Candidate decision stages use `aiplorer-candidate-stage-v1` and are keyed by
+  the reviewed tool path.
 - Aiplorer does not receive or synchronize the saved list.
 - Aiplorer does not receive or synchronize candidate check progress.
+- Aiplorer does not receive or synchronize decision stages.
 - Clearing browser storage or changing browsers may remove the list.
 - If local storage is unavailable, the current page session keeps an in-memory
   fallback.
@@ -31,6 +34,17 @@ Each visible shortlist card provides four private checks:
 The checks support a return-visit evaluation workflow. They are not ratings,
 scores, endorsements, guarantees, or evidence that a service passed an Aiplorer
 test. Removing a tool from the shortlist also removes its stored check state.
+
+## Decision stages
+
+Each saved candidate can be marked as `Researching`, `Testing`, or
+`Ready to decide`. The stage is a private continuity note for returning to an
+unfinished comparison. It is not a rating, recommendation, completion claim,
+or signal that the tool is suitable for production use.
+
+The homepage summarizes stages for saved candidates, while the comparison page
+shows each saved tool's stage beside its private checklist progress. Removing a
+tool also removes its stored stage.
 
 ## Trend rationale
 
@@ -50,7 +64,8 @@ Official sources:
 
 - Save button on each public reviewed tool page
 - Save button on every row in `/ai-tools/compare/`
-- Local candidate-check totals and per-tool progress in `/ai-tools/compare/`
+- Local decision stages, candidate-check totals, and per-tool progress in
+  `/ai-tools/compare/`
 - A private Continue evaluating summary on the homepage when candidates are saved
 - My Shortlist link on the homepage
 - Shortlist tab in the shared AI Discovery navigation

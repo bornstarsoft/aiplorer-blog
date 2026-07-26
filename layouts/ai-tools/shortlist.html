@@ -104,6 +104,35 @@
                 {{ end }}
               </div>
               <div
+                class="aiplorer-shortlist-card__stage"
+                data-candidate-stage="{{ .RelPermalink }}"
+                data-candidate-stage-title="{{ .Title }}"
+              >
+                <div class="aiplorer-shortlist-card__stage-heading">
+                  <div>
+                    <span>Decision stage</span>
+                    <strong data-candidate-stage-current>Not set</strong>
+                  </div>
+                  <button type="button" data-candidate-stage-reset disabled>Clear</button>
+                </div>
+                <div
+                  class="aiplorer-shortlist-card__stage-options"
+                  role="group"
+                  aria-label="Decision stage for {{ .Title }}"
+                >
+                  <button type="button" data-candidate-stage-value="researching" aria-pressed="false">
+                    Researching
+                  </button>
+                  <button type="button" data-candidate-stage-value="testing" aria-pressed="false">
+                    Testing
+                  </button>
+                  <button type="button" data-candidate-stage-value="ready" aria-pressed="false">
+                    Ready to decide
+                  </button>
+                </div>
+                <small>Private browser note, not a score or recommendation.</small>
+              </div>
+              <div
                 class="aiplorer-shortlist-card__trial"
                 data-trial-checklist="{{ .RelPermalink }}"
                 data-trial-title="{{ .Title }}"
