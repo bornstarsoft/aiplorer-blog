@@ -10,15 +10,15 @@ ranking, scoring, or unattended content changes.
 
 The monitoring baseline is:
 
-- 60 reviewed public tool pages
+- 64 reviewed public tool pages
 - 10 public tool categories
-- 3 draft-only pages: SciSpace, Tome, and Example AI Assistant
+- 4 draft-only pages: SciSpace, Tome, Clipdrop, and Example AI Assistant
 - current official-source review dates of 2026-07-25 or 2026-07-26
 - production canonicals under `https://aiplorer.com/`
 
 Every reviewed page currently has `draft: false`, `reviewStatus: "reviewed"`,
 a non-empty `lastReviewed`, an official URL, source notes, and an allowed
-category. Production output and the sitemap exclude all three draft pages.
+category. Production output and the sitemap exclude all four draft pages.
 
 Supporting baselines:
 
@@ -75,6 +75,7 @@ signal appears:
 - Automation Tools
 - Business Tools
 - Canva AI
+- Figma AI
 - DeepL
 - ElevenLabs
 
@@ -179,7 +180,7 @@ Confirm:
 
 - every intended public route exists in production output
 - the production sitemap includes only intended public tool URLs
-- SciSpace, Tome, and Example AI Assistant are absent from production output
+- SciSpace, Tome, Clipdrop, and Example AI Assistant are absent from production output
   and the production sitemap
 - the draft build still includes the intended drafts
 - no generated output or legacy post is staged
@@ -211,7 +212,7 @@ manual browser verification, not as automatic evidence that a link is broken.
 
 ## Draft Policy
 
-SciSpace and Tome remain draft pending stable, sufficient official sources.
-Example AI Assistant remains an internal model page. None of the three should
-be linked publicly, submitted for indexing, or added to the production
+SciSpace, Tome, and Clipdrop remain draft pending stable, sufficient official
+sources. Example AI Assistant remains an internal model page. None of the four
+should be linked publicly, submitted for indexing, or added to the production
 sitemap.

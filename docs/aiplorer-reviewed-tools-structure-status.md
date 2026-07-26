@@ -9,7 +9,7 @@ are based on tool front matter in `content/ai-tools/tools/`.
 
 ## Current Tool Counts
 
-Aiplorer currently has 60 reviewed public tool pages and three draft-only tool
+Aiplorer currently has 64 reviewed public tool pages and four draft-only tool
 pages.
 
 | Category | Reviewed tools | Count |
@@ -17,14 +17,14 @@ pages.
 | Automation Tools | Zapier, Make, n8n, IFTTT, Pipedream, Bardeen, Relay.app | 7 |
 | Writing Tools | Grammarly, DeepL, Jasper, Copy.ai, Writesonic, Surfer, Frase | 7 |
 | Audio Tools | ElevenLabs, Murf AI, Speechify, Suno, Udio, Adobe Podcast | 6 |
-| Image Tools | Canva AI, Adobe Firefly, Midjourney, Ideogram, Leonardo AI, Stable Diffusion | 6 |
-| Productivity Tools | ChatGPT, Claude, Gemini, Perplexity, Microsoft Copilot, Notion AI, Otter.ai, Fireflies.ai, Fathom, Granola, Read AI | 11 |
+| Image Tools | Canva AI, Adobe Firefly, Midjourney, Ideogram, Leonardo AI, Stable Diffusion, Kittl, Photoroom, Microsoft Designer | 9 |
+| Productivity Tools | ChatGPT, Claude, Gemini, Perplexity, Microsoft Copilot, Notion AI, Figma AI, Otter.ai, Fireflies.ai, Fathom, Granola, Read AI | 12 |
 | Business Tools | HubSpot Breeze, Salesforce Agentforce, Zoho Zia, Shopify Sidekick, Fin | 5 |
 | Coding Tools | GitHub Copilot, Cursor, Windsurf, Replit, Tabnine | 5 |
 | Video Tools | Runway, Pika, Luma AI, Descript, Synthesia | 5 |
 | Learning Tools | NotebookLM, Elicit, Consensus, You.com | 4 |
 | Presentation Tools | Gamma, Beautiful.ai, Pitch, SlidesAI | 4 |
-| **Total** |  | **60** |
+| **Total** |  | **64** |
 
 The reviewed index at `/ai-tools/tools/` groups published tools by category.
 The AI Tools landing page links to the ten public categories and the reviewed
@@ -38,13 +38,16 @@ until they pass a new official-source review:
 - SciSpace
 - Tome
 - Example AI Assistant
+- Clipdrop
 
 SciSpace remains draft pending stable official product, pricing, help, privacy,
 and security source review. Tome remains draft pending stable official product
 and help-source availability. Example AI Assistant is an internal content-model
-page and is not a publication candidate.
+page and is not a publication candidate. Clipdrop remains draft pending a
+consistent, readable official record of the current operator and applicable
+privacy and legal terms.
 
-Production builds and the production sitemap must exclude all three pages.
+Production builds and the production sitemap must exclude all four pages.
 
 ## Category Structure
 
@@ -82,10 +85,11 @@ SlidesAI while Tome remains unpublished.
 
 Strongest coverage:
 
-- Productivity Tools has 11 reviewed pages after the meeting and
+- Productivity Tools has 12 reviewed pages after the meeting, design, and
   transcription workflow batch.
+- Image Tools has nine reviewed pages after the design and creative review.
 - Automation Tools and Writing Tools each have seven reviewed pages.
-- Audio and Image Tools each have six reviewed pages.
+- Audio Tools has six reviewed pages.
 - Business, Coding, and Video Tools each have five reviewed pages.
 
 Stable but smaller categories:
@@ -128,7 +132,7 @@ indexing.
 
 ### 1. Run Risk-Based Monitoring
 
-The first complete freshness cycle is finished. All 60 reviewed pages were
+The first complete freshness cycle is finished. All 64 reviewed pages were
 reviewed or rechecked against official sources on 2026-07-25 or 2026-07-26. Use
 `docs/reviewed-tools-monitoring-plan.md` for the recurring cadence, change
 triggers, validation gate, and review log.
@@ -140,9 +144,9 @@ Productivity, Coding, Automation, and Business Tools.
 
 ### 2. Recheck Remaining Real Drafts
 
-Revisit SciSpace and Tome only when stable official product, help, pricing,
-privacy, and terms sources are available. Keep both unpublished if those
-sources remain incomplete or inconsistent.
+Revisit SciSpace, Tome, and Clipdrop only when stable official product, help,
+pricing, privacy, and terms sources are available. Keep them unpublished if
+those sources remain incomplete or inconsistent.
 
 ### 3. Monitor Search And Deployment Health
 
@@ -155,8 +159,6 @@ after reviewed-page changes.
 
 Only after category maintenance, possible future directions include:
 
-- Design and creative workflows: Figma AI, Kittl, Photoroom, Clipdrop,
-  Microsoft Designer
 - Data and analysis workflows: Julius AI, Rows AI, Akkio, Obviously AI,
   Polymer
 
@@ -175,8 +177,7 @@ Its draft-first source and caution record remains in
 
 ## Recommended Direction
 
-The immediate next phase is risk-based maintenance rather than another bulk
-publication batch. Complete manual Search Console follow-up for the five recent
-meeting tools when an authenticated session is available, monitor active
-transitions, and keep SciSpace and Tome unpublished unless their official
-sources become stable enough for conservative review.
+The immediate next phase is deployment validation for Figma AI, Kittl,
+Photoroom, and Microsoft Designer, followed by risk-based maintenance. Keep
+SciSpace, Tome, and Clipdrop unpublished unless their official sources become
+stable enough for conservative review.

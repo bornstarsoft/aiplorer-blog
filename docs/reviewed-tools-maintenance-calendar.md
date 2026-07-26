@@ -9,10 +9,10 @@ advancing review dates without a completed official-source review.
 
 ## Baseline
 
-- 60 reviewed public tool pages
+- 64 reviewed public tool pages
 - 10 public tool categories
 - Review baseline dates: 2026-07-25 and 2026-07-26
-- Three draft-only pages: SciSpace, Tome, and Example AI Assistant
+- Four draft-only pages: SciSpace, Tome, Clipdrop, and Example AI Assistant
 
 The earlier applicable cadence takes priority when a tool appears in more than
 one group. Event-driven triggers such as a shutdown, rename, broken official
@@ -26,7 +26,7 @@ the calendar.
 | Active transitions | By 2026-08-02, then weekly while active | Relay.app; Windsurf / Devin Desktop | Check official identity, destination, access, migration, and shutdown guidance |
 | Fast-changing boundaries | Complete by 2026-09-25 to 2026-09-26 | Productivity, Automation, Coding, Business, Canva AI, DeepL, ElevenLabs | Recheck official product, help, pricing, privacy, security, policy, and legal sources as relevant |
 | General freshness | Complete by 2026-11-25 to 2026-11-26 | Remaining Writing, Image, Video, Audio, Learning, and Presentation pages | Recheck identity, official URLs, major workflow scope, rights, consent, source verification, and availability |
-| Draft readiness | Trigger-based only | SciSpace; Tome | Revisit only when stable official product and supporting sources are available |
+| Draft readiness | Trigger-based only | SciSpace; Tome; Clipdrop | Revisit only when stable official product and supporting sources are available |
 
 Example AI Assistant remains an internal model page and is not a publication
 candidate.
@@ -64,6 +64,7 @@ Use small batches:
 5. Business and cross-category exceptions: HubSpot Breeze, Salesforce
    Agentforce, Zoho Zia, Shopify Sidekick, Fin, Canva AI, DeepL, and
    ElevenLabs.
+6. Design workflow exception: Figma AI.
 
 Focus on account and workspace boundaries, connected services, model or
 provider choices, data-use controls, privacy and retention settings, credits,
@@ -78,7 +79,7 @@ Review the remaining pages by category:
 - Writing Tools except DeepL: Copy.ai, Frase, Grammarly, Jasper, Surfer, and
   Writesonic.
 - Image Tools except Canva AI: Adobe Firefly, Midjourney, Ideogram, Leonardo
-  AI, and Stable Diffusion.
+  AI, Stable Diffusion, Kittl, Photoroom, and Microsoft Designer.
 - Video Tools: Runway, Pika, Luma AI, Descript, and Synthesia.
 - Audio Tools except ElevenLabs: Murf AI, Speechify, Suno, Udio, and Adobe
   Podcast.

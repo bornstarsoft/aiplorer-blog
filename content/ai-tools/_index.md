@@ -92,6 +92,9 @@ An AI assistant from Microsoft that can support everyday questions, writing help
 {{< card title="Canva AI" href="/ai-tools/tools/canva-ai/" label="Reviewed" >}}
 AI-related features within Canva that can support design ideas, writing, visual content drafts, and creative workflow planning.
 {{< /card >}}
+{{< card title="Figma AI" href="/ai-tools/tools/figma-ai/" label="Reviewed" >}}
+AI features within Figma that may help users explore design ideas, prepare interface drafts, and support collaborative design workflows.
+{{< /card >}}
 {{< card title="Notion AI" href="/ai-tools/tools/notion-ai/" label="Reviewed" >}}
 AI-related features within Notion that can support writing, summarizing, organizing notes, and productivity workflows.
 {{< /card >}}
@@ -181,6 +184,15 @@ An AI image and video creation platform that may help users explore visual conce
 {{< /card >}}
 {{< card title="Stable Diffusion" href="/ai-tools/tools/stable-diffusion/" label="Reviewed" >}}
 A family of AI image models and related workflows that may help users explore visual concepts, image drafts, and creative directions.
+{{< /card >}}
+{{< card title="Kittl" href="/ai-tools/tools/kittl/" label="Reviewed" >}}
+A creative design platform that may help users explore visual concepts, graphics, and brand-related drafts.
+{{< /card >}}
+{{< card title="Photoroom" href="/ai-tools/tools/photoroom/" label="Reviewed" >}}
+An image editing and visual content tool that may help users prepare product images, creative drafts, and visual concepts.
+{{< /card >}}
+{{< card title="Microsoft Designer" href="/ai-tools/tools/microsoft-designer/" label="Reviewed" >}}
+A Microsoft visual design tool that may help users explore graphics, social content drafts, and creative workflow ideas.
 {{< /card >}}
 {{< card title="Jasper" href="/ai-tools/tools/jasper/" label="Reviewed" >}}
 An AI marketing platform that may help teams plan, create, govern, and review content through agent and content-pipeline workflows.

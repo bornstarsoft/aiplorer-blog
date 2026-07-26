@@ -38,16 +38,16 @@ similarTools:
   - Stable Diffusion
 reviewStatus: "needs-official-review"
 sourceNotes:
-  - "Draft created on 2026-07-26. Official Clipdrop ownership, product, help, pricing, privacy, security, legal, licensing, API, and acceptable-use sources have not yet been reviewed for publication."
-  - "Check https://clipdrop.co/ and current official supporting pages before publishing."
-  - "Do not publish until the current operator, product identity, plan boundaries, AI features, credits, limits, models, editing options, exports, integrations, API access, licensing, privacy, security, commercial use, and exact availability have been avoided or verified against official sources."
+  - "Rechecked https://clipdrop.co/, https://clipdrop.co/en-US/pricing, https://clipdrop.co/terms, https://clipdrop.co/privacy, and https://clipdrop.co/legal-notice on 2026-07-26."
+  - "The current product pages describe Clipdrop as part of Jasper while the legal footer identifies InitML, and the privacy, terms, and legal-notice bodies were not sufficiently readable for a conservative review."
+  - "Keep this page unpublished until the current operator, applicable privacy and legal terms, product scope, plan boundaries, licensing, data handling, and availability can be verified consistently from accessible official sources."
 ---
 
 ## Overview
 
-Clipdrop is a creative image tool that may help users explore image edits, visual concepts, and early creative drafts. Its current operator, product status, official workflow scope, and availability must be confirmed before this page can be considered for publication.
+Clipdrop is a creative image tool that may help users explore image edits, visual concepts, and early creative drafts. Current official product pages were rechecked on 2026-07-26, but the operator and applicable privacy and legal terms were not sufficiently consistent and readable for conservative publication.
 
-This is a draft page. Official Clipdrop sources must be checked for current product, plan, model, editing, export, integration, API, privacy, licensing, and availability details.
+This page remains a draft. Recheck current product, plan, editing, export, integration, privacy, licensing, and availability details before considering publication.
 
 ## Useful For
 

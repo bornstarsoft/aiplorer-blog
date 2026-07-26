@@ -28,6 +28,15 @@ An AI image and video creation platform that may help users explore visual conce
 {{< card title="Stable Diffusion" href="/ai-tools/tools/stable-diffusion/" label="Reviewed" >}}
 A family of AI image models and related workflows that may help users explore visual concepts, image drafts, and creative directions.
 {{< /card >}}
+{{< card title="Kittl" href="/ai-tools/tools/kittl/" label="Reviewed" >}}
+A creative design platform that may help users explore visual concepts, graphics, and brand-related drafts.
+{{< /card >}}
+{{< card title="Photoroom" href="/ai-tools/tools/photoroom/" label="Reviewed" >}}
+An image editing and visual content tool that may help users prepare product images, creative drafts, and visual concepts.
+{{< /card >}}
+{{< card title="Microsoft Designer" href="/ai-tools/tools/microsoft-designer/" label="Reviewed" >}}
+A Microsoft visual design tool that may help users explore graphics, social content drafts, and creative workflow ideas.
+{{< /card >}}
 {{< /card-grid >}}
 
 Browse all reviewed pages in the [Reviewed AI Tools index](/ai-tools/tools/).

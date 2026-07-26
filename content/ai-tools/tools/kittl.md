@@ -14,8 +14,9 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Plans, pricing, credits, limits, AI features, templates, fonts, assets, exports, collaboration options, licensing, and availability may change. Check official Kittl pages for current details."
 officialUrl: "https://www.kittl.com/"
-lastReviewed: ""
-draft: true
+lastReviewed: "2026-07-26"
+lastmod: "2026-07-26T00:00:00+09:00"
+draft: false
 useCases:
   - Draft visual concepts before human review
   - Prepare early graphics or brand directions
@@ -31,23 +32,23 @@ limitations:
   - Template, font, stock, generated-asset, and commercial-use terms should be checked
   - Copyright, trademarks, consent, attribution, and brand requirements require careful review
   - Plans, pricing, credits, limits, AI features, exports, privacy terms, licensing, and availability may change
-  - Official Kittl sources must be reviewed before this page is published
+  - Current official Kittl pages and the license for the selected plan and content should be checked before use
 similarTools:
   - Canva AI
   - Adobe Firefly
   - Ideogram
-reviewStatus: "needs-official-review"
+reviewStatus: "reviewed"
 sourceNotes:
-  - "Draft created on 2026-07-26. Official Kittl product, help, pricing, privacy, security, legal, licensing, and acceptable-use sources have not yet been reviewed for publication."
-  - "Check https://www.kittl.com/ and current official supporting pages before publishing."
-  - "Do not publish until current product identity, plan boundaries, AI features, credits, limits, templates, fonts, assets, exports, collaboration, licensing, privacy, security, commercial use, and exact availability have been avoided or verified against official sources."
+  - "Checked https://www.kittl.com/, https://www.kittl.com/pricing, and https://help.kittl.com/ on 2026-07-26 for current design, AI, editor, plan, template, asset, export, and collaboration context without copying exact plan or limit details."
+  - "Checked https://www.kittl.com/licensing and https://www.kittl.com/privacy on 2026-07-26 for content, upload, community publishing, licensing, rights, and privacy context without making commercial-use or ownership guarantees."
+  - "Published wording directs users to the current license for their plan and content type because rights can differ across Kittl content, user uploads, AI-generated images, and public community publishing."
 ---
 
 ## Overview
 
-Kittl is a creative design tool that may help users explore visual concepts, graphics, and brand-related drafts. It may support early design planning before final assets are reviewed and prepared for use.
+Kittl is a creative design platform that may help users explore visual concepts, graphics, and brand-related drafts. It may support early design planning before final assets are reviewed and prepared for use.
 
-This is a draft page. Official Kittl sources must be checked before publication, especially for current product scope, plans, AI features, assets, fonts, exports, licensing, privacy, and availability.
+Official Kittl sources were reviewed for this page on 2026-07-26. Product scope, plans, AI features, credits, templates, fonts, assets, exports, collaboration, licensing, privacy, and availability can still change.
 
 ## Useful For
 

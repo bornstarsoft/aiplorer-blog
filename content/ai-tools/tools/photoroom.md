@@ -14,8 +14,9 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Plans, pricing, credits, limits, AI features, editing options, exports, team features, integrations, licensing, and availability may change. Check official Photoroom pages for current details."
 officialUrl: "https://www.photoroom.com/"
-lastReviewed: ""
-draft: true
+lastReviewed: "2026-07-26"
+lastmod: "2026-07-26T00:00:00+09:00"
+draft: false
 useCases:
   - Draft product-image edits before review
   - Explore background or composition ideas
@@ -31,23 +32,23 @@ limitations:
   - Subject, likeness, image ownership, logos, trademarks, and brand requirements require careful review
   - Product accuracy, privacy, uploaded media, and commercial-use requirements should be checked
   - Plans, pricing, credits, limits, AI features, exports, integrations, licensing, and availability may change
-  - Official Photoroom sources must be reviewed before this page is published
+  - Current official Photoroom pages and account data-use settings should be checked before use
 similarTools:
   - Canva AI
   - Adobe Firefly
   - Leonardo AI
-reviewStatus: "needs-official-review"
+reviewStatus: "reviewed"
 sourceNotes:
-  - "Draft created on 2026-07-26. Official Photoroom product, help, pricing, privacy, security, legal, licensing, and acceptable-use sources have not yet been reviewed for publication."
-  - "Check https://www.photoroom.com/ and current official supporting pages before publishing."
-  - "Do not publish until current product identity, plan boundaries, AI features, credits, limits, editing options, exports, integrations, team features, licensing, privacy, security, commercial use, and exact availability have been avoided or verified against official sources."
+  - "Checked https://www.photoroom.com/, https://www.photoroom.com/pricing, and https://help.photoroom.com/ on 2026-07-26 for current image-editing, visual-content, plan, credit, account, and availability context without copying exact details."
+  - "Checked https://www.photoroom.com/legal/privacy, https://www.photoroom.com/legal/terms-and-conditions, and https://help.photoroom.com/en/articles/8519362-ownership-of-images on 2026-07-26 for privacy, uploaded content, ownership responsibility, sensitive data, and legal context without making guarantees."
+  - "Checked https://help.photoroom.com/en/articles/10067660-does-the-ai-learn-from-your-images on 2026-07-26 for current uploaded-image training and opt-out context; users should verify their own account settings."
 ---
 
 ## Overview
 
 Photoroom is an image editing and visual content tool that may help users prepare product images, creative drafts, and visual concepts. It may support early editing work before a person checks the final image and its intended use.
 
-This is a draft page. Official Photoroom sources must be checked before publication, including current product scope, plans, editing features, exports, privacy, licensing, and availability.
+Official Photoroom sources were reviewed for this page on 2026-07-26. Product scope, plans, credits, editing features, exports, account settings, uploaded-image data use, privacy, licensing, and availability can still change.
 
 ## Useful For
 
@@ -57,4 +58,4 @@ Users may consider Photoroom for early product-image drafts, background ideas, c
 
 Features, plans, pricing, credits, limits, editing options, exports, integrations, licensing, privacy terms, and availability can change. Check current official Photoroom pages before relying on a capability.
 
-Be careful with people, likenesses, customer images, private media, product accuracy, logos, trademarks, uploaded assets, and confidential material. Confirm consent, ownership, brand, attribution, license, and commercial-use requirements before publishing or selling output.
+Be careful with people, likenesses, customer images, private media, product accuracy, logos, trademarks, uploaded assets, and confidential material. Review current account data-use controls, and confirm consent, ownership, brand, attribution, license, and commercial-use requirements before publishing or selling output.

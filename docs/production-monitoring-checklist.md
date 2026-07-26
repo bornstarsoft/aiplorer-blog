@@ -10,10 +10,9 @@ tool maintenance. It replaces the original first-days launch checklist.
 
 - Production and canonical domain: `https://aiplorer.com/`
 - `https://www.aiplorer.com/` redirects with HTTP 301 to the apex domain.
-- 60 reviewed public tool pages are grouped across 10 public categories.
-- SciSpace, Tome, and Example AI Assistant remain draft-only.
-- The production sitemap contains 888 unique URLs and excludes all three
-  drafts.
+- 64 reviewed public tool pages are grouped across 10 public categories.
+- SciSpace, Tome, Clipdrop, and Example AI Assistant remain draft-only.
+- The production sitemap excludes all four drafts.
 - Production HTML contains no unresolved internal link target in the
   2026-07-26 structure audit.
 - `/posts/page/2/` and later use self-canonical pager URLs.
@@ -47,7 +46,7 @@ Confirm:
 - production output is restored last
 - changed public routes exist in `public/`
 - changed public routes appear in `public/sitemap.xml` when intended
-- SciSpace, Tome, and Example AI Assistant are absent from production output
+- SciSpace, Tome, Clipdrop, and Example AI Assistant are absent from production output
   and the production sitemap
 - no generated output or unrelated file is staged
 - no legacy post is changed unless separately approved
@@ -175,8 +174,8 @@ Follow `docs/reviewed-tools-monitoring-plan.md`:
 - treat command-line HTTP 403 responses as requiring manual browser review,
   not as automatic evidence of a broken official URL
 
-SciSpace and Tome remain draft until stable official sources support a new
-conservative review.
+SciSpace, Tome, and Clipdrop remain draft until stable official sources support
+a new conservative review.
 
 ## Incident Response
 

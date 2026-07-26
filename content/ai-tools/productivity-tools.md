@@ -30,6 +30,9 @@ An AI assistant from Microsoft that can support everyday questions, writing help
 {{< card title="Notion AI" href="/ai-tools/tools/notion-ai/" label="Reviewed" >}}
 AI-related features within Notion that can support writing, summarizing, organizing notes, and productivity workflows.
 {{< /card >}}
+{{< card title="Figma AI" href="/ai-tools/tools/figma-ai/" label="Reviewed" >}}
+AI features within Figma that may help users explore design ideas, prepare interface drafts, and support collaborative design workflows.
+{{< /card >}}
 {{< card title="Otter.ai" href="/ai-tools/tools/otter-ai/" label="Reviewed" >}}
 A meeting transcription and note-taking tool that may help users prepare transcripts, summaries, and follow-up notes for review.
 {{< /card >}}

@@ -8,33 +8,73 @@ links.
 
 ## Implementation Status
 
-The five candidate pages were added as unpublished drafts on 2026-07-26. They
-remain `draft: true` with `reviewStatus: "needs-official-review"` and an empty
-`lastReviewed` value. No candidate is linked from a production listing,
-category page, or navigation.
+The five candidate pages were added as unpublished drafts and reviewed
+independently against current official sources on 2026-07-26.
+
+Figma AI, Kittl, Photoroom, and Microsoft Designer passed conservative review
+and were prepared for publication. Clipdrop remains `draft: true` with
+`reviewStatus: "needs-official-review"` because the current product pages,
+operator references, and readable legal or privacy material were not
+sufficiently consistent for a conservative public page.
 
 ## Candidate Scope
 
 | Candidate | Planned slug | Initial category | Draft decision |
 | --- | --- | --- | --- |
-| Figma AI | `figma-ai` | Productivity Tools | Candidate only |
-| Kittl | `kittl` | Image Tools | Candidate only |
-| Photoroom | `photoroom` | Image Tools | Candidate only |
-| Clipdrop | `clipdrop` | Image Tools | Candidate only |
-| Microsoft Designer | `microsoft-designer` | Image Tools | Candidate only |
+| Figma AI | `figma-ai` | Productivity Tools | Reviewed for publication |
+| Kittl | `kittl` | Image Tools | Reviewed for publication |
+| Photoroom | `photoroom` | Image Tools | Reviewed for publication |
+| Clipdrop | `clipdrop` | Image Tools | Remains draft |
+| Microsoft Designer | `microsoft-designer` | Image Tools | Reviewed for publication |
 
 The existing taxonomy is sufficient for a draft batch. Do not create a Design
 Tools category unless later reviewed pages cannot be described accurately
 within the current categories and there is enough reviewed coverage to justify
 a new public route.
 
-Figma AI is initially mapped to Productivity Tools because its expected review
-scope includes collaborative design and project workflows rather than only
-image output. The category remains subject to official-source review.
+Figma AI remains mapped to Productivity Tools because its reviewed scope
+includes collaborative design and project workflows rather than only image
+output.
+
+## Review Result
+
+Official sources checked on 2026-07-26:
+
+- Figma AI: `https://www.figma.com/`, `https://www.figma.com/pricing/`,
+  `https://www.figma.com/legal/ai-terms/`,
+  `https://www.figma.com/legal/privacy/`, and
+  `https://www.figma.com/legal/privacy-trust-center/`
+- Kittl: `https://www.kittl.com/`, `https://www.kittl.com/pricing`,
+  `https://help.kittl.com/`, `https://www.kittl.com/licensing`, and
+  `https://www.kittl.com/privacy`
+- Photoroom: `https://www.photoroom.com/`,
+  `https://www.photoroom.com/pricing`, `https://help.photoroom.com/`,
+  `https://www.photoroom.com/legal/privacy`,
+  `https://www.photoroom.com/legal/terms-and-conditions`,
+  `https://help.photoroom.com/en/articles/8519362-ownership-of-images`,
+  and
+  `https://help.photoroom.com/en/articles/10067660-does-the-ai-learn-from-your-images`
+- Clipdrop: `https://clipdrop.co/`, `https://clipdrop.co/en-US/pricing`,
+  `https://clipdrop.co/terms`, `https://clipdrop.co/privacy`, and
+  `https://clipdrop.co/legal-notice`
+- Microsoft Designer: `https://designer.microsoft.com/`,
+  `https://support.microsoft.com/en-us/designer/frequently-asked-questions-about-microsoft-designer`,
+  `https://designer.microsoft.com/consumerTermsOfUse/en-US/consumerTermsOfUse.pdf`,
+  and `https://www.microsoft.com/en-us/privacy/privacystatement`
+
+The published pages avoid exact pricing, credits, limits, feature availability,
+exports, integrations, model details, workspace guarantees, privacy or security
+guarantees, and commercial-use conclusions. They retain human-review, rights,
+brand, consent, sensitive-content, and current-official-terms cautions.
+
+Clipdrop's official product pages identify a Jasper relationship while legal
+footers still identify InitML, and the privacy, terms, and legal-notice bodies
+were not sufficiently readable during this review. Recheck it separately
+before any publication decision.
 
 ## Required Draft State
 
-If this batch is created later, every page must start with:
+Every page in this batch started with:
 
 ```yaml
 draft: true
@@ -136,6 +176,6 @@ A candidate may move from draft only after:
 6. The tool independently passes review; a batch does not need to publish
    together.
 
-The next implementation phase, when explicitly started, should create these
-five pages as drafts only. Official-source review and publication must remain
-a separate phase.
+The next phase should validate production and draft behavior, publish only the
+four reviewed pages, and keep Clipdrop absent from public listings and the
+production sitemap.

@@ -14,8 +14,9 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Plans, pricing, AI features, usage limits, workspace options, collaboration features, model access, exports, integrations, and availability may change. Check official Figma pages for current details."
 officialUrl: "https://www.figma.com/"
-lastReviewed: ""
-draft: true
+lastReviewed: "2026-07-26"
+lastmod: "2026-07-26T00:00:00+09:00"
+draft: false
 useCases:
   - Draft design directions before human review
   - Prepare early interface or visual concepts
@@ -31,23 +32,23 @@ limitations:
   - Workspace permissions, sharing, connected services, and confidential design content require careful handling
   - Copyright, trademarks, brand rules, licenses, and commercial-use requirements should be checked
   - Plans, pricing, AI features, limits, models, exports, integrations, privacy terms, and availability may change
-  - Official Figma sources must be reviewed before this page is published
+  - Current official Figma pages should be checked before relying on a feature, plan, workspace setting, or output
 similarTools:
   - Canva AI
   - Adobe Firefly
   - Microsoft Copilot
-reviewStatus: "needs-official-review"
+reviewStatus: "reviewed"
 sourceNotes:
-  - "Draft created on 2026-07-26. Official Figma product, AI, help, pricing, privacy, security, legal, and acceptable-use sources have not yet been reviewed for publication."
-  - "Check https://www.figma.com/ and current official supporting pages before publishing."
-  - "Do not publish until current product identity, plan boundaries, AI feature availability, workspace behavior, sharing, data use, integrations, exports, licensing, privacy, security, and exact availability have been avoided or verified against official sources."
+  - "Checked https://www.figma.com/, https://www.figma.com/pricing/, and https://www.figma.com/legal/ai-terms/ on 2026-07-26 for current product, AI, plan, workspace, credit, input, output, human-review, and availability context without copying exact limits or plan details."
+  - "Checked https://www.figma.com/legal/privacy/ and https://www.figma.com/legal/privacy-trust-center/ on 2026-07-26 for privacy, content-training control, sharing, security, and customer-content context without making guarantees."
+  - "Published wording avoids exact pricing, limits, feature, model, export, integration, workspace, privacy, security, licensing, and availability claims."
 ---
 
 ## Overview
 
-Figma AI may help users explore design ideas, prepare interface drafts, and support collaborative design workflows. It may be useful for early ideation and planning before a designer reviews the details.
+Figma AI refers to AI features available within the Figma platform. It may help users explore design ideas, prepare interface drafts, and support collaborative design workflows before a designer reviews the details.
 
-This is a draft page. Official Figma sources must be checked before publication, including current product scope, plans, AI features, workspace behavior, sharing, privacy, licensing, integrations, and availability.
+Official Figma sources were reviewed for this page on 2026-07-26. Product scope, plans, credits, AI features, workspace behavior, content-training controls, sharing, privacy, licensing, integrations, exports, and availability can still change.
 
 ## Useful For
 

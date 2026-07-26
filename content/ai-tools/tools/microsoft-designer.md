@@ -14,8 +14,9 @@ beginnerFriendly: null
 freePlan: null
 pricingNote: "Plans, pricing, account requirements, AI features, credits, limits, templates, media, exports, connected services, licensing, and availability may change. Check official Microsoft Designer pages for current details."
 officialUrl: "https://designer.microsoft.com/"
-lastReviewed: ""
-draft: true
+lastReviewed: "2026-07-26"
+lastmod: "2026-07-26T00:00:00+09:00"
+draft: false
 useCases:
   - Draft visual concepts before human review
   - Prepare early graphics or social content
@@ -31,23 +32,23 @@ limitations:
   - Microsoft account, connected-service, sharing, and organization-policy requirements should be checked
   - Stock and generated media, copyright, trademarks, consent, brand rules, and commercial-use requirements require careful review
   - Plans, pricing, credits, limits, AI features, templates, exports, privacy terms, licensing, and availability may change
-  - Official Microsoft sources must be reviewed before this page is published
+  - Current official Microsoft Designer pages and terms should be checked before relying on an account, feature, or intended use
 similarTools:
   - Canva AI
   - Adobe Firefly
   - Microsoft Copilot
-reviewStatus: "needs-official-review"
+reviewStatus: "reviewed"
 sourceNotes:
-  - "Draft created on 2026-07-26. Official Microsoft Designer product, support, pricing, privacy, security, legal, responsible-AI, licensing, and acceptable-use sources have not yet been reviewed for publication."
-  - "Check https://designer.microsoft.com/ and current official Microsoft supporting pages before publishing."
-  - "Do not publish until current product identity, account requirements, plan boundaries, AI features, credits, limits, templates, media, exports, connected services, licensing, privacy, security, commercial use, and exact availability have been avoided or verified against official sources."
+  - "Checked https://designer.microsoft.com/ and https://support.microsoft.com/en-us/designer/frequently-asked-questions-about-microsoft-designer on 2026-07-26 for current product identity, personal-use context, Microsoft account access, creative workflows, responsible-AI, prompt handling, and availability context."
+  - "Checked https://designer.microsoft.com/consumerTermsOfUse/en-US/consumerTermsOfUse.pdf and https://www.microsoft.com/en-us/privacy/privacystatement on 2026-07-26 for intended-use, third-party-rights, content-policy, privacy, and data-processing context without making licensing, privacy, or commercial-use guarantees."
+  - "Published wording avoids exact pricing, credits, limits, feature, integration, export, rights, privacy, security, and availability claims and directs users to current Designer terms for their intended use."
 ---
 
 ## Overview
 
 Microsoft Designer is a visual design tool that may help users explore graphics, social content drafts, and creative workflow ideas. It may support early design work before a person reviews the final content and its intended use.
 
-This is a draft page. Official Microsoft sources must be checked before publication, including current Designer identity, account requirements, plans, AI features, connected services, media, exports, privacy, licensing, and availability.
+Official Microsoft sources were reviewed for this page on 2026-07-26. Current account requirements, intended-use terms, plans, AI features, connected services, media, exports, privacy, licensing, and availability should still be checked before relying on the service.
 
 ## Useful For
 

@@ -1732,3 +1732,58 @@ assets, and changing availability.
 
 The batch scope and publication gate are recorded in
 `docs/design-creative-draft-batch-plan.md`.
+
+## Design And Creative Official-Source Review
+
+The five design and creative drafts were reviewed independently against
+official sources on 2026-07-26.
+
+Four pages passed conservative review and were prepared for publication:
+
+- Figma AI
+- Kittl
+- Photoroom
+- Microsoft Designer
+
+These pages now use:
+
+```yaml
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-07-26"
+```
+
+Official sources checked:
+
+- Figma AI: `https://www.figma.com/`, `https://www.figma.com/pricing/`,
+  `https://www.figma.com/legal/ai-terms/`,
+  `https://www.figma.com/legal/privacy/`, and
+  `https://www.figma.com/legal/privacy-trust-center/`
+- Kittl: `https://www.kittl.com/`, `https://www.kittl.com/pricing`,
+  `https://help.kittl.com/`, `https://www.kittl.com/licensing`, and
+  `https://www.kittl.com/privacy`
+- Photoroom: `https://www.photoroom.com/`,
+  `https://www.photoroom.com/pricing`, `https://help.photoroom.com/`,
+  `https://www.photoroom.com/legal/privacy`,
+  `https://www.photoroom.com/legal/terms-and-conditions`,
+  `https://help.photoroom.com/en/articles/8519362-ownership-of-images`,
+  and
+  `https://help.photoroom.com/en/articles/10067660-does-the-ai-learn-from-your-images`
+- Microsoft Designer: `https://designer.microsoft.com/`,
+  `https://support.microsoft.com/en-us/designer/frequently-asked-questions-about-microsoft-designer`,
+  `https://designer.microsoft.com/consumerTermsOfUse/en-US/consumerTermsOfUse.pdf`,
+  and `https://www.microsoft.com/en-us/privacy/privacystatement`
+
+Published wording avoids exact pricing, credits, limits, models, exports,
+integrations, collaboration guarantees, commercial-use conclusions, privacy or
+security guarantees, and exact feature availability. Special caution areas
+include output review, facts and text, design accessibility, copyright,
+trademarks, likeness and consent, brand rules, templates, fonts, uploaded and
+stock media, workspace and sharing settings, content-training controls,
+account data-use settings, sensitive assets, and current intended-use terms.
+
+Clipdrop remains `draft: true` with
+`reviewStatus: "needs-official-review"`. The official product, pricing, terms,
+privacy, and legal-notice URLs were checked, but current operator references
+and readable legal or privacy content were not sufficiently consistent for
+conservative publication. It is not linked publicly.
