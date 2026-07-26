@@ -117,6 +117,21 @@
                 <a href="{{ .href }}">{{ .label }}</a>
               {{ end }}
             </nav>
+            <div class="aiplorer-workflow-collection__handoff">
+              <div>
+                <p class="aiplorer-kicker">Next step</p>
+                <strong>Compare candidates on one repeatable task</strong>
+                <p>Open a related category in the comparison workspace, use its same-task plan, and keep promising candidates in your local shortlist.</p>
+              </div>
+              <nav aria-label="Compare categories related to {{ .title }}">
+                {{ range .links }}
+                  <a href="/ai-tools/compare/#compare-{{ .label | anchorize }}">
+                    Compare {{ .label }}
+                    <span aria-hidden="true">&rarr;</span>
+                  </a>
+                {{ end }}
+              </nav>
+            </div>
           </section>
         {{ end }}
       </div>

@@ -30,6 +30,8 @@ Official references:
 - Titles resolve only to published pages with `reviewStatus: "reviewed"`.
 - Missing, draft, or unreviewed titles do not render as public links.
 - Each workflow includes a human-review checkpoint tailored to its risk area.
+- Each workflow links its related categories to the matching same-task groups on
+  `/ai-tools/compare/`, providing a direct handoff from discovery to evaluation.
 - Tool order is a curated reading path, not a rank, score, recommendation,
   sponsorship, or paid placement.
 - No JavaScript, database, search index, or automated popularity signal is
@@ -38,6 +40,8 @@ Official references:
 ## Public Routes
 
 - `/ai-tools/workflows/` provides the task-first overview.
+- Each workflow keeps category-guide links separate from category-comparison
+  actions so visitors can choose between more context and an immediate test.
 - Homepage, AI Tools landing, reviewed index, review tracker, and tool detail
   pages link to the workflow collections.
 - Existing tool, category, and legacy post URLs remain unchanged.

@@ -2945,6 +2945,64 @@ main#main-content:has(> .aiplorer-content-article) {
   border-color: var(--aiplorer-teal);
 }
 
+.aiplorer-workflow-collection__handoff {
+  display: grid;
+  margin-top: 1.25rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--aiplorer-line);
+  align-items: end;
+  grid-template-columns: minmax(0, 1fr) minmax(17rem, 0.9fr);
+  gap: 1rem 2rem;
+}
+
+.aiplorer-workflow-collection__handoff .aiplorer-kicker {
+  margin-bottom: 0.2rem;
+}
+
+.aiplorer-workflow-collection__handoff strong {
+  display: block;
+  color: var(--aiplorer-ink);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.aiplorer-workflow-collection__handoff p:last-child {
+  max-width: 42rem;
+  margin: 0.35rem 0 0;
+  color: var(--aiplorer-muted);
+  font-size: 0.73rem;
+  line-height: 1.5;
+}
+
+.aiplorer-workflow-collection__handoff nav {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.aiplorer-workflow-collection__handoff nav a {
+  display: inline-flex;
+  min-height: 2.45rem;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--aiplorer-teal);
+  border-radius: 6px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+  color: var(--aiplorer-teal);
+  font-size: 0.71rem;
+  font-weight: 750;
+  line-height: 1.3;
+  text-decoration: none;
+}
+
+.aiplorer-workflow-collection__handoff nav a:hover,
+.aiplorer-workflow-collection__handoff nav a:focus-visible {
+  background: var(--aiplorer-teal);
+  color: #fff;
+}
+
 .aiplorer-section--trend-watch {
   border-top: 1px solid var(--aiplorer-line);
   border-bottom: 1px solid var(--aiplorer-line);
@@ -6254,6 +6312,15 @@ main#main-content:has(> .aiplorer-content-article) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .aiplorer-workflow-collection__handoff {
+    align-items: start;
+    grid-template-columns: 1fr;
+  }
+
+  .aiplorer-workflow-collection__handoff nav {
+    justify-content: flex-start;
+  }
+
   .aiplorer-trend-watch__hero .aiplorer-shell,
   .aiplorer-trend-watch__next .aiplorer-shell,
   .aiplorer-compare__hero .aiplorer-shell,
@@ -6538,6 +6605,11 @@ main#main-content:has(> .aiplorer-content-article) {
   }
 
   .aiplorer-workflow-tool-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .aiplorer-workflow-collection__handoff nav {
+    display: grid;
     grid-template-columns: 1fr;
   }
 
