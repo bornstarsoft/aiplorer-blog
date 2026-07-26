@@ -825,6 +825,18 @@ main#main-content:has(> .aiplorer-content-article) {
   text-decoration: underline;
 }
 
+.aiplorer-directory-resume {
+  border-top: 0;
+  background: #fff;
+}
+
+.aiplorer-directory-resume .aiplorer-home-evaluation__copy > p[data-directory-resume-tools] {
+  overflow: hidden;
+  color: var(--aiplorer-text);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .aiplorer-section {
   padding: 4.5rem 0;
   background: #fff;

@@ -90,6 +90,39 @@
       </div>
     </section>
 
+    <section
+      class="aiplorer-home-evaluation aiplorer-directory-resume"
+      data-directory-resume
+      hidden
+      aria-labelledby="directory-resume-heading"
+    >
+      <div class="aiplorer-shell">
+        <span class="aiplorer-home-evaluation__icon">
+          {{ partial "aiplorer-icon.html" "bookmark" }}
+        </span>
+        <div class="aiplorer-home-evaluation__copy" aria-live="polite">
+          <p class="aiplorer-kicker">Saved shortlist</p>
+          <h2 id="directory-resume-heading" data-directory-resume-heading>
+            Continue with your saved AI tool candidates
+          </h2>
+          <p data-directory-resume-tools>Your saved reviewed tools will appear here.</p>
+          <p class="aiplorer-home-evaluation__stage" data-directory-resume-progress>
+            Continue your private candidate checks.
+          </p>
+          <small>Stored only in this browser. This is not a ranking or recommendation.</small>
+        </div>
+        <nav aria-label="Continue with saved AI tools">
+          <a data-directory-resume-primary href="/ai-tools/shortlist/">
+            <span data-directory-resume-primary-label>Open shortlist</span>
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+          <a href="/ai-tools/compare/?view=shortlist">
+            Compare saved tools <span aria-hidden="true">&rarr;</span>
+          </a>
+        </nav>
+      </div>
+    </section>
+
     <nav class="aiplorer-category-jump" aria-label="Jump to tool category">
       <div class="aiplorer-shell">
         <span class="aiplorer-category-jump__label">Jump to</span>

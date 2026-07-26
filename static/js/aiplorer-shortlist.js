@@ -877,6 +877,109 @@
     }
   }
 
+  function updateDirectoryResume(saved) {
+    var section = document.querySelector("[data-directory-resume]");
+    if (!section) {
+      return;
+    }
+
+    var heading = section.querySelector("[data-directory-resume-heading]");
+    var tools = section.querySelector("[data-directory-resume-tools]");
+    var progress = section.querySelector("[data-directory-resume-progress]");
+    var primary = section.querySelector("[data-directory-resume-primary]");
+    var primaryLabel = section.querySelector("[data-directory-resume-primary-label]");
+    var trialState = readTrialState();
+    var stageState = readCandidateStageState();
+    var titlesByPath = {};
+    var completed = 0;
+    var stageCounts = {
+      researching: 0,
+      testing: 0,
+      ready: 0,
+      unset: 0
+    };
+
+    document.querySelectorAll("[data-shortlist-path]").forEach(function (button) {
+      var path = button.getAttribute("data-shortlist-path");
+      var title = button.getAttribute("data-shortlist-title");
+      if (validPath(path) && title && !titlesByPath[path]) {
+        titlesByPath[path] = title;
+      }
+    });
+
+    saved.forEach(function (path) {
+      var stage = cleanCandidateStage(stageState[path]);
+      stageCounts[stage || "unset"] += 1;
+      completed += cleanChecks(trialState[path]).length;
+    });
+
+    var savedTitles = Array.from(saved).map(function (path) {
+      return titlesByPath[path] || "";
+    }).filter(Boolean);
+    var visibleTitles = savedTitles.slice(0, 3);
+    var hiddenTitleCount = Math.max(saved.size - visibleTitles.length, 0);
+    var resumeStage = stageCounts.testing
+      ? "testing"
+      : stageCounts.ready
+        ? "ready"
+        : stageCounts.researching
+          ? "researching"
+          : "unset";
+    var resumeCount = stageCounts[resumeStage];
+    var resumeComplete = Array.from(saved).reduce(function (total, path) {
+      var stage = cleanCandidateStage(stageState[path]);
+      var matchesResumeStage =
+        resumeStage === "unset" ? !stage : stage === resumeStage;
+      return total + (matchesResumeStage ? cleanChecks(trialState[path]).length : 0);
+    }, 0);
+    var resumeTotal = resumeCount * allowedChecks.length;
+
+    section.hidden = saved.size === 0;
+    if (heading) {
+      heading.textContent =
+        "Continue with " +
+        saved.size +
+        " saved AI tool " +
+        (saved.size === 1 ? "candidate" : "candidates");
+    }
+    if (tools) {
+      tools.textContent = visibleTitles.length
+        ? visibleTitles.join(", ") +
+          (hiddenTitleCount > 0 ? " +" + hiddenTitleCount + " more" : "")
+        : "Saved candidates from this browser.";
+    }
+    if (progress) {
+      progress.textContent =
+        "Next queue: " +
+        (resumeStage === "unset" ? "Set a stage" : candidateStageLabel(resumeStage)) +
+        " · " +
+        resumeCount +
+        " " +
+        (resumeCount === 1 ? "candidate" : "candidates") +
+        " · " +
+        resumeComplete +
+        " of " +
+        resumeTotal +
+        " checks complete (" +
+        completed +
+        " of " +
+        saved.size * allowedChecks.length +
+        " overall).";
+    }
+    if (primary && primaryLabel) {
+      var resumeLabels = {
+        testing: "Continue testing",
+        ready: "Review ready candidates",
+        researching: "Continue research",
+        unset: "Set candidate stages"
+      };
+
+      primary.href = "/ai-tools/shortlist/?stage=" + resumeStage;
+      primaryLabel.textContent =
+        resumeLabels[resumeStage] + (resumeCount ? " " + resumeCount : "");
+    }
+  }
+
   function updateHomeReviewPulse() {
     var section = document.querySelector("[data-home-review-pulse]");
     if (!section) {
@@ -1035,6 +1138,7 @@
     updateButtons(saved);
     updateShortlistPage(saved);
     updateHomeEvaluation(saved);
+    updateDirectoryResume(saved);
     updateHomeReviewPulse();
     updateCandidateStages(saved);
     updateHomeSearchResume();

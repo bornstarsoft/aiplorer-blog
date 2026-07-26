@@ -19,6 +19,10 @@ directory where category browsing alone can become slow.
   compact May fit preview before the visitor opens the full review.
 - Each result also offers a separate local bookmark control so visitors can
   build a shortlist without losing the current query or category.
+- When saved candidates exist, the Directory shows a compact resume panel with
+  up to three saved tool names, the next candidate stage, and private checklist
+  progress. It links directly to the relevant shortlist stage and to the
+  saved-only comparison view.
 - The same May fit signal appears on homepage, category, related-tool, and
   recently viewed cards so visitors can keep the same selection context while
   moving through Aiplorer.
@@ -50,6 +54,9 @@ directory where category browsing alone can become slow.
   create an account, remote profile, or recommendation signal.
 - Saved search state uses the local `aiplorer-last-tool-search-v1` browser key.
   It does not sync across browsers or devices.
+- The Directory resume panel reads only the same browser-local shortlist,
+  decision-stage, and candidate-check state. It does not send that state to
+  Aiplorer or use it to rank tools.
 - Draft tools remain outside production output and cannot appear in finder
   results.
 
