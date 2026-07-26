@@ -5,10 +5,10 @@ Date: 2026-07-26
 ## Purpose
 
 The review tracker gives visitors a lightweight reason to return by showing
-when Aiplorer last checked each public tool page against official sources. It
-uses existing `lastReviewed`, `reviewStatus`, category, and description
-metadata, so its public log does not require JavaScript, a database, or
-automated rankings.
+when Aiplorer last checked each public tool page against official sources and
+when reviewed Guides and Use Cases were refreshed. It uses existing
+`lastReviewed`, `reviewStatus`, section, category, and description metadata, so
+its public log does not require a database or automated rankings.
 
 The tracker is intentionally not a vendor product changelog. A recorded review
 date does not promise that pricing, availability, policies, limits, or features
@@ -34,8 +34,8 @@ Official references:
 
 ## Public Behavior
 
-- `/ai-tools/review-updates/` lists only published pages with
-  `reviewStatus: "reviewed"`.
+- `/ai-tools/review-updates/` lists only published AI Tool, Guide, and Use Case
+  pages with `reviewStatus: "reviewed"`.
 - Entries are grouped by `lastReviewed` date and sorted with the newest group
   first.
 - A small optional browser checkpoint stores the current public review
@@ -46,7 +46,8 @@ Official references:
   introduced.
 - The first visit establishes the checkpoint; an unchanged later visit reports
   that the browser is caught up.
-- Category links lead to the existing grouped reviewed-tools index.
+- Content-type links lead to the reviewed-tools index, Guides, Use Cases, and
+  Trend Watch.
 - Homepage, reviewed index, and tool details link naturally to the tracker.
-- Draft and unresolved tools remain absent from the tracker and production
-  sitemap.
+- Draft and unresolved tools, Guides, and Use Cases remain absent from the
+  tracker and production sitemap.

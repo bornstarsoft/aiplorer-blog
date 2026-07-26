@@ -1,12 +1,16 @@
 {{ define "header" }}{{ partials.Include "page-header.html" . }}{{ end }}
 
 {{ define "main" }}
-  {{- $aiToolPages := where .Site.RegularPages "Section" "ai-tools" -}}
-  {{- $reviewedTools := where (where $aiToolPages "Params.reviewStatus" "reviewed") "Draft" false -}}
-  {{- $sortedTools := sort $reviewedTools "Params.lastReviewed" "desc" -}}
+  {{- $reviewablePages := where .Site.RegularPages "Section" "in" (slice "ai-tools" "guides" "use-cases") -}}
+  {{- $reviewedUpdates := where (where $reviewablePages "Params.reviewStatus" "reviewed") "Draft" false -}}
+  {{- $reviewedTools := where $reviewedUpdates "Section" "ai-tools" -}}
+  {{- $reviewedGuides := where $reviewedUpdates "Section" "guides" -}}
+  {{- $reviewedUseCases := where $reviewedUpdates "Section" "use-cases" -}}
+  {{- $practicalCount := add (len $reviewedGuides) (len $reviewedUseCases) -}}
+  {{- $sortedUpdates := sort $reviewedUpdates "Params.lastReviewed" "desc" -}}
   {{- $categories := partial "aiplorer-category-data.html" . -}}
   {{- $latestReview := "" -}}
-  {{- with index $sortedTools 0 -}}
+  {{- with index $sortedUpdates 0 -}}
     {{- $latestReview = .Params.lastReviewed -}}
   {{- end -}}
 
@@ -24,11 +28,11 @@
             <a class="aiplorer-button aiplorer-button--primary" href="/ai-tools/tools/">
               Browse all reviewed tools
             </a>
-            <a class="aiplorer-button aiplorer-button--light" href="/ai-tools/workflows/">
-              Explore workflow collections
+            <a class="aiplorer-button aiplorer-button--light" href="/guides/">
+              Read practical guides
             </a>
-            <a class="aiplorer-button aiplorer-button--light" href="/ai-tools/trend-watch/">
-              See current AI signals
+            <a class="aiplorer-button aiplorer-button--light" href="/use-cases/">
+              Explore use cases
             </a>
           </div>
         </div>
@@ -38,8 +42,8 @@
             <dd>reviewed services</dd>
           </div>
           <div>
-            <dt>{{ len $categories }}</dt>
-            <dd>directory categories</dd>
+            <dt>{{ $practicalCount }}</dt>
+            <dd>reviewed playbooks</dd>
           </div>
           <div>
             <dt>{{ $latestReview }}</dt>
@@ -69,50 +73,60 @@
         <span class="aiplorer-review-return__icon">{{ partial "aiplorer-icon.html" "history" }}</span>
         <div class="aiplorer-review-return__copy" aria-live="polite">
           <p class="aiplorer-kicker" data-review-return-label>Return visit checkpoint</p>
-          <h2 id="review-return-heading" data-review-return-heading>See the latest Aiplorer review checks</h2>
+          <h2 id="review-return-heading" data-review-return-heading>See the latest Aiplorer review activity</h2>
           <p data-review-return-copy>
-            The latest recorded check is {{ $latestReview }}. This browser can remember the current public review set and identify later review activity when you return.
+            The latest recorded review is {{ $latestReview }}. This browser can remember the current public review set and identify later tool, Guide, or Use Case activity when you return.
           </p>
-          <small>Stored only in this browser. This is review activity, not a claim that a vendor changed its product.</small>
+          <small>Stored only in this browser. Review activity does not mean that a vendor changed its product.</small>
         </div>
         <a href="#review-date-{{ $latestReview | anchorize }}" data-review-return-link>
-          View latest checks <span aria-hidden="true">&darr;</span>
+          View latest reviews <span aria-hidden="true">&darr;</span>
         </a>
       </div>
     </section>
 
-    <nav class="aiplorer-category-jump" aria-label="Browse reviewed tools by category">
+    <nav class="aiplorer-category-jump" aria-label="Explore reviewed updates by content type">
       <div class="aiplorer-shell">
-        <span class="aiplorer-category-jump__label">Browse category</span>
+        <span class="aiplorer-category-jump__label">Explore content</span>
         <div class="aiplorer-category-jump__links">
-          {{ range $categories }}
-            {{- $categoryTools := where $reviewedTools "Params.category" .name -}}
-            {{ if $categoryTools }}
-              <a href="/ai-tools/tools/#{{ .name | anchorize }}">{{ .name }} <span>{{ len $categoryTools }}</span></a>
-            {{ end }}
-          {{ end }}
+          <a href="/ai-tools/tools/">AI tools <span>{{ len $reviewedTools }}</span></a>
+          <a href="/guides/">Guides <span>{{ len $reviewedGuides }}</span></a>
+          <a href="/use-cases/">Use cases <span>{{ len $reviewedUseCases }}</span></a>
+          <a href="/ai-tools/trend-watch/">Trend Watch</a>
         </div>
       </div>
     </nav>
 
     <div class="aiplorer-review-log">
       <div class="aiplorer-shell">
-        {{ range $reviewedTools.GroupByParam "lastReviewed" "desc" }}
+        {{ range $reviewedUpdates.GroupByParam "lastReviewed" "desc" }}
           <section class="aiplorer-review-group" aria-labelledby="review-date-{{ .Key | anchorize }}">
             <div class="aiplorer-review-group__heading">
               <div>
-                <p class="aiplorer-kicker">Official-source review check</p>
+                <p class="aiplorer-kicker">Aiplorer review activity</p>
                 <h2 id="review-date-{{ .Key | anchorize }}">
                   <time datetime="{{ .Key }}">{{ .Key }}</time>
                 </h2>
               </div>
-              <span>{{ len .Pages }} tools checked</span>
+              <span>{{ len .Pages }} review checks</span>
             </div>
             <div class="aiplorer-review-list">
               {{ range .Pages.ByTitle }}
                 {{- $categoryData := dict "icon" "sparkles" "accent" "blue" -}}
-                {{- range where $categories "name" .Params.category -}}
-                  {{- $categoryData = . -}}
+                {{- $entryLabel := "AI tool" -}}
+                {{- $entryContext := .Params.category | default "Reviewed service" -}}
+                {{- if eq .Section "ai-tools" -}}
+                  {{- range where $categories "name" .Params.category -}}
+                    {{- $categoryData = . -}}
+                  {{- end -}}
+                {{- else if eq .Section "guides" -}}
+                  {{- $entryLabel = "Guide" -}}
+                  {{- $entryContext = "Practical workflow" -}}
+                  {{- $categoryData = dict "icon" "book-open" "accent" "violet" -}}
+                {{- else -}}
+                  {{- $entryLabel = "Use case" -}}
+                  {{- $entryContext = "Task playbook" -}}
+                  {{- $categoryData = dict "icon" "square-check" "accent" "teal" -}}
                 {{- end -}}
                 <a
                   class="aiplorer-review-entry"
@@ -125,7 +139,7 @@
                     {{ partial "aiplorer-icon.html" $categoryData.icon }}
                   </span>
                   <span class="aiplorer-review-entry__copy">
-                    <span class="aiplorer-review-entry__category">{{ .Params.category }}</span>
+                    <span class="aiplorer-review-entry__category">{{ $entryLabel }} &middot; {{ $entryContext }}</span>
                     <span class="aiplorer-review-entry__new" data-review-new hidden>New since last visit</span>
                     <strong>{{ .Title }}</strong>
                     <small>{{ .Params.description | truncate 118 }}</small>
