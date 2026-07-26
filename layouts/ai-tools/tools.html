@@ -37,9 +37,33 @@
             <p class="aiplorer-kicker">Quick Finder</p>
             <h2 id="tool-finder-heading">Find a reviewed tool for your task</h2>
           </div>
-          <p class="aiplorer-tool-finder__count" role="status" aria-live="polite" data-tool-finder-count>
-            {{ len $reviewedTools }} reviewed tools
-          </p>
+          <div class="aiplorer-tool-finder__summary">
+            <p class="aiplorer-tool-finder__count" role="status" aria-live="polite" data-tool-finder-count>
+              {{ len $reviewedTools }} reviewed tools
+            </p>
+            <div class="aiplorer-tool-finder__view" role="group" aria-label="Directory view">
+              <button
+                type="button"
+                title="Card view"
+                aria-controls="reviewed-tool-groups"
+                aria-pressed="true"
+                data-tool-finder-view="cards"
+              >
+                {{ partial "aiplorer-icon.html" "grid-2x2" }}
+                <span class="aiplorer-visually-hidden">Card view</span>
+              </button>
+              <button
+                type="button"
+                title="Compact view"
+                aria-controls="reviewed-tool-groups"
+                aria-pressed="false"
+                data-tool-finder-view="compact"
+              >
+                {{ partial "aiplorer-icon.html" "list" }}
+                <span class="aiplorer-visually-hidden">Compact view</span>
+              </button>
+            </div>
+          </div>
         </div>
         <form class="aiplorer-tool-finder__form" action="/ai-tools/tools/" method="get" role="search">
           <div class="aiplorer-tool-finder__query">
@@ -160,7 +184,7 @@
       </div>
     </nav>
 
-    <div class="aiplorer-reviewed-groups">
+    <div class="aiplorer-reviewed-groups" id="reviewed-tool-groups" data-tool-results data-directory-view="cards">
       <div class="aiplorer-shell">
         {{ range $categories }}
           {{- $categoryTools := where $reviewedTools "Params.category" .name -}}

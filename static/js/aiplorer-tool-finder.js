@@ -9,6 +9,7 @@
   var lastSearchStorageKey = "aiplorer-last-tool-search-v1";
   var reviewSnapshotStorageKey = "aiplorer-review-snapshot-v1";
   var shortlistStorageKey = "aiplorer-shortlist-v1";
+  var directoryViewStorageKey = "aiplorer-tool-directory-view-v1";
   var queryInput = finder.querySelector("[data-tool-finder-query]");
   var categorySelect = finder.querySelector("[data-tool-finder-category]");
   var resetButton = finder.querySelector("[data-tool-finder-reset]");
@@ -25,6 +26,10 @@
   var savedControl = finder.querySelector("[data-tool-finder-saved]");
   var savedButton = finder.querySelector("[data-tool-finder-saved-button]");
   var savedCount = finder.querySelector("[data-tool-finder-saved-count]");
+  var viewButtons = Array.prototype.slice.call(
+    finder.querySelectorAll("[data-tool-finder-view]")
+  );
+  var resultsRoot = document.querySelector("[data-tool-results]");
   var newTokens = new Set();
   var savedPaths = new Set();
   var onlyNew = false;
@@ -36,6 +41,40 @@
 
   function normalize(value) {
     return (value || "").toLocaleLowerCase().trim();
+  }
+
+  function cleanDirectoryView(value) {
+    return value === "compact" ? "compact" : "cards";
+  }
+
+  function readDirectoryView() {
+    try {
+      return cleanDirectoryView(window.localStorage.getItem(directoryViewStorageKey));
+    } catch (error) {
+      return "cards";
+    }
+  }
+
+  function writeDirectoryView(value) {
+    try {
+      window.localStorage.setItem(directoryViewStorageKey, value);
+    } catch (error) {
+      // The selected view still works for the current page.
+    }
+  }
+
+  function applyDirectoryView(value) {
+    var view = cleanDirectoryView(value);
+
+    if (resultsRoot) {
+      resultsRoot.setAttribute("data-directory-view", view);
+    }
+
+    viewButtons.forEach(function (button) {
+      var isActive = button.getAttribute("data-tool-finder-view") === view;
+      button.classList.toggle("is-active", isActive);
+      button.setAttribute("aria-pressed", String(isActive));
+    });
   }
 
   function cleanSearchValue(value, maxLength) {
@@ -309,6 +348,14 @@
     });
   });
 
+  viewButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      var view = cleanDirectoryView(button.getAttribute("data-tool-finder-view"));
+      applyDirectoryView(view);
+      writeDirectoryView(view);
+    });
+  });
+
   window.addEventListener("aiplorer:shortlist-change", function (event) {
     var paths =
       event.detail && Array.isArray(event.detail.paths)
@@ -323,7 +370,11 @@
       setSavedPaths(readSavedPaths());
       updateResults();
     }
+    if (event.key === directoryViewStorageKey) {
+      applyDirectoryView(readDirectoryView());
+    }
   });
 
+  applyDirectoryView(readDirectoryView());
   updateResults({ syncUrl: false });
 })();

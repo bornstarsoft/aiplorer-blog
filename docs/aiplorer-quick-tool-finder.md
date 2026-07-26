@@ -43,6 +43,11 @@ directory where category browsing alone can become slow.
   visible result is saved or removed.
 - The saved-candidate resume panel also offers a direct route back to the
   Directory's saved-only view, alongside the shortlist and comparison routes.
+- Visitors can switch between the full card view and a compact scanning view.
+  Compact view keeps the tool name, reviewed task-fit signal, review date, and
+  save control visible while removing repeated description copy.
+- The selected Directory view is stored in the current browser and restored on
+  later visits without changing filter order or result ordering.
 - An empty result offers a clear reset and a route to workflow collections.
 
 ## Trust And Privacy
@@ -73,6 +78,9 @@ directory where category browsing alone can become slow.
 - The saved-candidate filter reads only the existing browser-local shortlist.
   It does not sync candidates, send them to Aiplorer, or change alphabetical
   and category ordering.
+- The Directory view preference uses the local
+  `aiplorer-tool-directory-view-v1` key. It is a presentation preference only
+  and does not affect ranking, review status, or which tools match a filter.
 - Draft tools remain outside production output and cannot appear in finder
   results.
 
