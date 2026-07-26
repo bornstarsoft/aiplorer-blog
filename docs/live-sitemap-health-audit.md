@@ -64,6 +64,30 @@ Pages on 2026-07-26.
 - SciSpace, Tome, and Example AI Assistant remained `404` and absent from the
   sitemap.
 
+## Current Health Recheck
+
+A later 2026-07-26 recheck included the subsequent design, creative, and
+data-analysis publication batches.
+
+- The local and live production sitemaps each contained 893 entries and 893
+  unique URLs.
+- The local and live URL sets were identical.
+- The live sitemap contained all 65 reviewed tool URLs.
+- `/ai-tools/` and `/ai-tools/tools/` each linked to all 65 reviewed tools.
+- The live Business Tools page included Akkio.
+- SciSpace, Tome, Clipdrop, Julius AI, Rows, Obviously AI, Polymer, and Example
+  AI Assistant were absent from the sitemap and returned HTTP `404`.
+- The sitemap, AI Tools landing, reviewed index, and Business Tools page
+  returned HTTP `200`.
+- The sitemap and aggregate HTML responses used
+  `cache-control: public, max-age=0, must-revalidate` and
+  `cf-cache-status: DYNAMIC`, with no `Age` header.
+
+The current recheck found no sitemap, aggregate, cache, or draft-exposure issue
+requiring a public content or configuration change. The earlier 883-entry
+result remains the historical deployment record from immediately after the
+duplicate-permalink sitemap fix.
+
 ## Follow-Up
 
 - Submit or recheck `https://aiplorer.com/sitemap.xml` in Search Console after deployment.
