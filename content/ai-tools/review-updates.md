@@ -12,8 +12,9 @@ vendor changelog, popularity ranking, score, endorsement, or guarantee that
 every feature is unchanged.
 
 Use the Review Activity Finder to focus the chronological log by content type
-or tool category. On a return visit, the private browser checkpoint can also
-surface entries added or checked again since the previous snapshot.
+or tool category. If this browser has a local shortlist, the finder can narrow
+the log to saved candidates. On a return visit, the private browser checkpoint
+can also surface entries added or checked again since the previous snapshot.
 
 AI services and recommended workflows can change between reviews. Recheck
 official pricing, availability, privacy, licensing, limits, and product

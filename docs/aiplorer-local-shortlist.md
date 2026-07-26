@@ -86,6 +86,8 @@ Official sources:
 - Local decision stages, candidate-check totals, and per-tool progress in
   `/ai-tools/compare/`
 - A private Continue evaluating summary on the homepage when candidates are saved
+- Saved-review links from the homepage summary and shortlist workspace
+- A local `Saved candidates` filter in `/ai-tools/review-updates/`
 - My Shortlist link on the homepage
 - Shortlist tab in the shared AI Discovery navigation
 

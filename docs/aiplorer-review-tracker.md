@@ -44,6 +44,12 @@ Official references:
 - On a later visit, entries added or checked again are marked locally. No
   account, server sync, personal data, popularity score, or remote tracking is
   introduced.
+- When this browser has a local shortlist, the activity finder exposes a
+  `Saved candidates` view. It intersects public reviewed tool paths with
+  `aiplorer-shortlist-v1` and can be combined with the return-visit update view.
+- If a saved candidate has a newer Aiplorer review token, the return checkpoint
+  prioritizes that smaller set and links directly to
+  `?view=tools&saved=1&new=1`.
 - The first visit establishes the checkpoint; an unchanged later visit reports
   that the browser is caught up.
 - Content-type links lead to the reviewed-tools index, Guides, Use Cases, and

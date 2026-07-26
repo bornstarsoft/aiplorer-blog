@@ -2,6 +2,7 @@
   "use strict";
 
   var storageKey = "aiplorer-review-snapshot-v1";
+  var shortlistStorageKey = "aiplorer-shortlist-v1";
   var panel = document.querySelector("[data-review-return]");
   var entries = Array.prototype.slice.call(document.querySelectorAll("[data-review-entry]"));
   var filterPanel = document.querySelector("[data-review-filter]");
@@ -42,7 +43,21 @@
     }
   }
 
-  function setupReviewFilter(newTokens) {
+  function readShortlist() {
+    try {
+      var stored = JSON.parse(window.localStorage.getItem(shortlistStorageKey) || "[]");
+      if (Array.isArray(stored)) {
+        return new Set(stored.filter(function (value) {
+          return typeof value === "string";
+        }));
+      }
+    } catch (error) {
+      return new Set();
+    }
+    return new Set();
+  }
+
+  function setupReviewFilter(newTokens, savedPaths) {
     if (!filterPanel) {
       return;
     }
@@ -53,6 +68,8 @@
     var categorySelect = filterPanel.querySelector("[data-review-filter-category]");
     var newButton = filterPanel.querySelector("[data-review-filter-new]");
     var newCount = filterPanel.querySelector("[data-review-filter-new-count]");
+    var savedButton = filterPanel.querySelector("[data-review-filter-saved]");
+    var savedCount = filterPanel.querySelector("[data-review-filter-saved-count]");
     var count = filterPanel.querySelector("[data-review-filter-count]");
     var empty = document.querySelector("[data-review-filter-empty]");
     var resetButtons = Array.prototype.slice.call(
@@ -65,6 +82,13 @@
     var activeType = params.get("view") || "";
     var activeCategory = params.get("category") || "";
     var onlyNew = params.get("new") === "1" && newTokens.size > 0;
+    var savedEntryCount = entries.filter(function (entry) {
+      return (
+        entry.getAttribute("data-review-type") === "tools" &&
+        savedPaths.has(entry.getAttribute("data-review-path"))
+      );
+    }).length;
+    var onlySaved = params.get("saved") === "1" && savedEntryCount > 0;
 
     if (validTypes.indexOf(activeType) === -1) {
       activeType = "";
@@ -79,7 +103,7 @@
       activeCategory = "";
     }
 
-    if (activeCategory) {
+    if (activeCategory || onlySaved) {
       activeType = "tools";
     }
 
@@ -104,6 +128,12 @@
         url.searchParams.delete("new");
       }
 
+      if (onlySaved) {
+        url.searchParams.set("saved", "1");
+      } else {
+        url.searchParams.delete("saved");
+      }
+
       window.history.replaceState({}, "", url.pathname + url.search + url.hash);
     }
 
@@ -117,7 +147,9 @@
           !activeCategory ||
           entry.getAttribute("data-review-category") === activeCategory;
         var matchesNew = !onlyNew || newTokens.has(tokenFor(entry));
-        var visible = matchesType && matchesCategory && matchesNew;
+        var matchesSaved =
+          !onlySaved || savedPaths.has(entry.getAttribute("data-review-path"));
+        var visible = matchesType && matchesCategory && matchesNew && matchesSaved;
 
         entry.hidden = !visible;
         if (visible) {
@@ -153,8 +185,13 @@
         newButton.classList.toggle("is-active", onlyNew);
       }
 
+      if (savedButton) {
+        savedButton.setAttribute("aria-pressed", String(onlySaved));
+        savedButton.classList.toggle("is-active", onlySaved);
+      }
+
       resetButtons.forEach(function (button) {
-        button.disabled = !activeType && !activeCategory && !onlyNew;
+        button.disabled = !activeType && !activeCategory && !onlyNew && !onlySaved;
       });
 
       if (count) {
@@ -176,6 +213,7 @@
         activeType = button.getAttribute("data-review-filter-type") || "";
         if (activeType !== "tools") {
           activeCategory = "";
+          onlySaved = false;
         }
         update();
       });
@@ -202,11 +240,26 @@
       });
     }
 
+    if (savedButton && savedEntryCount > 0) {
+      savedButton.hidden = false;
+      if (savedCount) {
+        savedCount.textContent = String(savedEntryCount);
+      }
+      savedButton.addEventListener("click", function () {
+        onlySaved = !onlySaved;
+        if (onlySaved) {
+          activeType = "tools";
+        }
+        update();
+      });
+    }
+
     resetButtons.forEach(function (button) {
       button.addEventListener("click", function () {
         activeType = "";
         activeCategory = "";
         onlyNew = false;
+        onlySaved = false;
         update();
       });
     });
@@ -218,6 +271,14 @@
   var current = entries.map(tokenFor);
   var previous = readSnapshot();
   var newTokens = new Set();
+  var savedPaths = readShortlist();
+  var savedEntries = entries.filter(function (entry) {
+    return (
+      entry.getAttribute("data-review-type") === "tools" &&
+      savedPaths.has(entry.getAttribute("data-review-path"))
+    );
+  });
+  var returnLink = panel.querySelector("[data-review-return-link]");
 
   if (previous === null) {
     label.textContent = "First review checkpoint";
@@ -225,6 +286,10 @@
     copy.textContent =
       "The latest recorded check is " + latestReview +
       ". On your next visit, this browser can identify review entries that were added or checked again.";
+    if (returnLink && savedEntries.length > 0) {
+      returnLink.href = "?view=tools&saved=1";
+      returnLink.textContent = "View saved reviews";
+    }
   } else {
     var previousSet = new Set(previous);
     newTokens = new Set(current.filter(function (token) {
@@ -240,7 +305,24 @@
       }
     });
 
-    if (newTokens.size > 0) {
+    var savedNewEntries = savedEntries.filter(function (entry) {
+      return newTokens.has(tokenFor(entry));
+    });
+
+    if (savedNewEntries.length > 0) {
+      label.textContent = "Saved candidate activity";
+      heading.textContent =
+        savedNewEntries.length +
+        " saved " +
+        (savedNewEntries.length === 1 ? "candidate has" : "candidates have") +
+        " a newer review check";
+      copy.textContent =
+        "Aiplorer checked these saved candidates again since this browser's previous snapshot. Review the page, then verify current product details at the official source.";
+      if (returnLink) {
+        returnLink.href = "?view=tools&saved=1&new=1";
+        returnLink.textContent = "Review saved activity";
+      }
+    } else if (newTokens.size > 0) {
       label.textContent = "Since your last visit";
       heading.textContent =
         newTokens.size + " review " + (newTokens.size === 1 ? "check" : "checks") + " to revisit";
@@ -251,9 +333,13 @@
       heading.textContent = "You are caught up with Aiplorer reviews";
       copy.textContent =
         "No newer review checks are recorded since this browser's previous visit. The latest recorded check remains " + latestReview + ".";
+      if (returnLink && savedEntries.length > 0) {
+        returnLink.href = "?view=tools&saved=1";
+        returnLink.textContent = "View saved reviews";
+      }
     }
   }
 
-  setupReviewFilter(newTokens);
+  setupReviewFilter(newTokens, savedPaths);
   writeSnapshot(current);
 })();
