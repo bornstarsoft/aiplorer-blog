@@ -2,9 +2,9 @@
 {{ define "main" }}
   <article class="flex-l mw8 center ph3 flex-wrap justify-between">
     <header class="mt4 w-100">
-      <aside class="instapaper_ignoref b helvetica tracked ttu">
+      <p class="instapaper_ignoref b helvetica tracked ttu">
         AI Tool
-      </aside>
+      </p>
       <h1 class="f1 athelas mt3 mb1">{{ .Title }}</h1>
       {{ with .Params.description }}
         <p class="f4 lh-copy mid-gray measure">{{ . }}</p>
@@ -15,7 +15,7 @@
       {{ .Content }}
     </div>
 
-    <aside class="w-30-l mt5">
+    <aside class="w-30-l mt5" aria-label="Tool details">
       <div class="aiplorer-tool-facts">
         {{ with .Params.category }}
           <p><strong>Category</strong><br>{{ . }}</p>
@@ -30,7 +30,11 @@
           <p><strong>Pricing note</strong><br>{{ . }}</p>
         {{ end }}
         {{ with .Params.officialUrl }}
-          <p><a class="aiplorer-tool-link" href="{{ . }}" rel="noopener nofollow" target="_blank">Official website</a></p>
+          <p>
+            <a class="aiplorer-tool-link" href="{{ . }}" rel="noopener nofollow" target="_blank">
+              Official {{ $.Title }} website<span class="aiplorer-visually-hidden"> (opens in a new tab)</span>
+            </a>
+          </p>
         {{ end }}
         {{ with .Params.lastReviewed }}
           <p><strong>Last reviewed</strong><br>{{ . }}</p>
