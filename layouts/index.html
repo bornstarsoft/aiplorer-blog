@@ -27,8 +27,8 @@
             <a class="aiplorer-button aiplorer-button--primary" href="/ai-tools/tools/">
               Browse {{ len $reviewedTools }} reviewed tools
             </a>
-            <a class="aiplorer-button aiplorer-button--secondary" href="/guides/how-to-choose-the-right-ai-tool/">
-              Choose with confidence
+            <a class="aiplorer-button aiplorer-button--secondary" href="/ai-tools/review-updates/">
+              See latest review checks
             </a>
           </div>
         </div>
@@ -130,7 +130,10 @@
             <p class="aiplorer-kicker">Freshly checked</p>
             <h2 id="recent-heading">Recently reviewed tools</h2>
           </div>
-          <a class="aiplorer-text-link" href="/ai-tools/tools/">Open the full index <span aria-hidden="true">&rarr;</span></a>
+          <div class="aiplorer-section-heading__links">
+            <a class="aiplorer-text-link" href="/ai-tools/review-updates/">Review tracker <span aria-hidden="true">&rarr;</span></a>
+            <a class="aiplorer-text-link" href="/ai-tools/tools/">Full index <span aria-hidden="true">&rarr;</span></a>
+          </div>
         </div>
         <div class="aiplorer-tool-grid aiplorer-tool-grid--featured">
           {{ range $recentTools }}

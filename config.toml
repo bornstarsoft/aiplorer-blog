@@ -14,7 +14,7 @@ ignoreFiles = [
 [params]
   description = "Aiplorer helps everyday users explore AI tools, guides, and use cases for work and creativity."
   mainSections = ["posts"]
-  custom_css = ["css/aiplorer.css?v=20260726e"]
+  custom_css = ["css/aiplorer.css?v=20260726f"]
 
 [params.ananke]
   show_recent_posts = false

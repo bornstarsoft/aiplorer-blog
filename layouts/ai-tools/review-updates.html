@@ -1,0 +1,114 @@
+{{ define "header" }}{{ partials.Include "page-header.html" . }}{{ end }}
+
+{{ define "main" }}
+  {{- $aiToolPages := where .Site.RegularPages "Section" "ai-tools" -}}
+  {{- $reviewedTools := where (where $aiToolPages "Params.reviewStatus" "reviewed") "Draft" false -}}
+  {{- $sortedTools := sort $reviewedTools "Params.lastReviewed" "desc" -}}
+  {{- $categories := partial "aiplorer-category-data.html" . -}}
+  {{- $latestReview := "" -}}
+  {{- with index $sortedTools 0 -}}
+    {{- $latestReview = .Params.lastReviewed -}}
+  {{- end -}}
+
+  <article class="aiplorer-review-tracker">
+    <section class="aiplorer-review-tracker__hero">
+      <div class="aiplorer-shell">
+        <div class="aiplorer-review-tracker__hero-copy">
+          <p class="aiplorer-eyebrow">
+            <span class="aiplorer-eyebrow__icon">{{ partial "aiplorer-icon.html" "history" }}</span>
+            Review activity
+          </p>
+          <h1>{{ .Title }}</h1>
+          <p class="aiplorer-review-tracker__lead">{{ .Params.description }}</p>
+          <div class="aiplorer-actions">
+            <a class="aiplorer-button aiplorer-button--primary" href="/ai-tools/tools/">
+              Browse all reviewed tools
+            </a>
+            <a class="aiplorer-button aiplorer-button--light" href="/guides/how-to-choose-the-right-ai-tool/">
+              Choose with confidence
+            </a>
+          </div>
+        </div>
+        <dl class="aiplorer-review-tracker__facts" aria-label="Review tracker summary">
+          <div>
+            <dt>{{ len $reviewedTools }}</dt>
+            <dd>reviewed services</dd>
+          </div>
+          <div>
+            <dt>{{ len $categories }}</dt>
+            <dd>directory categories</dd>
+          </div>
+          <div>
+            <dt>{{ $latestReview }}</dt>
+            <dd>latest recorded check</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="aiplorer-review-tracker__context" aria-labelledby="tracker-context-heading">
+      <div class="aiplorer-shell">
+        <span class="aiplorer-review-tracker__context-icon">{{ partial "aiplorer-icon.html" "shield-check" }}</span>
+        <div>
+          <h2 id="tracker-context-heading">Freshness with clear limits</h2>
+          <div class="aiplorer-review-tracker__body">{{ .Content }}</div>
+        </div>
+      </div>
+    </section>
+
+    <nav class="aiplorer-category-jump" aria-label="Browse reviewed tools by category">
+      <div class="aiplorer-shell">
+        <span class="aiplorer-category-jump__label">Browse category</span>
+        <div class="aiplorer-category-jump__links">
+          {{ range $categories }}
+            {{- $categoryTools := where $reviewedTools "Params.category" .name -}}
+            {{ if $categoryTools }}
+              <a href="/ai-tools/tools/#{{ .name | anchorize }}">{{ .name }} <span>{{ len $categoryTools }}</span></a>
+            {{ end }}
+          {{ end }}
+        </div>
+      </div>
+    </nav>
+
+    <div class="aiplorer-review-log">
+      <div class="aiplorer-shell">
+        {{ range $reviewedTools.GroupByParam "lastReviewed" "desc" }}
+          <section class="aiplorer-review-group" aria-labelledby="review-date-{{ .Key | anchorize }}">
+            <div class="aiplorer-review-group__heading">
+              <div>
+                <p class="aiplorer-kicker">Official-source review check</p>
+                <h2 id="review-date-{{ .Key | anchorize }}">
+                  <time datetime="{{ .Key }}">{{ .Key }}</time>
+                </h2>
+              </div>
+              <span>{{ len .Pages }} tools checked</span>
+            </div>
+            <div class="aiplorer-review-list">
+              {{ range .Pages.ByTitle }}
+                {{- $categoryData := dict "icon" "sparkles" "accent" "blue" -}}
+                {{- range where $categories "name" .Params.category -}}
+                  {{- $categoryData = . -}}
+                {{- end -}}
+                <a class="aiplorer-review-entry" href="{{ .RelPermalink }}">
+                  <span class="aiplorer-review-entry__icon" data-accent="{{ $categoryData.accent }}">
+                    {{ partial "aiplorer-icon.html" $categoryData.icon }}
+                  </span>
+                  <span class="aiplorer-review-entry__copy">
+                    <span class="aiplorer-review-entry__category">{{ .Params.category }}</span>
+                    <strong>{{ .Title }}</strong>
+                    <small>{{ .Params.description | truncate 118 }}</small>
+                  </span>
+                  <span class="aiplorer-review-entry__meta">
+                    Checked
+                    <time datetime="{{ .Params.lastReviewed }}">{{ .Params.lastReviewed }}</time>
+                    <span aria-hidden="true">&rarr;</span>
+                  </span>
+                </a>
+              {{ end }}
+            </div>
+          </section>
+        {{ end }}
+      </div>
+    </div>
+  </article>
+{{ end }}
