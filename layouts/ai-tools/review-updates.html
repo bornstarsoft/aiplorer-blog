@@ -124,7 +124,15 @@
                 {{ range $categories }}
                   {{- $categoryTools := where $reviewedTools "Params.category" .name -}}
                   {{ if gt (len $categoryTools) 0 }}
-                    <option value="{{ .name }}">{{ .name }} ({{ len $categoryTools }})</option>
+                    <option
+                      value="{{ .name }}"
+                      data-review-category-path="{{ .path }}"
+                      data-review-category-accent="{{ .accent }}"
+                      data-review-category-task="{{ .testTask }}"
+                      data-review-category-focus="{{ .testFocus }}"
+                    >
+                      {{ .name }} ({{ len $categoryTools }})
+                    </option>
                   {{ end }}
                 {{ end }}
               </select>
@@ -152,6 +160,33 @@
             </button>
           </div>
         </div>
+        <aside class="aiplorer-review-lens" data-review-lens hidden>
+          <span class="aiplorer-review-lens__icon" data-review-lens-icon data-accent="blue">
+            {{ partial "aiplorer-icon.html" "shield-check" }}
+          </span>
+          <div class="aiplorer-review-lens__copy" aria-live="polite">
+            <p class="aiplorer-kicker">Category review lens</p>
+            <h3 data-review-lens-heading>Use one repeatable check</h3>
+            <div class="aiplorer-review-lens__checks">
+              <div>
+                <strong>Repeatable test</strong>
+                <p data-review-lens-task></p>
+              </div>
+              <div>
+                <strong>Review closely</strong>
+                <p data-review-lens-focus></p>
+              </div>
+            </div>
+          </div>
+          <nav aria-label="Continue category review">
+            <a href="/ai-tools/tools/" data-review-lens-category>
+              Open category guide <span aria-hidden="true">&rarr;</span>
+            </a>
+            <a href="/ai-tools/tools/" data-review-lens-directory>
+              Browse matching tools <span aria-hidden="true">&rarr;</span>
+            </a>
+          </nav>
+        </aside>
       </div>
     </section>
 

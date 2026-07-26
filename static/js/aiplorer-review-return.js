@@ -72,6 +72,13 @@
     var savedCount = filterPanel.querySelector("[data-review-filter-saved-count]");
     var count = filterPanel.querySelector("[data-review-filter-count]");
     var empty = document.querySelector("[data-review-filter-empty]");
+    var reviewLens = filterPanel.querySelector("[data-review-lens]");
+    var reviewLensIcon = filterPanel.querySelector("[data-review-lens-icon]");
+    var reviewLensHeading = filterPanel.querySelector("[data-review-lens-heading]");
+    var reviewLensTask = filterPanel.querySelector("[data-review-lens-task]");
+    var reviewLensFocus = filterPanel.querySelector("[data-review-lens-focus]");
+    var reviewLensCategory = filterPanel.querySelector("[data-review-lens-category]");
+    var reviewLensDirectory = filterPanel.querySelector("[data-review-lens-directory]");
     var resetButtons = Array.prototype.slice.call(
       document.querySelectorAll("[data-review-filter-reset]")
     );
@@ -105,6 +112,47 @@
 
     if (activeCategory || onlySaved) {
       activeType = "tools";
+    }
+
+    function updateReviewLens() {
+      if (!reviewLens || !categorySelect || !activeCategory || activeType !== "tools") {
+        if (reviewLens) {
+          reviewLens.hidden = true;
+        }
+        return;
+      }
+
+      var option = categorySelect.options[categorySelect.selectedIndex];
+      var categoryPath =
+        option && option.getAttribute("data-review-category-path");
+      var categoryAccent =
+        (option && option.getAttribute("data-review-category-accent")) || "blue";
+      var categoryTask =
+        option && option.getAttribute("data-review-category-task");
+      var categoryFocus =
+        option && option.getAttribute("data-review-category-focus");
+
+      reviewLens.hidden = false;
+      if (reviewLensIcon) {
+        reviewLensIcon.setAttribute("data-accent", categoryAccent);
+      }
+      if (reviewLensHeading) {
+        reviewLensHeading.textContent = activeCategory + " review lens";
+      }
+      if (reviewLensTask) {
+        reviewLensTask.textContent = categoryTask || "Use the same scoped task with every candidate.";
+      }
+      if (reviewLensFocus) {
+        reviewLensFocus.textContent =
+          categoryFocus || "Review output quality, permissions, limits, and current official details.";
+      }
+      if (reviewLensCategory && categoryPath) {
+        reviewLensCategory.href = categoryPath;
+      }
+      if (reviewLensDirectory) {
+        reviewLensDirectory.href =
+          "/ai-tools/tools/?category=" + encodeURIComponent(activeCategory);
+      }
     }
 
     function syncUrl() {
@@ -179,6 +227,7 @@
         categorySelect.value = activeCategory;
         categorySelect.disabled = Boolean(activeType && activeType !== "tools");
       }
+      updateReviewLens();
 
       if (newButton) {
         newButton.setAttribute("aria-pressed", String(onlyNew));

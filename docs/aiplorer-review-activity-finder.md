@@ -37,6 +37,9 @@ benchmark results to rank individual services.
 - Content-type controls switch among all updates, AI tools, Guides, and Use
   Cases.
 - Choosing a tool category automatically selects the AI tools view.
+- Choosing a tool category also reveals its existing repeatable test task and
+  review focus. The lens links to the matching category guide and filtered
+  reviewed-tool Directory.
 - The URL records the active view so it can be shared or revisited.
 - When the existing local browser checkpoint detects later review activity, a
   New since last visit control becomes available.
@@ -53,3 +56,6 @@ benchmark results to rank individual services.
 - Draft pages are excluded by the existing reviewed and production filters.
 - Review dates indicate Aiplorer editorial activity, not proof that a vendor
   changed its product on that date.
+- Category review lenses reuse Aiplorer's existing editorial test guidance.
+  They are evaluation prompts, not evidence that a tool passed a test or that
+  its current features, pricing, policies, or output are suitable.
