@@ -6015,7 +6015,8 @@ main#main-content:has(> .aiplorer-content-article) {
 }
 
 .aiplorer-shortlist-card__evaluation .aiplorer-shortlist-card__stage,
-.aiplorer-shortlist-card__evaluation .aiplorer-shortlist-card__trial {
+.aiplorer-shortlist-card__evaluation .aiplorer-shortlist-card__trial,
+.aiplorer-shortlist-card__evaluation .aiplorer-shortlist-card__note {
   padding-right: 0.8rem;
   padding-left: 0.8rem;
 }
@@ -6280,6 +6281,82 @@ main#main-content:has(> .aiplorer-content-article) {
 .aiplorer-shortlist-card__trial-items label:has(input:checked) span {
   color: var(--aiplorer-muted);
   text-decoration: line-through;
+}
+
+.aiplorer-shortlist-card__note {
+  padding-top: 0.85rem;
+  padding-bottom: 0.85rem;
+  border-top: 1px solid var(--aiplorer-line);
+}
+
+.aiplorer-shortlist-card__note-heading {
+  display: flex;
+  margin-bottom: 0.65rem;
+  align-items: start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.aiplorer-shortlist-card__note-heading > div {
+  display: grid;
+  gap: 0.12rem;
+}
+
+.aiplorer-shortlist-card__note-heading span,
+.aiplorer-shortlist-card__note label > span {
+  color: var(--aiplorer-ink);
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+.aiplorer-shortlist-card__note-heading strong {
+  color: var(--aiplorer-muted);
+  font-size: 0.62rem;
+  line-height: 1.4;
+}
+
+.aiplorer-shortlist-card__note-heading > small {
+  flex: 0 0 auto;
+  color: var(--aiplorer-muted);
+  font-size: 0.6rem;
+  font-weight: 750;
+}
+
+.aiplorer-shortlist-card__note label {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.aiplorer-shortlist-card__note textarea {
+  width: 100%;
+  min-height: 6.2rem;
+  resize: vertical;
+  padding: 0.62rem 0.68rem;
+  border: 1px solid var(--aiplorer-line-strong);
+  border-radius: 5px;
+  background: #fff;
+  color: var(--aiplorer-text);
+  font: inherit;
+  font-size: 0.68rem;
+  line-height: 1.5;
+}
+
+.aiplorer-shortlist-card__note textarea::placeholder {
+  color: #7a858e;
+}
+
+.aiplorer-shortlist-card__note textarea:focus {
+  border-color: var(--aiplorer-teal);
+  outline: 3px solid rgba(28, 113, 104, 0.16);
+  outline-offset: 1px;
+}
+
+.aiplorer-shortlist-card__note > small {
+  display: block;
+  margin-top: 0.45rem;
+  color: var(--aiplorer-muted);
+  font-size: 0.58rem;
+  line-height: 1.4;
 }
 
 .aiplorer-shortlist-card__meta {

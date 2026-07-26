@@ -15,11 +15,14 @@ tracking.
   tool path.
 - Candidate decision stages use `aiplorer-candidate-stage-v1` and are keyed by
   the reviewed tool path.
+- Private candidate test notes use `aiplorer-candidate-notes-v1`, are limited to
+  600 characters per reviewed tool path, and are saved as the visitor types.
 - The selected shortlist stage view uses
   `aiplorer-shortlist-stage-view-v1`.
 - Aiplorer does not receive or synchronize the saved list.
 - Aiplorer does not receive or synchronize candidate check progress.
 - Aiplorer does not receive or synchronize decision stages.
+- Aiplorer does not receive or synchronize private candidate notes.
 - Clearing browser storage or changing browsers may remove the list.
 - If local storage is unavailable, the current page session keeps an in-memory
   fallback.
@@ -42,6 +45,19 @@ guidance, not evidence that Aiplorer tested or approved a saved service.
 The checks support a return-visit evaluation workflow. They are not ratings,
 scores, endorsements, guarantees, or evidence that a service passed an Aiplorer
 test. Removing a tool from the shortlist also removes its stored check state.
+
+## Private candidate notes
+
+Each expanded candidate evaluation includes a 600-character local note for
+recording what worked, what failed, and what should be verified next. A saved
+note is summarized on the collapsed card so a returning visitor can see that
+test context exists without reopening every candidate.
+
+Notes stay in browser storage and are included in local JSON backups and
+readable Markdown decision briefs. They must not be used for secrets, customer
+data, confidential material, or other sensitive information. A note records the
+visitor's own observation; it is not an Aiplorer test result, endorsement,
+approval, or evidence of tool quality.
 
 ## Decision stages
 
@@ -110,10 +126,10 @@ after the stage and focused check are applied.
 ## Local backup and restore
 
 The shortlist workspace can download a versioned JSON backup containing only
-public reviewed-tool paths, private candidate checks, decision stages, and the
-selected stage view. The file stays on the visitor's device; Aiplorer does not
-upload, receive, or synchronize it. Review Update checkpoints and recent search
-state are deliberately excluded.
+public reviewed-tool paths, private candidate checks, decision stages, private
+test notes, and the selected stage view. The file stays on the visitor's device;
+Aiplorer does not upload, receive, or synchronize it. Review Update checkpoints
+and recent search state are deliberately excluded.
 
 Restore accepts files up to 256 KB, requires the current backup schema, keeps
 only reviewed tool paths present on the current shortlist page, and removes
@@ -126,9 +142,10 @@ browser-storage cleanup or a move to another browser.
 
 The shortlist can also download a local Markdown decision brief. It uses the
 saved order rather than assigning a score or rank and includes each candidate's
-category, short description, first `May fit` and `Check first` signals, Aiplorer
-review date, full review URL, private decision stage, four candidate-check
-states, and stage-specific next action.
+category, short description, first `May fit` and `Check first` signals,
+category-specific same-task test and review focus, Aiplorer review date, full
+review URL, private decision stage, four candidate-check states, stage-specific
+next action, and any private test note.
 
 The brief ends with reminders to recheck official vendor details and review
 important outputs before choosing. It is generated entirely in the browser and
@@ -143,14 +160,17 @@ cost, reliability, and domain-specific performance as top-level capability
 converges. Microsoft's 2026 Work Trend Index places greater emphasis on human
 intent, judgment, quality standards, and responsibility as AI and agents take
 on more execution, and notes that repeatable workflows and quality standards
-help organizations learn from AI-assisted work. The shortlist therefore helps
-visitors record and resume concrete evaluation steps instead of presenting a
-universal winner.
+help organizations learn from AI-assisted work. NIST's AI Resource Center also
+frames testing, evaluation, verification, and validation as practical parts of
+operational AI risk management. The shortlist therefore helps visitors record
+and resume concrete evaluation observations instead of presenting a universal
+winner.
 
 Official sources:
 
 - https://hai.stanford.edu/ai-index/2026-ai-index-report/technical-performance
 - https://www.microsoft.com/en-us/worklab/work-trend-index/agents-human-agency-and-the-opportunity-for-every-organization
+- https://airc.nist.gov/
 
 ## Entry points
 

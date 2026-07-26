@@ -72,7 +72,7 @@
           <div class="aiplorer-shortlist-backup__copy">
             <p class="aiplorer-kicker">Keep your evaluation</p>
             <strong>Take your shortlist with you</strong>
-            <small>Download a readable decision brief, or back up local progress as JSON. Aiplorer does not upload either file; restoring replaces this browser's saved candidates and checklist progress.</small>
+            <small>Download a readable decision brief, or back up local notes and progress as JSON. Aiplorer does not upload either file; restoring replaces this browser's saved candidates, notes, and checklist progress.</small>
           </div>
           <div class="aiplorer-shortlist-backup__actions">
             <button type="button" data-shortlist-export-brief disabled>
@@ -234,6 +234,10 @@
                       <span data-shortlist-evaluation-stage>Stage: Not set</span>
                       <span aria-hidden="true">&middot;</span>
                       <span data-shortlist-evaluation-checks>0 of 4 checks</span>
+                      <span data-shortlist-evaluation-note hidden>
+                        <span aria-hidden="true">&middot;</span>
+                        Note saved
+                      </span>
                     </small>
                   </span>
                   <span class="aiplorer-shortlist-card__evaluation-icon" aria-hidden="true">
@@ -284,10 +288,16 @@
                     </div>
                     <button type="button" data-trial-reset disabled>Reset</button>
                   </div>
-                  <div class="aiplorer-shortlist-card__trial-lens">
+                  <div
+                    class="aiplorer-shortlist-card__trial-lens"
+                    data-shortlist-test-plan
+                  >
                     <span>Same-task test</span>
-                    <strong>{{ $categoryData.testTask }}</strong>
-                    <p><b>Review closely:</b> {{ $categoryData.testFocus }}</p>
+                    <strong data-shortlist-test-task>{{ $categoryData.testTask }}</strong>
+                    <p>
+                      <b>Review closely:</b>
+                      <span data-shortlist-test-focus>{{ $categoryData.testFocus }}</span>
+                    </p>
                     <a href="/ai-tools/compare/?view=shortlist&amp;category={{ .Params.category | urlquery }}">
                       Compare saved {{ .Params.category }} <span aria-hidden="true">&rarr;</span>
                     </a>
@@ -310,6 +320,32 @@
                       <span>Confirmed current plans and limits</span>
                     </label>
                   </div>
+                </div>
+                <div
+                  class="aiplorer-shortlist-card__note"
+                  data-candidate-note="{{ .RelPermalink }}"
+                  data-candidate-note-title="{{ .Title }}"
+                >
+                  <div class="aiplorer-shortlist-card__note-heading">
+                    <div>
+                      <span>Private test note</span>
+                      <strong>Keep the result with this candidate</strong>
+                    </div>
+                    <small><span data-candidate-note-count>0</span> / 600</small>
+                  </div>
+                  <label>
+                    <span>What did you learn?</span>
+                    <textarea
+                      rows="4"
+                      maxlength="600"
+                      placeholder="Record what worked, what failed, and what to verify next."
+                      data-candidate-note-input
+                      aria-describedby="candidate-note-help-{{ .Title | anchorize }}"
+                    ></textarea>
+                  </label>
+                  <small id="candidate-note-help-{{ .Title | anchorize }}">
+                    Saved only in this browser as you type. Do not enter secrets, customer data, or confidential content.
+                  </small>
                 </div>
               </details>
               <div class="aiplorer-shortlist-card__meta">

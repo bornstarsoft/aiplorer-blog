@@ -5,11 +5,13 @@
   var trialStorageKey = "aiplorer-trial-checks-v1";
   var candidateStageStorageKey = "aiplorer-candidate-stage-v1";
   var candidateStageViewStorageKey = "aiplorer-shortlist-stage-view-v1";
+  var candidateNoteStorageKey = "aiplorer-candidate-notes-v1";
   var reviewSnapshotStorageKey = "aiplorer-review-snapshot-v1";
   var lastToolSearchStorageKey = "aiplorer-last-tool-search-v1";
   var backupSchema = "aiplorer-shortlist-backup";
   var backupVersion = 1;
   var backupMaxBytes = 262144;
+  var candidateNoteMaxLength = 600;
   var allowedChecks = ["task", "output", "privacy", "plans"];
   var allowedCandidateStages = ["researching", "testing", "ready"];
   var allowedCandidateStageViews = ["all", "researching", "testing", "ready", "unset"];
@@ -17,6 +19,7 @@
   var memoryTrialState = {};
   var memoryCandidateStageState = {};
   var memoryCandidateStageView = "all";
+  var memoryCandidateNoteState = {};
 
   function cleanSearchValue(value, maxLength) {
     return typeof value === "string" ? value.trim().slice(0, maxLength) : "";
@@ -213,6 +216,53 @@
     }
   }
 
+  function cleanCandidateNote(value) {
+    return typeof value === "string"
+      ? value
+          .replace(/\r\n?/g, "\n")
+          .replace(/\u0000/g, "")
+          .slice(0, candidateNoteMaxLength)
+      : "";
+  }
+
+  function cleanCandidateNoteState(value) {
+    var result = {};
+    if (!value || typeof value !== "object" || Array.isArray(value)) {
+      return result;
+    }
+
+    Object.keys(value).forEach(function (path) {
+      var note = cleanCandidateNote(value[path]);
+      if (validPath(path) && note.trim()) {
+        result[path] = note;
+      }
+    });
+    return result;
+  }
+
+  function readCandidateNoteState() {
+    try {
+      memoryCandidateNoteState = cleanCandidateNoteState(
+        JSON.parse(window.localStorage.getItem(candidateNoteStorageKey) || "{}")
+      );
+    } catch (error) {
+      memoryCandidateNoteState = cleanCandidateNoteState(memoryCandidateNoteState);
+    }
+    return Object.assign({}, memoryCandidateNoteState);
+  }
+
+  function writeCandidateNoteState(value) {
+    memoryCandidateNoteState = cleanCandidateNoteState(value);
+    try {
+      window.localStorage.setItem(
+        candidateNoteStorageKey,
+        JSON.stringify(memoryCandidateNoteState)
+      );
+    } catch (error) {
+      // Keep the current-session fallback when browser storage is unavailable.
+    }
+  }
+
   function candidateStageLabel(value) {
     if (value === "researching") {
       return "Researching";
@@ -287,6 +337,11 @@
         shortlistSet,
         cleanCandidateStageState
       ),
+      notes: stateForPaths(
+        readCandidateNoteState(),
+        shortlistSet,
+        cleanCandidateNoteState
+      ),
       stageView: readCandidateStageView()
     };
   }
@@ -347,6 +402,7 @@
     var savedPaths = readList();
     var stageState = readCandidateStageState();
     var trialState = readTrialState();
+    var noteState = readCandidateNoteState();
     var itemsByPath = {};
 
     document.querySelectorAll("[data-shortlist-item]").forEach(function (item) {
@@ -368,6 +424,9 @@
     var completedChecks = candidates.reduce(function (total, candidate) {
       return total + cleanChecks(trialState[candidate.path]).length;
     }, 0);
+    var savedNotes = candidates.reduce(function (total, candidate) {
+      return total + (cleanCandidateNote(noteState[candidate.path]).trim() ? 1 : 0);
+    }, 0);
     var lines = [
       "# Aiplorer AI tool decision brief",
       "",
@@ -379,6 +438,7 @@
         completedChecks +
         " of " +
         candidates.length * allowedChecks.length,
+      "- Private test notes saved: " + savedNotes,
       "- Order: candidates appear in the order saved, not by score or rank.",
       ""
     ];
@@ -399,9 +459,16 @@
       var limitation = briefText(
         (item.querySelector("[data-shortlist-limitation]") || {}).textContent
       );
+      var testTask = briefText(
+        (item.querySelector("[data-shortlist-test-task]") || {}).textContent
+      );
+      var testFocus = briefText(
+        (item.querySelector("[data-shortlist-test-focus]") || {}).textContent
+      );
       var reviewDate = briefText(item.getAttribute("data-shortlist-review-date"));
       var stage = cleanCandidateStage(stageState[path]);
       var completed = cleanChecks(trialState[path]);
+      var note = cleanCandidateNote(noteState[path]).trim();
 
       lines.push("## " + (index + 1) + ". " + title);
       lines.push("");
@@ -420,6 +487,18 @@
         lines.push("- Check first: " + limitation);
       }
       lines.push("");
+      if (testTask || testFocus) {
+        lines.push("### Same-task test");
+        lines.push("");
+        if (testTask) {
+          lines.push(testTask);
+        }
+        if (testFocus) {
+          lines.push("");
+          lines.push("- Review closely: " + testFocus);
+        }
+        lines.push("");
+      }
       lines.push("### Candidate checks");
       lines.push("");
       allowedChecks.forEach(function (check) {
@@ -435,6 +514,14 @@
       lines.push("");
       lines.push(candidateStageNextText(stage));
       lines.push("");
+      if (note) {
+        lines.push("### Private test note");
+        lines.push("");
+        note.split("\n").forEach(function (line) {
+          lines.push("> " + line);
+        });
+        lines.push("");
+      }
     });
 
     lines.push("## Before choosing");
@@ -493,6 +580,7 @@
       shortlist: shortlist,
       checks: stateForPaths(value.checks, shortlistSet, cleanTrialState),
       stages: stateForPaths(value.stages, shortlistSet, cleanCandidateStageState),
+      notes: stateForPaths(value.notes, shortlistSet, cleanCandidateNoteState),
       stageView: cleanCandidateStageView(value.stageView)
     };
   }
@@ -514,7 +602,7 @@
         if (
           readList().length > 0 &&
           !window.confirm(
-            "Restore this backup? It will replace this browser's saved candidates, stages, and checklist progress."
+            "Restore this backup? It will replace this browser's saved candidates, stages, checklist progress, and private test notes."
           )
         ) {
           announce("Backup restore cancelled.");
@@ -524,6 +612,7 @@
         writeList(backup.shortlist);
         writeTrialState(backup.checks);
         writeCandidateStageState(backup.stages);
+        writeCandidateNoteState(backup.notes);
         writeCandidateStageView(backup.stageView);
         cleanupEvaluationState(backup.shortlist);
         render();
@@ -849,8 +938,10 @@
     var saved = new Set(savedPaths);
     var trialState = readTrialState();
     var candidateStageState = readCandidateStageState();
+    var candidateNoteState = readCandidateNoteState();
     var trialChanged = false;
     var stageChanged = false;
+    var noteChanged = false;
 
     Object.keys(trialState).forEach(function (path) {
       if (!saved.has(path)) {
@@ -866,11 +957,21 @@
       }
     });
 
+    Object.keys(candidateNoteState).forEach(function (path) {
+      if (!saved.has(path)) {
+        delete candidateNoteState[path];
+        noteChanged = true;
+      }
+    });
+
     if (trialChanged) {
       writeTrialState(trialState);
     }
     if (stageChanged) {
       writeCandidateStageState(candidateStageState);
+    }
+    if (noteChanged) {
+      writeCandidateNoteState(candidateNoteState);
     }
   }
 
@@ -1632,6 +1733,29 @@
     });
   }
 
+  function updateCandidateNotes(saved) {
+    var state = readCandidateNoteState();
+
+    document.querySelectorAll("[data-candidate-note]").forEach(function (control) {
+      var path = control.getAttribute("data-candidate-note");
+      var note = saved.has(path) ? cleanCandidateNote(state[path]) : "";
+      var input = control.querySelector("[data-candidate-note-input]");
+      var count = control.querySelector("[data-candidate-note-count]");
+      var item = control.closest("[data-shortlist-item]");
+      var summary = item && item.querySelector("[data-shortlist-evaluation-note]");
+
+      if (input && document.activeElement !== input && input.value !== note) {
+        input.value = note;
+      }
+      if (count) {
+        count.textContent = String(note.length);
+      }
+      if (summary) {
+        summary.hidden = !note.trim();
+      }
+    });
+  }
+
   function render() {
     var list = readList();
     var saved = new Set(list);
@@ -1646,6 +1770,7 @@
     updateDirectoryResume(saved);
     updateHomeReviewPulse();
     updateCandidateStages(saved);
+    updateCandidateNotes(saved);
     updateHomeSearchResume();
   }
 
@@ -1681,6 +1806,45 @@
       restoreShortlistBackup(backupInput.files && backupInput.files[0], backupInput);
     });
   }
+
+  document.addEventListener("input", function (event) {
+    var input = event.target.closest("[data-candidate-note-input]");
+    if (!input) {
+      return;
+    }
+
+    var control = input.closest("[data-candidate-note]");
+    var path = control && control.getAttribute("data-candidate-note");
+    if (!validPath(path) || readList().indexOf(path) === -1) {
+      return;
+    }
+
+    var state = readCandidateNoteState();
+    var note = cleanCandidateNote(input.value);
+    if (input.value !== note) {
+      input.value = note;
+    }
+    if (note.trim()) {
+      state[path] = note;
+    } else {
+      delete state[path];
+    }
+
+    writeCandidateNoteState(state);
+    updateCandidateNotes(new Set(readList()));
+  });
+
+  document.addEventListener("change", function (event) {
+    var input = event.target.closest("[data-candidate-note-input]");
+    if (!input) {
+      return;
+    }
+
+    var control = input.closest("[data-candidate-note]");
+    var title =
+      (control && control.getAttribute("data-candidate-note-title")) || "Candidate";
+    announce(title + ": private test note saved in this browser.");
+  });
 
   document.addEventListener("click", function (event) {
     var homeSearchClear = event.target.closest("[data-home-search-resume-clear]");
@@ -1834,6 +1998,7 @@
       event.key === trialStorageKey ||
       event.key === candidateStageStorageKey ||
       event.key === candidateStageViewStorageKey ||
+      event.key === candidateNoteStorageKey ||
       event.key === reviewSnapshotStorageKey ||
       event.key === lastToolSearchStorageKey
     ) {
