@@ -24,12 +24,42 @@
             Start with what you need to do, compare manually reviewed services,
             and check current details at the official source.
           </p>
+          <form class="aiplorer-hero-finder" action="/ai-tools/tools/" method="get" role="search">
+            <div class="aiplorer-hero-finder__query">
+              <span class="aiplorer-hero-finder__icon">{{ partial "aiplorer-icon.html" "search" }}</span>
+              <label class="aiplorer-visually-hidden" for="home-tool-query">Search reviewed AI tools</label>
+              <input
+                id="home-tool-query"
+                name="q"
+                type="search"
+                placeholder="Search a tool or task, such as meeting notes"
+                autocomplete="off"
+              >
+            </div>
+            <label class="aiplorer-visually-hidden" for="home-tool-category">Choose a category</label>
+            <select id="home-tool-category" name="category">
+              <option value="">All categories</option>
+              {{ range $categories }}
+                {{- $categoryTools := where $reviewedTools "Params.category" .name -}}
+                {{ if $categoryTools }}
+                  <option value="{{ .name }}">{{ .name }}</option>
+                {{ end }}
+              {{ end }}
+            </select>
+            <button type="submit">
+              Find tools
+              <span aria-hidden="true">&rarr;</span>
+            </button>
+          </form>
+          <p class="aiplorer-hero-finder__note">
+            Search across {{ len $reviewedTools }} manually reviewed services. Results are not ranked or paid placements.
+          </p>
           <div class="aiplorer-actions">
-            <a class="aiplorer-button aiplorer-button--primary" href="/ai-tools/tools/">
-              Browse {{ len $reviewedTools }} reviewed tools
-            </a>
             <a class="aiplorer-button aiplorer-button--secondary" href="/ai-tools/compare/">
               Compare reviewed tools
+            </a>
+            <a class="aiplorer-button aiplorer-button--secondary" href="/ai-tools/workflows/">
+              Browse by workflow
             </a>
             <a class="aiplorer-button aiplorer-button--secondary" href="/ai-tools/trend-watch/">
               Track current AI signals

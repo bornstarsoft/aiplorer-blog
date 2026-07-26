@@ -2,3 +2,6 @@
   <script defer src="/js/aiplorer-shortlist.js?v=20260726a"></script>
   <script defer src="/js/aiplorer-recent-tools.js?v=20260726a"></script>
 {{ end }}
+{{ if eq .RelPermalink "/ai-tools/tools/" }}
+  <script defer src="/js/aiplorer-tool-finder.js?v=20260726a"></script>
+{{ end }}

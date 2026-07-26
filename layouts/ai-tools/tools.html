@@ -30,6 +30,53 @@
       </div>
     </section>
 
+    <section class="aiplorer-tool-finder" aria-labelledby="tool-finder-heading" data-tool-finder>
+      <div class="aiplorer-shell">
+        <div class="aiplorer-tool-finder__heading">
+          <div>
+            <p class="aiplorer-kicker">Quick Finder</p>
+            <h2 id="tool-finder-heading">Find a reviewed tool for your task</h2>
+          </div>
+          <p class="aiplorer-tool-finder__count" role="status" aria-live="polite" data-tool-finder-count>
+            {{ len $reviewedTools }} reviewed tools
+          </p>
+        </div>
+        <form class="aiplorer-tool-finder__form" action="/ai-tools/tools/" method="get" role="search">
+          <div class="aiplorer-tool-finder__query">
+            <span class="aiplorer-tool-finder__icon">{{ partial "aiplorer-icon.html" "search" }}</span>
+            <label class="aiplorer-visually-hidden" for="tool-query">Search by tool name or task</label>
+            <input
+              id="tool-query"
+              name="q"
+              type="search"
+              placeholder="Tool name or task"
+              autocomplete="off"
+              data-tool-finder-query
+            >
+          </div>
+          <label class="aiplorer-visually-hidden" for="tool-category">Filter by category</label>
+          <select id="tool-category" name="category" data-tool-finder-category>
+            <option value="">All categories</option>
+            {{ range $categories }}
+              {{- $categoryTools := where $reviewedTools "Params.category" .name -}}
+              {{ if $categoryTools }}
+                <option value="{{ .name }}">{{ .name }} ({{ len $categoryTools }})</option>
+              {{ end }}
+            {{ end }}
+          </select>
+          <button class="aiplorer-tool-finder__submit" type="submit">Find tools</button>
+          <button class="aiplorer-tool-finder__reset" type="button" data-tool-finder-reset disabled>Clear</button>
+        </form>
+        <div class="aiplorer-tool-finder__shortcuts" aria-label="Alternative discovery paths">
+          <span>Explore another way</span>
+          <a href="/ai-tools/workflows/">Workflows</a>
+          <a href="/ai-tools/compare/">Compare</a>
+          <a href="/ai-tools/trend-watch/">Trend Watch</a>
+          <a href="/ai-tools/shortlist/">My Shortlist</a>
+        </div>
+      </div>
+    </section>
+
     <nav class="aiplorer-category-jump" aria-label="Jump to tool category">
       <div class="aiplorer-shell">
         <span class="aiplorer-category-jump__label">Jump to</span>
@@ -37,7 +84,7 @@
           {{ range $categories }}
             {{- $categoryTools := where $reviewedTools "Params.category" .name -}}
             {{ if $categoryTools }}
-              <a href="#{{ .name | anchorize }}">{{ .name }} <span>{{ len $categoryTools }}</span></a>
+              <a href="#{{ .name | anchorize }}" data-tool-category-link="{{ .name }}">{{ .name }} <span>{{ len $categoryTools }}</span></a>
             {{ end }}
           {{ end }}
         </div>
@@ -49,7 +96,7 @@
         {{ range $categories }}
           {{- $categoryTools := where $reviewedTools "Params.category" .name -}}
           {{ if $categoryTools }}
-            <section class="aiplorer-reviewed-group" id="{{ .name | anchorize }}" aria-labelledby="{{ .name | anchorize }}-heading">
+            <section class="aiplorer-reviewed-group" id="{{ .name | anchorize }}" aria-labelledby="{{ .name | anchorize }}-heading" data-tool-group>
               <div class="aiplorer-reviewed-group__heading">
                 <span class="aiplorer-category-card__icon" data-accent="{{ .accent }}">{{ partial "aiplorer-icon.html" .icon }}</span>
                 <div>
@@ -60,7 +107,14 @@
               </div>
               <div class="aiplorer-tool-grid">
                 {{ range $categoryTools.ByTitle }}
-                  <a class="aiplorer-tool-card" href="{{ .RelPermalink }}">
+                  {{- $searchText := printf "%s %s %s %s %s" .Title .Params.category .Params.description (delimit .Params.bestFor " ") (delimit .Params.useCases " ") | plainify | lower -}}
+                  <a
+                    class="aiplorer-tool-card"
+                    href="{{ .RelPermalink }}"
+                    data-tool-card
+                    data-tool-category="{{ .Params.category }}"
+                    data-tool-search="{{ $searchText }}"
+                  >
                     <span class="aiplorer-tool-card__category">Reviewed</span>
                     <h3>{{ .Title }}</h3>
                     {{ with .Params.description }}
@@ -76,6 +130,15 @@
             </section>
           {{ end }}
         {{ end }}
+        <section class="aiplorer-tool-finder-empty" data-tool-finder-empty hidden>
+          <span class="aiplorer-tool-finder-empty__icon">{{ partial "aiplorer-icon.html" "search" }}</span>
+          <h2>No reviewed tools match yet</h2>
+          <p>Try a broader task, clear the category, or start from a workflow collection.</p>
+          <div class="aiplorer-actions">
+            <button class="aiplorer-button aiplorer-button--light" type="button" data-tool-finder-empty-reset>Clear filters</button>
+            <a class="aiplorer-button aiplorer-button--primary" href="/ai-tools/workflows/">Browse workflows</a>
+          </div>
+        </section>
       </div>
     </div>
   </article>
