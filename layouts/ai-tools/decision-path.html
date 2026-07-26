@@ -1,0 +1,252 @@
+{{ define "header" }}{{ partials.Include "page-header.html" . }}{{ end }}
+
+{{ define "main" }}
+  {{- $aiToolPages := where .Site.RegularPages "Section" "ai-tools" -}}
+  {{- $reviewedTools := where (where $aiToolPages "Params.reviewStatus" "reviewed") "Draft" false -}}
+  {{- $collections := partial "aiplorer-workflow-collections.html" . -}}
+  {{- $priorities := slice
+    (dict
+      "id" "sources"
+      "title" "Facts and sources"
+      "description" "When traceability, citations, or factual review matters most."
+      "checkpoint" "Open original sources, verify citations and quoted context, and review important claims before relying on the output."
+      "icon" "book-open"
+    )
+    (dict
+      "id" "privacy"
+      "title" "Privacy and access"
+      "description" "When files, accounts, customer data, or private work are involved."
+      "checkpoint" "Check data handling, retention, connected-account permissions, workspace policy, and whether sensitive material should be entered at all."
+      "icon" "shield-check"
+    )
+    (dict
+      "id" "reliability"
+      "title" "Reliability and control"
+      "description" "When a workflow must be tested, repeatable, and easy to review."
+      "checkpoint" "Test the complete workflow, define human checkpoints, inspect failure handling, and keep a reversible fallback before production use."
+      "icon" "square-check"
+    )
+    (dict
+      "id" "rights"
+      "title" "Rights and publishing"
+      "description" "When generated media, code, brand material, or public output is involved."
+      "checkpoint" "Review licenses, copyright, voice or likeness consent, brand rules, disclosure needs, and commercial-use requirements before publishing."
+      "icon" "pen-line"
+    )
+    (dict
+      "id" "cost"
+      "title" "Plans and limits"
+      "description" "When current cost, usage allowances, or availability shape the choice."
+      "checkpoint" "Check official pricing, current limits, included features, regional availability, cancellation terms, and expected usage before committing."
+      "icon" "briefcase"
+    )
+  -}}
+
+  <article class="aiplorer-decision-path">
+    <section class="aiplorer-decision-path__hero">
+      <div class="aiplorer-shell">
+        <div class="aiplorer-decision-path__hero-copy">
+          <p class="aiplorer-eyebrow">
+            <span class="aiplorer-eyebrow__icon">{{ partial "aiplorer-icon.html" "compass" }}</span>
+            Guided AI discovery
+          </p>
+          <h1>{{ .Title }}</h1>
+          <p class="aiplorer-decision-path__lead">{{ .Params.description }}</p>
+          <div class="aiplorer-actions">
+            <a class="aiplorer-button aiplorer-button--primary" href="#decision-builder">Choose a starting path</a>
+            <a class="aiplorer-button aiplorer-button--light" href="/ai-tools/tools/">Browse the full directory</a>
+          </div>
+        </div>
+        <dl class="aiplorer-decision-path__facts" aria-label="AI tool decision path summary">
+          <div>
+            <dt>{{ len $collections }}</dt>
+            <dd>task-first workflows</dd>
+          </div>
+          <div>
+            <dt>{{ len $priorities }}</dt>
+            <dd>review priorities</dd>
+          </div>
+          <div>
+            <dt>{{ len $reviewedTools }}</dt>
+            <dd>reviewed services</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="aiplorer-decision-path__context" aria-labelledby="decision-context-heading">
+      <div class="aiplorer-shell">
+        <span class="aiplorer-decision-path__context-icon">{{ partial "aiplorer-icon.html" "shield-check" }}</span>
+        <div>
+          <h2 id="decision-context-heading">A guided starting point, not an automatic recommendation</h2>
+          <div class="aiplorer-decision-path__body">{{ .Content }}</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="aiplorer-decision-builder" id="decision-builder" aria-labelledby="decision-builder-heading">
+      <div class="aiplorer-shell">
+        <div class="aiplorer-section-heading">
+          <div>
+            <p class="aiplorer-kicker">Two quick choices</p>
+            <h2 id="decision-builder-heading">What are you doing, and what needs the closest review?</h2>
+            <p class="aiplorer-section-heading__note">Your choices update only this page and its URL. No account or server profile is created.</p>
+          </div>
+          <button class="aiplorer-decision-reset" type="button" data-decision-reset disabled>Reset choices</button>
+        </div>
+
+        <div class="aiplorer-decision-step" aria-labelledby="decision-workflow-heading">
+          <div class="aiplorer-decision-step__heading">
+            <span>1</span>
+            <div>
+              <h3 id="decision-workflow-heading">Choose the work</h3>
+              <p>Select the closest practical workflow.</p>
+            </div>
+          </div>
+          <div class="aiplorer-decision-options" role="group" aria-label="Choose a practical workflow">
+            {{ range $collections }}
+              <button
+                type="button"
+                data-decision-workflow="{{ .id }}"
+                data-decision-workflow-title="{{ .title }}"
+                aria-pressed="false"
+              >
+                <span data-accent="{{ .accent }}">{{ partial "aiplorer-icon.html" .icon }}</span>
+                <strong>{{ .title }}</strong>
+                <small>{{ .description }}</small>
+              </button>
+            {{ end }}
+          </div>
+        </div>
+
+        <div class="aiplorer-decision-step" aria-labelledby="decision-priority-heading">
+          <div class="aiplorer-decision-step__heading">
+            <span>2</span>
+            <div>
+              <h3 id="decision-priority-heading">Choose the review priority</h3>
+              <p>Pick the checkpoint that should guide your evaluation.</p>
+            </div>
+          </div>
+          <div class="aiplorer-decision-priorities" role="group" aria-label="Choose a review priority">
+            {{ range $priorities }}
+              <button
+                type="button"
+                data-decision-priority="{{ .id }}"
+                data-decision-priority-title="{{ .title }}"
+                data-decision-priority-checkpoint="{{ .checkpoint }}"
+                aria-pressed="false"
+                disabled
+              >
+                <span>{{ partial "aiplorer-icon.html" .icon }}</span>
+                <strong>{{ .title }}</strong>
+                <small>{{ .description }}</small>
+              </button>
+            {{ end }}
+          </div>
+        </div>
+
+        <p class="aiplorer-decision-status" role="status" aria-live="polite" data-decision-status>
+          Choose a workflow to continue.
+        </p>
+
+        <noscript>
+          <p class="aiplorer-decision-noscript">
+            The guided controls require JavaScript. You can use the
+            <a href="/ai-tools/workflows/">task-first workflow collections</a>
+            or <a href="/ai-tools/tools/">reviewed tools directory</a> without it.
+          </p>
+        </noscript>
+      </div>
+    </section>
+
+    <section class="aiplorer-decision-results" aria-labelledby="decision-results-heading" data-decision-results hidden>
+      <div class="aiplorer-shell">
+        <div class="aiplorer-decision-results__intro">
+          <p class="aiplorer-kicker">Your starting path</p>
+          <h2 id="decision-results-heading"><span data-decision-result-title>Selected workflow</span></h2>
+          <p data-decision-result-description></p>
+        </div>
+
+        <div class="aiplorer-decision-checkpoints">
+          <article>
+            <span>{{ partial "aiplorer-icon.html" "square-check" }}</span>
+            <div>
+              <p class="aiplorer-kicker">Workflow checkpoint</p>
+              <h3>Review the complete task</h3>
+              <p data-decision-workflow-checkpoint></p>
+            </div>
+          </article>
+          <article>
+            <span>{{ partial "aiplorer-icon.html" "shield-check" }}</span>
+            <div>
+              <p class="aiplorer-kicker">Your priority</p>
+              <h3 data-decision-priority-heading>Selected review priority</h3>
+              <p data-decision-priority-copy></p>
+            </div>
+          </article>
+        </div>
+
+        {{ range $collections }}
+          {{- $collection := . -}}
+          {{- $collectionTools := slice -}}
+          {{- range .tools -}}
+            {{- $toolTitle := . -}}
+            {{- range first 1 (where $reviewedTools "Title" $toolTitle) -}}
+              {{- $collectionTools = $collectionTools | append . -}}
+            {{- end -}}
+          {{- end -}}
+          <div
+            class="aiplorer-decision-result"
+            data-decision-result="{{ .id }}"
+            data-result-title="{{ .title }}"
+            data-result-description="{{ .description }}"
+            data-result-checkpoint="{{ .caution }}"
+            hidden
+          >
+            <div class="aiplorer-decision-result__heading">
+              <div>
+                <p class="aiplorer-kicker">Reviewed candidates</p>
+                <h3>Explore a small candidate set</h3>
+                <p>Tools are shown alphabetically. This is not a ranking, score, endorsement, or claim that every tool fits your situation.</p>
+              </div>
+              <a href="/ai-tools/compare/?view=shortlist">Compare my shortlist <span aria-hidden="true">&rarr;</span></a>
+            </div>
+
+            <div class="aiplorer-decision-tool-grid">
+              {{ range sort $collectionTools "Title" }}
+                <article class="aiplorer-decision-tool">
+                  <span class="aiplorer-decision-tool__category">{{ .Params.category }}</span>
+                  <h4><a href="{{ .RelPermalink }}">{{ .Title }}</a></h4>
+                  <p>{{ .Params.description | truncate 132 }}</p>
+                  <div class="aiplorer-decision-tool__footer">
+                    <a href="{{ .RelPermalink }}">Full review <span aria-hidden="true">&rarr;</span></a>
+                    <button
+                      class="aiplorer-decision-tool__save aiplorer-shortlist-control aiplorer-shortlist-toggle"
+                      type="button"
+                      data-shortlist-path="{{ .RelPermalink }}"
+                      data-shortlist-title="{{ .Title }}"
+                      data-label-save="Save"
+                      data-label-saved="Saved"
+                      aria-pressed="false"
+                    >
+                      {{ partial "aiplorer-icon.html" "bookmark" }}
+                      <span data-shortlist-label>Save</span>
+                    </button>
+                  </div>
+                </article>
+              {{ end }}
+            </div>
+
+            <nav class="aiplorer-decision-result__links" aria-label="Related categories for {{ .title }}">
+              <span>Continue exploring</span>
+              {{ range .links }}
+                <a href="{{ .href }}">{{ .label }}</a>
+              {{ end }}
+              <a href="/ai-tools/workflows/#{{ .id }}">Full workflow collection</a>
+            </nav>
+          </div>
+        {{ end }}
+      </div>
+    </section>
+  </article>
+{{ end }}
