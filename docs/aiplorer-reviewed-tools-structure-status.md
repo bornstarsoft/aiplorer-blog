@@ -162,14 +162,22 @@ Only after category maintenance, possible future directions include:
 - Data and analysis workflows: Julius AI, Rows AI, Akkio, Obviously AI,
   Polymer
 
-The draft-first scope, category mapping, official-source gate, and caution
-requirements for the design and creative candidates are recorded in
-`docs/design-creative-draft-batch-plan.md`.
+The draft-first scope, category mapping, initial official-source entry points,
+and caution requirements for these candidates are recorded in
+`docs/data-analysis-draft-batch-plan.md`. No candidate page has been created,
+reviewed, linked, or approved for publication.
 
 These are candidate names only. They are not reviewed recommendations and
 should not be added publicly without the normal draft-first and official-source
 review process. A new category should be created only when the existing
 taxonomy cannot describe a candidate cleanly.
+
+The plan maps Julius AI and Rows to Productivity Tools, and Akkio, Obviously
+AI, and Polymer to Business Tools for a possible draft phase. Rows requires
+special attention because its current product page says it joined Superhuman,
+while Polymer requires a careful currency check for its legal and plan
+documentation. Those issues are publication gates, not reasons to infer a
+current public recommendation.
 
 The meeting and transcription batch is now published under Productivity Tools.
 Its draft-first source and caution record remains in
