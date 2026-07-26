@@ -75,6 +75,23 @@
       </div>
     </section>
 
+    <section class="aiplorer-compare-trial-summary" data-compare-trial-summary hidden>
+      <div class="aiplorer-shell">
+        <span class="aiplorer-compare-trial-summary__icon">
+          {{ partial "aiplorer-icon.html" "square-check" }}
+        </span>
+        <div>
+          <p class="aiplorer-kicker">Private candidate checks</p>
+          <h2>Continue evaluating your saved tools</h2>
+          <p data-compare-trial-copy>Your local checklist progress will appear here.</p>
+          <small>Progress stays in this browser and is not a score, rating, or recommendation.</small>
+        </div>
+        <a href="/ai-tools/shortlist/">
+          Open candidate checks <span aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+    </section>
+
     <nav class="aiplorer-category-jump" aria-label="Jump to comparison category" data-compare-jump-nav>
       <div class="aiplorer-shell">
         <span class="aiplorer-category-jump__label">Compare category</span>
@@ -163,6 +180,15 @@
                         <a href="{{ .Params.officialUrl }}" target="_blank" rel="noopener nofollow">
                           Official site
                           <span class="aiplorer-compare-row__external">{{ partial "aiplorer-icon.html" "external-link" }}</span>
+                        </a>
+                        <a
+                          class="aiplorer-compare-row__trial"
+                          href="/ai-tools/shortlist/"
+                          data-compare-trial-progress
+                          hidden
+                        >
+                          <span>Candidate checks</span>
+                          <strong data-compare-trial-count>0 of 4 checked</strong>
                         </a>
                         <button
                           class="aiplorer-compare-shortlist aiplorer-shortlist-control aiplorer-shortlist-toggle"
