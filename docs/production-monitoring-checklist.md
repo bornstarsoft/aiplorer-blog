@@ -27,6 +27,30 @@ Supporting records:
 - `docs/reviewed-tools-official-url-health.md`
 - `docs/aiplorer-reviewed-tools-structure-status.md`
 
+## Latest Monitoring Run
+
+The 2026-07-26 production monitoring run confirmed:
+
+- all core routes, one reviewed tool route, Relay.app, Windsurf, and one
+  preserved legacy post returned HTTP 200
+- all 10 sampled rendered canonicals used the intended
+  `https://aiplorer.com/` URL
+- `/ai-tools/` and `/ai-tools/tools/` each exposed all 65 reviewed tool links
+- the Business Tools page included the reviewed Akkio page
+- the local and live sitemaps each contained 893 unique URLs, including all 65
+  reviewed tool URLs, with no URL-set difference
+- all eight persistent draft routes returned HTTP 404 and remained absent from
+  the production sitemap
+- the Relay.app acquisition notice and Windsurf/Devin Desktop transition
+  wording remained current
+- sampled HTML and XML responses used `cf-cache-status: DYNAMIC`,
+  `cache-control: public, max-age=0, must-revalidate`, and no `age` header
+- `www.aiplorer.com` continued to redirect with HTTP 301 to the apex domain
+
+No public content, configuration, cache, redirect, or draft-status change was
+required. Search Console authentication and report state remain a manual
+follow-up and were not inferred from public responses.
+
 ## Pre-Push Validation
 
 Run:
