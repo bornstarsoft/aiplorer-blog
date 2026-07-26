@@ -6,6 +6,10 @@ theme = "ananke"
 pagination.pagerSize = 12
 enableRobotsTXT = true
 buildFuture = false
+ignoreFiles = [
+  "2025-08-03-ai-215019\\.md$",
+  "2025-08-10-ai-212051\\.md$",
+]
 
 [params]
   description = "Aiplorer helps everyday users explore AI tools, guides, and use cases for work and creativity."
