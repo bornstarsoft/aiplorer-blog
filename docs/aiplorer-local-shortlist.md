@@ -28,10 +28,16 @@ tracking.
 
 Each visible shortlist card provides four private checks:
 
-- test the service with a real task
+- test the service with the same category-specific task
 - review output quality and facts
 - check privacy, permissions, and rights
 - confirm current plans and limits
+
+The expanded evaluation area repeats the category's same-task prompt and review
+focus from Aiplorer's shared category metadata. It also links to the comparison
+page with both `view=shortlist` and the matching category so saved candidates
+can be reviewed together without losing context. These prompts are evaluation
+guidance, not evidence that Aiplorer tested or approved a saved service.
 
 The checks support a return-visit evaluation workflow. They are not ratings,
 scores, endorsements, guarantees, or evidence that a service passed an Aiplorer

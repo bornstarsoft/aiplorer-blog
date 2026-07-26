@@ -6064,6 +6064,53 @@ main#main-content:has(> .aiplorer-content-article) {
   opacity: 0.45;
 }
 
+.aiplorer-shortlist-card__trial-lens {
+  margin-bottom: 0.75rem;
+  padding: 0.72rem 0.76rem;
+  border-left: 3px solid var(--aiplorer-teal);
+  background: #edf6f4;
+}
+
+.aiplorer-shortlist-card__trial-lens > span {
+  color: var(--aiplorer-coral);
+  font-size: 0.58rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.aiplorer-shortlist-card__trial-lens strong {
+  display: block;
+  margin-top: 0.2rem;
+  color: var(--aiplorer-ink);
+  font-size: 0.68rem;
+  line-height: 1.45;
+}
+
+.aiplorer-shortlist-card__trial-lens p {
+  margin: 0.35rem 0 0;
+  color: var(--aiplorer-muted);
+  font-size: 0.62rem;
+  line-height: 1.45;
+}
+
+.aiplorer-shortlist-card__trial-lens p b {
+  color: var(--aiplorer-teal);
+}
+
+.aiplorer-shortlist-card__trial-lens a {
+  display: inline-block;
+  margin-top: 0.48rem;
+  color: var(--aiplorer-teal);
+  font-size: 0.62rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.aiplorer-shortlist-card__trial-lens a:hover,
+.aiplorer-shortlist-card__trial-lens a:focus-visible {
+  text-decoration: underline;
+}
+
 .aiplorer-shortlist-card__trial-items {
   display: grid;
   gap: 0.42rem;

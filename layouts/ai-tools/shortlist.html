@@ -150,7 +150,12 @@
         <div class="aiplorer-shortlist-grid" data-shortlist-grid hidden>
           {{ range $reviewedTools.ByTitle }}
             {{- $tool := . -}}
-            {{- $categoryData := dict "icon" "sparkles" "accent" "blue" -}}
+            {{- $categoryData := dict
+              "icon" "sparkles"
+              "accent" "blue"
+              "testTask" "Use the same scoped task and expected result with every candidate."
+              "testFocus" "Review output quality, current official details, permissions, and practical risk."
+            -}}
             {{- range where $categories "name" .Params.category -}}
               {{- $categoryData = . -}}
             {{- end -}}
@@ -245,10 +250,18 @@
                     </div>
                     <button type="button" data-trial-reset disabled>Reset</button>
                   </div>
+                  <div class="aiplorer-shortlist-card__trial-lens">
+                    <span>Same-task test</span>
+                    <strong>{{ $categoryData.testTask }}</strong>
+                    <p><b>Review closely:</b> {{ $categoryData.testFocus }}</p>
+                    <a href="/ai-tools/compare/?view=shortlist&amp;category={{ .Params.category | urlquery }}">
+                      Compare saved {{ .Params.category }} <span aria-hidden="true">&rarr;</span>
+                    </a>
+                  </div>
                   <div class="aiplorer-shortlist-card__trial-items" role="group" aria-label="Candidate checks for {{ .Title }}">
                     <label>
                       <input type="checkbox" value="task" data-trial-check>
-                      <span>Tested with a real task</span>
+                      <span>Tested with the category task above</span>
                     </label>
                     <label>
                       <input type="checkbox" value="output" data-trial-check>
