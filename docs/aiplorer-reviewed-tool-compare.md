@@ -22,9 +22,15 @@ the directory.
 ## Browsing strategy
 
 The comparison is grouped by the existing ten categories and remains fully
-server-rendered. Category jump links provide quick navigation without adding
-client-side search or filter behavior. Desktop uses a dense comparison grid;
-mobile converts each row into a readable card.
+server-rendered. Category jump links provide quick navigation, while the
+optional `My shortlist` view hides unsaved rows in the browser. The selected
+view is reflected in the URL, but saved tool paths remain local to that
+browser. Desktop uses a dense comparison grid; mobile converts each row into a
+readable card.
+
+The shortlist view does not score, reorder, or recommend candidates. Removing a
+saved tool updates the focused comparison immediately, and visitors can always
+return to the complete reviewed set.
 
 ## Editorial boundary
 

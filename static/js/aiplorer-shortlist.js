@@ -102,6 +102,14 @@
     }
   }
 
+  function notifyChange(list) {
+    window.dispatchEvent(
+      new CustomEvent("aiplorer:shortlist-change", {
+        detail: { paths: list.slice() }
+      })
+    );
+  }
+
   document.documentElement.classList.add("aiplorer-shortlist-ready");
 
   document.addEventListener("click", function (event) {
@@ -124,6 +132,7 @@
 
       writeList(list);
       render();
+      notifyChange(list);
       return;
     }
 
@@ -131,6 +140,7 @@
       writeList([]);
       announce("Shortlist cleared.");
       render();
+      notifyChange([]);
     }
   });
 

@@ -16,8 +16,8 @@
           <h1>{{ .Title }}</h1>
           <p class="aiplorer-shortlist__lead">{{ .Params.description }}</p>
           <div class="aiplorer-actions">
-            <a class="aiplorer-button aiplorer-button--primary" href="/ai-tools/compare/">
-              Compare reviewed tools
+            <a class="aiplorer-button aiplorer-button--primary" href="/ai-tools/compare/?view=shortlist">
+              Compare my shortlist
             </a>
             <a class="aiplorer-button aiplorer-button--light" href="/ai-tools/tools/">
               Browse the directory
@@ -70,7 +70,7 @@
           <span>{{ partial "aiplorer-icon.html" "bookmark" }}</span>
           <h3>No saved tools yet</h3>
           <p>Open a reviewed tool or the comparison page, then use the bookmark button to build a focused list.</p>
-          <a class="aiplorer-button aiplorer-button--primary" href="/ai-tools/compare/">Start comparing</a>
+          <a class="aiplorer-button aiplorer-button--primary" href="/ai-tools/compare/?view=shortlist">Start comparing</a>
         </div>
 
         <div class="aiplorer-shortlist-grid" data-shortlist-grid hidden>

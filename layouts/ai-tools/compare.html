@@ -55,14 +55,34 @@
       </div>
     </section>
 
-    <nav class="aiplorer-category-jump" aria-label="Jump to comparison category">
+    <section class="aiplorer-compare-mode" aria-labelledby="compare-mode-heading" data-compare-controls>
+      <div class="aiplorer-shell">
+        <div>
+          <p class="aiplorer-kicker">Comparison scope</p>
+          <h2 id="compare-mode-heading">Compare every review or only your saved candidates</h2>
+          <p data-compare-summary>Showing {{ len $reviewedTools }} reviewed tools across all categories.</p>
+        </div>
+        <div class="aiplorer-compare-mode__switch" role="group" aria-label="Choose tools to compare">
+          <button class="is-active" type="button" data-compare-view="all" aria-pressed="true">
+            All reviewed
+            <span>{{ len $reviewedTools }}</span>
+          </button>
+          <button type="button" data-compare-view="shortlist" aria-pressed="false">
+            My shortlist
+            <span data-shortlist-count>0</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <nav class="aiplorer-category-jump" aria-label="Jump to comparison category" data-compare-jump-nav>
       <div class="aiplorer-shell">
         <span class="aiplorer-category-jump__label">Compare category</span>
         <div class="aiplorer-category-jump__links">
           {{ range $categories }}
             {{- $categoryTools := where $reviewedTools "Params.category" .name -}}
             {{ if $categoryTools }}
-              <a href="#compare-{{ .name | anchorize }}">{{ .name }} <span>{{ len $categoryTools }}</span></a>
+              <a href="#compare-{{ .name | anchorize }}" data-compare-jump="{{ .name | anchorize }}">{{ .name }} <span>{{ len $categoryTools }}</span></a>
             {{ end }}
           {{ end }}
         </div>
@@ -71,11 +91,20 @@
 
     <div class="aiplorer-compare__groups" id="compare-categories">
       <div class="aiplorer-shell">
+        <div class="aiplorer-compare-empty" data-compare-shortlist-empty hidden>
+          <span>{{ partial "aiplorer-icon.html" "bookmark" }}</span>
+          <h2>Your shortlist is ready when you are</h2>
+          <p>Save reviewed tools from the directory, category pages, or full reviews. They will appear here for a focused comparison in this browser.</p>
+          <div class="aiplorer-actions">
+            <a class="aiplorer-button aiplorer-button--primary" href="/ai-tools/tools/">Find reviewed tools</a>
+            <a class="aiplorer-button aiplorer-button--light" href="/ai-tools/shortlist/">Open my shortlist</a>
+          </div>
+        </div>
         {{ range $categories }}
           {{- $category := . -}}
           {{- $categoryTools := where $reviewedTools "Params.category" .name -}}
           {{ if $categoryTools }}
-            <section class="aiplorer-compare-group" id="compare-{{ .name | anchorize }}" aria-labelledby="compare-{{ .name | anchorize }}-heading">
+            <section class="aiplorer-compare-group" id="compare-{{ .name | anchorize }}" aria-labelledby="compare-{{ .name | anchorize }}-heading" data-compare-group="{{ .name | anchorize }}">
               <div class="aiplorer-compare-group__heading">
                 <span class="aiplorer-compare-group__icon" data-accent="{{ .accent }}">
                   {{ partial "aiplorer-icon.html" .icon }}
@@ -97,7 +126,7 @@
                 </div>
                 <div role="rowgroup">
                   {{ range $categoryTools.ByTitle }}
-                    <article class="aiplorer-compare-row" role="row">
+                    <article class="aiplorer-compare-row" role="row" data-compare-row data-compare-path="{{ .RelPermalink }}">
                       <div class="aiplorer-compare-row__tool" role="cell">
                         <span class="aiplorer-compare-cell-label">Reviewed tool</span>
                         <a href="{{ .RelPermalink }}">{{ .Title }}</a>
