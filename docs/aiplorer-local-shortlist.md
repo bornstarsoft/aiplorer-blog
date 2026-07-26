@@ -107,6 +107,21 @@ order and private browser state as the shortlist; it does not rank or recommend
 a tool. Temporary shortlist URL parameters are removed from the visible URL
 after the stage and focused check are applied.
 
+## Local backup and restore
+
+The shortlist workspace can download a versioned JSON backup containing only
+public reviewed-tool paths, private candidate checks, decision stages, and the
+selected stage view. The file stays on the visitor's device; Aiplorer does not
+upload, receive, or synchronize it. Review Update checkpoints and recent search
+state are deliberately excluded.
+
+Restore accepts files up to 256 KB, requires the current backup schema, keeps
+only reviewed tool paths present on the current shortlist page, and removes
+unknown check or stage values. A valid restore asks before replacing this
+browser's saved candidates and evaluation progress. This keeps the feature
+accountless while helping visitors preserve an unfinished comparison across
+browser-storage cleanup or a move to another browser.
+
 ## Trend rationale
 
 The 2026 Stanford AI Index describes leading-model competition shifting toward

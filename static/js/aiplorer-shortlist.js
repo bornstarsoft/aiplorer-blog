@@ -7,6 +7,9 @@
   var candidateStageViewStorageKey = "aiplorer-shortlist-stage-view-v1";
   var reviewSnapshotStorageKey = "aiplorer-review-snapshot-v1";
   var lastToolSearchStorageKey = "aiplorer-last-tool-search-v1";
+  var backupSchema = "aiplorer-shortlist-backup";
+  var backupVersion = 1;
+  var backupMaxBytes = 262144;
   var allowedChecks = ["task", "output", "privacy", "plans"];
   var allowedCandidateStages = ["researching", "testing", "ready"];
   var allowedCandidateStageViews = ["all", "researching", "testing", "ready", "unset"];
@@ -245,6 +248,155 @@
     } catch (error) {
       // Keep the current-session fallback when browser storage is unavailable.
     }
+  }
+
+  function availableShortlistPaths() {
+    return new Set(
+      Array.prototype.map
+        .call(document.querySelectorAll("[data-shortlist-item]"), function (item) {
+          return item.getAttribute("data-shortlist-item");
+        })
+        .filter(validPath)
+    );
+  }
+
+  function stateForPaths(value, paths, cleaner) {
+    var result = {};
+    var cleanValue = cleaner(value);
+
+    paths.forEach(function (path) {
+      if (Object.prototype.hasOwnProperty.call(cleanValue, path)) {
+        result[path] = cleanValue[path];
+      }
+    });
+    return result;
+  }
+
+  function shortlistBackupPayload() {
+    var shortlist = readList();
+    var shortlistSet = new Set(shortlist);
+
+    return {
+      schema: backupSchema,
+      version: backupVersion,
+      exportedAt: new Date().toISOString(),
+      shortlist: shortlist,
+      checks: stateForPaths(readTrialState(), shortlistSet, cleanTrialState),
+      stages: stateForPaths(
+        readCandidateStageState(),
+        shortlistSet,
+        cleanCandidateStageState
+      ),
+      stageView: readCandidateStageView()
+    };
+  }
+
+  function exportShortlistBackup() {
+    var payload = shortlistBackupPayload();
+    if (payload.shortlist.length === 0) {
+      announce("Save at least one reviewed tool before downloading a backup.");
+      return;
+    }
+
+    var blob = new Blob([JSON.stringify(payload, null, 2) + "\n"], {
+      type: "application/json"
+    });
+    var objectUrl = window.URL.createObjectURL(blob);
+    var download = document.createElement("a");
+    download.href = objectUrl;
+    download.download =
+      "aiplorer-shortlist-" + new Date().toISOString().slice(0, 10) + ".json";
+    document.body.appendChild(download);
+    download.click();
+    download.remove();
+    window.setTimeout(function () {
+      window.URL.revokeObjectURL(objectUrl);
+    }, 0);
+
+    announce(
+      "Downloaded a local backup for " +
+        payload.shortlist.length +
+        " saved " +
+        (payload.shortlist.length === 1 ? "candidate." : "candidates.")
+    );
+  }
+
+  function cleanShortlistBackup(value) {
+    if (
+      !value ||
+      typeof value !== "object" ||
+      Array.isArray(value) ||
+      value.schema !== backupSchema ||
+      value.version !== backupVersion ||
+      !Array.isArray(value.shortlist)
+    ) {
+      throw new Error("invalid-backup");
+    }
+
+    var available = availableShortlistPaths();
+    var shortlist = uniquePaths(value.shortlist).filter(function (path) {
+      return available.has(path);
+    });
+    if (shortlist.length === 0) {
+      throw new Error("no-current-reviewed-tools");
+    }
+
+    var shortlistSet = new Set(shortlist);
+    return {
+      shortlist: shortlist,
+      checks: stateForPaths(value.checks, shortlistSet, cleanTrialState),
+      stages: stateForPaths(value.stages, shortlistSet, cleanCandidateStageState),
+      stageView: cleanCandidateStageView(value.stageView)
+    };
+  }
+
+  function restoreShortlistBackup(file, input) {
+    if (!file) {
+      return;
+    }
+    if (file.size > backupMaxBytes) {
+      announce("That backup is too large. Choose an Aiplorer shortlist JSON file.");
+      input.value = "";
+      return;
+    }
+
+    file
+      .text()
+      .then(function (contents) {
+        var backup = cleanShortlistBackup(JSON.parse(contents));
+        if (
+          readList().length > 0 &&
+          !window.confirm(
+            "Restore this backup? It will replace this browser's saved candidates, stages, and checklist progress."
+          )
+        ) {
+          announce("Backup restore cancelled.");
+          return;
+        }
+
+        writeList(backup.shortlist);
+        writeTrialState(backup.checks);
+        writeCandidateStageState(backup.stages);
+        writeCandidateStageView(backup.stageView);
+        cleanupEvaluationState(backup.shortlist);
+        render();
+        notifyChange(backup.shortlist);
+        announce(
+          "Restored " +
+            backup.shortlist.length +
+            " saved " +
+            (backup.shortlist.length === 1 ? "candidate" : "candidates") +
+            " from the local backup."
+        );
+      })
+      .catch(function () {
+        announce(
+          "This file could not be restored. Choose a valid Aiplorer shortlist JSON backup."
+        );
+      })
+      .then(function () {
+        input.value = "";
+      });
   }
 
   function readReviewSnapshot() {
@@ -632,6 +784,7 @@
       "[data-shortlist-review-pulse-link-label]"
     );
     var clear = document.querySelector("[data-shortlist-clear]");
+    var exportBackup = document.querySelector("[data-shortlist-export]");
     var stageState = readCandidateStageState();
     var stageView = readCandidateStageView();
     var trialState = readTrialState();
@@ -870,6 +1023,9 @@
     }
     if (clear) {
       clear.disabled = savedCount === 0;
+    }
+    if (exportBackup) {
+      exportBackup.disabled = savedCount === 0;
     }
 
     document.querySelectorAll("[data-shortlist-stage-view]").forEach(function (button) {
@@ -1368,8 +1524,17 @@
     });
   }
 
+  var backupInput = document.querySelector("[data-shortlist-import]");
+  if (backupInput) {
+    backupInput.addEventListener("change", function () {
+      restoreShortlistBackup(backupInput.files && backupInput.files[0], backupInput);
+    });
+  }
+
   document.addEventListener("click", function (event) {
     var homeSearchClear = event.target.closest("[data-home-search-resume-clear]");
+    var exportBackup = event.target.closest("[data-shortlist-export]");
+    var importBackup = event.target.closest("[data-shortlist-import-trigger]");
     var nextCheckButton = event.target.closest("[data-shortlist-next-check]");
     var candidateStageViewButton = event.target.closest("[data-shortlist-stage-view]");
     var candidateStageButton = event.target.closest("[data-candidate-stage-value]");
@@ -1380,6 +1545,16 @@
     if (homeSearchClear) {
       clearLastToolSearch();
       updateHomeSearchResume();
+      return;
+    }
+
+    if (exportBackup) {
+      exportShortlistBackup();
+      return;
+    }
+
+    if (importBackup && backupInput) {
+      backupInput.click();
       return;
     }
 

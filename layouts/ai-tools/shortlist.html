@@ -67,6 +67,32 @@
           </button>
         </div>
 
+        <div class="aiplorer-shortlist-backup" data-shortlist-backup>
+          <span class="aiplorer-shortlist-backup__icon">{{ partial "aiplorer-icon.html" "download" }}</span>
+          <div class="aiplorer-shortlist-backup__copy">
+            <p class="aiplorer-kicker">Keep your evaluation</p>
+            <strong>Back up this browser's shortlist</strong>
+            <small>Download a local JSON file or restore one later. Aiplorer does not upload the file; restoring replaces this browser's saved candidates and checklist progress.</small>
+          </div>
+          <div class="aiplorer-shortlist-backup__actions">
+            <button type="button" data-shortlist-export disabled>
+              {{ partial "aiplorer-icon.html" "download" }}
+              <span>Download backup</span>
+            </button>
+            <button type="button" data-shortlist-import-trigger>
+              {{ partial "aiplorer-icon.html" "upload" }}
+              <span>Restore backup</span>
+            </button>
+            <input
+              hidden
+              id="aiplorer-shortlist-backup-file"
+              type="file"
+              accept=".json,application/json"
+              data-shortlist-import
+            >
+          </div>
+        </div>
+
         <div class="aiplorer-shortlist-stage-filter" data-shortlist-stage-filter hidden>
           <div>
             <p class="aiplorer-kicker">Decision stage view</p>
