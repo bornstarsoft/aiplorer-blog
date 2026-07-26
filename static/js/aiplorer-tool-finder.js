@@ -7,6 +7,7 @@
   }
 
   var lastSearchStorageKey = "aiplorer-last-tool-search-v1";
+  var reviewSnapshotStorageKey = "aiplorer-review-snapshot-v1";
   var queryInput = finder.querySelector("[data-tool-finder-query]");
   var categorySelect = finder.querySelector("[data-tool-finder-category]");
   var resetButton = finder.querySelector("[data-tool-finder-reset]");
@@ -17,6 +18,11 @@
   var cards = Array.prototype.slice.call(document.querySelectorAll("[data-tool-card]"));
   var groups = Array.prototype.slice.call(document.querySelectorAll("[data-tool-group]"));
   var categoryLinks = Array.prototype.slice.call(document.querySelectorAll("[data-tool-category-link]"));
+  var checkpoint = finder.querySelector("[data-tool-finder-checkpoint]");
+  var newButton = finder.querySelector("[data-tool-finder-new]");
+  var newCount = finder.querySelector("[data-tool-finder-new-count]");
+  var newTokens = new Set();
+  var onlyNew = false;
 
   if (!queryInput || !categorySelect || !resetButton || !resultCount) {
     return;
@@ -55,6 +61,28 @@
     }
   }
 
+  function readReviewSnapshot() {
+    try {
+      var stored = JSON.parse(window.localStorage.getItem(reviewSnapshotStorageKey));
+      if (Array.isArray(stored)) {
+        return new Set(stored.filter(function (value) {
+          return typeof value === "string";
+        }));
+      }
+    } catch (error) {
+      return null;
+    }
+    return null;
+  }
+
+  function reviewTokenFor(card) {
+    return (
+      (card.getAttribute("data-tool-path") || "") +
+      "|" +
+      (card.getAttribute("data-tool-review-date") || "")
+    );
+  }
+
   function syncUrl(query, category) {
     var url = new URL(window.location.href);
 
@@ -68,6 +96,12 @@
       url.searchParams.set("category", category);
     } else {
       url.searchParams.delete("category");
+    }
+
+    if (onlyNew) {
+      url.searchParams.set("new", "1");
+    } else {
+      url.searchParams.delete("new");
     }
 
     window.history.replaceState({}, "", url.pathname + url.search + url.hash);
@@ -92,7 +126,8 @@
     cards.forEach(function (card) {
       var matchesQuery = !query || normalize(card.dataset.toolSearch).indexOf(query) !== -1;
       var matchesCategory = !category || card.dataset.toolCategory === category;
-      var isVisible = matchesQuery && matchesCategory;
+      var matchesNew = !onlyNew || newTokens.has(reviewTokenFor(card));
+      var isVisible = matchesQuery && matchesCategory && matchesNew;
 
       card.hidden = !isVisible;
       if (isVisible) {
@@ -105,9 +140,17 @@
       group.hidden = !hasVisibleCard;
     });
 
-    resultCount.textContent = visibleCount + (visibleCount === 1 ? " reviewed tool" : " reviewed tools");
-    resetButton.disabled = !query && !category;
+    resultCount.textContent =
+      visibleCount +
+      (visibleCount === 1 ? " reviewed tool" : " reviewed tools") +
+      (onlyNew ? " checked since your checkpoint" : "");
+    resetButton.disabled = !query && !category && !onlyNew;
     updateTaskButtons(query, category);
+
+    if (newButton) {
+      newButton.classList.toggle("is-active", onlyNew);
+      newButton.setAttribute("aria-pressed", String(onlyNew));
+    }
 
     if (emptyState) {
       emptyState.hidden = visibleCount !== 0;
@@ -123,12 +166,32 @@
   function clearFilters() {
     queryInput.value = "";
     categorySelect.value = "";
+    onlyNew = false;
     clearLastSearch();
     updateResults();
     queryInput.focus();
   }
 
   var initialParams = new URLSearchParams(window.location.search);
+  var reviewSnapshot = readReviewSnapshot();
+  if (reviewSnapshot !== null) {
+    newTokens = new Set(cards.map(reviewTokenFor).filter(function (token) {
+      return !reviewSnapshot.has(token);
+    }));
+  }
+  onlyNew = initialParams.get("new") === "1" && newTokens.size > 0;
+
+  if (checkpoint && newButton && newTokens.size > 0) {
+    checkpoint.hidden = false;
+    if (newCount) {
+      newCount.textContent = String(newTokens.size);
+    }
+    newButton.addEventListener("click", function () {
+      onlyNew = !onlyNew;
+      updateResults();
+    });
+  }
+
   queryInput.value = initialParams.get("q") || "";
 
   var initialCategory = initialParams.get("category") || "";

@@ -80,6 +80,13 @@
             <button type="button" data-tool-finder-task data-task-query="" data-task-category="Audio Tools" aria-pressed="false">Voice and audio</button>
           </div>
         </div>
+        <div class="aiplorer-tool-finder__checkpoint" data-tool-finder-checkpoint hidden>
+          <span>Return visit</span>
+          <button type="button" data-tool-finder-new aria-pressed="false">
+            New since checkpoint <strong data-tool-finder-new-count>0</strong>
+          </button>
+          <a href="/ai-tools/review-updates/?view=tools">Open review activity</a>
+        </div>
         <div class="aiplorer-tool-finder__shortcuts" aria-label="Alternative discovery paths">
           <span>Explore another way</span>
           <a href="/ai-tools/workflows/">Workflows</a>
@@ -159,6 +166,8 @@
                     data-tool-card
                     data-tool-category="{{ .Params.category }}"
                     data-tool-search="{{ $searchText }}"
+                    data-tool-path="{{ .RelPermalink }}"
+                    data-tool-review-date="{{ .Params.lastReviewed }}"
                   >
                     <a
                       class="aiplorer-tool-card aiplorer-tool-card--directory"

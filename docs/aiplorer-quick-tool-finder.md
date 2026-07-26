@@ -33,6 +33,10 @@ directory where category browsing alone can become slow.
   the homepage can offer a direct way to resume that directory view.
 - Visitors can clear the saved search from the homepage or by resetting the
   directory filters.
+- After a visitor starts a Review Updates checkpoint, the Directory can expose
+  a `New since checkpoint` filter when one or more public tool review tokens
+  are newer than that browser's snapshot. The filter combines with task and
+  category filters and is reflected as `new=1` in the URL.
 - An empty result offers a clear reset and a route to workflow collections.
 
 ## Trust And Privacy
@@ -57,6 +61,9 @@ directory where category browsing alone can become slow.
 - The Directory resume panel reads only the same browser-local shortlist,
   decision-stage, and candidate-check state. It does not send that state to
   Aiplorer or use it to rank tools.
+- The new-review filter compares public tool path-and-date tokens with the
+  existing browser-local Review Updates snapshot. It reports Aiplorer review
+  activity, not vendor product changes or feature guarantees.
 - Draft tools remain outside production output and cannot appear in finder
   results.
 
