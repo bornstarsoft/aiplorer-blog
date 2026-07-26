@@ -11,9 +11,10 @@ sync the saved list, and clearing browser storage may remove it.
 
 Each saved card shows one reviewed task-fit example, one check-first note, a
 four-part candidate checklist, a local last-tested date, and space for a test
-note. These are private browser state, not scores, rankings, recommendations,
-or proof that a service was tested by Aiplorer. Do not enter secrets, customer
-data, or confidential content.
+note. Use the local date view to return to candidates you have not recorded a
+hands-on test for yet. These are private browser state, not scores, rankings,
+recommendations, or proof that a service was tested by Aiplorer. Do not enter
+secrets, customer data, or confidential content.
 
 Use those signals to narrow the list, then open each full review and official
 website before choosing. They are not complete risk assessments. Features,

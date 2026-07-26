@@ -803,6 +803,18 @@ main#main-content:has(> .aiplorer-content-article) {
   display: none;
 }
 
+.aiplorer-home-evaluation__copy > .aiplorer-home-evaluation__untested {
+  margin-top: 0.15rem;
+  color: var(--aiplorer-coral);
+  font-size: 0.68rem;
+  font-weight: 750;
+}
+
+.aiplorer-home-evaluation__untested[hidden],
+.aiplorer-home-evaluation nav a[hidden] {
+  display: none;
+}
+
 .aiplorer-home-evaluation__copy > .aiplorer-home-evaluation__review {
   margin-top: 0.15rem;
   color: var(--aiplorer-violet);
@@ -5474,6 +5486,11 @@ main#main-content:has(> .aiplorer-content-article) {
 
 .aiplorer-shortlist-stage-filter[hidden] {
   display: none;
+}
+
+.aiplorer-shortlist-test-date-filter {
+  margin-top: 0;
+  border-top: 0;
 }
 
 .aiplorer-shortlist-stage-filter .aiplorer-kicker {

@@ -7,6 +7,7 @@
   var candidateStageViewStorageKey = "aiplorer-shortlist-stage-view-v1";
   var candidateNoteStorageKey = "aiplorer-candidate-notes-v1";
   var candidateTestDateStorageKey = "aiplorer-candidate-test-date-v1";
+  var candidateTestDateViewStorageKey = "aiplorer-shortlist-test-date-view-v1";
   var reviewSnapshotStorageKey = "aiplorer-review-snapshot-v1";
   var lastToolSearchStorageKey = "aiplorer-last-tool-search-v1";
   var backupSchema = "aiplorer-shortlist-backup";
@@ -16,12 +17,14 @@
   var allowedChecks = ["task", "output", "privacy", "plans"];
   var allowedCandidateStages = ["researching", "testing", "ready"];
   var allowedCandidateStageViews = ["all", "researching", "testing", "ready", "unset"];
+  var allowedCandidateTestDateViews = ["all", "untested", "dated"];
   var memoryList = [];
   var memoryTrialState = {};
   var memoryCandidateStageState = {};
   var memoryCandidateStageView = "all";
   var memoryCandidateNoteState = {};
   var memoryCandidateTestDateState = {};
+  var memoryCandidateTestDateView = "all";
 
   function cleanSearchValue(value, maxLength) {
     return typeof value === "string" ? value.trim().slice(0, maxLength) : "";
@@ -326,6 +329,45 @@
     }
   }
 
+  function cleanCandidateTestDateView(value) {
+    return allowedCandidateTestDateViews.indexOf(value) !== -1 ? value : "all";
+  }
+
+  function readCandidateTestDateView() {
+    try {
+      memoryCandidateTestDateView = cleanCandidateTestDateView(
+        window.localStorage.getItem(candidateTestDateViewStorageKey) || "all"
+      );
+    } catch (error) {
+      memoryCandidateTestDateView = cleanCandidateTestDateView(
+        memoryCandidateTestDateView
+      );
+    }
+    return memoryCandidateTestDateView;
+  }
+
+  function writeCandidateTestDateView(value) {
+    memoryCandidateTestDateView = cleanCandidateTestDateView(value);
+    try {
+      window.localStorage.setItem(
+        candidateTestDateViewStorageKey,
+        memoryCandidateTestDateView
+      );
+    } catch (error) {
+      // Keep the current-session fallback when browser storage is unavailable.
+    }
+  }
+
+  function candidateTestDateViewLabel(value) {
+    if (value === "untested") {
+      return "Not tested";
+    }
+    if (value === "dated") {
+      return "Date recorded";
+    }
+    return "All test dates";
+  }
+
   function candidateStageLabel(value) {
     if (value === "researching") {
       return "Researching";
@@ -410,7 +452,8 @@
         shortlistSet,
         cleanCandidateTestDateState
       ),
-      stageView: readCandidateStageView()
+      stageView: readCandidateStageView(),
+      testDateView: readCandidateTestDateView()
     };
   }
 
@@ -661,7 +704,8 @@
         shortlistSet,
         cleanCandidateTestDateState
       ),
-      stageView: cleanCandidateStageView(value.stageView)
+      stageView: cleanCandidateStageView(value.stageView),
+      testDateView: cleanCandidateTestDateView(value.testDateView)
     };
   }
 
@@ -695,6 +739,7 @@
         writeCandidateNoteState(backup.notes);
         writeCandidateTestDateState(backup.testDates);
         writeCandidateStageView(backup.stageView);
+        writeCandidateTestDateView(backup.testDateView);
         cleanupEvaluationState(backup.shortlist);
         render();
         notifyChange(backup.shortlist);
@@ -969,6 +1014,30 @@
     }
   }
 
+  function applyCandidateTestDateViewFromUrl() {
+    if (!document.querySelector("[data-shortlist-test-date-filter]")) {
+      return;
+    }
+
+    try {
+      var url = new URL(window.location.href);
+      var requestedTestDateView = url.searchParams.get("test");
+      if (allowedCandidateTestDateViews.indexOf(requestedTestDateView) === -1) {
+        return;
+      }
+
+      writeCandidateTestDateView(requestedTestDateView);
+      url.searchParams.delete("test");
+      window.history.replaceState(
+        null,
+        "",
+        url.pathname + (url.search ? url.search : "") + url.hash
+      );
+    } catch (error) {
+      // Keep the stored view when URL state cannot be read or replaced.
+    }
+  }
+
   function applyCandidateCheckFromUrl(saved) {
     if (!document.querySelector("[data-shortlist-stage-filter]")) {
       return;
@@ -1100,6 +1169,8 @@
     var stageEmpty = document.querySelector("[data-shortlist-stage-empty]");
     var stageFilter = document.querySelector("[data-shortlist-stage-filter]");
     var stageSummary = document.querySelector("[data-shortlist-stage-summary]");
+    var testDateFilter = document.querySelector("[data-shortlist-test-date-filter]");
+    var testDateSummary = document.querySelector("[data-shortlist-test-date-summary]");
     var stageNext = document.querySelector("[data-shortlist-stage-next]");
     var stageNextTitle = document.querySelector("[data-shortlist-stage-next-title]");
     var stageNextCopy = document.querySelector("[data-shortlist-stage-next-copy]");
@@ -1129,6 +1200,8 @@
     var exportBrief = document.querySelector("[data-shortlist-export-brief]");
     var stageState = readCandidateStageState();
     var stageView = readCandidateStageView();
+    var testDateState = readCandidateTestDateState();
+    var testDateView = readCandidateTestDateView();
     var trialState = readTrialState();
     var reviewSnapshot = readReviewSnapshot();
     var savedCount = saved.size;
@@ -1143,6 +1216,11 @@
       ready: 0,
       unset: 0
     };
+    var testDateCounts = {
+      all: savedCount,
+      untested: 0,
+      dated: 0
+    };
     var nextTestingCandidate = nextIncompleteTestingCandidate(
       saved,
       stageState,
@@ -1151,7 +1229,9 @@
 
     saved.forEach(function (path) {
       var stage = cleanCandidateStage(stageState[path]);
+      var testDate = cleanCandidateTestDate(testDateState[path]);
       stageCounts[stage || "unset"] += 1;
+      testDateCounts[testDate ? "dated" : "untested"] += 1;
       if (stage === "testing") {
         testingChecksRemaining += allowedChecks.length - cleanChecks(trialState[path]).length;
       }
@@ -1161,6 +1241,7 @@
       var path = item.getAttribute("data-shortlist-item");
       var isSaved = saved.has(path);
       var stage = cleanCandidateStage(stageState[path]);
+      var testDate = cleanCandidateTestDate(testDateState[path]);
       var reviewDate = item.getAttribute("data-shortlist-review-date") || "";
       var reviewState = reviewStateFor(path, reviewDate, reviewSnapshot);
       var reviewOutput = item.querySelector("[data-shortlist-review-state]");
@@ -1169,7 +1250,10 @@
         isSaved &&
         (stageView === "all" ||
           (stageView === "unset" && !stage) ||
-          stageView === stage);
+          stageView === stage) &&
+        (testDateView === "all" ||
+          (testDateView === "untested" && !testDate) ||
+          (testDateView === "dated" && Boolean(testDate)));
 
       item.hidden = !show;
       if (show) {
@@ -1205,6 +1289,9 @@
     }
     if (stageFilter) {
       stageFilter.hidden = savedCount === 0;
+    }
+    if (testDateFilter) {
+      testDateFilter.hidden = savedCount === 0;
     }
     if (stageNext) {
       stageNext.hidden = savedCount === 0;
@@ -1346,8 +1433,23 @@
       }
     }
     if (stageSummary) {
+      var stageVisibleCount =
+        stageView === "all" ? savedCount : stageCounts[stageView] || 0;
       stageSummary.textContent =
         stageView === "all"
+          ? "All decision stages selected."
+          : stageVisibleCount +
+            " of " +
+            savedCount +
+            " saved " +
+            (savedCount === 1 ? "candidate" : "candidates") +
+            " match " +
+            candidateStageViewLabel(stageView) +
+            ".";
+    }
+    if (testDateSummary) {
+      testDateSummary.textContent =
+        stageView === "all" && testDateView === "all"
           ? "Showing all " +
             savedCount +
             " saved " +
@@ -1359,9 +1461,7 @@
             savedCount +
             " saved " +
             (savedCount === 1 ? "candidate" : "candidates") +
-            ": " +
-            candidateStageViewLabel(stageView) +
-            ".";
+            " after both local filters.";
     }
     if (clear) {
       clear.disabled = savedCount === 0;
@@ -1387,6 +1487,23 @@
       );
       count.textContent = String(stageCounts[value] || 0);
     });
+
+    document.querySelectorAll("[data-shortlist-test-date-view]").forEach(function (button) {
+      var value = cleanCandidateTestDateView(
+        button.getAttribute("data-shortlist-test-date-view")
+      );
+      var active = value === testDateView;
+
+      button.classList.toggle("is-active", active);
+      button.setAttribute("aria-pressed", String(active));
+    });
+
+    document.querySelectorAll("[data-shortlist-test-date-count]").forEach(function (count) {
+      var value = cleanCandidateTestDateView(
+        count.getAttribute("data-shortlist-test-date-count")
+      );
+      count.textContent = String(testDateCounts[value] || 0);
+    });
   }
 
   function updateHomeEvaluation(saved) {
@@ -1403,6 +1520,7 @@
     );
     var stageSummary = section.querySelector("[data-home-evaluation-stage]");
     var nextSummary = section.querySelector("[data-home-evaluation-next]");
+    var untestedSummary = section.querySelector("[data-home-evaluation-untested]");
     var reviewSummary = section.querySelector("[data-home-evaluation-review]");
     var primary = section.querySelector("[data-home-evaluation-primary]");
     var primaryLabel = section.querySelector("[data-home-evaluation-primary-label]");
@@ -1410,8 +1528,13 @@
     var reviewLinkLabel = section.querySelector(
       "[data-home-evaluation-review-link-label]"
     );
+    var untestedLink = section.querySelector("[data-home-evaluation-untested-link]");
+    var untestedLinkLabel = section.querySelector(
+      "[data-home-evaluation-untested-link-label]"
+    );
     var state = readTrialState();
     var stageState = readCandidateStageState();
+    var testDateState = readCandidateTestDateState();
     var reviewSnapshot = readReviewSnapshot();
     var reviewEntries = Array.prototype.slice.call(
       section.querySelectorAll("[data-home-review-entry]")
@@ -1430,6 +1553,7 @@
             return !reviewSnapshot.has(token);
           });
     var completed = 0;
+    var untestedCount = 0;
     var stageCounts = {
       researching: 0,
       testing: 0,
@@ -1439,6 +1563,9 @@
 
     saved.forEach(function (path) {
       completed += cleanChecks(state[path]).length;
+      if (!cleanCandidateTestDate(testDateState[path])) {
+        untestedCount += 1;
+      }
       var stage = cleanCandidateStage(stageState[path]);
       if (stage) {
         stageCounts[stage] += 1;
@@ -1520,6 +1647,16 @@
           ".";
       }
     }
+    if (untestedSummary) {
+      untestedSummary.hidden = untestedCount === 0;
+      if (untestedCount > 0) {
+        untestedSummary.textContent =
+          untestedCount +
+          " saved " +
+          (untestedCount === 1 ? "candidate has" : "candidates have") +
+          " no local test date yet.";
+      }
+    }
     if (reviewSummary) {
       reviewSummary.hidden = savedReviewEntries.length === 0;
       if (reviewSnapshot === null) {
@@ -1552,10 +1689,19 @@
         reviewLinkLabel.textContent = "Check saved reviews";
       }
     }
+    if (untestedLink && untestedLinkLabel) {
+      untestedLink.hidden = untestedCount === 0;
+      untestedLink.href = "/ai-tools/shortlist/?test=untested";
+      untestedLinkLabel.textContent =
+        "Review " +
+        untestedCount +
+        " untested " +
+        (untestedCount === 1 ? "candidate" : "candidates");
+    }
     if (primary && primaryLabel) {
       if (nextTestingCandidate) {
         primary.href =
-          "/ai-tools/shortlist/?stage=testing&candidate=" +
+          "/ai-tools/shortlist/?stage=testing&test=all&candidate=" +
           encodeURIComponent(nextTestingCandidate.path) +
           "&check=" +
           encodeURIComponent(nextTestingCandidate.check);
@@ -2097,7 +2243,7 @@
         delete testDateState[testDatePath];
       }
       writeCandidateTestDateState(testDateState);
-      updateCandidateTestDates(new Set(readList()));
+      render();
       announce(
         testDateControl.getAttribute("data-candidate-test-date-title") +
           ": local test date " +
@@ -2120,6 +2266,10 @@
     var importBackup = event.target.closest("[data-shortlist-import-trigger]");
     var nextCheckButton = event.target.closest("[data-shortlist-next-check]");
     var candidateStageViewButton = event.target.closest("[data-shortlist-stage-view]");
+    var candidateTestDateViewButton = event.target.closest(
+      "[data-shortlist-test-date-view]"
+    );
+    var resetShortlistViews = event.target.closest("[data-shortlist-reset-views]");
     var candidateStageButton = event.target.closest("[data-candidate-stage-value]");
     var candidateStageReset = event.target.closest("[data-candidate-stage-reset]");
     var candidateTestDateToday = event.target.closest("[data-candidate-test-date-today]");
@@ -2168,6 +2318,7 @@
       }
 
       writeCandidateStageView("testing");
+      writeCandidateTestDateView("all");
       render();
 
       var nextCheckTitle =
@@ -2190,6 +2341,29 @@
       writeCandidateStageView(candidateStageView);
       render();
       announce("Shortlist stage view set to " + candidateStageViewLabel(candidateStageView) + ".");
+      return;
+    }
+
+    if (candidateTestDateViewButton) {
+      var candidateTestDateView = cleanCandidateTestDateView(
+        candidateTestDateViewButton.getAttribute("data-shortlist-test-date-view")
+      );
+
+      writeCandidateTestDateView(candidateTestDateView);
+      render();
+      announce(
+        "Shortlist local test-date view set to " +
+          candidateTestDateViewLabel(candidateTestDateView) +
+          "."
+      );
+      return;
+    }
+
+    if (resetShortlistViews) {
+      writeCandidateStageView("all");
+      writeCandidateTestDateView("all");
+      render();
+      announce("Showing all saved candidates.");
       return;
     }
 
@@ -2252,7 +2426,7 @@
       }
 
       writeCandidateTestDateState(candidateTestDateState);
-      updateCandidateTestDates(new Set(readList()));
+      render();
       announce(
         candidateTestDateControl.getAttribute("data-candidate-test-date-title") +
           ": local test date " +
@@ -2281,6 +2455,7 @@
       cleanupEvaluationState(list);
       if (list.length === 0) {
         writeCandidateStageView("all");
+        writeCandidateTestDateView("all");
       }
       render();
       notifyChange(list);
@@ -2291,6 +2466,7 @@
       writeList([]);
       cleanupEvaluationState([]);
       writeCandidateStageView("all");
+      writeCandidateTestDateView("all");
       announce("Shortlist cleared.");
       render();
       notifyChange([]);
@@ -2308,6 +2484,7 @@
       event.key === candidateStageViewStorageKey ||
       event.key === candidateNoteStorageKey ||
       event.key === candidateTestDateStorageKey ||
+      event.key === candidateTestDateViewStorageKey ||
       event.key === reviewSnapshotStorageKey ||
       event.key === lastToolSearchStorageKey
     ) {
@@ -2320,6 +2497,7 @@
   });
 
   applyCandidateStageViewFromUrl();
+  applyCandidateTestDateViewFromUrl();
   render();
   applyCandidateCheckFromUrl(new Set(readList()));
 })();

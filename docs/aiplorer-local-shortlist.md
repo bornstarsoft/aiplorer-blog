@@ -21,6 +21,8 @@ tracking.
   are keyed by the reviewed tool path.
 - The selected shortlist stage view uses
   `aiplorer-shortlist-stage-view-v1`.
+- The selected local test-date view uses
+  `aiplorer-shortlist-test-date-view-v1`.
 - Aiplorer does not receive or synchronize the saved list.
 - Aiplorer does not receive or synchronize candidate check progress.
 - Aiplorer does not receive or synchronize decision stages.
@@ -81,6 +83,13 @@ may need another check. The date is included in local JSON backups and readable
 Markdown decision briefs. It is the visitor's own continuity note, not an
 Aiplorer review date, vendor verification, proof of testing, or freshness
 guarantee. Removing a tool also removes its stored date.
+
+The shortlist can show all saved candidates, only candidates with no local test
+date, or only candidates with a recorded date. This filter combines with the
+decision-stage view and reports neutral local counts. The homepage links back
+to the untested view when one or more saved candidates have no recorded date.
+Neither view infers whether a test happened, whether a dated observation is
+still current, or which candidate should be chosen.
 
 ## Decision stages
 
@@ -150,10 +159,10 @@ after the stage and focused check are applied.
 
 The shortlist workspace can download a versioned JSON backup containing only
 public reviewed-tool paths, private candidate checks, decision stages, private
-test notes, candidate-owned last-tested dates, and the selected stage view. The
-file stays on the visitor's device; Aiplorer does not upload, receive, or
-synchronize it. Review Update checkpoints and recent search state are
-deliberately excluded.
+test notes, candidate-owned last-tested dates, and the selected stage and
+test-date views. The file stays on the visitor's device; Aiplorer does not
+upload, receive, or synchronize it. Review Update checkpoints and recent search
+state are deliberately excluded.
 
 Restore accepts files up to 256 KB, requires the current backup schema, keeps
 only reviewed tool paths present on the current shortlist page, and removes
