@@ -2,19 +2,19 @@
 
 Date: 2026-07-26
 
-This audit compares Aiplorer's 60 reviewed public tool pages with the rendered
+This audit compares Aiplorer's 65 reviewed public tool pages with the rendered
 AI Tools landing, reviewed index, and category pages. It checks discoverability
 without changing tool content, rankings, routes, categories, or draft status.
 
 ## Discovery Result
 
-The production build contains 60 reviewed tool routes and three draft-only tool
+The production build contains 65 reviewed tool routes and eight draft-only tool
 files.
 
 The rendered discovery paths match the reviewed front matter inventory:
 
-- `/ai-tools/` links to all 60 reviewed tools exactly once.
-- `/ai-tools/tools/` links to all 60 reviewed tools exactly once.
+- `/ai-tools/` links to all 65 reviewed tools exactly once.
+- `/ai-tools/tools/` links to all 65 reviewed tools exactly once.
 - `/ai-tools/` links to each of the ten public category pages exactly once.
 - Every reviewed tool link resolves to its generated production route.
 - No reviewed tool is missing from its assigned category page.
@@ -22,23 +22,23 @@ The rendered discovery paths match the reviewed front matter inventory:
 - No reviewed tool appears more than once on its category page.
 
 The site homepage remains a deliberately smaller bookmark selection. It is not
-expected to link to all 60 reviewed tools.
+expected to link to all 65 reviewed tools.
 
 ## Category Result
 
 | Category | Expected links | Rendered links |
 | --- | ---: | ---: |
-| Productivity Tools | 11 | 11 |
+| Productivity Tools | 12 | 12 |
 | Automation Tools | 7 | 7 |
 | Writing Tools | 7 | 7 |
 | Audio Tools | 6 | 6 |
-| Image Tools | 6 | 6 |
-| Business Tools | 5 | 5 |
+| Image Tools | 9 | 9 |
+| Business Tools | 6 | 6 |
 | Coding Tools | 5 | 5 |
 | Video Tools | 5 | 5 |
 | Learning Tools | 4 | 4 |
 | Presentation Tools | 4 | 4 |
-| **Total** | **60** | **60** |
+| **Total** | **65** | **65** |
 
 The reviewed index groups pages automatically from `category` front matter.
 The AI Tools landing and category pages use manually maintained cards. All
@@ -50,6 +50,11 @@ The production build contains no links to:
 
 - `/ai-tools/tools/scispace/`
 - `/ai-tools/tools/tome/`
+- `/ai-tools/tools/clipdrop/`
+- `/ai-tools/tools/julius-ai/`
+- `/ai-tools/tools/rows/`
+- `/ai-tools/tools/obviously-ai/`
+- `/ai-tools/tools/polymer/`
 - `/ai-tools/tools/example-ai-assistant/`
 
 A sitewide scan of rendered production HTML found zero anchors targeting those
@@ -73,5 +78,5 @@ and landing cards should remain descriptive and non-ranking.
 ## Audit Decision
 
 No public content or layout change was required. The current discovery
-structure is complete, category-consistent, and draft-safe for all 60 reviewed
+structure is complete, category-consistent, and draft-safe for all 65 reviewed
 tool pages.
