@@ -54,6 +54,30 @@ candidate.
 Record a no-change result when official guidance remains materially unchanged.
 Do not advance `lastReviewed` solely because a scheduled check was attempted.
 
+## Transition Monitoring Log
+
+### 2026-07-26 Baseline Check
+
+- Relay.app's official shutdown notice continued to state that free-user
+  access ends on August 15, 2026 and paying-customer access ends on September
+  14, 2026. Its export, account deletion, connected-app credential, and
+  transition support guidance remained materially unchanged.
+- The official Devin Desktop page and Cognition announcement continued to
+  identify Devin Desktop as the new name and next generation of Windsurf. The
+  existing `/ai-tools/tools/windsurf/` route remains the correct continuity
+  route.
+- The current Relay.app and Windsurf pages remain accurate. No public copy,
+  metadata, route, category, or publication-status change was required, and
+  their `lastReviewed` values were not advanced for this no-change check.
+- Official sources checked:
+  `https://www.relay.app/`,
+  `https://docs.relay.app/workspace-and-account/export-your-relay.app-data`,
+  `https://devin.ai/desktop`,
+  `https://cognition.com/blog/introducing-devin-desktop`, and
+  `https://docs.devin.ai/desktop/getting-started`.
+- Next scheduled transition check: 2026-08-02, or sooner if an official
+  identity, destination, access, export, migration, or shutdown notice changes.
+
 ## September 2026 High-Risk Cycle
 
 Use small batches:
