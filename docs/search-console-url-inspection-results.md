@@ -8,8 +8,8 @@ no Search Console URL Inspection or indexing request has been recorded yet.
 
 Current status:
 
-- Public readiness: 24 of 24 queued URLs passed
-- Search Console inspections: 0 of 24 recorded
+- Public readiness: 25 of 25 queued URLs passed
+- Search Console inspections: 0 of 25 recorded
 - Indexing requests: 0
 - Available browser session: access to `search.google.com` blocked
 
@@ -56,7 +56,13 @@ from the authenticated Search Console interface.
 | `https://aiplorer.com/ai-tools/tools/replit/` | Pending | Pending | Pending | Pending | None |
 | `https://aiplorer.com/ai-tools/tools/tabnine/` | Pending | Pending | Pending | Pending | None |
 
-## Priority 5: Transition And Canonical Samples
+## Priority 5: Recent Business Tool
+
+| URL | Inspection | Google-selected canonical | Last crawl | Live test | Action |
+| --- | --- | --- | --- | --- | --- |
+| `https://aiplorer.com/ai-tools/tools/akkio/` | Pending | Pending | Pending | Pending | None |
+
+## Priority 6: Transition And Canonical Samples
 
 | URL | Inspection | Google-selected canonical | Last crawl | Live test | Action |
 | --- | --- | --- | --- | --- | --- |

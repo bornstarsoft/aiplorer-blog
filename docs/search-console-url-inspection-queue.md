@@ -87,7 +87,22 @@ current product name. All five responses showed
 `cf-cache-status: DYNAMIC`, no `Age` header, and
 `cache-control: public, max-age=0, must-revalidate`.
 
-### Priority 5: Transition And Canonical Samples
+### Priority 5: Recent Business Tool
+
+Akkio passed a public readiness check on 2026-07-26.
+
+| Route | HTTP | Self-canonical | Robots | Reviewed index | Category page | Sitemap |
+| --- | ---: | --- | --- | --- | --- | --- |
+| `/ai-tools/tools/akkio/` | 200 | Yes | `index, follow` | Present | Present | Present |
+
+The rendered page identified `Business Tools` as its category and used the
+apex-domain trailing-slash canonical. The AI Tools landing, reviewed index, and
+Business Tools page included Akkio. The response showed
+`cf-cache-status: DYNAMIC`, no `Age` header, and
+`cache-control: public, max-age=0, must-revalidate`. The `www` route returned
+HTTP 301 to the matching apex URL.
+
+### Priority 6: Transition And Canonical Samples
 
 The transition and canonical sample routes passed a public readiness check on
 2026-07-26.
@@ -170,7 +185,18 @@ https://aiplorer.com/ai-tools/tools/tabnine/
 Windsurf remains at its preserved Aiplorer URL while the page identifies the
 current Devin Desktop name.
 
-## Priority 5: Transition And Canonical Samples
+## Priority 5: Recent Business Tool
+
+Inspect Akkio after the aggregate and Business Tools category routes:
+
+```txt
+https://aiplorer.com/ai-tools/tools/akkio/
+```
+
+Its public readiness check passed, but authenticated Search Console inspection
+and any indexing request remain manual and unrecorded.
+
+## Priority 6: Transition And Canonical Samples
 
 Use these for focused monitoring rather than routine indexing requests:
 
