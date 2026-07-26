@@ -35,7 +35,24 @@ headers showed `cf-cache-status: DYNAMIC`, no `Age` header, and
 `cache-control: public, max-age=0, must-revalidate`. The `www` version of the
 AI Tools route returned HTTP 301 to the matching apex URL.
 
-### Priority 2: Recent Productivity Tools
+### Priority 2: Recent Design And Creative Tools
+
+The four newly published design and creative pages passed a public readiness
+check on 2026-07-26.
+
+| Route | HTTP | Self-canonical | Reviewed index | Category page | Sitemap |
+| --- | ---: | --- | --- | --- | --- |
+| `/ai-tools/tools/figma-ai/` | 200 | Yes | Present | Present | Present |
+| `/ai-tools/tools/kittl/` | 200 | Yes | Present | Present | Present |
+| `/ai-tools/tools/photoroom/` | 200 | Yes | Present | Present | Present |
+| `/ai-tools/tools/microsoft-designer/` | 200 | Yes | Present | Present | Present |
+
+Figma AI appeared under `Productivity Tools`. Kittl, Photoroom, and Microsoft
+Designer appeared under `Image Tools`. All four responses showed
+`cf-cache-status: DYNAMIC`, no `Age` header, and
+`cache-control: public, max-age=0, must-revalidate`.
+
+### Priority 3: Recent Productivity Tools
 
 The five recent meeting and transcription pages passed a public readiness
 check on 2026-07-26.
@@ -52,7 +69,7 @@ Each rendered page identified `Productivity Tools` as its category. All five
 responses showed `cf-cache-status: DYNAMIC`, no `Age` header, and
 `cache-control: public, max-age=0, must-revalidate`.
 
-### Priority 3: Coding Tools
+### Priority 4: Coding Tools
 
 The five Coding Tools pages passed a public readiness check on 2026-07-26.
 
@@ -70,7 +87,7 @@ current product name. All five responses showed
 `cf-cache-status: DYNAMIC`, no `Age` header, and
 `cache-control: public, max-age=0, must-revalidate`.
 
-### Priority 4: Transition And Canonical Samples
+### Priority 5: Transition And Canonical Samples
 
 The transition and canonical sample routes passed a public readiness check on
 2026-07-26.
@@ -92,10 +109,10 @@ sitemap.
 All checked responses showed `cf-cache-status: DYNAMIC`, no `Age` header, and
 `cache-control: public, max-age=0, must-revalidate`.
 
-SciSpace, Tome, and Example AI Assistant returned HTTP 404 and were absent from
-the live sitemap. No indexing request was made. The authenticated Search
-Console inspection remains pending because the available browser session
-blocked access to `search.google.com`; do not infer Google indexing or
+SciSpace, Tome, Clipdrop, and Example AI Assistant returned HTTP 404 and were
+absent from the live sitemap. No indexing request was made. The authenticated
+Search Console inspection remains pending because the available browser
+session blocked access to `search.google.com`; do not infer Google indexing or
 canonical-selection results from this public check.
 
 ## Priority 1: Aggregate And Category Routes
@@ -114,7 +131,19 @@ Confirm the user-declared and Google-selected canonicals use the apex domain
 and trailing slash. Check whether the crawled body reflects the current
 reviewed listings.
 
-## Priority 2: Recent Productivity Tools
+## Priority 2: Recent Design And Creative Tools
+
+Inspect the newly published design and creative pages after the aggregate
+routes:
+
+```txt
+https://aiplorer.com/ai-tools/tools/figma-ai/
+https://aiplorer.com/ai-tools/tools/kittl/
+https://aiplorer.com/ai-tools/tools/photoroom/
+https://aiplorer.com/ai-tools/tools/microsoft-designer/
+```
+
+## Priority 3: Recent Productivity Tools
 
 Inspect the five recent meeting and transcription pages:
 
@@ -126,7 +155,7 @@ https://aiplorer.com/ai-tools/tools/granola/
 https://aiplorer.com/ai-tools/tools/read-ai/
 ```
 
-## Priority 3: Coding Tools
+## Priority 4: Coding Tools
 
 Inspect the Coding Tools batch after its aggregate and category routes:
 
@@ -141,7 +170,7 @@ https://aiplorer.com/ai-tools/tools/tabnine/
 Windsurf remains at its preserved Aiplorer URL while the page identifies the
 current Devin Desktop name.
 
-## Priority 4: Transition And Canonical Samples
+## Priority 5: Transition And Canonical Samples
 
 Use these for focused monitoring rather than routine indexing requests:
 
@@ -178,11 +207,12 @@ https://www.aiplorer.com/
 https://aiplorer.com/ai-tools/?deploy-check=<commit>
 https://aiplorer.com/ai-tools/tools/scispace/
 https://aiplorer.com/ai-tools/tools/tome/
+https://aiplorer.com/ai-tools/tools/clipdrop/
 https://aiplorer.com/ai-tools/tools/example-ai-assistant/
 ```
 
 The `www` host redirects to the apex domain. Cache-busting query strings are
-deployment diagnostics, not canonical URLs. The three tool routes remain
+deployment diagnostics, not canonical URLs. The four tool routes remain
 draft-only.
 
 ## Inspection Record

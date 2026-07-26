@@ -8,8 +8,8 @@ no Search Console URL Inspection or indexing request has been recorded yet.
 
 Current status:
 
-- Public readiness: 20 of 20 queued URLs passed
-- Search Console inspections: 0 of 20 recorded
+- Public readiness: 24 of 24 queued URLs passed
+- Search Console inspections: 0 of 24 recorded
 - Indexing requests: 0
 - Available browser session: access to `search.google.com` blocked
 
@@ -27,7 +27,16 @@ from the authenticated Search Console interface.
 | `https://aiplorer.com/ai-tools/coding-tools/` | Pending | Pending | Pending | Pending | None |
 | `https://aiplorer.com/ai-tools/automation-tools/` | Pending | Pending | Pending | Pending | None |
 
-## Priority 2: Recent Productivity Tools
+## Priority 2: Recent Design And Creative Tools
+
+| URL | Inspection | Google-selected canonical | Last crawl | Live test | Action |
+| --- | --- | --- | --- | --- | --- |
+| `https://aiplorer.com/ai-tools/tools/figma-ai/` | Pending | Pending | Pending | Pending | None |
+| `https://aiplorer.com/ai-tools/tools/kittl/` | Pending | Pending | Pending | Pending | None |
+| `https://aiplorer.com/ai-tools/tools/photoroom/` | Pending | Pending | Pending | Pending | None |
+| `https://aiplorer.com/ai-tools/tools/microsoft-designer/` | Pending | Pending | Pending | Pending | None |
+
+## Priority 3: Recent Productivity Tools
 
 | URL | Inspection | Google-selected canonical | Last crawl | Live test | Action |
 | --- | --- | --- | --- | --- | --- |
@@ -37,7 +46,7 @@ from the authenticated Search Console interface.
 | `https://aiplorer.com/ai-tools/tools/granola/` | Pending | Pending | Pending | Pending | None |
 | `https://aiplorer.com/ai-tools/tools/read-ai/` | Pending | Pending | Pending | Pending | None |
 
-## Priority 3: Coding Tools
+## Priority 4: Coding Tools
 
 | URL | Inspection | Google-selected canonical | Last crawl | Live test | Action |
 | --- | --- | --- | --- | --- | --- |
@@ -47,7 +56,7 @@ from the authenticated Search Console interface.
 | `https://aiplorer.com/ai-tools/tools/replit/` | Pending | Pending | Pending | Pending | None |
 | `https://aiplorer.com/ai-tools/tools/tabnine/` | Pending | Pending | Pending | Pending | None |
 
-## Priority 4: Transition And Canonical Samples
+## Priority 5: Transition And Canonical Samples
 
 | URL | Inspection | Google-selected canonical | Last crawl | Live test | Action |
 | --- | --- | --- | --- | --- | --- |
@@ -81,10 +90,11 @@ Do not inspect or request indexing for:
 - `https://aiplorer.com/posts/page/1/`
 - `https://aiplorer.com/ai-tools/tools/scispace/`
 - `https://aiplorer.com/ai-tools/tools/tome/`
+- `https://aiplorer.com/ai-tools/tools/clipdrop/`
 - `https://aiplorer.com/ai-tools/tools/example-ai-assistant/`
 
 The `www` host redirects to the apex domain. `/posts/page/1/` is an intentional
-alias of `/posts/`. The three tool routes remain draft-only.
+alias of `/posts/`. The four tool routes remain draft-only.
 
 The queue definitions and public readiness evidence are maintained in
 `docs/search-console-url-inspection-queue.md`.

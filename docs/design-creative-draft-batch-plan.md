@@ -176,6 +176,7 @@ A candidate may move from draft only after:
 6. The tool independently passes review; a batch does not need to publish
    together.
 
-The next phase should validate production and draft behavior, publish only the
-four reviewed pages, and keep Clipdrop absent from public listings and the
-production sitemap.
+Production and live-route validation completed on 2026-07-26. The four
+reviewed pages returned HTTP 200 and appeared in the reviewed index, their
+category pages, and the sitemap. Clipdrop remained HTTP 404 and absent from
+public listings and the production sitemap.

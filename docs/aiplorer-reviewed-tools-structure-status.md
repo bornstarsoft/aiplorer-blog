@@ -123,10 +123,10 @@ Current policy:
 ## Search Console Follow-Up
 
 Use `docs/search-console-url-inspection-queue.md` for the current selective
-manual queue. It prioritizes aggregate and category routes, recent meeting and
-Coding Tools pages, transition pages, and representative canonical samples.
-Draft, alternate-host, and cache-busted URLs must not be submitted for
-indexing.
+manual queue. It prioritizes aggregate and category routes, the recent design
+and creative pages, meeting and Coding Tools pages, transition pages, and
+representative canonical samples. Draft, alternate-host, and cache-busted URLs
+must not be submitted for indexing.
 
 ## Recommended Next Work
 
@@ -177,7 +177,8 @@ Its draft-first source and caution record remains in
 
 ## Recommended Direction
 
-The immediate next phase is deployment validation for Figma AI, Kittl,
-Photoroom, and Microsoft Designer, followed by risk-based maintenance. Keep
-SciSpace, Tome, and Clipdrop unpublished unless their official sources become
-stable enough for conservative review.
+Deployment validation is complete for Figma AI, Kittl, Photoroom, and Microsoft
+Designer. The immediate next phase is selective manual Search Console
+inspection followed by risk-based maintenance. Keep SciSpace, Tome, and
+Clipdrop unpublished unless their official sources become stable enough for
+conservative review.
