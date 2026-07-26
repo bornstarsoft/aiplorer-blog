@@ -87,6 +87,19 @@
           </button>
           <a href="/ai-tools/review-updates/?view=tools">Open review activity</a>
         </div>
+        <div
+          class="aiplorer-tool-finder__saved"
+          data-tool-finder-saved
+          role="group"
+          aria-label="Private shortlist filter"
+          hidden
+        >
+          <span>Your browser</span>
+          <button type="button" data-tool-finder-saved-button aria-pressed="false">
+            Saved candidates <strong data-tool-finder-saved-count>0</strong>
+          </button>
+          <a href="/ai-tools/shortlist/">Open shortlist</a>
+        </div>
         <div class="aiplorer-tool-finder__shortcuts" aria-label="Alternative discovery paths">
           <span>Explore another way</span>
           <a href="/ai-tools/workflows/">Workflows</a>
@@ -125,6 +138,9 @@
           </a>
           <a href="/ai-tools/compare/?view=shortlist">
             Compare saved tools <span aria-hidden="true">&rarr;</span>
+          </a>
+          <a href="/ai-tools/tools/?saved=1">
+            Show saved in Directory <span aria-hidden="true">&rarr;</span>
           </a>
         </nav>
       </div>

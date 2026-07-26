@@ -1520,6 +1520,62 @@ main#main-content:has(> .aiplorer-content-article) {
   text-decoration: underline;
 }
 
+.aiplorer-tool-finder__saved {
+  display: flex;
+  margin-top: 0.75rem;
+  align-items: center;
+  gap: 0.55rem 0.8rem;
+  color: var(--aiplorer-muted);
+  font-size: 0.74rem;
+}
+
+.aiplorer-tool-finder__saved[hidden] {
+  display: none;
+}
+
+.aiplorer-tool-finder__saved > span {
+  font-weight: 750;
+}
+
+.aiplorer-tool-finder__saved button {
+  min-height: 2rem;
+  padding: 0.42rem 0.62rem;
+  border: 1px solid var(--aiplorer-line);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--aiplorer-text);
+  cursor: pointer;
+  font-size: 0.72rem;
+  font-weight: 750;
+}
+
+.aiplorer-tool-finder__saved button:hover,
+.aiplorer-tool-finder__saved button:focus-visible,
+.aiplorer-tool-finder__saved button.is-active {
+  border-color: var(--aiplorer-teal);
+  color: var(--aiplorer-teal);
+}
+
+.aiplorer-tool-finder__saved button.is-active {
+  background: #e1f1ee;
+  box-shadow: inset 0 0 0 1px var(--aiplorer-teal);
+}
+
+.aiplorer-tool-finder__saved button strong {
+  margin-left: 0.25rem;
+}
+
+.aiplorer-tool-finder__saved a {
+  color: var(--aiplorer-teal);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.aiplorer-tool-finder__saved a:hover,
+.aiplorer-tool-finder__saved a:focus-visible {
+  text-decoration: underline;
+}
+
 .aiplorer-tool-finder__shortcuts {
   display: flex;
   margin-top: 0.8rem;
@@ -6856,6 +6912,11 @@ main#main-content:has(> .aiplorer-content-article) {
   }
 
   .aiplorer-tool-finder__checkpoint {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .aiplorer-tool-finder__saved {
     align-items: flex-start;
     flex-wrap: wrap;
   }

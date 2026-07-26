@@ -37,6 +37,12 @@ directory where category browsing alone can become slow.
   a `New since checkpoint` filter when one or more public tool review tokens
   are newer than that browser's snapshot. The filter combines with task and
   category filters and is reflected as `new=1` in the URL.
+- When one or more candidates are saved in the local shortlist, the Directory
+  exposes a `Saved candidates` filter. It combines with task, category, and
+  new-review filters, uses `saved=1` in the URL, and updates immediately when a
+  visible result is saved or removed.
+- The saved-candidate resume panel also offers a direct route back to the
+  Directory's saved-only view, alongside the shortlist and comparison routes.
 - An empty result offers a clear reset and a route to workflow collections.
 
 ## Trust And Privacy
@@ -64,6 +70,9 @@ directory where category browsing alone can become slow.
 - The new-review filter compares public tool path-and-date tokens with the
   existing browser-local Review Updates snapshot. It reports Aiplorer review
   activity, not vendor product changes or feature guarantees.
+- The saved-candidate filter reads only the existing browser-local shortlist.
+  It does not sync candidates, send them to Aiplorer, or change alphabetical
+  and category ordering.
 - Draft tools remain outside production output and cannot appear in finder
   results.
 

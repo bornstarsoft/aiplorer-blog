@@ -8,6 +8,7 @@
 
   var lastSearchStorageKey = "aiplorer-last-tool-search-v1";
   var reviewSnapshotStorageKey = "aiplorer-review-snapshot-v1";
+  var shortlistStorageKey = "aiplorer-shortlist-v1";
   var queryInput = finder.querySelector("[data-tool-finder-query]");
   var categorySelect = finder.querySelector("[data-tool-finder-category]");
   var resetButton = finder.querySelector("[data-tool-finder-reset]");
@@ -21,8 +22,13 @@
   var checkpoint = finder.querySelector("[data-tool-finder-checkpoint]");
   var newButton = finder.querySelector("[data-tool-finder-new]");
   var newCount = finder.querySelector("[data-tool-finder-new-count]");
+  var savedControl = finder.querySelector("[data-tool-finder-saved]");
+  var savedButton = finder.querySelector("[data-tool-finder-saved-button]");
+  var savedCount = finder.querySelector("[data-tool-finder-saved-count]");
   var newTokens = new Set();
+  var savedPaths = new Set();
   var onlyNew = false;
+  var onlySaved = false;
 
   if (!queryInput || !categorySelect || !resetButton || !resultCount) {
     return;
@@ -75,6 +81,37 @@
     return null;
   }
 
+  function isToolPath(value) {
+    return typeof value === "string" && /^\/ai-tools\/tools\/[^/]+\/$/.test(value);
+  }
+
+  function readSavedPaths() {
+    try {
+      var stored = JSON.parse(window.localStorage.getItem(shortlistStorageKey) || "[]");
+      if (Array.isArray(stored)) {
+        return stored.filter(isToolPath);
+      }
+    } catch (error) {
+      return [];
+    }
+    return [];
+  }
+
+  function setSavedPaths(paths) {
+    savedPaths = new Set((Array.isArray(paths) ? paths : []).filter(isToolPath));
+
+    if (savedControl && savedButton) {
+      savedControl.hidden = savedPaths.size === 0;
+      if (savedCount) {
+        savedCount.textContent = String(savedPaths.size);
+      }
+    }
+
+    if (savedPaths.size === 0) {
+      onlySaved = false;
+    }
+  }
+
   function reviewTokenFor(card) {
     return (
       (card.getAttribute("data-tool-path") || "") +
@@ -104,6 +141,12 @@
       url.searchParams.delete("new");
     }
 
+    if (onlySaved) {
+      url.searchParams.set("saved", "1");
+    } else {
+      url.searchParams.delete("saved");
+    }
+
     window.history.replaceState({}, "", url.pathname + url.search + url.hash);
   }
 
@@ -127,7 +170,9 @@
       var matchesQuery = !query || normalize(card.dataset.toolSearch).indexOf(query) !== -1;
       var matchesCategory = !category || card.dataset.toolCategory === category;
       var matchesNew = !onlyNew || newTokens.has(reviewTokenFor(card));
-      var isVisible = matchesQuery && matchesCategory && matchesNew;
+      var matchesSaved =
+        !onlySaved || savedPaths.has(card.getAttribute("data-tool-path") || "");
+      var isVisible = matchesQuery && matchesCategory && matchesNew && matchesSaved;
 
       card.hidden = !isVisible;
       if (isVisible) {
@@ -140,16 +185,28 @@
       group.hidden = !hasVisibleCard;
     });
 
+    var resultQualifiers = [];
+    if (onlySaved) {
+      resultQualifiers.push("saved in this browser");
+    }
+    if (onlyNew) {
+      resultQualifiers.push("checked since your checkpoint");
+    }
     resultCount.textContent =
       visibleCount +
       (visibleCount === 1 ? " reviewed tool" : " reviewed tools") +
-      (onlyNew ? " checked since your checkpoint" : "");
-    resetButton.disabled = !query && !category && !onlyNew;
+      (resultQualifiers.length ? " " + resultQualifiers.join(" and ") : "");
+    resetButton.disabled = !query && !category && !onlyNew && !onlySaved;
     updateTaskButtons(query, category);
 
     if (newButton) {
       newButton.classList.toggle("is-active", onlyNew);
       newButton.setAttribute("aria-pressed", String(onlyNew));
+    }
+
+    if (savedButton) {
+      savedButton.classList.toggle("is-active", onlySaved);
+      savedButton.setAttribute("aria-pressed", String(onlySaved));
     }
 
     if (emptyState) {
@@ -167,6 +224,7 @@
     queryInput.value = "";
     categorySelect.value = "";
     onlyNew = false;
+    onlySaved = false;
     clearLastSearch();
     updateResults();
     queryInput.focus();
@@ -174,12 +232,14 @@
 
   var initialParams = new URLSearchParams(window.location.search);
   var reviewSnapshot = readReviewSnapshot();
+  setSavedPaths(readSavedPaths());
   if (reviewSnapshot !== null) {
     newTokens = new Set(cards.map(reviewTokenFor).filter(function (token) {
       return !reviewSnapshot.has(token);
     }));
   }
   onlyNew = initialParams.get("new") === "1" && newTokens.size > 0;
+  onlySaved = initialParams.get("saved") === "1" && savedPaths.size > 0;
 
   if (checkpoint && newButton && newTokens.size > 0) {
     checkpoint.hidden = false;
@@ -188,6 +248,13 @@
     }
     newButton.addEventListener("click", function () {
       onlyNew = !onlyNew;
+      updateResults();
+    });
+  }
+
+  if (savedControl && savedButton && savedPaths.size > 0) {
+    savedButton.addEventListener("click", function () {
+      onlySaved = !onlySaved;
       updateResults();
     });
   }
@@ -240,6 +307,22 @@
         target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
       }
     });
+  });
+
+  window.addEventListener("aiplorer:shortlist-change", function (event) {
+    var paths =
+      event.detail && Array.isArray(event.detail.paths)
+        ? event.detail.paths
+        : readSavedPaths();
+    setSavedPaths(paths);
+    updateResults();
+  });
+
+  window.addEventListener("storage", function (event) {
+    if (event.key === shortlistStorageKey) {
+      setSavedPaths(readSavedPaths());
+      updateResults();
+    }
   });
 
   updateResults({ syncUrl: false });
