@@ -5409,6 +5409,19 @@ main#main-content:has(> .aiplorer-content-article) {
   border-color: var(--aiplorer-line);
 }
 
+.aiplorer-shortlist-backup__actions button[data-shortlist-export-brief]:not(:disabled) {
+  border-color: var(--aiplorer-teal);
+  background: var(--aiplorer-teal);
+  color: #fff;
+}
+
+.aiplorer-shortlist-backup__actions button[data-shortlist-export-brief]:not(:disabled):hover,
+.aiplorer-shortlist-backup__actions button[data-shortlist-export-brief]:not(:disabled):focus-visible {
+  border-color: #125f58;
+  background: #125f58;
+  color: #fff;
+}
+
 .aiplorer-shortlist-backup__actions .aiplorer-icon {
   width: 0.9rem;
   height: 0.9rem;

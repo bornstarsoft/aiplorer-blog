@@ -68,13 +68,17 @@
         </div>
 
         <div class="aiplorer-shortlist-backup" data-shortlist-backup>
-          <span class="aiplorer-shortlist-backup__icon">{{ partial "aiplorer-icon.html" "download" }}</span>
+          <span class="aiplorer-shortlist-backup__icon">{{ partial "aiplorer-icon.html" "file-text" }}</span>
           <div class="aiplorer-shortlist-backup__copy">
             <p class="aiplorer-kicker">Keep your evaluation</p>
-            <strong>Back up this browser's shortlist</strong>
-            <small>Download a local JSON file or restore one later. Aiplorer does not upload the file; restoring replaces this browser's saved candidates and checklist progress.</small>
+            <strong>Take your shortlist with you</strong>
+            <small>Download a readable decision brief, or back up local progress as JSON. Aiplorer does not upload either file; restoring replaces this browser's saved candidates and checklist progress.</small>
           </div>
           <div class="aiplorer-shortlist-backup__actions">
+            <button type="button" data-shortlist-export-brief disabled>
+              {{ partial "aiplorer-icon.html" "file-text" }}
+              <span>Download brief</span>
+            </button>
             <button type="button" data-shortlist-export disabled>
               {{ partial "aiplorer-icon.html" "download" }}
               <span>Download backup</span>
@@ -199,21 +203,21 @@
                 <span class="aiplorer-shortlist-card__icon" data-accent="{{ $categoryData.accent }}">
                   {{ partial "aiplorer-icon.html" $categoryData.icon }}
                 </span>
-                <span class="aiplorer-shortlist-card__category">{{ .Params.category }}</span>
+                <span class="aiplorer-shortlist-card__category" data-shortlist-category>{{ .Params.category }}</span>
               </div>
               <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-              <p>{{ .Params.description | truncate 145 }}</p>
+              <p data-shortlist-description>{{ .Params.description | truncate 145 }}</p>
               <div class="aiplorer-shortlist-card__signals">
                 {{ range first 1 .Params.bestFor }}
                   <div data-tone="teal">
                     <span>May fit</span>
-                    <p>{{ . }}</p>
+                    <p data-shortlist-best-for>{{ . }}</p>
                   </div>
                 {{ end }}
                 {{ range first 1 .Params.limitations }}
                   <div data-tone="coral">
                     <span>Check first</span>
-                    <p>{{ . }}</p>
+                    <p data-shortlist-limitation>{{ . }}</p>
                   </div>
                 {{ end }}
               </div>

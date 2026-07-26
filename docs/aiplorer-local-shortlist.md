@@ -122,6 +122,20 @@ browser's saved candidates and evaluation progress. This keeps the feature
 accountless while helping visitors preserve an unfinished comparison across
 browser-storage cleanup or a move to another browser.
 
+## Readable decision brief
+
+The shortlist can also download a local Markdown decision brief. It uses the
+saved order rather than assigning a score or rank and includes each candidate's
+category, short description, first `May fit` and `Check first` signals, Aiplorer
+review date, full review URL, private decision stage, four candidate-check
+states, and stage-specific next action.
+
+The brief ends with reminders to recheck official vendor details and review
+important outputs before choosing. It is generated entirely in the browser and
+is not uploaded to Aiplorer. The file summarizes the visitor's own evaluation
+progress; it is not evidence that a tool is accurate, secure, approved, or
+suitable for a particular use.
+
 ## Trend rationale
 
 The 2026 Stanford AI Index describes leading-model competition shifting toward

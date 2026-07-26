@@ -291,6 +291,20 @@
     };
   }
 
+  function downloadLocalFile(contents, filename, type) {
+    var blob = new Blob([contents], { type: type });
+    var objectUrl = window.URL.createObjectURL(blob);
+    var download = document.createElement("a");
+    download.href = objectUrl;
+    download.download = filename;
+    document.body.appendChild(download);
+    download.click();
+    download.remove();
+    window.setTimeout(function () {
+      window.URL.revokeObjectURL(objectUrl);
+    }, 0);
+  }
+
   function exportShortlistBackup() {
     var payload = shortlistBackupPayload();
     if (payload.shortlist.length === 0) {
@@ -298,20 +312,11 @@
       return;
     }
 
-    var blob = new Blob([JSON.stringify(payload, null, 2) + "\n"], {
-      type: "application/json"
-    });
-    var objectUrl = window.URL.createObjectURL(blob);
-    var download = document.createElement("a");
-    download.href = objectUrl;
-    download.download =
-      "aiplorer-shortlist-" + new Date().toISOString().slice(0, 10) + ".json";
-    document.body.appendChild(download);
-    download.click();
-    download.remove();
-    window.setTimeout(function () {
-      window.URL.revokeObjectURL(objectUrl);
-    }, 0);
+    downloadLocalFile(
+      JSON.stringify(payload, null, 2) + "\n",
+      "aiplorer-shortlist-" + new Date().toISOString().slice(0, 10) + ".json",
+      "application/json"
+    );
 
     announce(
       "Downloaded a local backup for " +
@@ -319,6 +324,148 @@
         " saved " +
         (payload.shortlist.length === 1 ? "candidate." : "candidates.")
     );
+  }
+
+  function briefText(value) {
+    return typeof value === "string" ? value.replace(/\s+/g, " ").trim() : "";
+  }
+
+  function briefCheckLabel(value) {
+    if (value === "task") {
+      return "Tested with the category task";
+    }
+    if (value === "output") {
+      return "Reviewed output quality and facts";
+    }
+    if (value === "privacy") {
+      return "Checked privacy, permissions, and rights";
+    }
+    return "Confirmed current plans and limits";
+  }
+
+  function shortlistDecisionBrief() {
+    var savedPaths = readList();
+    var stageState = readCandidateStageState();
+    var trialState = readTrialState();
+    var itemsByPath = {};
+
+    document.querySelectorAll("[data-shortlist-item]").forEach(function (item) {
+      itemsByPath[item.getAttribute("data-shortlist-item")] = item;
+    });
+
+    var candidates = savedPaths
+      .map(function (path) {
+        return { path: path, item: itemsByPath[path] };
+      })
+      .filter(function (candidate) {
+        return Boolean(candidate.item);
+      });
+
+    if (candidates.length === 0) {
+      return "";
+    }
+
+    var completedChecks = candidates.reduce(function (total, candidate) {
+      return total + cleanChecks(trialState[candidate.path]).length;
+    }, 0);
+    var lines = [
+      "# Aiplorer AI tool decision brief",
+      "",
+      "Local evaluation summary - not a ranking or recommendation.",
+      "",
+      "- Generated: " + new Date().toISOString(),
+      "- Saved candidates: " + candidates.length,
+      "- Candidate checks complete: " +
+        completedChecks +
+        " of " +
+        candidates.length * allowedChecks.length,
+      "- Order: candidates appear in the order saved, not by score or rank.",
+      ""
+    ];
+
+    candidates.forEach(function (candidate, index) {
+      var item = candidate.item;
+      var path = candidate.path;
+      var title = briefText(item.getAttribute("data-shortlist-title")) || "Saved tool";
+      var category = briefText(
+        (item.querySelector("[data-shortlist-category]") || {}).textContent
+      );
+      var description = briefText(
+        (item.querySelector("[data-shortlist-description]") || {}).textContent
+      );
+      var bestFor = briefText(
+        (item.querySelector("[data-shortlist-best-for]") || {}).textContent
+      );
+      var limitation = briefText(
+        (item.querySelector("[data-shortlist-limitation]") || {}).textContent
+      );
+      var reviewDate = briefText(item.getAttribute("data-shortlist-review-date"));
+      var stage = cleanCandidateStage(stageState[path]);
+      var completed = cleanChecks(trialState[path]);
+
+      lines.push("## " + (index + 1) + ". " + title);
+      lines.push("");
+      if (description) {
+        lines.push(description);
+        lines.push("");
+      }
+      lines.push("- Category: " + (category || "Not specified"));
+      lines.push("- Decision stage: " + candidateStageLabel(stage));
+      lines.push("- Aiplorer review checked: " + (reviewDate || "Date not available"));
+      lines.push("- Full review: https://aiplorer.com" + path);
+      if (bestFor) {
+        lines.push("- May fit: " + bestFor);
+      }
+      if (limitation) {
+        lines.push("- Check first: " + limitation);
+      }
+      lines.push("");
+      lines.push("### Candidate checks");
+      lines.push("");
+      allowedChecks.forEach(function (check) {
+        lines.push(
+          "- [" +
+            (completed.indexOf(check) === -1 ? " " : "x") +
+            "] " +
+            briefCheckLabel(check)
+        );
+      });
+      lines.push("");
+      lines.push("### Next step");
+      lines.push("");
+      lines.push(candidateStageNextText(stage));
+      lines.push("");
+    });
+
+    lines.push("## Before choosing");
+    lines.push("");
+    lines.push(
+      "- Recheck current features, pricing, limits, policies, and availability on official vendor pages."
+    );
+    lines.push(
+      "- Review important outputs and use extra care with sensitive, legal, medical, financial, security, or business-critical work."
+    );
+    lines.push(
+      "- This file reflects private browser notes and Aiplorer review pages; it does not prove that a tool is accurate, secure, suitable, or approved."
+    );
+    lines.push("");
+
+    return lines.join("\n");
+  }
+
+  function exportShortlistBrief() {
+    var brief = shortlistDecisionBrief();
+    if (!brief) {
+      announce("Save at least one reviewed tool before downloading a decision brief.");
+      return;
+    }
+
+    downloadLocalFile(
+      brief,
+      "aiplorer-decision-brief-" + new Date().toISOString().slice(0, 10) + ".md",
+      "text/markdown"
+    );
+    announce("Downloaded a readable decision brief for your saved candidates.");
   }
 
   function cleanShortlistBackup(value) {
@@ -785,6 +932,7 @@
     );
     var clear = document.querySelector("[data-shortlist-clear]");
     var exportBackup = document.querySelector("[data-shortlist-export]");
+    var exportBrief = document.querySelector("[data-shortlist-export-brief]");
     var stageState = readCandidateStageState();
     var stageView = readCandidateStageView();
     var trialState = readTrialState();
@@ -1026,6 +1174,9 @@
     }
     if (exportBackup) {
       exportBackup.disabled = savedCount === 0;
+    }
+    if (exportBrief) {
+      exportBrief.disabled = savedCount === 0;
     }
 
     document.querySelectorAll("[data-shortlist-stage-view]").forEach(function (button) {
@@ -1534,6 +1685,7 @@
   document.addEventListener("click", function (event) {
     var homeSearchClear = event.target.closest("[data-home-search-resume-clear]");
     var exportBackup = event.target.closest("[data-shortlist-export]");
+    var exportBrief = event.target.closest("[data-shortlist-export-brief]");
     var importBackup = event.target.closest("[data-shortlist-import-trigger]");
     var nextCheckButton = event.target.closest("[data-shortlist-next-check]");
     var candidateStageViewButton = event.target.closest("[data-shortlist-stage-view]");
@@ -1550,6 +1702,11 @@
 
     if (exportBackup) {
       exportShortlistBackup();
+      return;
+    }
+
+    if (exportBrief) {
+      exportShortlistBrief();
       return;
     }
 
