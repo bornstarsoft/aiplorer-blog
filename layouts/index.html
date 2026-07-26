@@ -1,5 +1,211 @@
+{{ define "header" }}
+  <header class="aiplorer-home-header">
+    {{ partials.Include "site-navigation.html" . }}
+  </header>
+{{ end }}
+
 {{ define "main" }}
-  <article class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy nested-links {{ $.Param "text_color" | compare.Default "mid-gray" }}">
-    {{ .Content }}
-  </article>
+  {{- $aiToolPages := where .Site.RegularPages "Section" "ai-tools" -}}
+  {{- $reviewedTools := where (where $aiToolPages "Params.reviewStatus" "reviewed") "Draft" false -}}
+  {{- $categories := partial "aiplorer-category-data.html" . -}}
+  {{- $recentTools := first 6 (sort $reviewedTools "Params.lastReviewed" "desc") -}}
+
+  <div class="aiplorer-home">
+    <section class="aiplorer-hero" aria-labelledby="aiplorer-home-title">
+      <div class="aiplorer-shell">
+        <div class="aiplorer-hero__copy">
+          <p class="aiplorer-eyebrow">
+            <span class="aiplorer-eyebrow__icon">{{ partial "aiplorer-icon.html" "compass" }}</span>
+            Reviewed AI tool discovery
+          </p>
+          <h1 id="aiplorer-home-title">Find the right AI tool for the job.</h1>
+          <p class="aiplorer-hero__lead">
+            Start with what you need to do, compare manually reviewed services,
+            and check current details at the official source.
+          </p>
+          <div class="aiplorer-actions">
+            <a class="aiplorer-button aiplorer-button--primary" href="/ai-tools/tools/">
+              Browse {{ len $reviewedTools }} reviewed tools
+            </a>
+            <a class="aiplorer-button aiplorer-button--secondary" href="/guides/how-to-choose-the-right-ai-tool/">
+              Choose with confidence
+            </a>
+          </div>
+        </div>
+        <dl class="aiplorer-stat-strip" aria-label="Aiplorer directory summary">
+          <div>
+            <dt>{{ len $reviewedTools }}</dt>
+            <dd>reviewed services</dd>
+          </div>
+          <div>
+            <dt>{{ len $categories }}</dt>
+            <dd>practical categories</dd>
+          </div>
+          <div>
+            <dt>Manual</dt>
+            <dd>official-source review</dd>
+          </div>
+          <div>
+            <dt>Zero</dt>
+            <dd>paid rankings</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="aiplorer-section aiplorer-section--tasks" aria-labelledby="task-heading">
+      <div class="aiplorer-shell">
+        <div class="aiplorer-section-heading">
+          <div>
+            <p class="aiplorer-kicker">Start with your task</p>
+            <h2 id="task-heading">What do you want AI to help with?</h2>
+          </div>
+          <a class="aiplorer-text-link" href="/ai-tools/">See every category <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        <div class="aiplorer-workflow-grid">
+          <a class="aiplorer-workflow" href="/ai-tools/learning-tools/">
+            <span class="aiplorer-workflow__icon" data-accent="violet">{{ partial "aiplorer-icon.html" "book-open" }}</span>
+            <span>
+              <strong>Research and learn</strong>
+              <small>Review sources, summarize, and study</small>
+            </span>
+          </a>
+          <a class="aiplorer-workflow" href="/ai-tools/coding-tools/">
+            <span class="aiplorer-workflow__icon" data-accent="teal">{{ partial "aiplorer-icon.html" "code" }}</span>
+            <span>
+              <strong>Build and debug</strong>
+              <small>Draft, explain, and review code</small>
+            </span>
+          </a>
+          <a class="aiplorer-workflow" href="/ai-tools/automation-tools/">
+            <span class="aiplorer-workflow__icon" data-accent="teal">{{ partial "aiplorer-icon.html" "workflow" }}</span>
+            <span>
+              <strong>Automate repeat work</strong>
+              <small>Connect apps and test workflows</small>
+            </span>
+          </a>
+          <a class="aiplorer-workflow" href="/ai-tools/writing-tools/">
+            <span class="aiplorer-workflow__icon" data-accent="coral">{{ partial "aiplorer-icon.html" "pen-line" }}</span>
+            <span>
+              <strong>Write and communicate</strong>
+              <small>Draft, edit, translate, and refine</small>
+            </span>
+          </a>
+          <a class="aiplorer-workflow" href="/ai-tools/image-tools/">
+            <span class="aiplorer-workflow__icon" data-accent="blue">{{ partial "aiplorer-icon.html" "image" }}</span>
+            <span>
+              <strong>Create visual content</strong>
+              <small>Explore images, design, and video</small>
+            </span>
+          </a>
+          <a class="aiplorer-workflow" href="/ai-tools/audio-tools/">
+            <span class="aiplorer-workflow__icon" data-accent="gold">{{ partial "aiplorer-icon.html" "audio-lines" }}</span>
+            <span>
+              <strong>Work with audio</strong>
+              <small>Voice, music, meetings, and podcasts</small>
+            </span>
+          </a>
+          <a class="aiplorer-workflow" href="/ai-tools/presentation-tools/">
+            <span class="aiplorer-workflow__icon" data-accent="coral">{{ partial "aiplorer-icon.html" "presentation" }}</span>
+            <span>
+              <strong>Present an idea</strong>
+              <small>Plan decks and visual narratives</small>
+            </span>
+          </a>
+          <a class="aiplorer-workflow" href="/ai-tools/business-tools/">
+            <span class="aiplorer-workflow__icon" data-accent="gold">{{ partial "aiplorer-icon.html" "briefcase" }}</span>
+            <span>
+              <strong>Run business workflows</strong>
+              <small>Marketing, service, and commerce</small>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="aiplorer-section" aria-labelledby="recent-heading">
+      <div class="aiplorer-shell">
+        <div class="aiplorer-section-heading">
+          <div>
+            <p class="aiplorer-kicker">Freshly checked</p>
+            <h2 id="recent-heading">Recently reviewed tools</h2>
+          </div>
+          <a class="aiplorer-text-link" href="/ai-tools/tools/">Open the full index <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        <div class="aiplorer-tool-grid aiplorer-tool-grid--featured">
+          {{ range $recentTools }}
+            <a class="aiplorer-tool-card" href="{{ .RelPermalink }}">
+              <span class="aiplorer-tool-card__category">{{ .Params.category }}</span>
+              <h3>{{ .Title }}</h3>
+              <p>{{ .Params.description | truncate 150 }}</p>
+              <span class="aiplorer-tool-card__meta">
+                Reviewed {{ .Params.lastReviewed }}
+                <span aria-hidden="true">&rarr;</span>
+              </span>
+            </a>
+          {{ end }}
+        </div>
+      </div>
+    </section>
+
+    <section class="aiplorer-section aiplorer-section--muted" aria-labelledby="categories-heading">
+      <div class="aiplorer-shell">
+        <div class="aiplorer-section-heading">
+          <div>
+            <p class="aiplorer-kicker">Browse the directory</p>
+            <h2 id="categories-heading">Every category at a glance</h2>
+          </div>
+        </div>
+        <div class="aiplorer-category-grid">
+          {{ range $categories }}
+            {{- $categoryTools := where $reviewedTools "Params.category" .name -}}
+            <a class="aiplorer-category-card" data-accent="{{ .accent }}" href="{{ .path }}">
+              <span class="aiplorer-category-card__icon">{{ partial "aiplorer-icon.html" .icon }}</span>
+              <span class="aiplorer-category-card__content">
+                <strong>{{ .name }}</strong>
+                <small>{{ .description }}</small>
+              </span>
+              <span class="aiplorer-category-card__count">{{ len $categoryTools }}</span>
+            </a>
+          {{ end }}
+        </div>
+      </div>
+    </section>
+
+    <section class="aiplorer-section" aria-labelledby="guidance-heading">
+      <div class="aiplorer-shell">
+        <div class="aiplorer-section-heading">
+          <div>
+            <p class="aiplorer-kicker">Use AI with care</p>
+            <h2 id="guidance-heading">Practical guidance, not just links</h2>
+          </div>
+        </div>
+        <div class="aiplorer-guidance-grid">
+          <a href="/guides/how-to-choose-the-right-ai-tool/">
+            <span>Guide</span>
+            <h3>How to choose the right AI tool</h3>
+            <p>Compare workflow fit, privacy, output quality, and current costs.</p>
+          </a>
+          <a href="/use-cases/how-to-use-ai-to-write-better-emails/">
+            <span>Use case</span>
+            <h3>Write better emails with AI</h3>
+            <p>Draft, shorten, clarify, and adapt messages without losing review.</p>
+          </a>
+          <a href="/use-cases/how-to-summarize-long-documents-with-ai/">
+            <span>Use case</span>
+            <h3>Summarize long documents</h3>
+            <p>Extract key points and questions while checking the original text.</p>
+          </a>
+        </div>
+
+        <aside class="aiplorer-trust-note">
+          <span class="aiplorer-trust-note__icon">{{ partial "aiplorer-icon.html" "shield-check" }}</span>
+          <div>
+            <h2>Reviewed without paid placement</h2>
+            <div class="aiplorer-trust-note__copy">{{ .Content }}</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </div>
 {{ end }}

@@ -1,0 +1,20 @@
+<nav class="aiplorer-site-nav" aria-label="Primary">
+  <div class="aiplorer-site-nav__inner">
+    <a href="{{ .Site.Home.RelPermalink }}" class="aiplorer-site-nav__brand" aria-label="{{ .Site.Title }} home">
+      <span class="aiplorer-site-nav__mark" aria-hidden="true">A</span>
+      <span>{{ .Site.Title }}</span>
+    </a>
+    {{ if .Site.Menus.main }}
+      <ul class="aiplorer-site-nav__links">
+        {{ range .Site.Menus.main }}
+          {{ $active := or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) }}
+          <li>
+            <a href="{{ .URL }}"{{ if $active }} class="is-active" aria-current="page"{{ end }}>
+              {{ .Name }}
+            </a>
+          </li>
+        {{ end }}
+      </ul>
+    {{ end }}
+  </div>
+</nav>

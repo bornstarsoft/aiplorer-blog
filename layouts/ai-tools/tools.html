@@ -1,40 +1,71 @@
 {{ define "header" }}{{ partials.Include "page-header.html" . }}{{ end }}
+
 {{ define "main" }}
-  {{ $reviewedTools := where (where .RegularPages "Params.reviewStatus" "reviewed") "Draft" false }}
-  <article class="pa3 pa4-ns nested-copy-line-height">
-    <section class="cf ph3 ph5-l pv3 pv4-l f4 center measure-wide lh-copy nested-links {{ $.Param "text_color" | compare.Default "mid-gray" }}">
-      <h1 class="f1 athelas mt3 mb1">{{ .Title }}</h1>
-      {{ with .Params.description }}
-        <p class="f4 lh-copy mid-gray">{{ . }}</p>
-      {{ end }}
-      {{ .Content }}
+  {{- $reviewedTools := where (where .RegularPages "Params.reviewStatus" "reviewed") "Draft" false -}}
+  {{- $categories := partial "aiplorer-category-data.html" . -}}
+
+  <article class="aiplorer-reviewed-index">
+    <section class="aiplorer-reviewed-index__intro">
+      <div class="aiplorer-shell">
+        <p class="aiplorer-eyebrow">
+          <span class="aiplorer-eyebrow__icon">{{ partial "aiplorer-icon.html" "shield-check" }}</span>
+          Manual review index
+        </p>
+        <h1>{{ .Title }}</h1>
+        <p class="aiplorer-reviewed-index__lead">
+          {{ len $reviewedTools }} services organized around the work you need to do.
+        </p>
+        <div class="aiplorer-reviewed-index__body">{{ .Content }}</div>
+      </div>
     </section>
 
-    <section class="mw8 center ph3 ph5-l pb5">
-      {{ if $reviewedTools }}
-        {{ range $group := $reviewedTools.GroupByParam "category" }}
-          <section class="mb5">
-            <h2 class="f3 mt0 mb3">{{ $group.Key }}</h2>
-            <div class="aiplorer-card-grid">
-              {{ range $group.Pages.ByTitle }}
-                <a class="aiplorer-card" href="{{ .RelPermalink }}" aria-label="{{ .Title }}">
-                  {{ with .Params.category }}<span class="aiplorer-card__label">{{ . }}</span>{{ end }}
-                  <h3 class="aiplorer-card__title">{{ .Title }}</h3>
-                  {{ with .Params.description }}
-                    <div class="aiplorer-card__body">{{ . }}</div>
-                  {{ end }}
-                  <div class="aiplorer-card__body">
-                    {{ with .Params.lastReviewed }}Last reviewed: {{ . }}{{ end }}
-                    {{ with .Params.reviewStatus }}<br>Review status: {{ . }}{{ end }}
-                  </div>
-                </a>
-              {{ end }}
-            </div>
-          </section>
+    <nav class="aiplorer-category-jump" aria-label="Jump to tool category">
+      <div class="aiplorer-shell">
+        <span class="aiplorer-category-jump__label">Jump to</span>
+        <div class="aiplorer-category-jump__links">
+          {{ range $categories }}
+            {{- $categoryTools := where $reviewedTools "Params.category" .name -}}
+            {{ if $categoryTools }}
+              <a href="#{{ .name | anchorize }}">{{ .name }} <span>{{ len $categoryTools }}</span></a>
+            {{ end }}
+          {{ end }}
+        </div>
+      </div>
+    </nav>
+
+    <div class="aiplorer-reviewed-groups">
+      <div class="aiplorer-shell">
+        {{ range $categories }}
+          {{- $categoryTools := where $reviewedTools "Params.category" .name -}}
+          {{ if $categoryTools }}
+            <section class="aiplorer-reviewed-group" id="{{ .name | anchorize }}" aria-labelledby="{{ .name | anchorize }}-heading">
+              <div class="aiplorer-reviewed-group__heading">
+                <span class="aiplorer-category-card__icon" data-accent="{{ .accent }}">{{ partial "aiplorer-icon.html" .icon }}</span>
+                <div>
+                  <h2 id="{{ .name | anchorize }}-heading">{{ .name }}</h2>
+                  <p>{{ .description }}</p>
+                </div>
+                <a href="{{ .path }}">Category guide <span aria-hidden="true">&rarr;</span></a>
+              </div>
+              <div class="aiplorer-tool-grid">
+                {{ range $categoryTools.ByTitle }}
+                  <a class="aiplorer-tool-card" href="{{ .RelPermalink }}">
+                    <span class="aiplorer-tool-card__category">Reviewed</span>
+                    <h3>{{ .Title }}</h3>
+                    {{ with .Params.description }}
+                      <p>{{ . | truncate 155 }}</p>
+                    {{ end }}
+                    <span class="aiplorer-tool-card__meta">
+                      Checked {{ .Params.lastReviewed }}
+                      <span aria-hidden="true">&rarr;</span>
+                    </span>
+                  </a>
+                {{ end }}
+              </div>
+            </section>
+          {{ end }}
         {{ end }}
-      {{ else }}
-        <p>No reviewed tools are published yet.</p>
-      {{ end }}
-    </section>
+      </div>
+    </div>
   </article>
 {{ end }}
