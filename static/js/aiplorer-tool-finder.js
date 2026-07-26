@@ -12,6 +12,7 @@
   var emptyResetButton = document.querySelector("[data-tool-finder-empty-reset]");
   var resultCount = finder.querySelector("[data-tool-finder-count]");
   var emptyState = document.querySelector("[data-tool-finder-empty]");
+  var taskButtons = Array.prototype.slice.call(finder.querySelectorAll("[data-tool-finder-task]"));
   var cards = Array.prototype.slice.call(document.querySelectorAll("[data-tool-card]"));
   var groups = Array.prototype.slice.call(document.querySelectorAll("[data-tool-group]"));
   var categoryLinks = Array.prototype.slice.call(document.querySelectorAll("[data-tool-category-link]"));
@@ -42,6 +43,17 @@
     window.history.replaceState({}, "", url.pathname + url.search + url.hash);
   }
 
+  function updateTaskButtons(query, category) {
+    taskButtons.forEach(function (button) {
+      var taskQuery = normalize(button.getAttribute("data-task-query"));
+      var taskCategory = button.getAttribute("data-task-category") || "";
+      var isActive = query === taskQuery && category === taskCategory && Boolean(taskQuery || taskCategory);
+
+      button.classList.toggle("is-active", isActive);
+      button.setAttribute("aria-pressed", String(isActive));
+    });
+  }
+
   function updateResults(options) {
     var query = normalize(queryInput.value);
     var category = categorySelect.value;
@@ -65,6 +77,7 @@
 
     resultCount.textContent = visibleCount + (visibleCount === 1 ? " reviewed tool" : " reviewed tools");
     resetButton.disabled = !query && !category;
+    updateTaskButtons(query, category);
 
     if (emptyState) {
       emptyState.hidden = visibleCount !== 0;
@@ -109,6 +122,14 @@
   if (emptyResetButton) {
     emptyResetButton.addEventListener("click", clearFilters);
   }
+
+  taskButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      queryInput.value = button.getAttribute("data-task-query") || "";
+      categorySelect.value = button.getAttribute("data-task-category") || "";
+      updateResults();
+    });
+  });
 
   categoryLinks.forEach(function (link) {
     link.addEventListener("click", function (event) {

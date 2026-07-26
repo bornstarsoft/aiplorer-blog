@@ -7,7 +7,7 @@ layout: "tools"
 
 Aiplorer's reviewed tool pages are manually checked before publication. This index is organized by category for browsing and does not use fake rankings, fake ratings, scores, or unsupported "best" claims.
 
-Use Quick Finder to narrow the index by a tool name, category, or practical task. Matching is based on the same reviewed descriptions and use cases shown on Aiplorer, not popularity or paid placement.
+Use Quick Finder to narrow the index by a tool name, category, or practical task. Common task shortcuts offer a faster starting point for research, writing, coding, automation, meetings, images, video, and audio. Matching is based on the same reviewed descriptions and use cases shown on Aiplorer, not popularity or paid placement.
 
 Tool features, pricing, plans, and availability may change. Always check the official website before choosing a tool or relying on a specific feature.
 
