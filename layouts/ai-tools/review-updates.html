@@ -85,6 +85,67 @@
       </div>
     </section>
 
+    <section
+      class="aiplorer-review-filter"
+      aria-labelledby="review-filter-heading"
+      data-review-filter
+      hidden
+    >
+      <div class="aiplorer-shell">
+        <div class="aiplorer-review-filter__heading">
+          <p class="aiplorer-kicker">Review activity finder</p>
+          <h2 id="review-filter-heading">Focus on the checks that matter now</h2>
+          <p>Choose a content type or tool category to scan the public review log. This changes the view, not the chronological order.</p>
+          <p class="aiplorer-review-filter__count" aria-live="polite">
+            <strong data-review-filter-count>{{ len $reviewedUpdates }} review checks</strong>
+            <span>in this view</span>
+          </p>
+        </div>
+        <div class="aiplorer-review-filter__controls">
+          <div class="aiplorer-review-filter__types" role="group" aria-label="Review content type">
+            <button type="button" data-review-filter-type="" aria-pressed="true">
+              All <span>{{ len $reviewedUpdates }}</span>
+            </button>
+            <button type="button" data-review-filter-type="tools" aria-pressed="false">
+              AI tools <span>{{ len $reviewedTools }}</span>
+            </button>
+            <button type="button" data-review-filter-type="guides" aria-pressed="false">
+              Guides <span>{{ len $reviewedGuides }}</span>
+            </button>
+            <button type="button" data-review-filter-type="use-cases" aria-pressed="false">
+              Use cases <span>{{ len $reviewedUseCases }}</span>
+            </button>
+          </div>
+          <div class="aiplorer-review-filter__options">
+            <label>
+              <span>Tool category</span>
+              <select data-review-filter-category>
+                <option value="">All tool categories</option>
+                {{ range $categories }}
+                  {{- $categoryTools := where $reviewedTools "Params.category" .name -}}
+                  {{ if gt (len $categoryTools) 0 }}
+                    <option value="{{ .name }}">{{ .name }} ({{ len $categoryTools }})</option>
+                  {{ end }}
+                {{ end }}
+              </select>
+            </label>
+            <button
+              class="aiplorer-review-filter__new"
+              type="button"
+              data-review-filter-new
+              aria-pressed="false"
+              hidden
+            >
+              New since last visit <span data-review-filter-new-count></span>
+            </button>
+            <button class="aiplorer-review-filter__reset" type="button" data-review-filter-reset disabled>
+              Reset view
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <nav class="aiplorer-category-jump" aria-label="Explore reviewed updates by content type">
       <div class="aiplorer-shell">
         <span class="aiplorer-category-jump__label">Explore content</span>
@@ -99,8 +160,13 @@
 
     <div class="aiplorer-review-log">
       <div class="aiplorer-shell">
+        <div class="aiplorer-review-filter__empty" data-review-filter-empty hidden>
+          <strong>No review checks match this view.</strong>
+          <p>Reset the view or choose another content type or tool category.</p>
+          <button type="button" data-review-filter-reset>Show all review checks</button>
+        </div>
         {{ range $reviewedUpdates.GroupByParam "lastReviewed" "desc" }}
-          <section class="aiplorer-review-group" aria-labelledby="review-date-{{ .Key | anchorize }}">
+          <section class="aiplorer-review-group" aria-labelledby="review-date-{{ .Key | anchorize }}" data-review-group>
             <div class="aiplorer-review-group__heading">
               <div>
                 <p class="aiplorer-kicker">Aiplorer review activity</p>
@@ -108,13 +174,14 @@
                   <time datetime="{{ .Key }}">{{ .Key }}</time>
                 </h2>
               </div>
-              <span>{{ len .Pages }} review checks</span>
+              <span data-review-group-count>{{ len .Pages }} review checks</span>
             </div>
             <div class="aiplorer-review-list">
               {{ range .Pages.ByTitle }}
                 {{- $categoryData := dict "icon" "sparkles" "accent" "blue" -}}
                 {{- $entryLabel := "AI tool" -}}
                 {{- $entryContext := .Params.category | default "Reviewed service" -}}
+                {{- $entryType := "tools" -}}
                 {{- if eq .Section "ai-tools" -}}
                   {{- range where $categories "name" .Params.category -}}
                     {{- $categoryData = . -}}
@@ -122,10 +189,12 @@
                 {{- else if eq .Section "guides" -}}
                   {{- $entryLabel = "Guide" -}}
                   {{- $entryContext = "Practical workflow" -}}
+                  {{- $entryType = "guides" -}}
                   {{- $categoryData = dict "icon" "book-open" "accent" "violet" -}}
                 {{- else -}}
                   {{- $entryLabel = "Use case" -}}
                   {{- $entryContext = "Task playbook" -}}
+                  {{- $entryType = "use-cases" -}}
                   {{- $categoryData = dict "icon" "square-check" "accent" "teal" -}}
                 {{- end -}}
                 <a
@@ -134,6 +203,8 @@
                   data-review-entry
                   data-review-path="{{ .RelPermalink }}"
                   data-review-date="{{ .Params.lastReviewed }}"
+                  data-review-type="{{ $entryType }}"
+                  data-review-category="{{ if eq $entryType "tools" }}{{ .Params.category }}{{ end }}"
                 >
                   <span class="aiplorer-review-entry__icon" data-accent="{{ $categoryData.accent }}">
                     {{ partial "aiplorer-icon.html" $categoryData.icon }}

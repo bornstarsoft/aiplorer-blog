@@ -11,6 +11,10 @@ and current workflow fit. This page shows Aiplorer review activity, not a
 vendor changelog, popularity ranking, score, endorsement, or guarantee that
 every feature is unchanged.
 
+Use the Review Activity Finder to focus the chronological log by content type
+or tool category. On a return visit, the private browser checkpoint can also
+surface entries added or checked again since the previous snapshot.
+
 AI services and recommended workflows can change between reviews. Recheck
 official pricing, availability, privacy, licensing, limits, and product
 documentation, and review AI-assisted output before making an important
