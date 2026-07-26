@@ -37,3 +37,16 @@ the remediation.
 The exclusion uses the documented Hugo `ignoreFiles` configuration setting,
 which matches regular expressions against absolute content file paths:
 https://gohugo.io/configuration/all/#ignorefiles
+
+## Recurrence Prevention
+
+Run the production post URL validator before publication:
+
+```bash
+node scripts/validate-production-post-urls.mjs
+```
+
+The validator reads `hugo list published`, filters the production `posts`
+section, and fails when multiple source pages resolve to the same output path.
+Because Hugo supplies the page graph, the check respects draft, future,
+expired, and `ignoreFiles` behavior without reparsing legacy front matter.
