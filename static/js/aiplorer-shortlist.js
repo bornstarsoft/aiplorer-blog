@@ -795,6 +795,95 @@
     }
   }
 
+  function updateHomeReviewPulse() {
+    var section = document.querySelector("[data-home-review-pulse]");
+    if (!section) {
+      return;
+    }
+
+    var label = section.querySelector("[data-home-review-pulse-label]");
+    var heading = section.querySelector("[data-home-review-pulse-heading]");
+    var copy = section.querySelector("[data-home-review-pulse-copy]");
+    var link = section.querySelector("[data-home-review-pulse-link]");
+    var linkLabel = section.querySelector("[data-home-review-pulse-link-label]");
+    var latestReview =
+      section.getAttribute("data-latest-review") || "the latest recorded date";
+    var reviewSnapshot = readReviewSnapshot();
+    var reviewEntries = Array.prototype.slice.call(
+      document.querySelectorAll("[data-home-review-entry]")
+    );
+    var newerEntries =
+      reviewSnapshot === null
+        ? []
+        : reviewEntries.filter(function (entry) {
+            var token =
+              entry.getAttribute("data-review-path") +
+              "|" +
+              entry.getAttribute("data-review-date");
+            return !reviewSnapshot.has(token);
+          });
+
+    if (reviewSnapshot === null) {
+      section.setAttribute("data-review-state", "checkpoint");
+      if (label) {
+        label.textContent = "Return visit";
+      }
+      if (heading) {
+        heading.textContent = "Track reviewed AI tool checks";
+      }
+      if (copy) {
+        copy.textContent =
+          "Open Review Updates to set a private browser checkpoint. Aiplorer can then highlight tools added or checked again when you return.";
+      }
+      if (link && linkLabel) {
+        link.href = "/ai-tools/review-updates/?view=tools";
+        linkLabel.textContent = "Start review checkpoint";
+      }
+      return;
+    }
+
+    if (newerEntries.length > 0) {
+      section.setAttribute("data-review-state", "updates");
+      if (label) {
+        label.textContent = "Since your last checkpoint";
+      }
+      if (heading) {
+        heading.textContent =
+          newerEntries.length +
+          " AI tool review " +
+          (newerEntries.length === 1 ? "check" : "checks") +
+          " to revisit";
+      }
+      if (copy) {
+        copy.textContent =
+          "These tools were added or checked again by Aiplorer since this browser's checkpoint. Revisit the reviews, then verify current details at official sources.";
+      }
+      if (link && linkLabel) {
+        link.href = "/ai-tools/review-updates/?view=tools&new=1";
+        linkLabel.textContent = "Review new tool checks";
+      }
+      return;
+    }
+
+    section.setAttribute("data-review-state", "current");
+    if (label) {
+      label.textContent = "Review pulse";
+    }
+    if (heading) {
+      heading.textContent = "Reviewed AI tool checks are caught up";
+    }
+    if (copy) {
+      copy.textContent =
+        "No newer Aiplorer tool checks are recorded since this browser's checkpoint. The latest recorded check remains " +
+        latestReview +
+        ".";
+    }
+    if (link && linkLabel) {
+      link.href = "/ai-tools/review-updates/?view=tools";
+      linkLabel.textContent = "Open review activity";
+    }
+  }
+
   function updateCandidateStages(saved) {
     var state = readCandidateStageState();
     var testingCount = 0;
@@ -858,6 +947,7 @@
     updateButtons(saved);
     updateShortlistPage(saved);
     updateHomeEvaluation(saved);
+    updateHomeReviewPulse();
     updateCandidateStages(saved);
   }
 

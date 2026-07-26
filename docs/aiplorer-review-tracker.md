@@ -54,6 +54,11 @@ Official references:
   It reports whether the browser needs a first checkpoint, is current, or has
   saved review activity to revisit. It does not write the review checkpoint;
   visiting Review Updates remains the explicit checkpoint action.
+- A separate homepage Review pulse reads all published tool tokens. It shows
+  whether the browser needs a first checkpoint, has newer tool review checks to
+  revisit, or is caught up with the current public tool set. The focused link
+  opens the tool-only review log and, when applicable, its new-since-checkpoint
+  view. It also remains read-only on the homepage.
 - The shortlist workspace displays the same state at both summary and candidate
   level. Saved candidates checked after the browser checkpoint link to the
   focused saved-and-new Review Updates view.

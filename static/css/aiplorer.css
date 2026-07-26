@@ -2317,6 +2317,24 @@ main#main-content:has(> .aiplorer-content-article) {
   text-decoration: underline;
 }
 
+.aiplorer-home-review-pulse {
+  background: #f8fafb;
+}
+
+.aiplorer-home-review-pulse[data-review-state="current"] .aiplorer-review-return__icon {
+  background: #e5f3f1;
+  color: var(--aiplorer-teal);
+}
+
+.aiplorer-home-review-pulse[data-review-state="updates"] .aiplorer-review-return__icon {
+  background: #f7e7e1;
+  color: var(--aiplorer-coral);
+}
+
+.aiplorer-home-review-pulse[data-review-state="updates"] .aiplorer-kicker {
+  color: var(--aiplorer-coral);
+}
+
 .aiplorer-review-filter {
   padding: 2.2rem 0;
   border-bottom: 1px solid var(--aiplorer-line);
