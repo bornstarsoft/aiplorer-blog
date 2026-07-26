@@ -9,6 +9,7 @@
   {{- $reviewedTools := where (where $aiToolPages "Params.reviewStatus" "reviewed") "Draft" false -}}
   {{- $categories := partial "aiplorer-category-data.html" . -}}
   {{- $recentTools := first 6 (sort $reviewedTools "Params.lastReviewed" "desc") -}}
+  {{- $trendSignals := partial "aiplorer-trend-signals.html" . -}}
 
   <div class="aiplorer-home">
     <section class="aiplorer-hero" aria-labelledby="aiplorer-home-title">
@@ -29,6 +30,9 @@
             </a>
             <a class="aiplorer-button aiplorer-button--secondary" href="/ai-tools/review-updates/">
               See latest review checks
+            </a>
+            <a class="aiplorer-button aiplorer-button--secondary" href="/ai-tools/trend-watch/">
+              Track current AI signals
             </a>
           </div>
         </div>
@@ -122,6 +126,32 @@
               <small>Marketing, service, and commerce</small>
             </span>
           </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="aiplorer-section aiplorer-section--trend-watch" aria-labelledby="home-trend-heading">
+      <div class="aiplorer-shell">
+        <div class="aiplorer-section-heading">
+          <div>
+            <p class="aiplorer-kicker">AI Trend Watch</p>
+            <h2 id="home-trend-heading">What is changing in practical AI work?</h2>
+            <p class="aiplorer-section-heading__note">Source-backed signals help you find the right workflow without turning product discovery into a popularity contest.</p>
+          </div>
+          <a class="aiplorer-text-link" href="/ai-tools/trend-watch/">Open Trend Watch <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        <div class="aiplorer-home-trend-grid">
+          {{ range $trendSignals }}
+            <a class="aiplorer-home-trend-card" href="/ai-tools/trend-watch/#{{ .id }}" data-trend-accent="{{ .accent }}">
+              <span class="aiplorer-home-trend-card__icon" data-accent="{{ .accent }}">
+                {{ partial "aiplorer-icon.html" .icon }}
+              </span>
+              <span class="aiplorer-home-trend-card__label">{{ .label }}</span>
+              <strong>{{ .title }}</strong>
+              <small>{{ .description | truncate 112 }}</small>
+              <span class="aiplorer-home-trend-card__link">View signal <span aria-hidden="true">&rarr;</span></span>
+            </a>
+          {{ end }}
         </div>
       </div>
     </section>

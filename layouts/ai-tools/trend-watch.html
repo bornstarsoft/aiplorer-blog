@@ -1,0 +1,119 @@
+{{ define "header" }}{{ partials.Include "page-header.html" . }}{{ end }}
+
+{{ define "main" }}
+  {{- $signals := partial "aiplorer-trend-signals.html" . -}}
+
+  <article class="aiplorer-trend-watch">
+    <section class="aiplorer-trend-watch__hero">
+      <div class="aiplorer-shell">
+        <div class="aiplorer-trend-watch__hero-copy">
+          <p class="aiplorer-eyebrow">
+            <span class="aiplorer-eyebrow__icon">{{ partial "aiplorer-icon.html" "compass" }}</span>
+            Source-backed signals
+          </p>
+          <h1>{{ .Title }}</h1>
+          <p class="aiplorer-trend-watch__lead">{{ .Params.description }}</p>
+          <div class="aiplorer-actions">
+            <a class="aiplorer-button aiplorer-button--primary" href="#trend-signals">
+              Explore current signals
+            </a>
+            <a class="aiplorer-button aiplorer-button--light" href="/ai-tools/workflows/">
+              Browse workflow collections
+            </a>
+          </div>
+        </div>
+        <dl class="aiplorer-trend-watch__facts" aria-label="AI Trend Watch summary">
+          <div>
+            <dt>{{ len $signals }}</dt>
+            <dd>current workflow signals</dd>
+          </div>
+          <div>
+            <dt>Official</dt>
+            <dd>research sources linked</dd>
+          </div>
+          <div>
+            <dt>2026-07-26</dt>
+            <dd>signals last checked</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="aiplorer-trend-watch__context" aria-labelledby="trend-context-heading">
+      <div class="aiplorer-shell">
+        <span class="aiplorer-trend-watch__context-icon">{{ partial "aiplorer-icon.html" "shield-check" }}</span>
+        <div>
+          <h2 id="trend-context-heading">Use trends to find a workflow, not to chase hype</h2>
+          <div class="aiplorer-trend-watch__body">{{ .Content }}</div>
+        </div>
+      </div>
+    </section>
+
+    <nav class="aiplorer-trend-jump" aria-label="Jump to AI workflow signal">
+      <div class="aiplorer-shell">
+        <span class="aiplorer-trend-jump__label">Current signals</span>
+        <div class="aiplorer-trend-jump__links">
+          {{ range $signals }}
+            <a href="#{{ .id }}">{{ .label }}</a>
+          {{ end }}
+        </div>
+      </div>
+    </nav>
+
+    <section class="aiplorer-trend-watch__signals" id="trend-signals" aria-labelledby="trend-signals-heading">
+      <div class="aiplorer-shell">
+        <div class="aiplorer-section-heading">
+          <div>
+            <p class="aiplorer-kicker">What is changing now</p>
+            <h2 id="trend-signals-heading">Four signals worth watching</h2>
+            <p class="aiplorer-section-heading__note">Each signal connects an official source to a practical Aiplorer workflow and a review checkpoint.</p>
+          </div>
+        </div>
+        <div class="aiplorer-trend-signal-grid">
+          {{ range $signals }}
+            <article class="aiplorer-trend-signal" id="{{ .id }}" data-trend-accent="{{ .accent }}">
+              <div class="aiplorer-trend-signal__heading">
+                <span class="aiplorer-trend-signal__icon" data-accent="{{ .accent }}">
+                  {{ partial "aiplorer-icon.html" .icon }}
+                </span>
+                <div>
+                  <p class="aiplorer-kicker">{{ .label }}</p>
+                  <h2>{{ .title }}</h2>
+                </div>
+              </div>
+              <p class="aiplorer-trend-signal__description">{{ .description }}</p>
+              <div class="aiplorer-trend-signal__checkpoint">
+                <strong>What to check</strong>
+                <p>{{ .checkpoint }}</p>
+              </div>
+              <div class="aiplorer-trend-signal__links">
+                <a href="{{ .workflowHref }}">
+                  {{ .workflowLabel }} <span aria-hidden="true">&rarr;</span>
+                </a>
+                <a href="{{ .sourceUrl }}" target="_blank" rel="noopener nofollow">
+                  {{ .sourceTitle }}
+                  <span class="aiplorer-trend-signal__external">{{ partial "aiplorer-icon.html" "external-link" }}</span>
+                </a>
+              </div>
+            </article>
+          {{ end }}
+        </div>
+      </div>
+    </section>
+
+    <section class="aiplorer-trend-watch__next" aria-labelledby="trend-next-heading">
+      <div class="aiplorer-shell">
+        <div>
+          <p class="aiplorer-kicker">Turn a signal into a decision</p>
+          <h2 id="trend-next-heading">Compare the workflow, then verify the tool</h2>
+          <p>Use the workflow collections to narrow the field, the reviewed index to compare choices, and the review tracker to see when Aiplorer last checked official sources.</p>
+        </div>
+        <nav aria-label="Continue exploring Aiplorer">
+          <a href="/ai-tools/workflows/">Workflow collections <span aria-hidden="true">&rarr;</span></a>
+          <a href="/ai-tools/tools/">Reviewed tools index <span aria-hidden="true">&rarr;</span></a>
+          <a href="/ai-tools/review-updates/">Latest review checks <span aria-hidden="true">&rarr;</span></a>
+        </nav>
+      </div>
+    </section>
+  </article>
+{{ end }}
