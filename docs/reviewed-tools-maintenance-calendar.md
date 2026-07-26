@@ -12,7 +12,8 @@ advancing review dates without a completed official-source review.
 - 64 reviewed public tool pages
 - 10 public tool categories
 - Review baseline dates: 2026-07-25 and 2026-07-26
-- Four draft-only pages: SciSpace, Tome, Clipdrop, and Example AI Assistant
+- Nine draft-only pages: SciSpace, Tome, Clipdrop, Julius AI, Rows, Akkio,
+  Obviously AI, Polymer, and Example AI Assistant
 
 The earlier applicable cadence takes priority when a tool appears in more than
 one group. Event-driven triggers such as a shutdown, rename, broken official
@@ -27,6 +28,7 @@ the calendar.
 | Fast-changing boundaries | Complete by 2026-09-25 to 2026-09-26 | Productivity, Automation, Coding, Business, Canva AI, DeepL, ElevenLabs | Recheck official product, help, pricing, privacy, security, policy, and legal sources as relevant |
 | General freshness | Complete by 2026-11-25 to 2026-11-26 | Remaining Writing, Image, Video, Audio, Learning, and Presentation pages | Recheck identity, official URLs, major workflow scope, rights, consent, source verification, and availability |
 | Draft readiness | Trigger-based only | SciSpace; Tome; Clipdrop | Revisit only when stable official product and supporting sources are available |
+| Data and analysis drafts | Next editorial review phase | Julius AI; Rows; Akkio; Obviously AI; Polymer | Review each candidate independently and publish only pages with sufficient current official sources |
 
 Example AI Assistant remains an internal model page and is not a publication
 candidate.

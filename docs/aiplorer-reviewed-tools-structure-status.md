@@ -9,7 +9,7 @@ are based on tool front matter in `content/ai-tools/tools/`.
 
 ## Current Tool Counts
 
-Aiplorer currently has 64 reviewed public tool pages and four draft-only tool
+Aiplorer currently has 64 reviewed public tool pages and nine draft-only tool
 pages.
 
 | Category | Reviewed tools | Count |
@@ -39,15 +39,21 @@ until they pass a new official-source review:
 - Tome
 - Example AI Assistant
 - Clipdrop
+- Julius AI
+- Rows
+- Akkio
+- Obviously AI
+- Polymer
 
 SciSpace remains draft pending stable official product, pricing, help, privacy,
 and security source review. Tome remains draft pending stable official product
 and help-source availability. Example AI Assistant is an internal content-model
 page and is not a publication candidate. Clipdrop remains draft pending a
 consistent, readable official record of the current operator and applicable
-privacy and legal terms.
+privacy and legal terms. Julius AI, Rows, Akkio, Obviously AI, and Polymer are
+new draft-first candidates that require independent official-source review.
 
-Production builds and the production sitemap must exclude all four pages.
+Production builds and the production sitemap must exclude all nine pages.
 
 ## Category Structure
 
@@ -164,8 +170,9 @@ Only after category maintenance, possible future directions include:
 
 The draft-first scope, category mapping, initial official-source entry points,
 and caution requirements for these candidates are recorded in
-`docs/data-analysis-draft-batch-plan.md`. No candidate page has been created,
-reviewed, linked, or approved for publication.
+`docs/data-analysis-draft-batch-plan.md`. The five pages have been created as
+unpublished drafts, but none has been reviewed, linked, or approved for
+publication.
 
 These are candidate names only. They are not reviewed recommendations and
 should not be added publicly without the normal draft-first and official-source

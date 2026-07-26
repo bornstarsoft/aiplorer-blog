@@ -12,13 +12,14 @@ The monitoring baseline is:
 
 - 64 reviewed public tool pages
 - 10 public tool categories
-- 4 draft-only pages: SciSpace, Tome, Clipdrop, and Example AI Assistant
+- 9 draft-only pages: SciSpace, Tome, Clipdrop, Julius AI, Rows, Akkio,
+  Obviously AI, Polymer, and Example AI Assistant
 - current official-source review dates of 2026-07-25 or 2026-07-26
 - production canonicals under `https://aiplorer.com/`
 
 Every reviewed page currently has `draft: false`, `reviewStatus: "reviewed"`,
 a non-empty `lastReviewed`, an official URL, source notes, and an allowed
-category. Production output and the sitemap exclude all four draft pages.
+category. Production output and the sitemap exclude all nine draft pages.
 
 Supporting baselines:
 
@@ -180,8 +181,9 @@ Confirm:
 
 - every intended public route exists in production output
 - the production sitemap includes only intended public tool URLs
-- SciSpace, Tome, Clipdrop, and Example AI Assistant are absent from production output
-  and the production sitemap
+- SciSpace, Tome, Clipdrop, Julius AI, Rows, Akkio, Obviously AI, Polymer, and
+  Example AI Assistant are absent from production output and the production
+  sitemap
 - the draft build still includes the intended drafts
 - no generated output or legacy post is staged
 
@@ -213,6 +215,7 @@ manual browser verification, not as automatic evidence that a link is broken.
 ## Draft Policy
 
 SciSpace, Tome, and Clipdrop remain draft pending stable, sufficient official
-sources. Example AI Assistant remains an internal model page. None of the four
-should be linked publicly, submitted for indexing, or added to the production
-sitemap.
+sources. Julius AI, Rows, Akkio, Obviously AI, and Polymer remain draft-first
+candidates pending independent official-source review. Example AI Assistant
+remains an internal model page. None of the nine should be linked publicly,
+submitted for indexing, or added to the production sitemap.

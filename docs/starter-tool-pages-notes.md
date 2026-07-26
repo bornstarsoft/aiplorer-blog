@@ -1787,3 +1787,43 @@ Clipdrop remains `draft: true` with
 privacy, and legal-notice URLs were checked, but current operator references
 and readable legal or privacy content were not sufficiently consistent for
 conservative publication. It is not linked publicly.
+
+## Data And Analysis Draft Batch
+
+Five draft-first candidate pages were added on 2026-07-26:
+
+- Julius AI
+- Rows
+- Akkio
+- Obviously AI
+- Polymer
+
+All five remain unpublished with:
+
+```yaml
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+```
+
+Julius AI and Rows use the provisional `Productivity Tools` category. Akkio,
+Obviously AI, and Polymer use the provisional `Business Tools` category. No
+new category or public listing was added.
+
+The planning entry points include current official product, help, pricing,
+privacy, security, and terms pages, but a complete publication review has not
+been performed. Rows requires special attention because its current product
+page says it joined Superhuman and some legal or documentation links point to
+Superhuman or Grammarly properties. Polymer requires a current operator,
+application, legal, privacy, and plan-structure check because some supporting
+pages show older dates or repeated plan sections.
+
+Special caution areas include generated analysis, formulas, code, predictions,
+charts, dashboards, reports, source data, assumptions, denominators,
+methodology, bias, data leakage, permissions, connected accounts, public
+sharing, embedded outputs, customer and business data, legal, medical,
+financial, employment, and other sensitive information.
+
+Official sources must be reviewed independently before any publication
+decision. The batch scope and publication gate are recorded in
+`docs/data-analysis-draft-batch-plan.md`.

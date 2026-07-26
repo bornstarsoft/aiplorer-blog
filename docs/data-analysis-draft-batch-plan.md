@@ -6,22 +6,29 @@ This plan defines a possible draft-first batch for data analysis, spreadsheet,
 predictive modeling, reporting, and dashboard workflows. It does not approve
 publication, verify every product claim, or authorize public links.
 
+## Implementation Status
+
+The five candidate pages were added as unpublished drafts on 2026-07-26.
+No official-source publication review has been completed, no candidate is
+linked publicly, and no new category was created.
+
 ## Candidate Scope
 
 | Candidate | Planned slug | Initial category | Draft status |
 | --- | --- | --- | --- |
-| Julius AI | `julius-ai` | Productivity Tools | Candidate only |
-| Rows | `rows` | Productivity Tools | Candidate only |
-| Akkio | `akkio` | Business Tools | Candidate only |
-| Obviously AI | `obviously-ai` | Business Tools | Candidate only |
-| Polymer | `polymer` | Business Tools | Candidate only |
+| Julius AI | `julius-ai` | Productivity Tools | Draft added |
+| Rows | `rows` | Productivity Tools | Draft added |
+| Akkio | `akkio` | Business Tools | Draft added |
+| Obviously AI | `obviously-ai` | Business Tools | Draft added |
+| Polymer | `polymer` | Business Tools | Draft added |
 
 The existing taxonomy is sufficient for an initial draft batch. Do not create
 a Data Tools category during the draft phase. Reconsider the taxonomy only
 after independently reviewed pages show that Productivity Tools and Business
 Tools cannot describe the products clearly.
 
-No candidate page has been created by this plan.
+All five pages remain `draft: true` with
+`reviewStatus: "needs-official-review"` and an empty `lastReviewed`.
 
 ## Official Source Entry Points
 
