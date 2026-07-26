@@ -10,11 +10,18 @@
   var rows = Array.prototype.slice.call(document.querySelectorAll("[data-compare-row]"));
   var groups = Array.prototype.slice.call(document.querySelectorAll("[data-compare-group]"));
   var buttons = Array.prototype.slice.call(document.querySelectorAll("[data-compare-view]"));
+  var categoryLinks = Array.prototype.slice.call(
+    document.querySelectorAll("[data-compare-category]")
+  ).filter(function (element) {
+    return element.matches("a");
+  });
   var summary = document.querySelector("[data-compare-summary]");
   var empty = document.querySelector("[data-compare-shortlist-empty]");
   var jumpNav = document.querySelector("[data-compare-jump-nav]");
   var trialSummary = document.querySelector("[data-compare-trial-summary]");
   var trialSummaryCopy = document.querySelector("[data-compare-trial-copy]");
+  var compareGroups = document.getElementById("compare-categories");
+  var currentCategory = "";
 
   if (!rows.length || !buttons.length) {
     return;
@@ -120,14 +127,27 @@
     }
   }
 
-  function setUrl(view) {
+  function cleanCategory(value) {
+    var requested = typeof value === "string" ? value.trim().toLowerCase() : "";
+    var match = categoryLinks.find(function (link) {
+      return (link.getAttribute("data-compare-category") || "").toLowerCase() === requested;
+    });
+    return match ? match.getAttribute("data-compare-category") || "" : "";
+  }
+
+  function setUrl(view, category) {
     var url = new URL(window.location.href);
     if (view === "shortlist") {
       url.searchParams.set("view", "shortlist");
     } else {
       url.searchParams.delete("view");
     }
-    window.history.replaceState({}, "", url.pathname + url.search + url.hash);
+    if (category) {
+      url.searchParams.set("category", category);
+    } else {
+      url.searchParams.delete("category");
+    }
+    window.history.replaceState({}, "", url.pathname + url.search);
   }
 
   function updateButtons(view) {
@@ -138,39 +158,62 @@
     });
   }
 
-  function render(view, paths) {
+  function render(view, paths, category) {
     var saved = new Set(paths || readList());
     var shortlistView = view === "shortlist";
     var visibleRows = 0;
-    var visibleGroups = 0;
 
     currentView = shortlistView ? "shortlist" : "all";
+    currentCategory = cleanCategory(category);
     updateButtons(currentView);
     renderTrialProgress(saved);
 
-    rows.forEach(function (row) {
-      var show = !shortlistView || saved.has(row.getAttribute("data-compare-path"));
-      row.hidden = !show;
-      if (show) {
-        visibleRows += 1;
-      }
-    });
-
     groups.forEach(function (group) {
       var groupRows = Array.prototype.slice.call(group.querySelectorAll("[data-compare-row]"));
-      var show = !shortlistView || groupRows.some(function (row) {
+      var groupCategory = group.getAttribute("data-compare-category") || "";
+      var categoryMatch = !currentCategory || groupCategory === currentCategory;
+
+      groupRows.forEach(function (row) {
+        row.hidden =
+          shortlistView && !saved.has(row.getAttribute("data-compare-path"));
+      });
+
+      var hasVisibleRows = groupRows.some(function (row) {
         return !row.hidden;
       });
-      var category = group.getAttribute("data-compare-group");
-      var jump = document.querySelector('[data-compare-jump="' + category + '"]');
+      var show = categoryMatch && hasVisibleRows;
 
       group.hidden = !show;
       group.classList.remove("is-first-visible");
-      if (jump) {
-        jump.hidden = !show;
-      }
       if (show) {
-        visibleGroups += 1;
+        visibleRows += groupRows.filter(function (row) {
+          return !row.hidden;
+        }).length;
+      }
+    });
+
+    categoryLinks.forEach(function (link) {
+      var linkCategory = link.getAttribute("data-compare-category") || "";
+      var active = linkCategory === currentCategory;
+      var linkedGroup = groups.find(function (group) {
+        return group.getAttribute("data-compare-category") === linkCategory;
+      });
+      var hasSavedRows =
+        !linkedGroup ||
+        Array.prototype.some.call(
+          linkedGroup.querySelectorAll("[data-compare-row]"),
+          function (row) {
+            return saved.has(row.getAttribute("data-compare-path"));
+          }
+        );
+
+      link.hidden =
+        shortlistView && Boolean(linkCategory) && !hasSavedRows && !active;
+      link.classList.toggle("is-active", active);
+      if (active) {
+        link.setAttribute("aria-current", "page");
+      } else {
+        link.removeAttribute("aria-current");
       }
     });
 
@@ -185,37 +228,57 @@
       empty.hidden = !shortlistView || visibleRows > 0;
     }
     if (jumpNav) {
-      jumpNav.hidden = shortlistView && visibleGroups === 0;
+      jumpNav.hidden = shortlistView && saved.size === 0;
     }
     if (summary) {
-      summary.textContent = shortlistView
-        ? "Showing " + visibleRows + " saved " + (visibleRows === 1 ? "tool" : "tools") + " in this browser."
-        : "Showing " + rows.length + " reviewed tools across all categories.";
+      var scope = currentCategory
+        ? " in " + currentCategory + "."
+        : " across all categories.";
+      summary.textContent =
+        "Showing " +
+        visibleRows +
+        (shortlistView ? " saved " : " reviewed ") +
+        (visibleRows === 1 ? "tool" : "tools") +
+        scope;
     }
   }
 
   buttons.forEach(function (button) {
     button.addEventListener("click", function () {
       var view = button.getAttribute("data-compare-view");
-      render(view);
-      setUrl(view);
+      render(view, undefined, currentCategory);
+      setUrl(view, currentCategory);
+    });
+  });
+
+  categoryLinks.forEach(function (link) {
+    link.addEventListener("click", function (event) {
+      event.preventDefault();
+      var category = link.getAttribute("data-compare-category") || "";
+      render(currentView, undefined, category);
+      setUrl(currentView, currentCategory);
+      if (compareGroups) {
+        compareGroups.scrollIntoView({ block: "start" });
+      }
     });
   });
 
   window.addEventListener("aiplorer:shortlist-change", function (event) {
     var paths = event.detail && Array.isArray(event.detail.paths) ? event.detail.paths : readList();
     memoryList = uniquePaths(paths);
-    render(currentView, memoryList);
+    render(currentView, memoryList, currentCategory);
   });
 
   window.addEventListener("storage", function (event) {
     if (event.key === storageKey || event.key === trialStorageKey) {
-      render(currentView);
+      render(currentView, undefined, currentCategory);
     }
   });
 
-  var initialView = new URL(window.location.href).searchParams.get("view") === "shortlist"
+  var initialParams = new URL(window.location.href).searchParams;
+  var initialView = initialParams.get("view") === "shortlist"
     ? "shortlist"
     : "all";
-  render(initialView);
+  var initialCategory = cleanCategory(initialParams.get("category") || "");
+  render(initialView, undefined, initialCategory);
 })();

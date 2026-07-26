@@ -28,6 +28,12 @@ view is reflected in the URL, but saved tool paths remain local to that
 browser. Desktop uses a dense comparison grid; mobile converts each row into a
 readable card.
 
+With JavaScript available, the category links also act as a focused comparison
+scope. The selected category is reflected in the `category` query parameter,
+can be combined with the shortlist view, and can be cleared with the `All
+categories` control. Without JavaScript, the same links remain ordinary anchor
+links to the server-rendered category groups.
+
 The shortlist view does not score, reorder, or recommend candidates. Removing a
 saved tool updates the focused comparison immediately, and visitors can always
 return to the complete reviewed set.

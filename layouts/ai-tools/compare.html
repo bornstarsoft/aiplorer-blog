@@ -102,10 +102,19 @@
       <div class="aiplorer-shell">
         <span class="aiplorer-category-jump__label">Compare category</span>
         <div class="aiplorer-category-jump__links">
+          <a href="#compare-categories" data-compare-category="">
+            All categories <span>{{ len $reviewedTools }}</span>
+          </a>
           {{ range $categories }}
             {{- $categoryTools := where $reviewedTools "Params.category" .name -}}
             {{ if $categoryTools }}
-              <a href="#compare-{{ .name | anchorize }}" data-compare-jump="{{ .name | anchorize }}">{{ .name }} <span>{{ len $categoryTools }}</span></a>
+              <a
+                href="#compare-{{ .name | anchorize }}"
+                data-compare-jump="{{ .name | anchorize }}"
+                data-compare-category="{{ .name }}"
+              >
+                {{ .name }} <span>{{ len $categoryTools }}</span>
+              </a>
             {{ end }}
           {{ end }}
         </div>
@@ -127,7 +136,13 @@
           {{- $category := . -}}
           {{- $categoryTools := where $reviewedTools "Params.category" .name -}}
           {{ if $categoryTools }}
-            <section class="aiplorer-compare-group" id="compare-{{ .name | anchorize }}" aria-labelledby="compare-{{ .name | anchorize }}-heading" data-compare-group="{{ .name | anchorize }}">
+            <section
+              class="aiplorer-compare-group"
+              id="compare-{{ .name | anchorize }}"
+              aria-labelledby="compare-{{ .name | anchorize }}-heading"
+              data-compare-group="{{ .name | anchorize }}"
+              data-compare-category="{{ .name }}"
+            >
               <div class="aiplorer-compare-group__heading">
                 <span class="aiplorer-compare-group__icon" data-accent="{{ .accent }}">
                   {{ partial "aiplorer-icon.html" .icon }}

@@ -1734,6 +1734,12 @@ main#main-content:has(> .aiplorer-content-article) {
   color: var(--aiplorer-teal);
 }
 
+.aiplorer-category-jump__links a.is-active {
+  border-color: var(--aiplorer-teal);
+  background: #e5f3f1;
+  color: var(--aiplorer-teal);
+}
+
 .aiplorer-category-jump__links span {
   color: var(--aiplorer-muted);
   font-size: 0.7rem;

@@ -79,6 +79,7 @@
     var reviewLensFocus = filterPanel.querySelector("[data-review-lens-focus]");
     var reviewLensCategory = filterPanel.querySelector("[data-review-lens-category]");
     var reviewLensDirectory = filterPanel.querySelector("[data-review-lens-directory]");
+    var reviewLensCompare = filterPanel.querySelector("[data-review-lens-compare]");
     var resetButtons = Array.prototype.slice.call(
       document.querySelectorAll("[data-review-filter-reset]")
     );
@@ -152,6 +153,10 @@
       if (reviewLensDirectory) {
         reviewLensDirectory.href =
           "/ai-tools/tools/?category=" + encodeURIComponent(activeCategory);
+      }
+      if (reviewLensCompare) {
+        reviewLensCompare.href =
+          "/ai-tools/compare/?category=" + encodeURIComponent(activeCategory);
       }
     }
 

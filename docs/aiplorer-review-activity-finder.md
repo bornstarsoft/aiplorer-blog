@@ -38,8 +38,8 @@ benchmark results to rank individual services.
   Cases.
 - Choosing a tool category automatically selects the AI tools view.
 - Choosing a tool category also reveals its existing repeatable test task and
-  review focus. The lens links to the matching category guide and filtered
-  reviewed-tool Directory.
+  review focus. The lens links to the matching category guide, filtered
+  reviewed-tool Directory, and a focused category comparison.
 - The URL records the active view so it can be shared or revisited.
 - When the existing local browser checkpoint detects later review activity, a
   New since last visit control becomes available.
