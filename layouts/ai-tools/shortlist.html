@@ -57,7 +57,7 @@
           <div>
             <p class="aiplorer-kicker">Saved candidates</p>
             <h2 id="saved-tools-heading">Your reviewed tool shortlist</h2>
-            <p class="aiplorer-section-heading__note">Revisit the full reviews and current official details before deciding.</p>
+            <p class="aiplorer-section-heading__note">Use one reviewed task-fit example and one check-first note to narrow the list, then revisit full reviews and official details.</p>
           </div>
           <button class="aiplorer-shortlist-clear aiplorer-shortlist-control" type="button" data-shortlist-clear disabled>
             Clear shortlist
@@ -89,6 +89,20 @@
               </div>
               <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
               <p>{{ .Params.description | truncate 145 }}</p>
+              <div class="aiplorer-shortlist-card__signals">
+                {{ range first 1 .Params.bestFor }}
+                  <div data-tone="teal">
+                    <span>May fit</span>
+                    <p>{{ . }}</p>
+                  </div>
+                {{ end }}
+                {{ range first 1 .Params.limitations }}
+                  <div data-tone="coral">
+                    <span>Check first</span>
+                    <p>{{ . }}</p>
+                  </div>
+                {{ end }}
+              </div>
               <div class="aiplorer-shortlist-card__meta">
                 <span>Checked {{ .Params.lastReviewed }}</span>
                 <a href="{{ .RelPermalink }}">Full review <span aria-hidden="true">&rarr;</span></a>

@@ -4025,8 +4025,7 @@ main#main-content:has(> .aiplorer-content-article) {
   text-decoration: underline;
 }
 
-.aiplorer-compare-row__tool p,
-.aiplorer-compare-row__details p {
+.aiplorer-compare-row__tool p {
   margin: 0.4rem 0 0;
   color: var(--aiplorer-muted);
   font-size: 0.72rem;
@@ -4046,6 +4045,45 @@ main#main-content:has(> .aiplorer-content-article) {
 
 .aiplorer-compare-row__fit li + li {
   margin-top: 0.3rem;
+}
+
+.aiplorer-compare-check {
+  padding-left: 0.65rem;
+  border-left: 3px solid var(--aiplorer-line);
+}
+
+.aiplorer-compare-check[data-tone="coral"] {
+  border-left-color: #e3a18f;
+}
+
+.aiplorer-compare-check[data-tone="teal"] {
+  border-left-color: #9acfc7;
+}
+
+.aiplorer-compare-check + .aiplorer-compare-check {
+  margin-top: 0.75rem;
+}
+
+.aiplorer-compare-check > span {
+  color: var(--aiplorer-muted);
+  font-size: 0.62rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.aiplorer-compare-check[data-tone="coral"] > span {
+  color: var(--aiplorer-coral);
+}
+
+.aiplorer-compare-check[data-tone="teal"] > span {
+  color: var(--aiplorer-teal);
+}
+
+.aiplorer-compare-check p {
+  margin: 0.22rem 0 0;
+  color: var(--aiplorer-text);
+  font-size: 0.7rem;
+  line-height: 1.45;
 }
 
 .aiplorer-compare-row__review {
@@ -4419,6 +4457,52 @@ main#main-content:has(> .aiplorer-content-article) {
   color: var(--aiplorer-muted);
   font-size: 0.76rem;
   line-height: 1.5;
+}
+
+.aiplorer-shortlist-card__signals {
+  display: grid;
+  margin-bottom: 1rem;
+  gap: 0.7rem;
+}
+
+.aiplorer-shortlist-card__signals > div {
+  padding-left: 0.65rem;
+  border-left: 3px solid var(--aiplorer-line);
+}
+
+.aiplorer-shortlist-card__signals > div[data-tone="teal"] {
+  border-left-color: #9acfc7;
+}
+
+.aiplorer-shortlist-card__signals > div[data-tone="coral"] {
+  border-left-color: #e3a18f;
+}
+
+.aiplorer-shortlist-card__signals span {
+  color: var(--aiplorer-muted);
+  font-size: 0.62rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.aiplorer-shortlist-card__signals > div[data-tone="teal"] span {
+  color: var(--aiplorer-teal);
+}
+
+.aiplorer-shortlist-card__signals > div[data-tone="coral"] span {
+  color: var(--aiplorer-coral);
+}
+
+.aiplorer-shortlist-card__signals p {
+  display: -webkit-box;
+  margin: 0.2rem 0 0;
+  overflow: hidden;
+  color: var(--aiplorer-text);
+  font-size: 0.7rem;
+  font-weight: 650;
+  line-height: 1.45;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .aiplorer-shortlist-card__meta {

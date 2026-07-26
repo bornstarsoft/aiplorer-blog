@@ -121,7 +121,7 @@
                 <div class="aiplorer-compare-table__header" role="row">
                   <span role="columnheader">Reviewed tool</span>
                   <span role="columnheader">May fit</span>
-                  <span role="columnheader">Current details to check</span>
+                  <span role="columnheader">Check before use</span>
                   <span role="columnheader">Review status</span>
                 </div>
                 <div role="rowgroup">
@@ -140,9 +140,20 @@
                           {{ end }}
                         </ul>
                       </div>
-                      <div class="aiplorer-compare-row__details" role="cell">
-                        <span class="aiplorer-compare-cell-label">Current details to check</span>
-                        <p>{{ .Params.pricingNote | truncate 155 }}</p>
+                      <div class="aiplorer-compare-row__checks" role="cell">
+                        <span class="aiplorer-compare-cell-label">Check before use</span>
+                        {{ range first 1 .Params.limitations }}
+                          <div class="aiplorer-compare-check" data-tone="coral">
+                            <span>Review first</span>
+                            <p>{{ . }}</p>
+                          </div>
+                        {{ end }}
+                        {{ with .Params.pricingNote }}
+                          <div class="aiplorer-compare-check" data-tone="teal">
+                            <span>Current plans</span>
+                            <p>{{ . | truncate 130 }}</p>
+                          </div>
+                        {{ end }}
                       </div>
                       <div class="aiplorer-compare-row__review" role="cell">
                         <span class="aiplorer-compare-cell-label">Review status</span>
