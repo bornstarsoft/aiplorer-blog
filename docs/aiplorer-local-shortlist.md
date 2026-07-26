@@ -17,12 +17,15 @@ tracking.
   the reviewed tool path.
 - Private candidate test notes use `aiplorer-candidate-notes-v1`, are limited to
   600 characters per reviewed tool path, and are saved as the visitor types.
+- Candidate-owned last-tested dates use `aiplorer-candidate-test-date-v1` and
+  are keyed by the reviewed tool path.
 - The selected shortlist stage view uses
   `aiplorer-shortlist-stage-view-v1`.
 - Aiplorer does not receive or synchronize the saved list.
 - Aiplorer does not receive or synchronize candidate check progress.
 - Aiplorer does not receive or synchronize decision stages.
 - Aiplorer does not receive or synchronize private candidate notes.
+- Aiplorer does not receive or synchronize candidate test dates.
 - Clearing browser storage or changing browsers may remove the list.
 - If local storage is unavailable, the current page session keeps an in-memory
   fallback.
@@ -64,6 +67,20 @@ readable Markdown decision briefs. They must not be used for secrets, customer
 data, confidential material, or other sensitive information. A note records the
 visitor's own observation; it is not an Aiplorer test result, endorsement,
 approval, or evidence of tool quality.
+
+## Local test dates
+
+Each expanded candidate evaluation lets a visitor record when they last tested
+that service. The date is saved only after an explicit date selection or
+`Use today` action; completing a checklist does not set it automatically. Future
+dates and invalid dates are rejected.
+
+The collapsed shortlist card and comparison page surface the recorded date so a
+returning visitor can distinguish a recent hands-on observation from one that
+may need another check. The date is included in local JSON backups and readable
+Markdown decision briefs. It is the visitor's own continuity note, not an
+Aiplorer review date, vendor verification, proof of testing, or freshness
+guarantee. Removing a tool also removes its stored date.
 
 ## Decision stages
 
@@ -133,9 +150,10 @@ after the stage and focused check are applied.
 
 The shortlist workspace can download a versioned JSON backup containing only
 public reviewed-tool paths, private candidate checks, decision stages, private
-test notes, and the selected stage view. The file stays on the visitor's device;
-Aiplorer does not upload, receive, or synchronize it. Review Update checkpoints
-and recent search state are deliberately excluded.
+test notes, candidate-owned last-tested dates, and the selected stage view. The
+file stays on the visitor's device; Aiplorer does not upload, receive, or
+synchronize it. Review Update checkpoints and recent search state are
+deliberately excluded.
 
 Restore accepts files up to 256 KB, requires the current backup schema, keeps
 only reviewed tool paths present on the current shortlist page, and removes
@@ -151,7 +169,7 @@ saved order rather than assigning a score or rank and includes each candidate's
 category, short description, first `May fit` and `Check first` signals,
 category-specific same-task test and review focus, Aiplorer review date, full
 review URL, private decision stage, four candidate-check states, stage-specific
-next action, and any private test note.
+next action, candidate-owned last-tested date, and any private test note.
 
 The brief ends with reminders to recheck official vendor details and review
 important outputs before choosing. It is generated entirely in the browser and
@@ -169,8 +187,8 @@ on more execution, and notes that repeatable workflows and quality standards
 help organizations learn from AI-assisted work. NIST's AI Resource Center also
 frames testing, evaluation, verification, and validation as practical parts of
 operational AI risk management. The shortlist therefore helps visitors record
-and resume concrete evaluation observations instead of presenting a universal
-winner.
+and resume concrete evaluation observations, including when they last ran a
+hands-on test, instead of presenting a universal winner.
 
 Official sources:
 

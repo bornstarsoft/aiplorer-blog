@@ -6049,6 +6049,7 @@ main#main-content:has(> .aiplorer-content-article) {
 
 .aiplorer-shortlist-card__evaluation .aiplorer-shortlist-card__stage,
 .aiplorer-shortlist-card__evaluation .aiplorer-shortlist-card__trial,
+.aiplorer-shortlist-card__evaluation .aiplorer-shortlist-card__test-date,
 .aiplorer-shortlist-card__evaluation .aiplorer-shortlist-card__note {
   padding-right: 0.8rem;
   padding-left: 0.8rem;
@@ -6321,6 +6322,107 @@ main#main-content:has(> .aiplorer-content-article) {
 .aiplorer-shortlist-card__trial-items label:has(input:checked) span {
   color: var(--aiplorer-muted);
   text-decoration: line-through;
+}
+
+.aiplorer-shortlist-card__test-date {
+  padding-top: 0.85rem;
+  padding-bottom: 0.85rem;
+  border-top: 1px solid var(--aiplorer-line);
+}
+
+.aiplorer-shortlist-card__test-date-heading {
+  display: flex;
+  margin-bottom: 0.6rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.aiplorer-shortlist-card__test-date-heading > div {
+  display: grid;
+  min-width: 0;
+  gap: 0.12rem;
+}
+
+.aiplorer-shortlist-card__test-date-heading span {
+  color: var(--aiplorer-ink);
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+.aiplorer-shortlist-card__test-date-heading strong {
+  color: var(--aiplorer-muted);
+  font-size: 0.62rem;
+  line-height: 1.4;
+}
+
+.aiplorer-shortlist-card__test-date-heading button,
+.aiplorer-shortlist-card__test-date-controls button {
+  min-width: 3.4rem;
+  padding: 0.38rem 0.52rem;
+  border: 1px solid var(--aiplorer-line);
+  border-radius: 5px;
+  background: #fff;
+  color: var(--aiplorer-muted);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.62rem;
+  font-weight: 750;
+}
+
+.aiplorer-shortlist-card__test-date-heading button:hover,
+.aiplorer-shortlist-card__test-date-heading button:focus-visible,
+.aiplorer-shortlist-card__test-date-controls button:hover,
+.aiplorer-shortlist-card__test-date-controls button:focus-visible {
+  border-color: var(--aiplorer-teal);
+  color: var(--aiplorer-teal);
+}
+
+.aiplorer-shortlist-card__test-date-heading button:disabled {
+  cursor: default;
+  opacity: 0.45;
+}
+
+.aiplorer-shortlist-card__test-date-controls {
+  display: grid;
+  align-items: stretch;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.5rem;
+}
+
+.aiplorer-shortlist-card__test-date-controls label {
+  display: block;
+  min-width: 0;
+}
+
+.aiplorer-shortlist-card__test-date-controls input {
+  width: 100%;
+  min-height: 2.25rem;
+  padding: 0.36rem 0.52rem;
+  border: 1px solid var(--aiplorer-line-strong);
+  border-radius: 5px;
+  background: #fff;
+  color: var(--aiplorer-text);
+  font: inherit;
+  font-size: 0.68rem;
+}
+
+.aiplorer-shortlist-card__test-date-controls input:focus {
+  border-color: var(--aiplorer-teal);
+  outline: 3px solid rgba(28, 113, 104, 0.16);
+  outline-offset: 1px;
+}
+
+.aiplorer-shortlist-card__test-date-controls button {
+  color: var(--aiplorer-teal);
+}
+
+.aiplorer-shortlist-card__test-date > small {
+  display: block;
+  margin-top: 0.45rem;
+  color: var(--aiplorer-muted);
+  font-size: 0.58rem;
+  line-height: 1.4;
 }
 
 .aiplorer-shortlist-card__note {

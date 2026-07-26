@@ -72,7 +72,7 @@
           <div class="aiplorer-shortlist-backup__copy">
             <p class="aiplorer-kicker">Keep your evaluation</p>
             <strong>Take your shortlist with you</strong>
-            <small>Download a readable decision brief, or back up local notes and progress as JSON. Aiplorer does not upload either file; restoring replaces this browser's saved candidates, notes, and checklist progress.</small>
+            <small>Download a readable decision brief, or back up local notes, test dates, and progress as JSON. Aiplorer does not upload either file; restoring replaces this browser's saved candidate evaluation.</small>
           </div>
           <div class="aiplorer-shortlist-backup__actions">
             <button type="button" data-shortlist-export-brief disabled>
@@ -239,6 +239,10 @@
                       <span data-shortlist-evaluation-stage>Stage: Not set</span>
                       <span aria-hidden="true">&middot;</span>
                       <span data-shortlist-evaluation-checks>0 of 4 checks</span>
+                      <span data-shortlist-evaluation-tested hidden>
+                        <span aria-hidden="true">&middot;</span>
+                        Tested <time></time>
+                      </span>
                       <span data-shortlist-evaluation-note hidden>
                         <span aria-hidden="true">&middot;</span>
                         Note saved
@@ -339,6 +343,29 @@
                       <span>Confirmed current plans and limits</span>
                     </label>
                   </div>
+                </div>
+                <div
+                  class="aiplorer-shortlist-card__test-date"
+                  data-candidate-test-date="{{ .RelPermalink }}"
+                  data-candidate-test-date-title="{{ .Title }}"
+                >
+                  <div class="aiplorer-shortlist-card__test-date-heading">
+                    <div>
+                      <span>Last tested locally</span>
+                      <strong data-candidate-test-date-current>Not recorded</strong>
+                    </div>
+                    <button type="button" data-candidate-test-date-clear disabled>Clear</button>
+                  </div>
+                  <div class="aiplorer-shortlist-card__test-date-controls">
+                    <label>
+                      <span class="aiplorer-visually-hidden">Last local test date for {{ .Title }}</span>
+                      <input type="date" data-candidate-test-date-input>
+                    </label>
+                    <button type="button" data-candidate-test-date-today>Use today</button>
+                  </div>
+                  <small>
+                    Your own browser-only test date, not an Aiplorer review or vendor verification date.
+                  </small>
                 </div>
                 <div
                   class="aiplorer-shortlist-card__note"
