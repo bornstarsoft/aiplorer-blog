@@ -1,0 +1,153 @@
+{{ define "header" }}{{ partials.Include "page-header.html" . }}{{ end }}
+
+{{ define "main" }}
+  {{- $aiToolPages := where .Site.RegularPages "Section" "ai-tools" -}}
+  {{- $reviewedTools := where (where $aiToolPages "Params.reviewStatus" "reviewed") "Draft" false -}}
+  {{- $categories := partial "aiplorer-category-data.html" . -}}
+  {{- $latestReview := "" -}}
+  {{- with index (sort $reviewedTools "Params.lastReviewed" "desc") 0 -}}
+    {{- $latestReview = .Params.lastReviewed -}}
+  {{- end -}}
+
+  <article class="aiplorer-compare">
+    <section class="aiplorer-compare__hero">
+      <div class="aiplorer-shell">
+        <div class="aiplorer-compare__hero-copy">
+          <p class="aiplorer-eyebrow">
+            <span class="aiplorer-eyebrow__icon">{{ partial "aiplorer-icon.html" "square-check" }}</span>
+            Side-by-side discovery
+          </p>
+          <h1>{{ .Title }}</h1>
+          <p class="aiplorer-compare__lead">{{ .Params.description }}</p>
+          <div class="aiplorer-actions">
+            <a class="aiplorer-button aiplorer-button--primary" href="#compare-categories">
+              Start comparing
+            </a>
+            <a class="aiplorer-button aiplorer-button--light" href="/ai-tools/workflows/">
+              Start with a workflow
+            </a>
+          </div>
+        </div>
+        <dl class="aiplorer-compare__facts" aria-label="Reviewed AI tools comparison summary">
+          <div>
+            <dt>{{ len $reviewedTools }}</dt>
+            <dd>reviewed services</dd>
+          </div>
+          <div>
+            <dt>{{ len $categories }}</dt>
+            <dd>practical categories</dd>
+          </div>
+          <div>
+            <dt>{{ $latestReview }}</dt>
+            <dd>latest recorded check</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="aiplorer-compare__context" aria-labelledby="compare-context-heading">
+      <div class="aiplorer-shell">
+        <span class="aiplorer-compare__context-icon">{{ partial "aiplorer-icon.html" "shield-check" }}</span>
+        <div>
+          <h2 id="compare-context-heading">Shortlist here, verify before choosing</h2>
+          <div class="aiplorer-compare__body">{{ .Content }}</div>
+        </div>
+      </div>
+    </section>
+
+    <nav class="aiplorer-category-jump" aria-label="Jump to comparison category">
+      <div class="aiplorer-shell">
+        <span class="aiplorer-category-jump__label">Compare category</span>
+        <div class="aiplorer-category-jump__links">
+          {{ range $categories }}
+            {{- $categoryTools := where $reviewedTools "Params.category" .name -}}
+            {{ if $categoryTools }}
+              <a href="#compare-{{ .name | anchorize }}">{{ .name }} <span>{{ len $categoryTools }}</span></a>
+            {{ end }}
+          {{ end }}
+        </div>
+      </div>
+    </nav>
+
+    <div class="aiplorer-compare__groups" id="compare-categories">
+      <div class="aiplorer-shell">
+        {{ range $categories }}
+          {{- $category := . -}}
+          {{- $categoryTools := where $reviewedTools "Params.category" .name -}}
+          {{ if $categoryTools }}
+            <section class="aiplorer-compare-group" id="compare-{{ .name | anchorize }}" aria-labelledby="compare-{{ .name | anchorize }}-heading">
+              <div class="aiplorer-compare-group__heading">
+                <span class="aiplorer-compare-group__icon" data-accent="{{ .accent }}">
+                  {{ partial "aiplorer-icon.html" .icon }}
+                </span>
+                <div>
+                  <p class="aiplorer-kicker">Compare category</p>
+                  <h2 id="compare-{{ .name | anchorize }}-heading">{{ .name }}</h2>
+                  <p>{{ .description }}</p>
+                </div>
+                <a href="{{ .path }}">Open category guide <span aria-hidden="true">&rarr;</span></a>
+              </div>
+
+              <div class="aiplorer-compare-table" role="table" aria-label="{{ .name }} reviewed tool comparison">
+                <div class="aiplorer-compare-table__header" role="row">
+                  <span role="columnheader">Reviewed tool</span>
+                  <span role="columnheader">May fit</span>
+                  <span role="columnheader">Current details to check</span>
+                  <span role="columnheader">Review status</span>
+                </div>
+                <div role="rowgroup">
+                  {{ range $categoryTools.ByTitle }}
+                    <article class="aiplorer-compare-row" role="row">
+                      <div class="aiplorer-compare-row__tool" role="cell">
+                        <span class="aiplorer-compare-cell-label">Reviewed tool</span>
+                        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                        <p>{{ .Params.description | truncate 108 }}</p>
+                      </div>
+                      <div class="aiplorer-compare-row__fit" role="cell">
+                        <span class="aiplorer-compare-cell-label">May fit</span>
+                        <ul>
+                          {{ range first 2 .Params.bestFor }}
+                            <li>{{ . }}</li>
+                          {{ end }}
+                        </ul>
+                      </div>
+                      <div class="aiplorer-compare-row__details" role="cell">
+                        <span class="aiplorer-compare-cell-label">Current details to check</span>
+                        <p>{{ .Params.pricingNote | truncate 155 }}</p>
+                      </div>
+                      <div class="aiplorer-compare-row__review" role="cell">
+                        <span class="aiplorer-compare-cell-label">Review status</span>
+                        <strong>Checked</strong>
+                        <time datetime="{{ .Params.lastReviewed }}">{{ .Params.lastReviewed }}</time>
+                        <a href="{{ .RelPermalink }}">Full review <span aria-hidden="true">&rarr;</span></a>
+                        <a href="{{ .Params.officialUrl }}" target="_blank" rel="noopener nofollow">
+                          Official site
+                          <span class="aiplorer-compare-row__external">{{ partial "aiplorer-icon.html" "external-link" }}</span>
+                        </a>
+                      </div>
+                    </article>
+                  {{ end }}
+                </div>
+              </div>
+            </section>
+          {{ end }}
+        {{ end }}
+      </div>
+    </div>
+
+    <section class="aiplorer-compare__next" aria-labelledby="compare-next-heading">
+      <div class="aiplorer-shell">
+        <div>
+          <p class="aiplorer-kicker">Need a different starting point?</p>
+          <h2 id="compare-next-heading">Choose by workflow or review freshness</h2>
+          <p>The comparison is best for a shortlist. Use workflow collections when you are still defining the task, and the review tracker when freshness is the priority.</p>
+        </div>
+        <nav aria-label="Alternative AI tool discovery paths">
+          <a href="/ai-tools/workflows/">Workflow collections <span aria-hidden="true">&rarr;</span></a>
+          <a href="/ai-tools/review-updates/">Latest review checks <span aria-hidden="true">&rarr;</span></a>
+          <a href="/ai-tools/trend-watch/">Current AI signals <span aria-hidden="true">&rarr;</span></a>
+        </nav>
+      </div>
+    </section>
+  </article>
+{{ end }}
