@@ -2,16 +2,17 @@
 
 Date: 2026-07-26
 
-This audit checks the front matter and rendered metadata for Aiplorer's 60
-reviewed public tool pages and three draft-only tool pages. It does not change
+This audit checks the front matter and rendered metadata for Aiplorer's 65
+reviewed public tool pages and eight draft-only tool pages. It does not change
 tool claims, public routes, categories, review decisions, or draft exposure.
 
 ## Front Matter Result
 
-All 63 tool files parsed successfully as YAML:
+All 73 tool files parsed successfully as YAML:
 
-- 60 pages use `draft: false` and `reviewStatus: "reviewed"`.
-- SciSpace and Tome remain `draft: true` with
+- 65 pages use `draft: false` and `reviewStatus: "reviewed"`.
+- SciSpace, Tome, Clipdrop, Julius AI, Rows, Obviously AI, and Polymer remain
+  `draft: true` with
   `reviewStatus: "needs-official-review"`.
 - Example AI Assistant remains an internal archetype-style draft with
   `reviewStatus: "draft"`.
@@ -26,17 +27,17 @@ Category counts remain:
 
 | Category | Reviewed pages |
 | --- | ---: |
-| Productivity Tools | 11 |
+| Productivity Tools | 12 |
 | Automation Tools | 7 |
 | Writing Tools | 7 |
 | Audio Tools | 6 |
-| Image Tools | 6 |
-| Business Tools | 5 |
+| Image Tools | 9 |
+| Business Tools | 6 |
 | Coding Tools | 5 |
 | Video Tools | 5 |
 | Learning Tools | 4 |
 | Presentation Tools | 4 |
-| **Total** | **60** |
+| **Total** | **65** |
 
 ## Last-Modified Result
 
@@ -45,7 +46,7 @@ matter. Each page already had a completed official-source review dated
 2026-07-25 or 2026-07-26. The missing values were added using the existing
 `lastReviewed` date without changing page copy or advancing any review date.
 
-All 60 reviewed pages now have both:
+All 65 reviewed pages now have both:
 
 - a non-empty `lastReviewed`
 - a `lastmod` that represents a completed publication or material re-review
@@ -56,7 +57,7 @@ not be advanced merely to make a page appear fresh.
 
 ## Rendered Metadata Result
 
-The production output contained all 60 reviewed tool routes. For every route:
+The production output contained all 65 reviewed tool routes. For every route:
 
 - one canonical tag used the expected
   `https://aiplorer.com/ai-tools/tools/<slug>/` URL
@@ -67,7 +68,7 @@ The production output contained all 60 reviewed tool routes. For every route:
 - the official website link matched `officialUrl`
 - the category and review date rendered on the page
 
-The production sitemap contained exactly the same 60 reviewed tool URLs and no
+The production sitemap contained exactly the same 65 reviewed tool URLs and no
 draft tool URL.
 
 ## Draft Safety
@@ -76,9 +77,14 @@ Production output and the production sitemap continue to exclude:
 
 - `/ai-tools/tools/scispace/`
 - `/ai-tools/tools/tome/`
+- `/ai-tools/tools/clipdrop/`
+- `/ai-tools/tools/julius-ai/`
+- `/ai-tools/tools/rows/`
+- `/ai-tools/tools/obviously-ai/`
+- `/ai-tools/tools/polymer/`
 - `/ai-tools/tools/example-ai-assistant/`
 
-The draft build continues to include all three pages. This audit does not
+The draft build continues to include all eight pages. This audit does not
 authorize publishing any draft.
 
 ## Maintenance Rule
