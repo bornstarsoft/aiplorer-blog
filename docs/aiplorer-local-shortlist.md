@@ -15,6 +15,8 @@ tracking.
   tool path.
 - Candidate decision stages use `aiplorer-candidate-stage-v1` and are keyed by
   the reviewed tool path.
+- The selected shortlist stage view uses
+  `aiplorer-shortlist-stage-view-v1`.
 - Aiplorer does not receive or synchronize the saved list.
 - Aiplorer does not receive or synchronize candidate check progress.
 - Aiplorer does not receive or synchronize decision stages.
@@ -45,6 +47,11 @@ or signal that the tool is suitable for production use.
 The homepage summarizes stages for saved candidates, while the comparison page
 shows each saved tool's stage beside its private checklist progress. Removing a
 tool also removes its stored stage.
+
+The shortlist can be narrowed to `Researching`, `Testing`, `Ready to decide`,
+or candidates with no stage set. Each view shows a local candidate count and an
+explicit empty state. This is an organization aid, not a ranking or automated
+recommendation.
 
 ## Trend rationale
 

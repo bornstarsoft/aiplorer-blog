@@ -64,6 +64,31 @@
           </button>
         </div>
 
+        <div class="aiplorer-shortlist-stage-filter" data-shortlist-stage-filter hidden>
+          <div>
+            <p class="aiplorer-kicker">Decision stage view</p>
+            <strong data-shortlist-stage-summary>Showing all saved candidates.</strong>
+            <small>Private browser organization, not a ranking or recommendation.</small>
+          </div>
+          <div class="aiplorer-shortlist-stage-filter__options" role="group" aria-label="Filter saved candidates by decision stage">
+            <button type="button" data-shortlist-stage-view="all" aria-pressed="true">
+              All <span data-shortlist-stage-count="all">0</span>
+            </button>
+            <button type="button" data-shortlist-stage-view="researching" aria-pressed="false">
+              Researching <span data-shortlist-stage-count="researching">0</span>
+            </button>
+            <button type="button" data-shortlist-stage-view="testing" aria-pressed="false">
+              Testing <span data-shortlist-stage-count="testing">0</span>
+            </button>
+            <button type="button" data-shortlist-stage-view="ready" aria-pressed="false">
+              Ready <span data-shortlist-stage-count="ready">0</span>
+            </button>
+            <button type="button" data-shortlist-stage-view="unset" aria-pressed="false">
+              Not set <span data-shortlist-stage-count="unset">0</span>
+            </button>
+          </div>
+        </div>
+
         <p class="aiplorer-visually-hidden" aria-live="polite" data-shortlist-status></p>
 
         <div class="aiplorer-shortlist-empty" data-shortlist-empty>
@@ -71,6 +96,15 @@
           <h3>No saved tools yet</h3>
           <p>Open a reviewed tool or the comparison page, then use the bookmark button to build a focused list.</p>
           <a class="aiplorer-button aiplorer-button--primary" href="/ai-tools/compare/?view=shortlist">Start comparing</a>
+        </div>
+
+        <div class="aiplorer-shortlist-empty aiplorer-shortlist-stage-empty" data-shortlist-stage-empty hidden>
+          <span>{{ partial "aiplorer-icon.html" "square-check" }}</span>
+          <h3>No saved candidates in this stage</h3>
+          <p>Choose another stage, show every saved candidate, or update a candidate's decision stage.</p>
+          <button class="aiplorer-button aiplorer-button--primary" type="button" data-shortlist-stage-view="all">
+            Show all saved candidates
+          </button>
         </div>
 
         <div class="aiplorer-shortlist-grid" data-shortlist-grid hidden>

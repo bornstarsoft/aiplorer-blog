@@ -4,11 +4,14 @@
   var storageKey = "aiplorer-shortlist-v1";
   var trialStorageKey = "aiplorer-trial-checks-v1";
   var candidateStageStorageKey = "aiplorer-candidate-stage-v1";
+  var candidateStageViewStorageKey = "aiplorer-shortlist-stage-view-v1";
   var allowedChecks = ["task", "output", "privacy", "plans"];
   var allowedCandidateStages = ["researching", "testing", "ready"];
+  var allowedCandidateStageViews = ["all", "researching", "testing", "ready", "unset"];
   var memoryList = [];
   var memoryTrialState = {};
   var memoryCandidateStageState = {};
+  var memoryCandidateStageView = "all";
 
   function validPath(value) {
     return typeof value === "string" && value.indexOf("/ai-tools/tools/") === 0;
@@ -140,6 +143,34 @@
     return "Not set";
   }
 
+  function cleanCandidateStageView(value) {
+    return allowedCandidateStageViews.indexOf(value) !== -1 ? value : "all";
+  }
+
+  function readCandidateStageView() {
+    try {
+      memoryCandidateStageView = cleanCandidateStageView(
+        window.localStorage.getItem(candidateStageViewStorageKey) || "all"
+      );
+    } catch (error) {
+      memoryCandidateStageView = cleanCandidateStageView(memoryCandidateStageView);
+    }
+    return memoryCandidateStageView;
+  }
+
+  function writeCandidateStageView(value) {
+    memoryCandidateStageView = cleanCandidateStageView(value);
+    try {
+      window.localStorage.setItem(candidateStageViewStorageKey, memoryCandidateStageView);
+    } catch (error) {
+      // Keep the current-session fallback when browser storage is unavailable.
+    }
+  }
+
+  function candidateStageViewLabel(value) {
+    return value === "all" ? "All stages" : candidateStageLabel(value);
+  }
+
   function cleanupEvaluationState(savedPaths) {
     var saved = new Set(savedPaths);
     var trialState = readTrialState();
@@ -195,11 +226,37 @@
     var items = document.querySelectorAll("[data-shortlist-item]");
     var grid = document.querySelector("[data-shortlist-grid]");
     var empty = document.querySelector("[data-shortlist-empty]");
+    var stageEmpty = document.querySelector("[data-shortlist-stage-empty]");
+    var stageFilter = document.querySelector("[data-shortlist-stage-filter]");
+    var stageSummary = document.querySelector("[data-shortlist-stage-summary]");
     var clear = document.querySelector("[data-shortlist-clear]");
+    var stageState = readCandidateStageState();
+    var stageView = readCandidateStageView();
+    var savedCount = saved.size;
     var visibleCount = 0;
+    var stageCounts = {
+      all: savedCount,
+      researching: 0,
+      testing: 0,
+      ready: 0,
+      unset: 0
+    };
+
+    saved.forEach(function (path) {
+      var stage = cleanCandidateStage(stageState[path]);
+      stageCounts[stage || "unset"] += 1;
+    });
 
     items.forEach(function (item) {
-      var show = saved.has(item.getAttribute("data-shortlist-item"));
+      var path = item.getAttribute("data-shortlist-item");
+      var isSaved = saved.has(path);
+      var stage = cleanCandidateStage(stageState[path]);
+      var show =
+        isSaved &&
+        (stageView === "all" ||
+          (stageView === "unset" && !stage) ||
+          stageView === stage);
+
       item.hidden = !show;
       if (show) {
         visibleCount += 1;
@@ -210,11 +267,50 @@
       grid.hidden = visibleCount === 0;
     }
     if (empty) {
-      empty.hidden = visibleCount > 0;
+      empty.hidden = savedCount > 0;
+    }
+    if (stageEmpty) {
+      stageEmpty.hidden = savedCount === 0 || visibleCount > 0;
+    }
+    if (stageFilter) {
+      stageFilter.hidden = savedCount === 0;
+    }
+    if (stageSummary) {
+      stageSummary.textContent =
+        stageView === "all"
+          ? "Showing all " +
+            savedCount +
+            " saved " +
+            (savedCount === 1 ? "candidate" : "candidates") +
+            "."
+          : "Showing " +
+            visibleCount +
+            " of " +
+            savedCount +
+            " saved " +
+            (savedCount === 1 ? "candidate" : "candidates") +
+            ": " +
+            candidateStageViewLabel(stageView) +
+            ".";
     }
     if (clear) {
-      clear.disabled = visibleCount === 0;
+      clear.disabled = savedCount === 0;
     }
+
+    document.querySelectorAll("[data-shortlist-stage-view]").forEach(function (button) {
+      var value = cleanCandidateStageView(button.getAttribute("data-shortlist-stage-view"));
+      var active = value === stageView;
+
+      button.classList.toggle("is-active", active);
+      button.setAttribute("aria-pressed", String(active));
+    });
+
+    document.querySelectorAll("[data-shortlist-stage-count]").forEach(function (count) {
+      var value = cleanCandidateStageView(
+        count.getAttribute("data-shortlist-stage-count")
+      );
+      count.textContent = String(stageCounts[value] || 0);
+    });
   }
 
   function updateHomeEvaluation(saved) {
@@ -339,10 +435,22 @@
   document.documentElement.classList.add("aiplorer-shortlist-ready");
 
   document.addEventListener("click", function (event) {
+    var candidateStageViewButton = event.target.closest("[data-shortlist-stage-view]");
     var candidateStageButton = event.target.closest("[data-candidate-stage-value]");
     var candidateStageReset = event.target.closest("[data-candidate-stage-reset]");
     var toggle = event.target.closest("[data-shortlist-path]");
     var clear = event.target.closest("[data-shortlist-clear]");
+
+    if (candidateStageViewButton) {
+      var candidateStageView = cleanCandidateStageView(
+        candidateStageViewButton.getAttribute("data-shortlist-stage-view")
+      );
+
+      writeCandidateStageView(candidateStageView);
+      render();
+      announce("Shortlist stage view set to " + candidateStageViewLabel(candidateStageView) + ".");
+      return;
+    }
 
     if (candidateStageButton || candidateStageReset) {
       var candidateStageControl = (candidateStageButton || candidateStageReset).closest(
@@ -366,8 +474,10 @@
       }
 
       writeCandidateStageState(candidateStageState);
-      updateCandidateStages(new Set(readList()));
-      updateHomeEvaluation(new Set(readList()));
+      var savedCandidatePaths = new Set(readList());
+      updateCandidateStages(savedCandidatePaths);
+      updateShortlistPage(savedCandidatePaths);
+      updateHomeEvaluation(savedCandidatePaths);
       announce(
         candidateStageControl.getAttribute("data-candidate-stage-title") +
           ": decision stage " +
@@ -394,6 +504,9 @@
 
       writeList(list);
       cleanupEvaluationState(list);
+      if (list.length === 0) {
+        writeCandidateStageView("all");
+      }
       render();
       notifyChange(list);
       return;
@@ -402,6 +515,7 @@
     if (clear) {
       writeList([]);
       cleanupEvaluationState([]);
+      writeCandidateStageView("all");
       announce("Shortlist cleared.");
       render();
       notifyChange([]);
@@ -415,7 +529,8 @@
     if (
       event.key === storageKey ||
       event.key === trialStorageKey ||
-      event.key === candidateStageStorageKey
+      event.key === candidateStageStorageKey ||
+      event.key === candidateStageViewStorageKey
     ) {
       render();
     }
