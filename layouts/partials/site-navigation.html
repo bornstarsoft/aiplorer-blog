@@ -22,10 +22,11 @@
   {{- $path := .RelPermalink -}}
   {{- $isDirectory := hasPrefix $path "/ai-tools/tools/" -}}
   {{- $isCompare := eq $path "/ai-tools/compare/" -}}
+  {{- $isShortlist := eq $path "/ai-tools/shortlist/" -}}
   {{- $isWorkflows := eq $path "/ai-tools/workflows/" -}}
   {{- $isUpdates := eq $path "/ai-tools/review-updates/" -}}
   {{- $isTrends := eq $path "/ai-tools/trend-watch/" -}}
-  {{- $isOverview := not (or $isDirectory $isCompare $isWorkflows $isUpdates $isTrends) -}}
+  {{- $isOverview := not (or $isDirectory $isCompare $isShortlist $isWorkflows $isUpdates $isTrends) -}}
   {{- $aiToolPages := where .Site.RegularPages "Section" "ai-tools" -}}
   {{- $reviewedTools := where (where $aiToolPages "Params.reviewStatus" "reviewed") "Draft" false -}}
   <nav class="aiplorer-discovery-nav" aria-label="AI tool discovery">
@@ -46,6 +47,11 @@
         <a href="/ai-tools/compare/"{{ if $isCompare }} class="is-active" aria-current="page"{{ end }}>
           <span class="aiplorer-discovery-nav__icon">{{ partial "aiplorer-icon.html" "sparkles" }}</span>
           Compare
+        </a>
+        <a href="/ai-tools/shortlist/"{{ if $isShortlist }} class="is-active" aria-current="page"{{ end }}>
+          <span class="aiplorer-discovery-nav__icon">{{ partial "aiplorer-icon.html" "bookmark" }}</span>
+          Shortlist
+          <span class="aiplorer-discovery-nav__count" data-shortlist-count>0</span>
         </a>
         <a href="/ai-tools/workflows/"{{ if $isWorkflows }} class="is-active" aria-current="page"{{ end }}>
           <span class="aiplorer-discovery-nav__icon">{{ partial "aiplorer-icon.html" "workflow" }}</span>

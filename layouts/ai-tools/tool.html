@@ -58,6 +58,18 @@
             <a class="aiplorer-button aiplorer-button--light" href="{{ $categoryData.path }}">
               Explore {{ $categoryName }}
             </a>
+            <button
+              class="aiplorer-button aiplorer-button--light aiplorer-button--icon aiplorer-shortlist-control aiplorer-shortlist-toggle"
+              type="button"
+              data-shortlist-path="{{ .RelPermalink }}"
+              data-shortlist-title="{{ .Title }}"
+              data-label-save="Save to shortlist"
+              data-label-saved="Saved to shortlist"
+              aria-pressed="false"
+            >
+              {{ partial "aiplorer-icon.html" "bookmark" }}
+              <span data-shortlist-label>Save to shortlist</span>
+            </button>
           </div>
         </div>
         <dl class="aiplorer-tool-hero__facts" aria-label="{{ .Title }} review summary">
@@ -108,6 +120,7 @@
               <a href="{{ $categoryData.path }}">{{ $categoryName }}</a>
               <a href="/ai-tools/tools/">All reviewed AI tools</a>
               <a href="/ai-tools/compare/">Compare reviewed tools</a>
+              <a href="/ai-tools/shortlist/">My shortlist</a>
               <a href="/ai-tools/workflows/">Workflow collections</a>
               <a href="/ai-tools/review-updates/">Latest review checks</a>
               <a href="/guides/how-to-choose-the-right-ai-tool/">How to choose a tool</a>

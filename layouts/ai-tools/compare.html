@@ -124,6 +124,18 @@
                           Official site
                           <span class="aiplorer-compare-row__external">{{ partial "aiplorer-icon.html" "external-link" }}</span>
                         </a>
+                        <button
+                          class="aiplorer-compare-shortlist aiplorer-shortlist-control aiplorer-shortlist-toggle"
+                          type="button"
+                          data-shortlist-path="{{ .RelPermalink }}"
+                          data-shortlist-title="{{ .Title }}"
+                          data-label-save="Save"
+                          data-label-saved="Saved"
+                          aria-pressed="false"
+                        >
+                          {{ partial "aiplorer-icon.html" "bookmark" }}
+                          <span data-shortlist-label>Save</span>
+                        </button>
                       </div>
                     </article>
                   {{ end }}
@@ -143,6 +155,7 @@
           <p>The comparison is best for a shortlist. Use workflow collections when you are still defining the task, and the review tracker when freshness is the priority.</p>
         </div>
         <nav aria-label="Alternative AI tool discovery paths">
+          <a href="/ai-tools/shortlist/">Open my shortlist <span aria-hidden="true">&rarr;</span></a>
           <a href="/ai-tools/workflows/">Workflow collections <span aria-hidden="true">&rarr;</span></a>
           <a href="/ai-tools/review-updates/">Latest review checks <span aria-hidden="true">&rarr;</span></a>
           <a href="/ai-tools/trend-watch/">Current AI signals <span aria-hidden="true">&rarr;</span></a>

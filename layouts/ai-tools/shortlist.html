@@ -1,0 +1,118 @@
+{{ define "header" }}{{ partials.Include "page-header.html" . }}{{ end }}
+
+{{ define "main" }}
+  {{- $aiToolPages := where .Site.RegularPages "Section" "ai-tools" -}}
+  {{- $reviewedTools := where (where $aiToolPages "Params.reviewStatus" "reviewed") "Draft" false -}}
+  {{- $categories := partial "aiplorer-category-data.html" . -}}
+
+  <article class="aiplorer-shortlist">
+    <section class="aiplorer-shortlist__hero">
+      <div class="aiplorer-shell">
+        <div class="aiplorer-shortlist__hero-copy">
+          <p class="aiplorer-eyebrow">
+            <span class="aiplorer-eyebrow__icon">{{ partial "aiplorer-icon.html" "bookmark" }}</span>
+            Local shortlist
+          </p>
+          <h1>{{ .Title }}</h1>
+          <p class="aiplorer-shortlist__lead">{{ .Params.description }}</p>
+          <div class="aiplorer-actions">
+            <a class="aiplorer-button aiplorer-button--primary" href="/ai-tools/compare/">
+              Compare reviewed tools
+            </a>
+            <a class="aiplorer-button aiplorer-button--light" href="/ai-tools/tools/">
+              Browse the directory
+            </a>
+          </div>
+        </div>
+        <dl class="aiplorer-shortlist__facts" aria-label="Shortlist summary">
+          <div>
+            <dt data-shortlist-count>0</dt>
+            <dd>saved in this browser</dd>
+          </div>
+          <div>
+            <dt>{{ len $reviewedTools }}</dt>
+            <dd>reviewed tools available</dd>
+          </div>
+          <div>
+            <dt>Local</dt>
+            <dd>no account or sync</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="aiplorer-shortlist__context" aria-labelledby="shortlist-context-heading">
+      <div class="aiplorer-shell">
+        <span class="aiplorer-shortlist__context-icon">{{ partial "aiplorer-icon.html" "shield-check" }}</span>
+        <div>
+          <h2 id="shortlist-context-heading">A private browser list, not a recommendation</h2>
+          <div class="aiplorer-shortlist__body">{{ .Content }}</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="aiplorer-shortlist__workspace" aria-labelledby="saved-tools-heading">
+      <div class="aiplorer-shell">
+        <div class="aiplorer-section-heading">
+          <div>
+            <p class="aiplorer-kicker">Saved candidates</p>
+            <h2 id="saved-tools-heading">Your reviewed tool shortlist</h2>
+            <p class="aiplorer-section-heading__note">Revisit the full reviews and current official details before deciding.</p>
+          </div>
+          <button class="aiplorer-shortlist-clear aiplorer-shortlist-control" type="button" data-shortlist-clear disabled>
+            Clear shortlist
+          </button>
+        </div>
+
+        <p class="aiplorer-visually-hidden" aria-live="polite" data-shortlist-status></p>
+
+        <div class="aiplorer-shortlist-empty" data-shortlist-empty>
+          <span>{{ partial "aiplorer-icon.html" "bookmark" }}</span>
+          <h3>No saved tools yet</h3>
+          <p>Open a reviewed tool or the comparison page, then use the bookmark button to build a focused list.</p>
+          <a class="aiplorer-button aiplorer-button--primary" href="/ai-tools/compare/">Start comparing</a>
+        </div>
+
+        <div class="aiplorer-shortlist-grid" data-shortlist-grid hidden>
+          {{ range $reviewedTools.ByTitle }}
+            {{- $tool := . -}}
+            {{- $categoryData := dict "icon" "sparkles" "accent" "blue" -}}
+            {{- range where $categories "name" .Params.category -}}
+              {{- $categoryData = . -}}
+            {{- end -}}
+            <article class="aiplorer-shortlist-card" data-shortlist-item="{{ .RelPermalink }}" hidden>
+              <div class="aiplorer-shortlist-card__heading">
+                <span class="aiplorer-shortlist-card__icon" data-accent="{{ $categoryData.accent }}">
+                  {{ partial "aiplorer-icon.html" $categoryData.icon }}
+                </span>
+                <span class="aiplorer-shortlist-card__category">{{ .Params.category }}</span>
+              </div>
+              <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+              <p>{{ .Params.description | truncate 145 }}</p>
+              <div class="aiplorer-shortlist-card__meta">
+                <span>Checked {{ .Params.lastReviewed }}</span>
+                <a href="{{ .RelPermalink }}">Full review <span aria-hidden="true">&rarr;</span></a>
+              </div>
+              <button
+                class="aiplorer-shortlist-remove aiplorer-shortlist-control aiplorer-shortlist-toggle"
+                type="button"
+                data-shortlist-path="{{ .RelPermalink }}"
+                data-shortlist-title="{{ .Title }}"
+                data-label-save="Save"
+                data-label-saved="Remove"
+                aria-pressed="false"
+              >
+                {{ partial "aiplorer-icon.html" "bookmark" }}
+                <span data-shortlist-label>Remove</span>
+              </button>
+            </article>
+          {{ end }}
+        </div>
+
+        <noscript>
+          <p class="aiplorer-shortlist-noscript">Shortlist saving requires JavaScript and local browser storage. You can still use the reviewed tools directory and comparison without it.</p>
+        </noscript>
+      </div>
+    </section>
+  </article>
+{{ end }}
