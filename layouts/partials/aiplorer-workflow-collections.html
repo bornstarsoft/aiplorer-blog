@@ -1,0 +1,81 @@
+{{- return slice
+  (dict
+    "id" "automation-agents"
+    "title" "Automation and agents"
+    "description" "Connect apps, reduce repeat work, and explore multi-step execution with clear human checkpoints."
+    "caution" "Test every path before relying on it. Review connected-account permissions, failure handling, customer data, execution limits, and current AI or agent availability."
+    "icon" "workflow"
+    "accent" "teal"
+    "tools" (slice "Zapier" "Make" "n8n" "Pipedream" "Bardeen")
+    "links" (slice
+      (dict "label" "Automation Tools" "href" "/ai-tools/automation-tools/")
+      (dict "label" "Business Tools" "href" "/ai-tools/business-tools/")
+    )
+  )
+  (dict
+    "id" "research-sources"
+    "title" "Research and source review"
+    "description" "Explore questions, work across documents, and build a clearer path back to original sources."
+    "caution" "Open and verify original sources. Check citations, quoted context, summaries, academic integrity, sensitive documents, and high-stakes conclusions."
+    "icon" "book-open"
+    "accent" "violet"
+    "tools" (slice "NotebookLM" "Perplexity" "Elicit" "Consensus" "You.com")
+    "links" (slice
+      (dict "label" "Learning Tools" "href" "/ai-tools/learning-tools/")
+      (dict "label" "Productivity Tools" "href" "/ai-tools/productivity-tools/")
+    )
+  )
+  (dict
+    "id" "coding-build"
+    "title" "Build, code, and debug"
+    "description" "Draft code, understand projects, review changes, and support development workflows."
+    "caution" "Review and test generated code. Protect secrets and private repositories, inspect dependencies and licenses, follow workplace policy, and verify security-sensitive changes."
+    "icon" "code"
+    "accent" "blue"
+    "tools" (slice "GitHub Copilot" "Cursor" "Windsurf" "Replit" "Tabnine")
+    "links" (slice
+      (dict "label" "Coding Tools" "href" "/ai-tools/coding-tools/")
+    )
+  )
+  (dict
+    "id" "multimodal-create"
+    "title" "Create across media"
+    "description" "Move from an idea to visual, video, audio, or presentation drafts with reviewed creative tools."
+    "caution" "Review facts and final media. Check image, voice, likeness, copyright, brand, disclosure, and commercial-use requirements before publishing."
+    "icon" "image"
+    "accent" "coral"
+    "tools" (slice "Canva AI" "Adobe Firefly" "Runway" "ElevenLabs" "Gamma")
+    "links" (slice
+      (dict "label" "Image Tools" "href" "/ai-tools/image-tools/")
+      (dict "label" "Video Tools" "href" "/ai-tools/video-tools/")
+      (dict "label" "Audio Tools" "href" "/ai-tools/audio-tools/")
+      (dict "label" "Presentation Tools" "href" "/ai-tools/presentation-tools/")
+    )
+  )
+  (dict
+    "id" "meetings-knowledge"
+    "title" "Meetings and knowledge capture"
+    "description" "Support notes, transcripts, summaries, follow-up, and shared understanding around conversations."
+    "caution" "Confirm recording consent and workplace policy. Review transcripts and summaries, restrict sensitive access, and verify decisions against the original conversation."
+    "icon" "audio-lines"
+    "accent" "gold"
+    "tools" (slice "Otter.ai" "Fireflies.ai" "Fathom" "Read AI" "Granola")
+    "links" (slice
+      (dict "label" "Productivity Tools" "href" "/ai-tools/productivity-tools/")
+      (dict "label" "Audio Tools" "href" "/ai-tools/audio-tools/")
+    )
+  )
+  (dict
+    "id" "writing-communication"
+    "title" "Write and communicate"
+    "description" "Draft, rewrite, translate, organize, and refine communication for everyday work."
+    "caution" "Check facts, tone, context, and final wording. Handle confidential material carefully and apply legal, medical, financial, contractual, and brand review where needed."
+    "icon" "pen-line"
+    "accent" "coral"
+    "tools" (slice "ChatGPT" "Claude" "Grammarly" "DeepL" "Notion AI")
+    "links" (slice
+      (dict "label" "Writing Tools" "href" "/ai-tools/writing-tools/")
+      (dict "label" "Productivity Tools" "href" "/ai-tools/productivity-tools/")
+    )
+  )
+-}}

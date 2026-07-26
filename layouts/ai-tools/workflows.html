@@ -1,0 +1,119 @@
+{{ define "header" }}{{ partials.Include "page-header.html" . }}{{ end }}
+
+{{ define "main" }}
+  {{- $aiToolPages := where .Site.RegularPages "Section" "ai-tools" -}}
+  {{- $reviewedTools := where (where $aiToolPages "Params.reviewStatus" "reviewed") "Draft" false -}}
+  {{- $collections := partial "aiplorer-workflow-collections.html" . -}}
+  {{- $placements := 0 -}}
+  {{- range $collections -}}
+    {{- $placements = add $placements (len .tools) -}}
+  {{- end -}}
+
+  <article class="aiplorer-workflow-collections">
+    <section class="aiplorer-workflow-collections__hero">
+      <div class="aiplorer-shell">
+        <div class="aiplorer-workflow-collections__hero-copy">
+          <p class="aiplorer-eyebrow">
+            <span class="aiplorer-eyebrow__icon">{{ partial "aiplorer-icon.html" "workflow" }}</span>
+            Task-first discovery
+          </p>
+          <h1>{{ .Title }}</h1>
+          <p class="aiplorer-workflow-collections__lead">{{ .Params.description }}</p>
+          <div class="aiplorer-actions">
+            <a class="aiplorer-button aiplorer-button--primary" href="#workflow-collections">
+              Choose a workflow
+            </a>
+            <a class="aiplorer-button aiplorer-button--light" href="/ai-tools/tools/">
+              Browse all reviewed tools
+            </a>
+          </div>
+        </div>
+        <dl class="aiplorer-workflow-collections__facts" aria-label="Workflow collections summary">
+          <div>
+            <dt>{{ len $collections }}</dt>
+            <dd>practical workflows</dd>
+          </div>
+          <div>
+            <dt>{{ $placements }}</dt>
+            <dd>reviewed tool placements</dd>
+          </div>
+          <div>
+            <dt>No rank</dt>
+            <dd>task fit over popularity</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="aiplorer-workflow-collections__context" aria-labelledby="workflow-context-heading">
+      <div class="aiplorer-shell">
+        <span class="aiplorer-workflow-collections__context-icon">{{ partial "aiplorer-icon.html" "shield-check" }}</span>
+        <div>
+          <h2 id="workflow-context-heading">A starting point, not an automatic decision</h2>
+          <div class="aiplorer-workflow-collections__body">{{ .Content }}</div>
+        </div>
+      </div>
+    </section>
+
+    <nav class="aiplorer-workflow-jump" aria-label="Jump to workflow collection">
+      <div class="aiplorer-shell">
+        <span class="aiplorer-workflow-jump__label">Choose workflow</span>
+        <div class="aiplorer-workflow-jump__links">
+          {{ range $collections }}
+            <a href="#{{ .id }}">{{ .title }}</a>
+          {{ end }}
+        </div>
+      </div>
+    </nav>
+
+    <div class="aiplorer-workflow-collection-list" id="workflow-collections">
+      <div class="aiplorer-shell">
+        {{ range $collections }}
+          {{- $collection := . -}}
+          {{- $collectionTools := slice -}}
+          {{- range .tools -}}
+            {{- $toolTitle := . -}}
+            {{- range first 1 (where $reviewedTools "Title" $toolTitle) -}}
+              {{- $collectionTools = $collectionTools | append . -}}
+            {{- end -}}
+          {{- end -}}
+          <section class="aiplorer-workflow-collection" id="{{ .id }}" aria-labelledby="{{ .id }}-heading" data-collection-accent="{{ .accent }}">
+            <div class="aiplorer-workflow-collection__heading">
+              <span class="aiplorer-workflow-collection__icon" data-accent="{{ .accent }}">
+                {{ partial "aiplorer-icon.html" .icon }}
+              </span>
+              <div>
+                <p class="aiplorer-kicker">Workflow collection</p>
+                <h2 id="{{ .id }}-heading">{{ .title }}</h2>
+                <p>{{ .description }}</p>
+              </div>
+            </div>
+            <aside class="aiplorer-workflow-collection__caution">
+              <strong>Review checkpoint</strong>
+              <p>{{ .caution }}</p>
+            </aside>
+            <div class="aiplorer-workflow-tool-grid">
+              {{ range $collectionTools }}
+                <a class="aiplorer-workflow-tool" href="{{ .RelPermalink }}">
+                  <span class="aiplorer-workflow-tool__category">{{ .Params.category }}</span>
+                  <strong>{{ .Title }}</strong>
+                  <p>{{ .Params.description | truncate 125 }}</p>
+                  <span class="aiplorer-workflow-tool__meta">
+                    Checked {{ .Params.lastReviewed }}
+                    <span aria-hidden="true">&rarr;</span>
+                  </span>
+                </a>
+              {{ end }}
+            </div>
+            <nav class="aiplorer-workflow-collection__categories" aria-label="Categories related to {{ .title }}">
+              <span>Related categories</span>
+              {{ range .links }}
+                <a href="{{ .href }}">{{ .label }}</a>
+              {{ end }}
+            </nav>
+          </section>
+        {{ end }}
+      </div>
+    </div>
+  </article>
+{{ end }}
