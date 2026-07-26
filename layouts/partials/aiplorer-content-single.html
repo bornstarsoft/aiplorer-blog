@@ -1,0 +1,17 @@
+{{- $page := . -}}
+<article class="mw8 center ph3">
+  <header class="mt4 w-100">
+    <p class="instapaper_ignoref b helvetica tracked ttu mb0">
+      {{ .CurrentSection.Title }}
+    </p>
+    {{- partials.IncludeCached "social/share.html" . . -}}
+    <h1 class="f1 athelas mt3 mb1">{{ .Title }}</h1>
+  </header>
+
+  <div class="nested-copy-line-height lh-copy {{ $.Param "post_content_classes" | compare.Default "serif" }} f4 nested-links {{ $.Param "text_color" | compare.Default "mid-gray" }} mw7">
+    {{- .Content -}}
+    {{ with .GetTerms "tags" }}
+      {{- partials.Include "tags.html" $page -}}
+    {{ end }}
+  </div>
+</article>
