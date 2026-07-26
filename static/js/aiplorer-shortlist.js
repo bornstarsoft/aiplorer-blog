@@ -644,6 +644,10 @@
 
     var heading = section.querySelector("[data-home-evaluation-heading]");
     var progress = section.querySelector("[data-home-evaluation-progress]");
+    var progressbar = section.querySelector("[data-home-evaluation-progressbar]");
+    var progressbarFill = section.querySelector(
+      "[data-home-evaluation-progressbar-fill]"
+    );
     var stageSummary = section.querySelector("[data-home-evaluation-stage]");
     var reviewSummary = section.querySelector("[data-home-evaluation-review]");
     var primary = section.querySelector("[data-home-evaluation-primary]");
@@ -689,6 +693,23 @@
       }
     });
 
+    var totalChecks = saved.size * allowedChecks.length;
+    var resumeStage = stageCounts.testing
+      ? "testing"
+      : stageCounts.ready
+        ? "ready"
+        : stageCounts.researching
+          ? "researching"
+          : "unset";
+    var resumeCount = stageCounts[resumeStage];
+    var resumeComplete = Array.from(saved).reduce(function (total, path) {
+      var stage = cleanCandidateStage(stageState[path]);
+      var matchesResumeStage =
+        resumeStage === "unset" ? !stage : stage === resumeStage;
+      return total + (matchesResumeStage ? cleanChecks(state[path]).length : 0);
+    }, 0);
+    var resumeTotal = resumeCount * allowedChecks.length;
+
     section.hidden = saved.size === 0;
     if (heading) {
       heading.textContent =
@@ -701,21 +722,32 @@
       progress.textContent =
         completed +
         " of " +
-        saved.size * allowedChecks.length +
+        totalChecks +
         " private candidate checks complete.";
     }
+    if (progressbar) {
+      progressbar.setAttribute("aria-valuemax", String(totalChecks));
+      progressbar.setAttribute("aria-valuenow", String(completed));
+    }
+    if (progressbarFill) {
+      progressbarFill.style.width =
+        totalChecks > 0 ? Math.round((completed / totalChecks) * 100) + "%" : "0%";
+    }
     if (stageSummary) {
-      var stageParts = allowedCandidateStages
-        .filter(function (stage) {
-          return stageCounts[stage] > 0;
-        })
-        .map(function (stage) {
-          return stageCounts[stage] + " " + candidateStageLabel(stage).toLowerCase();
-        });
-
-      stageSummary.textContent = stageParts.length
-        ? "Decision stages: " + stageParts.join(" · ") + "."
-        : "Set a decision stage in your shortlist to keep the next step visible.";
+      var resumeStageLabel =
+        resumeStage === "unset" ? "set a stage" : candidateStageLabel(resumeStage);
+      stageSummary.textContent =
+        "Next queue: " +
+        resumeStageLabel +
+        " · " +
+        resumeCount +
+        " " +
+        (resumeCount === 1 ? "candidate" : "candidates") +
+        " · " +
+        resumeComplete +
+        " of " +
+        resumeTotal +
+        " checks complete.";
     }
     if (reviewSummary) {
       reviewSummary.hidden = savedReviewEntries.length === 0;
@@ -750,14 +782,6 @@
       }
     }
     if (primary && primaryLabel) {
-      var resumeStage = stageCounts.testing
-        ? "testing"
-        : stageCounts.ready
-          ? "ready"
-          : stageCounts.researching
-            ? "researching"
-            : "unset";
-      var resumeCount = stageCounts[resumeStage];
       var resumeLabels = {
         testing: "Continue testing",
         ready: "Review ready candidates",

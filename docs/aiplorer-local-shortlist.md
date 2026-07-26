@@ -78,10 +78,13 @@ progress for that stage and opens the corresponding stage view. This is a
 continuity aid based on the visitor's own labels and checks, not a tool ranking
 or Aiplorer recommendation.
 
-The homepage links back to the most actionable saved stage, prioritizing active
-testing, then ready, researching, and unassigned candidates. The stage is passed
-as a temporary shortlist URL parameter, stored locally, and removed from the
-visible URL after it is applied.
+The homepage shows total private checklist progress and links back to the most
+actionable saved stage, prioritizing active testing, then ready, researching,
+and unassigned candidates. Its next-queue summary also reports checklist
+progress for that stage so a returning visitor can see the remaining work
+before reopening the shortlist. The stage is passed as a temporary shortlist
+URL parameter, stored locally, and removed from the visible URL after it is
+applied.
 
 ## Trend rationale
 

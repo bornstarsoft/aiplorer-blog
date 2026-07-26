@@ -693,6 +693,28 @@ main#main-content:has(> .aiplorer-content-article) {
   line-height: 1.45;
 }
 
+.aiplorer-home-evaluation__copy {
+  min-width: 0;
+}
+
+.aiplorer-home-evaluation__progress {
+  width: min(100%, 24rem);
+  height: 0.34rem;
+  margin-top: 0.42rem;
+  overflow: hidden;
+  border-radius: 3px;
+  background: #d8e7e4;
+}
+
+.aiplorer-home-evaluation__progress span {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--aiplorer-teal);
+  transition: width 160ms ease;
+}
+
 .aiplorer-home-evaluation__copy small {
   display: block;
   margin-top: 0.18rem;
