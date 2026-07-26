@@ -10,6 +10,14 @@
   {{- $categories := partial "aiplorer-category-data.html" . -}}
   {{- $recentTools := first 6 (sort $reviewedTools "Params.lastReviewed" "desc") -}}
   {{- $trendSignals := partial "aiplorer-trend-signals.html" . -}}
+  {{- $guidePages := where .Site.RegularPages "Section" "guides" -}}
+  {{- $reviewedGuides := where (where $guidePages "Params.reviewStatus" "reviewed") "Draft" false -}}
+  {{- $reviewedGuides = sort $reviewedGuides "Title" "asc" -}}
+  {{- $latestGuides := first 3 (sort $reviewedGuides "Params.lastReviewed" "desc") -}}
+  {{- $useCasePages := where .Site.RegularPages "Section" "use-cases" -}}
+  {{- $reviewedUseCases := where (where $useCasePages "Params.reviewStatus" "reviewed") "Draft" false -}}
+  {{- $reviewedUseCases = sort $reviewedUseCases "Title" "asc" -}}
+  {{- $latestUseCases := first 3 (sort $reviewedUseCases "Params.lastReviewed" "desc") -}}
 
   <div class="aiplorer-home">
     <section class="aiplorer-hero" aria-labelledby="aiplorer-home-title">
@@ -246,30 +254,30 @@
       <div class="aiplorer-shell">
         <div class="aiplorer-section-heading">
           <div>
-            <p class="aiplorer-kicker">Use AI with care</p>
-            <h2 id="guidance-heading">Practical guidance, not just links</h2>
+            <p class="aiplorer-kicker">Recently reviewed playbooks</p>
+            <h2 id="guidance-heading">Fresh guidance for practical AI work</h2>
+            <p class="aiplorer-section-heading__note">Three recently checked guides and three use cases, sorted by review date rather than popularity.</p>
           </div>
           <div class="aiplorer-section-heading__links">
-            <a class="aiplorer-text-link" href="/guides/">Explore practical guides <span aria-hidden="true">&rarr;</span></a>
-            <a class="aiplorer-text-link" href="/use-cases/">Browse use cases <span aria-hidden="true">&rarr;</span></a>
+            <a class="aiplorer-text-link" href="/guides/">All guides <span aria-hidden="true">&rarr;</span></a>
+            <a class="aiplorer-text-link" href="/use-cases/">All use cases <span aria-hidden="true">&rarr;</span></a>
           </div>
         </div>
-        <div class="aiplorer-guidance-grid">
-          <a href="/guides/how-to-choose-the-right-ai-tool/">
-            <span>Guide</span>
-            <h3>How to choose the right AI tool</h3>
-            <p>Compare workflow fit, privacy, output quality, and current costs.</p>
-          </a>
-          <a href="/use-cases/how-to-use-ai-to-write-better-emails/">
-            <span>Use case</span>
-            <h3>Write better emails with AI</h3>
-            <p>Draft, shorten, clarify, and adapt messages without losing review.</p>
-          </a>
-          <a href="/use-cases/how-to-summarize-long-documents-with-ai/">
-            <span>Use case</span>
-            <h3>Summarize long documents</h3>
-            <p>Extract key points and questions while checking the original text.</p>
-          </a>
+        <div class="aiplorer-guidance-grid" data-latest-practical>
+          {{ range $latestGuides }}
+            <a href="{{ .RelPermalink }}">
+              <span>Guide &middot; Checked {{ .Params.lastReviewed }}</span>
+              <h3>{{ .Title }}</h3>
+              <p>{{ .Params.description | truncate 145 }}</p>
+            </a>
+          {{ end }}
+          {{ range $latestUseCases }}
+            <a href="{{ .RelPermalink }}">
+              <span>Use case &middot; Checked {{ .Params.lastReviewed }}</span>
+              <h3>{{ .Title }}</h3>
+              <p>{{ .Params.description | truncate 145 }}</p>
+            </a>
+          {{ end }}
         </div>
 
         <aside class="aiplorer-trust-note">

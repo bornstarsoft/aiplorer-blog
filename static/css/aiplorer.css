@@ -908,11 +908,11 @@ main#main-content:has(> .aiplorer-content-article) {
   text-decoration: none;
 }
 
-.aiplorer-guidance-grid a:nth-child(2) {
+.aiplorer-guidance-grid a:nth-child(3n + 2) {
   border-top-color: var(--aiplorer-blue);
 }
 
-.aiplorer-guidance-grid a:nth-child(3) {
+.aiplorer-guidance-grid a:nth-child(3n) {
   border-top-color: var(--aiplorer-teal);
 }
 
