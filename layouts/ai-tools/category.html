@@ -2,6 +2,7 @@
 
 {{ define "main" }}
   {{- $categoryName := .Params.toolCategory -}}
+  {{- $categoryAnchor := $categoryName | anchorize -}}
   {{- $aiToolPages := where .Site.RegularPages "Section" "ai-tools" -}}
   {{- $reviewedTools := where (where $aiToolPages "Params.reviewStatus" "reviewed") "Draft" false -}}
   {{- $categoryTools := where $reviewedTools "Params.category" $categoryName -}}
@@ -75,6 +76,30 @@
             <p>Features, plans, policies, and availability can change. Use each tool page as a starting point, then confirm current details with the official source.</p>
           </div>
         </aside>
+      </div>
+    </section>
+
+    <section class="aiplorer-category-test" data-category-accent="{{ $categoryData.accent }}" aria-labelledby="category-test-heading">
+      <div class="aiplorer-shell">
+        <span class="aiplorer-category-test__icon">
+          {{ partial "aiplorer-icon.html" "compass" }}
+        </span>
+        <div class="aiplorer-category-test__copy">
+          <p class="aiplorer-kicker">Fair comparison</p>
+          <h2 id="category-test-heading">Try every candidate on the same task</h2>
+          <p class="aiplorer-category-test__task">{{ $categoryData.testTask }}</p>
+          <p class="aiplorer-category-test__focus">
+            <span>Check consistently:</span> {{ $categoryData.testFocus }}
+          </p>
+        </div>
+        <nav class="aiplorer-category-test__actions" aria-label="{{ $categoryName }} comparison actions">
+          <a class="aiplorer-button aiplorer-button--primary" href="/ai-tools/compare/#compare-{{ $categoryAnchor }}">
+            Compare {{ $categoryName }}
+          </a>
+          <a class="aiplorer-text-link" href="/ai-tools/shortlist/">
+            Open my shortlist <span aria-hidden="true">&rarr;</span>
+          </a>
+        </nav>
       </div>
     </section>
 
