@@ -171,6 +171,74 @@
     return value === "all" ? "All stages" : candidateStageLabel(value);
   }
 
+  function candidateStageNextText(value) {
+    if (value === "researching") {
+      return "Next: review the full page and current official details.";
+    }
+    if (value === "testing") {
+      return "Next: run a real task and complete the candidate checks.";
+    }
+    if (value === "ready") {
+      return "Next: compare remaining trade-offs before deciding.";
+    }
+    return "Next: choose a decision stage.";
+  }
+
+  function shortlistStageNextAction(value) {
+    if (value === "researching") {
+      return {
+        title: "Check current evidence",
+        copy: "Review each full Aiplorer page and current official details before testing."
+      };
+    }
+    if (value === "testing") {
+      return {
+        title: "Run a comparable real-world test",
+        copy: "Use a real task, review the output, and record the same checks for each candidate."
+      };
+    }
+    if (value === "ready") {
+      return {
+        title: "Review final trade-offs",
+        copy: "Compare the remaining differences and recheck official details before choosing."
+      };
+    }
+    if (value === "unset") {
+      return {
+        title: "Set the next decision stage",
+        copy: "Assign a stage so the next unfinished step remains easy to resume."
+      };
+    }
+    return {
+      title: "Move each candidate one step forward",
+      copy: "Choose a stage for each candidate, then work through the same four checks."
+    };
+  }
+
+  function applyCandidateStageViewFromUrl() {
+    if (!document.querySelector("[data-shortlist-stage-filter]")) {
+      return;
+    }
+
+    try {
+      var url = new URL(window.location.href);
+      var requestedStageView = url.searchParams.get("stage");
+      if (allowedCandidateStageViews.indexOf(requestedStageView) === -1) {
+        return;
+      }
+
+      writeCandidateStageView(requestedStageView);
+      url.searchParams.delete("stage");
+      window.history.replaceState(
+        null,
+        "",
+        url.pathname + (url.search ? url.search : "") + url.hash
+      );
+    } catch (error) {
+      // Keep the stored view when URL state cannot be read or replaced.
+    }
+  }
+
   function cleanupEvaluationState(savedPaths) {
     var saved = new Set(savedPaths);
     var trialState = readTrialState();
@@ -229,6 +297,9 @@
     var stageEmpty = document.querySelector("[data-shortlist-stage-empty]");
     var stageFilter = document.querySelector("[data-shortlist-stage-filter]");
     var stageSummary = document.querySelector("[data-shortlist-stage-summary]");
+    var stageNext = document.querySelector("[data-shortlist-stage-next]");
+    var stageNextTitle = document.querySelector("[data-shortlist-stage-next-title]");
+    var stageNextCopy = document.querySelector("[data-shortlist-stage-next-copy]");
     var clear = document.querySelector("[data-shortlist-clear]");
     var stageState = readCandidateStageState();
     var stageView = readCandidateStageView();
@@ -274,6 +345,18 @@
     }
     if (stageFilter) {
       stageFilter.hidden = savedCount === 0;
+    }
+    if (stageNext) {
+      stageNext.hidden = savedCount === 0;
+    }
+    if (stageNextTitle || stageNextCopy) {
+      var stageNextAction = shortlistStageNextAction(stageView);
+      if (stageNextTitle) {
+        stageNextTitle.textContent = stageNextAction.title;
+      }
+      if (stageNextCopy) {
+        stageNextCopy.textContent = stageNextAction.copy;
+      }
     }
     if (stageSummary) {
       stageSummary.textContent =
@@ -322,13 +405,16 @@
     var heading = section.querySelector("[data-home-evaluation-heading]");
     var progress = section.querySelector("[data-home-evaluation-progress]");
     var stageSummary = section.querySelector("[data-home-evaluation-stage]");
+    var primary = section.querySelector("[data-home-evaluation-primary]");
+    var primaryLabel = section.querySelector("[data-home-evaluation-primary-label]");
     var state = readTrialState();
     var stageState = readCandidateStageState();
     var completed = 0;
     var stageCounts = {
       researching: 0,
       testing: 0,
-      ready: 0
+      ready: 0,
+      unset: 0
     };
 
     saved.forEach(function (path) {
@@ -336,6 +422,8 @@
       var stage = cleanCandidateStage(stageState[path]);
       if (stage) {
         stageCounts[stage] += 1;
+      } else {
+        stageCounts.unset += 1;
       }
     });
 
@@ -367,6 +455,26 @@
         ? "Decision stages: " + stageParts.join(" · ") + "."
         : "Set a decision stage in your shortlist to keep the next step visible.";
     }
+    if (primary && primaryLabel) {
+      var resumeStage = stageCounts.testing
+        ? "testing"
+        : stageCounts.ready
+          ? "ready"
+          : stageCounts.researching
+            ? "researching"
+            : "unset";
+      var resumeCount = stageCounts[resumeStage];
+      var resumeLabels = {
+        testing: "Continue testing",
+        ready: "Review ready candidates",
+        researching: "Continue research",
+        unset: "Set candidate stages"
+      };
+
+      primary.href = "/ai-tools/shortlist/?stage=" + resumeStage;
+      primaryLabel.textContent =
+        resumeLabels[resumeStage] + (resumeCount ? " " + resumeCount : "");
+    }
   }
 
   function updateCandidateStages(saved) {
@@ -377,10 +485,14 @@
       var stage = saved.has(path) ? cleanCandidateStage(state[path]) : "";
       var current = control.querySelector("[data-candidate-stage-current]");
       var reset = control.querySelector("[data-candidate-stage-reset]");
+      var next = control.querySelector("[data-candidate-stage-next]");
 
       if (current) {
         current.textContent = candidateStageLabel(stage);
         current.setAttribute("data-stage", stage || "unset");
+      }
+      if (next) {
+        next.textContent = candidateStageNextText(stage);
       }
       if (reset) {
         reset.disabled = !stage;
@@ -536,5 +648,6 @@
     }
   });
 
+  applyCandidateStageViewFromUrl();
   render();
 })();

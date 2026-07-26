@@ -4640,6 +4640,54 @@ main#main-content:has(> .aiplorer-content-article) {
   color: #fff;
 }
 
+.aiplorer-shortlist-next {
+  display: grid;
+  margin-top: 0.85rem;
+  padding: 0.82rem 1rem;
+  border-left: 3px solid var(--aiplorer-teal);
+  align-items: center;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.75rem;
+  background: #eef7f5;
+}
+
+.aiplorer-shortlist-next[hidden] {
+  display: none;
+}
+
+.aiplorer-shortlist-next__icon {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 6px;
+  place-items: center;
+  background: #fff;
+  color: var(--aiplorer-teal);
+}
+
+.aiplorer-shortlist-next__icon .aiplorer-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.aiplorer-shortlist-next .aiplorer-kicker {
+  margin-bottom: 0.08rem;
+}
+
+.aiplorer-shortlist-next strong {
+  display: block;
+  color: var(--aiplorer-ink);
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+.aiplorer-shortlist-next p:last-child {
+  margin: 0.12rem 0 0;
+  color: var(--aiplorer-muted);
+  font-size: 0.68rem;
+  line-height: 1.45;
+}
+
 .aiplorer-shortlist-empty {
   display: grid;
   max-width: 34rem;
@@ -4907,6 +4955,16 @@ main#main-content:has(> .aiplorer-content-article) {
 
 .aiplorer-shortlist-card__stage-options button.is-active + button {
   border-left: 1px solid var(--aiplorer-teal);
+}
+
+.aiplorer-shortlist-card__stage-next {
+  margin: 0.55rem 0 0;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--aiplorer-line);
+  color: var(--aiplorer-ink);
+  font-size: 0.66rem;
+  font-weight: 700;
+  line-height: 1.45;
 }
 
 .aiplorer-shortlist-card__stage > small {

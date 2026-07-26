@@ -89,6 +89,15 @@
           </div>
         </div>
 
+        <div class="aiplorer-shortlist-next" data-shortlist-stage-next hidden>
+          <span class="aiplorer-shortlist-next__icon">{{ partial "aiplorer-icon.html" "compass" }}</span>
+          <div>
+            <p class="aiplorer-kicker">Next action</p>
+            <strong data-shortlist-stage-next-title>Move each candidate one step forward</strong>
+            <p data-shortlist-stage-next-copy>Choose a stage for each candidate, then work through the same four checks.</p>
+          </div>
+        </div>
+
         <p class="aiplorer-visually-hidden" aria-live="polite" data-shortlist-status></p>
 
         <div class="aiplorer-shortlist-empty" data-shortlist-empty>
@@ -164,6 +173,9 @@
                     Ready to decide
                   </button>
                 </div>
+                <p class="aiplorer-shortlist-card__stage-next" data-candidate-stage-next>
+                  Next: choose a decision stage.
+                </p>
                 <small>Private browser note, not a score or recommendation.</small>
               </div>
               <div

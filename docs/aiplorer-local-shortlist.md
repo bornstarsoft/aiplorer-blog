@@ -53,6 +53,18 @@ or candidates with no stage set. Each view shows a local candidate count and an
 explicit empty state. This is an organization aid, not a ranking or automated
 recommendation.
 
+Each stage also presents a concise next action:
+
+- `Researching`: review the full Aiplorer page and current official details
+- `Testing`: use a real task and complete the same candidate checks
+- `Ready to decide`: compare remaining trade-offs and recheck official details
+- no stage: assign a stage so unfinished evaluation remains easy to resume
+
+The homepage links back to the most actionable saved stage, prioritizing active
+testing, then ready, researching, and unassigned candidates. The stage is passed
+as a temporary shortlist URL parameter, stored locally, and removed from the
+visible URL after it is applied.
+
 ## Trend rationale
 
 The 2026 Stanford AI Index describes leading-model competition shifting toward
