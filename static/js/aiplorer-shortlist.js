@@ -206,34 +206,104 @@
     return "Next: choose a decision stage.";
   }
 
-  function shortlistStageNextAction(value) {
+  function shortlistStageNextAction(value, stageCounts, testingChecksRemaining) {
+    if (value === "all" && stageCounts.testing > 0) {
+      return {
+        title:
+          "Continue " +
+          stageCounts.testing +
+          " active " +
+          (stageCounts.testing === 1 ? "test" : "tests"),
+        copy:
+          testingChecksRemaining > 0
+            ? testingChecksRemaining +
+              " private candidate " +
+              (testingChecksRemaining === 1 ? "check remains" : "checks remain") +
+              " across the testing stage."
+            : "Candidate checks are complete; review the outcomes before moving candidates forward.",
+        target: "testing",
+        label: "Show testing"
+      };
+    }
+    if (value === "all" && stageCounts.ready > 0) {
+      return {
+        title:
+          "Review " +
+          stageCounts.ready +
+          " ready " +
+          (stageCounts.ready === 1 ? "candidate" : "candidates"),
+        copy: "Compare remaining trade-offs and recheck official details before deciding.",
+        target: "ready",
+        label: "Show ready"
+      };
+    }
+    if (value === "all" && stageCounts.researching > 0) {
+      return {
+        title:
+          "Continue research for " +
+          stageCounts.researching +
+          " " +
+          (stageCounts.researching === 1 ? "candidate" : "candidates"),
+        copy: "Review the full Aiplorer pages and current official details before testing.",
+        target: "researching",
+        label: "Show research"
+      };
+    }
+    if (value === "all" && stageCounts.unset > 0) {
+      return {
+        title:
+          "Set a stage for " +
+          stageCounts.unset +
+          " saved " +
+          (stageCounts.unset === 1 ? "candidate" : "candidates"),
+        copy: "Assign a stage so the next unfinished evaluation step remains easy to resume.",
+        target: "unset",
+        label: "Show not set"
+      };
+    }
     if (value === "researching") {
       return {
         title: "Check current evidence",
-        copy: "Review each full Aiplorer page and current official details before testing."
+        copy: "Review each full Aiplorer page and current official details before testing.",
+        target: "",
+        label: ""
       };
     }
     if (value === "testing") {
       return {
         title: "Run a comparable real-world test",
-        copy: "Use a real task, review the output, and record the same checks for each candidate."
+        copy:
+          testingChecksRemaining > 0
+            ? testingChecksRemaining +
+              " private candidate " +
+              (testingChecksRemaining === 1 ? "check remains" : "checks remain") +
+              " in this testing view."
+            : "Candidate checks are complete; review the outcomes before moving candidates forward.",
+        target: "",
+        label: ""
       };
     }
     if (value === "ready") {
       return {
         title: "Review final trade-offs",
-        copy: "Compare the remaining differences and recheck official details before choosing."
+        copy: "Compare the remaining differences and recheck official details before choosing.",
+        target: "",
+        label: ""
       };
     }
     if (value === "unset") {
       return {
         title: "Set the next decision stage",
-        copy: "Assign a stage so the next unfinished step remains easy to resume."
+        copy: "Assign a stage so the next unfinished step remains easy to resume.",
+        target: "",
+        label: ""
       };
     }
     return {
       title: "Move each candidate one step forward",
-      copy: "Choose a stage for each candidate, then work through the same four checks."
+      copy: "Choose a stage for each candidate, then work through the same four checks.",
+      target: "",
+      label: ""
     };
   }
 
@@ -322,6 +392,19 @@
     var stageNext = document.querySelector("[data-shortlist-stage-next]");
     var stageNextTitle = document.querySelector("[data-shortlist-stage-next-title]");
     var stageNextCopy = document.querySelector("[data-shortlist-stage-next-copy]");
+    var stageNextFilter = document.querySelector("[data-shortlist-stage-next-filter]");
+    var stageNextProgressWrap = document.querySelector(
+      "[data-shortlist-stage-next-progress-wrap]"
+    );
+    var stageNextProgress = document.querySelector(
+      "[data-shortlist-stage-next-progress]"
+    );
+    var stageNextProgressBar = document.querySelector(
+      "[data-shortlist-stage-next-progress-bar]"
+    );
+    var stageNextProgressLabel = document.querySelector(
+      "[data-shortlist-stage-next-progress-label]"
+    );
     var reviewPulse = document.querySelector("[data-shortlist-review-pulse]");
     var reviewPulseTitle = document.querySelector("[data-shortlist-review-pulse-title]");
     var reviewPulseCopy = document.querySelector("[data-shortlist-review-pulse-copy]");
@@ -332,11 +415,13 @@
     var clear = document.querySelector("[data-shortlist-clear]");
     var stageState = readCandidateStageState();
     var stageView = readCandidateStageView();
+    var trialState = readTrialState();
     var reviewSnapshot = readReviewSnapshot();
     var savedCount = saved.size;
     var visibleCount = 0;
     var savedReviewCount = 0;
     var savedReviewUpdates = 0;
+    var testingChecksRemaining = 0;
     var stageCounts = {
       all: savedCount,
       researching: 0,
@@ -348,6 +433,9 @@
     saved.forEach(function (path) {
       var stage = cleanCandidateStage(stageState[path]);
       stageCounts[stage || "unset"] += 1;
+      if (stage === "testing") {
+        testingChecksRemaining += allowedChecks.length - cleanChecks(trialState[path]).length;
+      }
     });
 
     items.forEach(function (item) {
@@ -402,13 +490,69 @@
     if (stageNext) {
       stageNext.hidden = savedCount === 0;
     }
-    if (stageNextTitle || stageNextCopy) {
-      var stageNextAction = shortlistStageNextAction(stageView);
+    if (
+      stageNextTitle ||
+      stageNextCopy ||
+      stageNextFilter ||
+      stageNextProgress ||
+      stageNextProgressLabel
+    ) {
+      var stageNextAction = shortlistStageNextAction(
+        stageView,
+        stageCounts,
+        testingChecksRemaining
+      );
+      var progressStage = stageView === "all" ? stageNextAction.target : stageView;
+      var progressPaths = Array.from(saved).filter(function (path) {
+        var stage = cleanCandidateStage(stageState[path]);
+        return (
+          progressStage === "all" ||
+          (progressStage === "unset" && !stage) ||
+          progressStage === stage
+        );
+      });
+      var progressComplete = progressPaths.reduce(function (total, path) {
+        return total + cleanChecks(trialState[path]).length;
+      }, 0);
+      var progressTotal = progressPaths.length * allowedChecks.length;
+
       if (stageNextTitle) {
         stageNextTitle.textContent = stageNextAction.title;
       }
       if (stageNextCopy) {
         stageNextCopy.textContent = stageNextAction.copy;
+      }
+      if (stageNextFilter) {
+        stageNextFilter.hidden = !stageNextAction.target;
+        if (stageNextAction.target) {
+          stageNextFilter.setAttribute(
+            "data-shortlist-stage-view",
+            stageNextAction.target
+          );
+          stageNextFilter.textContent = stageNextAction.label;
+        } else {
+          stageNextFilter.removeAttribute("data-shortlist-stage-view");
+        }
+      }
+      if (stageNextProgressWrap) {
+        stageNextProgressWrap.hidden = progressTotal === 0;
+      }
+      if (stageNextProgress) {
+        stageNextProgress.setAttribute("aria-valuemax", String(progressTotal));
+        stageNextProgress.setAttribute("aria-valuenow", String(progressComplete));
+      }
+      if (stageNextProgressBar) {
+        stageNextProgressBar.style.width =
+          progressTotal > 0
+            ? Math.round((progressComplete / progressTotal) * 100) + "%"
+            : "0%";
+      }
+      if (stageNextProgressLabel) {
+        stageNextProgressLabel.textContent =
+          progressComplete +
+          " of " +
+          progressTotal +
+          " private candidate checks complete in this queue.";
       }
     }
     if (reviewPulse) {
@@ -811,6 +955,10 @@
     ) {
       render();
     }
+  });
+
+  window.addEventListener("aiplorer:trial-checks-change", function () {
+    render();
   });
 
   applyCandidateStageViewFromUrl();

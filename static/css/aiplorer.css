@@ -4945,7 +4945,7 @@ main#main-content:has(> .aiplorer-content-article) {
   padding: 0.82rem 1rem;
   border-left: 3px solid var(--aiplorer-teal);
   align-items: center;
-  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-columns: auto minmax(0, 1fr) auto;
   gap: 0.75rem;
   background: #eef7f5;
 }
@@ -4973,6 +4973,10 @@ main#main-content:has(> .aiplorer-content-article) {
   margin-bottom: 0.08rem;
 }
 
+.aiplorer-shortlist-next__copy {
+  min-width: 0;
+}
+
 .aiplorer-shortlist-next strong {
   display: block;
   color: var(--aiplorer-ink);
@@ -4980,11 +4984,68 @@ main#main-content:has(> .aiplorer-content-article) {
   line-height: 1.4;
 }
 
-.aiplorer-shortlist-next p:last-child {
+.aiplorer-shortlist-next [data-shortlist-stage-next-copy] {
   margin: 0.12rem 0 0;
   color: var(--aiplorer-muted);
   font-size: 0.68rem;
   line-height: 1.45;
+}
+
+.aiplorer-shortlist-next__progress-wrap {
+  display: grid;
+  margin-top: 0.55rem;
+  grid-template-columns: minmax(6rem, 11rem) minmax(0, 1fr);
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.aiplorer-shortlist-next__progress-wrap[hidden] {
+  display: none;
+}
+
+.aiplorer-shortlist-next__progress {
+  height: 0.32rem;
+  overflow: hidden;
+  border-radius: 3px;
+  background: #d8e7e4;
+}
+
+.aiplorer-shortlist-next__progress span {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--aiplorer-teal);
+  transition: width 160ms ease;
+}
+
+.aiplorer-shortlist-next__progress-wrap small {
+  color: var(--aiplorer-muted);
+  font-size: 0.6rem;
+  line-height: 1.35;
+}
+
+.aiplorer-shortlist-next > button {
+  min-height: 2.2rem;
+  padding: 0.45rem 0.62rem;
+  border: 1px solid var(--aiplorer-teal);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--aiplorer-teal);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.66rem;
+  font-weight: 800;
+}
+
+.aiplorer-shortlist-next > button:hover,
+.aiplorer-shortlist-next > button:focus-visible {
+  background: var(--aiplorer-teal);
+  color: #fff;
+}
+
+.aiplorer-shortlist-next > button[hidden] {
+  display: none;
 }
 
 .aiplorer-shortlist-review-pulse {
@@ -6371,6 +6432,16 @@ main#main-content:has(> .aiplorer-content-article) {
     white-space: normal;
   }
 
+  .aiplorer-shortlist-next {
+    align-items: start;
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .aiplorer-shortlist-next > button {
+    justify-self: start;
+    grid-column: 2;
+  }
+
   .aiplorer-hero-finder,
   .aiplorer-tool-finder__form {
     grid-template-columns: 1fr 1fr;
@@ -6681,6 +6752,15 @@ main#main-content:has(> .aiplorer-content-article) {
 
   .aiplorer-shortlist-stage-filter__options button:first-child {
     grid-column: 1 / -1;
+  }
+
+  .aiplorer-shortlist-next__progress-wrap {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+
+  .aiplorer-shortlist-next__progress {
+    max-width: 12rem;
   }
 
   .aiplorer-shortlist-grid {

@@ -71,6 +71,13 @@ Each stage also presents a concise next action:
 - `Ready to decide`: compare remaining trade-offs and recheck official details
 - no stage: assign a stage so unfinished evaluation remains easy to resume
 
+When every stage is visible, the shortlist turns those same states into a
+lightweight resume queue. Active testing is surfaced first, followed by ready,
+researching, and unassigned candidates. The queue reports private checklist
+progress for that stage and opens the corresponding stage view. This is a
+continuity aid based on the visitor's own labels and checks, not a tool ranking
+or Aiplorer recommendation.
+
 The homepage links back to the most actionable saved stage, prioritizing active
 testing, then ready, researching, and unassigned candidates. The stage is passed
 as a temporary shortlist URL parameter, stored locally, and removed from the
@@ -82,8 +89,10 @@ The 2026 Stanford AI Index describes leading-model competition shifting toward
 cost, reliability, and domain-specific performance as top-level capability
 converges. Microsoft's 2026 Work Trend Index places greater emphasis on human
 intent, judgment, quality standards, and responsibility as AI and agents take
-on more execution. The shortlist therefore helps visitors record concrete
-evaluation steps instead of presenting a universal winner.
+on more execution, and notes that repeatable workflows and quality standards
+help organizations learn from AI-assisted work. The shortlist therefore helps
+visitors record and resume concrete evaluation steps instead of presenting a
+universal winner.
 
 Official sources:
 

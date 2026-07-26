@@ -58,6 +58,10 @@
     }
   }
 
+  function notifyChange() {
+    window.dispatchEvent(new CustomEvent("aiplorer:trial-checks-change"));
+  }
+
   function renderChecklist(checklist, state) {
     var path = checklist.getAttribute("data-trial-checklist");
     var checked = new Set(cleanChecks(state[path]));
@@ -110,6 +114,7 @@
 
     writeState(state);
     renderChecklist(checklist, state);
+    notifyChange();
     announce(
       checklist.getAttribute("data-trial-title") +
         ": " +
@@ -136,6 +141,7 @@
     delete state[path];
     writeState(state);
     renderChecklist(checklist, state);
+    notifyChange();
     announce(checklist.getAttribute("data-trial-title") + ": candidate checks reset.");
   });
 

@@ -94,11 +94,26 @@
 
         <div class="aiplorer-shortlist-next" data-shortlist-stage-next hidden>
           <span class="aiplorer-shortlist-next__icon">{{ partial "aiplorer-icon.html" "compass" }}</span>
-          <div>
-            <p class="aiplorer-kicker">Next action</p>
+          <div class="aiplorer-shortlist-next__copy">
+            <p class="aiplorer-kicker">Resume queue</p>
             <strong data-shortlist-stage-next-title>Move each candidate one step forward</strong>
             <p data-shortlist-stage-next-copy>Choose a stage for each candidate, then work through the same four checks.</p>
+            <div class="aiplorer-shortlist-next__progress-wrap" data-shortlist-stage-next-progress-wrap hidden>
+              <div
+                class="aiplorer-shortlist-next__progress"
+                role="progressbar"
+                aria-label="Candidate checklist progress"
+                aria-valuemin="0"
+                aria-valuemax="0"
+                aria-valuenow="0"
+                data-shortlist-stage-next-progress
+              >
+                <span data-shortlist-stage-next-progress-bar></span>
+              </div>
+              <small data-shortlist-stage-next-progress-label>0 of 0 private checks complete.</small>
+            </div>
           </div>
+          <button type="button" data-shortlist-stage-next-filter hidden>Open next stage</button>
         </div>
 
         <div class="aiplorer-shortlist-review-pulse" data-shortlist-review-pulse data-review-state="checkpoint" hidden>
