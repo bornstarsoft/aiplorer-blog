@@ -33,6 +33,18 @@
     {{- $relatedTools = first 4 $relatedTools -}}
   {{- end -}}
 
+  {{- $relatedPractical := slice -}}
+  {{- range (slice "guides" "use-cases") -}}
+    {{- range where $page.Site.RegularPages "Section" . -}}
+      {{- $toolPaths := .Params.relatedTools | default (slice) -}}
+      {{- if and (eq .Params.reviewStatus "reviewed") (not .Draft) (in $toolPaths $page.RelPermalink) -}}
+        {{- $relatedPractical = $relatedPractical | append . -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $relatedPractical = sort $relatedPractical "Title" "asc" -}}
+  {{- $relatedPractical = first 3 (sort $relatedPractical "Params.lastReviewed" "desc") -}}
+
   <article
     class="aiplorer-tool-page"
     data-recent-tool
@@ -171,6 +183,34 @@
                   {{ range . }}<li>{{ . }}</li>{{ end }}
                 </ul>
               </section>
+            {{ end }}
+          </div>
+        </div>
+      </section>
+    {{ end }}
+
+    {{ if $relatedPractical }}
+      <section class="aiplorer-section" aria-labelledby="tool-context-heading">
+        <div class="aiplorer-shell">
+          <div class="aiplorer-section-heading">
+            <div>
+              <p class="aiplorer-kicker">Use this tool in context</p>
+              <h2 id="tool-context-heading">Practical guides and workflows</h2>
+              <p class="aiplorer-section-heading__note">Reviewed pages that reference {{ .Title }}, shown by check date rather than popularity or score.</p>
+            </div>
+            <div class="aiplorer-section-heading__links">
+              <a class="aiplorer-text-link" href="/guides/">All guides <span aria-hidden="true">&rarr;</span></a>
+              <a class="aiplorer-text-link" href="/use-cases/">All use cases <span aria-hidden="true">&rarr;</span></a>
+            </div>
+          </div>
+          <div class="aiplorer-guidance-grid" data-tool-context>
+            {{ range $relatedPractical }}
+              {{- $contentLabel := cond (eq .Section "guides") "Guide" "Use case" -}}
+              <a href="{{ .RelPermalink }}">
+                <span>{{ $contentLabel }} &middot; Checked {{ .Params.lastReviewed }}</span>
+                <h3>{{ .Title }}</h3>
+                <p>{{ .Params.description | truncate 145 }}</p>
+              </a>
             {{ end }}
           </div>
         </div>
