@@ -44,6 +44,12 @@ Each saved candidate can be marked as `Researching`, `Testing`, or
 unfinished comparison. It is not a rating, recommendation, completion claim,
 or signal that the tool is suitable for production use.
 
+Each shortlist card keeps the current decision stage and completed-check count
+visible in a compact candidate-evaluation summary. The detailed stage controls
+and four candidate checks use a native expandable section so multiple saved
+candidates remain easier to scan without hiding or discarding their evaluation
+state.
+
 The homepage summarizes stages for saved candidates and compares their current
 public review tokens with the browser's Review Updates checkpoint. It can show
 whether tracking has not started, saved reviews are current, or one or more

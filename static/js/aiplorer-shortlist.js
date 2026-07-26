@@ -982,10 +982,16 @@
       var current = control.querySelector("[data-candidate-stage-current]");
       var reset = control.querySelector("[data-candidate-stage-reset]");
       var next = control.querySelector("[data-candidate-stage-next]");
+      var item = control.closest("[data-shortlist-item]");
+      var summaryStage = item && item.querySelector("[data-shortlist-evaluation-stage]");
 
       if (current) {
         current.textContent = candidateStageLabel(stage);
         current.setAttribute("data-stage", stage || "unset");
+      }
+      if (summaryStage) {
+        summaryStage.textContent = "Stage: " + candidateStageLabel(stage);
+        summaryStage.setAttribute("data-stage", stage || "unset");
       }
       if (next) {
         next.textContent = candidateStageNextText(stage);

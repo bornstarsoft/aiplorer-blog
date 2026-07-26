@@ -187,69 +187,84 @@
                 <strong data-shortlist-review-label>Start review tracking</strong>
                 <small>Compared with this browser's Review Updates checkpoint.</small>
               </div>
-              <div
-                class="aiplorer-shortlist-card__stage"
-                data-candidate-stage="{{ .RelPermalink }}"
-                data-candidate-stage-title="{{ .Title }}"
-              >
-                <div class="aiplorer-shortlist-card__stage-heading">
-                  <div>
-                    <span>Decision stage</span>
-                    <strong data-candidate-stage-current>Not set</strong>
+              <details class="aiplorer-shortlist-card__evaluation">
+                <summary>
+                  <span>
+                    <strong>Candidate evaluation</strong>
+                    <small>
+                      <span data-shortlist-evaluation-stage>Stage: Not set</span>
+                      <span aria-hidden="true">&middot;</span>
+                      <span data-shortlist-evaluation-checks>0 of 4 checks</span>
+                    </small>
+                  </span>
+                  <span class="aiplorer-shortlist-card__evaluation-icon" aria-hidden="true">
+                    {{ partial "aiplorer-icon.html" "chevron-down" }}
+                  </span>
+                </summary>
+                <div
+                  class="aiplorer-shortlist-card__stage"
+                  data-candidate-stage="{{ .RelPermalink }}"
+                  data-candidate-stage-title="{{ .Title }}"
+                >
+                  <div class="aiplorer-shortlist-card__stage-heading">
+                    <div>
+                      <span>Decision stage</span>
+                      <strong data-candidate-stage-current>Not set</strong>
+                    </div>
+                    <button type="button" data-candidate-stage-reset disabled>Clear</button>
                   </div>
-                  <button type="button" data-candidate-stage-reset disabled>Clear</button>
+                  <div
+                    class="aiplorer-shortlist-card__stage-options"
+                    role="group"
+                    aria-label="Decision stage for {{ .Title }}"
+                  >
+                    <button type="button" data-candidate-stage-value="researching" aria-pressed="false">
+                      Researching
+                    </button>
+                    <button type="button" data-candidate-stage-value="testing" aria-pressed="false">
+                      Testing
+                    </button>
+                    <button type="button" data-candidate-stage-value="ready" aria-pressed="false">
+                      Ready to decide
+                    </button>
+                  </div>
+                  <p class="aiplorer-shortlist-card__stage-next" data-candidate-stage-next>
+                    Next: choose a decision stage.
+                  </p>
+                  <small>Private browser note, not a score or recommendation.</small>
                 </div>
                 <div
-                  class="aiplorer-shortlist-card__stage-options"
-                  role="group"
-                  aria-label="Decision stage for {{ .Title }}"
+                  class="aiplorer-shortlist-card__trial"
+                  data-trial-checklist="{{ .RelPermalink }}"
+                  data-trial-title="{{ .Title }}"
                 >
-                  <button type="button" data-candidate-stage-value="researching" aria-pressed="false">
-                    Researching
-                  </button>
-                  <button type="button" data-candidate-stage-value="testing" aria-pressed="false">
-                    Testing
-                  </button>
-                  <button type="button" data-candidate-stage-value="ready" aria-pressed="false">
-                    Ready to decide
-                  </button>
-                </div>
-                <p class="aiplorer-shortlist-card__stage-next" data-candidate-stage-next>
-                  Next: choose a decision stage.
-                </p>
-                <small>Private browser note, not a score or recommendation.</small>
-              </div>
-              <div
-                class="aiplorer-shortlist-card__trial"
-                data-trial-checklist="{{ .RelPermalink }}"
-                data-trial-title="{{ .Title }}"
-              >
-                <div class="aiplorer-shortlist-card__trial-heading">
-                  <div>
-                    <span>Candidate checks</span>
-                    <strong><span data-trial-complete>0 of 4</span> checked</strong>
+                  <div class="aiplorer-shortlist-card__trial-heading">
+                    <div>
+                      <span>Candidate checks</span>
+                      <strong><span data-trial-complete>0 of 4</span> checked</strong>
+                    </div>
+                    <button type="button" data-trial-reset disabled>Reset</button>
                   </div>
-                  <button type="button" data-trial-reset disabled>Reset</button>
+                  <div class="aiplorer-shortlist-card__trial-items" role="group" aria-label="Candidate checks for {{ .Title }}">
+                    <label>
+                      <input type="checkbox" value="task" data-trial-check>
+                      <span>Tested with a real task</span>
+                    </label>
+                    <label>
+                      <input type="checkbox" value="output" data-trial-check>
+                      <span>Reviewed output quality and facts</span>
+                    </label>
+                    <label>
+                      <input type="checkbox" value="privacy" data-trial-check>
+                      <span>Checked privacy, permissions, and rights</span>
+                    </label>
+                    <label>
+                      <input type="checkbox" value="plans" data-trial-check>
+                      <span>Confirmed current plans and limits</span>
+                    </label>
+                  </div>
                 </div>
-                <div class="aiplorer-shortlist-card__trial-items" role="group" aria-label="Candidate checks for {{ .Title }}">
-                  <label>
-                    <input type="checkbox" value="task" data-trial-check>
-                    <span>Tested with a real task</span>
-                  </label>
-                  <label>
-                    <input type="checkbox" value="output" data-trial-check>
-                    <span>Reviewed output quality and facts</span>
-                  </label>
-                  <label>
-                    <input type="checkbox" value="privacy" data-trial-check>
-                    <span>Checked privacy, permissions, and rights</span>
-                  </label>
-                  <label>
-                    <input type="checkbox" value="plans" data-trial-check>
-                    <span>Confirmed current plans and limits</span>
-                  </label>
-                </div>
-              </div>
+              </details>
               <div class="aiplorer-shortlist-card__meta">
                 <span>Checked {{ .Params.lastReviewed }}</span>
                 <a href="{{ .RelPermalink }}">Full review <span aria-hidden="true">&rarr;</span></a>

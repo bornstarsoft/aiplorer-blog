@@ -5478,6 +5478,100 @@ main#main-content:has(> .aiplorer-content-article) {
   line-height: 1.35;
 }
 
+.aiplorer-shortlist-card__evaluation {
+  margin: 0.7rem 0 1rem;
+  border: 1px solid var(--aiplorer-line);
+  border-radius: 7px;
+  background: #fbfcfc;
+}
+
+.aiplorer-shortlist-card__evaluation > summary {
+  display: flex;
+  min-height: 3.4rem;
+  padding: 0.7rem 0.8rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  color: var(--aiplorer-ink);
+  cursor: pointer;
+  list-style: none;
+}
+
+.aiplorer-shortlist-card__evaluation > summary::-webkit-details-marker {
+  display: none;
+}
+
+.aiplorer-shortlist-card__evaluation > summary:hover,
+.aiplorer-shortlist-card__evaluation > summary:focus-visible {
+  color: var(--aiplorer-teal);
+}
+
+.aiplorer-shortlist-card__evaluation > summary:focus-visible {
+  outline: 3px solid rgba(28, 113, 104, 0.18);
+  outline-offset: 2px;
+}
+
+.aiplorer-shortlist-card__evaluation > summary > span:first-child {
+  display: grid;
+  min-width: 0;
+  gap: 0.15rem;
+}
+
+.aiplorer-shortlist-card__evaluation > summary strong {
+  font-size: 0.72rem;
+}
+
+.aiplorer-shortlist-card__evaluation > summary small {
+  display: flex;
+  min-width: 0;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  color: var(--aiplorer-muted);
+  font-size: 0.62rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.aiplorer-shortlist-card__evaluation > summary [data-stage="researching"],
+.aiplorer-shortlist-card__evaluation > summary [data-stage="testing"] {
+  color: var(--aiplorer-teal);
+}
+
+.aiplorer-shortlist-card__evaluation > summary [data-stage="ready"] {
+  color: var(--aiplorer-coral);
+}
+
+.aiplorer-shortlist-card__evaluation-icon {
+  display: inline-grid;
+  width: 1.8rem;
+  height: 1.8rem;
+  flex: 0 0 auto;
+  border-radius: 5px;
+  place-items: center;
+  background: #eef3f4;
+  color: var(--aiplorer-muted);
+  transition: transform 160ms ease;
+}
+
+.aiplorer-shortlist-card__evaluation-icon .aiplorer-icon {
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+.aiplorer-shortlist-card__evaluation[open] .aiplorer-shortlist-card__evaluation-icon {
+  transform: rotate(180deg);
+}
+
+.aiplorer-shortlist-card__evaluation[open] > summary {
+  border-bottom: 1px solid var(--aiplorer-line);
+}
+
+.aiplorer-shortlist-card__evaluation .aiplorer-shortlist-card__stage,
+.aiplorer-shortlist-card__evaluation .aiplorer-shortlist-card__trial {
+  padding-right: 0.8rem;
+  padding-left: 0.8rem;
+}
+
 .aiplorer-shortlist-card__stage {
   margin-bottom: 0.15rem;
   padding: 0.85rem 0;
@@ -5608,10 +5702,10 @@ main#main-content:has(> .aiplorer-content-article) {
 }
 
 .aiplorer-shortlist-card__trial {
-  margin-bottom: 1rem;
+  margin-bottom: 0;
   padding: 0.85rem 0;
   border-top: 1px solid var(--aiplorer-line);
-  border-bottom: 1px solid var(--aiplorer-line);
+  border-bottom: 0;
 }
 
 .aiplorer-shortlist-card__trial-heading {
@@ -7242,5 +7336,9 @@ main#main-content:has(> .aiplorer-content-article) {
   .aiplorer-workflow,
   .aiplorer-tool-card {
     transform: none;
+  }
+
+  .aiplorer-shortlist-card__evaluation-icon {
+    transition: none;
   }
 }

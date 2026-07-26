@@ -67,6 +67,8 @@
     var checked = new Set(cleanChecks(state[path]));
     var complete = checklist.querySelector("[data-trial-complete]");
     var reset = checklist.querySelector("[data-trial-reset]");
+    var item = checklist.closest("[data-shortlist-item]");
+    var summaryChecks = item && item.querySelector("[data-shortlist-evaluation-checks]");
 
     checklist.querySelectorAll("[data-trial-check]").forEach(function (input) {
       input.checked = checked.has(input.value);
@@ -74,6 +76,9 @@
 
     if (complete) {
       complete.textContent = checked.size + " of " + allowedChecks.length;
+    }
+    if (summaryChecks) {
+      summaryChecks.textContent = checked.size + " of " + allowedChecks.length + " checks";
     }
     if (reset) {
       reset.disabled = checked.size === 0;
