@@ -3230,6 +3230,97 @@ main#main-content:has(> .aiplorer-shortlist) {
   line-height: 1.55;
 }
 
+.aiplorer-recent-local {
+  padding: 3rem 0;
+  border-top: 1px solid var(--aiplorer-line);
+  border-bottom: 1px solid var(--aiplorer-line);
+  background: #fff;
+}
+
+.aiplorer-recent-local[hidden] {
+  display: none;
+}
+
+.aiplorer-recent-clear {
+  padding: 0.6rem 0;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  background: transparent;
+  color: var(--aiplorer-coral);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.76rem;
+  font-weight: 750;
+}
+
+.aiplorer-recent-clear:hover,
+.aiplorer-recent-clear:focus-visible {
+  color: var(--aiplorer-ink);
+}
+
+.aiplorer-recent-grid {
+  display: grid;
+  margin-top: 1.35rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.aiplorer-recent-card {
+  display: flex;
+  min-width: 0;
+  min-height: 10.5rem;
+  padding: 1rem;
+  border: 1px solid var(--aiplorer-line);
+  border-radius: 8px;
+  flex-direction: column;
+  background: var(--aiplorer-soft);
+  color: var(--aiplorer-text);
+  text-decoration: none;
+}
+
+.aiplorer-recent-card:hover,
+.aiplorer-recent-card:focus-visible {
+  border-color: var(--aiplorer-teal);
+  background: #fff;
+}
+
+.aiplorer-recent-card__category {
+  color: var(--aiplorer-teal);
+  font-size: 0.66rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.aiplorer-recent-card strong {
+  margin-top: 0.45rem;
+  color: var(--aiplorer-ink);
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
+.aiplorer-recent-card small {
+  display: -webkit-box;
+  margin-top: 0.45rem;
+  overflow: hidden;
+  color: var(--aiplorer-muted);
+  font-size: 0.72rem;
+  line-height: 1.5;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.aiplorer-recent-card__meta {
+  display: flex;
+  margin-top: auto;
+  padding-top: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  color: var(--aiplorer-muted);
+  font-size: 0.66rem;
+  font-weight: 700;
+}
+
 @media screen and (max-width: 64rem) {
   .aiplorer-workflow-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -3318,6 +3409,10 @@ main#main-content:has(> .aiplorer-shortlist) {
   }
 
   .aiplorer-shortlist-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .aiplorer-recent-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -3578,6 +3673,14 @@ main#main-content:has(> .aiplorer-shortlist) {
 
   .aiplorer-shortlist-grid {
     grid-template-columns: 1fr;
+  }
+
+  .aiplorer-recent-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .aiplorer-recent-card {
+    min-height: 0;
   }
 
   .aiplorer-shortlist-empty {

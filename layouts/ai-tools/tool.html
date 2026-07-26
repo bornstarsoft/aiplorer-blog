@@ -33,7 +33,15 @@
     {{- $relatedTools = first 4 $relatedTools -}}
   {{- end -}}
 
-  <article class="aiplorer-tool-page">
+  <article
+    class="aiplorer-tool-page"
+    data-recent-tool
+    data-recent-path="{{ .RelPermalink }}"
+    data-recent-title="{{ .Title }}"
+    data-recent-category="{{ $categoryName }}"
+    data-recent-description="{{ .Params.description | plainify | truncate 150 }}"
+    data-recent-reviewed="{{ .Params.lastReviewed }}"
+  >
     <section class="aiplorer-tool-hero" data-category-accent="{{ $categoryData.accent }}">
       <div class="aiplorer-shell">
         <div class="aiplorer-tool-hero__icon" data-accent="{{ $categoryData.accent }}">
