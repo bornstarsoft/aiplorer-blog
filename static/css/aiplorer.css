@@ -4505,6 +4505,92 @@ main#main-content:has(> .aiplorer-content-article) {
   -webkit-line-clamp: 2;
 }
 
+.aiplorer-shortlist-card__trial {
+  margin-bottom: 1rem;
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--aiplorer-line);
+  border-bottom: 1px solid var(--aiplorer-line);
+}
+
+.aiplorer-shortlist-card__trial-heading {
+  display: flex;
+  margin-bottom: 0.7rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.aiplorer-shortlist-card__trial-heading > div {
+  display: grid;
+  gap: 0.12rem;
+}
+
+.aiplorer-shortlist-card__trial-heading > div > span {
+  color: var(--aiplorer-ink);
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+.aiplorer-shortlist-card__trial-heading strong {
+  color: var(--aiplorer-muted);
+  font-size: 0.62rem;
+  font-weight: 700;
+}
+
+.aiplorer-shortlist-card__trial-heading button {
+  min-width: 3.4rem;
+  padding: 0.34rem 0.48rem;
+  border: 1px solid var(--aiplorer-line);
+  border-radius: 5px;
+  background: #fff;
+  color: var(--aiplorer-muted);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.62rem;
+  font-weight: 750;
+}
+
+.aiplorer-shortlist-card__trial-heading button:hover,
+.aiplorer-shortlist-card__trial-heading button:focus-visible {
+  border-color: var(--aiplorer-teal);
+  color: var(--aiplorer-teal);
+}
+
+.aiplorer-shortlist-card__trial-heading button:disabled {
+  cursor: default;
+  opacity: 0.45;
+}
+
+.aiplorer-shortlist-card__trial-items {
+  display: grid;
+  gap: 0.42rem;
+}
+
+.aiplorer-shortlist-card__trial-items label {
+  display: grid;
+  min-width: 0;
+  align-items: start;
+  grid-template-columns: 1rem minmax(0, 1fr);
+  gap: 0.5rem;
+  color: var(--aiplorer-text);
+  cursor: pointer;
+  font-size: 0.68rem;
+  font-weight: 650;
+  line-height: 1.4;
+}
+
+.aiplorer-shortlist-card__trial-items input {
+  width: 1rem;
+  height: 1rem;
+  margin: 0.02rem 0 0;
+  accent-color: var(--aiplorer-teal);
+}
+
+.aiplorer-shortlist-card__trial-items label:has(input:checked) span {
+  color: var(--aiplorer-muted);
+  text-decoration: line-through;
+}
+
 .aiplorer-shortlist-card__meta {
   display: flex;
   margin-top: auto;

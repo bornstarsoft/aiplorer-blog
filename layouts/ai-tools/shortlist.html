@@ -57,7 +57,7 @@
           <div>
             <p class="aiplorer-kicker">Saved candidates</p>
             <h2 id="saved-tools-heading">Your reviewed tool shortlist</h2>
-            <p class="aiplorer-section-heading__note">Use one reviewed task-fit example and one check-first note to narrow the list, then revisit full reviews and official details.</p>
+            <p class="aiplorer-section-heading__note">Use reviewed signals and private candidate checks to narrow the list, then revisit full reviews and official details.</p>
           </div>
           <button class="aiplorer-shortlist-clear aiplorer-shortlist-control" type="button" data-shortlist-clear disabled>
             Clear shortlist
@@ -103,6 +103,37 @@
                   </div>
                 {{ end }}
               </div>
+              <div
+                class="aiplorer-shortlist-card__trial"
+                data-trial-checklist="{{ .RelPermalink }}"
+                data-trial-title="{{ .Title }}"
+              >
+                <div class="aiplorer-shortlist-card__trial-heading">
+                  <div>
+                    <span>Candidate checks</span>
+                    <strong><span data-trial-complete>0 of 4</span> checked</strong>
+                  </div>
+                  <button type="button" data-trial-reset disabled>Reset</button>
+                </div>
+                <div class="aiplorer-shortlist-card__trial-items" role="group" aria-label="Candidate checks for {{ .Title }}">
+                  <label>
+                    <input type="checkbox" value="task" data-trial-check>
+                    <span>Tested with a real task</span>
+                  </label>
+                  <label>
+                    <input type="checkbox" value="output" data-trial-check>
+                    <span>Reviewed output quality and facts</span>
+                  </label>
+                  <label>
+                    <input type="checkbox" value="privacy" data-trial-check>
+                    <span>Checked privacy, permissions, and rights</span>
+                  </label>
+                  <label>
+                    <input type="checkbox" value="plans" data-trial-check>
+                    <span>Confirmed current plans and limits</span>
+                  </label>
+                </div>
+              </div>
               <div class="aiplorer-shortlist-card__meta">
                 <span>Checked {{ .Params.lastReviewed }}</span>
                 <a href="{{ .RelPermalink }}">Full review <span aria-hidden="true">&rarr;</span></a>
@@ -124,7 +155,7 @@
         </div>
 
         <noscript>
-          <p class="aiplorer-shortlist-noscript">Shortlist saving requires JavaScript and local browser storage. You can still use the reviewed tools directory and comparison without it.</p>
+          <p class="aiplorer-shortlist-noscript">Shortlist saving and candidate checks require JavaScript and local browser storage. You can still use the reviewed tools directory and comparison without them.</p>
         </noscript>
       </div>
     </section>
