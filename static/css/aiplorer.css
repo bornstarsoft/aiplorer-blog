@@ -4987,6 +4987,85 @@ main#main-content:has(> .aiplorer-content-article) {
   line-height: 1.45;
 }
 
+.aiplorer-shortlist-review-pulse {
+  display: grid;
+  margin-top: 0.7rem;
+  padding: 0.82rem 1rem;
+  border: 1px solid var(--aiplorer-line);
+  border-left: 3px solid var(--aiplorer-violet);
+  border-radius: 0 7px 7px 0;
+  align-items: center;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 0.75rem;
+  background: #f7f4fb;
+}
+
+.aiplorer-shortlist-review-pulse[hidden] {
+  display: none;
+}
+
+.aiplorer-shortlist-review-pulse[data-review-state="updates"] {
+  border-left-color: var(--aiplorer-coral);
+  background: #fff4f1;
+}
+
+.aiplorer-shortlist-review-pulse[data-review-state="current"] {
+  border-left-color: var(--aiplorer-teal);
+  background: #eef7f5;
+}
+
+.aiplorer-shortlist-review-pulse__icon {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 6px;
+  place-items: center;
+  background: #fff;
+  color: var(--aiplorer-violet);
+}
+
+.aiplorer-shortlist-review-pulse[data-review-state="updates"] .aiplorer-shortlist-review-pulse__icon {
+  color: var(--aiplorer-coral);
+}
+
+.aiplorer-shortlist-review-pulse[data-review-state="current"] .aiplorer-shortlist-review-pulse__icon {
+  color: var(--aiplorer-teal);
+}
+
+.aiplorer-shortlist-review-pulse__icon .aiplorer-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.aiplorer-shortlist-review-pulse .aiplorer-kicker {
+  margin-bottom: 0.08rem;
+}
+
+.aiplorer-shortlist-review-pulse strong {
+  display: block;
+  color: var(--aiplorer-ink);
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+.aiplorer-shortlist-review-pulse p:last-child {
+  margin: 0.12rem 0 0;
+  color: var(--aiplorer-muted);
+  font-size: 0.68rem;
+  line-height: 1.45;
+}
+
+.aiplorer-shortlist-review-pulse > a {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--aiplorer-teal);
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
 .aiplorer-shortlist-empty {
   display: grid;
   max-width: 34rem;
@@ -5143,6 +5222,52 @@ main#main-content:has(> .aiplorer-content-article) {
   line-height: 1.45;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+}
+
+.aiplorer-shortlist-card__review {
+  display: grid;
+  margin-bottom: 0.15rem;
+  padding: 0.72rem 0.78rem;
+  border-left: 3px solid var(--aiplorer-violet);
+  gap: 0.1rem;
+  background: #f7f4fb;
+}
+
+.aiplorer-shortlist-card__review[data-review-state="updates"] {
+  border-left-color: var(--aiplorer-coral);
+  background: #fff4f1;
+}
+
+.aiplorer-shortlist-card__review[data-review-state="current"] {
+  border-left-color: var(--aiplorer-teal);
+  background: #eef7f5;
+}
+
+.aiplorer-shortlist-card__review > span {
+  color: var(--aiplorer-muted);
+  font-size: 0.58rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.aiplorer-shortlist-card__review > strong {
+  color: var(--aiplorer-violet);
+  font-size: 0.68rem;
+  line-height: 1.4;
+}
+
+.aiplorer-shortlist-card__review[data-review-state="updates"] > strong {
+  color: var(--aiplorer-coral);
+}
+
+.aiplorer-shortlist-card__review[data-review-state="current"] > strong {
+  color: var(--aiplorer-teal);
+}
+
+.aiplorer-shortlist-card__review > small {
+  color: var(--aiplorer-muted);
+  font-size: 0.58rem;
+  line-height: 1.35;
 }
 
 .aiplorer-shortlist-card__stage {
@@ -6234,6 +6359,16 @@ main#main-content:has(> .aiplorer-content-article) {
 
   .aiplorer-shortlist-stage-filter__options {
     justify-content: flex-start;
+  }
+
+  .aiplorer-shortlist-review-pulse {
+    align-items: start;
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .aiplorer-shortlist-review-pulse > a {
+    grid-column: 2;
+    white-space: normal;
   }
 
   .aiplorer-hero-finder,

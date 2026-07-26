@@ -182,6 +182,13 @@
     return null;
   }
 
+  function reviewStateFor(path, date, snapshot) {
+    if (snapshot === null) {
+      return "checkpoint";
+    }
+    return snapshot.has(path + "|" + date) ? "current" : "updates";
+  }
+
   function candidateStageViewLabel(value) {
     return value === "all" ? "All stages" : candidateStageLabel(value);
   }
@@ -315,11 +322,21 @@
     var stageNext = document.querySelector("[data-shortlist-stage-next]");
     var stageNextTitle = document.querySelector("[data-shortlist-stage-next-title]");
     var stageNextCopy = document.querySelector("[data-shortlist-stage-next-copy]");
+    var reviewPulse = document.querySelector("[data-shortlist-review-pulse]");
+    var reviewPulseTitle = document.querySelector("[data-shortlist-review-pulse-title]");
+    var reviewPulseCopy = document.querySelector("[data-shortlist-review-pulse-copy]");
+    var reviewPulseLink = document.querySelector("[data-shortlist-review-pulse-link]");
+    var reviewPulseLinkLabel = document.querySelector(
+      "[data-shortlist-review-pulse-link-label]"
+    );
     var clear = document.querySelector("[data-shortlist-clear]");
     var stageState = readCandidateStageState();
     var stageView = readCandidateStageView();
+    var reviewSnapshot = readReviewSnapshot();
     var savedCount = saved.size;
     var visibleCount = 0;
+    var savedReviewCount = 0;
+    var savedReviewUpdates = 0;
     var stageCounts = {
       all: savedCount,
       researching: 0,
@@ -337,6 +354,10 @@
       var path = item.getAttribute("data-shortlist-item");
       var isSaved = saved.has(path);
       var stage = cleanCandidateStage(stageState[path]);
+      var reviewDate = item.getAttribute("data-shortlist-review-date") || "";
+      var reviewState = reviewStateFor(path, reviewDate, reviewSnapshot);
+      var reviewOutput = item.querySelector("[data-shortlist-review-state]");
+      var reviewLabel = item.querySelector("[data-shortlist-review-label]");
       var show =
         isSaved &&
         (stageView === "all" ||
@@ -346,6 +367,23 @@
       item.hidden = !show;
       if (show) {
         visibleCount += 1;
+      }
+      if (isSaved) {
+        savedReviewCount += 1;
+        if (reviewState === "updates") {
+          savedReviewUpdates += 1;
+        }
+      }
+      if (reviewOutput) {
+        reviewOutput.setAttribute("data-review-state", reviewState);
+      }
+      if (reviewLabel) {
+        reviewLabel.textContent =
+          reviewState === "updates"
+            ? "Newer Aiplorer check"
+            : reviewState === "current"
+              ? "Review checkpoint current"
+              : "Start review tracking";
       }
     });
 
@@ -371,6 +409,49 @@
       }
       if (stageNextCopy) {
         stageNextCopy.textContent = stageNextAction.copy;
+      }
+    }
+    if (reviewPulse) {
+      reviewPulse.hidden = savedReviewCount === 0;
+      var pulseState =
+        reviewSnapshot === null
+          ? "checkpoint"
+          : savedReviewUpdates > 0
+            ? "updates"
+            : "current";
+      reviewPulse.setAttribute("data-review-state", pulseState);
+
+      if (reviewPulseTitle) {
+        reviewPulseTitle.textContent =
+          pulseState === "updates"
+            ? savedReviewUpdates +
+              " saved " +
+              (savedReviewUpdates === 1 ? "candidate has" : "candidates have") +
+              " a newer review check"
+            : pulseState === "current"
+              ? "Saved review checks are current"
+              : "Start a review checkpoint";
+      }
+      if (reviewPulseCopy) {
+        reviewPulseCopy.textContent =
+          pulseState === "updates"
+            ? "Revisit the changed Aiplorer reviews before continuing your comparison."
+            : pulseState === "current"
+              ? "These saved candidates match this browser's last Review Updates checkpoint."
+              : "Open Review Updates once to track later Aiplorer checks for these saved candidates.";
+      }
+      if (reviewPulseLink && reviewPulseLinkLabel) {
+        reviewPulseLink.href =
+          pulseState === "updates"
+            ? "/ai-tools/review-updates/?view=tools&saved=1&new=1"
+            : "/ai-tools/review-updates/?view=tools&saved=1";
+        reviewPulseLinkLabel.textContent =
+          pulseState === "updates"
+            ? "Review " +
+              savedReviewUpdates +
+              " saved " +
+              (savedReviewUpdates === 1 ? "update" : "updates")
+            : "Check saved reviews";
       }
     }
     if (stageSummary) {

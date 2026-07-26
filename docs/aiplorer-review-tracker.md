@@ -54,6 +54,9 @@ Official references:
   It reports whether the browser needs a first checkpoint, is current, or has
   saved review activity to revisit. It does not write the review checkpoint;
   visiting Review Updates remains the explicit checkpoint action.
+- The shortlist workspace displays the same state at both summary and candidate
+  level. Saved candidates checked after the browser checkpoint link to the
+  focused saved-and-new Review Updates view.
 - The first visit establishes the checkpoint; an unchanged later visit reports
   that the browser is caught up.
 - Content-type links lead to the reviewed-tools index, Guides, Use Cases, and

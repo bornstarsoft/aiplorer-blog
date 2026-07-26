@@ -51,6 +51,14 @@ saved candidates have a newer Aiplorer review check. The comparison page shows
 each saved tool's stage beside its private checklist progress. Removing a tool
 also removes its stored stage.
 
+The shortlist workspace uses that same checkpoint to show a compact saved-review
+summary and a status on every visible candidate card. A card can indicate that
+tracking has not started, its review token matches the browser checkpoint, or
+Aiplorer checked the page again after that checkpoint. When saved review
+activity exists, the summary links directly to the saved-and-new Review Updates
+view. These states describe Aiplorer review activity, not vendor product changes
+or current feature guarantees.
+
 The shortlist can be narrowed to `Researching`, `Testing`, `Ready to decide`,
 or candidates with no stage set. Each view shows a local candidate count and an
 explicit empty state. This is an organization aid, not a ranking or automated
@@ -91,6 +99,7 @@ Official sources:
 - A private Continue evaluating summary on the homepage when candidates are saved
 - Homepage saved-review status and a direct link to the relevant review view
 - Saved-review links from the homepage summary and shortlist workspace
+- Per-candidate review checkpoint states in the shortlist workspace
 - A local `Saved candidates` filter in `/ai-tools/review-updates/`
 - My Shortlist link on the homepage
 - Shortlist tab in the shared AI Discovery navigation

@@ -101,6 +101,19 @@
           </div>
         </div>
 
+        <div class="aiplorer-shortlist-review-pulse" data-shortlist-review-pulse data-review-state="checkpoint" hidden>
+          <span class="aiplorer-shortlist-review-pulse__icon">{{ partial "aiplorer-icon.html" "history" }}</span>
+          <div>
+            <p class="aiplorer-kicker">Saved review status</p>
+            <strong data-shortlist-review-pulse-title>Start a review checkpoint</strong>
+            <p data-shortlist-review-pulse-copy>Open Review Updates once to track later Aiplorer checks for these saved candidates.</p>
+          </div>
+          <a href="/ai-tools/review-updates/?view=tools&amp;saved=1" data-shortlist-review-pulse-link>
+            <span data-shortlist-review-pulse-link-label>Check saved reviews</span>
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+
         <p class="aiplorer-visually-hidden" aria-live="polite" data-shortlist-status></p>
 
         <div class="aiplorer-shortlist-empty" data-shortlist-empty>
@@ -126,7 +139,12 @@
             {{- range where $categories "name" .Params.category -}}
               {{- $categoryData = . -}}
             {{- end -}}
-            <article class="aiplorer-shortlist-card" data-shortlist-item="{{ .RelPermalink }}" hidden>
+            <article
+              class="aiplorer-shortlist-card"
+              data-shortlist-item="{{ .RelPermalink }}"
+              data-shortlist-review-date="{{ .Params.lastReviewed }}"
+              hidden
+            >
               <div class="aiplorer-shortlist-card__heading">
                 <span class="aiplorer-shortlist-card__icon" data-accent="{{ $categoryData.accent }}">
                   {{ partial "aiplorer-icon.html" $categoryData.icon }}
@@ -148,6 +166,11 @@
                     <p>{{ . }}</p>
                   </div>
                 {{ end }}
+              </div>
+              <div class="aiplorer-shortlist-card__review" data-shortlist-review-state data-review-state="checkpoint">
+                <span>Saved review status</span>
+                <strong data-shortlist-review-label>Start review tracking</strong>
+                <small>Compared with this browser's Review Updates checkpoint.</small>
               </div>
               <div
                 class="aiplorer-shortlist-card__stage"
