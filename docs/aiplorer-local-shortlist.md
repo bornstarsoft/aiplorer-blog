@@ -44,9 +44,12 @@ Each saved candidate can be marked as `Researching`, `Testing`, or
 unfinished comparison. It is not a rating, recommendation, completion claim,
 or signal that the tool is suitable for production use.
 
-The homepage summarizes stages for saved candidates, while the comparison page
-shows each saved tool's stage beside its private checklist progress. Removing a
-tool also removes its stored stage.
+The homepage summarizes stages for saved candidates and compares their current
+public review tokens with the browser's Review Updates checkpoint. It can show
+whether tracking has not started, saved reviews are current, or one or more
+saved candidates have a newer Aiplorer review check. The comparison page shows
+each saved tool's stage beside its private checklist progress. Removing a tool
+also removes its stored stage.
 
 The shortlist can be narrowed to `Researching`, `Testing`, `Ready to decide`,
 or candidates with no stage set. Each view shows a local candidate count and an
@@ -86,6 +89,7 @@ Official sources:
 - Local decision stages, candidate-check totals, and per-tool progress in
   `/ai-tools/compare/`
 - A private Continue evaluating summary on the homepage when candidates are saved
+- Homepage saved-review status and a direct link to the relevant review view
 - Saved-review links from the homepage summary and shortlist workspace
 - A local `Saved candidates` filter in `/ai-tools/review-updates/`
 - My Shortlist link on the homepage

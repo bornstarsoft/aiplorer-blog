@@ -708,6 +708,21 @@ main#main-content:has(> .aiplorer-content-article) {
   font-weight: 750;
 }
 
+.aiplorer-home-evaluation__copy > .aiplorer-home-evaluation__review {
+  margin-top: 0.15rem;
+  color: var(--aiplorer-violet);
+  font-size: 0.68rem;
+  font-weight: 750;
+}
+
+.aiplorer-home-evaluation__copy > .aiplorer-home-evaluation__review[data-review-state="updates"] {
+  color: var(--aiplorer-coral);
+}
+
+.aiplorer-home-evaluation__review[hidden] {
+  display: none;
+}
+
 .aiplorer-home-evaluation nav {
   display: grid;
   gap: 0.42rem;

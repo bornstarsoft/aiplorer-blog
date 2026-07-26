@@ -50,6 +50,10 @@ Official references:
 - If a saved candidate has a newer Aiplorer review token, the return checkpoint
   prioritizes that smaller set and links directly to
   `?view=tools&saved=1&new=1`.
+- The homepage reads the same public path-and-date tokens for saved candidates.
+  It reports whether the browser needs a first checkpoint, is current, or has
+  saved review activity to revisit. It does not write the review checkpoint;
+  visiting Review Updates remains the explicit checkpoint action.
 - The first visit establishes the checkpoint; an unchanged later visit reports
   that the browser is caught up.
 - Content-type links lead to the reviewed-tools index, Guides, Use Cases, and

@@ -114,6 +114,14 @@
           <p class="aiplorer-home-evaluation__stage" data-home-evaluation-stage>
             Set a decision stage in your shortlist to keep the next step visible.
           </p>
+          <p
+            class="aiplorer-home-evaluation__review"
+            data-home-evaluation-review
+            data-review-state="checkpoint"
+            hidden
+          >
+            Open Review Updates to start tracking later checks for saved candidates.
+          </p>
           <small>Stored only in this browser. Progress is not a score, rating, or recommendation.</small>
         </div>
         <nav aria-label="Continue evaluating saved AI tools">
@@ -122,8 +130,20 @@
             <span aria-hidden="true">&rarr;</span>
           </a>
           <a href="/ai-tools/compare/?view=shortlist">Compare saved tools <span aria-hidden="true">&rarr;</span></a>
-          <a href="/ai-tools/review-updates/?view=tools&amp;saved=1">Check saved reviews <span aria-hidden="true">&rarr;</span></a>
+          <a data-home-evaluation-review-link href="/ai-tools/review-updates/?view=tools&amp;saved=1">
+            <span data-home-evaluation-review-link-label>Check saved reviews</span>
+            <span aria-hidden="true">&rarr;</span>
+          </a>
         </nav>
+      </div>
+      <div data-home-review-index hidden aria-hidden="true">
+        {{ range $reviewedTools }}
+          <span
+            data-home-review-entry
+            data-review-path="{{ .RelPermalink }}"
+            data-review-date="{{ .Params.lastReviewed }}"
+          ></span>
+        {{ end }}
       </div>
     </section>
 

@@ -5,6 +5,7 @@
   var trialStorageKey = "aiplorer-trial-checks-v1";
   var candidateStageStorageKey = "aiplorer-candidate-stage-v1";
   var candidateStageViewStorageKey = "aiplorer-shortlist-stage-view-v1";
+  var reviewSnapshotStorageKey = "aiplorer-review-snapshot-v1";
   var allowedChecks = ["task", "output", "privacy", "plans"];
   var allowedCandidateStages = ["researching", "testing", "ready"];
   var allowedCandidateStageViews = ["all", "researching", "testing", "ready", "unset"];
@@ -165,6 +166,20 @@
     } catch (error) {
       // Keep the current-session fallback when browser storage is unavailable.
     }
+  }
+
+  function readReviewSnapshot() {
+    try {
+      var stored = JSON.parse(window.localStorage.getItem(reviewSnapshotStorageKey));
+      if (Array.isArray(stored)) {
+        return new Set(stored.filter(function (value) {
+          return typeof value === "string";
+        }));
+      }
+    } catch (error) {
+      return null;
+    }
+    return null;
   }
 
   function candidateStageViewLabel(value) {
@@ -405,10 +420,32 @@
     var heading = section.querySelector("[data-home-evaluation-heading]");
     var progress = section.querySelector("[data-home-evaluation-progress]");
     var stageSummary = section.querySelector("[data-home-evaluation-stage]");
+    var reviewSummary = section.querySelector("[data-home-evaluation-review]");
     var primary = section.querySelector("[data-home-evaluation-primary]");
     var primaryLabel = section.querySelector("[data-home-evaluation-primary-label]");
+    var reviewLink = section.querySelector("[data-home-evaluation-review-link]");
+    var reviewLinkLabel = section.querySelector(
+      "[data-home-evaluation-review-link-label]"
+    );
     var state = readTrialState();
     var stageState = readCandidateStageState();
+    var reviewSnapshot = readReviewSnapshot();
+    var reviewEntries = Array.prototype.slice.call(
+      section.querySelectorAll("[data-home-review-entry]")
+    );
+    var savedReviewEntries = reviewEntries.filter(function (entry) {
+      return saved.has(entry.getAttribute("data-review-path"));
+    });
+    var savedReviewUpdates =
+      reviewSnapshot === null
+        ? []
+        : savedReviewEntries.filter(function (entry) {
+            var token =
+              entry.getAttribute("data-review-path") +
+              "|" +
+              entry.getAttribute("data-review-date");
+            return !reviewSnapshot.has(token);
+          });
     var completed = 0;
     var stageCounts = {
       researching: 0,
@@ -454,6 +491,38 @@
       stageSummary.textContent = stageParts.length
         ? "Decision stages: " + stageParts.join(" · ") + "."
         : "Set a decision stage in your shortlist to keep the next step visible.";
+    }
+    if (reviewSummary) {
+      reviewSummary.hidden = savedReviewEntries.length === 0;
+      if (reviewSnapshot === null) {
+        reviewSummary.textContent =
+          "Open Review Updates once to start tracking later checks for saved candidates.";
+        reviewSummary.setAttribute("data-review-state", "checkpoint");
+      } else if (savedReviewUpdates.length > 0) {
+        reviewSummary.textContent =
+          savedReviewUpdates.length +
+          " saved " +
+          (savedReviewUpdates.length === 1 ? "candidate has" : "candidates have") +
+          " a newer Aiplorer review check.";
+        reviewSummary.setAttribute("data-review-state", "updates");
+      } else {
+        reviewSummary.textContent =
+          "Saved candidate reviews are caught up with your last checkpoint.";
+        reviewSummary.setAttribute("data-review-state", "current");
+      }
+    }
+    if (reviewLink && reviewLinkLabel) {
+      if (savedReviewUpdates.length > 0) {
+        reviewLink.href = "/ai-tools/review-updates/?view=tools&saved=1&new=1";
+        reviewLinkLabel.textContent =
+          "Review " +
+          savedReviewUpdates.length +
+          " saved " +
+          (savedReviewUpdates.length === 1 ? "update" : "updates");
+      } else {
+        reviewLink.href = "/ai-tools/review-updates/?view=tools&saved=1";
+        reviewLinkLabel.textContent = "Check saved reviews";
+      }
     }
     if (primary && primaryLabel) {
       var resumeStage = stageCounts.testing
@@ -656,7 +725,8 @@
       event.key === storageKey ||
       event.key === trialStorageKey ||
       event.key === candidateStageStorageKey ||
-      event.key === candidateStageViewStorageKey
+      event.key === candidateStageViewStorageKey ||
+      event.key === reviewSnapshotStorageKey
     ) {
       render();
     }
