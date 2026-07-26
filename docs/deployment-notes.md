@@ -534,6 +534,34 @@ Cache note:
   Cloudflare cache and re-check `/ai-tools/`, `/ai-tools/tools/`, and
   `/sitemap.xml`.
 
+## Akkio Production Deployment
+
+Date: 2026-07-26
+
+The data and analysis review commit was pushed to GitHub `main`:
+
+- `54b64aa Review Data Analysis Tools draft batch for publication`
+
+Akkio passed the conservative publication review. Julius AI, Rows, Obviously
+AI, and Polymer remained drafts.
+
+Live verification after deployment:
+
+- `/ai-tools/tools/akkio/` returned HTTP `200` and showed
+  `Category: Business Tools` and `Last reviewed: 2026-07-26`.
+- `/ai-tools/`, `/ai-tools/tools/`, `/ai-tools/business-tools/`, and
+  `/sitemap.xml` returned HTTP `200` and included Akkio.
+- The Akkio page used its intended apex-domain self-canonical.
+- SciSpace, Tome, Clipdrop, Julius AI, Rows, Obviously AI, Polymer, and Example
+  AI Assistant returned HTTP `404` and were absent from the live sitemap.
+
+Cache and serving result:
+
+- The checked HTML and XML routes returned `cf-cache-status: DYNAMIC`.
+- No checked response included an `Age` header.
+- The routes used `cache-control: public, max-age=0, must-revalidate`.
+- No cache-busted URL or manual purge was required for this deployment.
+
 ## Research Learning Tools Batch Production Deployment
 
 Date: 2026-06-06
