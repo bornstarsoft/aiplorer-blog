@@ -24,6 +24,13 @@ a reviewed tool page has been opened. The most recently viewed tool appears
 first, duplicate visits update its position, and the list is limited to six
 entries.
 
+The section uses the most recent entry's category to provide a direct,
+non-ranked continuation link into the reviewed directory. It also compares each
+stored review date with the current public review date. If Aiplorer checked a
+recently viewed tool again after it was stored, the card and section show a
+local review-activity notice. Reopening that tool refreshes its stored metadata.
+The notice does not claim that the vendor changed its product.
+
 ## Editorial boundary
 
 Recently viewed order reflects only the visitor's local activity. It is not a

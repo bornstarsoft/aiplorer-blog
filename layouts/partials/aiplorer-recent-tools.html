@@ -1,3 +1,5 @@
+{{- $aiToolPages := where .Site.RegularPages "Section" "ai-tools" -}}
+{{- $reviewedTools := where (where $aiToolPages "Params.reviewStatus" "reviewed") "Draft" false -}}
 <section class="aiplorer-recent-local" data-recent-section hidden aria-labelledby="recent-local-heading">
   <div class="aiplorer-shell">
     <div class="aiplorer-section-heading">
@@ -6,11 +8,31 @@
         <h2 id="recent-local-heading">Recently viewed reviewed tools</h2>
         <p class="aiplorer-section-heading__note">Stored only in this browser so you can resume without an account.</p>
       </div>
-      <button class="aiplorer-recent-clear" type="button" data-recent-clear>
-        Clear history
-      </button>
+      <div class="aiplorer-section-heading__links">
+        <a class="aiplorer-text-link" href="/ai-tools/tools/" data-recent-category-link hidden>
+          <span data-recent-category-label>Continue in this category</span>
+          <span aria-hidden="true">&rarr;</span>
+        </a>
+        <button class="aiplorer-recent-clear" type="button" data-recent-clear>
+          Clear history
+        </button>
+      </div>
+    </div>
+    <div class="aiplorer-recent-review-pulse" data-recent-review-pulse hidden>
+      <strong data-recent-review-count></strong>
+      <span>Review activity does not mean that a vendor changed its product.</span>
+      <a href="/ai-tools/review-updates/?view=tools">Open review activity <span aria-hidden="true">&rarr;</span></a>
     </div>
     <p class="aiplorer-visually-hidden" aria-live="polite" data-recent-status></p>
     <div class="aiplorer-recent-grid" data-recent-grid></div>
+    <div data-recent-review-index hidden aria-hidden="true">
+      {{ range $reviewedTools }}
+        <span
+          data-recent-review-entry
+          data-review-path="{{ .RelPermalink }}"
+          data-review-date="{{ .Params.lastReviewed }}"
+        ></span>
+      {{ end }}
+    </div>
   </div>
 </section>

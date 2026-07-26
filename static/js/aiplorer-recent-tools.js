@@ -80,9 +80,22 @@
     writeList(list);
   }
 
-  function createCard(item) {
+  function currentReviewDates(section) {
+    var dates = new Map();
+    section.querySelectorAll("[data-recent-review-entry]").forEach(function (entry) {
+      var path = entry.getAttribute("data-review-path") || "";
+      var date = entry.getAttribute("data-review-date") || "";
+      if (validPath(path) && date) {
+        dates.set(path, date);
+      }
+    });
+    return dates;
+  }
+
+  function createCard(item, currentReview) {
     var link = document.createElement("a");
     var category = document.createElement("span");
+    var reviewBadge = document.createElement("span");
     var title = document.createElement("strong");
     var description = document.createElement("small");
     var fit = document.createElement("span");
@@ -90,23 +103,36 @@
     var fitText = document.createElement("strong");
     var meta = document.createElement("span");
     var arrow = document.createElement("span");
+    var reviewedAgain = Boolean(
+      item.reviewed && currentReview && currentReview > item.reviewed
+    );
 
     link.className = "aiplorer-recent-card";
     link.href = item.path;
+    link.setAttribute("data-review-state", reviewedAgain ? "updates" : "current");
     category.className = "aiplorer-recent-card__category";
     category.textContent = item.category;
+    reviewBadge.className = "aiplorer-recent-card__review-badge";
+    reviewBadge.textContent = "Aiplorer reviewed again";
     title.textContent = item.title;
     description.textContent = item.description;
     fit.className = "aiplorer-recent-card__fit";
     fitLabel.textContent = "May fit";
     fitText.textContent = item.fit || "";
     meta.className = "aiplorer-recent-card__meta";
-    meta.textContent = item.reviewed ? "Checked " + item.reviewed : "Open full review";
+    meta.textContent = currentReview
+      ? "Checked " + currentReview
+      : item.reviewed
+        ? "Checked " + item.reviewed
+        : "Open full review";
     arrow.setAttribute("aria-hidden", "true");
     arrow.textContent = "\u2192";
     meta.appendChild(arrow);
 
     link.appendChild(category);
+    if (reviewedAgain) {
+      link.appendChild(reviewBadge);
+    }
     link.appendChild(title);
     link.appendChild(description);
     if (item.fit) {
@@ -122,13 +148,41 @@
     var list = readList();
     document.querySelectorAll("[data-recent-section]").forEach(function (section) {
       var grid = section.querySelector("[data-recent-grid]");
+      var categoryLink = section.querySelector("[data-recent-category-link]");
+      var categoryLabel = section.querySelector("[data-recent-category-label]");
+      var reviewPulse = section.querySelector("[data-recent-review-pulse]");
+      var reviewCount = section.querySelector("[data-recent-review-count]");
+      var reviewDates = currentReviewDates(section);
+      var reviewedAgainCount = list.filter(function (item) {
+        var currentReview = reviewDates.get(item.path) || "";
+        return Boolean(item.reviewed && currentReview && currentReview > item.reviewed);
+      }).length;
+
       if (!grid) {
         return;
       }
       grid.replaceChildren();
       list.forEach(function (item) {
-        grid.appendChild(createCard(item));
+        grid.appendChild(createCard(item, reviewDates.get(item.path) || ""));
       });
+      if (categoryLink && categoryLabel) {
+        categoryLink.hidden = list.length === 0;
+        if (list.length > 0) {
+          categoryLink.href =
+            "/ai-tools/tools/?category=" + encodeURIComponent(list[0].category);
+          categoryLabel.textContent = "Continue with " + list[0].category;
+        }
+      }
+      if (reviewPulse) {
+        reviewPulse.hidden = reviewedAgainCount === 0;
+      }
+      if (reviewCount && reviewedAgainCount > 0) {
+        reviewCount.textContent =
+          reviewedAgainCount +
+          " recently viewed " +
+          (reviewedAgainCount === 1 ? "tool has" : "tools have") +
+          " a newer Aiplorer review check.";
+      }
       section.hidden = list.length === 0;
     });
   }
