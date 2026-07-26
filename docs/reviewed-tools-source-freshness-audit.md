@@ -607,9 +607,37 @@ when Copy.ai or Fullcast changes product branding, support routing, or public
 availability. No exact plan, pricing, migration, availability, data-deletion,
 privacy, or security guarantee was added during this check.
 
+## Data And Analysis Draft Batch Review
+
+Julius AI, Rows, Akkio, Obviously AI, and Polymer were independently reviewed
+on 2026-07-26 against current official product, documentation or help, pricing,
+privacy, security, and legal sources.
+
+Akkio passed the conservative publication gate. Its official product,
+documentation, privacy, security, and terms destinations consistently identify
+the current operator and media-agency or data-provider campaign workflow
+positioning. The public page avoids exact pricing, limits, agent or model
+details, integrations, API details, governance or deployment claims, and
+privacy or security guarantees.
+
+Four candidates remain drafts:
+
+- Julius AI's current privacy policy identifies Julius AI Inc., while its
+  current terms identify Caesar Labs Inc.
+- Rows says it joined Superhuman, while current legal and documentation links
+  cross Rows, Superhuman, and Grammarly properties.
+- Obviously AI identifies its official site as an archive through 2025 and
+  directs users to Zams.
+- Polymer remains reachable, but its older legal documents and repeated
+  pricing sections do not provide a sufficiently consistent current record.
+
+The four retained drafts keep an empty `lastReviewed` and no `lastmod` because
+they did not pass the publication gate. Akkio uses the existing Business Tools
+category; no new category was created.
+
 ## Ongoing Monitoring
 
-Return to risk-based monitoring of all 60 reviewed pages. Prioritize a page
+Return to risk-based monitoring of all 65 reviewed pages. Prioritize a page
 when an official source announces a major product identity change, shutdown,
 pricing or credit model change, privacy or training-policy change, security or
 data-residency change, or material availability change.

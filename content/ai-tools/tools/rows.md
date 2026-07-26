@@ -38,16 +38,16 @@ similarTools:
   - Microsoft Copilot
 reviewStatus: "needs-official-review"
 sourceNotes:
-  - "Draft created on 2026-07-26. Official Rows product, help, pricing, privacy, security, terms, ownership, and availability sources have not yet been fully reviewed for publication."
-  - "Planning entry points include https://rows.com/product, https://rows.com/ai, https://rows.com/pricing, https://rows.com/docs/, and https://rows.com/privacy."
-  - "The current product page says Rows joined Superhuman and links some legal and documentation destinations to Superhuman or Grammarly properties. Keep this page unpublished until the current operator, applicable terms and privacy policy, product continuity, data handling, plan boundaries, and availability can be verified consistently."
+  - "Checked https://rows.com/product, https://rows.com/ai, https://rows.com/pricing, https://rows.com/docs/, and https://rows.com/privacy on 2026-07-26 for current product, plan, documentation, ownership, and privacy context."
+  - "The current product says Rows joined Superhuman, while legal and documentation links lead across Rows, Superhuman, and Grammarly properties."
+  - "Keep this page unpublished until the current operator, applicable terms and privacy policy, product continuity, data handling, and availability can be verified consistently."
 ---
 
 ## Overview
 
 Rows is a spreadsheet and data workflow tool that may help users organize tables, explore calculations, and prepare report drafts. It may support early spreadsheet planning before a person checks the formulas, data sources, and conclusions.
 
-This is a draft page. The current official operator, product continuity, legal terms, privacy policy, plans, AI scope, connected-data behavior, and availability must be reviewed before publication.
+This page remains a draft because the current operator, product continuity, and applicable legal and privacy destinations are not sufficiently consistent for conservative publication.
 
 ## Useful For
 

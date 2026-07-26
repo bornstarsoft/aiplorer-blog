@@ -100,3 +100,12 @@ Recheck official URLs:
 
 Command-line 403 responses should be followed by manual browser review rather
 than being classified automatically as broken links.
+
+## Post-Baseline Addition
+
+Akkio was independently reviewed and published on 2026-07-26 after this
+60-page URL-health baseline. Its official product URL,
+`https://www.akkio.com/`, and its official pricing, documentation, security,
+privacy, and terms destinations were reachable during the publication review.
+Future URL-health baselines should include Akkio in the reviewed Business Tools
+inventory.

@@ -38,16 +38,16 @@ similarTools:
   - Rows
 reviewStatus: "needs-official-review"
 sourceNotes:
-  - "Draft created on 2026-07-26. Official Polymer product, help, pricing, privacy, security, terms, application, integration, sharing, API, and availability sources have not yet been fully reviewed for publication."
-  - "Planning entry points include https://www.polymersearch.com/, https://www.polymersearch.com/pricing, https://www.polymersearch.com/help-center, https://www.polymersearch.com/data-handling, https://www.polymersearch.com/privacy-policy, and https://www.polymersearch.com/terms-of-service."
-  - "The terms and privacy pages show older update dates, and the pricing page contains repeated plan sections. Keep this page unpublished until the current product, application destination, operator, legal terms, plan structure, data handling, privacy, security, and availability can be verified consistently."
+  - "Checked https://www.polymersearch.com/, https://www.polymersearch.com/pricing, https://www.polymersearch.com/help-center, and https://www.polymersearch.com/data-handling on 2026-07-26 for current product, application, help, plan, and data-handling context."
+  - "Checked https://www.polymersearch.com/privacy-policy and https://www.polymersearch.com/terms-of-service on 2026-07-26. The privacy policy was last modified in 2023, the terms were last updated in 2020, and the pricing page repeats plan sections."
+  - "Keep this page unpublished until the current product, application destination, legal terms, plan structure, data handling, privacy, security, and availability can be verified consistently."
 ---
 
 ## Overview
 
 Polymer is a business analytics and dashboard tool that may help users explore data, reports, and visual presentation workflows. It may support early dashboard planning before a person checks the source data, calculations, visual choices, and sharing settings.
 
-This is a draft page. The current official product, application destination, operator, pricing structure, help, privacy, security, legal, and availability sources must be reviewed before publication.
+This page remains a draft because the current product pages and older legal documents do not yet provide a sufficiently consistent publication record. Recheck the application destination, pricing structure, legal terms, privacy, security, and availability before publication.
 
 ## Useful For
 

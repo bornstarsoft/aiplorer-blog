@@ -9,7 +9,7 @@ are based on tool front matter in `content/ai-tools/tools/`.
 
 ## Current Tool Counts
 
-Aiplorer currently has 64 reviewed public tool pages and nine draft-only tool
+Aiplorer currently has 65 reviewed public tool pages and eight draft-only tool
 pages.
 
 | Category | Reviewed tools | Count |
@@ -19,12 +19,12 @@ pages.
 | Audio Tools | ElevenLabs, Murf AI, Speechify, Suno, Udio, Adobe Podcast | 6 |
 | Image Tools | Canva AI, Adobe Firefly, Midjourney, Ideogram, Leonardo AI, Stable Diffusion, Kittl, Photoroom, Microsoft Designer | 9 |
 | Productivity Tools | ChatGPT, Claude, Gemini, Perplexity, Microsoft Copilot, Notion AI, Figma AI, Otter.ai, Fireflies.ai, Fathom, Granola, Read AI | 12 |
-| Business Tools | HubSpot Breeze, Salesforce Agentforce, Zoho Zia, Shopify Sidekick, Fin | 5 |
+| Business Tools | HubSpot Breeze, Salesforce Agentforce, Zoho Zia, Shopify Sidekick, Fin, Akkio | 6 |
 | Coding Tools | GitHub Copilot, Cursor, Windsurf, Replit, Tabnine | 5 |
 | Video Tools | Runway, Pika, Luma AI, Descript, Synthesia | 5 |
 | Learning Tools | NotebookLM, Elicit, Consensus, You.com | 4 |
 | Presentation Tools | Gamma, Beautiful.ai, Pitch, SlidesAI | 4 |
-| **Total** |  | **64** |
+| **Total** |  | **65** |
 
 The reviewed index at `/ai-tools/tools/` groups published tools by category.
 The AI Tools landing page links to the ten public categories and the reviewed
@@ -41,7 +41,6 @@ until they pass a new official-source review:
 - Clipdrop
 - Julius AI
 - Rows
-- Akkio
 - Obviously AI
 - Polymer
 
@@ -50,10 +49,11 @@ and security source review. Tome remains draft pending stable official product
 and help-source availability. Example AI Assistant is an internal content-model
 page and is not a publication candidate. Clipdrop remains draft pending a
 consistent, readable official record of the current operator and applicable
-privacy and legal terms. Julius AI, Rows, Akkio, Obviously AI, and Polymer are
-new draft-first candidates that require independent official-source review.
+privacy and legal terms. Julius AI, Rows, Obviously AI, and Polymer remain
+draft after independent review found unresolved operator, transition, archive,
+or legal-source consistency issues. Akkio passed review and is public.
 
-Production builds and the production sitemap must exclude all nine pages.
+Production builds and the production sitemap must exclude all eight pages.
 
 ## Category Structure
 
@@ -95,8 +95,8 @@ Strongest coverage:
   transcription workflow batch.
 - Image Tools has nine reviewed pages after the design and creative review.
 - Automation Tools and Writing Tools each have seven reviewed pages.
-- Audio Tools has six reviewed pages.
-- Business, Coding, and Video Tools each have five reviewed pages.
+- Business and Audio Tools each have six reviewed pages.
+- Coding and Video Tools each have five reviewed pages.
 
 Stable but smaller categories:
 
@@ -138,7 +138,7 @@ must not be submitted for indexing.
 
 ### 1. Run Risk-Based Monitoring
 
-The first complete freshness cycle is finished. All 64 reviewed pages were
+The first complete freshness cycle is finished. All 65 reviewed pages were
 reviewed or rechecked against official sources on 2026-07-25 or 2026-07-26. Use
 `docs/reviewed-tools-monitoring-plan.md` for the recurring cadence, change
 triggers, validation gate, and review log.
@@ -161,30 +161,18 @@ important live-route verification. Preserve the explicit cache bypass for
 `/ai-tools/*` and `/sitemap.xml`, and confirm aggregate pages remain current
 after reviewed-page changes.
 
-### 4. Consider Future Draft-First Batches
+### 4. Data And Analysis Review Follow-Up
 
-Only after category maintenance, possible future directions include:
+The data and analysis draft batch was reviewed independently on 2026-07-26.
+Akkio passed the publication gate and is now a reviewed Business Tools page.
+Julius AI, Rows, Obviously AI, and Polymer remain drafts because current
+official sources contain operator, transition, archive, or legal-source
+consistency issues.
 
-- Data and analysis workflows: Julius AI, Rows AI, Akkio, Obviously AI,
-  Polymer
-
-The draft-first scope, category mapping, initial official-source entry points,
-and caution requirements for these candidates are recorded in
-`docs/data-analysis-draft-batch-plan.md`. The five pages have been created as
-unpublished drafts, but none has been reviewed, linked, or approved for
-publication.
-
-These are candidate names only. They are not reviewed recommendations and
-should not be added publicly without the normal draft-first and official-source
-review process. A new category should be created only when the existing
-taxonomy cannot describe a candidate cleanly.
-
-The plan maps Julius AI and Rows to Productivity Tools, and Akkio, Obviously
-AI, and Polymer to Business Tools for a possible draft phase. Rows requires
-special attention because its current product page says it joined Superhuman,
-while Polymer requires a careful currency check for its legal and plan
-documentation. Those issues are publication gates, not reasons to infer a
-current public recommendation.
+The review record, source groups, and individual decisions are documented in
+`docs/data-analysis-draft-batch-plan.md`. Revisit the four retained drafts only
+after the identified official-source issues change. A new category remains
+unnecessary.
 
 The meeting and transcription batch is now published under Productivity Tools.
 Its draft-first source and caution record remains in
@@ -192,8 +180,8 @@ Its draft-first source and caution record remains in
 
 ## Recommended Direction
 
-Deployment validation is complete for Figma AI, Kittl, Photoroom, and Microsoft
-Designer. The immediate next phase is selective manual Search Console
-inspection followed by risk-based maintenance. Keep SciSpace, Tome, and
-Clipdrop unpublished unless their official sources become stable enough for
-conservative review.
+The immediate next phase is deployment verification for Akkio and the updated
+aggregate and Business Tools pages, followed by selective manual Search
+Console inspection and risk-based maintenance. Keep SciSpace, Tome, Clipdrop,
+Julius AI, Rows, Obviously AI, and Polymer unpublished unless their official
+sources become stable enough for conservative review.

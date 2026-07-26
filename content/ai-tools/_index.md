@@ -224,6 +224,9 @@ An AI assistant for commerce workflows that may help merchants prepare store con
 {{< card title="Fin" href="/ai-tools/tools/fin/" label="Reviewed" >}}
 An AI customer agent that may help teams prepare and manage customer-service, inbound sales, and commerce interactions for review.
 {{< /card >}}
+{{< card title="Akkio" href="/ai-tools/tools/akkio/" label="Reviewed" >}}
+An AI campaign workflow platform that may help media agencies and data providers explore audience, analysis, and reporting work.
+{{< /card >}}
 {{< card title="Murf AI" href="/ai-tools/tools/murf-ai/" label="Reviewed" >}}
 An AI voice platform that may help users create voiceover drafts, explore dubbing, and plan conversational voice-agent workflows.
 {{< /card >}}

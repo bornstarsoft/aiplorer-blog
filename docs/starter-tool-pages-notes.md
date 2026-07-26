@@ -1710,7 +1710,7 @@ Five draft-first candidate pages were added on 2026-07-26:
 - Clipdrop
 - Microsoft Designer
 
-All five remain unpublished with:
+All five were initially unpublished with:
 
 ```yaml
 draft: true
@@ -1798,7 +1798,7 @@ Five draft-first candidate pages were added on 2026-07-26:
 - Obviously AI
 - Polymer
 
-All five remain unpublished with:
+All five were initially unpublished with:
 
 ```yaml
 draft: true
@@ -1808,15 +1808,15 @@ lastReviewed: ""
 
 Julius AI and Rows use the provisional `Productivity Tools` category. Akkio,
 Obviously AI, and Polymer use the provisional `Business Tools` category. No
-new category or public listing was added.
+new category or public listing was added during the draft phase.
 
-The planning entry points include current official product, help, pricing,
-privacy, security, and terms pages, but a complete publication review has not
-been performed. Rows requires special attention because its current product
-page says it joined Superhuman and some legal or documentation links point to
-Superhuman or Grammarly properties. Polymer requires a current operator,
-application, legal, privacy, and plan-structure check because some supporting
-pages show older dates or repeated plan sections.
+The planning entry points included current official product, help, pricing,
+privacy, security, and terms pages. Rows required special attention because
+its current product page says it joined Superhuman and some legal or
+documentation links point to Superhuman or Grammarly properties. Polymer
+requires a current operator, application, legal, privacy, and plan-structure
+check because some supporting pages show older dates or repeated plan
+sections.
 
 Special caution areas include generated analysis, formulas, code, predictions,
 charts, dashboards, reports, source data, assumptions, denominators,
@@ -1824,6 +1824,60 @@ methodology, bias, data leakage, permissions, connected accounts, public
 sharing, embedded outputs, customer and business data, legal, medical,
 financial, employment, and other sensitive information.
 
-Official sources must be reviewed independently before any publication
-decision. The batch scope and publication gate are recorded in
+The batch scope and publication gate are recorded in
 `docs/data-analysis-draft-batch-plan.md`.
+
+## Data And Analysis Batch Review Result
+
+The five data and analysis candidates were independently reviewed against
+official product, documentation, pricing, privacy, security, and legal sources
+on 2026-07-26.
+
+Akkio passed the conservative publication gate and is now published under
+`Business Tools`:
+
+```yaml
+content/ai-tools/tools/akkio.md
+draft: false
+reviewStatus: "reviewed"
+lastReviewed: "2026-07-26"
+```
+
+Official Akkio sources checked:
+
+- `https://www.akkio.com/`
+- `https://www.akkio.com/pricing`
+- `https://docs.akkio.com/`
+- `https://www.akkio.com/security`
+- `https://www.akkio.com/privacy`
+- `https://www.akkio.com/terms`
+
+The public page uses cautious media-agency, data-provider, campaign, audience,
+analysis, and reporting wording. It does not copy exact prices, limits, agent
+or model details, integrations, API details, deployment claims, governance
+features, or privacy and security guarantees.
+
+Julius AI, Rows, Obviously AI, and Polymer remain unpublished:
+
+- Julius AI's current privacy policy identifies Julius AI Inc., while its
+  current terms identify Caesar Labs Inc.
+- Rows says it joined Superhuman, while current legal and documentation links
+  cross Rows, Superhuman, and Grammarly properties.
+- Obviously AI identifies its site as an archive through 2025 and directs
+  users to Zams.
+- Polymer has an active product site, but older legal documents and repeated
+  pricing sections do not yet provide a sufficiently consistent publication
+  record.
+
+All four retained pages remain:
+
+```yaml
+draft: true
+reviewStatus: "needs-official-review"
+lastReviewed: ""
+```
+
+Generated analysis, models, segments, predictions, dashboards, charts, and
+reports require human review. Source data, calculations, assumptions,
+denominators, bias, leakage, permissions, sharing, connected accounts, and
+sensitive customer or business data require careful handling.

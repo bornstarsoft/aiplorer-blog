@@ -210,14 +210,13 @@ https://aiplorer.com/ai-tools/tools/tome/
 https://aiplorer.com/ai-tools/tools/clipdrop/
 https://aiplorer.com/ai-tools/tools/julius-ai/
 https://aiplorer.com/ai-tools/tools/rows/
-https://aiplorer.com/ai-tools/tools/akkio/
 https://aiplorer.com/ai-tools/tools/obviously-ai/
 https://aiplorer.com/ai-tools/tools/polymer/
 https://aiplorer.com/ai-tools/tools/example-ai-assistant/
 ```
 
 The `www` host redirects to the apex domain. Cache-busting query strings are
-deployment diagnostics, not canonical URLs. The nine tool routes remain
+deployment diagnostics, not canonical URLs. The eight tool routes remain
 draft-only.
 
 ## Inspection Record

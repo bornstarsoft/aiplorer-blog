@@ -8,31 +8,66 @@ publication, verify every product claim, or authorize public links.
 
 ## Implementation Status
 
-The five candidate pages were added as unpublished drafts on 2026-07-26.
-No official-source publication review has been completed, no candidate is
-linked publicly, and no new category was created.
+The five candidate pages were added as unpublished drafts and independently
+reviewed against official sources on 2026-07-26. Akkio passed the conservative
+publication gate. Julius AI, Rows, Obviously AI, and Polymer remain
+unpublished because their current official records are not sufficiently
+consistent for publication.
 
 ## Candidate Scope
 
 | Candidate | Planned slug | Initial category | Draft status |
 | --- | --- | --- | --- |
-| Julius AI | `julius-ai` | Productivity Tools | Draft added |
-| Rows | `rows` | Productivity Tools | Draft added |
-| Akkio | `akkio` | Business Tools | Draft added |
-| Obviously AI | `obviously-ai` | Business Tools | Draft added |
-| Polymer | `polymer` | Business Tools | Draft added |
+| Julius AI | `julius-ai` | Productivity Tools | Draft retained |
+| Rows | `rows` | Productivity Tools | Draft retained |
+| Akkio | `akkio` | Business Tools | Reviewed and published |
+| Obviously AI | `obviously-ai` | Business Tools | Draft retained |
+| Polymer | `polymer` | Business Tools | Draft retained |
 
 The existing taxonomy is sufficient for an initial draft batch. Do not create
 a Data Tools category during the draft phase. Reconsider the taxonomy only
 after independently reviewed pages show that Productivity Tools and Business
 Tools cannot describe the products clearly.
 
-All five pages remain `draft: true` with
+Akkio is `draft: false` with `reviewStatus: "reviewed"` and
+`lastReviewed: "2026-07-26"`. The other four pages remain `draft: true` with
 `reviewStatus: "needs-official-review"` and an empty `lastReviewed`.
+
+## Official Review Result
+
+### Published
+
+Akkio passed review because its current product, pricing, documentation,
+security, privacy, and terms destinations consistently identify the current
+product scope and operator. The public page uses only cautious, high-level
+wording about media-agency and data-provider campaign workflows. It does not
+copy exact prices, limits, agents, models, integrations, API details,
+deployment claims, governance features, or privacy and security guarantees.
+
+### Draft Retained
+
+- Julius AI: the current privacy policy identifies Julius AI Inc., while the
+  current terms identify Caesar Labs Inc. Recheck the applicable legal
+  operator and terms before publication.
+- Rows: the product says Rows joined Superhuman, while legal and documentation
+  links cross Rows, Superhuman, and Grammarly properties. Recheck the current
+  operator, applicable terms, privacy policy, product continuity, and
+  availability.
+- Obviously AI: the official site identifies itself as an archive of how
+  Obviously AI operated through 2025 and directs users to Zams. Recheck the
+  current identity, migration relationship, support, legal, privacy, and
+  availability context.
+- Polymer: the product remains reachable, but its privacy policy was last
+  modified in 2023, its terms were last updated in 2020, and the pricing page
+  repeats plan sections. Recheck the current application, legal, privacy,
+  pricing, and availability record.
+
+No new category was created. Akkio is linked under the existing Business Tools
+category. The four retained drafts are not linked publicly.
 
 ## Official Source Entry Points
 
-These official entry points were identified on 2026-07-26 for a later
+These official entry points were used for the 2026-07-26
 candidate-by-candidate review. Their presence does not establish that every
 claim, plan, integration, security statement, or feature is suitable for
 publication.
@@ -73,9 +108,9 @@ decision.
 - `https://www.akkio.com/privacy`
 - `https://www.akkio.com/terms`
 
-Current official positioning emphasizes media-agency campaign and data
-workflows. A later draft should not rely on older generic no-code modeling
-descriptions without confirming that they remain current.
+Current official positioning emphasizes media-agency and data-provider
+campaign workflows. The published page follows that positioning and does not
+rely on older generic no-code modeling descriptions.
 
 ### Obviously AI
 
@@ -85,9 +120,11 @@ descriptions without confirming that they remain current.
 - `https://obviously.ai/security`
 - `https://obviously.ai/privacy-policy`
 
-Review current predictive, agent, workflow, model, deployment, monitoring,
-support, and integration scope independently. Avoid copying performance,
-speed, precision, return-on-investment, qualification, or compliance claims.
+The official site identifies Obviously AI as an archive through 2025 and
+directs users to Zams. Recheck the current identity and migration relationship
+before reviewing predictive, agent, workflow, deployment, support, or
+integration scope. Avoid copying performance, speed, precision,
+return-on-investment, qualification, or compliance claims.
 
 ### Polymer
 

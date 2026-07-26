@@ -10,10 +10,10 @@ tool maintenance. It replaces the original first-days launch checklist.
 
 - Production and canonical domain: `https://aiplorer.com/`
 - `https://www.aiplorer.com/` redirects with HTTP 301 to the apex domain.
-- 64 reviewed public tool pages are grouped across 10 public categories.
-- SciSpace, Tome, Clipdrop, Julius AI, Rows, Akkio, Obviously AI, Polymer, and
+- 65 reviewed public tool pages are grouped across 10 public categories.
+- SciSpace, Tome, Clipdrop, Julius AI, Rows, Obviously AI, Polymer, and
   Example AI Assistant remain draft-only.
-- The production sitemap excludes all nine drafts.
+- The production sitemap excludes all eight drafts.
 - Production HTML contains no unresolved internal link target in the
   2026-07-26 structure audit.
 - `/posts/page/2/` and later use self-canonical pager URLs.
@@ -47,7 +47,7 @@ Confirm:
 - production output is restored last
 - changed public routes exist in `public/`
 - changed public routes appear in `public/sitemap.xml` when intended
-- SciSpace, Tome, Clipdrop, Julius AI, Rows, Akkio, Obviously AI, Polymer, and
+- SciSpace, Tome, Clipdrop, Julius AI, Rows, Obviously AI, Polymer, and
   Example AI Assistant are absent from production output and the production
   sitemap
 - no generated output or unrelated file is staged
@@ -108,7 +108,7 @@ In the `aiplorer.com` domain property:
 - [ ] Use URL Inspection selectively for important changed routes, not every
   archive pager or draft.
 - [ ] Never request indexing for SciSpace, Tome, Clipdrop, Julius AI, Rows,
-  Akkio, Obviously AI, Polymer, or Example AI Assistant while they remain
+  Obviously AI, Polymer, or Example AI Assistant while they remain
   drafts.
 
 For the 2026-07-26 pagination change, monitor:
@@ -140,13 +140,12 @@ https://aiplorer.com/ai-tools/tools/tome/
 https://aiplorer.com/ai-tools/tools/clipdrop/
 https://aiplorer.com/ai-tools/tools/julius-ai/
 https://aiplorer.com/ai-tools/tools/rows/
-https://aiplorer.com/ai-tools/tools/akkio/
 https://aiplorer.com/ai-tools/tools/obviously-ai/
 https://aiplorer.com/ai-tools/tools/polymer/
 https://aiplorer.com/ai-tools/tools/example-ai-assistant/
 ```
 
-All nine should return HTTP 404 in production.
+All eight should return HTTP 404 in production.
 
 ## Cloudflare Checks
 
@@ -184,8 +183,9 @@ Follow `docs/reviewed-tools-monitoring-plan.md`:
   not as automatic evidence of a broken official URL
 
 SciSpace, Tome, and Clipdrop remain draft until stable official sources support
-a new conservative review. Julius AI, Rows, Akkio, Obviously AI, and Polymer
-remain draft until each independently passes the same review gate.
+a new conservative review. Julius AI, Rows, Obviously AI, and Polymer remain
+draft after the 2026-07-26 review found unresolved official-source consistency
+issues. Akkio is reviewed and public.
 
 ## Incident Response
 

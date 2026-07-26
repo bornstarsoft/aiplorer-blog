@@ -10,16 +10,16 @@ ranking, scoring, or unattended content changes.
 
 The monitoring baseline is:
 
-- 64 reviewed public tool pages
+- 65 reviewed public tool pages
 - 10 public tool categories
-- 9 draft-only pages: SciSpace, Tome, Clipdrop, Julius AI, Rows, Akkio,
-  Obviously AI, Polymer, and Example AI Assistant
+- 8 draft-only pages: SciSpace, Tome, Clipdrop, Julius AI, Rows, Obviously AI,
+  Polymer, and Example AI Assistant
 - current official-source review dates of 2026-07-25 or 2026-07-26
 - production canonicals under `https://aiplorer.com/`
 
 Every reviewed page currently has `draft: false`, `reviewStatus: "reviewed"`,
 a non-empty `lastReviewed`, an official URL, source notes, and an allowed
-category. Production output and the sitemap exclude all nine draft pages.
+category. Production output and the sitemap exclude all eight draft pages.
 
 Supporting baselines:
 
@@ -181,7 +181,7 @@ Confirm:
 
 - every intended public route exists in production output
 - the production sitemap includes only intended public tool URLs
-- SciSpace, Tome, Clipdrop, Julius AI, Rows, Akkio, Obviously AI, Polymer, and
+- SciSpace, Tome, Clipdrop, Julius AI, Rows, Obviously AI, Polymer, and
   Example AI Assistant are absent from production output and the production
   sitemap
 - the draft build still includes the intended drafts
@@ -215,7 +215,9 @@ manual browser verification, not as automatic evidence that a link is broken.
 ## Draft Policy
 
 SciSpace, Tome, and Clipdrop remain draft pending stable, sufficient official
-sources. Julius AI, Rows, Akkio, Obviously AI, and Polymer remain draft-first
-candidates pending independent official-source review. Example AI Assistant
-remains an internal model page. None of the nine should be linked publicly,
-submitted for indexing, or added to the production sitemap.
+sources. Julius AI, Rows, Obviously AI, and Polymer remain drafts after the
+2026-07-26 review found unresolved official-source consistency issues. Example
+AI Assistant remains an internal model page. None of the eight should be
+linked publicly, submitted for indexing, or added to the production sitemap.
+Akkio passed review and joins the fast-changing Business Tools monitoring
+queue.

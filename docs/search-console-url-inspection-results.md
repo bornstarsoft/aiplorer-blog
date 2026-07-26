@@ -93,13 +93,12 @@ Do not inspect or request indexing for:
 - `https://aiplorer.com/ai-tools/tools/clipdrop/`
 - `https://aiplorer.com/ai-tools/tools/julius-ai/`
 - `https://aiplorer.com/ai-tools/tools/rows/`
-- `https://aiplorer.com/ai-tools/tools/akkio/`
 - `https://aiplorer.com/ai-tools/tools/obviously-ai/`
 - `https://aiplorer.com/ai-tools/tools/polymer/`
 - `https://aiplorer.com/ai-tools/tools/example-ai-assistant/`
 
 The `www` host redirects to the apex domain. `/posts/page/1/` is an intentional
-alias of `/posts/`. The nine tool routes remain draft-only.
+alias of `/posts/`. The eight tool routes remain draft-only.
 
 The queue definitions and public readiness evidence are maintained in
 `docs/search-console-url-inspection-queue.md`.

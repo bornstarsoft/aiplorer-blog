@@ -38,16 +38,16 @@ similarTools:
   - Rows
 reviewStatus: "needs-official-review"
 sourceNotes:
-  - "Draft created on 2026-07-26. Official Julius AI product, help, pricing, privacy, security, terms, data-handling, and availability sources have not yet been fully reviewed for publication."
-  - "Planning entry points include https://julius.ai/, https://julius.ai/pricing, https://julius.ai/docs/get-started/privacy-and-data-security, https://julius.ai/privacy-policy, and https://julius.ai/tos."
-  - "Do not publish until the current product and legal operator identities, workflow scope, plan boundaries, uploaded-data handling, connected sources, generated analysis behavior, privacy terms, security details, and availability have been avoided or verified against official sources."
+  - "Checked https://julius.ai/, https://julius.ai/pricing, and https://julius.ai/docs/get-started/privacy-and-data-security on 2026-07-26 for current product, plan, documentation, and data-handling context."
+  - "Checked https://julius.ai/privacy-policy and https://julius.ai/tos on 2026-07-26. The current privacy policy identifies Julius AI Inc., while the current terms identify Caesar Labs Inc."
+  - "Keep this page unpublished until the current legal operator identity and applicable terms are consistent enough for a conservative publication review."
 ---
 
 ## Overview
 
 Julius AI is a data analysis tool that may help users explore datasets, prepare charts, and draft analytical summaries. It may support early analysis planning before a qualified person checks the data, calculations, and conclusions.
 
-This is a draft page. Current official Julius AI product, help, pricing, privacy, security, legal, and data-handling sources must be reviewed before publication.
+This page remains a draft because the current official privacy policy and terms identify different legal entities. Recheck the applicable operator and terms before publication.
 
 ## Useful For
 

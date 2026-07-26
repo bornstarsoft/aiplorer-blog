@@ -27,7 +27,7 @@ pros:
   - Can support early model and monitoring planning
   - May be useful for organizing questions before technical review
 limitations:
-  - Current product, agent, predictive, automation, deployment, and support scope must be confirmed before publication
+  - The official site says Obviously AI is now Zams and archives how Obviously AI operated through 2025
   - Generated models, predictions, explanations, reports, and automated actions should be reviewed before use
   - Data quality, bias, leakage, target choice, monitoring, and decision impact require qualified review
   - Plans, limits, models, automations, integrations, API access, privacy terms, security details, and availability may change
@@ -38,16 +38,16 @@ similarTools:
   - ChatGPT
 reviewStatus: "needs-official-review"
 sourceNotes:
-  - "Draft created on 2026-07-26. Official Obviously AI product, help, pricing, privacy, security, terms, model, automation, deployment, API, and availability sources have not yet been fully reviewed for publication."
-  - "Planning entry points include https://obviously.ai/, https://obviously.ai/pricing, https://support.obviously.ai/, https://obviously.ai/security, and https://obviously.ai/privacy-policy."
-  - "Do not publish until current predictive, agent, workflow, model, deployment, monitoring, support, integration, data-handling, privacy, security, and availability claims have been avoided or verified against official sources."
+  - "Checked https://obviously.ai/, https://obviously.ai/pricing, https://support.obviously.ai/, https://obviously.ai/security, and https://obviously.ai/privacy-policy on 2026-07-26 for current product, help, pricing, security, privacy, and availability context."
+  - "The official site identifies Obviously AI as an archive of how it operated through 2025 and directs users to Zams; the security destination also redirects to Zams."
+  - "Keep this page unpublished until the current product identity, migration relationship, support path, legal terms, privacy terms, and availability can be reviewed as a current product rather than an archive."
 ---
 
 ## Overview
 
 Obviously AI is a no-code data workflow tool that may help users explore predictive analysis and model ideas. It may support early planning before a qualified person checks the dataset, target, methodology, validation, and decision impact.
 
-This is a draft page. Current official Obviously AI product, help, pricing, privacy, security, legal, deployment, and availability sources must be reviewed before publication.
+This page remains a draft because the official site identifies Obviously AI as an archive and directs users to Zams. Recheck the current product identity, migration relationship, support, legal, privacy, and availability context before publication.
 
 ## Useful For
 
