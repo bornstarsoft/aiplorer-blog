@@ -36,7 +36,13 @@
             Start with what you need to do, compare manually reviewed services,
             and check current details at the official source.
           </p>
-          <form class="aiplorer-hero-finder" action="/ai-tools/tools/" method="get" role="search">
+          <form
+            class="aiplorer-hero-finder"
+            action="/ai-tools/tools/"
+            method="get"
+            role="search"
+            data-home-tool-finder
+          >
             <div class="aiplorer-hero-finder__query">
               <span class="aiplorer-hero-finder__icon">{{ partial "aiplorer-icon.html" "search" }}</span>
               <label class="aiplorer-visually-hidden" for="home-tool-query">Search reviewed AI tools</label>
@@ -46,10 +52,11 @@
                 type="search"
                 placeholder="Search a tool or task, such as meeting notes"
                 autocomplete="off"
+                data-home-tool-query
               >
             </div>
             <label class="aiplorer-visually-hidden" for="home-tool-category">Choose a category</label>
-            <select id="home-tool-category" name="category">
+            <select id="home-tool-category" name="category" data-home-tool-category>
               <option value="">All categories</option>
               {{ range $categories }}
                 {{- $categoryTools := where $reviewedTools "Params.category" .name -}}
@@ -66,6 +73,14 @@
           <p class="aiplorer-hero-finder__note">
             Search across {{ len $reviewedTools }} manually reviewed services. Results are not ranked or paid placements.
           </p>
+          <div class="aiplorer-hero-finder__resume" data-home-search-resume hidden>
+            <span>Last search</span>
+            <a href="/ai-tools/tools/" data-home-search-resume-link>
+              <strong data-home-search-resume-label>Resume your last search</strong>
+              <span aria-hidden="true">&rarr;</span>
+            </a>
+            <button type="button" data-home-search-resume-clear>Clear</button>
+          </div>
           <div class="aiplorer-actions">
             <a class="aiplorer-button aiplorer-button--secondary" href="/ai-tools/compare/">
               Compare reviewed tools

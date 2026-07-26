@@ -23,6 +23,10 @@ directory where category browsing alone can become slow.
 - Category filtering and category jump links use the same visible result set.
 - The current query is reflected in the URL so browser navigation and shared
   links remain useful.
+- The last non-empty query and category are stored in the current browser so
+  the homepage can offer a direct way to resume that directory view.
+- Visitors can clear the saved search from the homepage or by resetting the
+  directory filters.
 - An empty result offers a clear reset and a route to workflow collections.
 
 ## Trust And Privacy
@@ -40,6 +44,8 @@ directory where category browsing alone can become slow.
   tool is opened again.
 - Filtering runs in the browser. Queries are not stored in an Aiplorer account
   or sent to an Aiplorer database.
+- Saved search state uses the local `aiplorer-last-tool-search-v1` browser key.
+  It does not sync across browsers or devices.
 - Draft tools remain outside production output and cannot appear in finder
   results.
 

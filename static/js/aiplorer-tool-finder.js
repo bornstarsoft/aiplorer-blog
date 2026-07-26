@@ -6,6 +6,7 @@
     return;
   }
 
+  var lastSearchStorageKey = "aiplorer-last-tool-search-v1";
   var queryInput = finder.querySelector("[data-tool-finder-query]");
   var categorySelect = finder.querySelector("[data-tool-finder-category]");
   var resetButton = finder.querySelector("[data-tool-finder-reset]");
@@ -23,6 +24,35 @@
 
   function normalize(value) {
     return (value || "").toLocaleLowerCase().trim();
+  }
+
+  function cleanSearchValue(value, maxLength) {
+    return typeof value === "string" ? value.trim().slice(0, maxLength) : "";
+  }
+
+  function writeLastSearch(query, category) {
+    var state = {
+      query: cleanSearchValue(query, 120),
+      category: cleanSearchValue(category, 80)
+    };
+
+    if (!state.query && !state.category) {
+      return;
+    }
+
+    try {
+      window.localStorage.setItem(lastSearchStorageKey, JSON.stringify(state));
+    } catch (error) {
+      // Filtering still works when browser storage is unavailable.
+    }
+  }
+
+  function clearLastSearch() {
+    try {
+      window.localStorage.removeItem(lastSearchStorageKey);
+    } catch (error) {
+      // Filtering still works when browser storage is unavailable.
+    }
   }
 
   function syncUrl(query, category) {
@@ -86,11 +116,14 @@
     if (!options || options.syncUrl !== false) {
       syncUrl(queryInput.value.trim(), category);
     }
+
+    writeLastSearch(queryInput.value, category);
   }
 
   function clearFilters() {
     queryInput.value = "";
     categorySelect.value = "";
+    clearLastSearch();
     updateResults();
     queryInput.focus();
   }

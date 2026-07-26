@@ -557,6 +557,64 @@ main#main-content:has(> .aiplorer-content-article) {
   line-height: 1.45;
 }
 
+.aiplorer-hero-finder__resume {
+  display: flex;
+  max-width: 58rem;
+  margin-top: 0.6rem;
+  align-items: center;
+  gap: 0.65rem;
+  color: #b8c4ca;
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.aiplorer-hero-finder__resume[hidden] {
+  display: none;
+}
+
+.aiplorer-hero-finder__resume > span {
+  flex: 0 0 auto;
+  color: #8ea0aa;
+  font-size: 0.7rem;
+  font-weight: 750;
+  text-transform: uppercase;
+}
+
+.aiplorer-hero-finder__resume a {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.4rem;
+  color: #d8f4ef;
+  text-decoration: none;
+}
+
+.aiplorer-hero-finder__resume a:hover,
+.aiplorer-hero-finder__resume a:focus-visible {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.aiplorer-hero-finder__resume strong {
+  overflow-wrap: anywhere;
+}
+
+.aiplorer-hero-finder__resume button {
+  flex: 0 0 auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #9eacb5;
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.aiplorer-hero-finder__resume button:hover,
+.aiplorer-hero-finder__resume button:focus-visible {
+  color: #fff;
+}
+
 .aiplorer-actions {
   display: flex;
   flex-wrap: wrap;
@@ -6903,6 +6961,19 @@ main#main-content:has(> .aiplorer-content-article) {
   .aiplorer-tool-finder__submit,
   .aiplorer-tool-finder__reset {
     width: 100%;
+  }
+
+  .aiplorer-hero-finder__resume {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .aiplorer-hero-finder__resume a {
+    flex: 1 1 13rem;
+  }
+
+  .aiplorer-hero-finder__resume button {
+    width: auto;
   }
 
   .aiplorer-button {

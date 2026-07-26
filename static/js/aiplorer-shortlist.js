@@ -6,6 +6,7 @@
   var candidateStageStorageKey = "aiplorer-candidate-stage-v1";
   var candidateStageViewStorageKey = "aiplorer-shortlist-stage-view-v1";
   var reviewSnapshotStorageKey = "aiplorer-review-snapshot-v1";
+  var lastToolSearchStorageKey = "aiplorer-last-tool-search-v1";
   var allowedChecks = ["task", "output", "privacy", "plans"];
   var allowedCandidateStages = ["researching", "testing", "ready"];
   var allowedCandidateStageViews = ["all", "researching", "testing", "ready", "unset"];
@@ -13,6 +14,84 @@
   var memoryTrialState = {};
   var memoryCandidateStageState = {};
   var memoryCandidateStageView = "all";
+
+  function cleanSearchValue(value, maxLength) {
+    return typeof value === "string" ? value.trim().slice(0, maxLength) : "";
+  }
+
+  function cleanLastToolSearch(value) {
+    if (!value || typeof value !== "object" || Array.isArray(value)) {
+      return { query: "", category: "" };
+    }
+    return {
+      query: cleanSearchValue(value.query, 120),
+      category: cleanSearchValue(value.category, 80)
+    };
+  }
+
+  function readLastToolSearch() {
+    try {
+      return cleanLastToolSearch(
+        JSON.parse(window.localStorage.getItem(lastToolSearchStorageKey) || "{}")
+      );
+    } catch (error) {
+      return { query: "", category: "" };
+    }
+  }
+
+  function writeLastToolSearch(query, category) {
+    var state = cleanLastToolSearch({ query: query, category: category });
+    if (!state.query && !state.category) {
+      return;
+    }
+    try {
+      window.localStorage.setItem(lastToolSearchStorageKey, JSON.stringify(state));
+    } catch (error) {
+      // The homepage search still works when browser storage is unavailable.
+    }
+  }
+
+  function clearLastToolSearch() {
+    try {
+      window.localStorage.removeItem(lastToolSearchStorageKey);
+    } catch (error) {
+      // The homepage search still works when browser storage is unavailable.
+    }
+  }
+
+  function updateHomeSearchResume() {
+    var resume = document.querySelector("[data-home-search-resume]");
+    if (!resume) {
+      return;
+    }
+
+    var state = readLastToolSearch();
+    var link = resume.querySelector("[data-home-search-resume-link]");
+    var label = resume.querySelector("[data-home-search-resume-label]");
+    var hasSearch = Boolean(state.query || state.category);
+
+    resume.hidden = !hasSearch;
+    if (!hasSearch || !link || !label) {
+      return;
+    }
+
+    var url = new URL("/ai-tools/tools/", window.location.origin);
+    if (state.query) {
+      url.searchParams.set("q", state.query);
+    }
+    if (state.category) {
+      url.searchParams.set("category", state.category);
+    }
+    link.setAttribute("href", url.pathname + url.search);
+
+    if (state.query && state.category) {
+      label.textContent = "Resume “" + state.query + "” in " + state.category;
+    } else if (state.query) {
+      label.textContent = "Resume “" + state.query + "”";
+    } else {
+      label.textContent = "Resume " + state.category;
+    }
+  }
 
   function validPath(value) {
     return typeof value === "string" && value.indexOf("/ai-tools/tools/") === 0;
@@ -949,6 +1028,7 @@
     updateHomeEvaluation(saved);
     updateHomeReviewPulse();
     updateCandidateStages(saved);
+    updateHomeSearchResume();
   }
 
   function announce(message) {
@@ -968,12 +1048,28 @@
 
   document.documentElement.classList.add("aiplorer-shortlist-ready");
 
+  var homeToolFinder = document.querySelector("[data-home-tool-finder]");
+  if (homeToolFinder) {
+    homeToolFinder.addEventListener("submit", function () {
+      var query = homeToolFinder.querySelector("[data-home-tool-query]");
+      var category = homeToolFinder.querySelector("[data-home-tool-category]");
+      writeLastToolSearch(query ? query.value : "", category ? category.value : "");
+    });
+  }
+
   document.addEventListener("click", function (event) {
+    var homeSearchClear = event.target.closest("[data-home-search-resume-clear]");
     var candidateStageViewButton = event.target.closest("[data-shortlist-stage-view]");
     var candidateStageButton = event.target.closest("[data-candidate-stage-value]");
     var candidateStageReset = event.target.closest("[data-candidate-stage-reset]");
     var toggle = event.target.closest("[data-shortlist-path]");
     var clear = event.target.closest("[data-shortlist-clear]");
+
+    if (homeSearchClear) {
+      clearLastToolSearch();
+      updateHomeSearchResume();
+      return;
+    }
 
     if (candidateStageViewButton) {
       var candidateStageView = cleanCandidateStageView(
@@ -1065,7 +1161,8 @@
       event.key === trialStorageKey ||
       event.key === candidateStageStorageKey ||
       event.key === candidateStageViewStorageKey ||
-      event.key === reviewSnapshotStorageKey
+      event.key === reviewSnapshotStorageKey ||
+      event.key === lastToolSearchStorageKey
     ) {
       render();
     }
