@@ -1,8 +1,8 @@
 {{- $href := .Get "href" -}}
 {{- $title := .Get "title" -}}
 {{- $label := .Get "label" -}}
-<a class="aiplorer-card" href="{{ $href | relURL }}">
+<a class="aiplorer-card" href="{{ $href | relURL }}" aria-label="{{ $title }}">
   {{ with $label }}<span class="aiplorer-card__label">{{ . }}</span>{{ end }}
-  <strong class="aiplorer-card__title">{{ $title }}</strong>
-  <span class="aiplorer-card__body">{{ .Inner | markdownify }}</span>
+  <h3 class="aiplorer-card__title">{{ $title }}</h3>
+  <div class="aiplorer-card__body">{{ .Inner | markdownify }}</div>
 </a>

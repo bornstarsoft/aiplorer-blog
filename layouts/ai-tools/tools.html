@@ -17,16 +17,16 @@
             <h2 class="f3 mt0 mb3">{{ $group.Key }}</h2>
             <div class="aiplorer-card-grid">
               {{ range $group.Pages.ByTitle }}
-                <a class="aiplorer-card" href="{{ .RelPermalink }}">
+                <a class="aiplorer-card" href="{{ .RelPermalink }}" aria-label="{{ .Title }}">
                   {{ with .Params.category }}<span class="aiplorer-card__label">{{ . }}</span>{{ end }}
-                  <strong class="aiplorer-card__title">{{ .Title }}</strong>
+                  <h3 class="aiplorer-card__title">{{ .Title }}</h3>
                   {{ with .Params.description }}
-                    <span class="aiplorer-card__body">{{ . }}</span>
+                    <div class="aiplorer-card__body">{{ . }}</div>
                   {{ end }}
-                  <span class="aiplorer-card__body">
+                  <div class="aiplorer-card__body">
                     {{ with .Params.lastReviewed }}Last reviewed: {{ . }}{{ end }}
                     {{ with .Params.reviewStatus }}<br>Review status: {{ . }}{{ end }}
-                  </span>
+                  </div>
                 </a>
               {{ end }}
             </div>
