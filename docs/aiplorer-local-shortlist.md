@@ -51,6 +51,7 @@ Official sources:
 - Save button on each public reviewed tool page
 - Save button on every row in `/ai-tools/compare/`
 - Local candidate-check totals and per-tool progress in `/ai-tools/compare/`
+- A private Continue evaluating summary on the homepage when candidates are saved
 - My Shortlist link on the homepage
 - Shortlist tab in the shared AI Discovery navigation
 

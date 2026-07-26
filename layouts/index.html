@@ -95,6 +95,31 @@
       </div>
     </section>
 
+    <section
+      class="aiplorer-home-evaluation"
+      data-home-evaluation
+      hidden
+      aria-labelledby="home-evaluation-heading"
+    >
+      <div class="aiplorer-shell">
+        <span class="aiplorer-home-evaluation__icon">
+          {{ partial "aiplorer-icon.html" "square-check" }}
+        </span>
+        <div class="aiplorer-home-evaluation__copy" aria-live="polite">
+          <p class="aiplorer-kicker">Continue evaluating</p>
+          <h2 id="home-evaluation-heading" data-home-evaluation-heading>
+            Resume your saved AI tool candidates
+          </h2>
+          <p data-home-evaluation-progress>Your private candidate-check progress will appear here.</p>
+          <small>Stored only in this browser. Progress is not a score, rating, or recommendation.</small>
+        </div>
+        <nav aria-label="Continue evaluating saved AI tools">
+          <a href="/ai-tools/shortlist/">Open shortlist <span aria-hidden="true">&rarr;</span></a>
+          <a href="/ai-tools/compare/?view=shortlist">Compare saved tools <span aria-hidden="true">&rarr;</span></a>
+        </nav>
+      </div>
+    </section>
+
     {{ partial "aiplorer-recent-tools.html" . }}
 
     <section class="aiplorer-section aiplorer-section--tasks" aria-labelledby="task-heading">

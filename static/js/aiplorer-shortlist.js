@@ -2,7 +2,10 @@
   "use strict";
 
   var storageKey = "aiplorer-shortlist-v1";
+  var trialStorageKey = "aiplorer-trial-checks-v1";
+  var allowedChecks = ["task", "output", "privacy", "plans"];
   var memoryList = [];
+  var memoryTrialState = {};
 
   function validPath(value) {
     return typeof value === "string" && value.indexOf("/ai-tools/tools/") === 0;
@@ -33,6 +36,41 @@
     } catch (error) {
       // Keep the current-session fallback when browser storage is unavailable.
     }
+  }
+
+  function cleanChecks(values) {
+    if (!Array.isArray(values)) {
+      return [];
+    }
+    return values.filter(function (value, index, list) {
+      return allowedChecks.indexOf(value) !== -1 && list.indexOf(value) === index;
+    });
+  }
+
+  function cleanTrialState(value) {
+    var result = {};
+    if (!value || typeof value !== "object" || Array.isArray(value)) {
+      return result;
+    }
+
+    Object.keys(value).forEach(function (path) {
+      var checks = cleanChecks(value[path]);
+      if (validPath(path) && checks.length > 0) {
+        result[path] = checks;
+      }
+    });
+    return result;
+  }
+
+  function readTrialState() {
+    try {
+      memoryTrialState = cleanTrialState(
+        JSON.parse(window.localStorage.getItem(trialStorageKey) || "{}")
+      );
+    } catch (error) {
+      memoryTrialState = cleanTrialState(memoryTrialState);
+    }
+    return Object.assign({}, memoryTrialState);
   }
 
   function updateButtons(saved) {
@@ -83,6 +121,38 @@
     }
   }
 
+  function updateHomeEvaluation(saved) {
+    var section = document.querySelector("[data-home-evaluation]");
+    if (!section) {
+      return;
+    }
+
+    var heading = section.querySelector("[data-home-evaluation-heading]");
+    var progress = section.querySelector("[data-home-evaluation-progress]");
+    var state = readTrialState();
+    var completed = 0;
+
+    saved.forEach(function (path) {
+      completed += cleanChecks(state[path]).length;
+    });
+
+    section.hidden = saved.size === 0;
+    if (heading) {
+      heading.textContent =
+        "Resume " +
+        saved.size +
+        " saved AI tool " +
+        (saved.size === 1 ? "candidate" : "candidates");
+    }
+    if (progress) {
+      progress.textContent =
+        completed +
+        " of " +
+        saved.size * allowedChecks.length +
+        " private candidate checks complete.";
+    }
+  }
+
   function render() {
     var list = readList();
     var saved = new Set(list);
@@ -93,6 +163,7 @@
 
     updateButtons(saved);
     updateShortlistPage(saved);
+    updateHomeEvaluation(saved);
   }
 
   function announce(message) {
@@ -145,7 +216,7 @@
   });
 
   window.addEventListener("storage", function (event) {
-    if (event.key === storageKey) {
+    if (event.key === storageKey || event.key === trialStorageKey) {
       render();
     }
   });

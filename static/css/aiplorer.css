@@ -641,6 +641,88 @@ main#main-content:has(> .aiplorer-content-article) {
   line-height: 1.4;
 }
 
+.aiplorer-home-evaluation {
+  padding: 1.2rem 0;
+  border-bottom: 1px solid var(--aiplorer-line);
+  background: #fff;
+}
+
+.aiplorer-home-evaluation[hidden] {
+  display: none;
+}
+
+.aiplorer-home-evaluation .aiplorer-shell {
+  display: grid;
+  align-items: center;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 1rem;
+}
+
+.aiplorer-home-evaluation__icon {
+  display: grid;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 7px;
+  place-items: center;
+  background: #e5f3f1;
+  color: var(--aiplorer-teal);
+}
+
+.aiplorer-home-evaluation__icon .aiplorer-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.aiplorer-home-evaluation .aiplorer-kicker {
+  margin-bottom: 0.15rem;
+}
+
+.aiplorer-home-evaluation h2 {
+  margin: 0;
+  color: var(--aiplorer-ink);
+  font-size: 1.05rem;
+  line-height: 1.3;
+  letter-spacing: 0;
+}
+
+.aiplorer-home-evaluation__copy > p:not(.aiplorer-kicker) {
+  margin: 0.25rem 0 0;
+  color: var(--aiplorer-text);
+  font-size: 0.76rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.aiplorer-home-evaluation__copy small {
+  display: block;
+  margin-top: 0.18rem;
+  color: var(--aiplorer-muted);
+  font-size: 0.66rem;
+  line-height: 1.4;
+}
+
+.aiplorer-home-evaluation nav {
+  display: grid;
+  gap: 0.42rem;
+}
+
+.aiplorer-home-evaluation nav a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7rem;
+  color: var(--aiplorer-teal);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.aiplorer-home-evaluation nav a:hover,
+.aiplorer-home-evaluation nav a:focus-visible {
+  text-decoration: underline;
+}
+
 .aiplorer-section {
   padding: 4.5rem 0;
   background: #fff;
@@ -5544,6 +5626,22 @@ main#main-content:has(> .aiplorer-content-article) {
 
   .aiplorer-stat-strip {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .aiplorer-home-evaluation .aiplorer-shell {
+    align-items: start;
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .aiplorer-home-evaluation nav {
+    justify-content: start;
+    grid-column: 2;
+    grid-template-columns: repeat(2, auto);
+    gap: 0.8rem 1.2rem;
+  }
+
+  .aiplorer-home-evaluation nav a {
+    white-space: normal;
   }
 
   .aiplorer-hero-finder,
