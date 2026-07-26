@@ -113,7 +113,10 @@
               <small data-shortlist-stage-next-progress-label>0 of 0 private checks complete.</small>
             </div>
           </div>
-          <button type="button" data-shortlist-stage-next-filter hidden>Open next stage</button>
+          <div class="aiplorer-shortlist-next__actions">
+            <button type="button" data-shortlist-stage-next-filter hidden>Open next stage</button>
+            <button type="button" data-shortlist-next-check hidden>Open next check</button>
+          </div>
         </div>
 
         <div class="aiplorer-shortlist-review-pulse" data-shortlist-review-pulse data-review-state="checkpoint" hidden>
@@ -162,6 +165,7 @@
             <article
               class="aiplorer-shortlist-card"
               data-shortlist-item="{{ .RelPermalink }}"
+              data-shortlist-title="{{ .Title }}"
               data-shortlist-review-date="{{ .Params.lastReviewed }}"
               hidden
             >

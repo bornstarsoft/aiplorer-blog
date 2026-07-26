@@ -90,6 +90,12 @@ progress for that stage and opens the corresponding stage view. This is a
 continuity aid based on the visitor's own labels and checks, not a tool ranking
 or Aiplorer recommendation.
 
+When a Testing candidate still has incomplete checks, the resume queue also
+offers `Open next check`. It selects the Testing view, opens the first
+incomplete candidate in the existing alphabetical card order, focuses the first
+unchecked item, and disappears when no Testing checks remain. The behavior is
+derived only from private browser state and does not choose or rank a tool.
+
 The homepage shows total private checklist progress and links back to the most
 actionable saved stage, prioritizing active testing, then ready, researching,
 and unassigned candidates. Its next-queue summary also reports checklist

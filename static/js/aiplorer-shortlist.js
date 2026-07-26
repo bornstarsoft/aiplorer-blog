@@ -386,6 +386,50 @@
     };
   }
 
+  function candidateCheckLabel(value) {
+    if (value === "task") {
+      return "category task";
+    }
+    if (value === "output") {
+      return "output quality and facts";
+    }
+    if (value === "privacy") {
+      return "privacy, permissions, and rights";
+    }
+    return "current plans and limits";
+  }
+
+  function nextIncompleteTestingCandidate(saved, stageState, trialState) {
+    var items = Array.prototype.slice.call(
+      document.querySelectorAll("[data-shortlist-item]")
+    );
+
+    for (var index = 0; index < items.length; index += 1) {
+      var item = items[index];
+      var path = item.getAttribute("data-shortlist-item");
+      if (
+        !saved.has(path) ||
+        cleanCandidateStage(stageState[path]) !== "testing"
+      ) {
+        continue;
+      }
+
+      var completed = cleanChecks(trialState[path]);
+      var nextCheck = allowedChecks.find(function (check) {
+        return completed.indexOf(check) === -1;
+      });
+      if (nextCheck) {
+        return {
+          path: path,
+          check: nextCheck,
+          title: item.getAttribute("data-shortlist-title") || "Saved candidate"
+        };
+      }
+    }
+
+    return null;
+  }
+
   function applyCandidateStageViewFromUrl() {
     if (!document.querySelector("[data-shortlist-stage-filter]")) {
       return;
@@ -475,6 +519,7 @@
     var stageNextTitle = document.querySelector("[data-shortlist-stage-next-title]");
     var stageNextCopy = document.querySelector("[data-shortlist-stage-next-copy]");
     var stageNextFilter = document.querySelector("[data-shortlist-stage-next-filter]");
+    var stageNextCheck = document.querySelector("[data-shortlist-next-check]");
     var stageNextProgressWrap = document.querySelector(
       "[data-shortlist-stage-next-progress-wrap]"
     );
@@ -511,6 +556,11 @@
       ready: 0,
       unset: 0
     };
+    var nextTestingCandidate = nextIncompleteTestingCandidate(
+      saved,
+      stageState,
+      trialState
+    );
 
     saved.forEach(function (path) {
       var stage = cleanCandidateStage(stageState[path]);
@@ -576,6 +626,7 @@
       stageNextTitle ||
       stageNextCopy ||
       stageNextFilter ||
+      stageNextCheck ||
       stageNextProgress ||
       stageNextProgressLabel
     ) {
@@ -614,6 +665,33 @@
           stageNextFilter.textContent = stageNextAction.label;
         } else {
           stageNextFilter.removeAttribute("data-shortlist-stage-view");
+        }
+      }
+      if (stageNextCheck) {
+        var showNextCheck =
+          Boolean(nextTestingCandidate) &&
+          (stageView === "all" || stageView === "testing");
+        stageNextCheck.hidden = !showNextCheck;
+        if (showNextCheck) {
+          stageNextCheck.setAttribute(
+            "data-shortlist-next-check-path",
+            nextTestingCandidate.path
+          );
+          stageNextCheck.setAttribute(
+            "data-shortlist-next-check-value",
+            nextTestingCandidate.check
+          );
+          stageNextCheck.setAttribute(
+            "aria-label",
+            "Open next unfinished check for " +
+              nextTestingCandidate.title +
+              ": " +
+              candidateCheckLabel(nextTestingCandidate.check)
+          );
+        } else {
+          stageNextCheck.removeAttribute("data-shortlist-next-check-path");
+          stageNextCheck.removeAttribute("data-shortlist-next-check-value");
+          stageNextCheck.removeAttribute("aria-label");
         }
       }
       if (stageNextProgressWrap) {
@@ -1172,6 +1250,7 @@
 
   document.addEventListener("click", function (event) {
     var homeSearchClear = event.target.closest("[data-home-search-resume-clear]");
+    var nextCheckButton = event.target.closest("[data-shortlist-next-check]");
     var candidateStageViewButton = event.target.closest("[data-shortlist-stage-view]");
     var candidateStageButton = event.target.closest("[data-candidate-stage-value]");
     var candidateStageReset = event.target.closest("[data-candidate-stage-reset]");
@@ -1181,6 +1260,66 @@
     if (homeSearchClear) {
       clearLastToolSearch();
       updateHomeSearchResume();
+      return;
+    }
+
+    if (nextCheckButton) {
+      var nextCheckPath = nextCheckButton.getAttribute(
+        "data-shortlist-next-check-path"
+      );
+      var nextCheckValue = nextCheckButton.getAttribute(
+        "data-shortlist-next-check-value"
+      );
+      if (
+        !validPath(nextCheckPath) ||
+        allowedChecks.indexOf(nextCheckValue) === -1
+      ) {
+        return;
+      }
+
+      writeCandidateStageView("testing");
+      render();
+
+      var nextCheckItem = Array.prototype.find.call(
+        document.querySelectorAll("[data-shortlist-item]"),
+        function (item) {
+          return item.getAttribute("data-shortlist-item") === nextCheckPath;
+        }
+      );
+      var nextCheckDetails =
+        nextCheckItem && nextCheckItem.querySelector("details");
+      var nextCheckInput =
+        nextCheckItem &&
+        Array.prototype.find.call(
+          nextCheckItem.querySelectorAll("[data-trial-check]"),
+          function (input) {
+            return input.value === nextCheckValue;
+          }
+        );
+
+      if (nextCheckDetails) {
+        nextCheckDetails.open = true;
+      }
+      if (nextCheckInput) {
+        window.requestAnimationFrame(function () {
+          var label = nextCheckInput.closest("label");
+          nextCheckInput.focus({ preventScroll: true });
+          if (label) {
+            label.scrollIntoView({ block: "center" });
+          }
+        });
+      }
+
+      var nextCheckTitle =
+        (nextCheckItem &&
+          nextCheckItem.getAttribute("data-shortlist-title")) ||
+        "Saved candidate";
+      announce(
+        nextCheckTitle +
+          ": opened next unfinished check, " +
+          candidateCheckLabel(nextCheckValue) +
+          "."
+      );
       return;
     }
 

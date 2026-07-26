@@ -5479,7 +5479,13 @@ main#main-content:has(> .aiplorer-content-article) {
   line-height: 1.35;
 }
 
-.aiplorer-shortlist-next > button {
+.aiplorer-shortlist-next__actions {
+  display: grid;
+  min-width: 8.5rem;
+  gap: 0.35rem;
+}
+
+.aiplorer-shortlist-next__actions button {
   min-height: 2.2rem;
   padding: 0.45rem 0.62rem;
   border: 1px solid var(--aiplorer-teal);
@@ -5492,14 +5498,24 @@ main#main-content:has(> .aiplorer-content-article) {
   font-weight: 800;
 }
 
-.aiplorer-shortlist-next > button:hover,
-.aiplorer-shortlist-next > button:focus-visible {
+.aiplorer-shortlist-next__actions button:hover,
+.aiplorer-shortlist-next__actions button:focus-visible {
   background: var(--aiplorer-teal);
   color: #fff;
 }
 
-.aiplorer-shortlist-next > button[hidden] {
+.aiplorer-shortlist-next__actions button[hidden] {
   display: none;
+}
+
+.aiplorer-shortlist-next__actions [data-shortlist-next-check] {
+  background: var(--aiplorer-teal);
+  color: #fff;
+}
+
+.aiplorer-shortlist-next__actions [data-shortlist-next-check]:hover,
+.aiplorer-shortlist-next__actions [data-shortlist-next-check]:focus-visible {
+  background: #125f58;
 }
 
 .aiplorer-shortlist-review-pulse {
@@ -7085,7 +7101,7 @@ main#main-content:has(> .aiplorer-content-article) {
     grid-template-columns: auto minmax(0, 1fr);
   }
 
-  .aiplorer-shortlist-next > button {
+  .aiplorer-shortlist-next__actions {
     justify-self: start;
     grid-column: 2;
   }
