@@ -27,7 +27,8 @@
   {{- $isWorkflows := eq $path "/ai-tools/workflows/" -}}
   {{- $isUpdates := eq $path "/ai-tools/review-updates/" -}}
   {{- $isTrends := eq $path "/ai-tools/trend-watch/" -}}
-  {{- $isOverview := not (or $isDirectory $isDecisionPath $isCompare $isShortlist $isWorkflows $isUpdates $isTrends) -}}
+  {{- $isResetTracker := eq $path "/ai-tools/reset-tracker/" -}}
+  {{- $isOverview := not (or $isDirectory $isDecisionPath $isCompare $isShortlist $isWorkflows $isUpdates $isTrends $isResetTracker) -}}
   {{- $aiToolPages := where .Site.RegularPages "Section" "ai-tools" -}}
   {{- $reviewedTools := where (where $aiToolPages "Params.reviewStatus" "reviewed") "Draft" false -}}
   <nav class="aiplorer-discovery-nav" aria-label="AI tool discovery">
@@ -69,6 +70,10 @@
         <a href="/ai-tools/trend-watch/"{{ if $isTrends }} class="is-active" aria-current="page"{{ end }}>
           <span class="aiplorer-discovery-nav__icon">{{ partial "aiplorer-icon.html" "sparkles" }}</span>
           Trends
+        </a>
+        <a href="/ai-tools/reset-tracker/"{{ if $isResetTracker }} class="is-active" aria-current="page"{{ end }}>
+          <span class="aiplorer-discovery-nav__icon">{{ partial "aiplorer-icon.html" "clock-3" }}</span>
+          Resets
         </a>
       </div>
     </div>

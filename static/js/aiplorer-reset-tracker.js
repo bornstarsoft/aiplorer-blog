@@ -1,0 +1,670 @@
+(function () {
+  "use strict";
+
+  var root = document.querySelector("[data-reset-tracker]");
+  if (!root) {
+    return;
+  }
+
+  var statusCards = Array.prototype.slice.call(root.querySelectorAll("[data-provider-status]"));
+  var statusRefresh = root.querySelector("[data-reset-status-refresh]");
+  var statusChecked = root.querySelector("[data-reset-status-checked]");
+  var historyDataElement = root.querySelector("[data-reset-history-data]");
+  var historyElapsedSummary = root.querySelector("[data-history-elapsed-summary]");
+  var historyLatestLocal = root.querySelector("[data-history-latest-local]");
+  var historyElapsedDays = root.querySelector("[data-history-elapsed-days]");
+  var historyElapsedHours = root.querySelector("[data-history-elapsed-hours]");
+  var historyElapsedMinutes = root.querySelector("[data-history-elapsed-minutes]");
+  var historyElapsedSeconds = root.querySelector("[data-history-elapsed-seconds]");
+  var historyPulseStrip = root.querySelector("[data-history-pulse-strip]");
+  var historyRhythmRead = root.querySelector("[data-history-rhythm-read]");
+  var historyHourStrip = root.querySelector("[data-history-hour-strip]");
+  var historyHourInsight = root.querySelector("[data-history-hour-insight]");
+  var historyTimeZoneNote = root.querySelector("[data-history-timezone-note]");
+  var historyNowTime = root.querySelector("[data-history-now-time]");
+  var historyTimeZoneButtons = Array.prototype.slice.call(
+    root.querySelectorAll("[data-history-timezone]")
+  );
+  var historyIntervalChart = root.querySelector("[data-history-interval-chart]");
+  var historyWeekdayChart = root.querySelector("[data-history-weekday-chart]");
+  var historyToggle = root.querySelector("[data-history-toggle]");
+  var historyEvents = [];
+  var historyTimer = null;
+  var activeAxisContext = null;
+
+  function pad(value) {
+    return String(value).padStart(2, "0");
+  }
+
+  function formatLocalWithZone(date) {
+    return date.toLocaleString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+      timeZoneName: "short"
+    });
+  }
+
+  function formatDuration(duration, detailed) {
+    if (!Number.isFinite(duration) || duration < 0) {
+      return "Unavailable";
+    }
+    var totalHours = duration / 3600000;
+    if (detailed) {
+      var wholeDays = Math.floor(totalHours / 24);
+      var remainingHours = Math.floor(totalHours % 24);
+      if (wholeDays > 0) {
+        return wholeDays + "d " + remainingHours + "h";
+      }
+      return Math.floor(totalHours) + "h " + Math.floor((duration % 3600000) / 60000) + "m";
+    }
+    return (duration / 86400000).toFixed(1) + "d";
+  }
+
+  function median(values) {
+    if (!values.length) {
+      return 0;
+    }
+    var sorted = values.slice().sort(function (left, right) {
+      return left - right;
+    });
+    var middle = Math.floor(sorted.length / 2);
+    return sorted.length % 2
+      ? sorted[middle]
+      : (sorted[middle - 1] + sorted[middle]) / 2;
+  }
+
+  function historyIntervals(events) {
+    return events.slice(0, -1).map(function (event, index) {
+      return event.date.getTime() - events[index + 1].date.getTime();
+    });
+  }
+
+  function setHistoryMetric(selector, value) {
+    var element = root.querySelector(selector);
+    if (element) {
+      element.textContent = value;
+    }
+  }
+
+  function historyWindow(days) {
+    var latestTime = historyEvents[0].date.getTime();
+    var cutoff = latestTime - days * 86400000;
+    var events = historyEvents.filter(function (event) {
+      return event.date.getTime() >= cutoff;
+    });
+    var intervals = historyIntervals(events);
+    return {
+      count: events.length,
+      mean: intervals.length
+        ? intervals.reduce(function (total, value) { return total + value; }, 0) / intervals.length
+        : 0,
+      median: median(intervals)
+    };
+  }
+
+  function utcDateKey(date) {
+    return [
+      date.getUTCFullYear(),
+      pad(date.getUTCMonth() + 1),
+      pad(date.getUTCDate())
+    ].join("-");
+  }
+
+  function renderPulseStrip() {
+    if (!historyPulseStrip || !historyEvents.length) {
+      return;
+    }
+
+    var latest = historyEvents[0].date;
+    var latestDay = Date.UTC(latest.getUTCFullYear(), latest.getUTCMonth(), latest.getUTCDate());
+    var counts = historyEvents.reduce(function (result, event) {
+      var key = utcDateKey(event.date);
+      result[key] = (result[key] || 0) + 1;
+      return result;
+    }, {});
+
+    historyPulseStrip.textContent = "";
+    for (var offset = 30; offset >= 0; offset -= 1) {
+      var date = new Date(latestDay - offset * 86400000);
+      var key = utcDateKey(date);
+      var count = counts[key] || 0;
+      var cell = document.createElement("span");
+      var weekday = document.createElement("small");
+      var day = document.createElement("strong");
+      var pulse = document.createElement("i");
+      var dateLabel = date.toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+        timeZone: "UTC"
+      });
+
+      cell.className = "aiplorer-reset-pulse-calendar__day";
+      if (count > 0) {
+        cell.classList.add("has-event");
+      }
+      if (offset === 0) {
+        cell.classList.add("is-latest");
+      }
+      cell.setAttribute(
+        "aria-label",
+        dateLabel + ": " + count + " public announcement" + (count === 1 ? "" : "s")
+      );
+      cell.title = cell.getAttribute("aria-label");
+      weekday.textContent = date.toLocaleDateString("en-US", {
+        weekday: "narrow",
+        timeZone: "UTC"
+      });
+      day.textContent = String(date.getUTCDate());
+      pulse.setAttribute("aria-hidden", "true");
+      cell.appendChild(weekday);
+      cell.appendChild(day);
+      cell.appendChild(pulse);
+      historyPulseStrip.appendChild(cell);
+    }
+  }
+
+  function renderRhythm(latestInterval, recentMedian, fullMedian) {
+    var values = [latestInterval, recentMedian, fullMedian];
+    var maximum = Math.max.apply(null, values.concat([1]));
+    ["latest", "recent", "full"].forEach(function (name, index) {
+      var fill = root.querySelector('[data-history-rhythm-fill="' + name + '"]');
+      if (fill) {
+        fill.style.width = Math.max(4, (values[index] / maximum) * 100) + "%";
+      }
+    });
+
+    if (!historyRhythmRead || !fullMedian) {
+      return;
+    }
+    var difference = Math.round(Math.abs(recentMedian / fullMedian - 1) * 100);
+    if (difference < 5) {
+      historyRhythmRead.textContent =
+        "The latest 30-day median is close to the full-history median. This describes past spacing only.";
+    } else if (recentMedian < fullMedian) {
+      historyRhythmRead.textContent =
+        "The latest 30-day median is " + difference + "% shorter than the full-history median, showing a tighter recent cluster. This is not a forecast.";
+    } else {
+      historyRhythmRead.textContent =
+        "The latest 30-day median is " + difference + "% longer than the full-history median, showing wider recent spacing. This is not a forecast.";
+    }
+  }
+
+  function timeZoneOffsetMinutes(date, timeZone) {
+    var parts = new Intl.DateTimeFormat("en-US", {
+      timeZone: timeZone,
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hourCycle: "h23"
+    }).formatToParts(date);
+    var values = {};
+    parts.forEach(function (part) {
+      if (part.type !== "literal") {
+        values[part.type] = Number(part.value);
+      }
+    });
+    var zonedAsUtc = Date.UTC(
+      values.year,
+      values.month - 1,
+      values.day,
+      values.hour,
+      values.minute
+    );
+    var sourceUtc = Date.UTC(
+      date.getUTCFullYear(),
+      date.getUTCMonth(),
+      date.getUTCDate(),
+      date.getUTCHours(),
+      date.getUTCMinutes()
+    );
+    return Math.round((zonedAsUtc - sourceUtc) / 60000);
+  }
+
+  function timeZoneAbbreviation(date, timeZone) {
+    var parts = new Intl.DateTimeFormat("en-US", {
+      timeZone: timeZone,
+      timeZoneName: "short"
+    }).formatToParts(date);
+    var zonePart = parts.find(function (part) { return part.type === "timeZoneName"; });
+    return zonePart ? zonePart.value : timeZone;
+  }
+
+  function formatUtcOffset(offsetMinutes) {
+    if (!offsetMinutes) {
+      return "UTC";
+    }
+    var sign = offsetMinutes > 0 ? "+" : "-";
+    var absolute = Math.abs(offsetMinutes);
+    var hours = Math.floor(absolute / 60);
+    var minutes = absolute % 60;
+    return "UTC" + sign + hours + (minutes ? ":" + pad(minutes) : "");
+  }
+
+  function formatAxisMinute(totalMinutes) {
+    var normalized = Math.floor(((totalMinutes % 1440) + 1440) % 1440);
+    return pad(Math.floor(normalized / 60)) + ":" + pad(normalized % 60);
+  }
+
+  function renderCurrentTimeMarker() {
+    if (!historyHourStrip || !historyNowTime || !activeAxisContext) {
+      return;
+    }
+    var marker = historyHourStrip.querySelector("[data-history-now-marker]");
+    if (!marker) {
+      marker = document.createElement("span");
+      marker.className = "aiplorer-reset-clock__now-marker";
+      marker.setAttribute("data-history-now-marker", "");
+      marker.setAttribute("aria-hidden", "true");
+      historyHourStrip.appendChild(marker);
+    }
+    var now = new Date();
+    var utcMinutes = now.getUTCHours() * 60 + now.getUTCMinutes() + now.getUTCSeconds() / 60;
+    var axisTime = formatAxisMinute(utcMinutes + activeAxisContext.offsetMinutes);
+    marker.style.left = (utcMinutes / 1440) * 100 + "%";
+    marker.title = "Current time: " + axisTime + " in " + activeAxisContext.label;
+    historyNowTime.textContent = axisTime;
+    historyNowTime.parentElement.setAttribute(
+      "aria-label",
+      "Current time: " + axisTime + " in " + activeAxisContext.label
+    );
+  }
+
+  function axisContext(mode) {
+    var referenceDate = historyEvents[0].date;
+    if (mode === "utc") {
+      return {
+        offsetMinutes: 0,
+        label: "UTC",
+        note: "The same " + historyEvents.length +
+          " UTC buckets. Bar heights stay fixed across every view."
+      };
+    }
+    if (mode === "los-angeles") {
+      var laOffset = timeZoneOffsetMinutes(referenceDate, "America/Los_Angeles");
+      var laAbbreviation = timeZoneAbbreviation(referenceDate, "America/Los_Angeles");
+      return {
+        offsetMinutes: laOffset,
+        label: "Los Angeles time",
+        note: "The same " + historyEvents.length +
+          " UTC buckets. Only the axis shifts to Los Angeles using " + laAbbreviation +
+          " (" + formatUtcOffset(laOffset) + "), the offset on the latest record date."
+      };
+    }
+
+    var localZone = "browser time";
+    try {
+      localZone = Intl.DateTimeFormat().resolvedOptions().timeZone || localZone;
+    } catch (error) {
+      localZone = "browser time";
+    }
+    var localOffset = -referenceDate.getTimezoneOffset();
+    return {
+      offsetMinutes: localOffset,
+      label: "your browser time",
+      note: "The same " + historyEvents.length +
+        " UTC buckets. Only the axis shifts to " + localZone + " (" +
+        formatUtcOffset(localOffset) + ")."
+    };
+  }
+
+  function renderTimeOfDay(mode) {
+    if (!historyHourStrip || !historyEvents.length) {
+      return;
+    }
+
+    var counts = Array.from({ length: 24 }, function () { return 0; });
+    historyEvents.forEach(function (event) {
+      counts[event.date.getUTCHours()] += 1;
+    });
+    var maximum = Math.max.apply(null, counts.concat([1]));
+    var context = axisContext(mode);
+    activeAxisContext = context;
+
+    historyHourStrip.textContent = "";
+    counts.forEach(function (count, hour) {
+      var cell = document.createElement("span");
+      var value = document.createElement("strong");
+      var track = document.createElement("i");
+      var fill = document.createElement("b");
+      var label = document.createElement("small");
+      var hourLabel = formatAxisMinute(hour * 60 + context.offsetMinutes);
+
+      cell.className = "aiplorer-reset-clock__hour";
+      if (count === maximum && count > 0) {
+        cell.classList.add("is-peak");
+      }
+      if (count === 0) {
+        cell.classList.add("is-empty");
+      }
+      cell.setAttribute(
+        "aria-label",
+        hourLabel + ": " + count + " observed record" + (count === 1 ? "" : "s")
+      );
+      cell.title = cell.getAttribute("aria-label");
+      value.textContent = String(count);
+      fill.style.height = (count ? Math.max(12, (count / maximum) * 100) : 0) + "%";
+      track.appendChild(fill);
+      label.textContent = hourLabel.slice(-3) === ":00" ? hourLabel.slice(0, 2) : hourLabel;
+      cell.appendChild(value);
+      cell.appendChild(track);
+      cell.appendChild(label);
+      historyHourStrip.appendChild(cell);
+    });
+    renderCurrentTimeMarker();
+
+    var bands = [
+      { start: 0, count: counts.slice(0, 6).reduce(sum, 0) },
+      { start: 6, count: counts.slice(6, 12).reduce(sum, 0) },
+      { start: 12, count: counts.slice(12, 18).reduce(sum, 0) },
+      { start: 18, count: counts.slice(18, 24).reduce(sum, 0) }
+    ];
+    var strongest = bands.reduce(function (current, band) {
+      return band.count > current.count ? band : current;
+    }, bands[0]);
+    var strongestStart = strongest.start * 60 + context.offsetMinutes;
+    var strongestLabel = formatAxisMinute(strongestStart) + "-" +
+      formatAxisMinute(strongestStart + 359);
+
+    historyTimeZoneNote.textContent = context.note;
+    historyHourStrip.setAttribute(
+      "aria-label",
+      "Fixed UTC hourly distribution with axis labels shown in " + context.label
+    );
+    historyHourInsight.textContent =
+      "Strongest historical band: " + strongestLabel + " with " + strongest.count +
+      " records in " + context.label + ". Historical distribution only, not a forecast.";
+    historyTimeZoneButtons.forEach(function (button) {
+      button.setAttribute(
+        "aria-pressed",
+        String(button.getAttribute("data-history-timezone") === mode)
+      );
+    });
+  }
+
+  function sum(total, value) {
+    return total + value;
+  }
+
+  function renderDistribution(container, items) {
+    if (!container) {
+      return;
+    }
+    var maximum = Math.max.apply(null, items.map(function (item) { return item.value; }).concat([1]));
+    container.textContent = "";
+    items.forEach(function (item) {
+      var row = document.createElement("div");
+      var label = document.createElement("span");
+      var track = document.createElement("span");
+      var fill = document.createElement("span");
+      var value = document.createElement("strong");
+      row.className = "aiplorer-reset-history__distribution-row";
+      label.textContent = item.label;
+      track.className = "aiplorer-reset-history__distribution-track";
+      fill.style.width = Math.max(3, (item.value / maximum) * 100) + "%";
+      track.appendChild(fill);
+      value.textContent = String(item.value);
+      row.setAttribute("aria-label", item.label + ": " + item.value + " announcements");
+      row.appendChild(label);
+      row.appendChild(track);
+      row.appendChild(value);
+      container.appendChild(row);
+    });
+  }
+
+  function renderIntervalChart(intervals) {
+    if (!historyIntervalChart) {
+      return;
+    }
+    var recent = intervals.slice(0, 14);
+    var maximum = Math.max.apply(null, recent.concat([1]));
+    historyIntervalChart.textContent = "";
+    recent.forEach(function (duration, index) {
+      var row = document.createElement("div");
+      var label = document.createElement("time");
+      var track = document.createElement("span");
+      var fill = document.createElement("span");
+      var value = document.createElement("strong");
+      var event = historyEvents[index];
+      row.className = "aiplorer-reset-history__interval-row";
+      label.dateTime = event.date.toISOString();
+      label.textContent = event.date.toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+        timeZone: "UTC"
+      });
+      track.className = "aiplorer-reset-history__interval-track";
+      fill.style.width = Math.max(3, (duration / maximum) * 100) + "%";
+      track.appendChild(fill);
+      value.textContent = formatDuration(duration, false);
+      row.setAttribute(
+        "aria-label",
+        label.textContent + ": " + formatDuration(duration, true) + " since the prior announcement"
+      );
+      row.appendChild(label);
+      row.appendChild(track);
+      row.appendChild(value);
+      historyIntervalChart.appendChild(row);
+    });
+  }
+
+  function renderHistoryTimeline(intervals) {
+    var eventRows = Array.prototype.slice.call(root.querySelectorAll("[data-history-event]"));
+    eventRows.forEach(function (row, index) {
+      var timeElement = row.querySelector("[data-history-event-time]");
+      var localElement = row.querySelector("[data-history-event-local]");
+      var intervalElement = row.querySelector("[data-history-event-interval]");
+      var event = historyEvents[index];
+      if (!event) {
+        return;
+      }
+      timeElement.textContent = event.date.toLocaleString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+        timeZone: "UTC"
+      }) + " UTC";
+      localElement.textContent = formatLocalWithZone(event.date);
+      intervalElement.textContent = index < intervals.length
+        ? formatDuration(intervals[index], true) + " after prior"
+        : "Coverage start";
+    });
+
+    if (historyToggle && eventRows.length > 6) {
+      root.classList.add("is-history-enhanced");
+      historyToggle.hidden = false;
+      historyToggle.setAttribute("aria-expanded", "false");
+      historyToggle.addEventListener("click", function () {
+        var expanded = root.classList.toggle("is-history-expanded");
+        historyToggle.setAttribute("aria-expanded", String(expanded));
+        historyToggle.textContent = expanded
+          ? "Show latest 6"
+          : "Show all " + eventRows.length;
+      });
+    }
+  }
+
+  function renderHistoryElapsed() {
+    if (!historyEvents.length) {
+      return;
+    }
+    var elapsed = Math.max(0, Date.now() - historyEvents[0].date.getTime());
+    var totalSeconds = Math.floor(elapsed / 1000);
+    var days = Math.floor(totalSeconds / 86400);
+    var hours = Math.floor((totalSeconds % 86400) / 3600);
+    var minutes = Math.floor((totalSeconds % 3600) / 60);
+    var seconds = totalSeconds % 60;
+    historyElapsedDays.textContent = pad(days);
+    historyElapsedHours.textContent = pad(hours);
+    historyElapsedMinutes.textContent = pad(minutes);
+    historyElapsedSeconds.textContent = pad(seconds);
+    historyElapsedSummary.textContent = days > 0
+      ? days + "d " + hours + "h since the latest record"
+      : hours > 0
+        ? hours + "h " + minutes + "m since the latest record"
+        : minutes + "m " + seconds + "s since the latest record";
+    renderCurrentTimeMarker();
+  }
+
+  function initializeHistory() {
+    if (!historyDataElement) {
+      return;
+    }
+    try {
+      var payload = JSON.parse(historyDataElement.textContent);
+      historyEvents = (payload.events || [])
+        .map(function (event) {
+          return {
+            announcedAt: event.announcedAt,
+            sourceUrl: event.sourceUrl,
+            date: new Date(event.announcedAt)
+          };
+        })
+        .filter(function (event) {
+          return !Number.isNaN(event.date.getTime());
+        })
+        .sort(function (left, right) {
+          return right.date.getTime() - left.date.getTime();
+        });
+    } catch (error) {
+      historyEvents = [];
+    }
+
+    if (historyEvents.length < 2) {
+      return;
+    }
+
+    var intervals = historyIntervals(historyEvents);
+    var fullMean = intervals.reduce(function (total, value) { return total + value; }, 0) / intervals.length;
+    var fullMedian = median(intervals);
+    var latest30 = historyWindow(30);
+    var latest90 = historyWindow(90);
+    var longest = Math.max.apply(null, intervals);
+    var coverage = historyEvents[0].date.getTime() - historyEvents[historyEvents.length - 1].date.getTime();
+    var weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(function (label, day) {
+      return {
+        label: label,
+        value: historyEvents.filter(function (event) { return event.date.getUTCDay() === day; }).length
+      };
+    });
+    historyLatestLocal.textContent = formatLocalWithZone(historyEvents[0].date);
+    setHistoryMetric("[data-history-latest-interval]", formatDuration(intervals[0], true));
+    setHistoryMetric("[data-history-median]", formatDuration(fullMedian, false));
+    setHistoryMetric("[data-history-30-count]", String(latest30.count));
+    setHistoryMetric("[data-history-30-table-count]", String(latest30.count));
+    setHistoryMetric("[data-history-30-median]", formatDuration(latest30.median, false));
+    setHistoryMetric("[data-history-30-table-median]", formatDuration(latest30.median, false));
+    setHistoryMetric("[data-history-30-table-mean]", formatDuration(latest30.mean, false));
+    setHistoryMetric("[data-history-90-count]", String(latest90.count));
+    setHistoryMetric("[data-history-90-median]", formatDuration(latest90.median, false));
+    setHistoryMetric("[data-history-90-mean]", formatDuration(latest90.mean, false));
+    setHistoryMetric("[data-history-total-count]", String(historyEvents.length));
+    setHistoryMetric("[data-history-full-table-median]", formatDuration(fullMedian, false));
+    setHistoryMetric("[data-history-mean]", formatDuration(fullMean, false));
+    setHistoryMetric("[data-history-longest]", formatDuration(longest, false));
+    setHistoryMetric("[data-history-coverage]", formatDuration(coverage, false) + " of source coverage");
+    renderPulseStrip();
+    renderRhythm(intervals[0], latest30.median, fullMedian);
+    renderTimeOfDay("local");
+    renderIntervalChart(intervals);
+    renderDistribution(historyWeekdayChart, weekdays);
+    renderHistoryTimeline(intervals);
+    renderHistoryElapsed();
+  }
+
+  function statusStateFor(indicator) {
+    if (indicator === "none") {
+      return { key: "operational", label: "Operational" };
+    }
+    if (indicator === "minor" || indicator === "maintenance") {
+      return { key: "attention", label: "Check status" };
+    }
+    if (indicator === "major" || indicator === "critical") {
+      return { key: "incident", label: "Incident" };
+    }
+    return { key: "unavailable", label: "Check source" };
+  }
+
+  function loadStatusCard(card) {
+    var endpoint = card.getAttribute("data-status-endpoint");
+    var name = card.getAttribute("data-status-name");
+    var stateElement = card.querySelector("[data-provider-status-state]");
+    var description = card.querySelector("[data-provider-status-description]");
+    var updated = card.querySelector("[data-provider-status-updated]");
+
+    stateElement.setAttribute("data-provider-status-state", "loading");
+    stateElement.textContent = "Checking";
+    description.textContent = "Loading the official status summary.";
+    updated.textContent = "Checking official API";
+
+    return window
+      .fetch(endpoint, { cache: "no-store", headers: { Accept: "application/json" } })
+      .then(function (response) {
+        if (!response.ok) {
+          throw new Error("Status request failed");
+        }
+        return response.json();
+      })
+      .then(function (payload) {
+        var officialStatus = payload && payload.status ? payload.status : {};
+        var renderedState = statusStateFor(officialStatus.indicator || "unknown");
+        stateElement.setAttribute("data-provider-status-state", renderedState.key);
+        stateElement.textContent = renderedState.label;
+        description.textContent = officialStatus.description || "Open the official status page for details.";
+        updated.textContent = "Official API checked " + new Date().toLocaleTimeString("en-US", {
+          hour: "numeric",
+          minute: "2-digit"
+        });
+        return true;
+      })
+      .catch(function () {
+        stateElement.setAttribute("data-provider-status-state", "unavailable");
+        stateElement.textContent = "Open source";
+        description.textContent =
+          "The live summary could not be loaded. Use the official " + name + " status link.";
+        updated.textContent = "Live summary unavailable";
+        return false;
+      });
+  }
+
+  function refreshStatuses() {
+    if (!statusCards.length) {
+      return;
+    }
+    statusRefresh.disabled = true;
+    statusRefresh.setAttribute("aria-busy", "true");
+    statusChecked.textContent = "Checking official status feeds.";
+    Promise.all(statusCards.map(loadStatusCard)).then(function (results) {
+      var successful = results.filter(Boolean).length;
+      statusChecked.textContent =
+        successful === results.length
+          ? "Both official status summaries were checked just now."
+          : successful + " of " + results.length + " official summaries loaded. Use the source links for the rest.";
+      statusRefresh.disabled = false;
+      statusRefresh.removeAttribute("aria-busy");
+    });
+  }
+
+  statusRefresh.addEventListener("click", refreshStatuses);
+  historyTimeZoneButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      renderTimeOfDay(button.getAttribute("data-history-timezone"));
+    });
+  });
+  initializeHistory();
+  refreshStatuses();
+  historyTimer = window.setInterval(renderHistoryElapsed, 1000);
+
+  window.addEventListener("pagehide", function () {
+    if (historyTimer) {
+      window.clearInterval(historyTimer);
+    }
+  });
+})();

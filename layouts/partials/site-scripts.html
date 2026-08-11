@@ -2,6 +2,9 @@
   <script defer src="/js/aiplorer-shortlist.js?v=20260726w"></script>
   <script defer src="/js/aiplorer-recent-tools.js?v=20260726c"></script>
 {{ end }}
+{{ if .IsHome }}
+  <script defer src="/js/aiplorer-home-reset.js?v=20260811b"></script>
+{{ end }}
 {{ if eq .RelPermalink "/ai-tools/tools/" }}
   <script defer src="/js/aiplorer-tool-finder.js?v=20260726f"></script>
 {{ end }}
@@ -16,4 +19,7 @@
 {{ end }}
 {{ if eq .RelPermalink "/ai-tools/decision-path/" }}
   <script defer src="/js/aiplorer-decision-path.js?v=20260726a"></script>
+{{ end }}
+{{ if eq .RelPermalink "/ai-tools/reset-tracker/" }}
+  <script defer src="/js/aiplorer-reset-tracker.js?v=20260811j"></script>
 {{ end }}

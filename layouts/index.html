@@ -22,11 +22,15 @@
   {{- $reviewedUseCases := where (where $useCasePages "Params.reviewStatus" "reviewed") "Draft" false -}}
   {{- $reviewedUseCases = sort $reviewedUseCases "Title" "asc" -}}
   {{- $latestUseCases := first 3 (sort $reviewedUseCases "Params.lastReviewed" "desc") -}}
+  {{- $resetHistory := site.Data.codex_reset_history -}}
+  {{- $resetEvents := $resetHistory.events -}}
+  {{- $latestReset := index $resetEvents 0 -}}
 
   <div class="aiplorer-home">
     <section class="aiplorer-hero" aria-labelledby="aiplorer-home-title">
       <div class="aiplorer-shell">
-        <div class="aiplorer-hero__copy">
+        <div class="aiplorer-hero__main">
+          <div class="aiplorer-hero__copy">
           <p class="aiplorer-eyebrow">
             <span class="aiplorer-eyebrow__icon">{{ partial "aiplorer-icon.html" "compass" }}</span>
             Reviewed AI tool discovery
@@ -36,6 +40,12 @@
             Start with what you need to do, compare manually reviewed services,
             and check current details at the official source.
           </p>
+          <a class="aiplorer-home-reset-quick" href="/ai-tools/reset-tracker/">
+            <span><i aria-hidden="true"></i> Codex Reset Pulse</span>
+            <strong data-home-reset-elapsed aria-live="off">Calculating elapsed time</strong>
+            <small>since latest observed reset</small>
+            <b aria-hidden="true">&rarr;</b>
+          </a>
           <form
             class="aiplorer-hero-finder"
             action="/ai-tools/tools/"
@@ -92,6 +102,45 @@
               Track current AI signals
             </a>
           </div>
+          </div>
+
+          <aside
+            class="aiplorer-home-reset-pulse"
+            aria-labelledby="home-reset-pulse-heading"
+            data-home-reset-pulse
+            data-latest-reset="{{ $latestReset.announcedAt }}"
+          >
+            <div class="aiplorer-home-reset-pulse__topline">
+              <span class="aiplorer-home-reset-pulse__mark">
+                {{ partial "aiplorer-icon.html" "clock-3" }}
+              </span>
+              <span class="aiplorer-home-reset-pulse__live"><i aria-hidden="true"></i> Elapsed now</span>
+            </div>
+            <p class="aiplorer-kicker">Codex Reset Pulse</p>
+            <h2 id="home-reset-pulse-heading">Latest observed reset</h2>
+            <p class="aiplorer-home-reset-pulse__elapsed">
+              <strong data-home-reset-elapsed aria-live="off">Calculating elapsed time</strong>
+              <span>since the latest public record</span>
+            </p>
+            <dl class="aiplorer-home-reset-pulse__facts">
+              <div>
+                <dt>Observed at</dt>
+                <dd>
+                  <time datetime="{{ $latestReset.announcedAt }}" data-home-reset-local>
+                    {{ time.Format "Jan 2, 15:04 UTC" $latestReset.announcedAt }}
+                  </time>
+                </dd>
+              </div>
+              <div>
+                <dt>History</dt>
+                <dd>{{ len $resetEvents }} records</dd>
+              </div>
+            </dl>
+            <a class="aiplorer-home-reset-pulse__link" href="/ai-tools/reset-tracker/">
+              Open the full reset pulse <span aria-hidden="true">&rarr;</span>
+            </a>
+            <small>Historical observation only. It is not a next-reset forecast.</small>
+          </aside>
         </div>
         <dl class="aiplorer-stat-strip" aria-label="Aiplorer directory summary">
           <div>

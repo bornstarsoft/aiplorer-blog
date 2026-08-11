@@ -1,0 +1,337 @@
+{{ define "header" }}{{ partials.Include "page-header.html" . }}{{ end }}
+
+{{ define "main" }}
+  {{- $history := site.Data.codex_reset_history -}}
+  <article class="aiplorer-reset-tracker" data-reset-tracker>
+    <section class="aiplorer-reset-tracker__hero">
+      <div class="aiplorer-shell">
+        <div class="aiplorer-reset-tracker__hero-copy">
+          <p class="aiplorer-eyebrow">
+            <span class="aiplorer-eyebrow__icon">{{ partial "aiplorer-icon.html" "clock-3" }}</span>
+            Public reset activity
+          </p>
+          <h1>{{ .Title }}</h1>
+          <p class="aiplorer-reset-tracker__lead">{{ .Params.description }}</p>
+          <div class="aiplorer-actions">
+            <a class="aiplorer-button aiplorer-button--primary" href="#public-history">View reset pulse</a>
+            <a class="aiplorer-button aiplorer-button--light" href="#provider-status">Check service status</a>
+          </div>
+        </div>
+        <dl class="aiplorer-reset-tracker__facts" aria-label="AI Reset Tracker summary">
+          <div>
+            <dt>{{ len $history.events }} records</dt>
+            <dd>Observed between September 2025 and August 2026</dd>
+          </div>
+          <div>
+            <dt>Live elapsed clock</dt>
+            <dd>Updates from the latest observed public event</dd>
+          </div>
+          <div>
+            <dt>History, not a forecast</dt>
+            <dd>No next-reset time or account guarantee</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="aiplorer-reset-history" id="public-history" aria-labelledby="public-history-heading">
+      <div class="aiplorer-shell">
+        <div class="aiplorer-reset-history__heading">
+          <div>
+            <p class="aiplorer-kicker">Aiplorer Reset Pulse</p>
+            <h2 id="public-history-heading">The latest reset signal, then the bigger pattern</h2>
+            <p>
+              {{ len $history.events }} public observations from
+              <time datetime="{{ $history.coverageStartsAt }}">September 2025</time> through
+              <time datetime="{{ (index $history.events 0).announcedAt }}">August 2026</time>.
+              Start with elapsed time, then compare recent activity with the full recorded history.
+            </p>
+          </div>
+        </div>
+
+        <div class="aiplorer-reset-history__latest">
+          <div class="aiplorer-reset-history__latest-copy">
+            <div class="aiplorer-reset-history__latest-label">
+              <p class="aiplorer-kicker">Time since latest observed reset</p>
+              <span class="aiplorer-reset-history__live"><i aria-hidden="true"></i> Live</span>
+            </div>
+            <h3 data-history-elapsed-summary aria-live="off">Calculating elapsed time</h3>
+            <p>
+              Latest observed at
+              <time datetime="{{ (index $history.events 0).announcedAt }}" data-history-latest-local>
+                {{ time.Format "Jan 2, 2006, 15:04 UTC" (index $history.events 0).announcedAt }}
+              </time>.
+              Live elapsed time only. It does not count down to another reset.
+            </p>
+          </div>
+          <div class="aiplorer-reset-history__elapsed-clock" aria-label="Time elapsed since latest public reset announcement">
+            <div><strong data-history-elapsed-days>--</strong><span>days</span></div>
+            <div><strong data-history-elapsed-hours>--</strong><span>hours</span></div>
+            <div><strong data-history-elapsed-minutes>--</strong><span>minutes</span></div>
+            <div><strong data-history-elapsed-seconds>--</strong><span>seconds</span></div>
+          </div>
+        </div>
+
+        <section class="aiplorer-reset-pulse" aria-labelledby="reset-pulse-heading">
+          <div class="aiplorer-reset-pulse__heading">
+            <div>
+              <p class="aiplorer-kicker">Visual cadence</p>
+              <h3 id="reset-pulse-heading">A 30-day pulse and three interval anchors</h3>
+            </div>
+            <span>Window ends at the latest observed announcement</span>
+          </div>
+
+          <div class="aiplorer-reset-pulse__grid">
+            <section class="aiplorer-reset-pulse-calendar" aria-labelledby="pulse-calendar-heading">
+              <div class="aiplorer-reset-pulse-calendar__heading">
+                <div>
+                  <h4 id="pulse-calendar-heading">30-day activity strip</h4>
+                  <p>One cell per UTC date touched by the rolling 30-day window.</p>
+                </div>
+                <strong><span data-history-30-count>--</span> events</strong>
+              </div>
+              <div class="aiplorer-reset-pulse-calendar__scroll">
+                <div class="aiplorer-reset-pulse-calendar__strip" data-history-pulse-strip aria-label="Public reset announcements over the latest 30-day observation window"></div>
+              </div>
+              <div class="aiplorer-reset-pulse-calendar__legend" aria-hidden="true">
+                <span><i></i> No announcement</span>
+                <span><i></i> Announcement</span>
+                <span><i></i> Latest</span>
+              </div>
+            </section>
+
+            <section class="aiplorer-reset-rhythm" aria-labelledby="reset-rhythm-heading">
+              <p class="aiplorer-kicker">Interval context</p>
+              <h4 id="reset-rhythm-heading">How tightly are events clustered?</h4>
+              <p class="aiplorer-reset-rhythm__read" data-history-rhythm-read>Calculating recent rhythm.</p>
+              <div class="aiplorer-reset-rhythm__meter">
+                <div>
+                  <span>Latest interval</span>
+                  <i><b data-history-rhythm-fill="latest"></b></i>
+                  <strong data-history-latest-interval>--</strong>
+                </div>
+                <div>
+                  <span>30-day median</span>
+                  <i><b data-history-rhythm-fill="recent"></b></i>
+                  <strong data-history-30-median>--</strong>
+                </div>
+                <div>
+                  <span>Full median</span>
+                  <i><b data-history-rhythm-fill="full"></b></i>
+                  <strong data-history-median>--</strong>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div class="aiplorer-reset-window-table-wrap">
+            <table class="aiplorer-reset-window-table">
+              <caption>Observed cadence by history window</caption>
+              <thead>
+                <tr><th scope="col">Window</th><th scope="col">Events</th><th scope="col">Median interval</th><th scope="col">Mean interval</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Latest 30 days</th><td data-history-30-table-count>--</td><td data-history-30-table-median>--</td><td data-history-30-table-mean>--</td></tr>
+                <tr><th scope="row">Latest 90 days</th><td data-history-90-count>--</td><td data-history-90-median>--</td><td data-history-90-mean>--</td></tr>
+                <tr><th scope="row">Full history</th><td data-history-total-count>--</td><td data-history-full-table-median>--</td><td data-history-mean>--</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="aiplorer-reset-pulse__range">
+            Longest observed interval <strong data-history-longest>--</strong>
+            <span aria-hidden="true">&middot;</span>
+            <span data-history-coverage>Observed coverage</span>
+            <span aria-hidden="true">&middot;</span>
+            <span>Past spacing only, not a forecast</span>
+          </p>
+
+          <section class="aiplorer-reset-clock" aria-labelledby="reset-clock-heading">
+            <div class="aiplorer-reset-clock__heading">
+              <div>
+                <p class="aiplorer-kicker">Time-of-day lens</p>
+                <h3 id="reset-clock-heading">When did the observed records appear?</h3>
+                <p class="aiplorer-reset-clock__zone-note" data-history-timezone-note>The same UTC bars with labels shifted to your browser time.</p>
+                <p class="aiplorer-reset-clock__now-readout" aria-live="off">
+                  <i aria-hidden="true"></i>
+                  <span>Now</span>
+                  <strong data-history-now-time>--:--</strong>
+                </p>
+              </div>
+              <div class="aiplorer-reset-clock__modes" role="group" aria-label="Time zone for hourly reset history">
+                <button type="button" data-history-timezone="local" aria-pressed="true">My time</button>
+                <button type="button" data-history-timezone="los-angeles" aria-pressed="false">Los Angeles</button>
+                <button type="button" data-history-timezone="utc" aria-pressed="false">UTC</button>
+              </div>
+            </div>
+            <div class="aiplorer-reset-clock__scroll">
+              <div class="aiplorer-reset-clock__chart" data-history-hour-strip aria-label="Fixed UTC hourly distribution with converted time labels"></div>
+            </div>
+            <p class="aiplorer-reset-clock__insight" data-history-hour-insight>Calculating the strongest historical time band.</p>
+          </section>
+        </section>
+
+        <details class="aiplorer-reset-history__details">
+          <summary>
+            <span>
+              <strong>Explore detailed patterns and records</strong>
+              <small>Interval charts, timestamps, original records, and data notes</small>
+            </span>
+            {{ partial "aiplorer-icon.html" "chevron-down" }}
+          </summary>
+          <div class="aiplorer-reset-history__notice">
+            <span>{{ partial "aiplorer-icon.html" "history" }}</span>
+            <p>
+              Public records can differ in scope, including full, partial, banked, or incoming resets.
+              They are historical context, not official OpenAI telemetry or a next-reset schedule.
+            </p>
+          </div>
+          <div class="aiplorer-reset-history__analysis">
+            <section class="aiplorer-reset-history-panel aiplorer-reset-history-panel--wide" aria-labelledby="recent-intervals-heading">
+              <div class="aiplorer-reset-history-panel__heading">
+                <div>
+                  <p class="aiplorer-kicker">Recent cadence</p>
+                  <h3 id="recent-intervals-heading">Latest 14 observed intervals</h3>
+                </div>
+                <span>UTC source timestamps</span>
+              </div>
+              <div class="aiplorer-reset-history__interval-chart" data-history-interval-chart aria-label="Recent announcement intervals"></div>
+              <p class="aiplorer-reset-history-panel__footnote">
+                Each bar is the elapsed time from the preceding observed announcement. Shorter bars mean announcements were closer together.
+              </p>
+            </section>
+
+            <section class="aiplorer-reset-history-panel aiplorer-reset-history-panel--wide" aria-labelledby="weekday-pattern-heading">
+              <div class="aiplorer-reset-history-panel__heading">
+                <div>
+                  <p class="aiplorer-kicker">Day pattern</p>
+                  <h3 id="weekday-pattern-heading">Announcements by weekday</h3>
+                </div>
+                <span>UTC</span>
+              </div>
+              <div class="aiplorer-reset-history__distribution" data-history-weekday-chart aria-label="Announcements by UTC weekday"></div>
+            </section>
+
+          </div>
+
+          <section class="aiplorer-reset-history__timeline" aria-labelledby="reset-history-list-heading">
+            <div class="aiplorer-reset-history__timeline-heading">
+              <div>
+                <p class="aiplorer-kicker">Observed timeline</p>
+                <h3 id="reset-history-list-heading">Latest public records</h3>
+              </div>
+              <button type="button" data-history-toggle hidden>Show all {{ len $history.events }}</button>
+            </div>
+            <ol data-history-event-list>
+              {{- range $index, $event := $history.events }}
+                <li{{ if ge $index 6 }} class="aiplorer-reset-history-event--additional"{{ end }} data-history-event data-history-index="{{ $index }}">
+                  <span class="aiplorer-reset-history__event-index">{{ printf "%02d" (add $index 1) }}</span>
+                  <div>
+                    <time datetime="{{ $event.announcedAt }}" data-history-event-time>
+                      {{ time.Format "Jan 2, 2006, 15:04 UTC" $event.announcedAt }}
+                    </time>
+                    <small data-history-event-local>UTC record time</small>
+                  </div>
+                  <span class="aiplorer-reset-history__event-interval" data-history-event-interval>
+                    {{ if eq $index (sub (len $history.events) 1) }}Coverage start{{ else }}Calculating{{ end }}
+                  </span>
+                  <a href="{{ $event.sourceUrl }}" target="_blank" rel="noopener nofollow" aria-label="Open original public record {{ add $index 1 }}" title="Open original public record">
+                    {{ partial "aiplorer-icon.html" "external-link" }}
+                  </a>
+                </li>
+              {{- end }}
+            </ol>
+          </section>
+
+          <p class="aiplorer-reset-history__snapshot" id="history-method">
+            Independent historical snapshot, not official OpenAI telemetry. Original record links are retained for verification.
+            Archive cross-check: <a href="{{ $history.sourceUrl }}" target="_blank" rel="noopener nofollow">{{ $history.sourceName }}</a>.
+            Checked <time datetime="{{ $history.snapshotAt }}">{{ time.Format "Jan 2, 2006, 15:04 UTC" $history.snapshotAt }}</time>.
+          </p>
+        </details>
+        <script type="application/json" data-reset-history-data>{{ $history | jsonify | safeJS }}</script>
+      </div>
+    </section>
+
+    <section class="aiplorer-reset-status" id="provider-status" aria-labelledby="provider-status-heading">
+      <div class="aiplorer-shell">
+        <div class="aiplorer-reset-status__heading">
+          <div>
+            <p class="aiplorer-kicker">Official service status</p>
+            <h2 id="provider-status-heading">Check incidents before blaming a usage limit</h2>
+            <p>These live summaries come from provider status APIs. They do not reveal account limits or reset times.</p>
+          </div>
+          <button class="aiplorer-reset-status__refresh" type="button" title="Refresh provider status" data-reset-status-refresh>
+            {{ partial "aiplorer-icon.html" "refresh-cw" }}
+            <span class="aiplorer-visually-hidden">Refresh provider status</span>
+          </button>
+        </div>
+        <div class="aiplorer-reset-status__grid">
+          <article
+            class="aiplorer-reset-status-card"
+            data-provider-status
+            data-status-endpoint="https://status.openai.com/api/v2/status.json"
+            data-status-name="OpenAI"
+          >
+            <div class="aiplorer-reset-status-card__heading">
+              <span class="aiplorer-reset-status-card__mark" aria-hidden="true">O</span>
+              <div>
+                <h3>OpenAI status</h3>
+                <p>Codex service incidents</p>
+              </div>
+              <span class="aiplorer-reset-status-card__state" data-provider-status-state="loading">Checking</span>
+            </div>
+            <p class="aiplorer-reset-status-card__description" data-provider-status-description aria-live="polite">
+              Loading the official status summary.
+            </p>
+            <div class="aiplorer-reset-status-card__footer">
+              <small data-provider-status-updated>Not checked yet</small>
+              <a href="https://status.openai.com/" target="_blank" rel="noopener nofollow">
+                Official status {{ partial "aiplorer-icon.html" "external-link" }}
+              </a>
+            </div>
+          </article>
+          <article
+            class="aiplorer-reset-status-card"
+            data-provider-status
+            data-status-endpoint="https://status.claude.com/api/v2/status.json"
+            data-status-name="Claude"
+          >
+            <div class="aiplorer-reset-status-card__heading">
+              <span class="aiplorer-reset-status-card__mark" aria-hidden="true">C</span>
+              <div>
+                <h3>Claude status</h3>
+                <p>Claude service incidents</p>
+              </div>
+              <span class="aiplorer-reset-status-card__state" data-provider-status-state="loading">Checking</span>
+            </div>
+            <p class="aiplorer-reset-status-card__description" data-provider-status-description aria-live="polite">
+              Loading the official status summary.
+            </p>
+            <div class="aiplorer-reset-status-card__footer">
+              <small data-provider-status-updated>Not checked yet</small>
+              <a href="https://status.claude.com/" target="_blank" rel="noopener nofollow">
+                Official status {{ partial "aiplorer-icon.html" "external-link" }}
+              </a>
+            </div>
+          </article>
+        </div>
+        <p class="aiplorer-reset-status__checked" data-reset-status-checked aria-live="polite">Checking official status feeds.</p>
+      </div>
+    </section>
+
+    <section class="aiplorer-reset-tracker__next" aria-labelledby="reset-next-heading">
+      <div class="aiplorer-shell">
+        <div>
+          <p class="aiplorer-kicker">Use history carefully</p>
+          <h2 id="reset-next-heading">Treat the pulse as context, not a schedule</h2>
+          <p>Reset behavior, plans, and availability may change. Confirm account-specific limits in the official product before scheduling important work.</p>
+        </div>
+        <nav aria-label="Continue exploring Aiplorer">
+          <a href="/ai-tools/trend-watch/">AI Trend Watch <span aria-hidden="true">&rarr;</span></a>
+          <a href="/ai-tools/tools/">Reviewed tool directory <span aria-hidden="true">&rarr;</span></a>
+          <a href="/guides/how-to-choose-the-right-ai-tool/">Choosing guide <span aria-hidden="true">&rarr;</span></a>
+        </nav>
+      </div>
+    </section>
+  </article>
+{{ end }}
