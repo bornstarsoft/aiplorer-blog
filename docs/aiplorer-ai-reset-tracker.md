@@ -77,9 +77,52 @@ page and is not included in reviewed-tool counts or rankings.
 
 ## Refresh And Deferred Automation
 
-The history snapshot is not refreshed automatically in this release. A future
-review should add a new source-linked row only after confirming that it is a
-reset announcement and recording its exact UTC timestamp. Existing records
+The history snapshot is not refreshed automatically in this release. The
+homepage and tracker display the date represented by `snapshotAt`, so visitors
+can distinguish a recently checked snapshot from live account telemetry.
+
+### Daily Manual Refresh
+
+First validate the existing file:
+
+```bash
+node scripts/validate-reset-history.mjs
+```
+
+Check the source once. If there is no new reset record, preview and then record
+the completed check:
+
+```bash
+node scripts/update-reset-history.mjs --mark-checked --dry-run
+node scripts/update-reset-history.mjs --mark-checked
+```
+
+If there is a new source post, copy its exact UTC announcement time and direct
+status URL. Preview the change before writing it:
+
+```bash
+node scripts/update-reset-history.mjs \
+  --at "2026-08-12T00:00:00.000Z" \
+  --source "https://x.com/example/status/1234567890" \
+  --dry-run
+```
+
+Remove `--dry-run` only after reviewing the preview. The command rejects
+duplicate timestamps, duplicate source URLs, non-status URLs, future event
+times relative to the check, and a check time older than the published
+snapshot. It also sorts events newest-first, updates `snapshotAt`, keeps
+`coverageStartsAt` aligned with the oldest record, and updates the tracker
+`lastmod` date.
+
+After either kind of update, run:
+
+```bash
+node scripts/validate-reset-history.mjs
+hugo --cleanDestinationDir --gc --minify
+git diff --check
+```
+
+Review the generated tracker and sitemap before committing. Existing records
 should remain immutable unless a source correction is documented.
 
 A future public reset-event monitor should use a separate Cloudflare Worker,

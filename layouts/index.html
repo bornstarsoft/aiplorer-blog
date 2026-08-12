@@ -43,7 +43,10 @@
           <a class="aiplorer-home-reset-quick" href="/ai-tools/reset-tracker/">
             <span><i aria-hidden="true"></i> Codex Reset Pulse</span>
             <strong data-home-reset-elapsed aria-live="off">Calculating elapsed time</strong>
-            <small>since latest observed reset</small>
+            <small>
+              since latest observed reset &middot; checked
+              <time datetime="{{ $resetHistory.snapshotAt }}">{{ time.Format "Jan 2" $resetHistory.snapshotAt }}</time>
+            </small>
             <b aria-hidden="true">&rarr;</b>
           </a>
           <form
@@ -139,7 +142,11 @@
             <a class="aiplorer-home-reset-pulse__link" href="/ai-tools/reset-tracker/">
               Open the full reset pulse <span aria-hidden="true">&rarr;</span>
             </a>
-            <small>Historical observation only. It is not a next-reset forecast.</small>
+            <small>
+              Data checked
+              <time datetime="{{ $resetHistory.snapshotAt }}">{{ time.Format "Jan 2, 2006" $resetHistory.snapshotAt }}</time>.
+              Historical observation only; not a forecast.
+            </small>
           </aside>
         </div>
         <dl class="aiplorer-stat-strip" aria-label="Aiplorer directory summary">
