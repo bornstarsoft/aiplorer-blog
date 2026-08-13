@@ -16,9 +16,9 @@ served a different task and reduced the visibility of the historical data.
 
 ## Public Codex History
 
-`data/codex_reset_history.json` contains a manually checked snapshot of 42
+`data/codex_reset_history.json` contains a manually checked snapshot of 43
 public Codex reset announcements observed between September 17, 2025 and August
-11, 2026. Each row stores only the UTC announcement timestamp and the source X
+13, 2026. Each row stores only the UTC announcement timestamp and the source X
 post URL. The seed was checked against `https://codex-resets.com/`, which states
 that it collects posts from `@thsottiaux` and is not affiliated with OpenAI.
 
