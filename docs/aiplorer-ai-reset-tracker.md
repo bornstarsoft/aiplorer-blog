@@ -16,11 +16,17 @@ served a different task and reduced the visibility of the historical data.
 
 ## Public Codex History
 
-`data/codex_reset_history.json` contains a manually checked snapshot of 46
+`data/codex_reset_history.json` contains a manually checked snapshot of 47
 public Codex reset announcements observed between September 17, 2025 and August
-24, 2026. Each row stores only the UTC announcement timestamp and the source X
+25, 2026. Each row stores only the UTC observed-event timestamp and the source X
 post URL. The seed was checked against `https://codex-resets.com/`, which states
 that it collects posts from `@thsottiaux` and is not affiliated with OpenAI.
+
+When a reset is observed before its public confirmation reply appears, the
+timestamp follows the archive's displayed UTC event time and the source URL
+points to the confirming public record. This applies to the August 25, 2026
+entry and keeps elapsed-time statistics aligned with the observed reset rather
+than the later reply time.
 
 The records are labeled as announcement observations rather than official
 OpenAI reset telemetry. Announcement scope is not uniform: source posts can
@@ -97,8 +103,8 @@ node scripts/update-reset-history.mjs --mark-checked --dry-run
 node scripts/update-reset-history.mjs --mark-checked
 ```
 
-If there is a new source post, copy its exact UTC announcement time and direct
-status URL. Preview the change before writing it:
+If there is a new record, copy the archive's UTC observed-event time and direct
+confirmation or announcement status URL. Preview the change before writing it:
 
 ```bash
 node scripts/update-reset-history.mjs \
