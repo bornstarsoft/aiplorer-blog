@@ -18,7 +18,7 @@ served a different task and reduced the visibility of the historical data.
 
 `data/codex_reset_history.json` contains a manually checked snapshot of 47
 public Codex reset announcements observed between September 17, 2025 and August
-25, 2026. Each row stores only the UTC observed-event timestamp and the source X
+27, 2026. Each row stores only the UTC observed-event timestamp and the source X
 post URL. The seed was checked against `https://codex-resets.com/`, which states
 that it collects posts from `@thsottiaux` and is not affiliated with OpenAI.
 
@@ -27,6 +27,12 @@ timestamp follows the archive's displayed UTC event time and the source URL
 points to the confirming public record. This applies to the August 25, 2026
 entry and keeps elapsed-time statistics aligned with the observed reset rather
 than the later reply time.
+
+The August 28, 2026 source cross-check replaced the August 21 23:40 UTC
+follow-up record with the new August 27 reset. The source archive no longer
+classifies that banked-reset availability follow-up as a separate event, so the
+snapshot remains at 47 records. This is a documented source correction rather
+than an unpublished deletion.
 
 The records are labeled as announcement observations rather than official
 OpenAI reset telemetry. Announcement scope is not uniform: source posts can
