@@ -16,9 +16,9 @@ served a different task and reduced the visibility of the historical data.
 
 ## Public Codex History
 
-`data/codex_reset_history.json` contains a manually checked snapshot of 47
+`data/codex_reset_history.json` contains a manually checked snapshot of 48
 public Codex reset announcements observed between September 17, 2025 and August
-27, 2026. Each row stores only the UTC observed-event timestamp and the source X
+29, 2026. Each row stores only the UTC observed-event timestamp and the source X
 post URL. The seed was checked against `https://codex-resets.com/`, which states
 that it collects posts from `@thsottiaux` and is not affiliated with OpenAI.
 
@@ -38,6 +38,10 @@ The records are labeled as announcement observations rather than official
 OpenAI reset telemetry. Announcement scope is not uniform: source posts can
 refer to full, partial, banked, or incoming resets. Aiplorer therefore does not
 present the event count as a count of identical account resets.
+
+The source can also show a separate reset-watch signal for a possible future
+event. Aiplorer excludes those signals until they appear in the confirmed reset
+announcement log; they are not added as forecasts or event records.
 
 The public page presents the snapshot as the Aiplorer Reset Pulse. The default
 view favors fast comparison over a wall of metric cards:
