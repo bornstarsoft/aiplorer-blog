@@ -54,7 +54,7 @@
           <div class="aiplorer-reset-history__latest-copy">
             <div class="aiplorer-reset-history__latest-label">
               <p class="aiplorer-kicker">Since latest announcement: {{ partial "reset-event-label.html" (index $history.events 0).kind }}</p>
-              <span class="aiplorer-reset-history__live"><i aria-hidden="true"></i> Live</span>
+              <span class="aiplorer-reset-history__live"><i aria-hidden="true"></i> Elapsed clock</span>
             </div>
             <h3 data-history-elapsed-summary aria-live="off">Calculating elapsed time</h3>
             <p>
@@ -71,6 +71,11 @@
             <div><strong data-history-elapsed-minutes>--</strong><span>minutes</span></div>
             <div><strong data-history-elapsed-seconds>--</strong><span>seconds</span></div>
           </div>
+        </div>
+
+        <div class="aiplorer-reset-history__freshness">
+          <span>Records checked <time datetime="{{ $history.snapshotAt }}" data-history-checked-local>{{ time.Format "Jan 2, 2006, 15:04 UTC" $history.snapshotAt }}</time><strong data-history-checked-age hidden></strong></span>
+          <span>Manual history snapshot, not a live account balance.</span>
         </div>
 
         <section class="aiplorer-reset-kinds" aria-label="Announcement types">
@@ -132,7 +137,7 @@
               <div class="aiplorer-reset-pulse-calendar__heading">
                 <div>
                   <h4 id="pulse-calendar-heading">30-day activity strip</h4>
-                  <p>One cell per UTC date touched by the rolling 30-day window.</p>
+                  <p data-history-calendar-range>30-day observation window (UTC)</p>
                 </div>
                 <strong><span data-history-30-count>--</span> events</strong>
               </div>
@@ -140,12 +145,23 @@
                 <div class="aiplorer-reset-pulse-calendar__strip" data-history-pulse-strip aria-label="Public reset announcements over the latest 30-day observation window"></div>
               </div>
               <div class="aiplorer-reset-pulse-calendar__legend" aria-hidden="true">
-                <span><i></i> No announcement</span>
+                <span><i></i> No record</span>
                 <span data-kind="usage"><i></i> Usage reset</span>
                 <span data-kind="banked"><i></i> Reset credit</span>
                 <span data-kind="both"><i></i> Both</span>
                 <span data-kind="unclassified"><i></i> Unconfirmed</span>
+                <span data-kind="mixed" hidden data-history-mixed-legend><i></i> Multiple types</span>
               </div>
+              <section class="aiplorer-reset-day" id="reset-day-records" aria-labelledby="reset-day-heading" hidden data-history-day-detail>
+                <div class="aiplorer-reset-day__heading" aria-live="polite" aria-atomic="true">
+                  <h5 id="reset-day-heading" data-history-day-heading></h5>
+                  <span data-history-day-count></span>
+                </div>
+                <p data-history-day-empty hidden>No recorded announcements in this view.</p>
+                <ul data-history-day-list></ul>
+                <p class="aiplorer-reset-day__boundary" data-history-day-boundary hidden></p>
+              </section>
+              <template data-history-record-icon>{{ partial "aiplorer-icon.html" "external-link" }}</template>
             </section>
 
             <section class="aiplorer-reset-rhythm" aria-labelledby="reset-rhythm-heading">

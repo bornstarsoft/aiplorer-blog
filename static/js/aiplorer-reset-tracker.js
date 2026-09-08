@@ -30,6 +30,9 @@
   var historyToggle = root.querySelector("[data-history-toggle]");
   var historyEvents = [];
   var allHistoryEvents = [];
+  var selectedHistoryDay = null;
+  var historyDays = [];
+  var historyCheckedAt = null;
   var activeScope = "all";
   var activeTimeZone = "local";
   var historyTimer = null;
@@ -116,6 +119,69 @@
     ].join("-");
   }
 
+  function eventKindLabel(kind) {
+    return {usage: "Usage reset", banked: "Reset credit", both: "Reset + credit", unclassified: "Type unconfirmed"}[kind] || "Type unconfirmed";
+  }
+
+  function selectHistoryDay(key, focus) {
+    var selected = historyDays.find(function (day) { return day.key === key; });
+    if (!selected) return;
+    selectedHistoryDay = key;
+    historyDays.forEach(function (day) {
+      day.button.setAttribute("aria-pressed", String(day === selected));
+      day.button.tabIndex = day === selected ? 0 : -1;
+    });
+    if (focus) selected.button.focus({preventScroll: true});
+    revealHistoryDay(selected.button);
+
+    var detail = root.querySelector("[data-history-day-detail]");
+    var list = root.querySelector("[data-history-day-list]");
+    detail.hidden = false;
+    setHistoryMetric("[data-history-day-heading]", selected.date.toLocaleDateString("en-US", {
+      year: "numeric", month: "short", day: "numeric", timeZone: "UTC"
+    }) + " (UTC)");
+    setHistoryMetric("[data-history-day-count]", selected.events.length + " announcement" + (selected.events.length === 1 ? "" : "s"));
+    root.querySelector("[data-history-day-empty]").hidden = selected.events.length > 0;
+    list.textContent = "";
+    selected.events.forEach(function (event) {
+      var row = document.createElement("li");
+      var info = document.createElement("div");
+      var type = document.createElement("span");
+      var time = document.createElement("time");
+      var local = document.createElement("small");
+      var link = document.createElement("a");
+      type.className = "aiplorer-reset-type";
+      type.dataset.kind = event.kind;
+      type.textContent = eventKindLabel(event.kind);
+      time.dateTime = event.announcedAt;
+      time.textContent = event.date.toLocaleTimeString("en-GB", {hour: "2-digit", minute: "2-digit", timeZone: "UTC"}) + " UTC";
+      local.textContent = formatLocalWithZone(event.date);
+      info.append(type, time, local);
+      link.href = event.sourceUrl;
+      link.target = "_blank";
+      link.rel = "noopener nofollow";
+      link.title = "Original announcement";
+      link.setAttribute("aria-label", eventKindLabel(event.kind) + " announcement at " + time.textContent);
+      link.appendChild(root.querySelector("[data-history-record-icon]").content.cloneNode(true));
+      row.append(info, link);
+      list.appendChild(row);
+    });
+    var cutoff = new Date(allHistoryEvents[0].date.getTime() - 30 * 86400000);
+    var boundary = root.querySelector("[data-history-day-boundary]");
+    boundary.hidden = key !== utcDateKey(cutoff);
+    boundary.textContent = "Window starts at " + cutoff.toLocaleTimeString("en-GB", {
+      hour: "2-digit", minute: "2-digit", second: "2-digit", timeZone: "UTC"
+    }) + " UTC on this date; earlier records are outside this window.";
+  }
+
+  function revealHistoryDay(button) {
+    var scroll = historyPulseStrip.parentElement;
+    var buttonRect = button.getBoundingClientRect();
+    var scrollRect = scroll.getBoundingClientRect();
+    if (buttonRect.right > scrollRect.right) scroll.scrollLeft += buttonRect.right - scrollRect.right + 4;
+    if (buttonRect.left < scrollRect.left) scroll.scrollLeft -= scrollRect.left - buttonRect.left + 4;
+  }
+
   function renderPulseStrip() {
     if (!historyPulseStrip || !allHistoryEvents.length) {
       return;
@@ -132,12 +198,18 @@
     }, {});
 
     historyPulseStrip.textContent = "";
+    historyDays = [];
+    setHistoryMetric("[data-history-calendar-range]", new Date(cutoff).toLocaleDateString("en-US", {
+      month: "short", day: "numeric", timeZone: "UTC"
+    }) + " - " + latest.toLocaleDateString("en-US", {
+      year: "numeric", month: "short", day: "numeric", timeZone: "UTC"
+    }) + " (UTC)");
     for (var offset = 30; offset >= 0; offset -= 1) {
       var date = new Date(latestDay - offset * 86400000);
       var key = utcDateKey(date);
       var dailyEvents = counts[key] || [];
       var count = dailyEvents.length;
-      var cell = document.createElement("span");
+      var cell = document.createElement("button");
       var weekday = document.createElement("small");
       var day = document.createElement("strong");
       var pulse = document.createElement("i");
@@ -148,10 +220,15 @@
       });
 
       cell.className = "aiplorer-reset-pulse-calendar__day";
+      cell.type = "button";
+      cell.dataset.historyDay = key;
+      cell.setAttribute("aria-controls", "reset-day-records");
+      cell.setAttribute("aria-pressed", "false");
+      cell.tabIndex = -1;
       if (count > 0) {
         cell.classList.add("has-event");
         var kinds = Array.from(new Set(dailyEvents.map(function (event) { return event.kind; })));
-        cell.dataset.kind = kinds.length === 1 ? kinds[0] : "both";
+        cell.dataset.kind = kinds.length === 1 ? kinds[0] : "mixed";
       }
       if (count && historyEvents.length && key === utcDateKey(historyEvents[0].date)) {
         cell.classList.add("is-latest");
@@ -160,7 +237,7 @@
         "aria-label",
         dateLabel + ": " + count + " announcement" + (count === 1 ? "" : "s") +
         (count ? " (" + dailyEvents.map(function (event) {
-          return {usage:"usage reset",banked:"reset credit",both:"reset + credit",unclassified:"type unconfirmed"}[event.kind];
+          return eventKindLabel(event.kind);
         }).join(", ") + ")" : "")
       );
       cell.title = cell.getAttribute("aria-label");
@@ -173,8 +250,30 @@
       cell.appendChild(weekday);
       cell.appendChild(day);
       cell.appendChild(pulse);
+      cell.addEventListener("click", function (event) {
+        selectHistoryDay(event.currentTarget.dataset.historyDay, false);
+      });
+      cell.addEventListener("keydown", function (event) {
+        var index = historyDays.findIndex(function (day) { return day.key === event.currentTarget.dataset.historyDay; });
+        var next;
+        if (event.key === "ArrowRight") next = Math.min(index + 1, historyDays.length - 1);
+        if (event.key === "ArrowLeft") next = Math.max(index - 1, 0);
+        if (event.key === "Home") next = 0;
+        if (event.key === "End") next = historyDays.length - 1;
+        if (next !== undefined) {
+          event.preventDefault();
+          selectHistoryDay(historyDays[next].key, true);
+        }
+      });
       historyPulseStrip.appendChild(cell);
+      historyDays.push({key: key, date: date, events: dailyEvents, button: cell});
     }
+    if (!selectedHistoryDay) {
+      var latestInWindow = historyEvents.find(function (event) { return event.date.getTime() >= cutoff; });
+      selectedHistoryDay = utcDateKey(latestInWindow ? latestInWindow.date : latest);
+    }
+    root.querySelector("[data-history-mixed-legend]").hidden = !historyDays.some(function (day) { return day.button.dataset.kind === "mixed"; });
+    selectHistoryDay(selectedHistoryDay, false);
   }
 
   function renderRhythm(latestInterval, recentMedian, fullMedian) {
@@ -513,6 +612,7 @@
   }
 
   function renderHistoryElapsed() {
+    renderHistoryChecked();
     if (!allHistoryEvents.length) {
       return;
     }
@@ -535,6 +635,15 @@
       node.textContent = formatDuration(Math.max(0, Date.now() - Date.parse(node.dataset.kindElapsed)), true) + " since announcement";
     });
     renderCurrentTimeMarker();
+  }
+
+  function renderHistoryChecked() {
+    var age = root.querySelector("[data-history-checked-age]");
+    if (!age || !historyCheckedAt || Number.isNaN(historyCheckedAt.getTime())) return;
+    var elapsed = Date.now() - historyCheckedAt.getTime();
+    age.hidden = false;
+    age.textContent = elapsed < 0 ? "Check time is ahead of this device's clock" :
+      elapsed < 60000 ? "Checked less than a minute ago" : "Checked " + formatDuration(elapsed, true) + " ago";
   }
 
   function renderEventKinds() {
@@ -561,6 +670,10 @@
     }
     try {
       var payload = JSON.parse(historyDataElement.textContent);
+      historyCheckedAt = new Date(payload.snapshotAt);
+      if (!Number.isNaN(historyCheckedAt.getTime())) {
+        setHistoryMetric("[data-history-checked-local]", formatLocalWithZone(historyCheckedAt));
+      }
       historyEvents = (payload.events || [])
         .map(function (event) {
           return {
@@ -727,6 +840,10 @@
     });
   });
   initializeHistory();
+  window.addEventListener("resize", function () {
+    var selected = historyDays.find(function (day) { return day.key === selectedHistoryDay; });
+    if (selected) revealHistoryDay(selected.button);
+  });
   refreshStatuses();
   historyTimer = window.setInterval(renderHistoryElapsed, 1000);
 

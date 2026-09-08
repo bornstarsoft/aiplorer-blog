@@ -116,6 +116,32 @@ Controls are hidden without JavaScript; the complete static timeline remains.
 Source rechecked during this follow-up: 51 public API entries, no added source
 URLs. This change does not add predictions or alter the historical snapshot.
 
+### Date Inspection And Check Timestamp
+
+The 30-day activity strip now opens a date-specific record list on click or tap.
+Rows show the announcement type, UTC clock time, full browser-local date/time,
+and the original record link. The list uses exactly the same filtered events
+and rolling cutoff as the calendar count. The first, partial UTC date carries
+its cutoff time; a zero means no recorded announcements in that view, not proof
+that no account reset happened.
+
+The latest date is selected initially and kept visible in the horizontally
+scrollable strip, including on mobile and after resizing. Dates have a single
+keyboard tab stop with Left/Right and Home/End navigation. Mobile date targets
+are at least 44px wide. Changing announcement type preserves the selected date
+and recalculates its records. Distinct types on the same day are marked Multiple
+types rather than misrepresented as a single Reset + credit announcement.
+
+The elapsed-clock label no longer says only Live. Beside it, Records checked
+shows the saved `snapshotAt` in browser-local time and its elapsed age. This
+does not fetch new history or advance the snapshot timestamp. A device clock
+earlier than the snapshot gets an explicit clock warning instead of a false
+just-checked message. Without JavaScript, the UTC check timestamp and complete
+static timeline remain available, and date-inspection controls stay hidden.
+
+This interface update does not add or reclassify events, refresh source
+verification, access accounts, or enable automatic history updates.
+
 The public page presents the snapshot as the Aiplorer Reset Pulse. The default
 view favors fast comparison over a wall of metric cards:
 

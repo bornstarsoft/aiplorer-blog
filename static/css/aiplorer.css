@@ -7680,8 +7680,8 @@ main#main-content:has(> .aiplorer-content-article) {
 
 .aiplorer-reset-pulse-calendar__strip {
   display: grid;
-  min-width: 43.5rem;
-  grid-template-columns: repeat(31, minmax(1.15rem, 1fr));
+  min-width: 48rem;
+  grid-template-columns: repeat(31, minmax(1.5rem, 1fr));
   gap: 0.18rem;
 }
 
@@ -7696,6 +7696,60 @@ main#main-content:has(> .aiplorer-content-article) {
   gap: 0.12rem;
   background: #f3f6f7;
   color: #7b8b93;
+  font: inherit;
+  cursor: pointer;
+}
+
+.aiplorer-reset-pulse-calendar__day[aria-pressed="true"] {
+  outline: 2px solid #172832;
+  outline-offset: -2px;
+}
+
+.aiplorer-reset-pulse-calendar__day:focus-visible {
+  outline: 3px solid #285da2;
+  outline-offset: -3px;
+}
+
+.aiplorer-reset-history__freshness {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.25rem;
+  margin-top: 0.85rem;
+  color: var(--aiplorer-muted);
+  font-size: 0.74rem;
+  line-height: 1.6;
+}
+
+.aiplorer-reset-history__freshness time { color: var(--aiplorer-ink); font-weight: 700; }
+.aiplorer-reset-history__freshness strong { display: block; color: var(--aiplorer-ink); }
+.aiplorer-reset-history__freshness [hidden] { display: none; }
+
+.aiplorer-reset-day {
+  margin-top: 1rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--aiplorer-line);
+  min-height: 7.5rem;
+}
+
+.aiplorer-reset-day__heading { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.35rem 1rem; }
+.aiplorer-reset-day__heading h5 { margin: 0; font-size: 0.82rem; color: var(--aiplorer-ink); }
+.aiplorer-reset-day__heading > span, .aiplorer-reset-day > p { font-size: 0.7rem; color: var(--aiplorer-muted); }
+.aiplorer-reset-day ul { list-style: none; padding: 0; margin: 0.5rem 0 0; }
+.aiplorer-reset-day li { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; padding: 0.5rem 0; }
+.aiplorer-reset-day li + li { border-top: 1px solid var(--aiplorer-line); }
+.aiplorer-reset-day li > div { display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem 0.5rem; min-width: 0; }
+.aiplorer-reset-day time { font-size: 0.8rem; font-weight: 750; color: var(--aiplorer-ink); }
+.aiplorer-reset-day small { flex-basis: 100%; font-size: 0.68rem; color: var(--aiplorer-muted); }
+.aiplorer-reset-day a { display: inline-flex; flex: 0 0 2.75rem; width: 2.75rem; height: 2.75rem; justify-content: center; align-items: center; color: #285da2; }
+.aiplorer-reset-day a:hover { background: #e8f0fc; }
+.aiplorer-reset-day a:focus-visible { outline: 2px solid #285da2; outline-offset: -2px; }
+.aiplorer-reset-day a .aiplorer-icon { width: 1rem; height: 1rem; }
+.aiplorer-reset-day__boundary { line-height: 1.5; }
+
+@media (max-width: 640px) {
+  .aiplorer-reset-pulse-calendar__strip { min-width: 91rem; grid-template-columns: repeat(31, minmax(2.75rem, 1fr)); }
+  .aiplorer-reset-pulse-calendar__day small { font-size: 0.62rem; }
+  .aiplorer-reset-pulse-calendar__day strong { font-size: 0.8rem; }
 }
 
 .aiplorer-reset-pulse-calendar__day small,
@@ -7751,6 +7805,8 @@ main#main-content:has(> .aiplorer-content-article) {
   align-items: center;
   gap: 0.28rem;
 }
+
+.aiplorer-reset-pulse-calendar__legend [hidden] { display: none; }
 
 .aiplorer-reset-pulse-calendar__legend i {
   width: 0.45rem;
@@ -8299,11 +8355,13 @@ main#main-content:has(> .aiplorer-content-article) {
 .aiplorer-reset-pulse-calendar__day[data-kind="banked"] { background: #e8f0fc; color: #204f8b; border-color: #87a9d5; }
 .aiplorer-reset-pulse-calendar__day[data-kind="both"] { background: #fff0df; color: #93470f; border-color: #cc966d; }
 .aiplorer-reset-pulse-calendar__day[data-kind="unclassified"] { background: #eef0f2; color: #545e68; border-color: #a6afb6; }
+.aiplorer-reset-pulse-calendar__day[data-kind="mixed"] { background: #f0eaf5; color: #684176; border-color: #b49cbe; }
 .aiplorer-reset-pulse-calendar__day[data-kind] i { background: currentColor; box-shadow: none; }
 .aiplorer-reset-pulse-calendar__legend [data-kind="usage"] i { background: #14766e; }
 .aiplorer-reset-pulse-calendar__legend [data-kind="banked"] i { background: #285da2; }
 .aiplorer-reset-pulse-calendar__legend [data-kind="both"] i { background: #a14f12; }
 .aiplorer-reset-pulse-calendar__legend [data-kind="unclassified"] i { background: #636d77; }
+.aiplorer-reset-pulse-calendar__legend [data-kind="mixed"] i { background: #684176; }
 
 .aiplorer-reset-kind {
   padding: 1rem;
