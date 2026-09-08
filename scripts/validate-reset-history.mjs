@@ -20,15 +20,30 @@ function runSelfTest() {
       {
         announcedAt: "2026-08-11T00:00:00.000Z",
         sourceUrl: "https://x.com/example/status/2",
+        kind: "usage",
       },
       {
         announcedAt: "2026-08-10T00:00:00.000Z",
         sourceUrl: "https://x.com/example/status/1",
+        kind: "banked",
       },
     ],
   };
 
   validateResetHistory(valid);
+
+  for (const kind of ["usage", "banked", "both", "unclassified"]) {
+    const typed = structuredClone(valid);
+    typed.events[0].kind = kind;
+    validateResetHistory(typed);
+  }
+  for (const kind of [undefined, "regular", "predicted"]) {
+    const invalidKind = structuredClone(valid);
+    invalidKind.events[0].kind = kind;
+    let rejected = false;
+    try { validateResetHistory(invalidKind); } catch { rejected = true; }
+    if (!rejected) throw new Error(`Self-test accepted invalid kind: ${kind}`);
+  }
 
   const invalid = structuredClone(valid);
   invalid.events[1].sourceUrl = invalid.events[0].sourceUrl;

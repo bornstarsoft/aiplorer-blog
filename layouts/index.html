@@ -44,7 +44,7 @@
             <span><i aria-hidden="true"></i> Codex Reset Pulse</span>
             <strong data-home-reset-elapsed aria-live="off">Calculating elapsed time</strong>
             <small>
-              since latest observed reset &middot; checked
+              since {{ partial "reset-event-label.html" $latestReset.kind | lower }} announcement &middot; checked
               <time datetime="{{ $resetHistory.snapshotAt }}">{{ time.Format "Jan 2" $resetHistory.snapshotAt }}</time>
             </small>
             <b aria-hidden="true">&rarr;</b>
@@ -120,10 +120,10 @@
               <span class="aiplorer-home-reset-pulse__live"><i aria-hidden="true"></i> Elapsed now</span>
             </div>
             <p class="aiplorer-kicker">Codex Reset Pulse</p>
-            <h2 id="home-reset-pulse-heading">Latest observed reset</h2>
+            <h2 id="home-reset-pulse-heading">Latest {{ partial "reset-event-label.html" $latestReset.kind | lower }}</h2>
             <p class="aiplorer-home-reset-pulse__elapsed">
               <strong data-home-reset-elapsed aria-live="off">Calculating elapsed time</strong>
-              <span>since the latest public record</span>
+              <span>since the latest announcement{{ if eq $latestReset.kind "banked" }}; saved for later use{{ end }}</span>
             </p>
             <dl class="aiplorer-home-reset-pulse__facts">
               <div>

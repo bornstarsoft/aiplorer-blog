@@ -1,0 +1,2 @@
+{{- $labels := dict "usage" "Usage reset" "banked" "Reset credit" "both" "Reset + credit" "unclassified" "Type unconfirmed" -}}
+{{- return (index $labels . | default "Type unconfirmed") -}}

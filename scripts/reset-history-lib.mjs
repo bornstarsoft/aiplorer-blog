@@ -90,6 +90,9 @@ export function validateResetHistory(history) {
     if (!isSourcePostUrl(event.sourceUrl)) {
       fail(`${prefix}.sourceUrl must be a direct HTTPS X/Twitter status URL.`);
     }
+    if (!["usage", "banked", "both", "unclassified"].includes(event.kind)) {
+      fail(`${prefix}.kind must be usage, banked, both, or unclassified.`);
+    }
 
     if (announcedAt) {
       const timestamp = Date.parse(announcedAt);

@@ -17,7 +17,7 @@ const trackerPath = resolve(repositoryRoot, "content/ai-tools/reset-tracker.md")
 function usage() {
   console.log(`Usage:
   node scripts/update-reset-history.mjs --mark-checked [--checked-at <ISO-UTC>] [--dry-run]
-  node scripts/update-reset-history.mjs --at <ISO-UTC> --source <X-status-URL> [--checked-at <ISO-UTC>] [--dry-run]
+  node scripts/update-reset-history.mjs --at <ISO-UTC> --source <X-status-URL> --kind <usage|banked|both|unclassified> [--checked-at <ISO-UTC>] [--dry-run]
 
 Use --mark-checked after a source review finds no new reset record.`);
 }
@@ -27,6 +27,7 @@ function parseArguments(argv) {
   const valueOptions = new Map([
     ["--at", "announcedAt"],
     ["--source", "sourceUrl"],
+    ["--kind", "kind"],
     ["--checked-at", "checkedAt"],
   ]);
 
@@ -72,12 +73,12 @@ try {
     process.exit(0);
   }
 
-  const addingEvent = Boolean(options.announcedAt || options.sourceUrl);
+  const addingEvent = Boolean(options.announcedAt || options.sourceUrl || options.kind);
   if (options.markChecked === addingEvent) {
     throw new Error("Choose either --mark-checked or the --at/--source pair.");
   }
-  if (addingEvent && (!options.announcedAt || !options.sourceUrl)) {
-    throw new Error("A new record requires both --at and --source.");
+  if (addingEvent && (!options.announcedAt || !options.sourceUrl || !options.kind)) {
+    throw new Error("A new record requires --at, --source, and --kind.");
   }
   if (addingEvent && !isSourcePostUrl(options.sourceUrl)) {
     throw new Error("--source must be a direct HTTPS X/Twitter status URL.");
@@ -103,7 +104,7 @@ try {
       throw new Error(`A record already uses source URL ${options.sourceUrl}.`);
     }
 
-    history.events.push({ announcedAt, sourceUrl: options.sourceUrl });
+    history.events.push({ announcedAt, sourceUrl: options.sourceUrl, kind: options.kind });
     history.events.sort((left, right) => Date.parse(right.announcedAt) - Date.parse(left.announcedAt));
   }
 

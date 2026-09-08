@@ -510,7 +510,28 @@
       : hours > 0
         ? hours + "h " + minutes + "m since the latest record"
         : minutes + "m " + seconds + "s since the latest record";
+    root.querySelectorAll("[data-kind-elapsed]").forEach(function (node) {
+      node.textContent = formatDuration(Math.max(0, Date.now() - Date.parse(node.dataset.kindElapsed)), true) + " since announcement";
+    });
     renderCurrentTimeMarker();
+  }
+
+  function renderEventKinds() {
+    root.querySelectorAll("[data-kind-median]").forEach(function (node) {
+      var events = historyEvents.filter(function (event) { return event.kind === node.dataset.kindMedian; });
+      var intervals = historyIntervals(events);
+      node.textContent = intervals.length ? formatDuration(median(intervals), true) : "Not enough records";
+    });
+    root.querySelectorAll("[data-kind-local]").forEach(function (node) {
+      node.textContent = formatLocalWithZone(new Date(node.dateTime));
+    });
+    var credits = historyEvents.filter(function (event) { return event.kind === "banked" || event.kind === "both"; });
+    var intervals = historyIntervals(credits);
+    root.querySelectorAll("[data-credit-event]").forEach(function (row, index) {
+      row.querySelector("[data-credit-local]").textContent = formatLocalWithZone(new Date(row.dataset.creditEvent));
+      row.querySelector("[data-credit-interval]").textContent = index < intervals.length
+        ? formatDuration(intervals[index], true) : "First recorded credit";
+    });
   }
 
   function initializeHistory() {
@@ -524,6 +545,7 @@
           return {
             announcedAt: event.announcedAt,
             sourceUrl: event.sourceUrl,
+            kind: event.kind,
             date: new Date(event.announcedAt)
           };
         })
@@ -576,6 +598,7 @@
     renderIntervalChart(intervals);
     renderDistribution(historyWeekdayChart, weekdays);
     renderHistoryTimeline(intervals);
+    renderEventKinds();
     renderHistoryElapsed();
   }
 

@@ -20,7 +20,7 @@
         <dl class="aiplorer-reset-tracker__facts" aria-label="AI Reset Tracker summary">
           <div>
             <dt>{{ len $history.events }} records</dt>
-            <dd>Observed between September 2025 and August 2026</dd>
+            <dd>Observed between {{ time.Format "January 2006" $history.coverageStartsAt }} and {{ time.Format "January 2006" (index $history.events 0).announcedAt }}</dd>
           </div>
           <div>
             <dt>Checked {{ time.Format "Jan 2, 2006" $history.snapshotAt }}</dt>
@@ -39,12 +39,13 @@
         <div class="aiplorer-reset-history__heading">
           <div>
             <p class="aiplorer-kicker">Aiplorer Reset Pulse</p>
-            <h2 id="public-history-heading">The latest reset signal, then the bigger pattern</h2>
+            <h2 id="public-history-heading">Usage resets and reset credits, at a glance</h2>
             <p>
               {{ len $history.events }} public observations from
-              <time datetime="{{ $history.coverageStartsAt }}">September 2025</time> through
-              <time datetime="{{ (index $history.events 0).announcedAt }}">August 2026</time>.
-              Start with elapsed time, then compare recent activity with the full recorded history.
+              <time datetime="{{ $history.coverageStartsAt }}">{{ time.Format "January 2006" $history.coverageStartsAt }}</time> through
+              <time datetime="{{ (index $history.events 0).announcedAt }}">{{ time.Format "January 2006" (index $history.events 0).announcedAt }}</time>.
+              A usage reset refills limits; a banked credit is saved for later redemption.
+              Times mark public announcements, including announced rollouts, not individual account delivery.
             </p>
           </div>
         </div>
@@ -52,7 +53,7 @@
         <div class="aiplorer-reset-history__latest">
           <div class="aiplorer-reset-history__latest-copy">
             <div class="aiplorer-reset-history__latest-label">
-              <p class="aiplorer-kicker">Time since latest observed reset</p>
+              <p class="aiplorer-kicker">Since latest announcement: {{ partial "reset-event-label.html" (index $history.events 0).kind }}</p>
               <span class="aiplorer-reset-history__live"><i aria-hidden="true"></i> Live</span>
             </div>
             <h3 data-history-elapsed-summary aria-live="off">Calculating elapsed time</h3>
@@ -64,7 +65,7 @@
               Live elapsed time only. It does not count down to another reset.
             </p>
           </div>
-          <div class="aiplorer-reset-history__elapsed-clock" aria-label="Time elapsed since latest public reset announcement">
+          <div class="aiplorer-reset-history__elapsed-clock" aria-label="Time elapsed since latest public announcement">
             <div><strong data-history-elapsed-days>--</strong><span>days</span></div>
             <div><strong data-history-elapsed-hours>--</strong><span>hours</span></div>
             <div><strong data-history-elapsed-minutes>--</strong><span>minutes</span></div>
@@ -72,10 +73,48 @@
           </div>
         </div>
 
+        <section class="aiplorer-reset-kinds" aria-label="Announcement types">
+          {{ range $kind := slice "usage" "banked" "both" "unclassified" }}
+            {{ $events := where $history.events "kind" $kind }}
+            <article class="aiplorer-reset-kind" data-reset-kind="{{ $kind }}">
+              <h3>{{ partial "reset-event-label.html" $kind }}</h3>
+              <p class="aiplorer-reset-kind__count">{{ len $events }} <span>announcements</span></p>
+              <p>{{ index (dict "usage" "Usage refill only" "banked" "Saved credit only" "both" "Refill and saved credit together" "unclassified" "Insufficient detail to assign a type") $kind }}</p>
+              {{ with index $events 0 }}
+                <strong data-kind-elapsed="{{ .announcedAt }}">Latest {{ time.Format "Jan 2, 2006" .announcedAt }}</strong>
+                <time datetime="{{ .announcedAt }}" data-kind-local>{{ time.Format "Jan 2, 2006, 15:04 UTC" .announcedAt }}</time>
+              {{ end }}
+              <small>Median interval: <b data-kind-median="{{ $kind }}">--</b></small>
+            </article>
+          {{ end }}
+        </section>
+        <p class="aiplorer-reset-kind-note">Each announcement appears in one category. Reset + credit is counted once. Counts are public announcements, not credits available in your account.</p>
+
+        <section class="aiplorer-reset-credit-history" aria-labelledby="credit-history-heading">
+          <h3 id="credit-history-heading">When were reset credits announced?</h3>
+          <p>Includes credit-only and reset + credit announcements. Eligibility and delivery can vary.</p>
+          <div class="aiplorer-reset-window-table-wrap" tabindex="0" role="region" aria-label="Reset credit history table">
+            <table class="aiplorer-reset-window-table">
+              <caption>Reset credit history</caption>
+              <thead><tr><th scope="col">Announced (UTC)</th><th scope="col">Type</th><th scope="col">Since prior credit announcement</th><th scope="col">Record</th></tr></thead>
+              <tbody>
+                {{ range where $history.events "kind" "in" (slice "banked" "both") }}
+                  <tr data-credit-event="{{ .announcedAt }}">
+                    <th scope="row"><time datetime="{{ .announcedAt }}">{{ time.Format "Jan 2, 2006, 15:04" .announcedAt }}</time><small data-credit-local></small></th>
+                    <td><span class="aiplorer-reset-type" data-kind="{{ .kind }}">{{ partial "reset-event-label.html" .kind }}</span></td>
+                    <td data-credit-interval>--</td>
+                    <td><a href="{{ .sourceUrl }}" target="_blank" rel="noopener nofollow" aria-label="Original credit announcement {{ time.Format "Jan 2, 2006" .announcedAt }}" title="Original announcement">{{ partial "aiplorer-icon.html" "external-link" }}</a></td>
+                  </tr>
+                {{ end }}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
         <section class="aiplorer-reset-pulse" aria-labelledby="reset-pulse-heading">
           <div class="aiplorer-reset-pulse__heading">
             <div>
-              <p class="aiplorer-kicker">Visual cadence</p>
+              <p class="aiplorer-kicker">All announcement types combined</p>
               <h3 id="reset-pulse-heading">A 30-day pulse and three interval anchors</h3>
             </div>
             <span>Window ends at the latest observed announcement</span>
@@ -226,6 +265,7 @@
                 <li{{ if ge $index 6 }} class="aiplorer-reset-history-event--additional"{{ end }} data-history-event data-history-index="{{ $index }}">
                   <span class="aiplorer-reset-history__event-index">{{ printf "%02d" (add $index 1) }}</span>
                   <div>
+                    <span class="aiplorer-reset-type" data-kind="{{ $event.kind }}">{{ partial "reset-event-label.html" $event.kind }}</span>
                     <time datetime="{{ $event.announcedAt }}" data-history-event-time>
                       {{ time.Format "Jan 2, 2006, 15:04 UTC" $event.announcedAt }}
                     </time>

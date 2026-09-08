@@ -1,9 +1,9 @@
 ---
 title: "Codex Reset Pulse"
-description: "See elapsed time since the latest observed Codex reset, compare recent activity with historical intervals, and inspect public records without a forecast."
+description: "Track Codex usage resets and banked reset credits, with separate histories, elapsed times, and public announcement dates."
 type: "ai-tools"
 layout: "reset-tracker"
-lastmod: "2026-08-31"
+lastmod: "2026-09-08"
 ---
 
 This tracker summarizes observed public Codex reset activity. It does not
