@@ -88,9 +88,33 @@ Credit counts are not per-account quantities or universally available grants.
 The page shows disjoint category totals, latest elapsed times, and medians of
 consecutive announcements within each category. A separate credit table includes
 `banked` and `both` once each (7 announcements); its gaps use that combined credit
-series. The existing pulse, hourly chart, and window statistics remain explicitly
-labeled as all announcement types combined. Homepage wording follows the latest
+series. Homepage wording follows the latest
 event type, so a banked grant is not presented as an automatic refill.
+
+### Type Views For Charts And Timeline
+
+The All / Usage resets / Reset credits controls apply to the activity strip,
+window statistics, hourly and weekday charts, recent intervals, and detailed
+timeline. Usage includes `usage` and `both` (44 records); credits include `banked`
+and `both` (7). All includes every record once (51), including unclassified
+records. The two specific views overlap at `both` and must not be added together
+as an overall event total. The four overview cards remain disjoint categories.
+
+The latest announcement clock, overview cards and dedicated credit table remain
+global. All rolling windows end at the same latest overall announcement timestamp,
+so changing views does not silently change the comparison period. The activity
+strip applies the same rolling cutoff as its event count, including the partial
+UTC date at the start. Calendar colors and text tooltips identify event types.
+
+The hourly chart keeps 24 fixed UTC buckets; switching time zones changes labels
+only, while switching type views recalculates counts. The axis reference date
+remains the latest overall announcement. The selected time zone survives type
+changes. Missing intervals display Unavailable rather than a misleading zero.
+Timeline expansion resets on type changes and exposes only matching records.
+Controls are hidden without JavaScript; the complete static timeline remains.
+
+Source rechecked during this follow-up: 51 public API entries, no added source
+URLs. This change does not add predictions or alter the historical snapshot.
 
 The public page presents the snapshot as the Aiplorer Reset Pulse. The default
 view favors fast comparison over a wall of metric cards:

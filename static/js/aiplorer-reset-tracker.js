@@ -29,6 +29,9 @@
   var historyWeekdayChart = root.querySelector("[data-history-weekday-chart]");
   var historyToggle = root.querySelector("[data-history-toggle]");
   var historyEvents = [];
+  var allHistoryEvents = [];
+  var activeScope = "all";
+  var activeTimeZone = "local";
   var historyTimer = null;
   var activeAxisContext = null;
 
@@ -65,7 +68,7 @@
 
   function median(values) {
     if (!values.length) {
-      return 0;
+      return null;
     }
     var sorted = values.slice().sort(function (left, right) {
       return left - right;
@@ -90,7 +93,7 @@
   }
 
   function historyWindow(days) {
-    var latestTime = historyEvents[0].date.getTime();
+    var latestTime = allHistoryEvents[0].date.getTime();
     var cutoff = latestTime - days * 86400000;
     var events = historyEvents.filter(function (event) {
       return event.date.getTime() >= cutoff;
@@ -100,7 +103,7 @@
       count: events.length,
       mean: intervals.length
         ? intervals.reduce(function (total, value) { return total + value; }, 0) / intervals.length
-        : 0,
+        : null,
       median: median(intervals)
     };
   }
@@ -114,15 +117,17 @@
   }
 
   function renderPulseStrip() {
-    if (!historyPulseStrip || !historyEvents.length) {
+    if (!historyPulseStrip || !allHistoryEvents.length) {
       return;
     }
 
-    var latest = historyEvents[0].date;
+    var latest = allHistoryEvents[0].date;
     var latestDay = Date.UTC(latest.getUTCFullYear(), latest.getUTCMonth(), latest.getUTCDate());
-    var counts = historyEvents.reduce(function (result, event) {
+    var cutoff = latest.getTime() - 30 * 86400000;
+    var counts = historyEvents.filter(function (event) { return event.date.getTime() >= cutoff; }).reduce(function (result, event) {
       var key = utcDateKey(event.date);
-      result[key] = (result[key] || 0) + 1;
+      if (!result[key]) result[key] = [];
+      result[key].push(event);
       return result;
     }, {});
 
@@ -130,7 +135,8 @@
     for (var offset = 30; offset >= 0; offset -= 1) {
       var date = new Date(latestDay - offset * 86400000);
       var key = utcDateKey(date);
-      var count = counts[key] || 0;
+      var dailyEvents = counts[key] || [];
+      var count = dailyEvents.length;
       var cell = document.createElement("span");
       var weekday = document.createElement("small");
       var day = document.createElement("strong");
@@ -144,13 +150,18 @@
       cell.className = "aiplorer-reset-pulse-calendar__day";
       if (count > 0) {
         cell.classList.add("has-event");
+        var kinds = Array.from(new Set(dailyEvents.map(function (event) { return event.kind; })));
+        cell.dataset.kind = kinds.length === 1 ? kinds[0] : "both";
       }
-      if (offset === 0) {
+      if (count && historyEvents.length && key === utcDateKey(historyEvents[0].date)) {
         cell.classList.add("is-latest");
       }
       cell.setAttribute(
         "aria-label",
-        dateLabel + ": " + count + " public announcement" + (count === 1 ? "" : "s")
+        dateLabel + ": " + count + " announcement" + (count === 1 ? "" : "s") +
+        (count ? " (" + dailyEvents.map(function (event) {
+          return {usage:"usage reset",banked:"reset credit",both:"reset + credit",unclassified:"type unconfirmed"}[event.kind];
+        }).join(", ") + ")" : "")
       );
       cell.title = cell.getAttribute("aria-label");
       weekday.textContent = date.toLocaleDateString("en-US", {
@@ -168,15 +179,19 @@
 
   function renderRhythm(latestInterval, recentMedian, fullMedian) {
     var values = [latestInterval, recentMedian, fullMedian];
-    var maximum = Math.max.apply(null, values.concat([1]));
+    var maximum = Math.max.apply(null, values.filter(Number.isFinite).concat([1]));
     ["latest", "recent", "full"].forEach(function (name, index) {
       var fill = root.querySelector('[data-history-rhythm-fill="' + name + '"]');
       if (fill) {
-        fill.style.width = Math.max(4, (values[index] / maximum) * 100) + "%";
+        fill.style.width = (Number.isFinite(values[index]) ? Math.max(4, (values[index] / maximum) * 100) : 0) + "%";
       }
     });
 
-    if (!historyRhythmRead || !fullMedian) {
+    if (!historyRhythmRead) {
+      return;
+    }
+    if (!Number.isFinite(recentMedian) || !Number.isFinite(fullMedian) || !fullMedian) {
+      historyRhythmRead.textContent = "Not enough announcements in this window to compare intervals.";
       return;
     }
     var difference = Math.round(Math.abs(recentMedian / fullMedian - 1) * 100);
@@ -275,13 +290,13 @@
   }
 
   function axisContext(mode) {
-    var referenceDate = historyEvents[0].date;
+    var referenceDate = allHistoryEvents[0].date;
     if (mode === "utc") {
       return {
         offsetMinutes: 0,
         label: "UTC",
-        note: "The same " + historyEvents.length +
-          " UTC buckets. Bar heights stay fixed across every view."
+        note: historyEvents.length +
+          " selected records in 24 UTC buckets. Changing the time zone shifts labels only."
       };
     }
     if (mode === "los-angeles") {
@@ -290,8 +305,8 @@
       return {
         offsetMinutes: laOffset,
         label: "Los Angeles time",
-        note: "The same " + historyEvents.length +
-          " UTC buckets. Only the axis shifts to Los Angeles using " + laAbbreviation +
+        note: historyEvents.length +
+          " selected records in 24 UTC buckets. Only the axis shifts to Los Angeles using " + laAbbreviation +
           " (" + formatUtcOffset(laOffset) + "), the offset on the latest record date."
       };
     }
@@ -306,16 +321,17 @@
     return {
       offsetMinutes: localOffset,
       label: "your browser time",
-      note: "The same " + historyEvents.length +
-        " UTC buckets. Only the axis shifts to " + localZone + " (" +
+      note: historyEvents.length +
+        " selected records in 24 UTC buckets. Only the axis shifts to " + localZone + " (" +
         formatUtcOffset(localOffset) + ")."
     };
   }
 
   function renderTimeOfDay(mode) {
-    if (!historyHourStrip || !historyEvents.length) {
+    if (!historyHourStrip || !allHistoryEvents.length) {
       return;
     }
+    activeTimeZone = mode;
 
     var counts = Array.from({ length: 24 }, function () { return 0; });
     historyEvents.forEach(function (event) {
@@ -376,8 +392,8 @@
       "Fixed UTC hourly distribution with axis labels shown in " + context.label
     );
     historyHourInsight.textContent =
-      "Strongest historical band: " + strongestLabel + " with " + strongest.count +
-      " records in " + context.label + ". Historical distribution only, not a forecast.";
+      historyEvents.length ? "Strongest historical band: " + strongestLabel + " with " + strongest.count +
+      " records in " + context.label + ". Historical distribution only, not a forecast." : "No announcements in this view.";
     historyTimeZoneButtons.forEach(function (button) {
       button.setAttribute(
         "aria-pressed",
@@ -405,7 +421,7 @@
       row.className = "aiplorer-reset-history__distribution-row";
       label.textContent = item.label;
       track.className = "aiplorer-reset-history__distribution-track";
-      fill.style.width = Math.max(3, (item.value / maximum) * 100) + "%";
+      fill.style.width = (item.value ? Math.max(3, (item.value / maximum) * 100) : 0) + "%";
       track.appendChild(fill);
       value.textContent = String(item.value);
       row.setAttribute("aria-label", item.label + ": " + item.value + " announcements");
@@ -454,12 +470,16 @@
 
   function renderHistoryTimeline(intervals) {
     var eventRows = Array.prototype.slice.call(root.querySelectorAll("[data-history-event]"));
-    eventRows.forEach(function (row, index) {
+    root.classList.remove("is-history-expanded");
+    eventRows.forEach(function (row) {
       var timeElement = row.querySelector("[data-history-event-time]");
       var localElement = row.querySelector("[data-history-event-local]");
       var intervalElement = row.querySelector("[data-history-event-interval]");
-      var event = historyEvents[index];
-      if (!event) {
+      var event = allHistoryEvents[Number(row.dataset.historyIndex)];
+      var index = historyEvents.indexOf(event);
+      row.hidden = index < 0;
+      row.classList.toggle("aiplorer-reset-history-event--additional", index >= 6);
+      if (index < 0) {
         return;
       }
       timeElement.textContent = event.date.toLocaleString("en-US", {
@@ -473,29 +493,30 @@
       }) + " UTC";
       localElement.textContent = formatLocalWithZone(event.date);
       intervalElement.textContent = index < intervals.length
-        ? formatDuration(intervals[index], true) + " after prior"
+        ? formatDuration(intervals[index], true) + " after prior in view"
         : "Coverage start";
     });
 
-    if (historyToggle && eventRows.length > 6) {
+    if (historyToggle) {
       root.classList.add("is-history-enhanced");
-      historyToggle.hidden = false;
+      historyToggle.hidden = historyEvents.length <= 6;
+      historyToggle.textContent = "Show all " + historyEvents.length;
       historyToggle.setAttribute("aria-expanded", "false");
-      historyToggle.addEventListener("click", function () {
+      historyToggle.onclick = function () {
         var expanded = root.classList.toggle("is-history-expanded");
         historyToggle.setAttribute("aria-expanded", String(expanded));
         historyToggle.textContent = expanded
           ? "Show latest 6"
-          : "Show all " + eventRows.length;
-      });
+          : "Show all " + historyEvents.length;
+      };
     }
   }
 
   function renderHistoryElapsed() {
-    if (!historyEvents.length) {
+    if (!allHistoryEvents.length) {
       return;
     }
-    var elapsed = Math.max(0, Date.now() - historyEvents[0].date.getTime());
+    var elapsed = Math.max(0, Date.now() - allHistoryEvents[0].date.getTime());
     var totalSeconds = Math.floor(elapsed / 1000);
     var days = Math.floor(totalSeconds / 86400);
     var hours = Math.floor((totalSeconds % 86400) / 3600);
@@ -518,14 +539,14 @@
 
   function renderEventKinds() {
     root.querySelectorAll("[data-kind-median]").forEach(function (node) {
-      var events = historyEvents.filter(function (event) { return event.kind === node.dataset.kindMedian; });
+      var events = allHistoryEvents.filter(function (event) { return event.kind === node.dataset.kindMedian; });
       var intervals = historyIntervals(events);
       node.textContent = intervals.length ? formatDuration(median(intervals), true) : "Not enough records";
     });
     root.querySelectorAll("[data-kind-local]").forEach(function (node) {
       node.textContent = formatLocalWithZone(new Date(node.dateTime));
     });
-    var credits = historyEvents.filter(function (event) { return event.kind === "banked" || event.kind === "both"; });
+    var credits = allHistoryEvents.filter(function (event) { return event.kind === "banked" || event.kind === "both"; });
     var intervals = historyIntervals(credits);
     root.querySelectorAll("[data-credit-event]").forEach(function (row, index) {
       row.querySelector("[data-credit-local]").textContent = formatLocalWithZone(new Date(row.dataset.creditEvent));
@@ -559,24 +580,50 @@
       historyEvents = [];
     }
 
-    if (historyEvents.length < 2) {
+    allHistoryEvents = historyEvents;
+    if (!allHistoryEvents.length) {
       return;
     }
+    historyLatestLocal.textContent = formatLocalWithZone(allHistoryEvents[0].date);
+    renderEventKinds();
+    renderHistoryElapsed();
+    root.querySelector("[data-history-scope-controls]").hidden = false;
+    root.querySelectorAll("[data-history-scope]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        activeScope = button.dataset.historyScope;
+        renderHistoryScope();
+      });
+    });
+    renderHistoryScope();
+  }
+
+  function renderHistoryScope() {
+    historyEvents = allHistoryEvents.filter(function (event) {
+      return activeScope === "all" || event.kind === activeScope || event.kind === "both";
+    });
+    var label = {all:"All announcements",usage:"Usage resets",banked:"Reset credits"}[activeScope];
+    setHistoryMetric("[data-history-scope-label]", label);
+    setHistoryMetric("[data-history-timeline-label]", label + " - " + historyEvents.length + " records");
+    setHistoryMetric("[data-history-scope-note]", historyEvents.length + " announcements. " +
+      (activeScope === "all" ? "Each public record is counted once, including unconfirmed types." :
+        "Includes reset + credit announcements once. Unconfirmed types are excluded."));
+    root.querySelectorAll("[data-history-scope]").forEach(function (button) {
+      button.setAttribute("aria-pressed", String(button.dataset.historyScope === activeScope));
+    });
 
     var intervals = historyIntervals(historyEvents);
-    var fullMean = intervals.reduce(function (total, value) { return total + value; }, 0) / intervals.length;
+    var fullMean = intervals.length ? intervals.reduce(function (total, value) { return total + value; }, 0) / intervals.length : null;
     var fullMedian = median(intervals);
     var latest30 = historyWindow(30);
     var latest90 = historyWindow(90);
-    var longest = Math.max.apply(null, intervals);
-    var coverage = historyEvents[0].date.getTime() - historyEvents[historyEvents.length - 1].date.getTime();
+    var longest = intervals.length ? Math.max.apply(null, intervals) : null;
+    var coverage = historyEvents.length ? historyEvents[0].date.getTime() - historyEvents[historyEvents.length - 1].date.getTime() : null;
     var weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(function (label, day) {
       return {
         label: label,
         value: historyEvents.filter(function (event) { return event.date.getUTCDay() === day; }).length
       };
     });
-    historyLatestLocal.textContent = formatLocalWithZone(historyEvents[0].date);
     setHistoryMetric("[data-history-latest-interval]", formatDuration(intervals[0], true));
     setHistoryMetric("[data-history-median]", formatDuration(fullMedian, false));
     setHistoryMetric("[data-history-30-count]", String(latest30.count));
@@ -591,15 +638,13 @@
     setHistoryMetric("[data-history-full-table-median]", formatDuration(fullMedian, false));
     setHistoryMetric("[data-history-mean]", formatDuration(fullMean, false));
     setHistoryMetric("[data-history-longest]", formatDuration(longest, false));
-    setHistoryMetric("[data-history-coverage]", formatDuration(coverage, false) + " of source coverage");
+    setHistoryMetric("[data-history-coverage]", historyEvents.length ? formatDuration(coverage, false) + " of source coverage" : "No records in this view");
     renderPulseStrip();
     renderRhythm(intervals[0], latest30.median, fullMedian);
-    renderTimeOfDay("local");
+    renderTimeOfDay(activeTimeZone);
     renderIntervalChart(intervals);
     renderDistribution(historyWeekdayChart, weekdays);
     renderHistoryTimeline(intervals);
-    renderEventKinds();
-    renderHistoryElapsed();
   }
 
   function statusStateFor(indicator) {

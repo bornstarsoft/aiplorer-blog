@@ -114,11 +114,18 @@
         <section class="aiplorer-reset-pulse" aria-labelledby="reset-pulse-heading">
           <div class="aiplorer-reset-pulse__heading">
             <div>
-              <p class="aiplorer-kicker">All announcement types combined</p>
+              <p class="aiplorer-kicker" data-history-scope-label>All announcements</p>
               <h3 id="reset-pulse-heading">A 30-day pulse and three interval anchors</h3>
             </div>
-            <span>Window ends at the latest observed announcement</span>
+            <span>Windows end {{ time.Format "Jan 2, 2006, 15:04 UTC" (index $history.events 0).announcedAt }}</span>
           </div>
+
+          <div class="aiplorer-reset-scope" role="group" aria-label="Announcement type for charts and timeline" hidden data-history-scope-controls>
+            <button type="button" data-history-scope="all" aria-pressed="true">All</button>
+            <button type="button" data-history-scope="usage" aria-pressed="false">Usage resets</button>
+            <button type="button" data-history-scope="banked" aria-pressed="false">Reset credits</button>
+          </div>
+          <p class="aiplorer-reset-kind-note" data-history-scope-note aria-live="polite">All announcement types combined.</p>
 
           <div class="aiplorer-reset-pulse__grid">
             <section class="aiplorer-reset-pulse-calendar" aria-labelledby="pulse-calendar-heading">
@@ -134,8 +141,10 @@
               </div>
               <div class="aiplorer-reset-pulse-calendar__legend" aria-hidden="true">
                 <span><i></i> No announcement</span>
-                <span><i></i> Announcement</span>
-                <span><i></i> Latest</span>
+                <span data-kind="usage"><i></i> Usage reset</span>
+                <span data-kind="banked"><i></i> Reset credit</span>
+                <span data-kind="both"><i></i> Both</span>
+                <span data-kind="unclassified"><i></i> Unconfirmed</span>
               </div>
             </section>
 
@@ -256,7 +265,7 @@
             <div class="aiplorer-reset-history__timeline-heading">
               <div>
                 <p class="aiplorer-kicker">Observed timeline</p>
-                <h3 id="reset-history-list-heading">Latest public records</h3>
+                <h3 id="reset-history-list-heading" data-history-timeline-label>Latest public records</h3>
               </div>
               <button type="button" data-history-toggle hidden>Show all {{ len $history.events }}</button>
             </div>

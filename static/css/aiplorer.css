@@ -7759,14 +7759,6 @@ main#main-content:has(> .aiplorer-content-article) {
   background: #dbe3e6;
 }
 
-.aiplorer-reset-pulse-calendar__legend span:nth-child(2) i {
-  background: var(--aiplorer-coral);
-}
-
-.aiplorer-reset-pulse-calendar__legend span:nth-child(3) i {
-  background: var(--aiplorer-teal);
-}
-
 .aiplorer-reset-rhythm {
   border-top: 3px solid var(--aiplorer-teal);
 }
@@ -8276,6 +8268,42 @@ main#main-content:has(> .aiplorer-content-article) {
   gap: 0.8rem;
   margin-top: 1.5rem;
 }
+
+.aiplorer-reset-scope {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  width: fit-content;
+  max-width: 100%;
+  padding: 0.25rem;
+  margin-top: 1rem;
+  border: 1px solid var(--aiplorer-line);
+  border-radius: 6px;
+  background: var(--aiplorer-soft);
+}
+.aiplorer-reset-scope[hidden], .aiplorer-reset-history__timeline li[hidden] { display: none; }
+.aiplorer-reset-scope button {
+  padding: 0.6rem 0.8rem;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--aiplorer-ink);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 750;
+  cursor: pointer;
+}
+.aiplorer-reset-scope button[aria-pressed="true"] { background: #fff; border-color: #81969e; }
+.aiplorer-reset-scope button:focus-visible { outline: 2px solid #285da2; outline-offset: 2px; }
+.aiplorer-reset-pulse-calendar__day[data-kind="usage"] { background: #e4f3ef; color: #11655f; border-color: #73afa2; }
+.aiplorer-reset-pulse-calendar__day[data-kind="banked"] { background: #e8f0fc; color: #204f8b; border-color: #87a9d5; }
+.aiplorer-reset-pulse-calendar__day[data-kind="both"] { background: #fff0df; color: #93470f; border-color: #cc966d; }
+.aiplorer-reset-pulse-calendar__day[data-kind="unclassified"] { background: #eef0f2; color: #545e68; border-color: #a6afb6; }
+.aiplorer-reset-pulse-calendar__day[data-kind] i { background: currentColor; box-shadow: none; }
+.aiplorer-reset-pulse-calendar__legend [data-kind="usage"] i { background: #14766e; }
+.aiplorer-reset-pulse-calendar__legend [data-kind="banked"] i { background: #285da2; }
+.aiplorer-reset-pulse-calendar__legend [data-kind="both"] i { background: #a14f12; }
+.aiplorer-reset-pulse-calendar__legend [data-kind="unclassified"] i { background: #636d77; }
 
 .aiplorer-reset-kind {
   padding: 1rem;
