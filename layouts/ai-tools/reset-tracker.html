@@ -75,8 +75,40 @@
 
         <div class="aiplorer-reset-history__freshness">
           <span>Records checked <time datetime="{{ $history.snapshotAt }}" data-history-checked-local>{{ time.Format "Jan 2, 2006, 15:04 UTC" $history.snapshotAt }}</time><strong data-history-checked-age hidden></strong></span>
-          <span>Manual history snapshot, not a live account balance.</span>
+          <span>No newer confirmed public announcement was found at this check.</span>
         </div>
+
+        <section class="aiplorer-reset-distinction" aria-labelledby="reset-distinction-heading">
+          <div class="aiplorer-reset-distinction__heading">
+            <p class="aiplorer-kicker">Three different clocks</p>
+            <h3 id="reset-distinction-heading">What changed in your usage page?</h3>
+            <p>A lower usage meter does not always mean a new public reset announcement.</p>
+          </div>
+          <div class="aiplorer-reset-distinction__grid">
+            <article>
+              <span>Account schedule</span>
+              <h4>Your weekly window reset</h4>
+              <p>Your account reached its displayed reset time. Timing can differ by account and is not added to this public timeline.</p>
+              <strong>Check Settings &rarr; Usage</strong>
+            </article>
+            <article>
+              <span>Applied automatically</span>
+              <h4>Public usage reset</h4>
+              <p>An announced reset directly refreshes the eligible limits described by that announcement.</p>
+              <strong>Shown as Usage reset</strong>
+            </article>
+            <article>
+              <span>Saved for later</span>
+              <h4>Banked reset</h4>
+              <p>A one-time reset is stored on an eligible account until it is used or expires. It is not the same as purchased usage credit.</p>
+              <strong>Shown as Reset credit</strong>
+            </article>
+          </div>
+          <p class="aiplorer-reset-distinction__source">
+            Account eligibility and timing vary. Review your Usage page and
+            <a href="https://help.openai.com/en/articles/20001498-how-banked-codex-resets-work" target="_blank" rel="noopener nofollow">OpenAI's banked reset guide {{ partial "aiplorer-icon.html" "external-link" }}</a>.
+          </p>
+        </section>
 
         <section class="aiplorer-reset-kinds" aria-label="Announcement types">
           {{ range $kind := slice "usage" "banked" "both" "unclassified" }}

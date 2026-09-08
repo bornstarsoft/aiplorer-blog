@@ -7724,6 +7724,92 @@ main#main-content:has(> .aiplorer-content-article) {
 .aiplorer-reset-history__freshness strong { display: block; color: var(--aiplorer-ink); }
 .aiplorer-reset-history__freshness [hidden] { display: none; }
 
+.aiplorer-reset-distinction {
+  margin-top: 1.25rem;
+  padding: 1.15rem;
+  border: 1px solid var(--aiplorer-line);
+  border-left: 4px solid #285da2;
+  background: #f7f9fa;
+}
+
+.aiplorer-reset-distinction__heading h3 {
+  margin: 0;
+  color: var(--aiplorer-ink);
+  font-size: 1rem;
+  line-height: 1.35;
+  letter-spacing: 0;
+}
+
+.aiplorer-reset-distinction__heading > p:last-child {
+  margin: 0.35rem 0 0;
+  color: var(--aiplorer-muted);
+  font-size: 0.75rem;
+}
+
+.aiplorer-reset-distinction__grid {
+  display: grid;
+  margin-top: 0.9rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--aiplorer-line);
+}
+
+.aiplorer-reset-distinction__grid article {
+  min-width: 0;
+  padding: 0.95rem;
+  background: #fff;
+}
+
+.aiplorer-reset-distinction__grid span {
+  color: #285da2;
+  font-size: 0.62rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.aiplorer-reset-distinction__grid h4 {
+  margin: 0.3rem 0 0;
+  color: var(--aiplorer-ink);
+  font-size: 0.86rem;
+  letter-spacing: 0;
+}
+
+.aiplorer-reset-distinction__grid p {
+  min-height: 3.6rem;
+  margin: 0.45rem 0 0;
+  color: var(--aiplorer-text);
+  font-size: 0.72rem;
+  line-height: 1.55;
+}
+
+.aiplorer-reset-distinction__grid strong {
+  display: block;
+  margin-top: 0.65rem;
+  color: var(--aiplorer-ink);
+  font-size: 0.68rem;
+}
+
+.aiplorer-reset-distinction__source {
+  margin: 0.8rem 0 0;
+  color: var(--aiplorer-muted);
+  font-size: 0.68rem;
+  line-height: 1.55;
+}
+
+.aiplorer-reset-distinction__source a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  color: #285da2;
+  font-weight: 750;
+}
+
+.aiplorer-reset-distinction__source .aiplorer-icon {
+  width: 0.75rem;
+  height: 0.75rem;
+  vertical-align: -0.1rem;
+}
+
 .aiplorer-reset-day {
   margin-top: 1rem;
   padding-top: 0.85rem;
@@ -7747,6 +7833,8 @@ main#main-content:has(> .aiplorer-content-article) {
 .aiplorer-reset-day__boundary { line-height: 1.5; }
 
 @media (max-width: 640px) {
+  .aiplorer-reset-distinction__grid { grid-template-columns: 1fr; }
+  .aiplorer-reset-distinction__grid p { min-height: 0; }
   .aiplorer-reset-pulse-calendar__strip { min-width: 91rem; grid-template-columns: repeat(31, minmax(2.75rem, 1fr)); }
   .aiplorer-reset-pulse-calendar__day small { font-size: 0.62rem; }
   .aiplorer-reset-pulse-calendar__day strong { font-size: 0.8rem; }

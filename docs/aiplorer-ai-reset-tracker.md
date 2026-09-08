@@ -113,8 +113,39 @@ changes. Missing intervals display Unavailable rather than a misleading zero.
 Timeline expansion resets on type changes and exposes only matching records.
 Controls are hidden without JavaScript; the complete static timeline remains.
 
-Source rechecked during this follow-up: 51 public API entries, no added source
-URLs. This change does not add predictions or alter the historical snapshot.
+Source rechecked on September 8 at 01:42 UTC: 51 public API entries, no added
+or missing source URLs and no further page. The newest source remains the
+September 5 banked-reset announcement. The public reset hint observed after it
+is not counted because it does not confirm that a reset was applied. This check
+does not add predictions or alter an event timestamp or classification.
+
+### Scheduled, Automatic And Banked Resets
+
+The page now distinguishes three experiences that can all look like a reset in
+an account usage meter:
+
+- A scheduled weekly account window can reset at the time shown for that
+  account. It is account-specific and is not a public announcement record.
+- An automatic public reset is applied directly to the eligible limits covered
+  by its announcement and is recorded as `usage` when confirmed.
+- A banked reset is stored on an eligible account for later redemption and is
+  recorded as `banked`; an announcement that also refreshes limits is `both`.
+
+This distinction follows OpenAI Help Center guidance in
+`https://help.openai.com/en/articles/20001498-how-banked-codex-resets-work`.
+That official page also confirms banked resets for eligible existing accounts
+on September 3 and September 4, 2026. Those Pacific dates correspond to the two
+newest UTC public announcement records already present in this snapshot:
+September 3 at 23:12 UTC and September 5 at 00:39 UTC. The help page confirms
+the event type and offer dates; the retained X links remain the sources for the
+announcement timestamps.
+
+Banked resets are separate from purchased usage credits. Eligibility,
+delivery, affected limits and expiration can vary. The public page directs
+visitors to their own Settings > Usage view for account-specific state and does
+not ingest or display private account usage. A personal scheduled reset seen
+after the latest public announcement is therefore not added to the global
+history without a source-backed public reset announcement.
 
 ### Date Inspection And Check Timestamp
 
