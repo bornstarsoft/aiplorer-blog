@@ -3,7 +3,7 @@ title: "Codex Reset Pulse"
 description: "Track Codex usage resets and banked reset credits, with separate histories, elapsed times, and public announcement dates."
 type: "ai-tools"
 layout: "reset-tracker"
-lastmod: "2026-09-08"
+lastmod: "2026-09-09"
 ---
 
 This tracker summarizes observed public Codex reset activity. It does not

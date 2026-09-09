@@ -16,9 +16,9 @@ served a different task and reduced the visibility of the historical data.
 
 ## Public Codex History
 
-`data/codex_reset_history.json` contains a manually checked snapshot of 51
+`data/codex_reset_history.json` contains a manually checked snapshot of 52
 public Codex reset/credit announcements observed between September 17, 2025 and
-September 5, 2026, checked on September 8. Each row stores the UTC announcement
+September 8, 2026, checked on September 9. Each row stores the UTC announcement
 timestamp, source X post URL, and an explicit `kind`. The seed was checked
 against `https://codex-resets.com/`, which states
 that it collects posts from `@thsottiaux` and is not affiliated with OpenAI.
@@ -44,19 +44,19 @@ The source can also show a separate reset-watch signal for a possible future
 event. Aiplorer excludes those signals until they appear in the confirmed reset
 announcement log; they are not added as forecasts or event records.
 
-### September 8 Classification Review
+### September 9 Classification Review
 
-Reviewed all 51 entries in `https://codex-resets.com/api/v1/resets?limit=100`
+Reviewed all 52 entries in `https://codex-resets.com/api/v1/resets?limit=100`
 (pagination reports no further pages) against the public announcement archive.
-Direct X pages for the two newest entries returned 403 to the review browser;
-their text and timestamps were available in both the archive and its public API.
-This is a secondary-source snapshot, not independently verified account delivery.
+Direct X pages can restrict automated review; record text and timestamps were
+also checked in the archive and its public API. This is a secondary-source
+snapshot, not independently verified account delivery.
 
 The mutually exclusive categories are:
 
 | kind | Meaning | Announcements |
 | --- | --- | ---: |
-| usage | Usage refill announcement, including an announced rollout | 42 |
+| usage | Usage refill announcement, including an announced rollout | 43 |
 | banked | Saved reset credit announcement only | 5 |
 | both | Usage refill and saved credit in the same announcement | 2 |
 | unclassified | Existing record retained, but text insufficient to identify type | 2 |
@@ -79,11 +79,11 @@ banked balances but announces only a usage refill; it is not a new credit grant.
 The short August 11 and August 25 replies remain `unclassified` pending fuller
 context. No existing timestamp or source link was removed or changed.
 
-September 3/5 describe upcoming credit delivery; timestamps record the posts,
-not completed account crediting. A recurring eligibility promise is one
-announcement, not a generated event for every subsequent day. The September 8
-reset-watch signal remains excluded until a separate announcement is recorded.
-Credit counts are not per-account quantities or universally available grants.
+September 3/5 UTC describe upcoming credit delivery; timestamps record the
+posts, not completed account crediting. Their Pacific offer dates are September
+3/4. A recurring eligibility promise is one announcement, not a generated event
+for every subsequent day. Credit counts are not per-account quantities or
+universally available grants.
 
 The page shows disjoint category totals, latest elapsed times, and medians of
 consecutive announcements within each category. A separate credit table includes
@@ -95,8 +95,8 @@ event type, so a banked grant is not presented as an automatic refill.
 
 The All / Usage resets / Reset credits controls apply to the activity strip,
 window statistics, hourly and weekday charts, recent intervals, and detailed
-timeline. Usage includes `usage` and `both` (44 records); credits include `banked`
-and `both` (7). All includes every record once (51), including unclassified
+timeline. Usage includes `usage` and `both` (45 records); credits include `banked`
+and `both` (7). All includes every record once (52), including unclassified
 records. The two specific views overlap at `both` and must not be added together
 as an overall event total. The four overview cards remain disjoint categories.
 
@@ -113,11 +113,12 @@ changes. Missing intervals display Unavailable rather than a misleading zero.
 Timeline expansion resets on type changes and exposes only matching records.
 Controls are hidden without JavaScript; the complete static timeline remains.
 
-Source rechecked on September 8 at 01:42 UTC: 51 public API entries, no added
-or missing source URLs and no further page. The newest source remains the
-September 5 banked-reset announcement. The public reset hint observed after it
-is not counted because it does not confirm that a reset was applied. This check
-does not add predictions or alter an event timestamp or classification.
+Source rechecked on September 9 at 12:09 UTC: 52 public API entries and no
+further page. One source-backed event was added: the reset observed on September
+8 at 01:56 UTC, linked to the later public confirmation that usage had been reset
+for everyone. OpenAI's current help guidance independently identifies this as
+the September 7 Pacific-time automatic global reset. It is classified as
+`usage`, not `banked`, and no prediction was added.
 
 ### Scheduled, Automatic And Banked Resets
 
@@ -139,6 +140,12 @@ newest UTC public announcement records already present in this snapshot:
 September 3 at 23:12 UTC and September 5 at 00:39 UTC. The help page confirms
 the event type and offer dates; the retained X links remain the sources for the
 announcement timestamps.
+
+The same official guidance confirms that the September 7 Pacific-time event was
+an automatic global reset for eligible Plus, Pro and Business usage. The dataset
+uses the archive's September 8 01:56 UTC observed-event time and links to the
+later confirming post. It did not create another saved reset, so the event
+appears only in the usage-reset history.
 
 Banked resets are separate from purchased usage credits. Eligibility,
 delivery, affected limits and expiration can vary. The public page directs
