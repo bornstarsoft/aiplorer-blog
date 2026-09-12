@@ -1,0 +1,20 @@
+<section class="aiplorer-task-guides" aria-labelledby="task-guides-heading">
+  <div class="aiplorer-task-guides__heading">
+    <h2 id="task-guides-heading">Start with a task</h2>
+    <a href="/guides/">All guides <span aria-hidden="true">&rarr;</span></a>
+  </div>
+  <div class="aiplorer-task-guides__list">
+    {{ range site.Data.editorial_visuals.home }}
+      {{- $entry := . -}}
+      {{- with site.GetPage .path -}}
+        {{- if and (not .Draft) (eq .Params.reviewStatus "reviewed") -}}
+          <a class="aiplorer-task-guide" href="{{ .RelPermalink }}">
+            {{ partial "aiplorer-editorial-image.html" (dict "path" .RelPermalink "sizes" "96px" "decorative" true) }}
+            <div><h3>{{ $entry.title }}</h3><p>{{ $entry.description }}</p></div>
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        {{- end -}}
+      {{- end -}}
+    {{ end }}
+  </div>
+</section>

@@ -14,14 +14,14 @@ ignoreFiles = [
 [params]
   description = "Aiplorer helps everyday users explore AI tools, guides, and use cases for work and creativity."
   mainSections = ["posts"]
-  custom_css = ["css/aiplorer.css?v=20260908e"]
+  custom_css = ["css/aiplorer.css?v=20260912b", "css/aiplorer-change-watch.css?v=20260912a", "css/aiplorer-reading.css?v=20260912c", "css/aiplorer-explorer.css?v=20260912d", "css/aiplorer-editorial.css?v=20260912a"]
 
 [params.ananke]
   show_recent_posts = false
 
 [[menu.main]]
   name = "AI Tools"
-  url = "/ai-tools/"
+  url = "/ai-tools/tools/"
   weight = 10
 
 [[menu.main]]

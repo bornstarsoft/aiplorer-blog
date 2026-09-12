@@ -1,0 +1,34 @@
+{
+  "topics": {
+    "coding": { "alt": "Illustration of a laptop code diff, a magnifying lens and a review checklist." },
+    "research": { "alt": "Illustration of source documents, an open book and a magnifying lens." },
+    "presentation": { "alt": "Illustration of rough storyboard panels becoming a finished presentation." },
+    "automation": { "alt": "Illustration of connected workflow steps with a review checkpoint and retry path." },
+    "creative": { "alt": "Illustration of a camera, microphone, filmstrip and creative brief." },
+    "meetings": { "alt": "Illustration of a meeting microphone, notes and action-item checklists." },
+    "writing": { "alt": "Illustration of revised drafts leading to a clear letter in an envelope." },
+    "choosing": { "alt": "Illustration of three equal tool options alongside a shared project brief." }
+  },
+  "pages": {
+    "/guides/how-to-choose-the-right-ai-tool/": "choosing",
+    "/guides/how-to-choose-ai-automation-tools/": "automation",
+    "/guides/how-to-use-ai-coding-tools-safely/": "coding",
+    "/guides/how-to-plan-a-multimodal-ai-creative-workflow/": "creative",
+    "/guides/how-to-use-ai-meeting-tools-responsibly/": "meetings",
+    "/guides/cursor-vs-github-copilot-for-repository-work/": "coding",
+    "/guides/choose-ai-for-sensitive-document-research/": "research",
+    "/guides/ai-presentation-client-handoff-checklist/": "presentation",
+    "/use-cases/how-to-use-ai-to-write-better-emails/": "writing",
+    "/use-cases/how-to-summarize-long-documents-with-ai/": "research",
+    "/use-cases/how-to-research-a-topic-with-ai-and-check-sources/": "research",
+    "/use-cases/how-to-test-an-ai-automation-before-relying-on-it/": "automation",
+    "/use-cases/how-to-review-ai-generated-code-before-merging/": "coding",
+    "/use-cases/how-to-turn-ai-meeting-notes-into-action-items/": "meetings",
+    "/use-cases/how-to-build-an-ai-assisted-creative-brief/": "creative"
+  },
+  "home": [
+    { "path": "/guides/cursor-vs-github-copilot-for-repository-work/", "title": "Review a code change", "description": "Choose a coding assistant for repository work." },
+    { "path": "/guides/choose-ai-for-sensitive-document-research/", "title": "Check research sources", "description": "Plan your source checks before uploading documents." },
+    { "path": "/guides/ai-presentation-client-handoff-checklist/", "title": "Prepare a presentation", "description": "Take a slide draft through a client-ready checklist." }
+  ]
+}

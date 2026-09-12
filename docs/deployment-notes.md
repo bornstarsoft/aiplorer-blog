@@ -1,5 +1,22 @@
 # Aiplorer Deployment Notes
 
+## September 12, 2026 Release Preparation
+
+- Release scope: the accumulated directory/readability improvements, responsive
+  editorial images, decision guides, change-watch pages, and the Codex history
+  update. No existing tool draft is promoted and no legacy post is edited.
+- Added one usage reset announcement at `2026-09-12T08:09:17.000Z`, checked
+  against the Codex Resets archive and public API. Direct X access was restricted;
+  the original source link is retained. There are 53 observations, not 53
+  independently verified account resets. No new banked-reset grant was found.
+- The user confirmed that web repositories use GitHub; the Gitea-only policy
+  applies to Unity projects. Aiplorer retains its existing GitHub origin and
+  Cloudflare Pages Git deployment flow.
+- Production validation uses `hugo --cleanDestinationDir --gc --minify` with
+  Hugo 0.152.2. Generated `public/` and `resources/` output must not be staged.
+- Deployment success must be checked after push using the commit's deployment
+  status and live page bodies; this preparation note is not a deployment claim.
+
 Date: 2026-06-01
 
 The repository README describes this project as a Hugo static site powered by

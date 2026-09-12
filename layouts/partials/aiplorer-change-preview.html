@@ -1,0 +1,23 @@
+{{- $entries := partial "aiplorer-change-data.html" . -}}
+{{- if $entries -}}
+<section class="aiplorer-change-preview" aria-labelledby="change-preview-heading">
+  <div class="aiplorer-shell">
+    <div class="aiplorer-change-preview__heading">
+      <div>
+        <p class="aiplorer-kicker">AI Tool Change Watch</p>
+        <h2 id="change-preview-heading">Catch up before your next task.</h2>
+      </div>
+      <a href="/ai-tools/review-updates/#tool-changes">All tracked updates <span aria-hidden="true">&rarr;</span></a>
+    </div>
+    <div class="aiplorer-change-preview__links">
+      {{ range first 3 $entries }}
+        <a href="/ai-tools/review-updates/#change-{{ .id }}">
+          <time datetime="{{ .announcedAt }}">{{ .announcedAt }}</time>
+          <strong>{{ .toolTitle }}</strong>
+          <span>{{ .title }}</span>
+        </a>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{- end -}}

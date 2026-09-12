@@ -1,0 +1,10 @@
+{{- $entries := slice -}}
+{{- range site.Data.ai_tool_changes.entries -}}
+  {{- $entry := . -}}
+  {{- with site.GetPage .tool -}}
+    {{- if and (not .Draft) (eq .Params.reviewStatus "reviewed") -}}
+      {{- $entries = $entries | append (merge $entry (dict "toolTitle" .Title "category" .Params.category)) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return sort $entries "announcedAt" "desc" -}}

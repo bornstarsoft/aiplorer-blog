@@ -1,8 +1,15 @@
 {{- $href := .Get "href" -}}
 {{- $title := .Get "title" -}}
 {{- $label := .Get "label" -}}
-<a class="aiplorer-card" href="{{ $href | relURL }}" aria-label="{{ $title }}">
+{{- $visual := index site.Data.editorial_visuals.pages $href -}}
+<a class="aiplorer-card{{ if $visual }} aiplorer-card--illustrated{{ end }}" href="{{ $href | relURL }}" aria-label="{{ $title }}">
+  {{ if $visual }}{{ partial "aiplorer-editorial-image.html" (dict "path" $href "decorative" true) }}{{ end }}
   {{ with $label }}<span class="aiplorer-card__label">{{ . }}</span>{{ end }}
   <h3 class="aiplorer-card__title">{{ $title }}</h3>
   <div class="aiplorer-card__body">{{ .Inner | markdownify }}</div>
+  {{ if $visual }}
+    {{ with site.GetPage $href }}
+      <span class="aiplorer-card__reading-time">About {{ .ReadingTime }} min read</span>
+    {{ end }}
+  {{ end }}
 </a>

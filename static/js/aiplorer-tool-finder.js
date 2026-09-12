@@ -220,8 +220,15 @@
     });
 
     groups.forEach(function (group) {
-      var hasVisibleCard = group.querySelector("[data-tool-card]:not([hidden])");
-      group.hidden = !hasVisibleCard;
+      var groupCards = group.querySelectorAll("[data-tool-card]");
+      var matchingCount = group.querySelectorAll("[data-tool-card]:not([hidden])").length;
+      var groupCount = group.querySelector("[data-tool-group-count]");
+      group.hidden = matchingCount === 0;
+      if (groupCount) {
+        groupCount.textContent = matchingCount === groupCards.length
+          ? String(matchingCount)
+          : matchingCount + " of " + groupCards.length;
+      }
     });
 
     var resultQualifiers = [];
@@ -237,6 +244,13 @@
       (resultQualifiers.length ? " " + resultQualifiers.join(" and ") : "");
     resetButton.disabled = !query && !category && !onlyNew && !onlySaved;
     updateTaskButtons(query, category);
+    categoryLinks.forEach(function (link) {
+      if ((link.dataset.toolCategoryLink || "") === category) {
+        link.setAttribute("aria-current", "true");
+      } else {
+        link.removeAttribute("aria-current");
+      }
+    });
 
     if (newButton) {
       newButton.classList.toggle("is-active", onlyNew);
@@ -291,7 +305,7 @@
     });
   }
 
-  if (savedControl && savedButton && savedPaths.size > 0) {
+  if (savedControl && savedButton) {
     savedButton.addEventListener("click", function () {
       onlySaved = !onlySaved;
       updateResults();
@@ -341,7 +355,7 @@
       updateResults();
 
       var target = document.querySelector(link.getAttribute("href"));
-      if (target) {
+      if (target && !finder.classList.contains("aiplorer-explorer")) {
         var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
       }

@@ -1,7 +1,4 @@
 {{- $page := . -}}
-{{- $isGuide := eq .Section "guides" -}}
-{{- $contentLabel := cond $isGuide "Practical guide" "Practical use case" -}}
-{{- $contentIcon := cond $isGuide "book-open" "square-check" -}}
 {{- $decisionHref := "/ai-tools/decision-path/" -}}
 {{- with .Params.decisionWorkflow -}}
   {{- $decisionHref = printf "/ai-tools/decision-path/?workflow=%s" . -}}
@@ -19,18 +16,26 @@
   {{- end -}}
 {{- end -}}
 {{- $relatedToolPages = first 3 (sort $relatedToolPages "Title") -}}
+{{- $compareHref := "/ai-tools/compare/#compare-categories" -}}
+{{- $compareLabel := "Compare reviewed tools" -}}
+{{- $relatedCategories := slice -}}
+{{- range $relatedToolPages -}}
+  {{- $relatedCategories = $relatedCategories | append .Params.category -}}
+{{- end -}}
+{{- $relatedCategories = uniq $relatedCategories -}}
+{{- if eq (len $relatedCategories) 1 -}}
+  {{- $category := index $relatedCategories 0 -}}
+  {{- $compareHref = printf "/ai-tools/compare/?%s#compare-categories" (querify "category" $category) -}}
+  {{- $compareLabel = printf "Compare %s" $category -}}
+{{- end -}}
 
-<article class="aiplorer-content-article">
+<article class="aiplorer-content-article{{ if .Params.decisionGuide }} aiplorer-content-article--decision{{ end }}">
   <section class="aiplorer-content-article__hero">
     <div class="aiplorer-shell">
       <div class="aiplorer-content-article__hero-copy">
         <a class="aiplorer-content-article__back" href="{{ .CurrentSection.RelPermalink }}">
           <span aria-hidden="true">&larr;</span> {{ .CurrentSection.Title }}
         </a>
-        <p class="aiplorer-eyebrow">
-          <span class="aiplorer-eyebrow__icon">{{ partial "aiplorer-icon.html" $contentIcon }}</span>
-          {{ $contentLabel }}
-        </p>
         <h1>{{ .Title }}</h1>
         <p class="aiplorer-content-article__lead">{{ .Params.description }}</p>
         <dl class="aiplorer-content-article__meta" aria-label="{{ .Title }} content details">
@@ -40,46 +45,43 @@
               <dd><time datetime="{{ . }}">{{ . }}</time></dd>
             </div>
           {{ end }}
-          {{ with .Params.audience }}
-            <div>
-              <dt>For</dt>
-              <dd>{{ . }}</dd>
-            </div>
-          {{ end }}
+          <div>
+            <dt>Read time</dt>
+            <dd data-reading-time>About {{ .ReadingTime }} min</dd>
+          </div>
         </dl>
-        <div class="aiplorer-actions">
-          <a class="aiplorer-button aiplorer-button--primary" href="{{ $decisionHref }}">
-            {{ $decisionLabel }}
-          </a>
-          <a class="aiplorer-button aiplorer-button--light" href="/ai-tools/tools/">
-            Browse reviewed tools
-          </a>
-        </div>
       </div>
-      <aside class="aiplorer-content-article__brief" aria-label="How to use this page">
-        <span>{{ partial "aiplorer-icon.html" "shield-check" }}</span>
-        <div>
-          <p class="aiplorer-kicker">Keep human review in the loop</p>
-          <h2>Use the workflow, then verify the output</h2>
-          <p>
-            Check facts, context, sensitive information, and the original
-            source before publishing, sending, or relying on AI-assisted work.
-          </p>
-        </div>
-      </aside>
+      <details class="aiplorer-reader-note">
+        <summary>Audience and review notes</summary>
+        {{ with .Params.audience }}<p><strong>For:</strong> {{ . }}</p>{{ end }}
+        <p>Check facts against original sources and remove sensitive information.
+          Review AI output before relying on it.</p>
+      </details>
     </div>
   </section>
 
   <section class="aiplorer-content-article__main" aria-label="{{ .Title }} article">
     <div class="aiplorer-shell">
-      <div class="aiplorer-content-article__body">
-        {{ .Content }}
+      <div class="aiplorer-reading-content">
+        <div class="aiplorer-reader-actions">
+          {{ if .Fragments.Identifiers }}
+            <details class="aiplorer-reader-contents">
+              <summary>On this page</summary>
+              {{ .TableOfContents }}
+            </details>
+          {{ end }}
+          {{ if $relatedToolPages }}
+            <a class="aiplorer-reader-tools-link" href="#content-related-tools">Tools for this task <span>{{ len $relatedToolPages }}</span><span aria-hidden="true">&darr;</span></a>
+          {{ end }}
+        </div>
+        <div class="aiplorer-content-article__body">{{ .Content }}</div>
       </div>
       <aside class="aiplorer-content-article__rail" aria-label="{{ .Title }} navigation">
-        <div class="aiplorer-content-article__toc">
-          <p class="aiplorer-kicker">On this page</p>
-          {{ .TableOfContents }}
-        </div>
+        {{ with index site.Data.editorial_visuals.pages .RelPermalink }}
+          <figure class="aiplorer-article-visual">
+            {{ partial "aiplorer-editorial-image.html" (dict "path" $page.RelPermalink "sizes" "(max-width: 48rem) calc(100vw - 2rem), 320px") }}
+          </figure>
+        {{ end }}
         <div class="aiplorer-content-article__path">
           <span>{{ partial "aiplorer-icon.html" "compass" }}</span>
           <p class="aiplorer-kicker">Next step</p>
@@ -97,10 +99,10 @@
         <div class="aiplorer-section-heading">
           <div>
             <p class="aiplorer-kicker">Continue with reviewed tools</p>
-            <h2 id="content-related-tools">Related starting points</h2>
-            <p class="aiplorer-section-heading__note">Existing article relationships shown alphabetically, with one reviewed task-fit example rather than a ranking or endorsement.</p>
+            <h2 id="content-related-tools">Tools for this task</h2>
+            <p class="aiplorer-section-heading__note">Listed alphabetically, not ranked.</p>
           </div>
-          <a class="aiplorer-text-link" href="/ai-tools/compare/">Compare reviewed tools <span aria-hidden="true">&rarr;</span></a>
+          <a class="aiplorer-text-link" href="{{ $compareHref }}" data-article-compare>{{ $compareLabel }} <span aria-hidden="true">&rarr;</span></a>
         </div>
         <div class="aiplorer-tool-grid">
           {{ range $relatedToolPages }}

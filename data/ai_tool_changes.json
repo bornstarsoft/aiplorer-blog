@@ -1,0 +1,47 @@
+{
+  "checkedAt": "2026-09-12",
+  "entries": [
+    {
+      "id": "copilot-review-2026-09-11",
+      "tool": "/ai-tools/tools/github-copilot/",
+      "announcedAt": "2026-09-11",
+      "checkedAt": "2026-09-12",
+      "revision": 1,
+      "topic": "Code review",
+      "title": "Review comments can close after a follow-up commit",
+      "summary": "GitHub reports that Copilot can resolve its own addressed review comments during a rereview, alongside changes to review analysis.",
+      "action": "Inspect the actual diff and test results before merging. A resolved AI comment is not evidence that a fix is correct.",
+      "sourceTitle": "GitHub: Copilot code review update",
+      "sourceUrl": "https://github.blog/changelog/2026-09-11-auto-resolution-and-analysis-updates-in-copilot-code-review/",
+      "guide": "/guides/cursor-vs-github-copilot-for-repository-work/"
+    },
+    {
+      "id": "replit-mcp-2026-09-11",
+      "tool": "/ai-tools/tools/replit/",
+      "announcedAt": "2026-09-11",
+      "checkedAt": "2026-09-12",
+      "revision": 1,
+      "topic": "Connections",
+      "title": "Desktop MCP clients can connect to Replit",
+      "summary": "Replit's release note describes connecting compatible desktop MCP clients to work with apps, including publishing actions.",
+      "action": "Review the connected account, exposed actions, and approval settings. Start with a disposable app before allowing changes to production work.",
+      "sourceTitle": "Replit: September 11 release notes",
+      "sourceUrl": "https://docs.replit.com/updates/2026/09/11/changelog",
+      "guide": "/use-cases/how-to-review-ai-generated-code-before-merging/"
+    },
+    {
+      "id": "cursor-projects-2026-09-10",
+      "tool": "/ai-tools/tools/cursor/",
+      "announcedAt": "2026-09-10",
+      "checkedAt": "2026-09-12",
+      "revision": 1,
+      "topic": "Agent workflows",
+      "title": "Projects introduces coordinated, longer-running work",
+      "summary": "Cursor announced a beta rollout of Projects, with a coordinator delegating work to agents and maintaining shared project context.",
+      "action": "Check rollout access, execution locations, connected services, and how to stop work before testing. Keep secrets out of shared context and review each resulting change.",
+      "sourceTitle": "Cursor: Projects announcement",
+      "sourceUrl": "https://cursor.com/changelog/projects",
+      "guide": "/guides/cursor-vs-github-copilot-for-repository-work/"
+    }
+  ]
+}

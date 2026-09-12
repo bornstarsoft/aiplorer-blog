@@ -1,0 +1,55 @@
+{{- $entries := partial "aiplorer-change-data.html" . -}}
+{{- $tools := slice -}}
+{{- $topics := slice -}}
+{{- range $entries -}}
+  {{- $tools = $tools | append .tool -}}
+  {{- $topics = $topics | append .topic -}}
+{{- end -}}
+<section class="aiplorer-change-watch" id="tool-changes" aria-labelledby="change-watch-heading" data-change-watch>
+  <div class="aiplorer-shell">
+    <div class="aiplorer-change-watch__heading">
+      <div>
+        <p class="aiplorer-kicker">AI Tool Change Watch</p>
+        <h2 id="change-watch-heading">What changed. What to check.</h2>
+        <p>Selected official announcements, checked {{ site.Data.ai_tool_changes.checkedAt }}. {{ len (uniq $tools) }} tools covered so far; other services are not yet tracked here.</p>
+      </div>
+      <a class="aiplorer-text-link" href="{{ .RelPermalink }}index.xml">Subscribe via RSS <span aria-hidden="true">&rarr;</span></a>
+    </div>
+    <div class="aiplorer-change-watch__controls" data-change-controls hidden>
+      <label><input type="checkbox" data-change-saved> My saved tools</label>
+      <label><input type="checkbox" data-change-unread> Unread only</label>
+      <label>Topic
+        <select data-change-topic>
+          <option value="">All topics</option>
+          {{ range sort (uniq $topics) }}<option value="{{ . }}">{{ . }}</option>{{ end }}
+        </select>
+      </label>
+      <button type="button" data-change-read>Mark visible updates read</button>
+    </div>
+    <p class="aiplorer-change-watch__status" role="status" data-change-status>{{ len $entries }} updates</p>
+    <p class="aiplorer-change-watch__empty" data-change-empty hidden>No updates match this view. Clear the filters or <a href="/ai-tools/tools/">save a tool from the directory</a>.</p>
+    <div class="aiplorer-change-watch__list">
+      {{ range $entries }}
+        <article class="aiplorer-change-entry" id="change-{{ .id }}" data-change-entry data-change-id="{{ .id }}:{{ .revision }}" data-change-tool="{{ .tool }}" data-change-topic="{{ .topic }}">
+          <div class="aiplorer-change-entry__when">
+            <a href="{{ .tool }}">{{ .toolTitle }}</a>
+            <span>{{ .topic }}</span>
+            <span>Announced <time datetime="{{ .announcedAt }}">{{ .announcedAt }}</time></span>
+            <span>Checked <time datetime="{{ .checkedAt }}">{{ .checkedAt }}</time></span>
+            <strong data-change-badge hidden>Unread</strong>
+          </div>
+          <div class="aiplorer-change-entry__body">
+            <h3><a href="#change-{{ .id }}">{{ .title }}</a></h3>
+            <p>{{ .summary }}</p>
+            <p class="aiplorer-change-entry__action"><strong>Check before use</strong> {{ .action }}</p>
+            <nav aria-label="{{ .toolTitle }} update sources and next steps">
+              <a href="{{ .sourceUrl }}" rel="noopener" target="_blank">Official announcement <span class="aiplorer-visually-hidden">(opens in a new tab)</span> <span aria-hidden="true">&nearr;</span></a>
+              {{ with site.GetPage .guide }}{{ if not .Draft }}<a href="{{ .RelPermalink }}">Practical decision guide <span aria-hidden="true">&rarr;</span></a>{{ end }}{{ end }}
+            </nav>
+          </div>
+        </article>
+      {{ end }}
+    </div>
+    <p class="aiplorer-change-watch__note">Announcement checks are separate from full tool reviews. Availability and terms may change. Unlisted changes are unknown, not proof that a service is unchanged. Read status stays in this browser.</p>
+  </div>
+</section>

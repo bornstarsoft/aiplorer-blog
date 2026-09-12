@@ -16,9 +16,9 @@ served a different task and reduced the visibility of the historical data.
 
 ## Public Codex History
 
-`data/codex_reset_history.json` contains a manually checked snapshot of 52
+`data/codex_reset_history.json` contains a manually checked snapshot of 53
 public Codex reset/credit announcements observed between September 17, 2025 and
-September 8, 2026, checked on September 9. Each row stores the UTC announcement
+September 12, 2026, checked on September 12. Each row stores the UTC announcement
 timestamp, source X post URL, and an explicit `kind`. The seed was checked
 against `https://codex-resets.com/`, which states
 that it collects posts from `@thsottiaux` and is not affiliated with OpenAI.
@@ -43,6 +43,21 @@ present the event count as a count of identical account resets.
 The source can also show a separate reset-watch signal for a possible future
 event. Aiplorer excludes those signals until they appear in the confirmed reset
 announcement log; they are not added as forecasts or event records.
+
+### September 12 Update
+
+- Added the September 12, 2026 08:09:17 UTC usage reset announcement
+  (17:09:17 in Korea), linked to
+  `https://x.com/thsottiaux/status/2098685367058612394`.
+- The public archive and `https://codex-resets.com/api/v1/resets?limit=100`
+  agree on the new record. All previous 52 source URLs and timestamps are
+  unchanged; the API reports no further pages.
+- The archived confirmation says the reset propagated. This is classified as
+  `usage`, not a saved reset-credit grant. Current counts are 44 usage, 5 banked,
+  2 both, and 2 unclassified announcements. No new credit grant was found.
+- Direct X access returned 403 during this check. This update relies on the
+  secondary archive/API and retains the original source link; it does not
+  independently verify delivery to any individual account.
 
 ### September 9 Classification Review
 

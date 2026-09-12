@@ -72,6 +72,13 @@
           {{ with .Params.description }}
             <p class="aiplorer-tool-hero__lead">{{ . }}</p>
           {{ end }}
+          <p class="aiplorer-tool-review-date">
+            {{ if and (eq .Params.reviewStatus "reviewed") (not .Draft) }}
+              Review checked {{ with .Params.lastReviewed }}<time datetime="{{ . }}">{{ . }}</time>{{ end }}
+            {{ else }}
+              Draft &middot; pending review
+            {{ end }}
+          </p>
           <div class="aiplorer-actions">
             {{ with .Params.officialUrl }}
               <a class="aiplorer-button aiplorer-button--primary aiplorer-button--icon" href="{{ . }}" rel="noopener nofollow" target="_blank">
@@ -80,9 +87,6 @@
                 <span class="aiplorer-visually-hidden"> (opens in a new tab)</span>
               </a>
             {{ end }}
-            <a class="aiplorer-button aiplorer-button--light" href="{{ $categoryData.path }}">
-              Explore {{ $categoryName }}
-            </a>
             <button
               class="aiplorer-button aiplorer-button--light aiplorer-button--icon aiplorer-shortlist-control aiplorer-shortlist-toggle"
               type="button"
@@ -97,40 +101,42 @@
             </button>
           </div>
         </div>
-        <dl class="aiplorer-tool-hero__facts" aria-label="{{ .Title }} review summary">
-          <div>
-            <dt>Reviewed</dt>
-            <dd>publication status</dd>
-          </div>
-          {{ with .Params.lastReviewed }}
-            <div>
-              <dt>{{ . }}</dt>
-              <dd>last checked</dd>
-            </div>
-          {{ end }}
-          <div>
-            <dt>{{ $categoryName }}</dt>
-            <dd>directory category</dd>
-          </div>
-        </dl>
       </div>
     </section>
 
-    <section class="aiplorer-tool-main" aria-label="{{ .Title }} overview and selection notes">
+    {{ if or .Params.bestFor .Params.limitations }}
+      <section class="aiplorer-tool-brief aiplorer-shell" aria-label="{{ .Title }} tasks and cautions">
+        {{ with .Params.bestFor }}
+          <div>
+            <h2>Example tasks</h2>
+            <ul>{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
+          </div>
+        {{ end }}
+        {{ with .Params.limitations }}
+          <div>
+            <h2>Check before use</h2>
+            <ul>{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
+          </div>
+        {{ end }}
+      </section>
+    {{ end }}
+
+    {{ range first 1 (where (partial "aiplorer-change-data.html" .) "tool" .RelPermalink) }}
+      <section class="aiplorer-change-preview" aria-label="Recent official announcement">
+        <div class="aiplorer-shell">
+          <p class="aiplorer-kicker">Official announcement &middot; {{ .announcedAt }}</p>
+          <a href="/ai-tools/review-updates/#change-{{ .id }}"><strong>{{ .title }}</strong> &rarr;</a>
+          <p>Source checked {{ .checkedAt }}. See what to recheck before your next task.</p>
+        </div>
+      </section>
+    {{ end }}
+
+    <section class="aiplorer-tool-main" aria-label="{{ .Title }} full review">
       <div class="aiplorer-shell">
         <div class="aiplorer-tool-main__content">
           {{ .Content }}
         </div>
         <aside class="aiplorer-tool-sidebar" aria-label="{{ .Title }} at a glance">
-          {{ with .Params.bestFor }}
-            <section>
-              <p class="aiplorer-kicker">May fit</p>
-              <h2>Tasks to consider</h2>
-              <ul>
-                {{ range . }}<li>{{ . }}</li>{{ end }}
-              </ul>
-            </section>
-          {{ end }}
           {{ with .Params.pricingNote }}
             <section>
               <p class="aiplorer-kicker">Pricing context</p>
@@ -155,15 +161,10 @@
       </div>
     </section>
 
-    {{ if or .Params.useCases .Params.pros .Params.limitations }}
-      <section class="aiplorer-tool-decision" aria-labelledby="decision-heading">
-        <div class="aiplorer-shell">
-          <div class="aiplorer-section-heading">
-            <div>
-              <p class="aiplorer-kicker">Decision support</p>
-              <h2 id="decision-heading">What to explore and verify</h2>
-            </div>
-          </div>
+    {{ if or .Params.useCases .Params.pros }}
+      <section class="aiplorer-tool-decision aiplorer-tool-decision--details" aria-label="Additional decision notes">
+        <details class="aiplorer-shell">
+          <summary id="decision-heading">More use cases and potential advantages</summary>
           <div class="aiplorer-tool-decision__grid">
             {{ with .Params.useCases }}
               <section class="aiplorer-tool-decision__panel" data-tone="blue">
@@ -181,16 +182,8 @@
                 </ul>
               </section>
             {{ end }}
-            {{ with .Params.limitations }}
-              <section class="aiplorer-tool-decision__panel" data-tone="coral">
-                <h3>Check before use</h3>
-                <ul>
-                  {{ range . }}<li>{{ . }}</li>{{ end }}
-                </ul>
-              </section>
-            {{ end }}
           </div>
-        </div>
+        </details>
       </section>
     {{ end }}
 

@@ -9,6 +9,9 @@
   {{- $practicalCount := add (len $reviewedGuides) (len $reviewedUseCases) -}}
   {{- $sortedUpdates := sort $reviewedUpdates "Params.lastReviewed" "desc" -}}
   {{- $categories := partial "aiplorer-category-data.html" . -}}
+  {{- $changes := partial "aiplorer-change-data.html" . -}}
+  {{- $watchedTools := slice -}}
+  {{- range $changes -}}{{- $watchedTools = $watchedTools | append .tool -}}{{- end -}}
   {{- $latestReview := "" -}}
   {{- with index $sortedUpdates 0 -}}
     {{- $latestReview = .Params.lastReviewed -}}
@@ -20,13 +23,13 @@
         <div class="aiplorer-review-tracker__hero-copy">
           <p class="aiplorer-eyebrow">
             <span class="aiplorer-eyebrow__icon">{{ partial "aiplorer-icon.html" "history" }}</span>
-            Review activity
+            Official announcements and practical decisions
           </p>
           <h1>{{ .Title }}</h1>
           <p class="aiplorer-review-tracker__lead">{{ .Params.description }}</p>
           <div class="aiplorer-actions">
-            <a class="aiplorer-button aiplorer-button--primary" href="/ai-tools/tools/">
-              Browse all reviewed tools
+            <a class="aiplorer-button aiplorer-button--primary" href="#tool-changes">
+              Latest changes
             </a>
             <a class="aiplorer-button aiplorer-button--light" href="/guides/">
               Read practical guides
@@ -36,28 +39,31 @@
             </a>
           </div>
         </div>
-        <dl class="aiplorer-review-tracker__facts" aria-label="Review tracker summary">
+        <dl class="aiplorer-review-tracker__facts" aria-label="Change Watch coverage">
           <div>
-            <dt>{{ len $reviewedTools }}</dt>
-            <dd>reviewed services</dd>
+            <dt>{{ len $changes }}</dt>
+            <dd>recorded announcements</dd>
           </div>
           <div>
-            <dt>{{ $practicalCount }}</dt>
-            <dd>reviewed playbooks</dd>
+            <dt>{{ len (uniq $watchedTools) }}</dt>
+            <dd>tools covered so far</dd>
           </div>
           <div>
-            <dt>{{ $latestReview }}</dt>
-            <dd>latest recorded check</dd>
+            <dt>{{ site.Data.ai_tool_changes.checkedAt }}</dt>
+            <dd>announcement sources checked</dd>
           </div>
         </dl>
       </div>
     </section>
 
+    {{ partial "aiplorer-change-watch.html" . }}
+    {{ partial "aiplorer-decision-guides.html" . }}
+
     <section class="aiplorer-review-tracker__context" aria-labelledby="tracker-context-heading">
       <div class="aiplorer-shell">
         <span class="aiplorer-review-tracker__context-icon">{{ partial "aiplorer-icon.html" "shield-check" }}</span>
         <div>
-          <h2 id="tracker-context-heading">Freshness with clear limits</h2>
+          <h2 id="tracker-context-heading">Aiplorer review log</h2>
           <div class="aiplorer-review-tracker__body">{{ .Content }}</div>
         </div>
       </div>

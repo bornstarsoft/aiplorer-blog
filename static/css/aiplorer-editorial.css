@@ -1,0 +1,117 @@
+.aiplorer-editorial-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: contain;
+  background: #f4f6f7;
+}
+
+.aiplorer-task-guides {
+  margin: 0 0 2rem;
+}
+
+.aiplorer-task-guides__heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: .75rem;
+}
+
+.aiplorer-task-guides__heading h2 {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.aiplorer-task-guides__heading > a {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  min-height: 2.75rem;
+  font-size: .875rem;
+  color: #116c65;
+  text-underline-offset: .2em;
+}
+
+.aiplorer-task-guides__list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.aiplorer-task-guide {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr) 1rem;
+  align-items: center;
+  gap: .8rem;
+  color: #202a35;
+  text-decoration: none;
+  padding: .65rem 0;
+  border-block: 1px solid #e2e5e9;
+}
+
+.aiplorer-task-guide .aiplorer-editorial-image {
+  border-radius: 4px;
+}
+
+.aiplorer-task-guide h3 {
+  margin: 0;
+  font-size: .9375rem;
+  line-height: 1.4;
+}
+
+.aiplorer-task-guide p {
+  margin: .35rem 0 0;
+  font-size: .8125rem;
+  line-height: 1.5;
+  color: #57616c;
+}
+
+.aiplorer-task-guide:hover h3 {
+  color: #116c65;
+  text-decoration: underline;
+  text-underline-offset: .2em;
+}
+
+.aiplorer-task-guide:focus-visible {
+  outline: 2px solid #116c65;
+  outline-offset: 4px;
+}
+
+.aiplorer-content-hub--compact .aiplorer-card--illustrated {
+  overflow: hidden;
+  padding: 0 1.25rem 1.25rem;
+}
+
+@media (min-width: 64rem) {
+  .aiplorer-content-hub--compact .aiplorer-card-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.aiplorer-card--illustrated > .aiplorer-editorial-image {
+  width: calc(100% + 2.5rem);
+  max-width: none;
+  margin: 0 -1.25rem 1.1rem;
+}
+
+.aiplorer-article-visual {
+  margin: 0 0 1.75rem;
+  max-width: 20rem;
+}
+
+@media (max-width: 64rem) {
+  .aiplorer-task-guides__list { gap: .75rem; }
+  .aiplorer-task-guide { grid-template-columns: 72px minmax(0, 1fr); gap: .65rem; }
+  .aiplorer-task-guide > span { display: none; }
+}
+
+@media (max-width: 48rem) {
+  .aiplorer-task-guides__list { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .aiplorer-task-guide { grid-template-columns: 96px minmax(0, 1fr) 1rem; gap: .8rem; }
+  .aiplorer-task-guide + .aiplorer-task-guide { border-top: 0; }
+  .aiplorer-task-guide > span { display: block; }
+  .aiplorer-task-guide p { font-size: .875rem; }
+}

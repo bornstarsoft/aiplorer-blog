@@ -1,0 +1,73 @@
+{{- $tools := where (where (where site.RegularPages "Section" "ai-tools") "Params.reviewStatus" "reviewed") "Draft" false -}}
+{{- $categories := partial "aiplorer-category-data.html" . -}}
+<article class="aiplorer-explorer aiplorer-shell" data-tool-finder>
+  <header class="aiplorer-explorer__title">
+    <div><h1>{{ if .IsHome }}Aiplorer{{ else }}AI Tools{{ end }} <span>{{ len $tools }} reviewed tools</span></h1><p>Find a tool for your next task.</p></div>
+    <a href="/ai-tools/shortlist/">{{ partial "aiplorer-icon.html" "bookmark" }} Saved tools <span data-shortlist-count>0</span></a>
+  </header>
+  <form class="aiplorer-explorer__search" action="/ai-tools/tools/" method="get" role="search">
+    <div>{{ partial "aiplorer-icon.html" "search" }}<label class="aiplorer-visually-hidden" for="tool-query">Search by tool name or task</label><input id="tool-query" type="search" name="q" placeholder="Search tools or tasks" autocomplete="off" data-tool-finder-query></div>
+    <label class="aiplorer-visually-hidden" for="tool-category">Filter by category</label>
+    <select id="tool-category" name="category" data-tool-finder-category><option value="">All categories</option>{{ range $categories }}{{ if len (where $tools "Params.category" .name) }}<option value="{{ .name }}">{{ .name }}</option>{{ end }}{{ end }}</select>
+    <button type="submit">Find tools</button><button type="button" data-tool-finder-reset disabled>Clear</button>
+  </form>
+  {{ if .IsHome }}
+    {{- $history := site.Data.codex_reset_history -}}
+    {{- $latest := index $history.events 0 -}}
+    <div class="aiplorer-explorer__updates">
+      <a href="/ai-tools/reset-tracker/" data-home-reset-pulse data-latest-reset="{{ $latest.announcedAt }}">
+        <span class="aiplorer-explorer__status-icon">{{ partial "aiplorer-icon.html" "clock-3" }}</span>
+        <span><strong>Codex resets</strong><small>Since {{ partial "reset-event-label.html" $latest.kind | lower }} announcement</small><small>Manual source check: <time datetime="{{ $history.snapshotAt }}" title="{{ $history.snapshotAt }}">{{ time.Format "Jan 2, 2006" $history.snapshotAt }} (UTC)</time></small></span>
+        <b data-home-reset-elapsed>--</b><span aria-hidden="true">&rarr;</span>
+      </a>
+      <a href="/ai-tools/review-updates/#tool-changes">
+        <span class="aiplorer-explorer__status-icon">{{ partial "aiplorer-icon.html" "history" }}</span>
+        <span><strong>What changed in AI tools?</strong><small>Recent announcements and what to check</small></span><span aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
+    {{ partial "aiplorer-decision-guides.html" . }}
+  {{ end }}
+  <div class="aiplorer-explorer__layout">
+    <aside class="aiplorer-explorer__sidebar">
+      <nav aria-label="Tool categories"><h2>Categories</h2>
+        <a href="#reviewed-tool-groups" data-tool-category-link="" aria-current="true">All tools <span>{{ len $tools }}</span></a>
+        {{ range $categories }}{{ $count := len (where $tools "Params.category" .name) }}{{ if $count }}
+          <a href="#{{ .name | anchorize }}" data-tool-category-link="{{ .name }}">{{ partial "aiplorer-icon.html" .icon }} {{ strings.TrimSuffix " Tools" .name }} <span>{{ $count }}</span></a>
+        {{ end }}{{ end }}
+      </nav>
+      <nav class="aiplorer-explorer__resources" aria-label="More from Aiplorer"><h2>Resources</h2>
+        <a href="/ai-tools/compare/">Compare tools &rarr;</a><a href="/ai-tools/decision-path/">Help me choose &rarr;</a><a href="/ai-tools/workflows/">Workflows &rarr;</a><a href="/guides/">Practical guides &rarr;</a>
+      </nav>
+      <p class="aiplorer-explorer__policy">Manually reviewed, not ranked. Check current features and prices at the official source.</p>
+    </aside>
+    <div class="aiplorer-explorer__main">
+      <div class="aiplorer-explorer__toolbar">
+        <p role="status" aria-live="polite" data-tool-finder-count>{{ len $tools }} reviewed tools</p>
+        <div data-tool-finder-saved hidden><button type="button" data-tool-finder-saved-button aria-pressed="false">Saved only <span data-tool-finder-saved-count>0</span></button></div>
+        <div class="aiplorer-explorer__views" role="group" aria-label="Directory view">
+          <button type="button" data-tool-finder-view="cards" aria-label="Card view" aria-pressed="true" title="Card view">{{ partial "aiplorer-icon.html" "grid-2x2" }}</button><button type="button" data-tool-finder-view="compact" aria-label="Compact view" aria-pressed="false" title="Compact view">{{ partial "aiplorer-icon.html" "list" }}</button>
+        </div>
+      </div>
+      <div class="aiplorer-reviewed-groups" id="reviewed-tool-groups" data-tool-results data-directory-view="cards">
+        {{ range $categories }}{{- $category := . -}}{{- $group := where $tools "Params.category" .name -}}{{ if $group }}
+          <section class="aiplorer-reviewed-group" id="{{ .name | anchorize }}" aria-labelledby="{{ .name | anchorize }}-heading" data-tool-group>
+            <div class="aiplorer-explorer__group-heading"><h2 id="{{ .name | anchorize }}-heading">{{ .name }} <span data-tool-group-count>{{ len $group }}</span></h2><a href="{{ .path }}">Category guide &rarr;</a></div>
+            <div class="aiplorer-tool-grid">
+              {{ range $group.ByTitle }}
+                {{- $search := printf "%s %s %s %s %s" .Title .Params.category .Params.description (delimit .Params.bestFor " ") (delimit .Params.useCases " ") | plainify | lower -}}
+                <article class="aiplorer-directory-card" data-tool-card data-tool-category="{{ .Params.category }}" data-tool-search="{{ $search }}" data-tool-path="{{ .RelPermalink }}" data-tool-review-date="{{ .Params.lastReviewed }}">
+                  <a class="aiplorer-tool-card aiplorer-tool-card--directory" href="{{ .RelPermalink }}">
+                    <span class="aiplorer-explorer__tool-icon" data-accent="{{ $category.accent }}">{{ partial "aiplorer-icon.html" $category.icon }}</span><h3>{{ .Title }}</h3><p>{{ .Params.description }}</p>
+                    <span class="aiplorer-tool-card__meta"><time datetime="{{ .Params.lastReviewed }}">Reviewed {{ .Params.lastReviewed }}</time><span aria-hidden="true">&rarr;</span></span>
+                  </a>
+                  <button class="aiplorer-directory-save aiplorer-shortlist-control aiplorer-shortlist-toggle" type="button" data-shortlist-path="{{ .RelPermalink }}" data-shortlist-title="{{ .Title }}" data-shortlist-tooltip data-label-save="Save" data-label-saved="Saved" title="Save {{ .Title }} to shortlist" aria-pressed="false">{{ partial "aiplorer-icon.html" "bookmark" }}<span class="aiplorer-visually-hidden" data-shortlist-label>Save</span></button>
+                </article>
+              {{ end }}
+            </div>
+          </section>
+        {{ end }}{{ end }}
+        <section class="aiplorer-tool-finder-empty" data-tool-finder-empty hidden><h2>No tools found</h2><p>Try another name or task.</p><button type="button" data-tool-finder-empty-reset>Clear filters</button></section>
+      </div>
+    </div>
+  </div>
+</article>

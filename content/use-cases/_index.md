@@ -3,10 +3,6 @@ title: "Use Cases"
 description: "Explore practical ways to use AI for everyday work, creativity, learning, and productivity."
 ---
 
-Use cases start with the result you need, not with a tool name. Each workflow
-shows what to prepare, what to review, where AI may help, and when to return to
-the original source or a responsible person.
-
 ## Everyday Tasks
 
 {{< card-grid >}}

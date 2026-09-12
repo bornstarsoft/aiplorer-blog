@@ -1,0 +1,14 @@
+{{- $path := .path -}}
+{{- $sizes := .sizes | default "(max-width: 48rem) calc(100vw - 2rem), 360px" -}}
+{{- $decorative := .decorative | default false -}}
+{{- with index site.Data.editorial_visuals.pages $path -}}
+  {{- $topic := . -}}
+  {{- with resources.Get (printf "images/editorial/%s.png" $topic) -}}
+    {{- $small := .Resize "240x webp q80" -}}
+    {{- $medium := .Resize "480x webp q80" -}}
+    {{- $large := .Resize "800x webp q80" -}}
+    <img class="aiplorer-editorial-image" src="{{ $medium.RelPermalink }}" srcset="{{ $small.RelPermalink }} 240w, {{ $medium.RelPermalink }} 480w, {{ $large.RelPermalink }} 800w" sizes="{{ $sizes }}" width="{{ .Width }}" height="{{ .Height }}" alt="{{ if not $decorative }}{{ (index site.Data.editorial_visuals.topics $topic).alt }}{{ end }}" loading="lazy" decoding="async" data-editorial-topic="{{ $topic }}">
+  {{- else -}}
+    {{- errorf "Missing editorial image for %s" $path -}}
+  {{- end -}}
+{{- end -}}

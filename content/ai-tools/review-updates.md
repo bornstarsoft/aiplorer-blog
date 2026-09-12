@@ -1,15 +1,18 @@
 ---
-title: "Latest AI Tool and Workflow Reviews"
-description: "See Aiplorer's latest reviewed tools, practical guides, and use-case checks in one chronological update stream."
+title: "AI Tool Change Watch"
+description: "Catch up on official AI tool announcements, understand what to recheck, and follow updates for your saved tools."
 type: "ai-tools"
 layout: "review-updates"
+outputs: ["HTML", "RSS"]
+lastmod: "2026-09-12"
 ---
 
 Aiplorer records when public tool pages were checked against official sources
 and when practical Guides and Use Cases were reviewed for scope, safeguards,
-and current workflow fit. This page shows Aiplorer review activity, not a
-vendor changelog, popularity ranking, score, endorsement, or guarantee that
-every feature is unchanged.
+and current workflow fit. The announcement watch above records selected
+vendor changes and practical follow-up checks. The review log below records
+Aiplorer's separate editorial checks; a new review date does not itself
+establish a product change.
 
 Use the Review Activity Finder to focus the chronological log by content type
 or tool category. If this browser has a local shortlist, the finder can narrow

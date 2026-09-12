@@ -1205,6 +1205,8 @@
     var trialState = readTrialState();
     var reviewSnapshot = readReviewSnapshot();
     var savedCount = saved.size;
+    var visibleSummary = document.querySelector("[data-shortlist-visible-summary]");
+    var filterLabel = document.querySelector("[data-shortlist-filter-label]");
     var visibleCount = 0;
     var savedReviewCount = 0;
     var savedReviewUpdates = 0;
@@ -1280,6 +1282,20 @@
 
     if (grid) {
       grid.hidden = visibleCount === 0;
+    }
+    document.querySelectorAll("[data-shortlist-has-items]").forEach(function (control) {
+      control.hidden = savedCount === 0;
+    });
+    if (visibleSummary) {
+      visibleSummary.textContent = savedCount > 0
+        ? "Showing " + visibleCount + " of " + savedCount + (savedCount === 1 ? " saved tool" : " saved tools")
+        : "";
+    }
+    if (filterLabel) {
+      var activeFilters = [];
+      if (stageView !== "all") activeFilters.push(candidateStageViewLabel(stageView));
+      if (testDateView !== "all") activeFilters.push(candidateTestDateViewLabel(testDateView));
+      filterLabel.textContent = activeFilters.length ? activeFilters.join(" / ") : "All saved tools";
     }
     if (empty) {
       empty.hidden = savedCount > 0;

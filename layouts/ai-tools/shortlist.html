@@ -5,51 +5,20 @@
   {{- $reviewedTools := where (where $aiToolPages "Params.reviewStatus" "reviewed") "Draft" false -}}
   {{- $categories := partial "aiplorer-category-data.html" . -}}
 
-  <article class="aiplorer-shortlist">
+  <article class="aiplorer-shortlist aiplorer-shortlist--compact">
     <section class="aiplorer-shortlist__hero">
       <div class="aiplorer-shell">
         <div class="aiplorer-shortlist__hero-copy">
-          <p class="aiplorer-eyebrow">
-            <span class="aiplorer-eyebrow__icon">{{ partial "aiplorer-icon.html" "bookmark" }}</span>
-            Local shortlist
-          </p>
           <h1>{{ .Title }}</h1>
-          <p class="aiplorer-shortlist__lead">{{ .Params.description }}</p>
+          <p class="aiplorer-shortlist__lead">Saved in this browser only. No account or sync.</p>
           <div class="aiplorer-actions">
-            <a class="aiplorer-button aiplorer-button--primary" href="/ai-tools/compare/?view=shortlist">
-              Compare my shortlist
+            <a class="aiplorer-button aiplorer-button--primary" href="/ai-tools/compare/?view=shortlist" data-shortlist-has-items hidden>
+              Compare saved tools
             </a>
             <a class="aiplorer-button aiplorer-button--light" href="/ai-tools/tools/">
-              Browse the directory
-            </a>
-            <a class="aiplorer-button aiplorer-button--light" href="/ai-tools/review-updates/?view=tools&amp;saved=1">
-              Check saved reviews
+              Browse tools
             </a>
           </div>
-        </div>
-        <dl class="aiplorer-shortlist__facts" aria-label="Shortlist summary">
-          <div>
-            <dt data-shortlist-count>0</dt>
-            <dd>saved in this browser</dd>
-          </div>
-          <div>
-            <dt>{{ len $reviewedTools }}</dt>
-            <dd>reviewed tools available</dd>
-          </div>
-          <div>
-            <dt>Local</dt>
-            <dd>no account or sync</dd>
-          </div>
-        </dl>
-      </div>
-    </section>
-
-    <section class="aiplorer-shortlist__context" aria-labelledby="shortlist-context-heading">
-      <div class="aiplorer-shell">
-        <span class="aiplorer-shortlist__context-icon">{{ partial "aiplorer-icon.html" "shield-check" }}</span>
-        <div>
-          <h2 id="shortlist-context-heading">A private browser list, not a recommendation</h2>
-          <div class="aiplorer-shortlist__body">{{ .Content }}</div>
         </div>
       </div>
     </section>
@@ -58,128 +27,56 @@
       <div class="aiplorer-shell">
         <div class="aiplorer-section-heading">
           <div>
-            <p class="aiplorer-kicker">Saved candidates</p>
-            <h2 id="saved-tools-heading">Your reviewed tool shortlist</h2>
-            <p class="aiplorer-section-heading__note">Use reviewed signals and private candidate checks to narrow the list, then revisit full reviews and official details.</p>
-          </div>
-          <button class="aiplorer-shortlist-clear aiplorer-shortlist-control" type="button" data-shortlist-clear disabled>
-            Clear shortlist
-          </button>
-        </div>
-
-        <div class="aiplorer-shortlist-backup" data-shortlist-backup>
-          <span class="aiplorer-shortlist-backup__icon">{{ partial "aiplorer-icon.html" "file-text" }}</span>
-          <div class="aiplorer-shortlist-backup__copy">
-            <p class="aiplorer-kicker">Keep your evaluation</p>
-            <strong>Take your shortlist with you</strong>
-            <small>Download a readable decision brief, or back up local notes, test dates, and progress as JSON. Aiplorer does not upload either file; restoring replaces this browser's saved candidate evaluation.</small>
-          </div>
-          <div class="aiplorer-shortlist-backup__actions">
-            <button type="button" data-shortlist-export-brief disabled>
-              {{ partial "aiplorer-icon.html" "file-text" }}
-              <span>Download brief</span>
-            </button>
-            <button type="button" data-shortlist-export disabled>
-              {{ partial "aiplorer-icon.html" "download" }}
-              <span>Download backup</span>
-            </button>
-            <button type="button" data-shortlist-import-trigger>
-              {{ partial "aiplorer-icon.html" "upload" }}
-              <span>Restore backup</span>
-            </button>
-            <input
-              hidden
-              id="aiplorer-shortlist-backup-file"
-              type="file"
-              accept=".json,application/json"
-              data-shortlist-import
-            >
+            <h2 id="saved-tools-heading">Saved tools <span data-shortlist-count>0</span></h2>
+            <p class="aiplorer-section-heading__note" data-shortlist-visible-summary role="status" aria-live="polite"></p>
           </div>
         </div>
 
-        <div class="aiplorer-shortlist-stage-filter" data-shortlist-stage-filter hidden>
-          <div>
-            <p class="aiplorer-kicker">Decision stage view</p>
-            <strong data-shortlist-stage-summary>Showing all saved candidates.</strong>
-            <small>Private browser organization, not a ranking or recommendation.</small>
-          </div>
-          <div class="aiplorer-shortlist-stage-filter__options" role="group" aria-label="Filter saved candidates by decision stage">
-            <button type="button" data-shortlist-stage-view="all" aria-pressed="true">
-              All <span data-shortlist-stage-count="all">0</span>
-            </button>
-            <button type="button" data-shortlist-stage-view="researching" aria-pressed="false">
-              Researching <span data-shortlist-stage-count="researching">0</span>
-            </button>
-            <button type="button" data-shortlist-stage-view="testing" aria-pressed="false">
-              Testing <span data-shortlist-stage-count="testing">0</span>
-            </button>
-            <button type="button" data-shortlist-stage-view="ready" aria-pressed="false">
-              Ready <span data-shortlist-stage-count="ready">0</span>
-            </button>
-            <button type="button" data-shortlist-stage-view="unset" aria-pressed="false">
-              Not set <span data-shortlist-stage-count="unset">0</span>
-            </button>
-          </div>
-        </div>
-
-        <div class="aiplorer-shortlist-stage-filter aiplorer-shortlist-test-date-filter" data-shortlist-test-date-filter hidden>
-          <div>
-            <p class="aiplorer-kicker">Local test date view</p>
-            <strong data-shortlist-test-date-summary>Showing every local test-date state.</strong>
-            <small>Based only on dates you recorded in this browser.</small>
-          </div>
-          <div class="aiplorer-shortlist-stage-filter__options" role="group" aria-label="Filter saved candidates by local test date">
-            <button type="button" data-shortlist-test-date-view="all" aria-pressed="true">
-              All dates <span data-shortlist-test-date-count="all">0</span>
-            </button>
-            <button type="button" data-shortlist-test-date-view="untested" aria-pressed="false">
-              Not tested <span data-shortlist-test-date-count="untested">0</span>
-            </button>
-            <button type="button" data-shortlist-test-date-view="dated" aria-pressed="false">
-              Date recorded <span data-shortlist-test-date-count="dated">0</span>
-            </button>
-          </div>
-        </div>
-
-        <div class="aiplorer-shortlist-next" data-shortlist-stage-next hidden>
-          <span class="aiplorer-shortlist-next__icon">{{ partial "aiplorer-icon.html" "compass" }}</span>
-          <div class="aiplorer-shortlist-next__copy">
-            <p class="aiplorer-kicker">Resume queue</p>
-            <strong data-shortlist-stage-next-title>Move each candidate one step forward</strong>
-            <p data-shortlist-stage-next-copy>Choose a stage for each candidate, then work through the same four checks.</p>
-            <div class="aiplorer-shortlist-next__progress-wrap" data-shortlist-stage-next-progress-wrap hidden>
-              <div
-                class="aiplorer-shortlist-next__progress"
-                role="progressbar"
-                aria-label="Candidate checklist progress"
-                aria-valuemin="0"
-                aria-valuemax="0"
-                aria-valuenow="0"
-                data-shortlist-stage-next-progress
-              >
-                <span data-shortlist-stage-next-progress-bar></span>
-              </div>
-              <small data-shortlist-stage-next-progress-label>0 of 0 private checks complete.</small>
+        <details class="aiplorer-shortlist-disclosure aiplorer-shortlist-filters" data-shortlist-has-items hidden>
+          <summary>Filters <span data-shortlist-filter-label>All saved tools</span></summary>
+          <div class="aiplorer-shortlist-stage-filter" data-shortlist-stage-filter hidden>
+            <div>
+              <strong>Stage</strong>
+              <span class="aiplorer-visually-hidden" data-shortlist-stage-summary>Showing all saved candidates.</span>
+            </div>
+            <div class="aiplorer-shortlist-stage-filter__options" role="group" aria-label="Filter saved candidates by decision stage">
+              <button type="button" data-shortlist-stage-view="all" aria-pressed="true">
+                All <span data-shortlist-stage-count="all">0</span>
+              </button>
+              <button type="button" data-shortlist-stage-view="researching" aria-pressed="false">
+                Researching <span data-shortlist-stage-count="researching">0</span>
+              </button>
+              <button type="button" data-shortlist-stage-view="testing" aria-pressed="false">
+                Testing <span data-shortlist-stage-count="testing">0</span>
+              </button>
+              <button type="button" data-shortlist-stage-view="ready" aria-pressed="false">
+                Ready <span data-shortlist-stage-count="ready">0</span>
+              </button>
+              <button type="button" data-shortlist-stage-view="unset" aria-pressed="false">
+                Not set <span data-shortlist-stage-count="unset">0</span>
+              </button>
             </div>
           </div>
-          <div class="aiplorer-shortlist-next__actions">
-            <button type="button" data-shortlist-stage-next-filter hidden>Open next stage</button>
-            <button type="button" data-shortlist-next-check hidden>Open next check</button>
-          </div>
-        </div>
 
-        <div class="aiplorer-shortlist-review-pulse" data-shortlist-review-pulse data-review-state="checkpoint" hidden>
-          <span class="aiplorer-shortlist-review-pulse__icon">{{ partial "aiplorer-icon.html" "history" }}</span>
-          <div>
-            <p class="aiplorer-kicker">Saved review status</p>
-            <strong data-shortlist-review-pulse-title>Start a review checkpoint</strong>
-            <p data-shortlist-review-pulse-copy>Open Review Updates once to track later Aiplorer checks for these saved candidates.</p>
+          <div class="aiplorer-shortlist-stage-filter aiplorer-shortlist-test-date-filter" data-shortlist-test-date-filter hidden>
+            <div>
+              <strong>Test date</strong>
+              <span class="aiplorer-visually-hidden" data-shortlist-test-date-summary>Showing every local test-date state.</span>
+            </div>
+            <div class="aiplorer-shortlist-stage-filter__options" role="group" aria-label="Filter saved candidates by local test date">
+              <button type="button" data-shortlist-test-date-view="all" aria-pressed="true">
+                All dates <span data-shortlist-test-date-count="all">0</span>
+              </button>
+              <button type="button" data-shortlist-test-date-view="untested" aria-pressed="false">
+                Not tested <span data-shortlist-test-date-count="untested">0</span>
+              </button>
+              <button type="button" data-shortlist-test-date-view="dated" aria-pressed="false">
+                Date recorded <span data-shortlist-test-date-count="dated">0</span>
+              </button>
+            </div>
           </div>
-          <a href="/ai-tools/review-updates/?view=tools&amp;saved=1" data-shortlist-review-pulse-link>
-            <span data-shortlist-review-pulse-link-label>Check saved reviews</span>
-            <span aria-hidden="true">&rarr;</span>
-          </a>
-        </div>
+          <button class="aiplorer-shortlist-reset-filters" type="button" data-shortlist-reset-views>Clear filters</button>
+        </details>
 
         <p
           class="aiplorer-visually-hidden"
@@ -191,8 +88,7 @@
         <div class="aiplorer-shortlist-empty" data-shortlist-empty>
           <span>{{ partial "aiplorer-icon.html" "bookmark" }}</span>
           <h3>No saved tools yet</h3>
-          <p>Open a reviewed tool or the comparison page, then use the bookmark button to build a focused list.</p>
-          <a class="aiplorer-button aiplorer-button--primary" href="/ai-tools/compare/?view=shortlist">Start comparing</a>
+          <a class="aiplorer-button aiplorer-button--primary" href="/ai-tools/tools/">Find a tool to save</a>
         </div>
 
         <div class="aiplorer-shortlist-empty aiplorer-shortlist-stage-empty" data-shortlist-stage-empty hidden>
@@ -230,7 +126,7 @@
                 <span class="aiplorer-shortlist-card__category" data-shortlist-category>{{ .Params.category }}</span>
               </div>
               <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-              <p data-shortlist-description>{{ .Params.description | truncate 145 }}</p>
+              <p data-shortlist-description>{{ .Params.description }}</p>
               <div class="aiplorer-shortlist-card__signals">
                 {{ range first 1 .Params.bestFor }}
                   <div data-tone="teal">
@@ -246,7 +142,6 @@
                 {{ end }}
               </div>
               <div class="aiplorer-shortlist-card__review" data-shortlist-review-state data-review-state="checkpoint">
-                <span>Saved review status</span>
                 <strong data-shortlist-review-label>Start review tracking</strong>
                 <small>Compared with this browser's Review Updates checkpoint.</small>
               </div>
@@ -431,6 +326,67 @@
               </button>
             </article>
           {{ end }}
+        </div>
+
+        <div class="aiplorer-shortlist__utilities">
+          <details class="aiplorer-shortlist-disclosure" data-shortlist-has-items hidden>
+            <summary>Review progress</summary>
+            <div class="aiplorer-shortlist-next" data-shortlist-stage-next hidden>
+              <span class="aiplorer-shortlist-next__icon">{{ partial "aiplorer-icon.html" "compass" }}</span>
+              <div class="aiplorer-shortlist-next__copy">
+                <strong data-shortlist-stage-next-title>Move each candidate one step forward</strong>
+                <p data-shortlist-stage-next-copy>Choose a stage for each candidate, then work through the same four checks.</p>
+                <div class="aiplorer-shortlist-next__progress-wrap" data-shortlist-stage-next-progress-wrap hidden>
+                  <div class="aiplorer-shortlist-next__progress" role="progressbar" aria-label="Candidate checklist progress" aria-valuemin="0" aria-valuemax="0" aria-valuenow="0" data-shortlist-stage-next-progress>
+                    <span data-shortlist-stage-next-progress-bar></span>
+                  </div>
+                  <small data-shortlist-stage-next-progress-label>0 of 0 private checks complete.</small>
+                </div>
+              </div>
+              <div class="aiplorer-shortlist-next__actions">
+                <button type="button" data-shortlist-stage-next-filter hidden>Open next stage</button>
+                <button type="button" data-shortlist-next-check hidden>Open next check</button>
+              </div>
+            </div>
+            <div class="aiplorer-shortlist-review-pulse" data-shortlist-review-pulse data-review-state="checkpoint" hidden>
+              <span class="aiplorer-shortlist-review-pulse__icon">{{ partial "aiplorer-icon.html" "history" }}</span>
+              <div>
+                <strong data-shortlist-review-pulse-title>Start a review checkpoint</strong>
+                <p data-shortlist-review-pulse-copy>Open Review Updates once to track later Aiplorer checks for these saved candidates.</p>
+              </div>
+              <a href="/ai-tools/review-updates/?view=tools&amp;saved=1" data-shortlist-review-pulse-link>
+                <span data-shortlist-review-pulse-link-label>Check saved reviews</span>
+                <span aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
+          </details>
+
+          <details class="aiplorer-shortlist-disclosure">
+            <summary>Backup and restore</summary>
+            <div class="aiplorer-shortlist-backup" data-shortlist-backup>
+              <div class="aiplorer-shortlist-backup__copy">
+                <small>Files stay on your device. Restoring replaces this browser's saved tools, notes, test dates, and progress.</small>
+              </div>
+              <div class="aiplorer-shortlist-backup__actions">
+                <button type="button" data-shortlist-export-brief disabled>
+                  {{ partial "aiplorer-icon.html" "file-text" }}<span>Download brief</span>
+                </button>
+                <button type="button" data-shortlist-export disabled>
+                  {{ partial "aiplorer-icon.html" "download" }}<span>Download backup</span>
+                </button>
+                <button type="button" data-shortlist-import-trigger>
+                  {{ partial "aiplorer-icon.html" "upload" }}<span>Restore backup</span>
+                </button>
+                <input hidden id="aiplorer-shortlist-backup-file" type="file" accept=".json,application/json" data-shortlist-import>
+              </div>
+            </div>
+            <button class="aiplorer-shortlist-clear aiplorer-shortlist-control" type="button" data-shortlist-clear disabled>Clear shortlist</button>
+          </details>
+
+          <details class="aiplorer-shortlist-disclosure">
+            <summary>Privacy and review notes</summary>
+            <div class="aiplorer-shortlist__body">{{ .Content }}</div>
+          </details>
         </div>
 
         <noscript>

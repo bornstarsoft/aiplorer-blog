@@ -3,7 +3,19 @@ title: "Guides"
 description: "Simple guides for choosing and using AI tools with confidence."
 ---
 
-Aiplorer guides are for everyday users who want practical help choosing tools, defining workflows, understanding tradeoffs, and keeping human review in AI-assisted work.
+## Decision Guides
+
+{{< card-grid >}}
+{{< card title="Cursor vs GitHub Copilot for Repository Work" href="/guides/cursor-vs-github-copilot-for-repository-work/" label="Compare on one task" >}}
+Run the same small change and compare scope control, review effort, and test evidence.
+{{< /card >}}
+{{< card title="Choose AI for Sensitive Document Research" href="/guides/choose-ai-for-sensitive-document-research/" label="Check before uploading" >}}
+Use a harmless document pack to test source tracing, exceptions, and access questions.
+{{< /card >}}
+{{< card title="AI Presentation Checklist for Client Handoff" href="/guides/ai-presentation-client-handoff-checklist/" label="Test the final delivery" >}}
+Inspect facts, visual rights, editability, and the recipient's required format.
+{{< /card >}}
+{{< /card-grid >}}
 
 ## Practical Workflow Guides
 
