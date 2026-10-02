@@ -67,6 +67,7 @@ Publish only after manual review.
 | `limitations` | Known limits, caveats, or user-fit concerns. |
 | `similarTools` | Related tools to compare later. |
 | `sourceNotes` | Internal notes about official pages checked. |
+| `searchAliases` | Optional alternate names or language spellings used by the existing tool finder; not additional product claims. |
 | `lastmod` | Publication or material re-review date for rendered metadata and sitemap freshness. Add it only after a real review or content change. |
 
 ## Allowed Categories
@@ -79,6 +80,7 @@ Use one primary category:
 - Audio Tools
 - Presentation Tools
 - Coding Tools
+- Local LLM Tools
 - Productivity Tools
 - Automation Tools
 - Learning Tools

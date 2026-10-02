@@ -54,7 +54,7 @@
             <div class="aiplorer-explorer__group-heading"><h2 id="{{ .name | anchorize }}-heading">{{ .name }} <span data-tool-group-count>{{ len $group }}</span></h2><a href="{{ .path }}">Category guide &rarr;</a></div>
             <div class="aiplorer-tool-grid">
               {{ range $group.ByTitle }}
-                {{- $search := printf "%s %s %s %s %s" .Title .Params.category .Params.description (delimit .Params.bestFor " ") (delimit .Params.useCases " ") | plainify | lower -}}
+                {{- $search := printf "%s %s %s %s %s %s" .Title .Params.category .Params.description (delimit .Params.bestFor " ") (delimit .Params.useCases " ") (delimit (.Params.searchAliases | default (slice)) " ") | plainify | lower -}}
                 <article class="aiplorer-directory-card" data-tool-card data-tool-category="{{ .Params.category }}" data-tool-search="{{ $search }}" data-tool-path="{{ .RelPermalink }}" data-tool-review-date="{{ .Params.lastReviewed }}">
                   <a class="aiplorer-tool-card aiplorer-tool-card--directory" href="{{ .RelPermalink }}">
                     <span class="aiplorer-explorer__tool-icon" data-accent="{{ $category.accent }}">{{ partial "aiplorer-icon.html" $category.icon }}</span><h3>{{ .Title }}</h3><p>{{ .Params.description }}</p>

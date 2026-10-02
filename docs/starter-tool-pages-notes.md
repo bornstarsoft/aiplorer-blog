@@ -2,6 +2,23 @@
 
 Date: 2026-06-01
 
+## Video And Local LLM Expansion: 2026-10-03
+
+Published ten new official-source-reviewed entries: Seedance, Kling AI, HeyGen,
+Google Veo, Ollama, LM Studio, Jan, GPT4All, llama.cpp, and Open WebUI. The six
+local-model tools use the new Local LLM Tools category. The reviewed directory
+increases from 65 to 75 entries; existing drafts remain unchanged.
+
+Review decisions, sources, limits, and validation scope are recorded in
+`docs/video-local-llm-expansion-2026-10.md`. Each tool also has dated `sourceNotes`
+and visible official-source links. These are editorial source checks, not
+hands-on performance tests. No exact prices, model rankings, hardware promises,
+license-safety claims, or privacy guarantees were added.
+
+Seedance and Veo are labeled as model families rather than universal service
+subscriptions. Local runners, desktop apps, and self-hosted interfaces are
+distinguished; connected features are not represented as always offline.
+
 Phase 2A adds three real AI tool pages as draft validation pages:
 
 - ChatGPT
