@@ -16,9 +16,9 @@ served a different task and reduced the visibility of the historical data.
 
 ## Public Codex History
 
-`data/codex_reset_history.json` contains a manually checked snapshot of 53
+`data/codex_reset_history.json` contains a manually checked snapshot of 57
 public Codex reset/credit announcements observed between September 17, 2025 and
-September 12, 2026, checked on September 12. Each row stores the UTC announcement
+October 2, 2026, checked on October 3 KST (October 2 UTC). Each row stores the UTC announcement
 timestamp, source X post URL, and an explicit `kind`. The seed was checked
 against `https://codex-resets.com/`, which states
 that it collects posts from `@thsottiaux` and is not affiliated with OpenAI.
@@ -43,6 +43,99 @@ present the event count as a count of identical account resets.
 The source can also show a separate reset-watch signal for a possible future
 event. Aiplorer excludes those signals until they appear in the confirmed reset
 announcement log; they are not added as forecasts or event records.
+
+### October 3 KST Check: Usage Reset Completion
+
+- Added the October 2, 2026 21:18:48 UTC usage-reset completion announcement
+  (October 3 at 06:18:48 KST), linked to
+  `https://x.com/thsottiaux/status/2106131810921136451`.
+- The archive and `https://codex-resets.com/api/v1/resets?limit=100` agree on
+  the timestamp and completion wording. The API returns 57 records with no
+  further page, one new record, no removed records and no timestamp changes
+  to the previous 56 entries. It identifies the new record as `regular`;
+  Aiplorer maps it to `usage`, not a banked-credit grant.
+- Counts are 46 usage, 7 banked, 2 both and 2 unclassified. The usage view
+  includes 48 entries; the credit view stays at 9. The latest credit observation
+  remains September 29 at 19:00 UTC, with its archive-based evidence caveat.
+- Updated the public notice and latest history clocks for the usage reset.
+  This timestamp records a completion announcement, not verified delivery time
+  for each account. No eligibility, quantity or expiration claims were added.
+- Direct X access was unavailable; the event was checked through the secondary
+  archive and API. The official weekly product update did not independently
+  confirm this reset. No account access or credit redemption was performed.
+
+### September 30 Check: Completion And Observed Reset Credit
+
+- The archive and `https://codex-resets.com/api/v1/resets?limit=100` now contain
+  56 records and no further page. The existing 54 source URLs and timestamps
+  are unchanged. Added two records, retaining their distinct event types.
+- `usage`: September 26 at 18:17:54 UTC (September 27 at 03:17:54 KST), linked
+  to `https://x.com/thsottiaux/status/2103911959544610829`. The archived text
+  states that reset propagation completed. This closes the September 26
+  pending notice; the earlier promise is not counted as a second event.
+- `banked`: September 29 at 19:00:00 UTC (September 30 at 04:00 KST), linked
+  to `https://x.com/thsottiaux/status/2105120226027450685`. The API identifies
+  this as `observed-20260929T190000Z`, source type `observed`, reset type
+  `banked`; the public page also labels it a banked reset. This is the archive's
+  observation time, not the short reply's publication time or a verified
+  universal delivery time. The reply text alone does not establish the grant.
+- Direct X pages could not be fetched. The official changelog did not provide
+  event confirmation. Classification of the newest observation relies on the
+  secondary archive, not independent official verification. A visible notice
+  discloses this limitation; no quantity, eligibility or expiration is inferred.
+- Counts are 45 usage, 7 banked, 2 both and 2 unclassified, 56 total. The usage
+  view includes 47 records and the credit view 9, with `both` in each view.
+  Homepage and tracker clocks follow the latest observed credit; the latest
+  usage-only record remains separately dated September 26 UTC.
+- Replaced the obsolete completion-pending notice with the observation caveat.
+  Existing records, protected drafts and unrelated content remain unchanged.
+
+### September 26 Check: Usage Reset Announced, Completion Unconfirmed
+
+- The public archive lists a scheduled usage reset, with timing still to be
+  announced, linked to `https://x.com/thsottiaux/status/2103637477760311522`.
+  The text mirrored at `https://ai-resets.com/` and
+  `https://zamantika.com/en/profile/thsottiaux` describes an upcoming usage
+  reset for paid Codex and ChatGPT Work users after a service disruption.
+  It does not announce a new banked reset grant.
+- Direct X access returned 403. The official changelog did not establish a
+  completed reset. Mirrors corroborate the announcement wording, not account
+  delivery or a completion timestamp. Relative mirror times were not converted
+  into an invented event time.
+- The public API returned 54 records, no further page, no new entries and no
+  timestamp changes. All existing events and classifications remain unchanged;
+  only the checked timestamp and page lastmod were refreshed.
+- An optional `resetNotice` in the tracker front matter displays the dated
+  announcement status above the historical clock. It is separate from the
+  dataset, counts, graphs and elapsed clocks. No prediction was added.
+- On the next check, remove or revise this notice. Add a history event only
+  after a source-backed record is available, and avoid counting the pending
+  announcement and its later confirmation as two resets. This check does not
+  rule out a reset already reaching an individual account.
+
+### September 24 Check: September 23 KST Reset Credit
+
+- Added one `banked` announcement at September 22, 2026 18:23:37 UTC:
+  September 23 at 03:23:37 KST, or September 22 at 11:23:37 PDT.
+  Original post: `https://x.com/thsottiaux/status/2102463847714247142`.
+- The public archive and `https://codex-resets.com/api/v1/resets?limit=100`
+  agree on the timestamp and explicitly describe a saved reset grant for Plus,
+  Pro and Business alongside the Sol/Luna release. The API contains 54 records
+  with no further page; all previous 53 source URLs and timestamps match.
+- This is a credit-grant announcement, not an automatic usage refill. Counts
+  are now 44 usage, 6 banked, 2 both and 2 unclassified. The credit view contains
+  8 announcements including `both`; the usage view remains at 46. Latest usage
+  reset remains September 12 at 08:09:17 UTC. Counts describe announcements,
+  not the number of credits available in any account.
+- Direct X access returned 403. Event evidence is the secondary archive/API,
+  with the original source link retained. The official banked-reset Help
+  Center page was checked for the distinction between saved and automatic
+  resets, but did not independently confirm this September 22 grant. No exact
+  account delivery time, expiration or individual eligibility is asserted.
+- The recorded time is the announcement time, not confirmation that every
+  account received the credit then. Users should check Settings > Usage for
+  their own available reset and expiration. No forecast or automatic
+  redemption was added.
 
 ### September 12 Update
 

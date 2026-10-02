@@ -50,6 +50,21 @@
           </div>
         </div>
 
+        {{ with .Params.resetNotice }}
+          <aside class="aiplorer-reset-history__notice" aria-labelledby="reset-notice-heading">
+            <span aria-hidden="true">{{ partial "aiplorer-icon.html" "clock-3" }}</span>
+            <div>
+              <p><strong id="reset-notice-heading">{{ .title }}</strong></p>
+              <p>{{ .message }}</p>
+              <p>
+                Checked <time datetime="{{ .checkedOn }}">{{ time.Format "Jan 2, 2006" .checkedOn }}</time> (UTC).
+                <a href="{{ .sourceUrl }}" target="_blank" rel="noopener nofollow">Original announcement</a>
+                &middot; <a href="{{ .archiveUrl }}" target="_blank" rel="noopener nofollow">Archive status</a>
+              </p>
+            </div>
+          </aside>
+        {{ end }}
+
         <div class="aiplorer-reset-history__latest">
           <div class="aiplorer-reset-history__latest-copy">
             <div class="aiplorer-reset-history__latest-label">
