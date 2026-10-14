@@ -2,6 +2,34 @@
 
 ACTIVE_WRITER = NONE
 
+## Broader Coverage (2026-10-14)
+
+- WORK-ID: AIPLORER-WATCH-EXPANSION; last AI: CODEX; implementation DONE.
+- Added Notion AI, Claude, and Perplexity: ten events across six tools.
+  This remains selected announcement coverage, not a full tool re-review.
+- Official sources read on October 14:
+  - https://www.notion.com/releases : October 13 Notion 3.8 section.
+    The dated permalink could not be opened in the research tool, so the
+    readable official release index is cited. Scope: edit attribution and
+    column permissions, not pricing, security guarantees, or every 3.8 feature.
+  - https://www.anthropic.com/news/2026-usage-policy-update :
+    October 8 announcement; November 12 effective date stays explicitly future.
+    Existing high-risk requirements are described as clarified, not newly added.
+  - https://www.perplexity.ai/changelog/automations-inline-visualizations-and-gpt-6-1-sol :
+    October 5 announcement; selected inline CSV visualization for practical
+    source-data checks. No model benchmarks or financial advice added.
+- Extended the validator with exact official hosts for these three providers.
+  Existing event IDs, read revisions, and tool full-review dates are unchanged.
+- QA PASS: isolated staged-source Hugo production build; ten-record validator;
+  11 saved-update/finder tests; RSS/sitemap XML; 75-tool shortlist validation;
+  291 post URLs; new homepage records; all eight draft exclusions.
+  The pre-existing legacy raw-HTML warning is unchanged.
+- Baseline HEAD: 530b365. Owner WIP: 28 files excluded and preserved.
+- Owner approval: this update only, including commit and deployment.
+- NEXT_SINGLE_TASK: push and verify Cloudflare plus live home/watch/RSS.
+  Deployment evidence is reported in the final chat result.
+- BLOCKER: none.
+
 ## Official-Source Refresh (2026-10-14)
 
 - WORK-ID: AIPLORER-CHANGE-WATCH-OCT14; last AI: CODEX.

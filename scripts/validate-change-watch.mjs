@@ -10,7 +10,10 @@ const today = new Date().toISOString().slice(0, 10);
 const officialHosts = new Map([
   ["/ai-tools/tools/github-copilot/", ["github.blog", "docs.github.com", "github.com"]],
   ["/ai-tools/tools/cursor/", ["cursor.com", "docs.cursor.com"]],
-  ["/ai-tools/tools/replit/", ["docs.replit.com", "replit.com"]]
+  ["/ai-tools/tools/replit/", ["docs.replit.com", "replit.com"]],
+  ["/ai-tools/tools/notion-ai/", ["www.notion.com"]],
+  ["/ai-tools/tools/claude/", ["www.anthropic.com"]],
+  ["/ai-tools/tools/perplexity/", ["www.perplexity.ai"]]
 ]);
 function date(value) {
   assert.match(value, /^\d{4}-\d{2}-\d{2}$/);

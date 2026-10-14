@@ -2,6 +2,48 @@
   "checkedAt": "2026-10-14",
   "entries": [
     {
+      "id": "notion-context-controls-2026-10-13",
+      "tool": "/ai-tools/tools/notion-ai/",
+      "announcedAt": "2026-10-13",
+      "checkedAt": "2026-10-14",
+      "revision": 1,
+      "topic": "Permissions",
+      "title": "Review agent edits and database access in Notion",
+      "summary": "Notion 3.8 announces clearer page and database change history with attribution, plus database column permissions for people and agents.",
+      "action": "Before connecting a team agent, test access with a low-privilege account and inspect its edits. Check your plan and retention options; visible history is not a substitute for a backup or permission audit.",
+      "sourceTitle": "Notion: October 13 release, Context for your agents",
+      "sourceUrl": "https://www.notion.com/releases",
+      "guide": "/guides/choose-ai-for-sensitive-document-research/"
+    },
+    {
+      "id": "claude-usage-policy-2026-10-08",
+      "tool": "/ai-tools/tools/claude/",
+      "announcedAt": "2026-10-08",
+      "checkedAt": "2026-10-14",
+      "revision": 1,
+      "topic": "Usage policy",
+      "title": "Review Claude's policy update before November 12",
+      "summary": "Anthropic announced a revised Usage Policy taking effect November 12, 2026. It clarifies existing high-risk-use requirements and adds requirements for autonomous physical actions.",
+      "action": "Teams using Claude for consequential decisions should read the full policy and confirm qualified human oversight and disclosure. This is a forthcoming vendor-policy update, not legal advice or a new permission to automate decisions.",
+      "sourceTitle": "Anthropic: 2026 Usage Policy update",
+      "sourceUrl": "https://www.anthropic.com/news/2026-usage-policy-update",
+      "guide": "/guides/choose-ai-for-sensitive-document-research/"
+    },
+    {
+      "id": "perplexity-inline-charts-2026-10-05",
+      "tool": "/ai-tools/tools/perplexity/",
+      "announcedAt": "2026-10-05",
+      "checkedAt": "2026-10-14",
+      "revision": 1,
+      "topic": "Research workflows",
+      "title": "Explore file data with charts inside Computer",
+      "summary": "Perplexity's October release describes interactive visualizations directly in Computer threads, including turning a CSV file into an interactive chart.",
+      "action": "Try a small, non-sensitive file first. Check totals, units, missing values, and source dates against the original data before using a chart in a report; confirm access and usage costs in your account.",
+      "sourceTitle": "Perplexity: October 5 Computer updates",
+      "sourceUrl": "https://www.perplexity.ai/changelog/automations-inline-visualizations-and-gpt-6-1-sol",
+      "guide": "/use-cases/how-to-summarize-long-documents-with-ai/"
+    },
+    {
       "id": "replit-cross-project-2026-10-09",
       "tool": "/ai-tools/tools/replit/",
       "announcedAt": "2026-10-09",
