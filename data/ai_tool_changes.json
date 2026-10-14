@@ -2,6 +2,34 @@
   "checkedAt": "2026-10-14",
   "entries": [
     {
+      "id": "cursor-execution-permissions-2026-10-09",
+      "tool": "/ai-tools/tools/cursor/",
+      "announcedAt": "2026-10-09",
+      "checkedAt": "2026-10-14",
+      "revision": 1,
+      "topic": "Agent permissions",
+      "title": "Recheck execution permissions before letting an agent run commands",
+      "summary": "Cursor IDE 3.24 adds approval checks for certain risky delete commands in Auto-review. Its release notes also say Run Everything runs agents without the sandbox unless permissions.json restricts that mode. These are different execution modes, not a blanket safety guarantee.",
+      "action": "Check your installed version, execution mode and permissions.json before continuing repository work. Keep a recoverable copy of changes, protect secrets, and avoid unrestricted execution in untrusted projects. Review commands, dependencies and generated diffs, then run tests before merging.",
+      "sourceTitle": "Cursor: October 9 IDE 3.24 release notes",
+      "sourceUrl": "https://prod.cursor.com/docs/release-notes",
+      "guide": "/guides/cursor-vs-github-copilot-for-repository-work/"
+    },
+    {
+      "id": "windsurf-devin-local-migration-2026-09-08",
+      "tool": "/ai-tools/tools/windsurf/",
+      "announcedAt": "2026-09-08",
+      "checkedAt": "2026-10-14",
+      "revision": 1,
+      "topic": "Workflow migration",
+      "title": "Check existing Windsurf conversations before moving to Devin Local",
+      "summary": "Windsurf's official changelog, now Devin Desktop, says version 3.9.19 removed Cascade and provides a Continue in Devin Local prompt for existing conversations. This September transition is newly tracked here, not an October launch.",
+      "action": "Back up unfinished work before migration. Check the selected repository, branch or worktree, execution location and permissions; do not assume conversation migration transfers uncommitted files. Verify workplace policy and secret access, and review and test changes before merging.",
+      "sourceTitle": "Devin Desktop (Windsurf): September 8, version 3.9.19",
+      "sourceUrl": "https://docs.devin.ai/desktop/changelog",
+      "guide": "/use-cases/how-to-review-ai-generated-code-before-merging/"
+    },
+    {
       "id": "zoho-zia-key-drivers-2026-09-04",
       "tool": "/ai-tools/tools/zoho-zia/",
       "announcedAt": "2026-09-04",

@@ -2,6 +2,35 @@
 
 ACTIVE_WRITER = NONE
 
+## Developer Coverage (2026-10-14)
+
+- WORK-ID: AIPLORER-DEVELOPER-WATCH; last AI: CODEX; implementation DONE.
+- Two nonduplicate events: Cursor execution permissions and Windsurf's
+  transition to Devin Local. Thirty-two records across twenty-six tools.
+- Official sources checked on October 14:
+  - https://prod.cursor.com/docs/release-notes : Cursor IDE 3.24, October 9;
+    deletion approvals and the Run Everything sandbox exception.
+  - https://docs.devin.ai/desktop/changelog : September 8, version 3.9.19;
+    Cascade removal and conversation migration. The official Windsurf changelog
+    redirects here and identifies Devin Desktop as Windsurf's successor.
+- Existing Cursor remote-control/projects, Copilot sandbox/model/review, and
+  Replit cross-project/MCP records were compared and left unchanged. Tabnine's
+  archive surfaced a product-update title, but the article could not be verified
+  sufficiently; no event was inferred from that teaser or marketing awards.
+- September migration is a historical backfill, not an October launch. Existing
+  catalog URLs and full-review dates stay unchanged. Advice covers repository
+  backups, execution location, permissions, secrets, tests and human review;
+  no security guarantees or new tool pages are added.
+- Baseline HEAD: 42a1ef0. Owner approval: this update, validation, commit and
+  deployment only. All 28 owner WIP files must remain excluded and unchanged.
+- QA PASS: isolated staged-source Hugo build; 32-record validator; 11 tests;
+  RSS/sitemap XML; 291 legacy post URLs; 75 reviewed candidates; both new
+  homepage records; eight draft exclusions. All 30 existing records and all
+  28 owner WIP file hashes preserved. Existing legacy raw-HTML warning unchanged.
+- NEXT_SINGLE_TASK: push and check live home/watch/RSS; deployment evidence
+  is reported in chat. No generated files staged.
+- BLOCKER: none.
+
 ## Data Analysis And Business Coverage (2026-10-14)
 
 - WORK-ID: AIPLORER-BUSINESS-WATCH; last AI: CODEX; implementation DONE.
