@@ -58,7 +58,7 @@
               <p>{{ .message }}</p>
               <p>
                 Checked <time datetime="{{ .checkedOn }}">{{ time.Format "Jan 2, 2006" .checkedOn }}</time> (UTC).
-                <a href="{{ .sourceUrl }}" target="_blank" rel="noopener nofollow">Original announcement</a>
+                <a href="{{ .sourceUrl }}" target="_blank" rel="noopener nofollow">{{ .sourceLabel | default "Original announcement" }}</a>
                 &middot; <a href="{{ .archiveUrl }}" target="_blank" rel="noopener nofollow">Archive status</a>
               </p>
             </div>

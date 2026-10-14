@@ -1,5 +1,22 @@
 # Aiplorer AI Reset Tracker
 
+## Work State
+
+ACTIVE_WRITER = NONE
+
+- Last AI / WORK-ID: CODEX / AIPLORER-RESET-RELEASE-OCT14; DONE (release preparation).
+- HEAD / WIP: based on main at ffdb852; release contains reset data, notice,
+  notice-link label support and this document only. Other owner WIP excluded.
+- QA: PASS reset validator, isolated staged-snapshot production build, rendered
+  notice and homepage checks, protected-draft exclusion, 291 legacy post URLs,
+  staged diff check. Production deployment verification is pending at commit.
+  Existing legacy-post raw-HTML warning remains.
+- NEXT_SINGLE_TASK: Push the reset-only commit and verify the live deployment.
+- BLOCKER / Owner approval: owner explicitly authorized reset-only commit and
+  deployment on October 14. Existing project authorization uses GitHub for this
+  web repository and Cloudflare Pages Git deployment. Exclude all other WIP.
+
+
 ## Purpose
 
 The Codex Reset Pulse gives visitors a repeat-use historical utility without
@@ -16,9 +33,9 @@ served a different task and reduced the visibility of the historical data.
 
 ## Public Codex History
 
-`data/codex_reset_history.json` contains a manually checked snapshot of 57
+`data/codex_reset_history.json` contains a manually checked snapshot of 61
 public Codex reset/credit announcements observed between September 17, 2025 and
-October 2, 2026, checked on October 3 KST (October 2 UTC). Each row stores the UTC announcement
+October 13, 2026, checked on October 13, 2026. Each row stores the UTC announcement
 timestamp, source X post URL, and an explicit `kind`. The seed was checked
 against `https://codex-resets.com/`, which states
 that it collects posts from `@thsottiaux` and is not affiliated with OpenAI.
@@ -43,6 +60,68 @@ present the event count as a count of identical account resets.
 The source can also show a separate reset-watch signal for a possible future
 event. Aiplorer excludes those signals until they appear in the confirmed reset
 announcement log; they are not added as forecasts or event records.
+
+### October 13 Check: Three Usage Resets And One Credit Grant
+
+- Compared the public archive and
+  `https://codex-resets.com/api/v1/resets?limit=100` (generated at
+  2026-10-13T05:32:34.529Z). It returned 61 records: four additions, no removed
+  source URLs and no timestamp changes to the existing 57 records.
+- Added the following announcement timestamps and classifications:
+
+| UTC announcement | KST | Kind | Source post |
+| --- | --- | --- | --- |
+| Oct 7, 03:35:09 | Oct 7, 12:35:09 | usage | https://x.com/thsottiaux/status/2107676072871600470 |
+| Oct 8, 03:44:55 | Oct 8, 12:44:55 | banked | https://x.com/thsottiaux/status/2108040921044639779 |
+| Oct 11, 04:01:09 | Oct 11, 13:01:09 | usage | https://x.com/thsottiaux/status/2109132167112782291 |
+| Oct 13, 05:06:06 | Oct 13, 14:06:06 | usage | https://x.com/thsottiaux/status/2109873287853707513 |
+
+- The October 7 announcement resolves the previous pending observation. The
+  earlier observer timestamp is not added as a second event. The October 8
+  completion is classified as banked by the archive; LunarWerx's history API
+  also links the preceding credit-grant announcement at
+  `https://x.com/thsottiaux/status/2107913674593644711`. The grant and its
+  completion are counted once.
+- Cross-checked `https://codex.lunarwerx.com/api/v1/resets?limit=5&offset=0`
+  (generated at 2026-10-13T05:30:32.991Z). It uses earlier observation times
+  and has a different total of 60. Kept Aiplorer's announcement-based series;
+  did not combine its totals or substitute observation times.
+- Direct X fetches for the four new records and the credit-grant context
+  returned 403. These additions rely on archived announcements and API
+  classifications, not independent direct-X verification or account telemetry.
+- Counts: 49 usage, 8 banked, 2 both, 2 unclassified; 61 total. Usage statistics
+  include 51 records and credit statistics 10. Refreshed the public notice and
+  check time; no account eligibility, quantity, expiry or prediction claims.
+
+### October 7 Check: New Observation, Confirmation Pending
+
+- Reviewed `https://codex-resets.com/` and its public API at
+  `https://codex-resets.com/api/v1/resets?limit=100`. The API response was
+  generated October 7 at 03:30:46.896 UTC and still returned 57 records.
+  No new source URLs were found; the latest completion announcement remains
+  October 2 at 21:18:48 UTC (October 3 at 06:18:48 KST).
+- The archive's separate reset-watch panel links to recent replies at
+  `https://x.com/thsottiaux/status/2107578625419866469` and
+  `https://x.com/thsottiaux/status/2107592473048715573`. The mirrored wording
+  discusses a possible reset, not completion or a confirmed banked-credit
+  grant. Neither is added to the event history or interval statistics.
+- The independent history endpoint
+  `https://codex.lunarwerx.com/api/v1/resets?limit=5&offset=0` returned a newer
+  observation at October 7, 03:30:06 UTC (12:30:06 KST), with `announcement:
+  null`, in a snapshot generated at 03:32:11.929 UTC. It exposes no announcement
+  URL or event type for that observation. This is secondary evidence of a
+  possible new event, not enough to distinguish usage from banked credits.
+- A fresh Codex Resets API response generated at 03:34:00.515 UTC still had
+  57 records and the October 2 latest announcement. Direct X access returned
+  403; independent official completion confirmation remains unavailable.
+- Displayed the newer observation as confirmation pending in the public notice,
+  with a link to its API evidence. It is deliberately excluded from history,
+  clocks and statistics until its source and classification can be checked.
+- Refreshed the snapshot check time and public notice only. All 57 event rows,
+  event types and latest-reset timestamps are unchanged. Visitors should check
+  their own Usage page; no predictions, account access or credit redemption
+  were performed. Unrelated in-progress content and protected drafts were left
+  untouched.
 
 ### October 3 KST Check: Usage Reset Completion
 
