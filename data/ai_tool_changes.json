@@ -2,6 +2,48 @@
   "checkedAt": "2026-10-14",
   "entries": [
     {
+      "id": "pitch-anything-block-2026-10-06",
+      "tool": "/ai-tools/tools/pitch/",
+      "announcedAt": "2026-10-06",
+      "checkedAt": "2026-10-14",
+      "revision": 1,
+      "topic": "Interactive presentations",
+      "title": "Try an interactive block before your next presentation",
+      "summary": "Pitch introduced the Agent-powered Anything block for prompted slide elements such as calculators and tabbed views, using the presentation theme's colors and fonts.",
+      "action": "Prototype with non-sensitive sample data. Verify calculations, keyboard access, and behavior in the exact sharing or export format your audience will use; do not assume interactions survive a static export. Check current access and usage terms.",
+      "sourceTitle": "Pitch: Introducing the Anything block",
+      "sourceUrl": "https://pitch.com/whats-new/introducing-the-anything-block",
+      "guide": "/guides/ai-presentation-client-handoff-checklist/"
+    },
+    {
+      "id": "gamma-editable-tables-2026-08-28",
+      "tool": "/ai-tools/tools/gamma/",
+      "announcedAt": "2026-08-28",
+      "checkedAt": "2026-10-14",
+      "revision": 1,
+      "topic": "Presentation handoff",
+      "title": "Hand off tables that recipients can still edit",
+      "summary": "Gamma's August release notes describe editable tables in PowerPoint exports and in Google Slides after upload, with an opt-out when visual fidelity matters more. This is an earlier release newly tracked here.",
+      "action": "Export a sample deck and open it in the recipient's app. Check table values, wrapping, fonts, and editability before delivery; retain a reviewed PDF reference and confirm permissions for client data and images.",
+      "sourceTitle": "Gamma: August 28 release notes",
+      "sourceUrl": "https://ideas.gamma.app/changelog/whats-new-in-gamma-august-28",
+      "guide": "/guides/ai-presentation-client-handoff-checklist/"
+    },
+    {
+      "id": "grammarly-multilingual-corrections-2026-03-11",
+      "tool": "/ai-tools/tools/grammarly/",
+      "announcedAt": "2026-03-11",
+      "checkedAt": "2026-10-14",
+      "revision": 1,
+      "topic": "Multilingual writing",
+      "title": "Check grammar in Korean and other added languages",
+      "summary": "Grammarly's March announcement added beta grammar and spelling support for languages including Korean through its browser extension and desktop app. The announcement treated advanced tone and clarity suggestions as future work, not part of that release.",
+      "action": "Check current support in your app with a short, non-sensitive draft. Review names, numbers, politeness, and intended commitments yourself; a grammar correction does not verify facts or guarantee appropriate tone. This March release is newly tracked, not an October launch.",
+      "sourceTitle": "Grammarly: Multilingual writing support expansion",
+      "sourceUrl": "https://www.grammarly.com/blog/product/multilingual-support-in-additional-languages/",
+      "guide": "/use-cases/how-to-use-ai-to-write-better-emails/"
+    },
+    {
       "id": "consensus-citation-skills-2026-10-05",
       "tool": "/ai-tools/tools/consensus/",
       "announcedAt": "2026-10-05",

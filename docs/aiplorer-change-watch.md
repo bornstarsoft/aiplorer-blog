@@ -2,6 +2,33 @@
 
 ACTIVE_WRITER = NONE
 
+## Writing And Presentation Coverage (2026-10-14)
+
+- WORK-ID: AIPLORER-WRITING-PRESENTATION-WATCH; last AI: CODEX; implementation DONE.
+- Added three selected events for Pitch, Gamma, and Grammarly: twenty-four
+  records across nineteen tools. Existing review dates and read IDs unchanged.
+- Official sources checked on October 14:
+  - https://pitch.com/whats-new/introducing-the-anything-block : October 6,
+    prompted interactive slide blocks; no static-export behavior guaranteed.
+  - https://ideas.gamma.app/changelog/whats-new-in-gamma-august-28 : August 28,
+    editable exported tables. Date also checked on the official changelog index.
+  - https://www.grammarly.com/blog/product/multilingual-support-in-additional-languages/ :
+    March 11 beta grammar/spelling expansion, including Korean. Advanced tone
+    and clarity were future work in this announcement, not verified here.
+- Earlier events are explicitly backfilled, not presented as October launches.
+  Checks emphasize recipient-app testing, calculations, fonts, table values,
+  privacy, media rights, intended meaning, and current feature availability.
+- Added exact official-host validation. No tool pages or drafts changed.
+- Baseline HEAD: 7c60790. Owner WIP: 28 files excluded and preserved.
+- Owner approval: only this update, including commit and deployment.
+- QA PASS: isolated staged-source Hugo build; 24-record validator;
+  11 saved-update/finder tests; RSS/sitemap XML; 291 legacy post URLs;
+  75 reviewed candidates; three homepage records; eight draft exclusions.
+  All 28 owner WIP hashes preserved. Existing legacy raw-HTML warning unchanged.
+- NEXT_SINGLE_TASK: push and verify live home/watch/RSS; deployment evidence
+  is reported in chat. No generated output staged.
+- BLOCKER: none.
+
 ## Research And Learning Coverage (2026-10-14)
 
 - WORK-ID: AIPLORER-RESEARCH-WATCH; last AI: CODEX; implementation DONE.
