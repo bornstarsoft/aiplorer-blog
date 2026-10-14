@@ -2,6 +2,30 @@
 
 ACTIVE_WRITER = NONE
 
+## Additional Creative Coverage (2026-10-15)
+
+- WORK-ID: AIPLORER-CREATIVE-COVERAGE; last AI: CODEX; implementation DONE.
+- First records for Canva AI and Photoroom: 37 events across 31 tools.
+- Official sources checked October 15:
+  - https://www.canva.com/newsroom/news/canva-meta-muse/ : connector and US/Canada
+    scope; September 29 date confirmed in the official newsroom listing.
+  - https://www.photoroom.com/inside-photoroom/new-in-product-march-2026 : March 31
+    web Batch AI tools and renaming, excluding its separate coming-soon section.
+- Both are historical backfills, not October releases. Access, permissions,
+  brand assets, rights, product fidelity and SKU checks are emphasized. No
+  promises of sales improvements or universal plan/platform access.
+- HeyGen's July roundup was inspected but has an August update date without a
+  precise launch date for the selected workflow; no event date was invented.
+- Existing 35 records, full-review dates and draft status remain unchanged.
+- Baseline HEAD: a8f2cc5. Owner approval: this update only, validation, commit
+  and deployment. All 28 owner WIP files excluded.
+- QA PASS: isolated staged-source Hugo build; 37-record validator; 11 tests;
+  RSS/sitemap XML; 291 legacy post URLs; 75 reviewed candidates; both new
+  homepage records; eight draft exclusions. All 35 prior records and 28 owner
+  WIP hashes preserved. Existing legacy raw-HTML warning unchanged.
+- NEXT_SINGLE_TASK: push and verify live home/watch/RSS; evidence in chat.
+- BLOCKER: none.
+
 ## First Records For Additional Tools (2026-10-15)
 
 - WORK-ID: AIPLORER-UNCOVERED-WATCH; last AI: CODEX; implementation DONE.

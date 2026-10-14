@@ -2,6 +2,34 @@
   "checkedAt": "2026-10-15",
   "entries": [
     {
+      "id": "canva-muse-connector-2026-09-29",
+      "tool": "/ai-tools/tools/canva-ai/",
+      "announcedAt": "2026-09-29",
+      "checkedAt": "2026-10-15",
+      "revision": 1,
+      "topic": "Connected design",
+      "title": "Check access before connecting your Canva brand assets to an agent",
+      "summary": "Canva announced a connector for Meta's Muse to create editable designs using account and brand context. The announcement specifies US and Canada availability; it is not a worldwide access promise. This September update is newly tracked here.",
+      "action": "Confirm regional and account availability, then inspect requested permissions before connecting. Start with non-confidential brand assets. Check text, image rights and brand consistency in Canva before exporting or sharing; do not assume an agent-produced design is approved for publication.",
+      "sourceTitle": "Canva: Canva expands design with Muse, from Meta",
+      "sourceUrl": "https://www.canva.com/newsroom/news/canva-meta-muse/",
+      "guide": "/guides/how-to-plan-a-multimodal-ai-creative-workflow/"
+    },
+    {
+      "id": "photoroom-batch-ai-workflow-2026-03-31",
+      "tool": "/ai-tools/tools/photoroom/",
+      "announcedAt": "2026-03-31",
+      "checkedAt": "2026-10-15",
+      "revision": 1,
+      "topic": "Product image workflow",
+      "title": "Trial AI batch edits on a few products before exporting a catalog",
+      "summary": "Photoroom's March product roundup added AI tools to web Batch workflows and image renaming before export. AI batch options had plan-dependent access. This is a historical release newly tracked here, not an October launch or a claim that mobile has identical features.",
+      "action": "Check current platform, plan and usage limits. Test a small set of approved product photos, compare colors, labels, shape and accessories with originals, and verify SKU filenames after export. Keep original files and reject edits that imply features the product does not have.",
+      "sourceTitle": "Photoroom: March 31, 2026 product roundup",
+      "sourceUrl": "https://www.photoroom.com/inside-photoroom/new-in-product-march-2026",
+      "guide": "/use-cases/plan-a-product-video-without-inventing-claims/"
+    },
+    {
       "id": "figma-agent-library-guidelines-2026-10-06",
       "tool": "/ai-tools/tools/figma-ai/",
       "announcedAt": "2026-10-06",
