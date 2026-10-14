@@ -2,6 +2,36 @@
 
 ACTIVE_WRITER = NONE
 
+## Research And Learning Coverage (2026-10-14)
+
+- WORK-ID: AIPLORER-RESEARCH-WATCH; last AI: CODEX; implementation DONE.
+- Three selected events for Consensus, Elicit, and NotebookLM: twenty-one
+  records across sixteen tools. This is not a full tool re-review.
+- Official sources checked on October 14:
+  - https://consensus.app/home/blog/introducing-skills/ : October 5,
+    citation checking with passages; verdicts still require reading the paper.
+  - https://elicit.com/blog/introducing-routines-research-that-keeps-working :
+    September 30, recurring research with editable instructions and schedules.
+  - https://blog.google/innovation-and-ai/products/gemini-notebook/new-study-tools-september-2026/ :
+    September 15, learning overviews with study outputs, explicitly a rollout.
+    Google's current product page is https://notebook.google/; the existing
+    NotebookLM catalog route is preserved, not renamed in this update.
+- Practical checks cover original sources, citation context, summary accuracy,
+  academic integrity, confidential documents, usage terms, and availability.
+  No accuracy, coverage, pricing, or privacy guarantees; no site automation.
+- Existing IDs, read revisions, full-review dates, and draft status unchanged.
+  Added exact official-host validation for the three providers.
+- Baseline HEAD: b438d11. Owner WIP: 28 files excluded.
+- Owner approval: this update only, including validation, commit, deployment.
+- QA PASS: isolated staged-source production build; 21-record validator;
+  11 saved-update/finder tests; RSS/sitemap XML; 75 reviewed candidates;
+  291 legacy post URLs; three homepage records; eight draft exclusions.
+  Owner WIP hashes match for all 28 files. Existing legacy raw-HTML warning
+  remains unrelated; no generated files staged.
+- NEXT_SINGLE_TASK: push and verify Cloudflare plus live home/watch/RSS;
+  final deployment evidence is reported in chat.
+- BLOCKER: none.
+
 ## Automation And Productivity Coverage (2026-10-14)
 
 - WORK-ID: AIPLORER-AUTOMATION-WATCH; last AI: CODEX; implementation DONE.

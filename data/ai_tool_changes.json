@@ -2,6 +2,48 @@
   "checkedAt": "2026-10-14",
   "entries": [
     {
+      "id": "consensus-citation-skills-2026-10-05",
+      "tool": "/ai-tools/tools/consensus/",
+      "announcedAt": "2026-10-05",
+      "checkedAt": "2026-10-14",
+      "revision": 1,
+      "topic": "Source verification",
+      "title": "Check whether a citation supports your claim",
+      "summary": "Consensus introduced Skills in Deep mode, including Verify Citations: a workflow that compares a draft's claims with cited sources and shows passages behind its assessment.",
+      "action": "Start with one non-sensitive section. Read the original paper and check its methods, population, and context before accepting a verdict. Follow academic disclosure rules; an AI citation check is not proof of accuracy.",
+      "sourceTitle": "Consensus: Introducing Skills",
+      "sourceUrl": "https://consensus.app/home/blog/introducing-skills/",
+      "guide": "/guides/choose-ai-for-sensitive-document-research/"
+    },
+    {
+      "id": "elicit-routines-2026-09-30",
+      "tool": "/ai-tools/tools/elicit/",
+      "announcedAt": "2026-09-30",
+      "checkedAt": "2026-10-14",
+      "revision": 1,
+      "topic": "Research workflows",
+      "title": "Keep an evidence review current with Routines",
+      "summary": "Elicit introduced Routines for recurring Research Agent work, including finding new evidence and preparing an updated artifact for review. Instructions and schedules can be edited before activation.",
+      "action": "Define the research question and inclusion criteria first. Inspect original papers and citations before changing conclusions, check current usage terms, and keep confidential material out unless your policy permits it. Monitoring does not guarantee complete coverage.",
+      "sourceTitle": "Elicit: Introducing Routines",
+      "sourceUrl": "https://elicit.com/blog/introducing-routines-research-that-keeps-working",
+      "guide": "/guides/choose-ai-for-sensitive-document-research/"
+    },
+    {
+      "id": "notebooklm-learning-overviews-2026-09-15",
+      "tool": "/ai-tools/tools/notebooklm/",
+      "announcedAt": "2026-09-15",
+      "checkedAt": "2026-10-14",
+      "revision": 1,
+      "topic": "Study workflows",
+      "title": "Connect source summaries with quizzes and flashcards",
+      "summary": "Google's Gemini Notebook announcement describes a rollout of interactive learning overviews combining summaries with study outputs such as quizzes and flashcards. Check availability in your account rather than assuming the rollout is complete.",
+      "action": "Use material you are allowed to upload, try answering without notes, and check generated answers against the original sources. Correct misleading questions before sharing, follow academic rules, and avoid uploading sensitive documents without approval.",
+      "sourceTitle": "Google: New Gemini Notebook study tools",
+      "sourceUrl": "https://blog.google/innovation-and-ai/products/gemini-notebook/new-study-tools-september-2026/",
+      "guide": "/guides/choose-ai-for-sensitive-document-research/"
+    },
+    {
       "id": "make-version-descriptions-2026-10-07",
       "tool": "/ai-tools/tools/make/",
       "announcedAt": "2026-10-07",
