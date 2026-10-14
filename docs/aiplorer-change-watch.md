@@ -2,6 +2,37 @@
 
 ACTIVE_WRITER = NONE
 
+## First Records For Additional Tools (2026-10-15)
+
+- WORK-ID: AIPLORER-UNCOVERED-WATCH; last AI: CODEX; implementation DONE.
+- Figma AI, Granola and DeepL had no existing change records. Three selected
+  events bring coverage to 35 records across 29 tools, not exhaustive coverage.
+- Official sources checked on October 15:
+  - https://www.figma.com/release-notes/ : October 6 agent release; library
+    guidelines and AI credit use, not a claim of guaranteed design compliance.
+  - https://www.granola.ai/updates/granola-now-supports-32-languages : September 2
+    desktop language expansion; year confirmed by the official blog index.
+    Device scope is explicit; no exact language-count promise is repeated.
+  - https://www.deepl.com/en/blog/discover-translation-flow : July 7 article
+    date matches the blog index. Article says the product was revealed at the
+    Spring Launch; July 7 is not treated as the initial product launch date.
+- Earlier announcements are historical backfills. Practical checks cover brand
+  rules, usage costs, meeting consent, device support, translation review,
+  permissions and confidential content. No blanket quality/security promises.
+- Existing 32 event identities/revisions/check dates and full tool reviews stay
+  unchanged. No new tool pages, draft publication or UI changes.
+- Baseline HEAD: 1a538dd. Owner approval: only this update, validation, commit
+  and deployment. All 28 owner WIP files are excluded.
+- Validator now compares check dates against the Seoul editorial calendar, not
+  UTC midnight; valid early-morning Korean checks were previously rejected.
+- QA PASS: isolated staged-source Hugo build; 35-record validator; 11 tests;
+  Seoul midnight boundary checks; RSS/sitemap XML; 291 legacy post URLs;
+  75 reviewed candidates; three homepage records; eight draft exclusions.
+  All 32 prior records and 28 owner WIP hashes preserved. Existing legacy
+  raw-HTML warning unchanged. No generated files staged.
+- NEXT_SINGLE_TASK: push and verify live home/watch/RSS; evidence reported in chat.
+- BLOCKER: none.
+
 ## Developer Coverage (2026-10-14)
 
 - WORK-ID: AIPLORER-DEVELOPER-WATCH; last AI: CODEX; implementation DONE.

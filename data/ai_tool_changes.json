@@ -1,6 +1,48 @@
 {
-  "checkedAt": "2026-10-14",
+  "checkedAt": "2026-10-15",
   "entries": [
+    {
+      "id": "figma-agent-library-guidelines-2026-10-06",
+      "tool": "/ai-tools/tools/figma-ai/",
+      "announcedAt": "2026-10-06",
+      "checkedAt": "2026-10-15",
+      "revision": 1,
+      "topic": "Design context",
+      "title": "Give the design agent your library rules before generating changes",
+      "summary": "Figma's October 6 agent release adds configurable library guidelines and file search in chat as the agent exits beta. Markdown guidelines are read when prompting with that library enabled. The announcement also says the agent starts using AI credits on October 6.",
+      "action": "Try a small approved library with explicit component and brand rules. Confirm the library is enabled, inspect referenced files and generated edits, and check current credit usage and access before wider adoption. Guidelines do not guarantee correct or accessible designs.",
+      "sourceTitle": "Figma: October 6 agent general availability",
+      "sourceUrl": "https://www.figma.com/release-notes/",
+      "guide": "/guides/how-to-plan-a-multimodal-ai-creative-workflow/"
+    },
+    {
+      "id": "granola-multilanguage-desktop-2026-09-02",
+      "tool": "/ai-tools/tools/granola/",
+      "announcedAt": "2026-09-02",
+      "checkedAt": "2026-10-15",
+      "revision": 1,
+      "topic": "Meeting languages",
+      "title": "Test multilingual meeting notes on the device you actually use",
+      "summary": "Granola's September announcement expands desktop multi-language mode, with Korean among the listed languages. Users select Multi-language in language settings. The notice explicitly separates desktop coverage from mobile and watch support; this is a historical update newly tracked here.",
+      "action": "Check support for your device and meeting languages, obtain required participant consent, and test a short non-sensitive conversation. Verify names, numbers, decisions and action owners before sharing notes. Language support does not guarantee transcription or summary accuracy.",
+      "sourceTitle": "Granola: More languages are here, September 2",
+      "sourceUrl": "https://www.granola.ai/updates/granola-now-supports-32-languages",
+      "guide": "/guides/how-to-use-ai-meeting-tools-responsibly/"
+    },
+    {
+      "id": "deepl-translation-flow-review-2026-07-07",
+      "tool": "/ai-tools/tools/deepl/",
+      "announcedAt": "2026-07-07",
+      "checkedAt": "2026-10-15",
+      "revision": 1,
+      "topic": "Translation review",
+      "title": "Keep a human review step in a connected translation workflow",
+      "summary": "DeepL's July 7 Translation Flow article describes applying glossaries, style rules and translation memories, then inviting language experts to adjust translations. This record uses the dated article, not a claim that Translation Flow first launched in July or is newly released in October.",
+      "action": "Confirm availability, costs and connector permissions for your account. Test a non-sensitive sample with an approved glossary; compare meaning, obligations, dates, numbers and layout with the original. Require a qualified reviewer for sensitive material before publishing translated content.",
+      "sourceTitle": "DeepL: Discover Translation Flow, article dated July 7",
+      "sourceUrl": "https://www.deepl.com/en/blog/discover-translation-flow",
+      "guide": "/guides/how-to-choose-the-right-ai-tool/"
+    },
     {
       "id": "cursor-execution-permissions-2026-10-09",
       "tool": "/ai-tools/tools/cursor/",

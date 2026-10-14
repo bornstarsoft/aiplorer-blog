@@ -6,8 +6,14 @@ import { resolve, dirname } from "node:path";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const data = JSON.parse(readFileSync(resolve(root, "data/ai_tool_changes.json"), "utf8"));
-const today = new Date().toISOString().slice(0, 10);
+// Editorial check dates use Seoul calendar days, including before UTC midnight.
+const today = new Intl.DateTimeFormat("en-CA", {
+  timeZone: "Asia/Seoul", year: "numeric", month: "2-digit", day: "2-digit"
+}).format(new Date());
 const officialHosts = new Map([
+  ["/ai-tools/tools/figma-ai/", ["www.figma.com"]],
+  ["/ai-tools/tools/granola/", ["www.granola.ai"]],
+  ["/ai-tools/tools/deepl/", ["www.deepl.com"]],
   ["/ai-tools/tools/zoho-zia/", ["www.zoho.com"]],
   ["/ai-tools/tools/fin/", ["fin.ai"]],
   ["/ai-tools/tools/shopify-sidekick/", ["changelog.shopify.com"]],
