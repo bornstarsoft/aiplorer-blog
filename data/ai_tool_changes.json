@@ -1,6 +1,62 @@
 {
-  "checkedAt": "2026-09-12",
+  "checkedAt": "2026-10-14",
   "entries": [
+    {
+      "id": "replit-cross-project-2026-10-09",
+      "tool": "/ai-tools/tools/replit/",
+      "announcedAt": "2026-10-09",
+      "checkedAt": "2026-10-14",
+      "revision": 1,
+      "topic": "Agent workflows",
+      "title": "Work across existing projects from one chat",
+      "summary": "Replit says a chat can find projects, read their files, and send background tasks for review. Its announcement says these changes are not published automatically.",
+      "action": "Confirm the source and destination projects before sending work. Review permissions, copied code, and each diff; test the destination app before publishing.",
+      "sourceTitle": "Replit: October 9 release notes",
+      "sourceUrl": "https://docs.replit.com/updates/2026/10/09/changelog",
+      "guide": "/use-cases/how-to-review-ai-generated-code-before-merging/"
+    },
+    {
+      "id": "copilot-sandbox-2026-10-07",
+      "tool": "/ai-tools/tools/github-copilot/",
+      "announcedAt": "2026-10-07",
+      "checkedAt": "2026-10-14",
+      "revision": 1,
+      "topic": "Permissions",
+      "title": "Check local agent sandbox permissions",
+      "summary": "GitHub announced local sandboxing for Copilot CLI, the Copilot app, and VS Code sessions using Agent Host. Policies can restrict file, network, and credential access.",
+      "action": "Check support and active policy in your client before use. Test with a disposable repository and limit permissions; sandboxing does not replace code review or protect every secret automatically.",
+      "sourceTitle": "GitHub: Local sandboxing availability",
+      "sourceUrl": "https://github.blog/changelog/2026-10-07-local-sandboxing-for-github-copilot-now-generally-available/",
+      "guide": "/use-cases/fix-a-zero-value-default-with-ai/"
+    },
+    {
+      "id": "cursor-remote-control-2026-10-06",
+      "tool": "/ai-tools/tools/cursor/",
+      "announcedAt": "2026-10-06",
+      "checkedAt": "2026-10-14",
+      "revision": 1,
+      "topic": "Agent workflows",
+      "title": "Follow local agents from the Cursor iOS app",
+      "summary": "Cursor announced remote viewing and replies for local agents through its iOS app. The agent stays on your computer, which must remain on and online.",
+      "action": "Review device pairing and workplace policy before enabling access. Cursor says remote control defaults on outside Enterprise organizations; check your settings and keep reviewing changes before release.",
+      "sourceTitle": "Cursor: Remote control for local agents",
+      "sourceUrl": "https://cursor.com/changelog/remote-control-local-agents",
+      "guide": "/guides/cursor-vs-github-copilot-for-repository-work/"
+    },
+    {
+      "id": "copilot-model-retirement-2026-09-18",
+      "tool": "/ai-tools/tools/github-copilot/",
+      "announcedAt": "2026-09-18",
+      "checkedAt": "2026-10-14",
+      "revision": 1,
+      "topic": "Model availability",
+      "title": "Check model replacements before October 19",
+      "summary": "GitHub's September announcement schedules selected Copilot models for retirement on October 19, 2026. The notice lists affected models and suggested replacements.",
+      "action": "Compare your model choices with the official list and test a supported replacement on a familiar task. Check organization model policies; this is a scheduled change, not a claim that retirement has already happened.",
+      "sourceTitle": "GitHub: October model retirement notice",
+      "sourceUrl": "https://github.blog/changelog/2026-09-18-upcoming-deprecation-of-selected-github-copilot-models-in-mid-october/",
+      "guide": "/guides/cursor-vs-github-copilot-for-repository-work/"
+    },
     {
       "id": "copilot-review-2026-09-11",
       "tool": "/ai-tools/tools/github-copilot/",

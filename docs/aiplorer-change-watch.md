@@ -1,5 +1,36 @@
 # Aiplorer Change Watch and Decision Guides
 
+ACTIVE_WRITER = NONE
+
+## Official-Source Refresh (2026-10-14)
+
+- WORK-ID: AIPLORER-CHANGE-WATCH-OCT14; last AI: CODEX.
+- DONE: four new announcements, seven total across the existing three tools.
+  This is selected coverage, not a full review of all 75 published tools.
+- Sources read on October 14:
+  - Replit, October 9: https://docs.replit.com/updates/2026/10/09/changelog
+  - GitHub, October 7: https://github.blog/changelog/2026-10-07-local-sandboxing-for-github-copilot-now-generally-available/
+  - Cursor, October 6: https://cursor.com/changelog/remote-control-local-agents
+  - GitHub, September 18: https://github.blog/changelog/2026-09-18-upcoming-deprecation-of-selected-github-copilot-models-in-mid-october/
+- Selection: cross-project work, local execution permissions, remote agent
+  access, and a scheduled model-retirement deadline. Each has a practical
+  follow-up check. Broad model-launch news and private-preview waitlists were
+  not added simply to increase the count.
+- October 19 retirement is still scheduled at this check, not completed.
+  Source announcement dates are preserved. Tool full-review dates and the
+  three original event IDs, revisions, and check dates are unchanged.
+- Homepage saved-tool updates and RSS use these same records. New event IDs
+  surface as unread without resetting readers' existing read state.
+- QA PASS: isolated staged-source production build, seven-record validator,
+  11 saved-update/finder tests, RSS/sitemap XML, 75-tool shortlist validator,
+  291 legacy post URLs, four new homepage entries, eight draft exclusions.
+  Existing legacy raw-HTML warning remains unrelated.
+- HEAD baseline: 578b70b; 28 owner WIP files excluded from the staged release.
+- Owner approved: validate, commit, and deploy only this update.
+- NEXT_SINGLE_TASK: push this verified release and confirm Cloudflare success
+  and the new live HTML/RSS entries. Deployment result is reported in chat.
+- BLOCKER: none.
+
 Implementation phase: 2026-09-12. Local changes prepared for review; deployment
 is a separate step.
 

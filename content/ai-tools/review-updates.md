@@ -4,7 +4,7 @@ description: "Catch up on official AI tool announcements, understand what to rec
 type: "ai-tools"
 layout: "review-updates"
 outputs: ["HTML", "RSS"]
-lastmod: "2026-09-12"
+lastmod: "2026-10-14"
 ---
 
 Aiplorer records when public tool pages were checked against official sources
