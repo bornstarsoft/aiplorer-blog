@@ -2,6 +2,48 @@
   "checkedAt": "2026-10-14",
   "entries": [
     {
+      "id": "zoho-zia-key-drivers-2026-09-04",
+      "tool": "/ai-tools/tools/zoho-zia/",
+      "announcedAt": "2026-09-04",
+      "checkedAt": "2026-10-14",
+      "revision": 1,
+      "topic": "Data analysis",
+      "title": "Investigate the factors behind a changing business metric",
+      "summary": "Zoho Analytics On-Premise build 6440 added Key Driver Analysis in Ask Zia for Linux environments. This is a specific Analytics deployment update, not a claim about every Zoho product or account.",
+      "action": "Confirm your edition and build, then inspect a known metric with a small dataset. Check filters, time windows, missing values, and source totals. Treat suggested drivers as hypotheses, not proof of causation, before making business decisions.",
+      "sourceTitle": "Zoho Analytics On-Premise: September 4 release notes",
+      "sourceUrl": "https://www.zoho.com/analytics/onpremise/whats-new.html",
+      "guide": "/guides/how-to-choose-the-right-ai-tool/"
+    },
+    {
+      "id": "fin-operator-availability-2026-08-06",
+      "tool": "/ai-tools/tools/fin/",
+      "announcedAt": "2026-08-06",
+      "checkedAt": "2026-10-14",
+      "revision": 1,
+      "topic": "Support operations",
+      "title": "Turn support analysis into a reviewed improvement proposal",
+      "summary": "Fin's official FAQ dates Operator's general availability to August 6 as part of the Pro add-on. Its current documentation describes support analysis, content-gap investigation, and proposed guidance changes for team review.",
+      "action": "Confirm permissions, usage costs, and analysis limits. Compare findings with representative conversations rather than assuming complete coverage. Review proposed changes and test responses before enabling them; keep customer data within approved access boundaries.",
+      "sourceTitle": "Fin: Operator availability and workflow FAQ",
+      "sourceUrl": "https://fin.ai/help/en/articles/15083634-fin-operator-faqs",
+      "guide": "/guides/how-to-choose-ai-automation-tools/"
+    },
+    {
+      "id": "shopify-sidekick-test-events-2026-05-14",
+      "tool": "/ai-tools/tools/shopify-sidekick/",
+      "announcedAt": "2026-05-14",
+      "checkedAt": "2026-10-14",
+      "revision": 1,
+      "topic": "Business workflow testing",
+      "title": "Review generated test cases before enabling a store workflow",
+      "summary": "Shopify's May Flow update lets Sidekick find existing shop data for test events covering workflow paths. Merchants can review, edit, remove, or add cases. This earlier announcement is newly tracked here, not an October launch.",
+      "action": "Include normal orders and exception cases, not only the case that prompted the workflow. Check whether a test run can trigger real actions before executing it, use a safe test setup, and protect customer data. Generated cases do not guarantee complete coverage.",
+      "sourceTitle": "Shopify: Sidekick-generated Flow test events",
+      "sourceUrl": "https://changelog.shopify.com/posts/flow-sidekick-generates-test-cases-for-your-workflows",
+      "guide": "/guides/how-to-choose-ai-automation-tools/"
+    },
+    {
       "id": "descript-ai-speech-model-2026-10-12",
       "tool": "/ai-tools/tools/descript/",
       "announcedAt": "2026-10-12",

@@ -2,6 +2,35 @@
 
 ACTIVE_WRITER = NONE
 
+## Data Analysis And Business Coverage (2026-10-14)
+
+- WORK-ID: AIPLORER-BUSINESS-WATCH; last AI: CODEX; implementation DONE.
+- Three selected events for Zoho Zia, Fin, and Shopify Sidekick: thirty records
+  across twenty-five tools. No draft publication or new tool pages.
+- Official sources checked on October 14:
+  - https://www.zoho.com/analytics/onpremise/whats-new.html : September 4,
+    build 6440 Key Driver Analysis in Ask Zia, specifically on-premise/Linux.
+  - https://fin.ai/help/en/articles/15083634-fin-operator-faqs : explicitly
+    dates general availability to August 6. Current workflow documentation is
+    distinguished from the launch date; no claim that every feature shipped then.
+  - https://changelog.shopify.com/posts/flow-sidekick-generates-test-cases-for-your-workflows :
+    May 14, editable test events sourced from existing shop data.
+- Earlier announcements retain their dates. Findings are hypotheses requiring
+  source checks, not proof of causation or complete coverage. Checks cover
+  metric definitions, source totals, permissions, customer data, usage costs,
+  proposal review, and possible real actions during workflow tests.
+- Exact official hosts added. Existing event IDs, full-review dates and draft
+  status preserved. No guarantees of revenue, accuracy, security, or savings.
+- Baseline HEAD: dc69868. Owner WIP: 28 files excluded.
+- Owner approval: only this update, including validation, commit, deployment.
+- QA PASS: isolated staged-source Hugo build; 30-record validator; 11 tests;
+  RSS/sitemap XML; 291 legacy post URLs; 75 reviewed candidates;
+  three homepage records; eight draft exclusions. All 28 owner WIP hashes
+  preserved. Existing legacy raw-HTML warning unchanged; no generated files staged.
+- NEXT_SINGLE_TASK: push and check live home/watch/RSS; deployment evidence
+  is reported in chat.
+- BLOCKER: none.
+
 ## Audio And Voice Coverage (2026-10-14)
 
 - WORK-ID: AIPLORER-AUDIO-WATCH; last AI: CODEX; implementation DONE.
