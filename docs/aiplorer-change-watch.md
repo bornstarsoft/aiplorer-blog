@@ -2,6 +2,37 @@
 
 ACTIVE_WRITER = NONE
 
+## Automation And Productivity Coverage (2026-10-14)
+
+- WORK-ID: AIPLORER-AUTOMATION-WATCH; last AI: CODEX; implementation DONE.
+- Added Make, n8n, Zapier, and a distinct Notion team-skills event.
+  Total: eighteen events across thirteen tools; coverage remains selective.
+- Official sources read on October 14:
+  - https://help.make.com/improved-scenario-toolbar-and-version-control
+    and https://help.make.com/2026 : index supplies the October 7 date.
+  - https://docs.n8n.io/changelog/release-notes.md#n8n243 :
+    October 6 release, migration impact categories and progress. The page warns
+    that feature flags and rollout can affect actual availability.
+  - https://community.zapier.com/product-updates/the-next-generation-of-zaps-is-here-53832 :
+    September 23 staff announcement, explicitly early access.
+  - https://www.notion.com/releases/2026-09-15 :
+    shared skills, distinct from the already tracked October permissions update.
+- Checks emphasize approval pauses, staging, duplicate handling, version
+  baselines, permissions, and skill ownership. Restoring a workflow does not
+  reverse external actions already performed. No site automation installed.
+- Existing announcement dates and read-state IDs are preserved; September
+  announcements are not presented as October launches. Full tool-review dates
+  remain unchanged. Exact official-host checks added for the new providers.
+- QA PASS: isolated staged-source production build; eighteen-record validator;
+  11 saved-update/finder tests; RSS/sitemap XML; 75 reviewed candidates;
+  291 legacy post URLs; four homepage records; eight draft exclusions.
+  Existing legacy raw-HTML warning remains unrelated.
+- Baseline HEAD: d51bb40. Owner WIP: 28 files excluded and preserved.
+- Owner approval: this update only, including commit and deployment.
+- NEXT_SINGLE_TASK: push and verify Cloudflare plus live home/watch/RSS;
+  final deployment evidence is reported in chat.
+- BLOCKER: none.
+
 ## Creative And Local-Model Coverage (2026-10-14)
 
 - WORK-ID: AIPLORER-CREATIVE-LOCAL-WATCH; last AI: CODEX; implementation DONE.

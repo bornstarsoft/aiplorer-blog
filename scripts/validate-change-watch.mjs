@@ -17,7 +17,10 @@ const officialHosts = new Map([
   ["/ai-tools/tools/runway/", ["runway.com"]],
   ["/ai-tools/tools/adobe-firefly/", ["blog.adobe.com", "helpx.adobe.com"]],
   ["/ai-tools/tools/lm-studio/", ["lmstudio.ai"]],
-  ["/ai-tools/tools/ollama/", ["ollama.com"]]
+  ["/ai-tools/tools/ollama/", ["ollama.com"]],
+  ["/ai-tools/tools/make/", ["help.make.com"]],
+  ["/ai-tools/tools/n8n/", ["docs.n8n.io"]],
+  ["/ai-tools/tools/zapier/", ["community.zapier.com", "help.zapier.com"]]
 ]);
 function date(value) {
   assert.match(value, /^\d{4}-\d{2}-\d{2}$/);
