@@ -8,6 +8,9 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const data = JSON.parse(readFileSync(resolve(root, "data/ai_tool_changes.json"), "utf8"));
 const today = new Date().toISOString().slice(0, 10);
 const officialHosts = new Map([
+  ["/ai-tools/tools/descript/", ["feedback.descript.com"]],
+  ["/ai-tools/tools/suno/", ["suno.com"]],
+  ["/ai-tools/tools/elevenlabs/", ["elevenlabs.io"]],
   ["/ai-tools/tools/pitch/", ["pitch.com"]],
   ["/ai-tools/tools/gamma/", ["ideas.gamma.app"]],
   ["/ai-tools/tools/grammarly/", ["www.grammarly.com"]],

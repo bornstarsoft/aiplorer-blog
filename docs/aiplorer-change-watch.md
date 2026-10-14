@@ -2,6 +2,34 @@
 
 ACTIVE_WRITER = NONE
 
+## Audio And Voice Coverage (2026-10-14)
+
+- WORK-ID: AIPLORER-AUDIO-WATCH; last AI: CODEX; implementation DONE.
+- Added three selected events for Descript, Suno, and ElevenLabs: twenty-seven
+  records across twenty-two tools. No full tool re-review or draft publication.
+- Official sources checked on October 14:
+  - https://feedback.descript.com/changelog/release-roundupoctober-12-2026 :
+    October 12 AI Speech model change, including automatic changes in some projects.
+  - https://suno.com/release-notes/studio-updates-oct26 : October 8,
+    time stretching and fade curves; Studio access caveat retained.
+  - https://elevenlabs.io/blog/eleven-v4 : September 28 announcement,
+    page updated October 12. Announcement date is not replaced by update date.
+- Practical checks cover approved reference audio, pronunciation, pacing,
+  regeneration boundaries, export listening, speaker consent, private recordings,
+  sample rights, disclosure, current costs and access. No benchmark rankings,
+  voice similarity guarantees, or blanket commercial-use claims added.
+- Existing IDs/revisions and full-review dates preserved; exact official hosts
+  added to the validator. No new website automation or unrelated content edits.
+- Baseline HEAD: 203dc14. Owner WIP: 28 files excluded.
+- Owner approval: this update only, including commit and deployment.
+- QA PASS: isolated staged-source Hugo build; 27-record validator; 11 tests;
+  RSS/sitemap XML; 291 legacy post URLs; 75 reviewed candidates;
+  three homepage records; eight draft exclusions. All 28 owner WIP hashes
+  preserved. Existing legacy raw-HTML warning unchanged; no generated files staged.
+- NEXT_SINGLE_TASK: push and check live home/watch/RSS; deployment evidence
+  is reported in chat.
+- BLOCKER: none.
+
 ## Writing And Presentation Coverage (2026-10-14)
 
 - WORK-ID: AIPLORER-WRITING-PRESENTATION-WATCH; last AI: CODEX; implementation DONE.

@@ -2,6 +2,48 @@
   "checkedAt": "2026-10-14",
   "entries": [
     {
+      "id": "descript-ai-speech-model-2026-10-12",
+      "tool": "/ai-tools/tools/descript/",
+      "announcedAt": "2026-10-12",
+      "checkedAt": "2026-10-14",
+      "revision": 1,
+      "topic": "Voice project continuity",
+      "title": "Recheck the voice model before revising an existing project",
+      "summary": "Descript's October release notes introduce ElevenLabs v4 for AI Speech and warn that some projects will switch models when reopened. The model can be selected in AI model settings.",
+      "action": "Keep an approved audio reference before regenerating lines. Compare voice identity, pronunciation, pacing, and edit boundaries against it. Use only authorized voices and confirm speaker consent, current access, and usage costs before delivery.",
+      "sourceTitle": "Descript: October 12 release roundup",
+      "sourceUrl": "https://feedback.descript.com/changelog/release-roundupoctober-12-2026",
+      "guide": "/guides/how-to-choose-the-right-ai-tool/"
+    },
+    {
+      "id": "suno-studio-timing-2026-10-08",
+      "tool": "/ai-tools/tools/suno/",
+      "announcedAt": "2026-10-08",
+      "checkedAt": "2026-10-14",
+      "revision": 1,
+      "topic": "Audio editing",
+      "title": "Refine clip timing and fades before exporting a mix",
+      "summary": "Suno's Studio update adds drag-based time stretching and adjustable fade curves, alongside changes to downbeat detection. The release describes Studio access for Premier subscribers, not every account.",
+      "action": "Check current plan access and export terms first. Test a short passage, listen for stretched-vocal artifacts and abrupt fades, and verify timing in the exported mix. Use samples you have permission to use; editing features do not establish commercial-use rights.",
+      "sourceTitle": "Suno: October Studio timing and fade updates",
+      "sourceUrl": "https://suno.com/release-notes/studio-updates-oct26",
+      "guide": "/guides/how-to-choose-the-right-ai-tool/"
+    },
+    {
+      "id": "elevenlabs-v4-direction-2026-09-28",
+      "tool": "/ai-tools/tools/elevenlabs/",
+      "announcedAt": "2026-09-28",
+      "checkedAt": "2026-10-14",
+      "revision": 1,
+      "topic": "Voice direction",
+      "title": "Test delivery instructions on a short voiceover first",
+      "summary": "ElevenLabs introduced Eleven v4 with natural-language delivery instructions and inline audio tags for directing speech. The announcement covers tone and pacing controls; it is not a guarantee of consistent performance for every voice or language.",
+      "action": "Compare a short tagged take with an untagged reference before generating a full script. Check names, numbers, emphasis, and unintended sounds. Obtain voice permissions, protect private recordings, and follow applicable synthetic-audio disclosure rules before sharing.",
+      "sourceTitle": "ElevenLabs: Introducing Eleven v4",
+      "sourceUrl": "https://elevenlabs.io/blog/eleven-v4",
+      "guide": "/guides/how-to-choose-the-right-ai-tool/"
+    },
+    {
       "id": "pitch-anything-block-2026-10-06",
       "tool": "/ai-tools/tools/pitch/",
       "announcedAt": "2026-10-06",
