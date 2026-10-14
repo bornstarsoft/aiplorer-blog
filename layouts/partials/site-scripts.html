@@ -4,6 +4,7 @@
 {{ end }}
 {{ if .IsHome }}
   <script defer src="/js/aiplorer-home-reset.js?v=20260811b"></script>
+  <script defer src="/js/aiplorer-home-saved-updates.js?v=20261014a"></script>
 {{ end }}
 {{ if or .IsHome (eq .RelPermalink "/ai-tools/tools/") }}
   <script defer src="/js/aiplorer-tool-finder.js?v=20260912b"></script>
@@ -15,7 +16,7 @@
   <script defer src="/js/aiplorer-shortlist-trial.js?v=20260726c"></script>
 {{ end }}
 {{ if eq .RelPermalink "/ai-tools/review-updates/" }}
-  <script defer src="/js/aiplorer-change-watch.js?v=20260912a"></script>
+  <script defer src="/js/aiplorer-change-watch.js?v=20261014a"></script>
   <script defer src="/js/aiplorer-review-return.js?v=20260726e"></script>
 {{ end }}
 {{ if eq .RelPermalink "/ai-tools/decision-path/" }}

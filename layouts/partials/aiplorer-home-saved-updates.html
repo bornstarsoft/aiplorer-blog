@@ -1,0 +1,32 @@
+{{- $entries := partial "aiplorer-change-data.html" . -}}
+<link rel="stylesheet" href="/css/aiplorer-home-return.css?v=20261014a">
+<section class="aiplorer-home-return" aria-labelledby="saved-updates-heading" data-home-saved-updates>
+  <div class="aiplorer-home-return__heading">
+    <h2 id="saved-updates-heading">Updates for your saved tools</h2>
+    <a href="/ai-tools/shortlist/">Saved tools &rarr;</a>
+  </div>
+  <p data-saved-update-status role="status">Save tools to keep their announcement checks close at hand.</p>
+  <p class="aiplorer-home-return__coverage">Selected announcements checked <time datetime="{{ site.Data.ai_tool_changes.checkedAt }}">{{ site.Data.ai_tool_changes.checkedAt }}</time>. Coverage is partial; unlisted changes are unknown.</p>
+  <ul class="aiplorer-home-return__updates" data-saved-update-list hidden>
+    {{ range $entries }}
+    <li hidden data-saved-update data-tool="{{ .tool }}" data-read-key="{{ .id }}:{{ .revision }}">
+      <a href="/ai-tools/review-updates/?saved=1#change-{{ .id }}"><strong>{{ .toolTitle }}</strong><span>{{ .title }}</span><small>Announced {{ .announcedAt }}</small></a>
+    </li>
+    {{ end }}
+  </ul>
+  <a href="/ai-tools/review-updates/#tool-changes" data-saved-update-link>Browse announcement checks &rarr;</a>
+  <noscript><p>Enable JavaScript to match updates to tools saved in this browser.</p></noscript>
+</section>
+<section class="aiplorer-home-examples" aria-labelledby="worked-examples-heading">
+  <div class="aiplorer-home-return__heading"><h2 id="worked-examples-heading">Try a worked example</h2><a href="/use-cases/">All workflows &rarr;</a></div>
+  <div class="aiplorer-home-examples__grid">
+    {{ range slice (dict "path" "/use-cases/fix-a-zero-value-default-with-ai/" "image" "coding") (dict "path" "/use-cases/plan-a-product-video-without-inventing-claims/" "image" "creative") }}
+      {{ $item := . }}{{ with site.GetPage .path }}{{ if not .Draft }}
+      <a class="aiplorer-home-example" href="{{ .RelPermalink }}">
+        {{ with resources.Get (printf "images/editorial/%s.png" $item.image) }}{{ $img := .Resize "240x webp q80" }}<img src="{{ $img.RelPermalink }}" width="{{ $img.Width }}" height="{{ $img.Height }}" alt="" loading="lazy">{{ end }}
+        <div><h3>{{ .Title }}</h3><p>{{ .Description }}</p><span>Open example &rarr;</span></div>
+      </a>
+      {{ end }}{{ end }}
+    {{ end }}
+  </div>
+</section>

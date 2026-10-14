@@ -7,6 +7,14 @@
     </div>
     <a href="/ai-tools/tools/">Browse tools <span aria-hidden="true">&rarr;</span></a>
   </header>
+  {{ with where $reviewedPages "Params.workedExample" true }}
+  <section class="aiplorer-shell" aria-labelledby="hub-examples-heading">
+    <h2 id="hub-examples-heading">Worked examples</h2>
+    <div class="aiplorer-tool-grid">
+      {{ range . }}<a class="aiplorer-tool-card" href="{{ .RelPermalink }}"><h3>{{ .Title }}</h3><p>{{ .Description }}</p><span>Open example &rarr;</span></a>{{ end }}
+    </div>
+  </section>
+  {{ end }}
   <section class="aiplorer-content-hub__content" id="content-hub-start" aria-label="{{ .Title }}">
     <div class="aiplorer-shell"><div class="aiplorer-content-hub__body">{{ .Content }}</div></div>
   </section>

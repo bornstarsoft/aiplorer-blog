@@ -19,6 +19,9 @@
     }
   }
   var seen = readSet(storageKey);
+  var query = new URLSearchParams(window.location.search);
+  savedOnly.checked = query.get("saved") === "1";
+  unreadOnly.checked = query.get("unread") === "1";
 
   function render() {
     var saved = readSet("aiplorer-shortlist-v1");
