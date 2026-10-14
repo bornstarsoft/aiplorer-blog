@@ -2,6 +2,37 @@
 
 ACTIVE_WRITER = NONE
 
+## Creative And Local-Model Coverage (2026-10-14)
+
+- WORK-ID: AIPLORER-CREATIVE-LOCAL-WATCH; last AI: CODEX; implementation DONE.
+- Added four events for Runway, Adobe Firefly, LM Studio, and Ollama.
+  Coverage is now fourteen events across ten tools, not a complete catalog.
+- Official sources read on October 14:
+  - https://runway.com/changelog : October 2 Seedance Draft mode in Agent.
+    This is Runway availability, not a claim about Seedance's direct service.
+  - https://lmstudio.ai/changelog/lmstudio : October 13, LM Studio 0.4.26.
+    Coexistence requires Bionic 1.1.8 or newer; use the LM Studio notes rather
+    than misattributing all Bionic features to LM Studio.
+  - https://ollama.com/blog/fly-io-sprites : October 13 cloud connector.
+    Explicitly distinguish cloud execution from local/offline inference.
+  - https://blog.adobe.com/en/publish/2026/04/09/new-image-editing-features-adobe-firefly-get-you-from-almost-there-to-exactly-right
+    : April 9 image editing announcement, backfilled with its actual date.
+    Current Firefly help also still lists Markup and Precision Flow (beta):
+    https://helpx.adobe.com/firefly/web/whats-new/new-features/whats-new.html
+    The entry explicitly says this is not an October launch.
+- No speed, cost-saving, security, or commercial-use guarantees added.
+  Practical checks cover output fidelity, rights, permissions, memory, costs,
+  and the distinction between local inference and connected cloud workflows.
+- QA PASS: isolated staged-source production build; fourteen-record validator;
+  11 saved-update/finder tests; RSS/sitemap XML; 75 reviewed candidates;
+  291 legacy post URLs; four homepage entries; eight draft exclusions.
+  Existing legacy raw-HTML warning remains unrelated.
+- Baseline HEAD: c46e827. Owner WIP: 28 files excluded and preserved.
+- Owner approval: this update only, including commit and deployment.
+- NEXT_SINGLE_TASK: push and verify Cloudflare plus live home/watch/RSS.
+  Deployment results are reported in chat.
+- BLOCKER: none.
+
 ## Broader Coverage (2026-10-14)
 
 - WORK-ID: AIPLORER-WATCH-EXPANSION; last AI: CODEX; implementation DONE.

@@ -13,7 +13,11 @@ const officialHosts = new Map([
   ["/ai-tools/tools/replit/", ["docs.replit.com", "replit.com"]],
   ["/ai-tools/tools/notion-ai/", ["www.notion.com"]],
   ["/ai-tools/tools/claude/", ["www.anthropic.com"]],
-  ["/ai-tools/tools/perplexity/", ["www.perplexity.ai"]]
+  ["/ai-tools/tools/perplexity/", ["www.perplexity.ai"]],
+  ["/ai-tools/tools/runway/", ["runway.com"]],
+  ["/ai-tools/tools/adobe-firefly/", ["blog.adobe.com", "helpx.adobe.com"]],
+  ["/ai-tools/tools/lm-studio/", ["lmstudio.ai"]],
+  ["/ai-tools/tools/ollama/", ["ollama.com"]]
 ]);
 function date(value) {
   assert.match(value, /^\d{4}-\d{2}-\d{2}$/);
