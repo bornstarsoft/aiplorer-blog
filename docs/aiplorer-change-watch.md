@@ -2,6 +2,28 @@
 
 ACTIVE_WRITER = NONE
 
+## Export Limits And Workspace Defaults (2026-10-15)
+
+- WORK-ID: AIPLORER-EXPORT-GOVERNANCE; last AI: CODEX; implementation DONE.
+- Udio official UMG help page explicitly disables audio/video/stem downloads.
+  February 17, 2026 is the displayed documentation date, not an inferred
+  original restriction date; the October 2025 partnership is historical.
+  Source: https://help.udio.com/en/articles/12683565-changes-associated-with-the-universal-music-group-umg-partnership
+- Jasper September update was published October 7: MCP defaults apply when
+  IQ is not selected; API fallback requires an option. No blanket compliance claim.
+  Source: https://www.jasper.ai/blog/september-2026-product-update
+- Rows official February 22 announcement planned May 31 wind-down; current
+  product page points to Superhuman Docs. Rows remains draft, unchanged and
+  excluded from the public change watch. No assumption of data recovery made.
+  Source: https://rows.com/blog/post/rows-is-joining-superhuman
+- Baseline ffb6bf8; owner approved scoped update, validation, commit and deploy.
+  Existing 46 events, full review dates and unrelated WIP preserved.
+- QA PASS: isolated Hugo build; 48-record validator; Relay regression; 11 tests;
+  RSS/sitemap XML; 291 legacy post URLs; eight draft exclusions. All 46 prior
+  events and 28 owner WIP hashes preserved. Existing legacy HTML warning remains.
+- NEXT_SINGLE_TASK: push and verify live records, RSS and Udio note.
+- BLOCKER: none. Deployment evidence in task result.
+
 ## CLI Migration And Integration Retirement (2026-10-15)
 
 - WORK-ID: AIPLORER-MIGRATION-NOTICES; last AI: CODEX; implementation DONE.

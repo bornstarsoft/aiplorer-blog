@@ -59,6 +59,12 @@ AI music tools should not be treated as proof that output is original, non-infri
 
 ## Notes
 
+### Download Restriction (Rechecked October 15, 2026)
+
+The [official UMG partnership help page](https://help.udio.com/en/articles/12683565-changes-associated-with-the-universal-music-group-umg-partnership), displaying February 17, 2026, states that audio, video and stem downloads are disabled. That displayed date is not treated here as the original restriction date. This is not a notice that Udio has closed.
+
+Verify current delivery options and rights before promising files to a client. Do not assume a subscription or an older tutorial guarantees export access. This targeted check does not replace the full review date above.
+
 Features, partnership-transition terms, plans, pricing, credits, limits, music options, uploads, downloads, model details, ownership terms, licensing terms, privacy terms, safety policies, and availability can change. Check official Udio pages for current information, especially before relying on downloading or exporting work.
 
 Review copyright, samples, lyrics, performer and voice rights, consent, likeness, trademarks, brand use, commercial-use requirements, and sensitive or unreleased audio before sharing generated music.

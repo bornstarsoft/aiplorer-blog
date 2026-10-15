@@ -2,6 +2,35 @@
   "checkedAt": "2026-10-15",
   "entries": [
     {
+      "id": "jasper-workspace-defaults-2026-10-07",
+      "tool": "/ai-tools/tools/jasper/",
+      "announcedAt": "2026-10-07",
+      "checkedAt": "2026-10-15",
+      "revision": 1,
+      "topic": "Workspace defaults",
+      "title": "Check which brand defaults Jasper applies outside its app",
+      "summary": "Jasper's September roundup, published October 7, says MCP generations and agent runs use workspace Style Guide, Brand Voice and Audience defaults when IQ is not explicitly selected. Explicit selections take precedence. API integrations can opt into a workspace-default fallback; this is not automatic for every integration.",
+      "action": "Have the workspace owner review defaults before using connected workflows. Compare a small test with implicit defaults and explicit IQ selections, and inspect the API option separately. Check source material, permissions and factual claims before sharing; inherited brand settings are not a compliance or accuracy guarantee.",
+      "sourceTitle": "Jasper: What's New in September 2026, published October 7",
+      "sourceUrl": "https://www.jasper.ai/blog/september-2026-product-update",
+      "guide": "/guides/how-to-choose-the-right-ai-tool/"
+    },
+    {
+      "id": "udio-download-restriction-docs-2026-02-17",
+      "tool": "/ai-tools/tools/udio/",
+      "announcedAt": "2026-02-17",
+      "dateLabel": "Documentation dated",
+      "checkedAt": "2026-10-15",
+      "revision": 1,
+      "topic": "Export restrictions",
+      "title": "Confirm Udio delivery options before planning a downloadable soundtrack",
+      "summary": "Udio's official UMG partnership help page states that audio, video and stem downloads are disabled. February 17, 2026 is the date displayed on that help page, not a verified start date for the restriction. This is a historical restriction rechecked today, not a new shutdown announcement.",
+      "action": "Do not promise downloadable files or stems to a client based on older tutorials or a subscription alone. Verify current delivery options and applicable rights before starting paid work. A shareable Udio link is not a substitute for an export when the project needs local files; use only material you can lawfully deliver.",
+      "sourceTitle": "Udio Help: changes associated with the UMG partnership",
+      "sourceUrl": "https://help.udio.com/en/articles/12683565-changes-associated-with-the-universal-music-group-umg-partnership",
+      "guide": "/guides/how-to-choose-the-right-ai-tool/"
+    },
+    {
       "id": "tabnine-legacy-cli-transition-2026-09-15",
       "tool": "/ai-tools/tools/tabnine/",
       "announcedAt": "2026-09-15",

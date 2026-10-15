@@ -11,6 +11,8 @@ const today = new Intl.DateTimeFormat("en-CA", {
   timeZone: "Asia/Seoul", year: "numeric", month: "2-digit", day: "2-digit"
 }).format(new Date());
 const officialHosts = new Map([
+  ["/ai-tools/tools/udio/", ["help.udio.com"]],
+  ["/ai-tools/tools/jasper/", ["www.jasper.ai"]],
   ["/ai-tools/tools/tabnine/", ["docs.tabnine.com"]],
   ["/ai-tools/tools/ifttt/", ["www.tp-link.com"]],
   ["/ai-tools/tools/you-com/", ["you.com"]],
