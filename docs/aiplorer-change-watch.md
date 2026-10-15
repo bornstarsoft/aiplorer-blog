@@ -2,6 +2,33 @@
 
 ACTIVE_WRITER = NONE
 
+## Workflow Sunset And Voice Consent (2026-10-15)
+
+- WORK-ID: AIPLORER-WORKFLOW-CONSENT-NOTICES; last AI: CODEX; implementation DONE.
+- Pipedream official notice: Workflows/String scheduled to end March 31, 2027;
+  Workflows data deletion by April 30. Connect unaffected. No publication date
+  supplied: event uses October 15 with the explicit label "Notice checked".
+  https://pipedream.com/docs/workflows
+  Export is a rebuild reference, not a portable backup. Verify manifest skips,
+  separate data copies and connected-account reauthorization.
+  https://pipedream.com/docs/workflows/export-workflows
+- Speechify September 23 notice: voice cloning moves to speaker-verified
+  consent across API versions. Existing voices/synthesis are unaffected;
+  temporary workspace exceptions require support, not an assumed entitlement.
+  https://docs.speechify.ai/build/changelog/2026/9/23
+- Speechify model-retirement search results conflict with updated changelog
+  wording; no model shutdown claim added in this batch.
+- Keep Pipedream public for migration information, not marked fully closed.
+  Refresh its card copy and remove it from the new-workflow featured shortlist.
+- Baseline d044656; owner approved scoped updates, validation, commit/deploy.
+  Preserve existing 59 events, full review dates, drafts and unrelated WIP.
+- QA PASS: isolated Hugo build; 61-record validator; scoped workflow/consent
+  regression; Relay regression; 11 tests; RSS/sitemap XML; 291 legacy post URLs;
+  eight draft exclusions. Existing 59 events and 28 owner WIP hashes preserved.
+  Existing legacy raw-HTML warning unchanged.
+- NEXT_SINGLE_TASK: push and verify live watch, RSS, tool notices and list copy.
+- BLOCKER: none. Deployment evidence in task result.
+
 ## Audio Model And Editing Changes (2026-10-15)
 
 - WORK-ID: AIPLORER-AUDIO-WORKFLOW-UPDATES; last AI: CODEX; implementation DONE.

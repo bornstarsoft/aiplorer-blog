@@ -64,6 +64,10 @@ Voice AI and text-to-speech tools should not be treated as a guarantee that pron
 
 ## Notes
 
+### Voice Cloning Consent Migration
+
+Checked October 15, 2026: [Speechify's September 23 API notice](https://docs.speechify.ai/build/changelog/2026/9/23) replaces the old consent field with a speaker challenge and recorded response, regardless of API version. Existing cloned voices and synthesis calls are unaffected. Review new-voice onboarding and follow the official migration guide; ask support about migration difficulties rather than assuming an older version bypasses consent. Vendor verification is not proof of all necessary usage rights.
+
 Features, assistant and voice options, plans, pricing, limits, supported content, downloads, integrations, licensing terms, privacy terms, security details, and availability can change. Check official Speechify pages for current information.
 
 Review the original text and recordings, answers, summaries, pronunciation, copyright, document permissions, voice rights, consent, privacy, and sensitive or confidential material before sharing or relying on spoken or generated output.

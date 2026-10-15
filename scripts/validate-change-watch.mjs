@@ -11,6 +11,8 @@ const today = new Intl.DateTimeFormat("en-CA", {
   timeZone: "Asia/Seoul", year: "numeric", month: "2-digit", day: "2-digit"
 }).format(new Date());
 const officialHosts = new Map([
+  ["/ai-tools/tools/pipedream/", ["pipedream.com"]],
+  ["/ai-tools/tools/speechify/", ["docs.speechify.ai"]],
   ["/ai-tools/tools/murf-ai/", ["murf.ai"]],
   ["/ai-tools/tools/adobe-podcast/", ["podcast.adobe.com"]],
   ["/ai-tools/tools/heygen/", ["www.heygen.com"]],

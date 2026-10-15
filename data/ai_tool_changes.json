@@ -2,6 +2,35 @@
   "checkedAt": "2026-10-15",
   "entries": [
     {
+      "id": "pipedream-workflows-sunset-notice-checked-2026-10-15",
+      "tool": "/ai-tools/tools/pipedream/",
+      "announcedAt": "2026-10-15",
+      "dateLabel": "Notice checked",
+      "checkedAt": "2026-10-15",
+      "revision": 1,
+      "topic": "Shutdown planned",
+      "title": "Plan a migration for Pipedream Workflows before March 2027",
+      "summary": "Pipedream schedules Workflows and String shutdown for March 31, 2027, with Workflows data deletion by April 30. Connect is unaffected. The notice does not state its publication date; October 15 is our verification date, not the shutdown or announcement date.",
+      "action": "Inventory dependencies and export each project. Check the export manifest and preserve needed data separately; JSON exports are rebuild references, not automatic migration or credential backups. Test replacement triggers and reconnect accounts before cutover. Do not start a new long-term Workflows deployment.",
+      "sourceTitle": "Pipedream: Workflows and String shutdown notice",
+      "sourceUrl": "https://pipedream.com/docs/workflows",
+      "guide": "/guides/how-to-choose-ai-automation-tools/"
+    },
+    {
+      "id": "speechify-voice-consent-migration-2026-09-23",
+      "tool": "/ai-tools/tools/speechify/",
+      "announcedAt": "2026-09-23",
+      "checkedAt": "2026-10-15",
+      "revision": 1,
+      "topic": "Consent migration",
+      "title": "Update Speechify new-voice onboarding for verified speaker consent",
+      "summary": "Speechify's September 23 API notice replaces the old consent field with a speaker challenge and recorded response across API versions. Existing cloned voices and synthesis are unaffected. This changes new voice creation, not the availability of the entire Speechify service.",
+      "action": "Review any cloning integration and test the official consent flow with a consenting speaker. Do not rely on an old API version to bypass verification. Contact support for migration issues, and check voice rights and intended use separately from the vendor's verification step.",
+      "sourceTitle": "Speechify: verified consent on every API version, September 23",
+      "sourceUrl": "https://docs.speechify.ai/build/changelog/2026/9/23",
+      "guide": "/guides/how-to-plan-a-multimodal-ai-creative-workflow/"
+    },
+    {
       "id": "murf-gen2-streaming-retirement-2026-10-05",
       "tool": "/ai-tools/tools/murf-ai/",
       "announcedAt": "2026-10-05",

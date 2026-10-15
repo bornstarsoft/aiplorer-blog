@@ -1,33 +1,33 @@
 ---
 title: "Pipedream"
-description: "Pipedream is an automation and integration platform that can help users plan, build, and test workflows across connected apps, APIs, and services."
+description: "Pipedream Workflows and String close March 31, 2027. Plan existing workflow migrations; Pipedream Connect is unaffected."
 type: "ai-tools"
 layout: "tool"
 category: "Automation Tools"
 bestFor:
-  - Planning app-to-app workflows
-  - Building repeatable workflow automations
-  - Testing workflow ideas
+  - Planning existing workflow migrations
+  - Documenting automation dependencies
+  - Testing replacement workflows
   - Connecting apps, APIs, and everyday work tools
   - Reviewing credits, permissions, and workflow risks before rollout
 beginnerFriendly: null
 freePlan: null
-pricingNote: "Plans, pricing, credits, limits, integrations, API-related options, AI-related features, security details, and availability may change. Check the official Pipedream product, docs, pricing, limits, and security pages for current details."
+pricingNote: "Workflows no longer accepts new signups or subscriptions. Check the official sunset notice for existing-account billing and migration guidance. Connect is a separate offering."
 officialUrl: "https://pipedream.com/"
 lastReviewed: "2026-07-25"
 lastmod: "2026-07-25"
 draft: false
 useCases:
-  - Draft an automation workflow before building it
-  - Connect routine updates between work apps
-  - Prepare a repeatable process for testing
-  - Compare automation needs before choosing a tool
-  - Document workflow risks before rollout
+  - Inventory existing workflow dependencies
+  - Prepare a migration checklist
+  - Test replacement automations before cutover
+  - Compare ongoing integration needs separately from Workflows
+  - Document workflow risks and connected-account permissions
 pros:
-  - Can be useful for people who want to plan and test app, API, or service workflows
-  - Can support automation planning, workflow documentation, and repeatable process design
-  - May fit users exploring developer-friendly workflow ideas with careful permission review
+  - Existing workflows can provide a reference when documenting a replacement
+  - Migration planning can help expose hidden app and data dependencies
 limitations:
+  - Workflows is in maintenance mode; do not choose it for a new long-term workflow deployment
   - Automated workflows should be tested before relying on them
   - Connected accounts, app permissions, customer data, and business data should be handled carefully
   - Workflow errors, missing data, duplicate actions, and permission issues can affect real operations
@@ -38,6 +38,7 @@ similarTools:
   - n8n
 reviewStatus: "reviewed"
 sourceNotes:
+  - "Targeted sunset/export check on 2026-10-15: https://pipedream.com/docs/workflows and https://pipedream.com/docs/workflows/export-workflows. No notice publication date inferred. Earlier review notes below are historical."
   - "Checked https://pipedream.com/ on 2026-07-25 for current official Pipedream positioning around workflows, apps, APIs, integrations, AI-related use cases, and its announced relationship with Workday."
   - "Checked https://pipedream.com/docs and https://pipedream.com/docs/workflows/limits on 2026-07-25 for current official workflow, API, integration, credit, and limit context."
   - "Checked https://pipedream.com/pricing and https://pipedream.com/docs/pricing on 2026-07-25 for current plan, pricing, credit, workflow, Connect, and usage context without copying exact prices, plan comparisons, credit limits, API limits, or feature availability into this page."
@@ -46,13 +47,17 @@ sourceNotes:
 
 ## Overview
 
-Pipedream is an automation and integration platform that can help users plan, build, and test workflows across connected apps, APIs, and services. It can be useful when a person wants to map an app-to-app process, reduce repetitive handoffs, or document an automation idea before using it in a real process.
+Checked October 15, 2026: [Pipedream's official notice](https://pipedream.com/docs/workflows) schedules Workflows and String shutdown for **March 31, 2027**, with Workflows data deletion by **April 30, 2027**. Connect is unaffected. This page remains available for migration planning.
 
-Pipedream has product and documentation areas for workflows, app connections, API-related usage, credits, limits, and AI-related workflows, but details can change. Users should check official Pipedream product, docs, pricing, limits, and security pages before relying on a specific feature, integration, plan, credit model, API option, or security detail.
+### Prepare A Workflow Migration
+
+The [export guide](https://pipedream.com/docs/workflows/export-workflows) describes per-project JSON archives for rebuilding elsewhere, not a one-click import. Download the archive from File Store, check manifest warnings and skipped workflows, and verify that the export is complete. The export requires File Store access; ask support if your account cannot use it.
+
+Credentials, environment variables, event history, data stores, File Store files and private multi-file component code are excluded from the archive. Preserve needed data and source separately, reconnect accounts on the replacement platform, and test with non-sensitive inputs. Protect exports as business data, and check duplicate actions before switching live triggers.
 
 ## Useful For
 
-Beginners may use Pipedream to think through workflow ideas, such as moving information between apps, preparing follow-up steps, routing routine updates, or reducing repeated manual work. Any automation should be tested carefully before it is used for real customer, business, account, or operational workflows.
+Existing users can document app connections, failure handling and operational dependencies before moving a workflow. Evaluate replacement tools on the same small test rather than assuming exports reproduce behavior unchanged.
 
 Automation tools should be treated as workflow support, not as a guarantee that a process is complete, reliable, secure, correctly permissioned, or appropriate for every team.
 
