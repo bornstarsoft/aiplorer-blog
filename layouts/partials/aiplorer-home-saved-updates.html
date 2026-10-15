@@ -10,7 +10,7 @@
   <ul class="aiplorer-home-return__updates" data-saved-update-list hidden>
     {{ range $entries }}
     <li hidden data-saved-update data-tool="{{ .tool }}" data-read-key="{{ .id }}:{{ .revision }}">
-      <a href="/ai-tools/review-updates/?saved=1#change-{{ .id }}"><strong>{{ .toolTitle }}</strong><span>{{ .title }}</span><small>Announced {{ .announcedAt }}</small></a>
+      <a href="/ai-tools/review-updates/?saved=1#change-{{ .id }}"><strong>{{ .toolTitle }}</strong><span>{{ .title }}</span><small>{{ .dateLabel | default "Announced" }} {{ .announcedAt }}</small></a>
     </li>
     {{ end }}
   </ul>

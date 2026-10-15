@@ -3,7 +3,7 @@
   <channel>
     <title>Aiplorer AI Tool Change Watch</title>
     <link>{{ .Permalink }}</link>
-    <description>Selected official AI tool announcements and practical checks. Publication dates are announcement dates, not Aiplorer review dates.</description>
+    <description>Selected official AI tool announcements and practical checks. Month-only events omit pubDate rather than inventing a day; source-check dates are separate.</description>
     <language>en-us</language>
     <lastBuildDate>{{ time.Format "Mon, 02 Jan 2006 15:04:05 -0700" site.Data.ai_tool_changes.checkedAt }}</lastBuildDate>
     <atom:link href="{{ .Permalink }}index.xml" rel="self" type="application/rss+xml"/>
@@ -12,7 +12,7 @@
       <title>{{ printf "%s: %s" .toolTitle .title }}</title>
       <link>{{ printf "ai-tools/review-updates/#change-%s" .id | absURL }}</link>
       <guid isPermaLink="false">{{ printf "aiplorer-change:%s:%v" .id .revision }}</guid>
-      <pubDate>{{ time.Format "Mon, 02 Jan 2006 15:04:05 -0700" .announcedAt }}</pubDate>
+      {{ if ne .datePrecision "month" }}<pubDate>{{ time.Format "Mon, 02 Jan 2006 15:04:05 -0700" .announcedAt }}</pubDate>{{ end }}
       <category>{{ .topic }}</category>
       <description>{{ printf "%s Check before use: %s Official source: %s. Source checked by Aiplorer: %s." .summary .action .sourceUrl .checkedAt }}</description>
     </item>

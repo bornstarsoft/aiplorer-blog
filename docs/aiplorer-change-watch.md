@@ -2,6 +2,24 @@
 
 ACTIVE_WRITER = NONE
 
+## Relay Closure (2026-10-15)
+
+- WORK-ID: AIPLORER-RELAY-CLOSURE; last AI: CODEX; implementation DONE.
+- Official https://relay.app/ checked October 15: September 2026 closure;
+  account, workflow and run-history deletion. Exact day is not supplied.
+- Preserved URL as an archive. Discontinued title/description propagate to lists,
+  saved-tool catalogs and related cards. Removed obsolete export instructions.
+- Month-precision event uses Closed, not Announced; RSS omits optional pubDate.
+  Existing 41 records remain unchanged.
+- Baseline HEAD: 7375a24. Owner approval: this update, commit and deployment.
+  All 28 owner WIP files excluded and hashes preserved.
+- QA PASS: isolated staged-source Hugo production build; 42-record validator;
+  closure/list-label/month-only RSS checks; 11 saved-tool tests; shortlist;
+  291 legacy post URLs; RSS/sitemap XML. Eight drafts remain excluded and
+  all 41 previous records are unchanged. Existing legacy HTML warning remains.
+- NEXT_SINGLE_TASK: push and verify live closure page, lists and RSS.
+- BLOCKER: none. Deployment evidence is reported in the task result.
+
 ## Reliability And Usage Coverage (2026-10-15)
 
 - WORK-ID: AIPLORER-RELIABILITY-COVERAGE; last AI: CODEX; implementation DONE.

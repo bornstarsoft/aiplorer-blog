@@ -11,6 +11,7 @@ const today = new Intl.DateTimeFormat("en-CA", {
   timeZone: "Asia/Seoul", year: "numeric", month: "2-digit", day: "2-digit"
 }).format(new Date());
 const officialHosts = new Map([
+  ["/ai-tools/tools/relay-app/", ["relay.app"]],
   ["/ai-tools/tools/jan/", ["www.jan.ai"]],
   ["/ai-tools/tools/synthesia/", ["help.synthesia.io"]],
   ["/ai-tools/tools/fireflies-ai/", ["fireflies.ai"]],
@@ -64,7 +65,14 @@ for (const entry of data.entries) {
   assert.match(entry.id, /^[a-z0-9-]+$/);
   assert(!ids.has(entry.id), `Duplicate ID: ${entry.id}`);
   ids.add(entry.id);
-  date(entry.announcedAt);
+  if (entry.datePrecision === "month") {
+    assert.match(entry.announcedAt, /^\d{4}-(0[1-9]|1[0-2])$/);
+    assert.equal(entry.dateLabel, "Closed");
+    assert(entry.announcedAt <= today.slice(0, 7));
+  } else {
+    assert(!entry.datePrecision || entry.datePrecision === "day");
+    date(entry.announcedAt);
+  }
   date(entry.checkedAt);
   assert(entry.announcedAt <= entry.checkedAt && entry.checkedAt <= data.checkedAt);
   assert(Number.isInteger(entry.revision) && entry.revision > 0);

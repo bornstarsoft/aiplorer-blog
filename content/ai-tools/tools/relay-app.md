@@ -1,63 +1,51 @@
 ---
-title: "Relay.app"
-description: "Relay.app is in an announced shutdown period. Existing users should follow its official export and transition guidance before their access ends."
+title: "Relay.app (Discontinued)"
+description: "Relay.app shut down in September 2026. Its official notice says all accounts, workflows and run history have been permanently deleted. Archived reference, not an available service recommendation."
 type: "ai-tools"
 layout: "tool"
 category: "Automation Tools"
+serviceStatus: "discontinued"
+closedMonth: "2026-09"
 bestFor:
-  - Exporting existing Relay.app workspace information
-  - Reviewing workflows before rebuilding them elsewhere
-  - Planning and testing replacement automations
-  - Documenting connected accounts and permissions
-  - Checking official shutdown and data-deletion guidance
+  - Checking the official closure notice
+  - Planning replacement workflows from independently retained documentation
 beginnerFriendly: null
 freePlan: null
-pricingNote: "Relay.app has announced that free-user access ends on August 15, 2026 and paying-customer access ends on September 14, 2026. New signups and upgrades are disabled. Existing users should check the official shutdown and export guidance for current transition details."
-officialUrl: "https://www.relay.app/"
-lastReviewed: "2026-07-26"
-lastmod: "2026-07-26T00:00:00+09:00"
+pricingNote: "Service discontinued. Do not rely on historical pricing or export instructions."
+officialUrl: "https://relay.app/"
+lastReviewed: "2026-10-15"
+lastmod: "2026-10-15T00:00:00+09:00"
 draft: false
 useCases:
-  - Export existing workflows, run history, and table data
-  - Document current automations before migration
-  - Rebuild and test workflows in another service
-  - Review connected accounts and stored credentials
-  - Plan a transition before the published shutdown deadline
-pros:
-  - Official guidance describes ways existing users can export important workspace information
-  - Existing workflows remain available during the applicable wind-down window
-  - The published transition guidance can help users document a migration plan
+  - Identify dependencies on the discontinued service
+  - Review permissions in connected services you still control
+  - Rebuild and test replacement workflows from retained documentation
+pros: []
 limitations:
-  - Relay.app says free-user access ends on August 15, 2026 and paying-customer access ends on September 14, 2026
-  - New signups and free-to-paid upgrades have been disabled
-  - Workspace data that is not exported is scheduled for deletion after the applicable wind-down period
-  - Replacement workflows should be reviewed and tested before users disconnect accounts or rely on the new process
-  - Shutdown dates, export instructions, support details, and exact availability should be confirmed on the official Relay.app page
+  - The official notice says the service shut down in September 2026
+  - Accounts, workflows and run history were permanently deleted according to Relay.app
+  - Do not assume login, export, recovery or support remains available
+  - The current notice does not specify an exact closure day
 similarTools:
   - Zapier
   - Make
   - Pipedream
 reviewStatus: "reviewed"
 sourceNotes:
-  - "Checked https://www.relay.app/ on 2026-07-26 for the current official shutdown announcement, wind-down dates, disabled signup and upgrade status, export guidance, account deletion details, connected-app credential deletion, and transition support information."
-  - "Checked https://docs.relay.app/workspace-and-account/export-your-relay.app-data on 2026-07-26 for current workspace, workflow, run-history, table, prompt, JSON, screenshot, account, and workspace export or deletion guidance without treating exports as complete or directly portable."
-  - "Checked https://www.relay.app/legal, https://www.relay.app/security, and https://www.relay.app/privacy on 2026-07-26. Their www URLs redirected to apex paths that returned HTTP 404 in direct checks, so this review relies on the live shutdown notice and export documentation for current transition and data-deletion context and does not add privacy or security guarantees."
+  - "Checked https://relay.app/ on 2026-10-15: September 2026 closure and permanent deletion of accounts, workflows and run history. No exact day is inferred."
+  - "Replaces July 2026 wind-down guidance. Historical access deadlines do not establish the actual closure day; old export instructions are not current guidance."
 ---
 
-## Overview
+## Service Discontinued
 
-Relay.app has announced that it is shutting down. The official notice says access ends on August 15, 2026 for free users and September 14, 2026 for paying customers. New signups and free-to-paid upgrades have been disabled, so this page should be used as transition context for existing users rather than as a recommendation to start a new Relay.app workflow.
+Relay.app shut down in **September 2026**, according to its [official closure notice](https://relay.app/). The notice says all accounts, workflows and run history have been permanently deleted. It does not provide an exact closure day.
 
-Existing users should check the official Relay.app shutdown page and export instructions promptly. The notice describes exports for workflows and other workspace information, but users should verify that their own data is complete and usable before relying on a migration.
+This URL remains available as an archived reference for existing links and saved tools. Relay.app should not be selected for a new workflow. Earlier wind-down instructions are historical, not current instructions for exporting or recovering data.
 
-## Useful For
+## Next Steps For Former Users
 
-Existing users may use the remaining wind-down period to inventory workflows, export available data, document connected accounts, and rebuild automations in another service. Replacement workflows should be tested carefully before they are used for real customer, business, account, or operational processes.
+Use only documentation or exports you already retained independently. Do not assume you can sign in, export deleted records or obtain recovery from the discontinued service.
 
-Do not assume an exported workflow, prompt, history, or table is complete or directly portable. Review triggers, actions, permissions, credentials, schedules, error handling, and downstream effects in the replacement workflow.
+Review Relay-related permissions in connected services you still control and revoke obsolete access where appropriate. Inventory triggers, actions and downstream dependencies before rebuilding. Test replacement workflows with non-sensitive sample data and verify error handling before allowing real account or business actions.
 
-## Notes
-
-Check the official Relay.app announcement for current shutdown dates, export steps, account deletion details, and support availability. The announced dates and transition instructions may change.
-
-Be careful with sensitive, customer, business, account, or confidential data during export and migration. Review connected accounts, revoke access when appropriate, protect exported files, follow workplace and legal requirements, and verify replacement workflows before depending on them.
+Related tools below are alternatives to evaluate, not guaranteed migration paths. Check current availability, costs, permissions and data requirements before choosing one.

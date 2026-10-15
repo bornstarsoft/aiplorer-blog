@@ -34,7 +34,7 @@
           <div class="aiplorer-change-entry__when">
             <a href="{{ .tool }}">{{ .toolTitle }}</a>
             <span>{{ .topic }}</span>
-            <span>Announced <time datetime="{{ .announcedAt }}">{{ .announcedAt }}</time></span>
+            <span>{{ .dateLabel | default "Announced" }} <time datetime="{{ .announcedAt }}">{{ .announcedAt }}</time>{{ if eq .datePrecision "month" }} (exact day not published){{ end }}</span>
             <span>Checked <time datetime="{{ .checkedAt }}">{{ .checkedAt }}</time></span>
             <strong data-change-badge hidden>Unread</strong>
           </div>

@@ -82,7 +82,7 @@
           <div class="aiplorer-actions">
             {{ with .Params.officialUrl }}
               <a class="aiplorer-button aiplorer-button--primary aiplorer-button--icon" href="{{ . }}" rel="noopener nofollow" target="_blank">
-                Official website
+                {{ if eq $.Params.serviceStatus "discontinued" }}Official closure notice{{ else }}Official website{{ end }}
                 {{ partial "aiplorer-icon.html" "external-link" }}
                 <span class="aiplorer-visually-hidden"> (opens in a new tab)</span>
               </a>
@@ -124,7 +124,7 @@
     {{ range first 1 (where (partial "aiplorer-change-data.html" .) "tool" .RelPermalink) }}
       <section class="aiplorer-change-preview" aria-label="Recent official announcement">
         <div class="aiplorer-shell">
-          <p class="aiplorer-kicker">Official announcement &middot; {{ .announcedAt }}</p>
+          <p class="aiplorer-kicker">{{ .dateLabel | default "Official announcement" }} &middot; {{ .announcedAt }}{{ if eq .datePrecision "month" }} (exact day not published){{ end }}</p>
           <a href="/ai-tools/review-updates/#change-{{ .id }}"><strong>{{ .title }}</strong> &rarr;</a>
           <p>Source checked {{ .checkedAt }}. See what to recheck before your next task.</p>
         </div>

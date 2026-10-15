@@ -2,6 +2,22 @@
   "checkedAt": "2026-10-15",
   "entries": [
     {
+      "id": "relay-app-shutdown-2026-09",
+      "tool": "/ai-tools/tools/relay-app/",
+      "announcedAt": "2026-09",
+      "datePrecision": "month",
+      "dateLabel": "Closed",
+      "checkedAt": "2026-10-15",
+      "revision": 1,
+      "topic": "Service discontinued",
+      "title": "Relay.app has closed; check workflows that depended on it",
+      "summary": "Relay.app's official notice says it shut down in September 2026 and permanently deleted all accounts, workflows and run history. No exact closure day is supplied. This is a closure notice, not an instruction to export data from the discontinued service.",
+      "action": "Review dependencies and connected-service permissions. Use only information or exports already retained independently; do not assume login, export or recovery remains available. Test replacement workflows before enabling real business actions.",
+      "sourceTitle": "Relay.app: official shutdown notice",
+      "sourceUrl": "https://relay.app/",
+      "guide": "/guides/how-to-choose-ai-automation-tools/"
+    },
+    {
       "id": "jan-model-loading-hotfix-2026-10-09",
       "tool": "/ai-tools/tools/jan/",
       "announcedAt": "2026-10-09",
