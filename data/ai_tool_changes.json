@@ -2,6 +2,34 @@
   "checkedAt": "2026-10-15",
   "entries": [
     {
+      "id": "fireflies-talk-dictation-2026-09-29",
+      "tool": "/ai-tools/tools/fireflies-ai/",
+      "announcedAt": "2026-09-29",
+      "checkedAt": "2026-10-15",
+      "revision": 1,
+      "topic": "Voice input",
+      "title": "Review dictated text before it becomes a message or work instruction",
+      "summary": "Fireflies announced Talk in its desktop app for Mac and Windows: hold a key to dictate, then release to insert text at the cursor. The announcement describes cleanup and formatting for the destination app. This September release is newly tracked here.",
+      "action": "Check current app support, permissions and data policies before enabling dictation. Try non-sensitive text in a draft field first. Verify names, mentions, dates and commitments before sending, and do not dictate passwords or confidential material without workplace approval.",
+      "sourceTitle": "Fireflies: Introducing Fireflies Talk, September 29",
+      "sourceUrl": "https://fireflies.ai/blog/introducing-fireflies-talk",
+      "guide": "/use-cases/how-to-use-ai-to-write-better-emails/"
+    },
+    {
+      "id": "otter-desktop-recording-controls-2026-08-06",
+      "tool": "/ai-tools/tools/otter-ai/",
+      "announcedAt": "2026-08-06",
+      "checkedAt": "2026-10-15",
+      "revision": 1,
+      "topic": "Meeting capture controls",
+      "title": "Choose reminder or recording behavior separately for each meeting app",
+      "summary": "Otter's August desktop update introduced meeting detection with Off, Remind me to record, and Record automatically options per meeting type. Its announcement identifies reminders as the default, not automatic recording. This earlier release is newly tracked here.",
+      "action": "Review Meeting Detection settings in your desktop app and check current availability. Obtain required participant consent and follow workplace recording policy before enabling capture. Test reminders first, verify stop controls and sharing permissions, and disable capture for sensitive conversations.",
+      "sourceTitle": "Otter: Automatic Recording in Otter Desktop, August 6",
+      "sourceUrl": "https://otter.ai/blog/never-miss-the-conversation-introducing-automatic-recording-in-otter-desktop",
+      "guide": "/guides/how-to-use-ai-meeting-tools-responsibly/"
+    },
+    {
       "id": "canva-muse-connector-2026-09-29",
       "tool": "/ai-tools/tools/canva-ai/",
       "announcedAt": "2026-09-29",

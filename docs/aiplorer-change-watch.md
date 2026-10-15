@@ -2,6 +2,29 @@
 
 ACTIVE_WRITER = NONE
 
+## First Meeting Tool Records (2026-10-15)
+
+- WORK-ID: AIPLORER-MEETING-COVERAGE; last AI: CODEX; implementation DONE.
+- First records for Fireflies.ai and Otter.ai: 39 events across 33 tools.
+- Official sources checked October 15:
+  - https://fireflies.ai/blog/introducing-fireflies-talk : September 29 desktop
+    dictation launch. No unlimited-use, accuracy or data-handling guarantees repeated.
+  - https://otter.ai/blog/never-miss-the-conversation-introducing-automatic-recording-in-otter-desktop :
+    August 6 announcement; reminder is the documented default, not automatic capture.
+- Historical announcements keep their dates. Practical checks cover destination
+  fields, mentions, sensitive input, recording consent, per-app settings and
+  sharing. No automation is installed or activated by this content update.
+- Existing 37 events and full tool-review dates remain unchanged; no new tools
+  or draft publication. Baseline HEAD: 53ef2c1.
+- Owner approval: this update only, validation, commit and deployment.
+  All 28 owner WIP files excluded.
+- QA PASS: isolated staged-source Hugo build; 39-record validator; 11 tests;
+  RSS/sitemap XML; 291 legacy post URLs; 75 reviewed candidates; both new
+  homepage records; eight draft exclusions. All 37 prior records and 28 owner
+  WIP hashes preserved. Existing legacy raw-HTML warning unchanged.
+- NEXT_SINGLE_TASK: push and verify live home/watch/RSS; evidence in chat.
+- BLOCKER: none.
+
 ## Additional Creative Coverage (2026-10-15)
 
 - WORK-ID: AIPLORER-CREATIVE-COVERAGE; last AI: CODEX; implementation DONE.
