@@ -2,6 +2,27 @@
 
 ACTIVE_WRITER = NONE
 
+## Audio Model And Editing Changes (2026-10-15)
+
+- WORK-ID: AIPLORER-AUDIO-WORKFLOW-UPDATES; last AI: CODEX; implementation DONE.
+- Murf October 5 changelog confirms Gen2 streaming decommissioning, not whole
+  service closure. Non-streaming Gen2 continues. October 5 is the changelog
+  date, not an inferred exact shutdown date; July's scheduled cutoff is not
+  substituted for the confirmation.
+  https://murf.ai/api/docs/changelog
+- Adobe Podcast March 5 update documents Premium source separation and stem
+  downloads. Historical change newly recorded, not an October launch.
+  https://podcast.adobe.com/en/guides/whats-new-in-adobe-podcast-march-2026
+- Recommendations: test voice migrations, preserve originals, review audio
+  artifacts and verify rights independently; no quality or license guarantee.
+- Baseline 274d152; preserve all 57 existing events, full review dates,
+  unrelated WIP and drafts. Owner approved this scoped update and deployment.
+- QA PASS: isolated Hugo build; 59-record validator; Relay regression; 11 tests;
+  RSS/sitemap XML; 291 legacy post URLs; eight draft exclusions. All 57 prior
+  events and 28 owner WIP hashes preserved. Existing legacy HTML warning remains.
+- NEXT_SINGLE_TASK: push and verify live records, RSS and both tool notices.
+- BLOCKER: none. Deployment evidence in task result.
+
 ## Legacy Plans And Meeting Defaults (2026-10-15)
 
 - WORK-ID: AIPLORER-PLAN-CAPTURE-CHECKS; last AI: CODEX; implementation DONE.

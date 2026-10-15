@@ -58,6 +58,10 @@ Audio editing and enhancement tools should not be treated as a guarantee that sp
 
 ## Notes
 
+### Separate Speech, Music And Background Noise
+
+Checked October 15, 2026: [Adobe's March 5 update](https://podcast.adobe.com/en/guides/whats-new-in-adobe-podcast-march-2026) documents Premium-only source separation and isolated-track downloads in Enhance Speech. Keep an original recording and listen for artifacts before using a cleaned mix. Verify current access and media rights separately; removing background music is not proof of copyright clearance.
+
 Features, plans, pricing, limits, audio and optional video recording options, text-based editing, enhancement behavior, transcription support, exports, privacy terms, security details, media-rights terms, and availability can change. Check official Adobe Podcast pages for current information.
 
 Review facts, transcripts, captions, recording consent, voice and likeness rights, copyright, music licenses, brand requirements, privacy, and sensitive recordings before sharing edited or enhanced audio.

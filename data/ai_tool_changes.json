@@ -2,6 +2,36 @@
   "checkedAt": "2026-10-15",
   "entries": [
     {
+      "id": "murf-gen2-streaming-retirement-2026-10-05",
+      "tool": "/ai-tools/tools/murf-ai/",
+      "announcedAt": "2026-10-05",
+      "dateLabel": "Changelog dated",
+      "checkedAt": "2026-10-15",
+      "revision": 1,
+      "topic": "Model retirement",
+      "title": "Replace Gen2 streaming dependencies in Murf voice workflows",
+      "summary": "Murf's October 5 changelog confirms that Gen2 is decommissioned for the Streaming API and points users to Falcon 2. Gen2 remains available for non-streaming text-to-speech. This is a streaming-model retirement, not closure of Murf AI.",
+      "action": "Check which model and endpoint an existing voice integration uses. For streaming, test a Falcon 2 migration with non-sensitive scripts before production. Review pronunciation, timing, errors and current costs rather than assuming an identical replacement; keep non-streaming workflows distinct.",
+      "sourceTitle": "Murf API changelog: Gen2 Streaming Decommissioned, October 5",
+      "sourceUrl": "https://murf.ai/api/docs/changelog",
+      "guide": "/guides/how-to-plan-a-multimodal-ai-creative-workflow/"
+    },
+    {
+      "id": "adobe-podcast-source-separation-2026-03-05",
+      "tool": "/ai-tools/tools/adobe-podcast/",
+      "announcedAt": "2026-03-05",
+      "dateLabel": "Documentation updated",
+      "checkedAt": "2026-10-15",
+      "revision": 1,
+      "topic": "Audio editing",
+      "title": "Adjust speech, music and background noise separately in Adobe Podcast",
+      "summary": "Adobe's March 5 update describes Premium-only Enhance Speech source separation: separate controls for speech, background noise and music, plus downloads of isolated tracks. This gives editors a more selective cleanup workflow than relying on one processed mix.",
+      "action": "Check current plan access, retain the original recording and test a short clip. Listen to the separated tracks and final mix for missing speech or unwanted artifacts. Removing music does not itself establish copyright clearance; check recording consent and media rights before publishing.",
+      "sourceTitle": "Adobe Podcast: March 2026 updates, updated March 5",
+      "sourceUrl": "https://podcast.adobe.com/en/guides/whats-new-in-adobe-podcast-march-2026",
+      "guide": "/guides/how-to-plan-a-multimodal-ai-creative-workflow/"
+    },
+    {
       "id": "heygen-legacy-plan-change-guidance-2026-10-11",
       "tool": "/ai-tools/tools/heygen/",
       "announcedAt": "2026-10-11",

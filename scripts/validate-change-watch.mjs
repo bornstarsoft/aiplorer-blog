@@ -11,6 +11,8 @@ const today = new Intl.DateTimeFormat("en-CA", {
   timeZone: "Asia/Seoul", year: "numeric", month: "2-digit", day: "2-digit"
 }).format(new Date());
 const officialHosts = new Map([
+  ["/ai-tools/tools/murf-ai/", ["murf.ai"]],
+  ["/ai-tools/tools/adobe-podcast/", ["podcast.adobe.com"]],
   ["/ai-tools/tools/heygen/", ["www.heygen.com"]],
   ["/ai-tools/tools/fathom/", ["help.fathom.video"]],
   ["/ai-tools/tools/gemini/", ["knowledge.workspace.google.com"]],

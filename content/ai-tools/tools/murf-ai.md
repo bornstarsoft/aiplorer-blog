@@ -62,6 +62,10 @@ AI voice tools and agents should not be treated as proof that a voice, likeness,
 
 ## Notes
 
+### Gen2 Streaming Retirement
+
+Checked October 15, 2026: [Murf's October 5 changelog](https://murf.ai/api/docs/changelog) confirms Gen2 streaming is decommissioned and recommends Falcon 2. Non-streaming Gen2 remains available. Audit the model and endpoint in older integrations, then test any streaming migration before production use. This does not mean Murf AI has closed.
+
 Features, plans, pricing, limits, voice and agent options, dubbing, cloning, integrations, developer access, licensing terms, privacy terms, security details, and availability can change. Check official Murf AI pages for current information.
 
 Review voice rights, consent, call recording and disclosure rules, likeness, copyright, scripts, facts, connected-system permissions, brand use, commercial-use requirements, and sensitive recordings or text before sharing generated audio or deploying a voice agent.
