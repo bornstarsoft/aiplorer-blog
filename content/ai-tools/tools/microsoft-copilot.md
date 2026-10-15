@@ -58,6 +58,12 @@ For important work, Copilot output should be treated as a draft or suggestion. R
 
 ## Notes
 
+### Feature Retirements (Checked October 15, 2026)
+
+Microsoft's [Excel notice](https://support.microsoft.com/en-us/excel/functions/copilot-function) retires the preview `COPILOT()` worksheet function from September 14, 2026. Cached results may still appear, but recalculation returns `#NAME?`. Audit affected workbooks; this does not retire the Copilot pane in Excel.
+
+The [Copilot Podcasts FAQ](https://support.microsoft.com/en-us/microsoft-copilot/podcasts-in-microsoft-copilot) dates retirement to August 18, 2026 and says previous recordings and shared links are unavailable, with no export access. Check existing learning materials for broken dependencies rather than promising recovery. These are feature-specific checks, not closure of Microsoft Copilot or a replacement for the full review date above.
+
 Plans, pricing, account requirements, Microsoft 365 availability, Windows availability, Edge availability, Bing availability, model access, integrations, organization access, and regional availability may change. Check the official Microsoft Copilot pages for current details.
 
 Do not enter sensitive or confidential information unless you understand the relevant privacy, workplace, school, organization, and data handling policies.

@@ -50,4 +50,8 @@ Beginners may use Gemini to explore ideas, organize notes, ask for explanations,
 
 ## Notes
 
+### Gems Transition (Checked October 15, 2026)
+
+Google's [Workspace transition guide](https://knowledge.workspace.google.com/admin/generative-ai/gemini-app/about-the-transition-to-skills?hl=en) describes a phased move from Gems to skills, not Gemini closure. Existing Gems still work during the transition. Check your organization's timeline and test important instructions before migration; do not assume skills sync between Gemini and Workspace. This targeted check does not replace the full review date above.
+
 Features, pricing, model access, app availability, connected services, and regional availability may change. Check the official Gemini website and Google AI plan pages for current details before choosing a plan or relying on a specific feature.

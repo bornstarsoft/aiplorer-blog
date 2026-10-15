@@ -2,6 +2,28 @@
 
 ACTIVE_WRITER = NONE
 
+## Assistant Workflow Transitions (2026-10-15)
+
+- WORK-ID: AIPLORER-ASSISTANT-TRANSITIONS; last AI: CODEX; implementation DONE.
+- Gemini official transition guide: use October 13 rollout milestone, not an
+  inferred announcement date. Business/education cutoffs are earliest dates,
+  not fixed universal deadlines. Existing Gems are not described as closed today.
+  https://knowledge.workspace.google.com/admin/generative-ai/gemini-app/about-the-transition-to-skills?hl=en
+- Microsoft Excel COPILOT function: September 14 effective retirement date,
+  not publication date. Copilot pane is a distinct continuing experience.
+  https://support.microsoft.com/en-us/excel/functions/copilot-function
+- Copilot Podcasts: August 18 effective retirement; current dedicated FAQ
+  says old recordings cannot be accessed/exported. Do not advise a late export
+  based on older migration overview wording.
+  https://support.microsoft.com/en-us/microsoft-copilot/podcasts-in-microsoft-copilot
+- Existing 52 events and full review dates preserved; no draft publication.
+- Baseline eb6a0d8. Owner approved scoped changes, validation, commit/deploy.
+- QA PASS: isolated Hugo build; 55-record validator; Relay regression; 11 tests;
+  RSS/sitemap XML; 291 legacy post URLs; eight draft exclusions. All 52 prior
+  events and 28 owner WIP hashes preserved. Existing legacy HTML warning remains.
+- NEXT_SINGLE_TASK: push and verify live records, RSS and both tool notices.
+- BLOCKER: none. Deployment evidence in task result.
+
 ## Creative Feature Retirements (2026-10-15)
 
 - WORK-ID: AIPLORER-CREATIVE-RETIREMENTS; last AI: CODEX; implementation DONE.

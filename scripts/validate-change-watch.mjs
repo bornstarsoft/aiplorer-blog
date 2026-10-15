@@ -11,6 +11,8 @@ const today = new Intl.DateTimeFormat("en-CA", {
   timeZone: "Asia/Seoul", year: "numeric", month: "2-digit", day: "2-digit"
 }).format(new Date());
 const officialHosts = new Map([
+  ["/ai-tools/tools/gemini/", ["knowledge.workspace.google.com"]],
+  ["/ai-tools/tools/microsoft-copilot/", ["support.microsoft.com"]],
   ["/ai-tools/tools/midjourney/", ["updates.midjourney.com"]],
   ["/ai-tools/tools/leonardo-ai/", ["docs.leonardo.ai"]],
   ["/ai-tools/tools/open-webui/", ["github.com"]],
