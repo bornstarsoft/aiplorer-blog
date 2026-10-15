@@ -11,6 +11,8 @@ const today = new Intl.DateTimeFormat("en-CA", {
   timeZone: "Asia/Seoul", year: "numeric", month: "2-digit", day: "2-digit"
 }).format(new Date());
 const officialHosts = new Map([
+  ["/ai-tools/tools/jan/", ["www.jan.ai"]],
+  ["/ai-tools/tools/synthesia/", ["help.synthesia.io"]],
   ["/ai-tools/tools/fireflies-ai/", ["fireflies.ai"]],
   ["/ai-tools/tools/otter-ai/", ["otter.ai"]],
   ["/ai-tools/tools/canva-ai/", ["www.canva.com"]],

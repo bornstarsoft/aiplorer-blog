@@ -2,6 +2,30 @@
 
 ACTIVE_WRITER = NONE
 
+## Reliability And Usage Coverage (2026-10-15)
+
+- WORK-ID: AIPLORER-RELIABILITY-COVERAGE; last AI: CODEX; implementation DONE.
+- First records for Jan and Synthesia: 41 events across 35 tools.
+- Official sources checked October 15:
+  - https://www.jan.ai/changelog/2026-10-09-jan-v0.8.6 : dated hotfix for
+    AppImage/CUDA loading regressions and MCP image delivery.
+  - https://help.synthesia.io/en/articles/17217419-what-s-changing-in-synthesia-plans-on-october-1-2026 :
+    October 1 is explicitly an effective date, not a verified publication date.
+    No exact prices, credit amounts or universal-account promises repeated.
+- https://relay.app/ separately confirms shutdown in September 2026 and says
+  accounts/workflows/history were deleted. No exact day is supplied, so no
+  fabricated dated event was added. Follow-up: review catalog availability and
+  support month-precision lifecycle notices before adding this shutdown record.
+- Existing 39 records, review dates and drafts unchanged. No tool pages added.
+- Baseline HEAD: 86409c9. Owner approval: only this update, validation, commit
+  and deployment; 28 owner WIP files excluded.
+- QA PASS: isolated staged-source Hugo build; 41-record validator; 11 tests;
+  RSS/sitemap XML; 291 legacy post URLs; 75 reviewed candidates; two homepage
+  records; eight draft exclusions. All 39 prior records and 28 owner WIP hashes
+  preserved. Existing legacy raw-HTML warning unchanged.
+- NEXT_SINGLE_TASK: push and verify live home/watch/RSS; evidence in chat.
+- BLOCKER: none for these two entries; Relay lifecycle follow-up remains open.
+
 ## First Meeting Tool Records (2026-10-15)
 
 - WORK-ID: AIPLORER-MEETING-COVERAGE; last AI: CODEX; implementation DONE.

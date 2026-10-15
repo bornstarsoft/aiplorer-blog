@@ -2,6 +2,34 @@
   "checkedAt": "2026-10-15",
   "entries": [
     {
+      "id": "jan-model-loading-hotfix-2026-10-09",
+      "tool": "/ai-tools/tools/jan/",
+      "announcedAt": "2026-10-09",
+      "checkedAt": "2026-10-15",
+      "revision": 1,
+      "topic": "Local model reliability",
+      "title": "Check the Jan hotfix before replacing a model that stopped loading",
+      "summary": "Jan 0.8.6 addresses regressions after 0.8.5, including Linux AppImage model-load crashes on some distributions and CUDA loading failures on older NVIDIA Turing setups. The release also fixes image results from MCP tools reaching vision-capable models.",
+      "action": "Record your app version, operating system, GPU and error before troubleshooting. Back up important settings and test a small known model after updating from the official release. Confirm model compatibility and tool permissions; do not assume the fix guarantees accuracy or makes remote providers private.",
+      "sourceTitle": "Jan: October 9 version 0.8.6 hotfix",
+      "sourceUrl": "https://www.jan.ai/changelog/2026-10-09-jan-v0.8.6",
+      "guide": "/guides/how-to-choose-the-right-ai-tool/"
+    },
+    {
+      "id": "synthesia-plan-credit-change-2026-10-01",
+      "tool": "/ai-tools/tools/synthesia/",
+      "announcedAt": "2026-10-01",
+      "checkedAt": "2026-10-15",
+      "revision": 1,
+      "topic": "Plan and usage changes",
+      "title": "Recheck your video workflow budget after Synthesia's plan update",
+      "summary": "Synthesia's notice sets October 1 as the effective date for self-serve plan changes, including renaming Creator to Pro and revising included allowances and credit usage. The notice cautions that API or bulk-personalization workloads may stretch credits less far. This date is the effective date, not an inferred publication date.",
+      "action": "Inspect your account's plan, remaining credits and billing details rather than relying on old screenshots. Estimate one representative video, dubbing or bulk job with current in-app costs before scaling up. Confirm applicable terms and access with support if your account differs from the notice.",
+      "sourceTitle": "Synthesia: Plan changes effective October 1, 2026",
+      "sourceUrl": "https://help.synthesia.io/en/articles/17217419-what-s-changing-in-synthesia-plans-on-october-1-2026",
+      "guide": "/guides/how-to-plan-a-multimodal-ai-creative-workflow/"
+    },
+    {
       "id": "fireflies-talk-dictation-2026-09-29",
       "tool": "/ai-tools/tools/fireflies-ai/",
       "announcedAt": "2026-09-29",
