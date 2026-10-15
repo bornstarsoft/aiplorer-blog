@@ -2,6 +2,36 @@
   "checkedAt": "2026-10-15",
   "entries": [
     {
+      "id": "heygen-legacy-plan-change-guidance-2026-10-11",
+      "tool": "/ai-tools/tools/heygen/",
+      "announcedAt": "2026-10-11",
+      "dateLabel": "Documentation updated",
+      "checkedAt": "2026-10-15",
+      "revision": 1,
+      "topic": "Plan migration",
+      "title": "Check legacy HeyGen plan rights before changing a subscription",
+      "summary": "HeyGen's October 11 guide update warns that leaving a legacy Unlimited plan is permanent. Eligible existing subscriptions can continue while active and in good standing, but canceling or switching to a credit-based plan does not allow a return. This is plan guidance, not service closure.",
+      "action": "Identify your current plan before changing it for more credits. Review whether a confirmation affects only an add-on or the main subscription. Ask support about unclear controls rather than canceling experimentally or buying a second subscription to force a change.",
+      "sourceTitle": "HeyGen: upgrade or downgrade guide, updated October 11",
+      "sourceUrl": "https://www.heygen.com/blog/how-to-upgrade-or-downgrade-heygen-plan",
+      "guide": "/guides/how-to-plan-a-multimodal-ai-creative-workflow/"
+    },
+    {
+      "id": "fathom-capture-visibility-guidance-2026-08-20",
+      "tool": "/ai-tools/tools/fathom/",
+      "announcedAt": "2026-08-20",
+      "dateLabel": "Documentation updated",
+      "checkedAt": "2026-10-15",
+      "revision": 1,
+      "topic": "Recording controls",
+      "title": "Review Fathom recording and sharing defaults separately",
+      "summary": "Fathom's August 20 admin guide explains separate auto-capture and visibility defaults for internal, external and unscheduled meetings. Team settings can override organization defaults. Turning auto-capture off does not prevent manual capture, and changes to auto-capture affect future meetings.",
+      "action": "With your admin, inspect the effective team settings and any visibility locks before sensitive calls. Test a non-sensitive meeting and its audience. Do not treat automatic-capture controls as a blanket recording ban or assume a settings change stops a meeting already being recorded; follow participant-notice and workplace requirements.",
+      "sourceTitle": "Fathom: auto-capture and team visibility guide, edited August 20",
+      "sourceUrl": "https://help.fathom.video/en/articles/13729025",
+      "guide": "/guides/how-to-use-ai-meeting-tools-responsibly/"
+    },
+    {
       "id": "gemini-gems-skills-transition-2026-10-13",
       "tool": "/ai-tools/tools/gemini/",
       "announcedAt": "2026-10-13",

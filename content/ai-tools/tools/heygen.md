@@ -48,4 +48,8 @@ For translated video, have someone fluent in the target language review the scri
 
 ## Official sources
 
+### Legacy Plan Check (Checked October 15, 2026)
+
+HeyGen's [updated plan-change guide](https://www.heygen.com/blog/how-to-upgrade-or-downgrade-heygen-plan) warns that canceling a legacy Unlimited plan or moving to a credit-based plan cannot be reversed. Check your account's plan and whether an add-on change also affects the main subscription before confirming. This targeted check does not replace the full review below.
+
 Reviewed on October 3, 2026: [product overview](https://www.heygen.com/), [pricing](https://www.heygen.com/pricing), [privacy](https://www.heygen.com/privacy), and [terms](https://www.heygen.com/terms). Aiplorer has not tested the service's quality or confirmed every account entitlement. Check current conditions and obtain face, voice, music, and image permissions before publishing.

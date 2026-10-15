@@ -2,6 +2,29 @@
 
 ACTIVE_WRITER = NONE
 
+## Legacy Plans And Meeting Defaults (2026-10-15)
+
+- WORK-ID: AIPLORER-PLAN-CAPTURE-CHECKS; last AI: CODEX; implementation DONE.
+- HeyGen October 11 guide update warns that leaving a legacy Unlimited plan
+  is irreversible. Cross-checked the current legacy-plan help page; no exact
+  prices, quotas or inferred feature launch date added.
+  https://www.heygen.com/blog/how-to-upgrade-or-downgrade-heygen-plan
+  https://help.heygen.com/en/articles/9204682-heygen-legacy-unlimited-plans
+- Fathom August release notes list Team auto-capture/visibility controls.
+  Detailed guide edited August 20: manual capture is distinct from auto-capture,
+  team overrides matter, and auto-capture changes affect future meetings.
+  Event date is explicitly the documentation update, not an exact launch date.
+  https://help.fathom.video/en/articles/13729025
+  https://help.fathom.video/en/articles/6220097
+- No whole-service shutdown verified in this scoped update. Existing 55 events,
+  full review dates and drafts preserved. Baseline a0b1b9c.
+- Owner approved scoped changes, validation, commit/deploy.
+- QA PASS: isolated Hugo build; 57-record validator; Relay regression; 11 tests;
+  RSS/sitemap XML; 291 legacy post URLs; eight draft exclusions. All 55 prior
+  events and 28 owner WIP hashes preserved. Existing legacy HTML warning remains.
+- NEXT_SINGLE_TASK: push and verify live records, RSS and both tool notices.
+- BLOCKER: none. Deployment evidence in task result.
+
 ## Assistant Workflow Transitions (2026-10-15)
 
 - WORK-ID: AIPLORER-ASSISTANT-TRANSITIONS; last AI: CODEX; implementation DONE.

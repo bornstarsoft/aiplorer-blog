@@ -60,6 +60,10 @@ Review transcripts, summaries, speaker labels, decisions, and action items befor
 
 ## Notes
 
+### Capture And Visibility Check (Checked October 15, 2026)
+
+Fathom's [admin guide](https://help.fathom.video/en/articles/13729025) separates automatic meeting capture from who can view recordings. Team overrides and locked visibility settings matter; disabling auto-capture still permits manual capture. Check both controls and participant notice before a sensitive meeting. This targeted check does not replace the full review date above.
+
 Features, plans, pricing, usage limits, meeting support, integrations, permissions, and availability can change. Check official Fathom pages for current details.
 
 Handle confidential, customer, employee, legal, medical, financial, and business-sensitive meetings carefully. Review connected-account permissions, link visibility, retention and deletion controls, privacy requirements, and organizational policy before using a meeting tool.
