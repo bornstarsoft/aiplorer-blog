@@ -58,6 +58,12 @@ Coding assistants should be treated as development support, not as a guarantee t
 
 ## Notes
 
+### Legacy CLI Transition (Checked October 15, 2026)
+
+The [official legacy CLI notice](https://docs.tabnine.com/main/getting-started/tabnine-cli) says active development stopped as of 6.6, with critical updates through December 31, 2026 and deprecation afterward. This affects the legacy CLI, not the entire Tabnine service. Installing the OpenCode-based CLI reassigns `tabnine` to the new CLI and renames the old command `tabnine-legacy`.
+
+Check scripts and permissions with your administrator before migrating. Consult the [current release notes](https://docs.tabnine.com/main/administering-tabnine/release-notes); the historical 6.6.0 release is marked unstable and is not an upgrade recommendation. This targeted notice does not replace the full review date above.
+
 Features, plans, pricing, model access, IDE availability, repository access, team or enterprise options, security details, data handling, license-related features, and availability can change. Check official Tabnine pages for current details before choosing a plan or relying on a specific capability.
 
 Be careful with secrets, private repositories, customer data, proprietary code, license obligations, security requirements, workplace policies, and code review standards. Test generated code and review dependencies, permissions, and edge cases before using it.

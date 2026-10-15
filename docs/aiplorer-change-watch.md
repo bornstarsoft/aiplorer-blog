@@ -2,6 +2,26 @@
 
 ACTIVE_WRITER = NONE
 
+## CLI Migration And Integration Retirement (2026-10-15)
+
+- WORK-ID: AIPLORER-MIGRATION-NOTICES; last AI: CODEX; implementation DONE.
+- Tabnine official release notes date 6.6.0 to September 15. Legacy CLI docs
+  specify critical updates through December 31, then deprecation; the notice
+  publication date is not inferred. Do not recommend the unstable 6.6.0 build.
+  Sources: https://docs.tabnine.com/main/administering-tabnine/release-notes
+  and https://docs.tabnine.com/main/getting-started/tabnine-cli
+- TP-Link US official FAQ 5154, updated July 9, specifies August 1 as the
+  Tapo/Kasa IFTTT integration termination date, not IFTTT platform closure.
+  Source: https://www.tp-link.com/us/support/faq/5154/
+- Existing 44 records and full-review dates preserved. Scope: two notices,
+  targeted page notes, validation and this document. Baseline HEAD caed746.
+- Owner approved commit/deploy; 28 unrelated WIP file hashes preserved.
+- QA PASS: isolated Hugo build, 46-event validator, Relay regression, 11 tests,
+  RSS/sitemap XML, 291 legacy post URLs, eight draft exclusions and preservation
+  of all 44 existing events. Existing legacy raw-HTML warning unchanged.
+- NEXT_SINGLE_TASK: push and verify public page notes, watch and RSS.
+- BLOCKER: none. Deployment evidence in task result.
+
 ## Compatibility And Sharing Changes (2026-10-15)
 
 - WORK-ID: AIPLORER-SERVICE-CHANGES; last AI: CODEX; implementation DONE.

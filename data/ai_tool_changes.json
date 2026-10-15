@@ -2,6 +2,36 @@
   "checkedAt": "2026-10-15",
   "entries": [
     {
+      "id": "tabnine-legacy-cli-transition-2026-09-15",
+      "tool": "/ai-tools/tools/tabnine/",
+      "announcedAt": "2026-09-15",
+      "dateLabel": "Release",
+      "checkedAt": "2026-10-15",
+      "revision": 1,
+      "topic": "CLI migration",
+      "title": "Check which Tabnine CLI your scripts run before migrating",
+      "summary": "Tabnine's September 15 release introduces its OpenCode-based CLI. Separate legacy CLI documentation says active development stopped as of 6.6, with critical updates through December 31, 2026 and deprecation afterward. This record uses the release date, not an inferred notice date. Tabnine itself is not shutting down.",
+      "action": "Read the legacy CLI notice linked on the tool page. The new installer reassigns tabnine to the OpenCode CLI and renames the old command tabnine-legacy. Audit scripts, settings and permissions with your administrator before migration. Use current supported releases; the release notes mark 6.6.0 unstable, so this is not a recommendation to install it.",
+      "sourceTitle": "Tabnine official release notes: September 15 CLI transition",
+      "sourceUrl": "https://docs.tabnine.com/main/administering-tabnine/release-notes",
+      "guide": "/guides/how-to-choose-the-right-ai-tool/"
+    },
+    {
+      "id": "ifttt-tapo-kasa-retirement-2026-08-01",
+      "tool": "/ai-tools/tools/ifttt/",
+      "announcedAt": "2026-08-01",
+      "dateLabel": "Effective",
+      "checkedAt": "2026-10-15",
+      "revision": 1,
+      "topic": "Integration discontinued",
+      "title": "Review automations that depended on Tapo or Kasa through IFTTT",
+      "summary": "TP-Link's US support notice sets August 1, 2026 as the end of IFTTT services for Tapo and Kasa products. This is the effective date, not the notice publication date. The affected device integrations ended; this does not mean the IFTTT platform closed.",
+      "action": "Identify affected Applets and test device behavior rather than assuming a routine still runs. TP-Link points to Smart Action in its apps; verify your device, region and required triggers before rebuilding. Check for duplicate actions and keep manual control available. Do not assume a replacement reproduces every IFTTT workflow.",
+      "sourceTitle": "TP-Link: IFTTT Services Ending for Tapo and Kasa Products",
+      "sourceUrl": "https://www.tp-link.com/us/support/faq/5154/",
+      "guide": "/guides/how-to-choose-ai-automation-tools/"
+    },
+    {
       "id": "beautiful-ai-folder-sharing-2026-09-10",
       "tool": "/ai-tools/tools/beautiful-ai/",
       "announcedAt": "2026-09-10",

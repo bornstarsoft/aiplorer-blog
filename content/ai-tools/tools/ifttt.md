@@ -58,6 +58,12 @@ Automation tools should be treated as workflow support, not as a guarantee that 
 
 ## Notes
 
+### Tapo And Kasa Integration Retirement (Checked October 15, 2026)
+
+[TP-Link's official US support notice](https://www.tp-link.com/us/support/faq/5154/) specifies August 1, 2026 as the end of IFTTT services for Tapo and Kasa products. This is an integration retirement, not a shutdown of IFTTT itself.
+
+Review affected Applets and verify device behavior. TP-Link suggests Smart Action in its apps; confirm device and regional support and test the required triggers before rebuilding a routine. Keep manual control available and check for duplicate actions. This targeted notice does not replace the full review date above.
+
 Features, plans, pricing, integrations, limits, AI-related features, API options, security details, and availability can change. Check official IFTTT pages for current details before choosing a plan or relying on a specific capability.
 
 Be careful with sensitive, customer, business, account, or confidential data. Review connected accounts, app permissions, workplace policies, data handling requirements, security requirements, and failure cases before depending on an automated workflow.
