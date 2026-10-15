@@ -2,6 +2,35 @@
   "checkedAt": "2026-10-15",
   "entries": [
     {
+      "id": "open-webui-direct-integrations-2026-09-21",
+      "tool": "/ai-tools/tools/open-webui/",
+      "announcedAt": "2026-09-21",
+      "dateLabel": "Release",
+      "checkedAt": "2026-10-15",
+      "revision": 1,
+      "topic": "Integration controls",
+      "title": "A missing Open WebUI Integrations tab does not mean connections stopped",
+      "summary": "Open WebUI v0.11.4 makes the personal Integrations tab opt-in through an administrator's Direct Integrations setting. The release notes explicitly say that hiding the tab leaves existing connections working. This is a control-visibility change, not removal of the integration service.",
+      "action": "Ask your instance administrator to review existing tool and terminal connections separately from the tab's visibility. Do not treat the hidden tab as a revocation mechanism or enable access indiscriminately. Back up and test a supported release before upgrading a shared instance.",
+      "sourceTitle": "Open WebUI v0.11.4 official release: Integrations tab is opt-in",
+      "sourceUrl": "https://github.com/open-webui/open-webui/releases/tag/v0.11.4",
+      "guide": "/guides/how-to-choose-the-right-ai-tool/"
+    },
+    {
+      "id": "frase-platform-migration-2026-02-02",
+      "tool": "/ai-tools/tools/frase/",
+      "announcedAt": "2026-02-02",
+      "checkedAt": "2026-10-15",
+      "revision": 1,
+      "topic": "Account migration",
+      "title": "Audit documents and integrations before moving a legacy Frase account",
+      "summary": "Frase's new-platform announcement is dated February 2 and updated July 21. Its current migration guide, linked on our tool page, says there is no required switch deadline. It warns that only live documents migrate and that folders, integrations and Content Governance need setup again. These are current migration checks, not a newly dated shutdown announcement.",
+      "action": "Have the account admin inventory active and archived work, retain backups and notify teammates before migrating. Check plan eligibility and usage allowances in your account. Rebuild required settings and verify access and content before reconnecting publishing workflows; do not assume every old setting carries over.",
+      "sourceTitle": "Frase: New platform announcement, February 2; updated July 21",
+      "sourceUrl": "https://www.frase.io/blog/introducing-the-new-frase-content-intelligence-platform",
+      "guide": "/guides/how-to-choose-the-right-ai-tool/"
+    },
+    {
       "id": "jasper-workspace-defaults-2026-10-07",
       "tool": "/ai-tools/tools/jasper/",
       "announcedAt": "2026-10-07",

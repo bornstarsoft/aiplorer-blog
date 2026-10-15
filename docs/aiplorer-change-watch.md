@@ -2,6 +2,26 @@
 
 ACTIVE_WRITER = NONE
 
+## Upgrade And Account Migration Checks (2026-10-15)
+
+- WORK-ID: AIPLORER-UPGRADE-CHECKS; last AI: CODEX; implementation DONE.
+- Open WebUI v0.11.4 official release published 2026-09-21T19:25:21Z:
+  personal Integrations opt-in; hiding controls does not disable existing links.
+  https://github.com/open-webui/open-webui/releases/tag/v0.11.4
+  Cross-checked https://docs.openwebui.com/getting-started/updating/
+- Frase launch dated February 2, updated July 21. Current undated migration
+  guide supplies operational cautions, not a new dated release or closure deadline.
+  https://www.frase.io/blog/introducing-the-new-frase-content-intelligence-platform
+  https://docs.frase.io/legacy-migration-guide
+- No verified new shutdown in this scoped review. No closure status inferred.
+- Baseline d9ba5a7; existing 48 events/full review dates/drafts preserved.
+  Owner approved this update, validation, commit and deployment.
+- QA PASS: isolated Hugo build; 50-record validator; Relay regression; 11 tests;
+  RSS/sitemap XML; 291 legacy post URLs; eight draft exclusions. All 48 prior
+  events and 28 owner WIP hashes preserved. Existing legacy HTML warning remains.
+- NEXT_SINGLE_TASK: push and verify live records, RSS and both tool notices.
+- BLOCKER: none. Deployment evidence in task result.
+
 ## Export Limits And Workspace Defaults (2026-10-15)
 
 - WORK-ID: AIPLORER-EXPORT-GOVERNANCE; last AI: CODEX; implementation DONE.

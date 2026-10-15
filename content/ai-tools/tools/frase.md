@@ -60,6 +60,10 @@ AI research and search-oriented workflow tools should be treated as planning sup
 
 ## Notes
 
+### Legacy Account Migration (Checked October 15, 2026)
+
+The [official migration guide](https://docs.frase.io/legacy-migration-guide) currently specifies no required switch deadline. It says only live documents migrate and folders, integrations and Content Governance require setup again. Have your account admin review archived work, backups, team access and plan eligibility before migrating. Confirm the result before reconnecting publishing workflows. This is not a Frase shutdown notice or a replacement for the full review date above.
+
 Features, plans, pricing, limits, research, writing, AI visibility, publishing, monitoring, autonomy, integrations, model access, privacy terms, security details, and availability can change. Check official Frase pages for current information.
 
 Review original sources, metrics, facts, citations, claims, brand voice, copyright, CMS permissions, auto-publish settings, privacy, confidential information, workplace policy, and publication requirements before relying on generated content or allowing a page change.

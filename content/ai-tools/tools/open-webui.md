@@ -47,6 +47,10 @@ For a local runtime to connect, see [Ollama](/ai-tools/tools/ollama/). For a des
 
 ## Before sharing a deployment
 
+### Personal Integration Controls (Checked October 15, 2026)
+
+The [v0.11.4 release](https://github.com/open-webui/open-webui/releases/tag/v0.11.4) makes the personal Integrations tab opt-in. Existing connections continue working even when the tab is hidden. Ask an administrator to review actual connections and permissions; a hidden control does not revoke access. See the [official upgrade guide](https://docs.openwebui.com/getting-started/updating/) before changing a shared instance. This targeted check does not replace the full review date above.
+
 Follow the [quick-start documentation](https://docs.openwebui.com/getting-started/quick-start/) and review authentication, updates, backups, and network access before inviting anyone. Do not expose an experimental server with private documents or secrets.
 
 Check the [current license](https://docs.openwebui.com/license/), especially before changing branding or redistributing the interface. Official sources were reviewed on October 3, 2026; this page is not a deployment security audit or legal assessment.
