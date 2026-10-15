@@ -2,6 +2,28 @@
 
 ACTIVE_WRITER = NONE
 
+## Compatibility And Sharing Changes (2026-10-15)
+
+- WORK-ID: AIPLORER-SERVICE-CHANGES; last AI: CODEX; implementation DONE.
+- Official You.com changelog checked: July 15 removal of authors from v1
+  search and Answer API results; legacy v0 explicitly unaffected.
+  Source: https://you.com/docs/additional-resources/changelog
+- Beautiful.ai product updates checked: September 10 folder migration and
+  User Groups; plan and feature scope retained without promising universal access.
+  Source: https://www.beautiful.ai/product-updates
+- Bardeen official homepage checked: no dated shutdown notice identified;
+  no inferred closure record added. This is a scoped review, not a claim that
+  every service has been checked for shutdown.
+- These are historical changes newly recorded, not October launches.
+  Existing 42 events, full tool reviews, drafts and owner WIP remain unchanged.
+- Baseline HEAD: 9f7928e. Owner approval: this update, validation, commit, deploy.
+- QA PASS: isolated staged-source Hugo production build; 44-event validator;
+  Relay closure regression; 11 browser-logic tests; RSS/sitemap XML;
+  291 legacy post URLs; eight draft exclusions. All 42 existing records and
+  28 owner WIP file hashes preserved. Existing legacy HTML warning unchanged.
+- NEXT_SINGLE_TASK: push and verify live records and RSS; evidence in chat.
+- BLOCKER: none.
+
 ## Relay Closure (2026-10-15)
 
 - WORK-ID: AIPLORER-RELAY-CLOSURE; last AI: CODEX; implementation DONE.

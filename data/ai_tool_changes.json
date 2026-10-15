@@ -2,6 +2,34 @@
   "checkedAt": "2026-10-15",
   "entries": [
     {
+      "id": "beautiful-ai-folder-sharing-2026-09-10",
+      "tool": "/ai-tools/tools/beautiful-ai/",
+      "announcedAt": "2026-09-10",
+      "checkedAt": "2026-10-15",
+      "revision": 1,
+      "topic": "Sharing and permissions",
+      "title": "Recheck folder access after Beautiful.ai's library migration",
+      "summary": "Beautiful.ai's September 10 update replaces separate personal and team folder structures with private or shared folders and says existing folders migrate automatically. Folder sharing and new User Groups are scoped to Team plans; groups support presentation and folder sharing, not comments, Assign Slide or nested groups.",
+      "action": "Inspect who can open a migrated folder and its presentations before adding client material. Check guest and group membership with a workspace owner, then test access using the intended recipient account. Do not assume an old folder name proves it is private or that every collaboration feature supports groups.",
+      "sourceTitle": "Beautiful.ai: September 10 folder sharing and User Groups update",
+      "sourceUrl": "https://www.beautiful.ai/product-updates",
+      "guide": "/guides/how-to-choose-the-right-ai-tool/"
+    },
+    {
+      "id": "you-com-authors-field-removal-2026-07-15",
+      "tool": "/ai-tools/tools/you-com/",
+      "announcedAt": "2026-07-15",
+      "checkedAt": "2026-10-15",
+      "revision": 1,
+      "topic": "API compatibility",
+      "title": "Remove assumptions about author metadata in You.com API results",
+      "summary": "You.com's July 15 changelog marks removal of the authors field from Web Search API v1 results and Answer API source results as a breaking change. Its legacy v0 search API was unaffected. This concerns API response metadata, not a shutdown of You.com or a change to every consumer search feature.",
+      "action": "Check parsers, citation templates and stored-result migrations for a required authors field. Test a current response and handle missing authors explicitly. Verify attribution against the original source; do not fabricate an author or silently treat a domain name as one. Review the current schema before deploying an integration change.",
+      "sourceTitle": "You.com changelog: July 15 removal of authors field",
+      "sourceUrl": "https://you.com/docs/additional-resources/changelog",
+      "guide": "/guides/how-to-choose-the-right-ai-tool/"
+    },
+    {
       "id": "relay-app-shutdown-2026-09",
       "tool": "/ai-tools/tools/relay-app/",
       "announcedAt": "2026-09",

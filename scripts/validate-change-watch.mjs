@@ -11,6 +11,8 @@ const today = new Intl.DateTimeFormat("en-CA", {
   timeZone: "Asia/Seoul", year: "numeric", month: "2-digit", day: "2-digit"
 }).format(new Date());
 const officialHosts = new Map([
+  ["/ai-tools/tools/you-com/", ["you.com"]],
+  ["/ai-tools/tools/beautiful-ai/", ["www.beautiful.ai"]],
   ["/ai-tools/tools/relay-app/", ["relay.app"]],
   ["/ai-tools/tools/jan/", ["www.jan.ai"]],
   ["/ai-tools/tools/synthesia/", ["help.synthesia.io"]],
