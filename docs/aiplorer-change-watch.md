@@ -2,6 +2,24 @@
 
 ACTIVE_WRITER = NONE
 
+## Creative Feature Retirements (2026-10-15)
+
+- WORK-ID: AIPLORER-CREATIVE-RETIREMENTS; last AI: CODEX; implementation DONE.
+- Midjourney February 26 official announcement removes web Rooms, not the
+  whole service. No replacement launch date is inferred.
+  https://updates.midjourney.com/an-update-on-rooms/
+- Leonardo June 4 notice retires Motion 1.0 across API/web/mobile on June 17
+  at 09:30 AEST (UTC+10). Event uses notice date and states cutoff separately.
+  https://docs.leonardo.ai/docs/deprecations-changes
+  Search surfaced an obsolete /me/docs/ URL; direct current /docs/ page verified.
+- Existing 50 events and full review dates preserved; no draft publication.
+- Baseline da208f1. Owner approved scoped changes, validation, commit/deploy.
+- QA PASS: isolated Hugo build; 52-record validator; Relay regression; 11 tests;
+  RSS/sitemap XML; 291 legacy post URLs; eight draft exclusions. All 50 prior
+  events and 28 owner WIP hashes preserved. Existing legacy HTML warning remains.
+- NEXT_SINGLE_TASK: push and verify live records, RSS and both tool notices.
+- BLOCKER: none. Deployment evidence in task result.
+
 ## Upgrade And Account Migration Checks (2026-10-15)
 
 - WORK-ID: AIPLORER-UPGRADE-CHECKS; last AI: CODEX; implementation DONE.

@@ -11,6 +11,8 @@ const today = new Intl.DateTimeFormat("en-CA", {
   timeZone: "Asia/Seoul", year: "numeric", month: "2-digit", day: "2-digit"
 }).format(new Date());
 const officialHosts = new Map([
+  ["/ai-tools/tools/midjourney/", ["updates.midjourney.com"]],
+  ["/ai-tools/tools/leonardo-ai/", ["docs.leonardo.ai"]],
   ["/ai-tools/tools/open-webui/", ["github.com"]],
   ["/ai-tools/tools/frase/", ["www.frase.io"]],
   ["/ai-tools/tools/udio/", ["help.udio.com"]],

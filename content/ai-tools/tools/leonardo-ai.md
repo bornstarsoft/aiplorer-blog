@@ -60,6 +60,10 @@ AI creative tools should be treated as creative support, not as a guarantee that
 
 ## Notes
 
+### Motion 1.0 Retired (Checked October 15, 2026)
+
+The [official deprecation notice](https://docs.leonardo.ai/docs/deprecations-changes) specifies June 17, 2026 at 09:30 AEST (UTC+10) as the cutoff for Motion 1.0 (`svd`) across API, web and mobile. Leonardo AI itself is not closed. Check old workflow model selections and test replacements before client work; do not assume the same results or costs. This targeted check does not replace the full review date above.
+
 Features, plans, pricing, limits, image and video options, outputs, integrations, model details, visibility settings, licensing terms, commercial-use rules, privacy terms, security details, and availability can change. Check official Leonardo AI pages for current information.
 
 Review facts, text, visuals, motion, likeness and consent, copyright, trademarks, media licenses, brand requirements, privacy, and sensitive content before sharing generated work.

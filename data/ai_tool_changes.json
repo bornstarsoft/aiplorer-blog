@@ -2,6 +2,34 @@
   "checkedAt": "2026-10-15",
   "entries": [
     {
+      "id": "leonardo-motion-one-retirement-2026-06-04",
+      "tool": "/ai-tools/tools/leonardo-ai/",
+      "announcedAt": "2026-06-04",
+      "checkedAt": "2026-10-15",
+      "revision": 1,
+      "topic": "Model retirement",
+      "title": "Replace Motion 1.0 dependencies in Leonardo video workflows",
+      "summary": "Leonardo's June 4 notice sets June 17, 2026 at 09:30 AEST (UTC+10) as the end of Motion 1.0 availability across its API, web app and mobile apps. The retired model is identified as svd. This is a model retirement, not closure of Leonardo AI.",
+      "action": "Check saved video workflows and API model settings for svd before rerunning an old project. Leonardo points to Hailuo 2.3 as a replacement; verify current access, inputs, output behavior and cost rather than assuming identical results. Test a short non-sensitive sample and review rights before client delivery.",
+      "sourceTitle": "Leonardo AI: June 4 Motion 1.0 retirement notice",
+      "sourceUrl": "https://docs.leonardo.ai/docs/deprecations-changes",
+      "guide": "/guides/how-to-plan-a-multimodal-ai-creative-workflow/"
+    },
+    {
+      "id": "midjourney-rooms-removal-2026-02-26",
+      "tool": "/ai-tools/tools/midjourney/",
+      "announcedAt": "2026-02-26",
+      "checkedAt": "2026-10-15",
+      "revision": 1,
+      "topic": "Feature discontinued",
+      "title": "Use current Midjourney support channels instead of old Rooms instructions",
+      "summary": "Midjourney's February 26 announcement removes Rooms from its website. The notice directs users needing help to its help page, Discord support channels or support email. It describes future work without giving a replacement launch date. This does not announce closure of Midjourney.",
+      "action": "Update team onboarding links and old tutorials that send users to Rooms. Check current official channels before arranging a live session or collaboration workflow. Do not assume an old room link still provides support, or that a promised replacement has launched; avoid posting private client material in public help channels.",
+      "sourceTitle": "Midjourney: An update on Rooms, February 26, 2026",
+      "sourceUrl": "https://updates.midjourney.com/an-update-on-rooms/",
+      "guide": "/guides/how-to-plan-a-multimodal-ai-creative-workflow/"
+    },
+    {
       "id": "open-webui-direct-integrations-2026-09-21",
       "tool": "/ai-tools/tools/open-webui/",
       "announcedAt": "2026-09-21",

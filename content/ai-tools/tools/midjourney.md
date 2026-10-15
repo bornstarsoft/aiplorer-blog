@@ -60,6 +60,10 @@ AI creative tools should be treated as creative support, not as a guarantee that
 
 ## Notes
 
+### Web Rooms Removed (Checked October 15, 2026)
+
+Midjourney's [February 26 notice](https://updates.midjourney.com/an-update-on-rooms/) removes the web Rooms feature, not the whole service. Replace old Rooms support instructions with current official help channels. The notice does not date a replacement launch. This targeted check does not replace the full review date above.
+
 Features, plans, pricing, limits, image and video options, outputs, access methods, model details, visibility settings, licensing terms, commercial-use rules, privacy terms, security details, and availability can change. Check official Midjourney pages for current information.
 
 Review facts, text, visuals, motion, likeness and consent, copyright, trademarks, media licenses, brand requirements, privacy, and sensitive content before sharing generated work.
