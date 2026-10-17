@@ -1,10 +1,20 @@
 {
   "provider": "Codex",
-  "snapshotAt": "2026-10-13T05:37:14.000Z",
+  "snapshotAt": "2026-10-17T22:54:29.000Z",
   "coverageStartsAt": "2025-09-17T04:02:52.000Z",
   "sourceName": "Codex Resets",
   "sourceUrl": "https://codex-resets.com/",
   "events": [
+    {
+      "announcedAt": "2026-10-17T21:12:21.000Z",
+      "sourceUrl": "https://x.com/thsottiaux/status/2111566005684289735",
+      "kind": "usage"
+    },
+    {
+      "announcedAt": "2026-10-15T06:28:13.000Z",
+      "sourceUrl": "https://x.com/thsottiaux/status/2110618732666257557",
+      "kind": "usage"
+    },
     {
       "announcedAt": "2026-10-13T05:06:06.000Z",
       "sourceUrl": "https://x.com/thsottiaux/status/2109873287853707513",

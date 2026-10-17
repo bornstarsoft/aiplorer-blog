@@ -4,17 +4,19 @@
 
 ACTIVE_WRITER = NONE
 
-- Last AI / WORK-ID: CODEX / AIPLORER-RESET-RELEASE-OCT14; DONE (release preparation).
-- HEAD / WIP: based on main at ffdb852; release contains reset data, notice,
-  notice-link label support and this document only. Other owner WIP excluded.
-- QA: PASS reset validator, isolated staged-snapshot production build, rendered
-  notice and homepage checks, protected-draft exclusion, 291 legacy post URLs,
-  staged diff check. Production deployment verification is pending at commit.
-  Existing legacy-post raw-HTML warning remains.
-- NEXT_SINGLE_TASK: Push the reset-only commit and verify the live deployment.
-- BLOCKER / Owner approval: owner explicitly authorized reset-only commit and
-  deployment on October 14. Existing project authorization uses GitHub for this
-  web repository and Cloudflare Pages Git deployment. Exclude all other WIP.
+- Last AI / WORK-ID: CODEX / AIPLORER-RESET-RELEASE-OCT18; DONE (release preparation).
+- HEAD / WIP: based on main at 811aedc; only reset history, tracker notice and
+  this document changed for this task. Other owner WIP preserved.
+- QA: PASS reset validator/self-test, isolated staged-snapshot production
+  build, rendered notice and homepage checks, sitemap route, eight draft
+  exclusions, 291 legacy post URLs and diff check. All 61 prior events retained.
+  Staged diff and all 28 unrelated WIP hashes checked. Existing legacy-post
+  raw-HTML warning remains. Live deployment verification pending at commit.
+- NEXT_SINGLE_TASK: Push the reset-only commit and verify live home/tracker;
+  deployment evidence will be reported in the task result.
+- BLOCKER / Owner approval: owner explicitly authorized reset-only validation,
+  commit, deployment and live home/tracker checks on October 18. Preserve all
+  other WIP. Existing web-project authorization uses GitHub and Cloudflare Pages.
 
 
 ## Purpose
@@ -33,9 +35,9 @@ served a different task and reduced the visibility of the historical data.
 
 ## Public Codex History
 
-`data/codex_reset_history.json` contains a manually checked snapshot of 61
+`data/codex_reset_history.json` contains a manually checked snapshot of 63
 public Codex reset/credit announcements observed between September 17, 2025 and
-October 13, 2026, checked on October 13, 2026. Each row stores the UTC announcement
+October 17, 2026 UTC, checked on October 18, 2026 KST. Each row stores the UTC announcement
 timestamp, source X post URL, and an explicit `kind`. The seed was checked
 against `https://codex-resets.com/`, which states
 that it collects posts from `@thsottiaux` and is not affiliated with OpenAI.
@@ -60,6 +62,34 @@ present the event count as a count of identical account resets.
 The source can also show a separate reset-watch signal for a possible future
 event. Aiplorer excludes those signals until they appear in the confirmed reset
 announcement log; they are not added as forecasts or event records.
+
+### October 18 Check: Two Usage Reset Announcements
+
+- Checked `https://codex-resets.com/` and its public API
+  `https://codex-resets.com/api/v1/resets?limit=100`, generated at
+  2026-10-17T22:52:40.319Z: 63 rows, no further page. Two additions; no removed
+  source URLs or timestamp changes to the existing 61 records.
+- Added October 17 at 21:12:21 UTC (October 18 at 06:12:21 KST), linked to
+  https://x.com/thsottiaux/status/2111566005684289735, and October 15 at
+  06:28:13 UTC (15:28:13 KST), linked to
+  https://x.com/thsottiaux/status/2110618732666257557.
+  Both are classified `regular` by the archive, mapped to `usage` here.
+- LunarWerx public API, generated at 2026-10-17T22:46:00.369Z, has earlier
+  observations at October 17 20:40:55 and October 15 06:13:54 UTC with no
+  announcement links in those rows, and 62 total records. Do not merge its
+  total or substitute its observation times for this announcement series.
+- Direct access to both X posts returned 403. The archived completion replies
+  are brief; classification relies on the archive, not independent X access
+  or private account telemetry. No claim of universal account eligibility.
+- No new banked-credit record in this snapshot. Latest recorded banked grant
+  remains October 8 at 03:44:55 UTC. Counts: 51 usage, 8 banked, 2 both,
+  2 unclassified; usage-inclusive 53, credit-inclusive 10, total 63.
+- Source-check timestamp is UTC; the notice also gives KST to avoid confusing
+  October 17 UTC with the user's October 18 local date. No forecast added.
+- Keep front matter lastmod on the UTC check date (October 17), consistent with
+  the refresh script. Using October 18 while the build clock is still October
+  17 UTC excluded this page as future content in validation; corrected without
+  enabling future content or changing site configuration.
 
 ### October 13 Check: Three Usage Resets And One Credit Grant
 
