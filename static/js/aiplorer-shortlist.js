@@ -13,6 +13,7 @@
   var backupSchema = "aiplorer-shortlist-backup";
   var backupVersion = 1;
   var backupMaxBytes = 262144;
+  var restoreRequestId = 0;
   var candidateNoteMaxLength = 600;
   var allowedChecks = ["task", "output", "privacy", "plans"];
   var allowedCandidateStages = ["researching", "testing", "ready"];
@@ -696,6 +697,7 @@
     var shortlistSet = new Set(shortlist);
     return {
       shortlist: shortlist,
+      omitted: uniquePaths(value.shortlist).length - shortlist.length,
       checks: stateForPaths(value.checks, shortlistSet, cleanTrialState),
       stages: stateForPaths(value.stages, shortlistSet, cleanCandidateStageState),
       notes: stateForPaths(value.notes, shortlistSet, cleanCandidateNoteState),
@@ -709,7 +711,77 @@
     };
   }
 
+  function restoreSummary(backup) {
+    var titles = {};
+    document.querySelectorAll("[data-shortlist-item]").forEach(function (item) {
+      titles[item.getAttribute("data-shortlist-item")] = item.getAttribute("data-shortlist-title");
+    });
+    var names = backup.shortlist.slice(0, 5).map(function (path) { return titles[path] || path; });
+    var checks = Object.keys(backup.checks).reduce(function (total, path) { return total + backup.checks[path].length; }, 0);
+    return [
+      "Replace this browser's shortlist with this backup?",
+      "", "Incoming saved tools: " + backup.shortlist.length,
+      names.join(", ") + (backup.shortlist.length > 5 ? ", ..." : ""),
+      "Notes: " + Object.keys(backup.notes).length + "; test dates: " + Object.keys(backup.testDates).length + "; completed checks: " + checks,
+      "Tools not in the current reviewed directory, skipped: " + backup.omitted,
+      "", "Current saved tools to replace: " + readList().length,
+      "This replaces saved tools, stages, checks, notes, test dates and their views; it does not merge them.",
+      "Cancel and download a backup first if you need to keep the current data.",
+      "Announcement read status and reset-history checkpoints are not changed."
+    ].join("\n");
+  }
+
+  function persistRestoredBackup(backup) {
+    // Write the list last so other tabs see evaluation data before list cleanup.
+    var values = [
+      [trialStorageKey, JSON.stringify(backup.checks)],
+      [candidateStageStorageKey, JSON.stringify(backup.stages)],
+      [candidateNoteStorageKey, JSON.stringify(backup.notes)],
+      [candidateTestDateStorageKey, JSON.stringify(backup.testDates)],
+      [candidateStageViewStorageKey, backup.stageView],
+      [candidateTestDateViewStorageKey, backup.testDateView],
+      [storageKey, JSON.stringify(backup.shortlist)]
+    ];
+    var previous;
+    try {
+      previous = values.map(function (pair) { return window.localStorage.getItem(pair[0]); });
+    } catch (error) { throw new Error("restore-storage-unavailable"); }
+    var touched = [];
+    try {
+      values.forEach(function (pair, index) {
+        touched.push(index);
+        window.localStorage.setItem(pair[0], pair[1]);
+      });
+      values.forEach(function (pair) {
+        if (window.localStorage.getItem(pair[0]) !== pair[1]) throw new Error("restore-verification-failed");
+      });
+    } catch (error) {
+      var recovered = true;
+      touched.reverse().forEach(function (index) {
+        try {
+          var key = values[index][0], current = window.localStorage.getItem(key);
+          // Do not overwrite an intervening write from another tab.
+          if (current !== values[index][1] && current !== previous[index]) {
+            recovered = false; return;
+          }
+          if (previous[index] === null) window.localStorage.removeItem(key);
+          else window.localStorage.setItem(key, previous[index]);
+          if (window.localStorage.getItem(key) !== previous[index]) recovered = false;
+        } catch (rollbackError) { recovered = false; }
+      });
+      throw new Error(recovered ? "restore-storage-recovered" : "restore-recovery-unverified");
+    }
+    memoryList = backup.shortlist;
+    memoryTrialState = backup.checks;
+    memoryCandidateStageState = backup.stages;
+    memoryCandidateNoteState = backup.notes;
+    memoryCandidateTestDateState = backup.testDates;
+    memoryCandidateStageView = backup.stageView;
+    memoryCandidateTestDateView = backup.testDateView;
+  }
+
   function restoreShortlistBackup(file, input) {
+    var requestId = ++restoreRequestId;
     if (!file) {
       return;
     }
@@ -722,25 +794,14 @@
     file
       .text()
       .then(function (contents) {
+        if (requestId !== restoreRequestId) return;
         var backup = cleanShortlistBackup(JSON.parse(contents));
-        if (
-          readList().length > 0 &&
-          !window.confirm(
-            "Restore this backup? It will replace this browser's saved candidates, stages, checklist progress, local test dates, and private test notes."
-          )
-        ) {
+        if (!window.confirm(restoreSummary(backup))) {
           announce("Backup restore cancelled.");
           return;
         }
 
-        writeList(backup.shortlist);
-        writeTrialState(backup.checks);
-        writeCandidateStageState(backup.stages);
-        writeCandidateNoteState(backup.notes);
-        writeCandidateTestDateState(backup.testDates);
-        writeCandidateStageView(backup.stageView);
-        writeCandidateTestDateView(backup.testDateView);
-        cleanupEvaluationState(backup.shortlist);
+        persistRestoredBackup(backup);
         render();
         notifyChange(backup.shortlist);
         announce(
@@ -751,13 +812,20 @@
             " from the local backup."
         );
       })
-      .catch(function () {
-        announce(
-          "This file could not be restored. Choose a valid Aiplorer shortlist JSON backup."
-        );
+      .catch(function (error) {
+        if (requestId !== restoreRequestId) return;
+        if (error.message === "restore-storage-unavailable") {
+          announce("Browser storage is unavailable. Nothing was restored; keep your backup and try a browser with storage enabled.");
+        } else if (error.message === "restore-storage-recovered") {
+          announce("This backup could not be saved. Previous stored data was restored; keep your backup and check browser storage before trying again.");
+        } else if (error.message === "restore-recovery-unverified") {
+          announce("Restore could not finish and recovery could not be verified. Keep your backup and review this browser's saved data before continuing.");
+        } else {
+          announce("This file could not be restored. Choose a valid Aiplorer shortlist JSON backup.");
+        }
       })
       .then(function () {
-        input.value = "";
+        if (requestId === restoreRequestId) input.value = "";
       });
   }
 
