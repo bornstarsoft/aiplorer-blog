@@ -132,7 +132,8 @@
               <p data-shortlist-description>{{ .Params.description }}</p>
               {{- $toolAnnouncements := slice -}}
               {{- range where $announcements "tool" .RelPermalink -}}
-                {{- $toolAnnouncements = $toolAnnouncements | append (dict "key" (printf "%s:%v" .id .revision) "href" (printf "/ai-tools/review-updates/?saved=1#change-%s" .id) "title" .title) -}}
+                {{- $slug := strings.TrimSuffix "/" (strings.TrimPrefix "/ai-tools/tools/" .tool) -}}
+                {{- $toolAnnouncements = $toolAnnouncements | append (dict "key" (printf "%s:%v" .id .revision) "href" (printf "/ai-tools/review-updates/?tool=%s#change-%s" $slug .id) "title" .title) -}}
               {{- end -}}
               <div class="aiplorer-shortlist-announcements" data-shortlist-announcements="{{ $toolAnnouncements | jsonify }}">
                 <strong data-announcement-status>Announcement checks</strong>

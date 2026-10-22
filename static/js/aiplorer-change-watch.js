@@ -6,6 +6,8 @@
   var savedOnly = root.querySelector("[data-change-saved]");
   var unreadOnly = root.querySelector("[data-change-unread]");
   var topic = root.querySelector("select[data-change-topic]");
+  var tool = root.querySelector("select[data-change-tool]");
+  var reset = root.querySelector("[data-change-reset]");
   var markRead = root.querySelector("[data-change-read]");
   var storageKey = "aiplorer-change-read-v1";
   var storageAvailable = true;
@@ -15,13 +17,34 @@
       var value = JSON.parse(localStorage.getItem(key) || "[]");
       return new Set(Array.isArray(value) ? value.filter(function (item) { return typeof item === "string"; }) : []);
     } catch (error) {
+      if (key === storageKey) storageAvailable = false;
       return new Set();
     }
   }
   var seen = readSet(storageKey);
-  var query = new URLSearchParams(window.location.search);
-  savedOnly.checked = query.get("saved") === "1";
-  unreadOnly.checked = query.get("unread") === "1";
+  function selectKnown(select, value) {
+    select.value = Array.from(select.options).some(function (option) { return option.value === value; }) ? value : "";
+  }
+  function restoreView() {
+    var query = new URLSearchParams(window.location.search);
+    // The lower review-activity panel owns the legacy `saved` parameter too.
+    savedOnly.checked = query.has("changesSaved") ? query.get("changesSaved") === "1" : query.get("saved") === "1";
+    unreadOnly.checked = query.get("unread") === "1";
+    selectKnown(tool, query.get("tool"));
+    selectKnown(topic, query.get("topic"));
+  }
+  function saveView() {
+    var url = new URL(window.location.href);
+    [["changesSaved", savedOnly.checked ? "1" : (url.searchParams.has("saved") ? "0" : "")], ["unread", unreadOnly.checked ? "1" : ""],
+      ["tool", tool.value], ["topic", topic.value]].forEach(function (pair) {
+      if (pair[1]) url.searchParams.set(pair[0], pair[1]);
+      else url.searchParams.delete(pair[0]);
+    });
+    url.hash = "tool-changes";
+    try { window.history.replaceState(window.history.state, "", url.pathname + url.search + url.hash); }
+    catch (error) { /* Filters remain usable when URL updates are unavailable. */ }
+  }
+  restoreView();
 
   function render() {
     var saved = readSet("aiplorer-shortlist-v1");
@@ -30,7 +53,8 @@
     entries.forEach(function (entry) {
       var isUnread = !seen.has(entry.dataset.changeId);
       entry.hidden = (savedOnly.checked && !saved.has(entry.dataset.changeTool)) ||
-        (unreadOnly.checked && !isUnread) || (topic.value && topic.value !== entry.dataset.changeTopic);
+        (unreadOnly.checked && !isUnread) || (topic.value && topic.value !== entry.dataset.changeTopic) ||
+        (tool.value && entry.dataset.changeTool !== "/ai-tools/tools/" + tool.value + "/");
       entry.querySelector("[data-change-badge]").hidden = !isUnread;
       if (!entry.hidden) { visible++; if (isUnread) unread++; }
     });
@@ -38,9 +62,17 @@
       " updates shown; " + unread + " unread" + (storageAvailable ? "" : ". Read status lasts for this visit; browser storage is unavailable.");
     root.querySelector("[data-change-empty]").hidden = visible > 0;
     markRead.disabled = unread === 0;
+    reset.disabled = !(savedOnly.checked || unreadOnly.checked || tool.value || topic.value);
   }
 
-  [savedOnly, unreadOnly, topic].forEach(function (control) { control.addEventListener("change", render); });
+  [savedOnly, unreadOnly, topic, tool].forEach(function (control) {
+    control.addEventListener("change", function () { saveView(); render(); });
+  });
+  reset.addEventListener("click", function () {
+    savedOnly.checked = false; unreadOnly.checked = false;
+    tool.value = ""; topic.value = "";
+    saveView(); render();
+  });
   markRead.addEventListener("click", function () {
     entries.forEach(function (entry) { if (!entry.hidden) seen.add(entry.dataset.changeId); });
     // Keep only current entries so the local read history stays bounded.
@@ -54,6 +86,11 @@
     render();
   });
   window.addEventListener("aiplorer:shortlist-change", render);
+  window.addEventListener("popstate", function () { restoreView(); render(); });
+  window.addEventListener("pageshow", function () {
+    if (storageAvailable) seen = readSet(storageKey);
+    render();
+  });
   root.querySelector("[data-change-controls]").hidden = false;
   render();
 })();

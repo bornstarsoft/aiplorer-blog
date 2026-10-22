@@ -1,0 +1,5 @@
+.aiplorer-change-watch__controls label:has(select) { flex: 1 1 15rem; min-width: 0; }
+.aiplorer-change-watch__controls select { flex: 1; min-width: 0; width: 100%; }
+.aiplorer-change-watch__controls button { margin-left: 0; }
+.aiplorer-change-watch__next { font-size: .875rem; color: #485c69; }
+.aiplorer-change-watch__next a { text-decoration: underline; text-underline-offset: .2em; }

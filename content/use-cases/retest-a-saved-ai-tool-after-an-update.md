@@ -97,3 +97,7 @@ tool or update your own test result.
 
 For a runnable code check, try [the zero-value regression exercise](/use-cases/fix-a-zero-value-default-with-ai/).
 Browse [recorded tool changes](/ai-tools/review-updates/#tool-changes) before your next retest.
+
+If the workflow is going away rather than changing, use the
+[work-preservation checklist](/guides/keep-your-work-portable-when-an-ai-service-changes/)
+to check what you can retain and test a small handoff before moving everything.

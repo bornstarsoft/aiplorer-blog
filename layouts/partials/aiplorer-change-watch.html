@@ -18,6 +18,14 @@
     <div class="aiplorer-change-watch__controls" data-change-controls hidden>
       <label><input type="checkbox" data-change-saved> My saved tools</label>
       <label><input type="checkbox" data-change-unread> Unread only</label>
+      <label>Tool
+        <select data-change-tool>
+          <option value="">All covered tools</option>
+          {{ range sort (uniq $tools) }}{{ with site.GetPage . }}
+          <option value="{{ strings.TrimSuffix "/" (strings.TrimPrefix "/ai-tools/tools/" .RelPermalink) }}">{{ .Title }}</option>
+          {{ end }}{{ end }}
+        </select>
+      </label>
       <label>Topic
         <select data-change-topic>
           <option value="">All topics</option>
@@ -25,8 +33,10 @@
         </select>
       </label>
       <button type="button" data-change-read>Mark visible updates read</button>
+      <button type="button" data-change-reset disabled>Clear filters</button>
     </div>
     <p class="aiplorer-change-watch__status" role="status" data-change-status>{{ len $entries }} updates</p>
+    <p class="aiplorer-change-watch__next">Facing a shutdown or a removed feature? <a href="/guides/keep-your-work-portable-when-an-ai-service-changes/">Use the work-preservation checklist &rarr;</a></p>
     <p class="aiplorer-change-watch__empty" data-change-empty hidden>No updates match this view. Clear the filters or <a href="/ai-tools/tools/">save a tool from the directory</a>.</p>
     <div class="aiplorer-change-watch__list">
       {{ range $entries }}
