@@ -11,6 +11,9 @@
   var markRead = root.querySelector("[data-change-read]");
   var storageKey = "aiplorer-change-read-v1";
   var storageAvailable = true;
+  var viewKey = "aiplorer-change-view-v1";
+  var viewStorageAvailable = true;
+  var resumedView = false;
 
   function readSet(key, fallback) {
     try {
@@ -34,18 +37,50 @@
     selectKnown(tool, query.get("tool"));
     selectKnown(topic, query.get("topic"));
   }
-  function saveView() {
+  function saveView(keepHash) {
     var url = new URL(window.location.href);
     [["changesSaved", savedOnly.checked ? "1" : (url.searchParams.has("saved") ? "0" : "")], ["unread", unreadOnly.checked ? "1" : ""],
       ["tool", tool.value], ["topic", topic.value]].forEach(function (pair) {
       if (pair[1]) url.searchParams.set(pair[0], pair[1]);
       else url.searchParams.delete(pair[0]);
     });
-    url.hash = "tool-changes";
+    if (!keepHash) url.hash = "tool-changes";
     try { window.history.replaceState(window.history.state, "", url.pathname + url.search + url.hash); }
     catch (error) { /* Filters remain usable when URL updates are unavailable. */ }
   }
+  function rememberView() {
+    resumedView = false;
+    try {
+      if (!(savedOnly.checked || unreadOnly.checked || tool.value || topic.value)) {
+        localStorage.removeItem(viewKey);
+      } else {
+        localStorage.setItem(viewKey, JSON.stringify({
+          version: 1, saved: savedOnly.checked, unread: unreadOnly.checked,
+          tool: tool.value, topic: topic.value
+        }));
+      }
+    } catch (error) { viewStorageAvailable = false; }
+  }
+  function resumeView() {
+    var query = new URLSearchParams(window.location.search);
+    // Shared views and RSS/direct record anchors must never be hidden by a preference.
+    if (["changesSaved", "saved", "unread", "tool", "topic"].some(function (key) { return query.has(key); }) ||
+        window.location.hash.indexOf("#change-") === 0) return;
+    try {
+      var value = JSON.parse(localStorage.getItem(viewKey) || "null");
+      if (!value || value.version !== 1 || typeof value.saved !== "boolean" ||
+          typeof value.unread !== "boolean" || typeof value.tool !== "string" ||
+          typeof value.topic !== "string") return;
+      savedOnly.checked = value.saved;
+      unreadOnly.checked = value.unread;
+      selectKnown(tool, value.tool);
+      selectKnown(topic, value.topic);
+      resumedView = Boolean(savedOnly.checked || unreadOnly.checked || tool.value || topic.value);
+      if (resumedView) saveView(true);
+    } catch (error) { viewStorageAvailable = false; }
+  }
   restoreView();
+  resumeView();
 
   function render() {
     var saved = readSet("aiplorer-shortlist-v1");
@@ -62,19 +97,21 @@
       if (!entry.hidden) { visible++; if (isUnread) unread++; }
     });
     root.querySelector("[data-change-status]").textContent = visible + " of " + entries.length +
-      " updates shown; " + unread + " unread" + (storageAvailable ? "" : ". Read status lasts for this visit; browser storage is unavailable.");
+      " updates shown; " + unread + " unread" + (resumedView ? ". Last view restored." : "") +
+      (viewStorageAvailable ? "" : ". Filters last for this visit; saved view is unavailable.") +
+      (storageAvailable ? "" : ". Read status lasts for this visit; browser storage is unavailable.");
     root.querySelector("[data-change-empty]").hidden = visible > 0;
     markRead.disabled = unread === 0;
     reset.disabled = !(savedOnly.checked || unreadOnly.checked || tool.value || topic.value);
   }
 
   [savedOnly, unreadOnly, topic, tool].forEach(function (control) {
-    control.addEventListener("change", function () { saveView(); render(); });
+    control.addEventListener("change", function () { rememberView(); saveView(); render(); });
   });
   reset.addEventListener("click", function () {
     savedOnly.checked = false; unreadOnly.checked = false;
     tool.value = ""; topic.value = "";
-    saveView(); render();
+    rememberView(); saveView(); render();
   });
   function updateReadState(change) {
     // Re-read before changing one record; preserve keys from newer cached pages.
@@ -108,7 +145,7 @@
     render();
   });
   window.addEventListener("aiplorer:shortlist-change", render);
-  window.addEventListener("popstate", function () { restoreView(); render(); });
+  window.addEventListener("popstate", function () { resumedView = false; restoreView(); render(); });
   window.addEventListener("pageshow", function () {
     if (storageAvailable) seen = readSet(storageKey, seen);
     render();

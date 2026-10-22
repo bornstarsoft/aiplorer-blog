@@ -5,9 +5,12 @@ import test from "node:test";
 
 const source = readFileSync(new URL("../static/js/aiplorer-change-watch.js", import.meta.url), "utf8");
 const readKey = "aiplorer-change-read-v1", savedKey = "aiplorer-shortlist-v1";
-function fixture(query = "", blocked = false) {
+const viewKey = "aiplorer-change-view-v1";
+const remembered = JSON.stringify({ version: 1, saved: true, unread: true, tool: "cursor", topic: "Access" });
+function fixture(query = "", blocked = false, view = null) {
   let url = new URL("https://aiplorer.com/ai-tools/review-updates/" + query);
   const events = {}, storage = new Map([[savedKey, JSON.stringify(["/ai-tools/tools/cursor/"])]]);
+  if (view !== null) storage.set(viewKey, view);
   function control(values = []) { return { value: "", checked: false, disabled: false, options: values.map(value => ({ value })), events: {}, focus() { this.focused = true; }, addEventListener(name, fn) { this.events[name] = fn; } }; }
   const saved = control(), unread = control(), tool = control(["", "cursor", "replit"]), topic = control(["", "Access", "Workflow"]), read = control(), reset = control(), status = {}, empty = {}, controls = {};
   const entries = [
@@ -16,7 +19,7 @@ function fixture(query = "", blocked = false) {
   const elements = { "[data-change-saved]": saved, "[data-change-unread]": unread, "select[data-change-tool]": tool, "select[data-change-topic]": topic, "[data-change-read]": read, "[data-change-reset]": reset, "[data-change-status]": status, "[data-change-empty]": empty, "[data-change-controls]": controls };
   const window = { get location() { return url; }, history: { state: { retained: true }, replaceState(state, _, target) { assert.deepEqual(state, { retained: true }); url = new URL(target, url); } }, addEventListener: (event, fn) => { events[event] = fn; } };
   runInNewContext(source, { document: { querySelector: () => ({ querySelectorAll: () => entries, querySelector: s => elements[s] }) }, window, URL, URLSearchParams,
-    localStorage: { getItem: k => { if (blocked) throw Error("blocked"); return storage.get(k); }, setItem: (k, v) => { if (blocked) throw Error("blocked"); storage.set(k, v); } }
+    localStorage: { getItem: k => { if (blocked) throw Error("blocked"); return storage.get(k); }, setItem: (k, v) => { if (blocked) throw Error("blocked"); storage.set(k, v); }, removeItem: k => { if (blocked) throw Error("blocked"); storage.delete(k); } }
   });
   return { saved, unread, tool, topic, read, reset, status, empty, entries, storage, events, url: () => url, navigate: value => { url = new URL(value, url); }, visible: () => entries.filter(e => !e.hidden) };
 }
@@ -140,4 +143,90 @@ test("malformed read storage warns and preserves the current-session state", () 
   f.storage.set(readKey, "{}"); f.events.pageshow();
   assert.equal(f.entries[0].checkbox.checked, true);
   assert.match(f.status.textContent, /storage is unavailable/);
+});
+
+test("plain return restores all remembered filters without marking notices read", () => {
+  const f = fixture("", false, remembered);
+  assert.equal(f.visible().length, 1);
+  assert.equal(f.saved.checked, true);
+  assert.equal(f.unread.checked, true);
+  assert.equal(f.tool.value, "cursor");
+  assert.equal(f.topic.value, "Access");
+  assert.match(f.status.textContent, /Last view restored/);
+  assert.equal(f.url().searchParams.get("tool"), "cursor");
+  assert.equal(f.url().hash, "");
+  assert.equal(f.storage.has(readKey), false);
+});
+test("filter interaction remembers a validated view for a later plain visit", () => {
+  const f = fixture();
+  assert.equal(f.storage.has(viewKey), false);
+  f.tool.value = "replit"; f.tool.events.change();
+  f.unread.checked = true; f.unread.events.change();
+  const next = fixture("", false, f.storage.get(viewKey));
+  assert.equal(next.tool.value, "replit");
+  assert.equal(next.unread.checked, true);
+  assert.equal(next.visible().length, 1);
+});
+test("explicit filters override preferences without replacing them", () => {
+  for (const query of ["?tool=replit", "?changesSaved=0", "?saved=0", "?unread=0", "?topic=Workflow"]) {
+    const f = fixture(query, false, remembered);
+    assert.doesNotMatch(f.status.textContent, /Last view restored/);
+    assert.equal(f.storage.get(viewKey), remembered);
+    assert.equal(f.saved.checked, false);
+    assert.equal(f.unread.checked, false);
+  }
+});
+test("direct announcement anchors including RSS links cannot be hidden by a saved filter", () => {
+  const f = fixture("#change-replit-one", false, remembered);
+  assert.equal(f.visible().length, 3);
+  assert.equal(f.url().hash, "#change-replit-one");
+  assert.equal(f.url().search, "");
+  assert.equal(f.storage.get(viewKey), remembered);
+});
+test("resume preserves unrelated query state and section anchors", () => {
+  const f = fixture("?view=guides&new=1#tool-changes", false, remembered);
+  assert.equal(f.visible().length, 1);
+  assert.equal(f.url().searchParams.get("view"), "guides");
+  assert.equal(f.url().searchParams.get("new"), "1");
+  assert.equal(f.url().hash, "#tool-changes");
+});
+test("clear removes only remembered filters, leaving read state and saved tools", () => {
+  const f = fixture("", false, remembered);
+  f.storage.set(readKey, JSON.stringify(["cursor-old:1"]));
+  f.reset.events.click();
+  assert.equal(f.storage.has(viewKey), false);
+  assert.equal(f.visible().length, 3);
+  assert.equal(f.storage.get(readKey), JSON.stringify(["cursor-old:1"]));
+  assert.equal(f.storage.get(savedKey), JSON.stringify(["/ai-tools/tools/cursor/"]));
+  assert.doesNotMatch(f.status.textContent, /Last view restored/);
+});
+test("unknown saved options are discarded and invalid schemas fail to the default view", () => {
+  const f = fixture("", false, JSON.stringify({ version: 1, saved: false, unread: false, tool: "removed", topic: "removed" }));
+  assert.equal(f.visible().length, 3);
+  assert.equal(f.reset.disabled, true);
+  for (const value of ["[]", "null", "{}", '{"version":2}', '{"version":1,"saved":"true"}']) {
+    assert.equal(fixture("", false, value).visible().length, 3);
+  }
+});
+test("blocked or malformed view storage keeps filters usable without claiming persistence", () => {
+  for (const f of [fixture("", true), fixture("", false, "{bad")]) {
+    assert.match(f.status.textContent, /saved view is unavailable/);
+    f.tool.value = "replit"; f.tool.events.change();
+    assert.equal(f.visible().length, 1);
+    f.reset.events.click();
+    assert.equal(f.visible().length, 3);
+  }
+});
+test("other tabs cannot unexpectedly switch the current view", () => {
+  const f = fixture("?tool=replit", false, remembered);
+  f.events.storage({ key: viewKey }); f.events.pageshow();
+  assert.equal(f.tool.value, "replit");
+  assert.equal(f.visible().length, 1);
+});
+test("history navigation follows the URL instead of resuming the saved preference", () => {
+  const f = fixture("", false, remembered);
+  f.navigate("/ai-tools/review-updates/"); f.events.popstate();
+  assert.equal(f.visible().length, 3);
+  assert.doesNotMatch(f.status.textContent, /Last view restored/);
+  assert.equal(f.storage.get(viewKey), remembered);
 });
