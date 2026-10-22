@@ -1,0 +1,5 @@
+{{- $records := slice -}}
+{{- range site.Data.codex_reset_history.events -}}
+  {{- $records = $records | append (dict "key" (printf "%s|%s|%s" .sourceUrl .announcedAt .kind) "kind" .kind) -}}
+{{- end -}}
+<script type="application/json" data-reset-return-data>{{ dict "records" $records | jsonify | safeJS }}</script>

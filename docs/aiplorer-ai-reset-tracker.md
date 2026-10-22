@@ -4,25 +4,48 @@
 
 ACTIVE_WRITER = NONE
 
-- Last AI / WORK-ID: CODEX / AIPLORER-RESET-RELEASE-OCT18; DONE (release preparation).
-- HEAD / WIP: based on main at 811aedc; only reset history, tracker notice and
-  this document changed for this task. Other owner WIP preserved.
-- QA: PASS reset validator/self-test, isolated staged-snapshot production
-  build, rendered notice and homepage checks, sitemap route, eight draft
-  exclusions, 291 legacy post URLs and diff check. All 61 prior events retained.
-  Staged diff and all 28 unrelated WIP hashes checked. Existing legacy-post
-  raw-HTML warning remains. Live deployment verification pending at commit.
-- NEXT_SINGLE_TASK: Push the reset-only commit and verify live home/tracker;
-  deployment evidence will be reported in the task result.
-- BLOCKER / Owner approval: owner explicitly authorized reset-only validation,
-  commit, deployment and live home/tracker checks on October 18. Preserve all
-  other WIP. Existing web-project authorization uses GitHub and Cloudflare Pages.
+- Last AI / WORK-ID: CODEX / AIPLORER-RESET-RETURN; DONE (release preparation).
+- HEAD / WIP: based on main at d0e8a92; compact return indicator, its tests,
+  October 20 reset update and this document only. Other 28 owner WIP files
+  are excluded from the isolated release snapshot.
+- QA: PASS 18 Node tests, reset validator/self-test, isolated production build,
+  rendered home/tracker payload checks, eight draft exclusions, 291 legacy
+  post URLs and 61 existing Change Watch records. Playwright PASS first visit,
+  unseen count, explicit mark, back navigation and forget; desktop/mobile
+  screenshots inspected. Existing legacy-post raw-HTML warning remains.
+  Live deployment verification is pending at commit and will be reported in chat.
+- NEXT_SINGLE_TASK: Push this exact-file release and verify live home/tracker.
+- BLOCKER / Owner approval: owner authorized the next compact-home return
+  improvement, validation and production deployment on October 23. Existing
+  web-project GitHub/Cloudflare authorization applies. No new source review
+  is implied; October 20 archive provenance remains documented below.
 
 
 ## Purpose
 
 The Codex Reset Pulse gives visitors a repeat-use historical utility without
 asking for an AI account login, browser session, API key, or usage history.
+
+### Return Visit Check (October 23)
+
+- Home keeps the existing reset link and elapsed clock. A small unseen-record
+  label appears only after a visitor has explicitly saved a history check on
+  the tracker and records have since been added or revised. No new home section.
+- The tracker separates usage, credit, combined and unclassified counts. A
+  combined event counts once. No account balance or reset prediction is inferred.
+- `Mark history checked` saves announcement URL, timestamp and kind fingerprints
+  plus a local check timestamp in `aiplorer-reset-seen-v1`. Merely visiting a page
+  never marks anything checked. First visits do not label all history as new.
+- Added historical records and classification/time corrections are detectable;
+  a timestamp-only cutoff would miss those. Older cached pages preserve newer
+  saved keys when checked. Removed records are not counted as additions.
+- `Forget saved check` removes only this feature's state. No account, server
+  storage, background polling, notification or cross-device sync is introduced.
+  Storage failures leave public history usable. Other tabs and back navigation
+  refresh the indicator. Existing saved-tool/read state is untouched.
+- This release includes the already verified October 20 announcement below.
+  Its manual source-check date is retained; October 23 is a feature-release date,
+  not a new source review or claim that no later resets occurred.
 
 It keeps two concepts separate:
 
@@ -35,9 +58,9 @@ served a different task and reduced the visibility of the historical data.
 
 ## Public Codex History
 
-`data/codex_reset_history.json` contains a manually checked snapshot of 63
+`data/codex_reset_history.json` contains a manually checked snapshot of 64
 public Codex reset/credit announcements observed between September 17, 2025 and
-October 17, 2026 UTC, checked on October 18, 2026 KST. Each row stores the UTC announcement
+October 20, 2026 UTC, checked on October 20, 2026 KST. Each row stores the UTC announcement
 timestamp, source X post URL, and an explicit `kind`. The seed was checked
 against `https://codex-resets.com/`, which states
 that it collects posts from `@thsottiaux` and is not affiliated with OpenAI.
@@ -62,6 +85,29 @@ present the event count as a count of identical account resets.
 The source can also show a separate reset-watch signal for a possible future
 event. Aiplorer excludes those signals until they appear in the confirmed reset
 announcement log; they are not added as forecasts or event records.
+
+### October 20 Check: Usage Reset Announcement
+
+- Checked `https://codex-resets.com/` and its public API
+  `https://codex-resets.com/api/v1/resets?limit=100`, generated at
+  2026-10-20T07:59:46.312Z: 64 rows, no further page. One addition, no removed
+  source URLs and no timestamp changes to the existing 63 records.
+- Added October 20 at 06:33:48 UTC (15:33:48 KST), linked to
+  https://x.com/thsottiaux/status/2112432076767289678. The archive classifies
+  it as `regular`, mapped to `usage`; its mirrored post reports a reset.
+- LunarWerx's public endpoint
+  `https://codex.lunarwerx.com/api/v1/resets?limit=5&offset=0`, generated at
+  2026-10-20T07:55:50.036Z, shows a nearby observation at 06:33:56 UTC with
+  no announcement link and 63 total records. Kept this site's existing
+  announcement-based series; did not merge totals or add a duplicate.
+- Direct X access returned 403. This is an archive-backed announcement,
+  not independently verified X content or account-level telemetry.
+- No new banked-credit record. Latest recorded grant remains October 8 at
+  03:44:55 UTC. Counts: 52 usage, 8 banked, 2 both, 2 unclassified;
+  usage-inclusive 54, credit-inclusive 10, total 64.
+- Updated the history, public notice and source-check time only. No forecast,
+  entitlement guarantee, draft publication, commit or deployment is part of
+  this update request. Other owner WIP is excluded.
 
 ### October 18 Check: Two Usage Reset Announcements
 

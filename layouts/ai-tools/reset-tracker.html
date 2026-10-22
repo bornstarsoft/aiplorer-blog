@@ -50,6 +50,19 @@
           </div>
         </div>
 
+        <section class="aiplorer-reset-return" aria-labelledby="reset-return-heading" data-reset-return hidden>
+          <div>
+            <h3 id="reset-return-heading">Since your last check</h3>
+            <p data-reset-return-status role="status"></p>
+            <p class="aiplorer-reset-return__detail" data-reset-return-detail></p>
+            <small data-reset-return-time></small>
+          </div>
+          <div class="aiplorer-reset-return__actions">
+            <button type="button" data-reset-mark>{{ partial "aiplorer-icon.html" "square-check" }} Mark history checked</button>
+            <button type="button" data-reset-forget hidden>Forget saved check</button>
+          </div>
+        </section>
+
         {{ with .Params.resetNotice }}
           <aside class="aiplorer-reset-history__notice" aria-labelledby="reset-notice-heading">
             <span aria-hidden="true">{{ partial "aiplorer-icon.html" "clock-3" }}</span>

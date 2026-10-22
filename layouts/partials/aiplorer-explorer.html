@@ -17,7 +17,7 @@
     <div class="aiplorer-explorer__updates">
       <a href="/ai-tools/reset-tracker/" data-home-reset-pulse data-latest-reset="{{ $latest.announcedAt }}">
         <span class="aiplorer-explorer__status-icon">{{ partial "aiplorer-icon.html" "clock-3" }}</span>
-        <span><strong>Codex resets</strong><small>Since {{ partial "reset-event-label.html" $latest.kind | lower }} announcement</small><small>Manual source check: <time datetime="{{ $history.snapshotAt }}" title="{{ $history.snapshotAt }}">{{ time.Format "Jan 2, 2006" $history.snapshotAt }} (UTC)</time></small></span>
+        <span><strong>Codex resets</strong><small class="aiplorer-reset-unseen" data-reset-unseen hidden></small><small>Since {{ partial "reset-event-label.html" $latest.kind | lower }} announcement</small><small>Manual source check: <time datetime="{{ $history.snapshotAt }}" title="{{ $history.snapshotAt }}">{{ time.Format "Jan 2, 2006" $history.snapshotAt }} (UTC)</time></small></span>
         <b data-home-reset-elapsed>--</b><span aria-hidden="true">&rarr;</span>
       </a>
       <a href="/ai-tools/review-updates/#tool-changes">

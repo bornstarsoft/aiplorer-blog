@@ -6,6 +6,11 @@
   <script defer src="/js/aiplorer-home-reset.js?v=20260811b"></script>
   <script defer src="/js/aiplorer-home-saved-updates.js?v=20261014a"></script>
 {{ end }}
+{{ if or .IsHome (eq .RelPermalink "/ai-tools/reset-tracker/") }}
+  {{ partial "aiplorer-reset-return-data.html" . }}
+  <link rel="stylesheet" href="/css/aiplorer-reset-return.css?v=20261023a">
+  <script defer src="/js/aiplorer-reset-return.js?v=20261023a"></script>
+{{ end }}
 {{ if or .IsHome (eq .RelPermalink "/ai-tools/tools/") }}
   <script defer src="/js/aiplorer-tool-finder.js?v=20260912b"></script>
 {{ end }}

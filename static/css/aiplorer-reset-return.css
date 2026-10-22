@@ -1,0 +1,14 @@
+.aiplorer-reset-unseen[hidden],.aiplorer-reset-return[hidden],.aiplorer-reset-return [hidden]{display:none!important}
+.aiplorer-explorer__updates .aiplorer-reset-unseen{color:#075a50;font-weight:700}
+.aiplorer-reset-return{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 0;margin-bottom:1.25rem;border-block:1px solid #ccd9df;color:#18252f;letter-spacing:0}
+.aiplorer-reset-return h3{font-size:1.125rem;line-height:1.4;margin:0 0 .35rem}
+.aiplorer-reset-return p{font-size:1rem;line-height:1.5;margin:.25rem 0}
+.aiplorer-reset-return [role=status]{font-weight:600}
+.aiplorer-reset-return .aiplorer-reset-return__detail,.aiplorer-reset-return small{color:#52616d;font-size:.875rem;line-height:1.5}
+.aiplorer-reset-return__actions{display:flex;align-items:center;flex-wrap:wrap;gap:.5rem;flex-shrink:0}
+.aiplorer-reset-return button{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:44px;padding:.6rem .85rem;border:1px solid #9cb6bd;border-radius:4px;background:#fff;color:#175b68;font:inherit;font-size:.875rem;font-weight:600;cursor:pointer}
+.aiplorer-reset-return button .aiplorer-icon{width:1.125rem;height:1.125rem;flex-shrink:0}
+.aiplorer-reset-return button:hover{background:#edf6f3}
+.aiplorer-reset-return button:focus-visible{outline:3px solid #226eb5;outline-offset:3px}
+.aiplorer-reset-return button:disabled{opacity:.65;cursor:default}
+@media(max-width:48rem){.aiplorer-reset-return{align-items:flex-start;flex-direction:column}.aiplorer-reset-return__actions{flex-shrink:1;max-width:100%}.aiplorer-reset-return button{white-space:normal;text-align:left}}
