@@ -1044,8 +1044,9 @@
       }
     );
     var details = item && item.querySelector("details");
-    var input =
-      item &&
+    var input = check === "note"
+      ? item && item.querySelector("[data-candidate-note-input]")
+      : item &&
       Array.prototype.find.call(
         item.querySelectorAll("[data-trial-check]"),
         function (candidateCheck) {
@@ -1143,9 +1144,11 @@
       var completed = cleanChecks(readTrialState()[path]);
       if (
         !saved.has(path) ||
-        cleanCandidateStage(stageState[path]) !== "testing" ||
-        allowedChecks.indexOf(check) === -1 ||
-        completed.indexOf(check) !== -1
+        (check !== "note" && (
+          cleanCandidateStage(stageState[path]) !== "testing" ||
+          allowedChecks.indexOf(check) === -1 ||
+          completed.indexOf(check) !== -1
+        ))
       ) {
         return;
       }
@@ -1153,7 +1156,7 @@
       var title = focusShortlistCandidateCheck(path, check);
       if (title) {
         announce(
-          title +
+          check === "note" ? title + ": opened your test note." : title +
             ": opened next unfinished check, " +
             candidateCheckLabel(check) +
             "."
@@ -1218,6 +1221,9 @@
   }
 
   function updateButtons(saved) {
+    document.querySelectorAll("[data-shortlist-evaluation-link]").forEach(function (link) {
+      link.hidden = !saved.has(link.getAttribute("data-shortlist-evaluation-link"));
+    });
     document.querySelectorAll("[data-shortlist-path]").forEach(function (button) {
       var path = button.getAttribute("data-shortlist-path");
       var title = button.getAttribute("data-shortlist-title") || "tool";
@@ -2625,6 +2631,10 @@
 
   window.addEventListener("aiplorer:trial-checks-change", function () {
     render();
+  });
+
+  window.addEventListener("pageshow", function () {
+    updateButtons(new Set(readList()));
   });
 
   applyCandidateStageViewFromUrl();

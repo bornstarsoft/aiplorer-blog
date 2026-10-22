@@ -99,6 +99,13 @@
               {{ partial "aiplorer-icon.html" "bookmark" }}
               <span data-shortlist-label>Save to shortlist</span>
             </button>
+            {{ if and (eq .Params.reviewStatus "reviewed") (not .Draft) }}
+              <span data-shortlist-evaluation-link="{{ .RelPermalink }}" hidden>
+                <a class="aiplorer-button aiplorer-button--light"
+                   href="{{ printf "/ai-tools/shortlist/?stage=all&test=all&candidate=%s&check=note" (.RelPermalink | urlquery) }}"
+                   aria-label="Open my saved evaluation for {{ .Title }}">Open my evaluation</a>
+              </span>
+            {{ end }}
           </div>
         </div>
       </div>

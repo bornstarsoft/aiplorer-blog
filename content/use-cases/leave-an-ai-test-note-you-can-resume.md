@@ -76,3 +76,6 @@ before moving to another browser or clearing site data.
 
 For a fuller before-and-after exercise, use
 [Retest a Saved AI Tool After an Update](/use-cases/retest-a-saved-ai-tool-after-an-update/).
+Before expanding a trial, try
+[Check an AI Pilot Result Before Expanding](/use-cases/check-an-ai-pilot-result-before-expanding/)
+to keep a decision within the evidence you actually collected.
