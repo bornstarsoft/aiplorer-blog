@@ -24,6 +24,7 @@
   var memoryCandidateStageState = {};
   var memoryCandidateStageView = "all";
   var memoryCandidateNoteState = {};
+  var unsavedCandidateNotes = {};
   var memoryCandidateTestDateState = {};
   var memoryCandidateTestDateView = "all";
 
@@ -254,6 +255,11 @@
     } catch (error) {
       memoryCandidateNoteState = cleanCandidateNoteState(memoryCandidateNoteState);
     }
+    // Keep failed edits available for copying or backup without hiding other-tab notes.
+    Object.keys(unsavedCandidateNotes).forEach(function (path) {
+      if (unsavedCandidateNotes[path].trim()) memoryCandidateNoteState[path] = unsavedCandidateNotes[path];
+      else delete memoryCandidateNoteState[path];
+    });
     return Object.assign({}, memoryCandidateNoteState);
   }
 
@@ -264,8 +270,13 @@
         candidateNoteStorageKey,
         JSON.stringify(memoryCandidateNoteState)
       );
+      if (window.localStorage.getItem(candidateNoteStorageKey) !== JSON.stringify(memoryCandidateNoteState)) {
+        throw new Error("note-write-unverified");
+      }
+      unsavedCandidateNotes = {};
+      return true;
     } catch (error) {
-      // Keep the current-session fallback when browser storage is unavailable.
+      return false;
     }
   }
 
@@ -775,6 +786,7 @@
     memoryTrialState = backup.checks;
     memoryCandidateStageState = backup.stages;
     memoryCandidateNoteState = backup.notes;
+    unsavedCandidateNotes = {};
     memoryCandidateTestDateState = backup.testDates;
     memoryCandidateStageView = backup.stageView;
     memoryCandidateTestDateView = backup.testDateView;
@@ -2064,6 +2076,9 @@
       var note = saved.has(path) ? cleanCandidateNote(state[path]) : "";
       var input = control.querySelector("[data-candidate-note-input]");
       var count = control.querySelector("[data-candidate-note-count]");
+      var starter = control.querySelector("[data-candidate-note-starter]");
+      var status = control.querySelector("[data-candidate-note-status]");
+      var pending = Object.prototype.hasOwnProperty.call(unsavedCandidateNotes, path);
       var item = control.closest("[data-shortlist-item]");
       var summary = item && item.querySelector("[data-shortlist-evaluation-note]");
 
@@ -2073,8 +2088,16 @@
       if (count) {
         count.textContent = String(note.length);
       }
+      if (starter) starter.disabled = !saved.has(path) || Boolean(note.trim()) || Boolean(input && input.value.trim());
+      if (status) {
+        status.textContent = pending
+          ? "Not saved. Keep this tab open and copy your note or download a backup before leaving."
+          : note.trim() ? "Saved in this browser." : "";
+      }
       if (summary) {
-        summary.hidden = !note.trim();
+        summary.hidden = !note.trim() && !pending;
+        var label = summary.querySelector("[data-candidate-note-summary]");
+        if (label) label.textContent = pending ? "Note not saved" : "Note saved";
       }
     });
   }
@@ -2272,12 +2295,7 @@
     });
   }
 
-  document.addEventListener("input", function (event) {
-    var input = event.target.closest("[data-candidate-note-input]");
-    if (!input) {
-      return;
-    }
-
+  function saveCandidateNote(input) {
     var control = input.closest("[data-candidate-note]");
     var path = control && control.getAttribute("data-candidate-note");
     if (!validPath(path) || readList().indexOf(path) === -1) {
@@ -2295,8 +2313,13 @@
       delete state[path];
     }
 
-    writeCandidateNoteState(state);
+    if (!writeCandidateNoteState(state)) unsavedCandidateNotes[path] = note;
     updateCandidateNotes(new Set(readList()));
+  }
+
+  document.addEventListener("input", function (event) {
+    var input = event.target.closest("[data-candidate-note-input]");
+    if (input) saveCandidateNote(input);
   });
 
   document.addEventListener("change", function (event) {
@@ -2339,10 +2362,34 @@
     var control = input.closest("[data-candidate-note]");
     var title =
       (control && control.getAttribute("data-candidate-note-title")) || "Candidate";
-    announce(title + ": private test note saved in this browser.");
+    var notePath = control && control.getAttribute("data-candidate-note");
+    if (!validPath(notePath) || readList().indexOf(notePath) === -1) return;
+    announce(title + (Object.prototype.hasOwnProperty.call(unsavedCandidateNotes, notePath)
+      ? ": note not saved. Copy it or download a backup before leaving."
+      : input.value.trim() ? ": private test note saved in this browser." : ": private test note cleared."));
   });
 
   document.addEventListener("click", function (event) {
+    var noteStarter = event.target.closest("[data-candidate-note-starter]");
+    if (noteStarter) {
+      var noteControl = noteStarter.closest("[data-candidate-note]");
+      var notePath = noteControl && noteControl.getAttribute("data-candidate-note");
+      var noteInput = noteControl && noteControl.querySelector("[data-candidate-note-input]");
+      if (!noteInput || !validPath(notePath) || readList().indexOf(notePath) === -1) return;
+      if (noteInput.value.trim() || cleanCandidateNote(readCandidateNoteState()[notePath]).trim()) {
+        announce("Your existing note was kept.");
+        noteInput.focus();
+        return;
+      }
+      noteInput.value = "Task: \nExpected: \nObserved (or could not test): \nNext check: ";
+      saveCandidateNote(noteInput);
+      noteInput.focus();
+      noteInput.setSelectionRange(6, 6);
+      announce(Object.prototype.hasOwnProperty.call(unsavedCandidateNotes, notePath)
+        ? "Outline added but not saved. Copy it or download a backup before leaving."
+        : "Note outline added. Replace each empty field with your own test evidence.");
+      return;
+    }
     var homeSearchClear = event.target.closest("[data-home-search-resume-clear]");
     var copyTestPlan = event.target.closest("[data-copy-test-plan]");
     var exportBackup = event.target.closest("[data-shortlist-export]");

@@ -175,7 +175,7 @@
                       </span>
                       <span data-shortlist-evaluation-note hidden>
                         <span aria-hidden="true">&middot;</span>
-                        Note saved
+                        <span data-candidate-note-summary>Note saved</span>
                       </span>
                     </small>
                   </span>
@@ -320,8 +320,13 @@
                     ></textarea>
                   </label>
                   <small id="candidate-note-help-{{ .Title | anchorize }}">
-                    Saved only in this browser as you type. Do not enter secrets, customer data, or confidential content.
+                    Browser-only notes. Do not enter secrets, customer data, or confidential content.
                   </small>
+                  <small data-candidate-note-status role="status" aria-live="polite"></small>
+                  <div class="aiplorer-shortlist-card__trial-actions">
+                    <button class="aiplorer-button" type="button" data-candidate-note-starter>Start a test note</button>
+                    <a href="/use-cases/leave-an-ai-test-note-you-can-resume/">See a worked example &rarr;</a>
+                  </div>
                 </div>
               </details>
               <div class="aiplorer-shortlist-card__meta">
