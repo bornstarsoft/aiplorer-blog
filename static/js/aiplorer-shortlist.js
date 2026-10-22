@@ -2615,6 +2615,7 @@
       cleanupEvaluationState(readList());
     }
     if (
+      event.key === null ||
       event.key === storageKey ||
       event.key === trialStorageKey ||
       event.key === candidateStageStorageKey ||
@@ -2634,7 +2635,7 @@
   });
 
   window.addEventListener("pageshow", function () {
-    updateButtons(new Set(readList()));
+    render();
   });
 
   applyCandidateStageViewFromUrl();

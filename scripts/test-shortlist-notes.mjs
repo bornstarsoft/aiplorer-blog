@@ -35,6 +35,8 @@ function fixture(notes = {}, saved = true) {
   };
   runInNewContext(source, { window, document, URL, Date, Set, Map });
   return { storage, input, starter, noteStatus, summary, label, status, count, writes: () => writes,
+    returnToPage() { windowHandlers.pageshow(); },
+    focusInput() { document.activeElement = input; },
     mode(v) { mode = v; }, start() { handlers.click({ target: starter }); },
     type(value) { input.value = value; handlers.input({ target: input }); handlers.change({ target: input }); },
     external(notes) { storage.set(key, JSON.stringify(notes)); windowHandlers.storage({ key }); }
@@ -91,4 +93,19 @@ test("failed clear stays empty in this visit and warns; successful clear reenabl
   assert.match(f.noteStatus.textContent, /^Not saved/);
   f.mode(""); f.type(""); assert.equal(f.starter.disabled, false);
   assert.equal(f.summary.hidden, true); assert.match(f.status.textContent, /cleared/);
+});
+
+test("browser return preserves failed-save notes and does not retry storage writes", () => {
+  const f = fixture({ [path]: "Old" }); f.mode("quota"); f.type("Keep my failed edit");
+  const writes = f.writes(); f.returnToPage();
+  assert.equal(f.input.value, "Keep my failed edit");
+  assert.match(f.noteStatus.textContent, /^Not saved/); assert.equal(f.writes(), writes);
+});
+test("browser return updates unfocused notes but preserves focused input", () => {
+  const f = fixture({ [path]: "Old" });
+  f.storage.set(key, JSON.stringify({ [path]: "New saved note" }));
+  f.returnToPage(); assert.equal(f.input.value, "New saved note");
+  f.input.value = "Typing locally"; f.focusInput();
+  f.storage.set(key, JSON.stringify({ [path]: "Other tab" }));
+  f.returnToPage(); assert.equal(f.input.value, "Typing locally"); assert.equal(f.writes(), 0);
 });

@@ -96,6 +96,8 @@ Mark announcements read only after reviewing them; that does not certify the
 tool or update your own test result.
 
 For a runnable code check, try [the zero-value regression exercise](/use-cases/fix-a-zero-value-default-with-ai/).
+For structured work records, try the
+[missing-value extraction exercise](/use-cases/test-ai-data-extraction-with-missing-values/).
 Browse [recorded tool changes](/ai-tools/review-updates/#tool-changes) before your next retest.
 
 If the workflow is going away rather than changing, use the
