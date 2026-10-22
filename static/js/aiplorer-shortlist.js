@@ -18,7 +18,7 @@
   var allowedChecks = ["task", "output", "privacy", "plans"];
   var allowedCandidateStages = ["researching", "testing", "ready"];
   var allowedCandidateStageViews = ["all", "researching", "testing", "ready", "unset"];
-  var allowedCandidateTestDateViews = ["all", "untested", "dated"];
+  var allowedCandidateTestDateViews = ["all", "untested", "dated", "older"];
   var memoryList = [];
   var memoryTrialState = {};
   var memoryCandidateStageState = {};
@@ -301,6 +301,13 @@
     return value <= localIsoDate() ? value : "";
   }
 
+  function isOlderLocalTest(value) {
+    var date = cleanCandidateTestDate(value);
+    if (!date) return false;
+    // Compare calendar dates, not elapsed hours across daylight-saving changes.
+    return (Date.parse(localIsoDate() + "T00:00:00Z") - Date.parse(date + "T00:00:00Z")) / 86400000 >= 30;
+  }
+
   function cleanCandidateTestDateState(value) {
     var result = {};
     if (!value || typeof value !== "object" || Array.isArray(value)) {
@@ -372,10 +379,13 @@
 
   function candidateTestDateViewLabel(value) {
     if (value === "untested") {
-      return "Not tested";
+      return "No date";
     }
     if (value === "dated") {
       return "Date recorded";
+    }
+    if (value === "older") {
+      return "Tested 30+ days ago";
     }
     return "All test dates";
   }
@@ -533,7 +543,8 @@
   function candidateMatchesView(stage, testDate, stageView, testDateView) {
     return (stageView === "all" || (stageView === "unset" && !stage) || stageView === stage) &&
       (testDateView === "all" || (testDateView === "untested" && !testDate) ||
-        (testDateView === "dated" && Boolean(testDate)));
+        (testDateView === "dated" && Boolean(testDate)) ||
+        (testDateView === "older" && isOlderLocalTest(testDate)));
   }
 
   function shortlistDecisionBrief(includeNotes, currentView) {
@@ -1400,7 +1411,8 @@
     var testDateCounts = {
       all: savedCount,
       untested: 0,
-      dated: 0
+      dated: 0,
+      older: 0
     };
     var nextTestingCandidate = nextIncompleteTestingCandidate(
       saved,
@@ -1413,6 +1425,7 @@
       var testDate = cleanCandidateTestDate(testDateState[path]);
       stageCounts[stage || "unset"] += 1;
       testDateCounts[testDate ? "dated" : "untested"] += 1;
+      if (isOlderLocalTest(testDate)) testDateCounts.older += 1;
       if (stage === "testing") {
         testingChecksRemaining += allowedChecks.length - cleanChecks(trialState[path]).length;
       }

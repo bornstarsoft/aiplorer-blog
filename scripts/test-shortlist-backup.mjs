@@ -97,6 +97,11 @@ test("successful restore replaces only seven evaluation keys and not read/reset 
   assert.match(f.status.textContent, /^Restored 1 saved candidate/);
   assert.equal(f.events.length, 1);
 });
+test("restore preserves the older local test-date view", async () => {
+  const f = fixture(); await f.restore({ ...payload(), testDateView: "older" });
+  assert.equal(f.storage.get(keys.dateView), "older");
+  assert.match(f.status.textContent, /^Restored/);
+});
 test("invalid files and backups with no current tools do not prompt or write", async () => {
   for (const value of ["{bad", {}, { ...payload(), version: 2 }, { ...payload(), shortlist: [] }, { ...payload(), shortlist: ["/ai-tools/tools/tome/"] }]) {
     const f = fixture(); await f.restore(value);
