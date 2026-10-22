@@ -4,21 +4,18 @@
 
 ACTIVE_WRITER = NONE
 
-- Last AI / WORK-ID: CODEX / AIPLORER-RESET-RETURN; DONE (release preparation).
-- HEAD / WIP: based on main at d0e8a92; compact return indicator, its tests,
-  October 20 reset update and this document only. Other 28 owner WIP files
-  are excluded from the isolated release snapshot.
-- QA: PASS 18 Node tests, reset validator/self-test, isolated production build,
-  rendered home/tracker payload checks, eight draft exclusions, 291 legacy
-  post URLs and 61 existing Change Watch records. Playwright PASS first visit,
-  unseen count, explicit mark, back navigation and forget; desktop/mobile
-  screenshots inspected. Existing legacy-post raw-HTML warning remains.
-  Live deployment verification is pending at commit and will be reported in chat.
-- NEXT_SINGLE_TASK: Push this exact-file release and verify live home/tracker.
-- BLOCKER / Owner approval: owner authorized the next compact-home return
-  improvement, validation and production deployment on October 23. Existing
-  web-project GitHub/Cloudflare authorization applies. No new source review
-  is implied; October 20 archive provenance remains documented below.
+- Last AI / WORK-ID: CODEX / AIP-RESET-CHECK; DONE (release preparation).
+- HEAD / WIP: based on main at 508d5ff; history check timestamp, tracker pending
+  notice and this document only. Other 28 owner WIP files excluded.
+- QA: PASS 150 Node tests, reset validator/self-test, isolated clean minified
+  production build, home/tracker timestamp checks, identical 64 event records,
+  eight draft exclusions, 291 legacy post URLs and sitemap XML validation.
+  Existing legacy-post raw-HTML warning remains unchanged. Live verification
+  is pending at commit and will be reported in chat.
+- NEXT_SINGLE_TASK: verify this exact commit and pending notice on production.
+- BLOCKER / Owner approval: owner authorized source checking, scoped update
+  and production deployment on October 23. New reset completion is NOT
+  confirmed; only the checked-state notice changes. Web GitHub exception applies.
 
 
 ## Purpose
@@ -60,7 +57,7 @@ served a different task and reduced the visibility of the historical data.
 
 `data/codex_reset_history.json` contains a manually checked snapshot of 64
 public Codex reset/credit announcements observed between September 17, 2025 and
-October 20, 2026 UTC, checked on October 20, 2026 KST. Each row stores the UTC announcement
+October 20, 2026 UTC, rechecked on October 23, 2026 KST. Each row stores the UTC announcement
 timestamp, source X post URL, and an explicit `kind`. The seed was checked
 against `https://codex-resets.com/`, which states
 that it collects posts from `@thsottiaux` and is not affiliated with OpenAI.
@@ -85,6 +82,34 @@ present the event count as a count of identical account resets.
 The source can also show a separate reset-watch signal for a possible future
 event. Aiplorer excludes those signals until they appear in the confirmed reset
 announcement log; they are not added as forecasts or event records.
+
+### October 23 Check: Pending Notice, No New Completed Record
+
+- Checked at 2026-10-22T23:12:25Z (October 23, 08:12:25 KST).
+- `https://codex-resets.com/api/v1/resets?limit=100`, generated at
+  2026-10-22T23:08:40.426Z, returns 64 records and no further page.
+  Compared with the existing history: zero additions, zero removed source URLs,
+  zero timestamp changes. Existing classifications and all event bytes retained.
+- The archive homepage separately displays a scheduled-reset notice awaiting
+  confirmation, linking to https://x.com/thsottiaux/status/2113162413008884099.
+  Direct X access returned 403. Do not treat the scheduled deadline as an
+  observed completion time or infer that delivery has occurred because it passed.
+- `https://codex.lunarwerx.com/api/v1/resets?limit=5&offset=0`, generated at
+  2026-10-22T23:05:33.644Z, still lists October 20 at 06:33:56 UTC as its latest
+  observation, with no announcement link, and 63 total records. Its times and
+  totals remain separate from our announcement-based series.
+- Official context checked at
+  https://help.openai.com/en/articles/20001498-how-resets-work-in-codex:
+  a banked grant is not a usage refresh; scheduled allowance refreshes and
+  promotional resets differ. A changed allowance alone cannot identify which
+  global reset applied. This guidance does not confirm a new public event.
+- Keep latest recorded usage at October 20 06:33:48 UTC and latest banked grant
+  at October 8 03:44:55 UTC. Counts unchanged: 52 usage, 8 banked, 2 both,
+  2 unclassified (64 total). No prediction or universal eligibility claim.
+- Updated snapshot check time and public pending notice only; no event was
+  created. Home elapsed time and return-visit event fingerprints must not reset.
+  Tracker lastmod follows the UTC check date, consistent with the existing
+  updater; the public notice includes both UTC and KST.
 
 ### October 20 Check: Usage Reset Announcement
 
