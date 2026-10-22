@@ -36,7 +36,7 @@ function fixture() {
   runInNewContext(source, { window, document, Set, CustomEvent: class { constructor(type) { this.type = type; } } });
   return { storage, writes, prompts, notices, inputs, reset, status, complete, events,
     mode(v) { mode = v; }, accept(v) { accepted = v; }, onConfirm(fn) { duringConfirm = fn; },
-    click() { handlers.click({ target: reset }); }, change() { handlers.change({ target: inputs[0] }); } };
+    click() { handlers.click({ target: reset }); }, change(index = 0) { handlers.change({ target: inputs[index] }); } };
 }
 
 test("reset requires confirmation and cancel preserves every stored value", () => {
@@ -94,5 +94,67 @@ test("browser return and cross-tab clear refresh checkbox and summary state with
 });
 test("a later manual check clears stale reset feedback", () => {
   const f = fixture(); f.click(); f.inputs[0].checked = true; f.change();
-  assert.equal(f.status.textContent, ""); assert.equal(f.complete.textContent, "1 of 4");
+  assert.match(f.status.textContent, /^Saved in this browser/); assert.equal(f.complete.textContent, "1 of 4");
+});
+
+test("manual change merges only the clicked check with fresh storage", () => {
+  const f = fixture(); const before = new Map(f.storage);
+  f.storage.set(key, JSON.stringify({ [path]: ["task", "privacy"], [other]: ["privacy", "plans"] }));
+  f.inputs[3].checked = true; f.change(3);
+  assert.deepEqual(JSON.parse(f.storage.get(key)), { [path]: ["task", "privacy", "plans"], [other]: ["privacy", "plans"] });
+  assert.deepEqual(f.inputs.map(x => x.checked), [true, false, true, true]);
+  for (const [k, v] of before) if (k !== key) assert.equal(f.storage.get(k), v);
+  assert.match(f.status.textContent, /Saved in this browser\. 3 of 4/);
+  assert.deepEqual(f.notices, ["aiplorer:trial-checks-change"]);
+});
+
+test("unchecking the last current check removes only that candidate's entry", () => {
+  const f = fixture();
+  f.storage.set(key, JSON.stringify({ [path]: ["task"], [other]: ["privacy"] }));
+  f.inputs[0].checked = false; f.change();
+  assert.deepEqual(JSON.parse(f.storage.get(key)), { [other]: ["privacy"] });
+  assert.equal(f.complete.textContent, "0 of 4");
+});
+
+test("manual check rejects unsaved candidates without any storage write", () => {
+  const f = fixture(); f.storage.set(listKey, JSON.stringify([other]));
+  f.inputs[2].checked = true; f.change(2);
+  assert.deepEqual(f.writes, []); assert.deepEqual(f.notices, []);
+  assert.match(f.status.textContent, /no longer saved/);
+});
+
+test("manual check fails closed on malformed or inaccessible storage", () => {
+  for (const mode of ["blocked", "broken-list", "broken-checks", "array-checks"]) {
+    const f = fixture();
+    if (mode === "blocked") f.mode(mode);
+    if (mode === "broken-list") f.storage.set(listKey, "{}");
+    if (mode === "broken-checks") f.storage.set(key, "broken");
+    if (mode === "array-checks") f.storage.set(key, "[]");
+    const before = Array.from(f.storage.entries());
+    f.inputs[2].checked = true; f.change(2);
+    assert.deepEqual(f.storage.size, before.length);
+    assert.deepEqual(Array.from(f.storage.entries()), before);
+    assert.deepEqual(f.writes, []); assert.deepEqual(f.notices, []);
+    assert.match(f.status.textContent, /Could not verify/);
+    assert.equal(f.inputs[2].checked, false);
+  }
+});
+
+test("failed writes restore recorded checks and never announce save success", () => {
+  for (const mode of ["quota", "silent"]) {
+    const f = fixture(); const before = f.storage.get(key); f.mode(mode);
+    f.inputs[2].checked = true; f.change(2);
+    assert.equal(f.storage.get(key), before); assert.equal(f.inputs[2].checked, false);
+    assert.equal(f.complete.textContent, "2 of 4");
+    assert.match(f.status.textContent, /Could not verify/); assert.deepEqual(f.notices, []);
+    f.events.pageshow(); assert.equal(f.inputs[2].checked, false);
+    f.mode(""); f.inputs[2].checked = true; f.change(2);
+    assert.match(f.status.textContent, /^Saved in this browser/);
+    assert.equal(f.complete.textContent, "3 of 4");
+  }
+});
+
+test("invalid check names are ignored without writes", () => {
+  const f = fixture(); f.inputs[0].value = "unknown"; f.change();
+  assert.deepEqual(f.writes, []); assert.deepEqual(f.notices, []);
 });

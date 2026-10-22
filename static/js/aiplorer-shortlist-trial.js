@@ -115,36 +115,39 @@
 
     var checklist = input.closest("[data-trial-checklist]");
     var path = checklist && checklist.getAttribute("data-trial-checklist");
-    if (!validPath(path)) {
+    if (!validPath(path) || allowedChecks.indexOf(input.value) === -1) {
       return;
     }
 
-    var status = checklist.querySelector("[data-trial-status]");
-    if (status) status.textContent = "";
-    var state = readState();
-    var checked = Array.from(checklist.querySelectorAll("[data-trial-check]:checked")).map(
-      function (item) {
-        return item.value;
+    try {
+      var state = resetSnapshot(path);
+      if (!state) {
+        render();
+        resetStatus(checklist, "This tool is no longer saved. Save it again before recording checks.");
+        return;
       }
-    );
 
-    if (checked.length > 0) {
-      state[path] = checked;
-    } else {
-      delete state[path];
+      // Merge only this action; another tab may have changed the other checks.
+      var checked = cleanChecks(state[path]).filter(function (value) {
+        return value !== input.value;
+      });
+      if (input.checked) checked.push(input.value);
+      if (checked.length > 0) state[path] = checked;
+      else delete state[path];
+
+      var serialized = JSON.stringify(state);
+      window.localStorage.setItem(storageKey, serialized);
+      if (window.localStorage.getItem(storageKey) !== serialized) {
+        throw new Error("check-write-unverified");
+      }
+      memoryState = cleanState(state);
+      renderChecklist(checklist, memoryState);
+      notifyChange();
+      resetStatus(checklist, "Saved in this browser. " + checked.length + " of " + allowedChecks.length + " checks recorded.");
+    } catch (error) {
+      render();
+      resetStatus(checklist, "Could not verify this check was saved. Check the displayed boxes and try again before leaving.");
     }
-
-    writeState(state);
-    renderChecklist(checklist, state);
-    notifyChange();
-    announce(
-      checklist.getAttribute("data-trial-title") +
-        ": " +
-        checked.length +
-        " of " +
-        allowedChecks.length +
-        " candidate checks complete."
-    );
   });
 
   document.addEventListener("click", function (event) {
