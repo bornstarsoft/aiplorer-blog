@@ -1,0 +1,10 @@
+.aiplorer-shortlist-followup { margin: 1rem 0 .3rem; font-size: .9375rem; line-height: 1.6; }
+.aiplorer-shortlist-followup a,
+.aiplorer-shortlist-announcements a { color: #126b62; text-decoration: underline; text-underline-offset: .18em; overflow-wrap: anywhere; }
+.aiplorer-shortlist-coverage { margin: 0; color: #53616c; font-size: .8125rem; line-height: 1.5; }
+.aiplorer-shortlist-announcements { display: grid; gap: .35rem; padding-block: .8rem; border-block: 1px solid #e2e5e9; font-size: .875rem; line-height: 1.5; }
+.aiplorer-shortlist-announcements strong { color: #33414b; font-size: .875rem; }
+.aiplorer-shortlist-announcements[data-unread="true"] strong { color: #126b62; }
+.aiplorer-shortlist-announcements small { color: #53616c; font-size: .8125rem; }
+.aiplorer-shortlist-announcements a:focus-visible,
+.aiplorer-shortlist-followup a:focus-visible { outline: 2px solid #126b62; outline-offset: 4px; }

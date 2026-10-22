@@ -4,6 +4,7 @@
   {{- $aiToolPages := where .Site.RegularPages "Section" "ai-tools" -}}
   {{- $reviewedTools := where (where $aiToolPages "Params.reviewStatus" "reviewed") "Draft" false -}}
   {{- $categories := partial "aiplorer-category-data.html" . -}}
+  {{- $announcements := partial "aiplorer-change-data.html" . -}}
 
   <article class="aiplorer-shortlist aiplorer-shortlist--compact">
     <section class="aiplorer-shortlist__hero">
@@ -19,6 +20,8 @@
               Browse tools
             </a>
           </div>
+          <p class="aiplorer-shortlist-followup">A tool changed? <a href="/use-cases/retest-a-saved-ai-tool-after-an-update/">Run a small before-and-after check &rarr;</a></p>
+          <p class="aiplorer-shortlist-coverage">Selected announcements checked {{ site.Data.ai_tool_changes.checkedAt }}. Coverage is partial, not a live feed.</p>
         </div>
       </div>
     </section>
@@ -127,6 +130,18 @@
               </div>
               <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
               <p data-shortlist-description>{{ .Params.description }}</p>
+              {{- $toolAnnouncements := slice -}}
+              {{- range where $announcements "tool" .RelPermalink -}}
+                {{- $toolAnnouncements = $toolAnnouncements | append (dict "key" (printf "%s:%v" .id .revision) "href" (printf "/ai-tools/review-updates/?saved=1#change-%s" .id) "title" .title) -}}
+              {{- end -}}
+              <div class="aiplorer-shortlist-announcements" data-shortlist-announcements="{{ $toolAnnouncements | jsonify }}">
+                <strong data-announcement-status>Announcement checks</strong>
+                {{ if $toolAnnouncements }}
+                <a data-announcement-link href="{{ (index $toolAnnouncements 0).href }}">{{ (index $toolAnnouncements 0).title }}</a>
+                {{ else }}
+                <small>No checks recorded here; changes may be unlisted.</small>
+                {{ end }}
+              </div>
               <div class="aiplorer-shortlist-card__signals">
                 {{ range first 1 .Params.bestFor }}
                   <div data-tone="teal">
