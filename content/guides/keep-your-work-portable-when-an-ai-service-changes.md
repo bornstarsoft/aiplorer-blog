@@ -86,7 +86,9 @@ backup. Do not put secrets or private customer information into it.
 ## Finish The Transition Deliberately
 
 After the work owner confirms the handoff, review old sharing links, connected
-accounts and access permissions. Check billing and data-retention instructions
+accounts and access permissions using the
+[connected-app checklist](/guides/review-connected-ai-app-permissions/).
+Check billing and data-retention instructions
 on the provider's official pages. Removing an integration, deleting an account
 and cancelling a subscription are different actions; verify what each one does
 before making an irreversible change.

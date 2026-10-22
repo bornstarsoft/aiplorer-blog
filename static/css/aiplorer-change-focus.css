@@ -3,3 +3,6 @@
 .aiplorer-change-watch__controls button { margin-left: 0; }
 .aiplorer-change-watch__next { font-size: .875rem; color: #485c69; }
 .aiplorer-change-watch__next a { text-decoration: underline; text-underline-offset: .2em; }
+.aiplorer-change-entry__read { display: inline-flex; align-items: center; gap: .55rem; min-height: 44px; cursor: pointer; color: #33414b; }
+.aiplorer-change-entry__read input { width: 1.15rem; height: 1.15rem; accent-color: #176e64; }
+.aiplorer-change-entry__read input:focus-visible { outline: 3px solid #1958a0; outline-offset: 3px; }

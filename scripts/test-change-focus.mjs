@@ -8,11 +8,11 @@ const readKey = "aiplorer-change-read-v1", savedKey = "aiplorer-shortlist-v1";
 function fixture(query = "", blocked = false) {
   let url = new URL("https://aiplorer.com/ai-tools/review-updates/" + query);
   const events = {}, storage = new Map([[savedKey, JSON.stringify(["/ai-tools/tools/cursor/"])]]);
-  function control(values = []) { return { value: "", checked: false, disabled: false, options: values.map(value => ({ value })), events: {}, addEventListener(name, fn) { this.events[name] = fn; } }; }
+  function control(values = []) { return { value: "", checked: false, disabled: false, options: values.map(value => ({ value })), events: {}, focus() { this.focused = true; }, addEventListener(name, fn) { this.events[name] = fn; } }; }
   const saved = control(), unread = control(), tool = control(["", "cursor", "replit"]), topic = control(["", "Access", "Workflow"]), read = control(), reset = control(), status = {}, empty = {}, controls = {};
   const entries = [
     ["cursor-new:2", "cursor", "Access"], ["cursor-old:1", "cursor", "Workflow"], ["replit-one:1", "replit", "Access"]
-  ].map(([id, slug, category]) => ({ dataset: { changeId: id, changeTool: "/ai-tools/tools/" + slug + "/", changeTopic: category }, badge: {}, querySelector() { return this.badge; } }));
+  ].map(([id, slug, category]) => ({ dataset: { changeId: id, changeTool: "/ai-tools/tools/" + slug + "/", changeTopic: category }, badge: {}, checkbox: control(), readControl: {}, querySelector(selector) { return selector === "[data-change-entry-read]" ? this.checkbox : selector === "[data-change-entry-read-control]" ? this.readControl : this.badge; } }));
   const elements = { "[data-change-saved]": saved, "[data-change-unread]": unread, "select[data-change-tool]": tool, "select[data-change-topic]": topic, "[data-change-read]": read, "[data-change-reset]": reset, "[data-change-status]": status, "[data-change-empty]": empty, "[data-change-controls]": controls };
   const window = { get location() { return url; }, history: { state: { retained: true }, replaceState(state, _, target) { assert.deepEqual(state, { retained: true }); url = new URL(target, url); } }, addEventListener: (event, fn) => { events[event] = fn; } };
   runInNewContext(source, { document: { querySelector: () => ({ querySelectorAll: () => entries, querySelector: s => elements[s] }) }, window, URL, URLSearchParams,
@@ -82,4 +82,62 @@ test("blocked storage keeps current-session read state and warns honestly", () =
   assert.match(f.status.textContent, /storage is unavailable/);
   f.read.events.click(); f.events.pageshow();
   assert.equal(f.visible().length, 0);
+});
+
+test("individual read and unread toggles change only that announcement", () => {
+  const f = fixture("?tool=cursor"), checkbox = f.entries[0].checkbox;
+  assert.equal(checkbox.checked, false);
+  assert.equal(f.entries[0].readControl.hidden, false);
+  checkbox.checked = true; checkbox.events.change();
+  assert.deepEqual(JSON.parse(f.storage.get(readKey)), ["cursor-new:2"]);
+  assert.equal(f.entries[0].badge.hidden, true);
+  assert.equal(f.entries[1].checkbox.checked, false);
+  checkbox.checked = false; checkbox.events.change();
+  assert.deepEqual(JSON.parse(f.storage.get(readKey)), []);
+  assert.equal(f.entries[0].badge.hidden, false);
+});
+test("individual actions preserve other-tab and newer-page read keys", () => {
+  const f = fixture();
+  f.storage.set(readKey, JSON.stringify(["replit-one:1", "future-record:1"]));
+  f.entries[0].checkbox.checked = true; f.entries[0].checkbox.events.change();
+  assert.deepEqual(new Set(JSON.parse(f.storage.get(readKey))), new Set(["replit-one:1", "future-record:1", "cursor-new:2"]));
+  f.entries[0].checkbox.checked = false; f.entries[0].checkbox.events.change();
+  assert.deepEqual(new Set(JSON.parse(f.storage.get(readKey))), new Set(["replit-one:1", "future-record:1"]));
+});
+test("bulk actions also preserve stored keys absent from this page", () => {
+  const f = fixture("?tool=cursor");
+  f.storage.set(readKey, JSON.stringify(["future-record:1"]));
+  f.read.events.click();
+  assert.deepEqual(new Set(JSON.parse(f.storage.get(readKey))), new Set(["future-record:1", "cursor-new:2", "cursor-old:1"]));
+});
+test("unread-only actions move keyboard focus to the next result then the filter", () => {
+  const f = fixture("?tool=cursor&unread=1");
+  f.entries[0].checkbox.checked = true; f.entries[0].checkbox.events.change();
+  assert.equal(f.entries[0].hidden, true);
+  assert.equal(f.entries[1].checkbox.focused, true);
+  f.entries[1].checkbox.checked = true; f.entries[1].checkbox.events.change();
+  assert.equal(f.visible().length, 0);
+  assert.equal(f.unread.focused, true);
+});
+test("cross-tab unread and pageshow keep checkbox state in sync", () => {
+  const f = fixture();
+  f.storage.set(readKey, JSON.stringify(["cursor-new:2"]));
+  f.events.pageshow(); assert.equal(f.entries[0].checkbox.checked, true);
+  f.storage.set(readKey, "[]");
+  f.events.storage({ key: readKey }); assert.equal(f.entries[0].checkbox.checked, false);
+});
+test("individual toggles still work for this visit when storage is blocked", () => {
+  const f = fixture("?tool=cursor", true);
+  f.entries[0].checkbox.checked = true; f.entries[0].checkbox.events.change();
+  f.events.pageshow(); assert.equal(f.entries[0].checkbox.checked, true);
+  assert.match(f.status.textContent, /storage is unavailable/);
+  f.entries[0].checkbox.checked = false; f.entries[0].checkbox.events.change();
+  assert.equal(f.entries[0].checkbox.checked, false);
+});
+test("malformed read storage warns and preserves the current-session state", () => {
+  const f = fixture();
+  f.entries[0].checkbox.checked = true; f.entries[0].checkbox.events.change();
+  f.storage.set(readKey, "{}"); f.events.pageshow();
+  assert.equal(f.entries[0].checkbox.checked, true);
+  assert.match(f.status.textContent, /storage is unavailable/);
 });

@@ -12,13 +12,14 @@
   var storageKey = "aiplorer-change-read-v1";
   var storageAvailable = true;
 
-  function readSet(key) {
+  function readSet(key, fallback) {
     try {
       var value = JSON.parse(localStorage.getItem(key) || "[]");
-      return new Set(Array.isArray(value) ? value.filter(function (item) { return typeof item === "string"; }) : []);
+      if (!Array.isArray(value)) throw new Error("Invalid stored list");
+      return new Set(value.filter(function (item) { return typeof item === "string"; }));
     } catch (error) {
       if (key === storageKey) storageAvailable = false;
-      return new Set();
+      return fallback || new Set();
     }
   }
   var seen = readSet(storageKey);
@@ -56,6 +57,8 @@
         (unreadOnly.checked && !isUnread) || (topic.value && topic.value !== entry.dataset.changeTopic) ||
         (tool.value && entry.dataset.changeTool !== "/ai-tools/tools/" + tool.value + "/");
       entry.querySelector("[data-change-badge]").hidden = !isUnread;
+      entry.querySelector("[data-change-entry-read]").checked = !isUnread;
+      entry.querySelector("[data-change-entry-read-control]").hidden = false;
       if (!entry.hidden) { visible++; if (isUnread) unread++; }
     });
     root.querySelector("[data-change-status]").textContent = visible + " of " + entries.length +
@@ -73,22 +76,41 @@
     tool.value = ""; topic.value = "";
     saveView(); render();
   });
-  markRead.addEventListener("click", function () {
-    entries.forEach(function (entry) { if (!entry.hidden) seen.add(entry.dataset.changeId); });
-    // Keep only current entries so the local read history stays bounded.
-    seen = new Set(entries.map(function (entry) { return entry.dataset.changeId; }).filter(function (id) { return seen.has(id); }));
+  function updateReadState(change) {
+    // Re-read before changing one record; preserve keys from newer cached pages.
+    if (storageAvailable) seen = readSet(storageKey, seen);
+    change();
     try { localStorage.setItem(storageKey, JSON.stringify(Array.from(seen))); }
     catch (error) { storageAvailable = false; }
     render();
+  }
+  entries.forEach(function (entry, index) {
+    var checkbox = entry.querySelector("[data-change-entry-read]");
+    checkbox.addEventListener("change", function () {
+      var checked = checkbox.checked;
+      updateReadState(function () {
+        if (checked) seen.add(entry.dataset.changeId);
+        else seen.delete(entry.dataset.changeId);
+      });
+      if (entry.hidden) {
+        var next = entries.slice(index + 1).concat(entries.slice(0, index)).find(function (item) { return !item.hidden; });
+        (next ? next.querySelector("[data-change-entry-read]") : unreadOnly).focus();
+      }
+    });
+  });
+  markRead.addEventListener("click", function () {
+    updateReadState(function () {
+      entries.forEach(function (entry) { if (!entry.hidden) seen.add(entry.dataset.changeId); });
+    });
   });
   window.addEventListener("storage", function (event) {
-    if (!event.key || event.key === storageKey) seen = readSet(storageKey);
+    if (!event.key || event.key === storageKey) seen = readSet(storageKey, seen);
     render();
   });
   window.addEventListener("aiplorer:shortlist-change", render);
   window.addEventListener("popstate", function () { restoreView(); render(); });
   window.addEventListener("pageshow", function () {
-    if (storageAvailable) seen = readSet(storageKey);
+    if (storageAvailable) seen = readSet(storageKey, seen);
     render();
   });
   root.querySelector("[data-change-controls]").hidden = false;

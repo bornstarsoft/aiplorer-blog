@@ -47,6 +47,10 @@
             <span>{{ .dateLabel | default "Announced" }} <time datetime="{{ .announcedAt }}">{{ .announcedAt }}</time>{{ if eq .datePrecision "month" }} (exact day not published){{ end }}</span>
             <span>Checked <time datetime="{{ .checkedAt }}">{{ .checkedAt }}</time></span>
             <strong data-change-badge hidden>Unread</strong>
+            <label class="aiplorer-change-entry__read" data-change-entry-read-control hidden>
+              <input type="checkbox" data-change-entry-read aria-label="Read: {{ .title }}">
+              <span>Read</span>
+            </label>
           </div>
           <div class="aiplorer-change-entry__body">
             <h3><a href="#change-{{ .id }}">{{ .title }}</a></h3>
@@ -55,6 +59,9 @@
             <nav aria-label="{{ .toolTitle }} update sources and next steps">
               <a href="{{ .sourceUrl }}" rel="noopener" target="_blank">Official announcement <span class="aiplorer-visually-hidden">(opens in a new tab)</span> <span aria-hidden="true">&nearr;</span></a>
               {{ with site.GetPage .guide }}{{ if not .Draft }}<a href="{{ .RelPermalink }}">Practical decision guide <span aria-hidden="true">&rarr;</span></a>{{ end }}{{ end }}
+              {{ if in (slice "Agent permissions" "Permissions" "Connections" "Cloud connections" "Integration controls" "Sharing and permissions" "Consent migration") .topic }}
+              <a href="/guides/review-connected-ai-app-permissions/">Connected-app permission checklist <span aria-hidden="true">&rarr;</span></a>
+              {{ end }}
             </nav>
           </div>
         </article>
