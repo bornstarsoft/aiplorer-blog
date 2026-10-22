@@ -13,7 +13,7 @@ draft: false
 Aiplorer's shortlist lives in browser storage, not an account. A different
 browser does not automatically have your saved tools or notes. Before clearing
 site data or moving devices, open [your shortlist](/ai-tools/shortlist/) in
-the original browser and expand **Backup and restore**.
+the original browser and expand **Export, backup and restore**.
 
 Choose **Download backup** for a restorable JSON file. **Download brief**
 creates a readable decision document, not a restorable backup. Keep the
@@ -37,7 +37,7 @@ data or confidential content in shortlist notes or in a shared backup.
 ## Inspect The Restore Before Accepting
 
 In the destination browser, open [the shortlist](/ai-tools/shortlist/) and
-expand **Backup and restore**. If that browser already has useful data,
+expand **Export, backup and restore**. If that browser already has useful data,
 download its own backup first. Close other Aiplorer tabs during the restore
 to avoid competing edits to the same browser storage.
 

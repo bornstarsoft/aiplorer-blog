@@ -472,15 +472,19 @@
   function downloadLocalFile(contents, filename, type) {
     var blob = new Blob([contents], { type: type });
     var objectUrl = window.URL.createObjectURL(blob);
-    var download = document.createElement("a");
-    download.href = objectUrl;
-    download.download = filename;
-    document.body.appendChild(download);
-    download.click();
-    download.remove();
-    window.setTimeout(function () {
-      window.URL.revokeObjectURL(objectUrl);
-    }, 0);
+    var download;
+    try {
+      download = document.createElement("a");
+      download.href = objectUrl;
+      download.download = filename;
+      document.body.appendChild(download);
+      download.click();
+    } finally {
+      if (download) download.remove();
+      window.setTimeout(function () {
+        window.URL.revokeObjectURL(objectUrl);
+      }, 0);
+    }
   }
 
   function exportShortlistBackup() {
@@ -521,11 +525,11 @@
     return "Confirmed current plans and limits";
   }
 
-  function shortlistDecisionBrief() {
+  function shortlistDecisionBrief(includeNotes) {
     var savedPaths = readList();
     var stageState = readCandidateStageState();
     var trialState = readTrialState();
-    var noteState = readCandidateNoteState();
+    var noteState = includeNotes ? readCandidateNoteState() : {};
     var testDateState = readCandidateTestDateState();
     var itemsByPath = {};
 
@@ -565,7 +569,9 @@
         completedChecks +
         " of " +
         candidates.length * allowedChecks.length,
-      "- Private test notes saved: " + savedNotes,
+      "- Private test notes: " + (includeNotes ? savedNotes + " included" : "excluded"),
+      "- Scope: all saved candidates, regardless of the current stage or date view.",
+      "- Review before sharing: tool choices, stages, checks and test dates may also be private.",
       "- Local test dates saved: " + savedTestDates,
       "- Order: candidates appear in the order saved, not by score or rank.",
       ""
@@ -663,7 +669,7 @@
       "- Review important outputs and use extra care with sensitive, legal, medical, financial, security, or business-critical work."
     );
     lines.push(
-      "- This file reflects private browser notes and Aiplorer review pages; it does not prove that a tool is accurate, secure, suitable, or approved."
+      "- This file reflects local evaluation state and Aiplorer review pages; it does not prove that a tool is accurate, secure, suitable, or approved."
     );
     lines.push("");
 
@@ -671,18 +677,31 @@
   }
 
   function exportShortlistBrief() {
-    var brief = shortlistDecisionBrief();
+    var option = document.querySelector("[data-shortlist-brief-notes]");
+    var includeNotes = Boolean(option && option.checked);
+    var brief = shortlistDecisionBrief(includeNotes);
     if (!brief) {
       announce("Save at least one reviewed tool before downloading a decision brief.");
       return;
     }
 
-    downloadLocalFile(
-      brief,
-      "aiplorer-decision-brief-" + new Date().toISOString().slice(0, 10) + ".md",
-      "text/markdown"
-    );
-    announce("Downloaded a readable decision brief for your saved candidates.");
+    try {
+      downloadLocalFile(
+        brief,
+        "aiplorer-decision-brief-" + new Date().toISOString().slice(0, 10) + ".md",
+        "text/markdown"
+      );
+      if (option) option.checked = false;
+      announce("Decision brief download requested for all saved candidates. Private test notes " +
+        (includeNotes ? "included; review the file before sharing." : "excluded. Review the remaining evaluation details before sharing."));
+    } catch (error) {
+      announce("The decision brief download could not be started. Your saved data was not changed; try again.");
+    }
+  }
+
+  function resetBriefNoteChoice() {
+    var option = document.querySelector("[data-shortlist-brief-notes]");
+    if (option) option.checked = false;
   }
 
   function cleanShortlistBackup(value) {
@@ -2635,9 +2654,11 @@
   });
 
   window.addEventListener("pageshow", function () {
+    resetBriefNoteChoice();
     render();
   });
 
+  resetBriefNoteChoice();
   applyCandidateStageViewFromUrl();
   applyCandidateTestDateViewFromUrl();
   render();
