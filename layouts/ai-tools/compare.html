@@ -88,7 +88,7 @@
         </div>
         <nav aria-label="Continue private candidate evaluation">
           <a data-compare-testing-link href="/ai-tools/shortlist/?stage=testing" hidden>
-            Continue testing <span data-compare-testing-count>0</span>
+            All saved tools testing <span data-compare-testing-count>0</span>
             <span aria-hidden="true">&rarr;</span>
           </a>
           <a href="/ai-tools/shortlist/">
@@ -233,11 +233,11 @@
                         </a>
                         <a
                           class="aiplorer-compare-row__trial"
-                          href="/ai-tools/shortlist/"
+                          href="/ai-tools/shortlist/?stage=all&amp;test=all&amp;candidate={{ .RelPermalink | urlquery }}&amp;check=note"
                           data-compare-trial-progress
                           hidden
                         >
-                          <span>Private evaluation</span>
+                          <span>Open my evaluation</span>
                           <strong data-compare-candidate-stage>Stage not set</strong>
                           <small data-compare-trial-count>0 of 4 checked</small>
                           <small data-compare-test-date>Local test date not set</small>

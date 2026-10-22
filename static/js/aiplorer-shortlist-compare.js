@@ -87,7 +87,8 @@
   function renderTrialProgress(saved) {
     var state = readTrialState();
     var savedRows = rows.filter(function (row) {
-      return saved.has(row.getAttribute("data-compare-path"));
+      return saved.has(row.getAttribute("data-compare-path")) &&
+        !row.hidden && !row.closest("[data-compare-group]").hidden;
     });
     var completed = 0;
     var total = savedRows.length * allowedChecks.length;
@@ -106,7 +107,7 @@
       if (count) {
         count.textContent = checks.length + " of " + allowedChecks.length + " checked";
       }
-      if (isSaved) {
+      if (savedRows.indexOf(row) !== -1) {
         completed += checks.length;
       }
     });
@@ -119,10 +120,11 @@
         completed +
         " of " +
         total +
-        " candidate checks complete across " +
+        " candidate checks complete for " +
         savedRows.length +
         " saved " +
         (savedRows.length === 1 ? "tool" : "tools") +
+        (currentCategory ? " in " + currentCategory : " across all categories") +
         ".";
     }
   }
@@ -147,7 +149,7 @@
     } else {
       url.searchParams.delete("category");
     }
-    window.history.replaceState({}, "", url.pathname + url.search);
+    window.history.replaceState({}, "", url.pathname + url.search + url.hash);
   }
 
   function updateButtons(view) {
@@ -166,7 +168,6 @@
     currentView = shortlistView ? "shortlist" : "all";
     currentCategory = cleanCategory(category);
     updateButtons(currentView);
-    renderTrialProgress(saved);
 
     groups.forEach(function (group) {
       var groupRows = Array.prototype.slice.call(group.querySelectorAll("[data-compare-row]"));
@@ -192,12 +193,23 @@
       }
     });
 
+    renderTrialProgress(saved);
+
     categoryLinks.forEach(function (link) {
       var linkCategory = link.getAttribute("data-compare-category") || "";
       var active = linkCategory === currentCategory;
       var linkedGroup = groups.find(function (group) {
         return group.getAttribute("data-compare-category") === linkCategory;
       });
+      var categoryRows = linkedGroup
+        ? Array.prototype.slice.call(linkedGroup.querySelectorAll("[data-compare-row]"))
+        : rows;
+      var categoryCount = link.querySelector("span");
+      if (categoryCount) {
+        categoryCount.textContent = String(categoryRows.filter(function (row) {
+          return !shortlistView || saved.has(row.getAttribute("data-compare-path"));
+        }).length);
+      }
       var hasSavedRows =
         !linkedGroup ||
         Array.prototype.some.call(
@@ -270,12 +282,15 @@
   });
 
   window.addEventListener("storage", function (event) {
-    if (event.key === storageKey || event.key === trialStorageKey) {
+    if (event.key === null || event.key === storageKey || event.key === trialStorageKey) {
       render(currentView, undefined, currentCategory);
     }
   });
 
   var initialParams = new URL(window.location.href).searchParams;
+  window.addEventListener("pageshow", function () {
+    render(currentView, undefined, currentCategory);
+  });
   var initialView = initialParams.get("view") === "shortlist"
     ? "shortlist"
     : "all";
