@@ -28,9 +28,12 @@ It does not affect what the JSON backup contains.
 
 Excluding notes does not make the file anonymous or automatically safe to
 share. It still includes saved tool choices, decision stages, checked items
-and local test dates, together with public review information. The brief
-includes all saved candidates, not just those visible under a stage or date
-filter. Open the file and remove anything the recipient does not need.
+and local test dates, together with public review information. **All saved
+candidates** is the default scope. Choose **Current view only** to include
+only candidates matching your stage and test-date filters. Check the candidate
+count before downloading; an empty view cannot produce a brief. The JSON
+backup still includes the full saved list, regardless of the brief scope.
+Open the file and remove anything the recipient does not need.
 
 ## Separate Observation From Approval
 

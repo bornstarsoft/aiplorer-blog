@@ -212,6 +212,9 @@ body:has(.aiplorer-shortlist--compact) { background: #fff; }
 .aiplorer-shortlist--compact .aiplorer-shortlist-backup { grid-template-columns: minmax(0,1fr); margin: 0; padding: .5rem 0; border: 0; }
 .aiplorer-shortlist--compact .aiplorer-shortlist-backup__actions { justify-content: start; grid-column: auto; }
 .aiplorer-shortlist--compact .aiplorer-shortlist-backup__actions button { min-height: 44px; }
+.aiplorer-shortlist-backup__copy label[for="shortlist-brief-scope"] { display: block; margin-bottom: .4rem; font-weight: 600; }
+.aiplorer-shortlist-backup__copy select { width: 100%; max-width: 20rem; min-height: 44px; padding: .5rem .7rem; border: 1px solid #b9c7cd; border-radius: 5px; background: #fff; color: #23313b; font: inherit; }
+.aiplorer-shortlist-backup__copy select:focus-visible { outline: 2px solid #14766e; outline-offset: 3px; }
 .aiplorer-shortlist--compact .aiplorer-shortlist-next, .aiplorer-shortlist--compact .aiplorer-shortlist-review-pulse { border: 0; background: #fff; padding-inline: 0; }
 .aiplorer-shortlist--compact .aiplorer-shortlist__body { font-size: .9375rem; line-height: 1.65; }
 @media (max-width: 48rem) {

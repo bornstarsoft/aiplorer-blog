@@ -525,12 +525,25 @@
     return "Confirmed current plans and limits";
   }
 
-  function shortlistDecisionBrief(includeNotes) {
+  function briefUsesCurrentView() {
+    var scope = document.querySelector("[data-shortlist-brief-scope]");
+    return Boolean(scope && scope.value === "visible");
+  }
+
+  function candidateMatchesView(stage, testDate, stageView, testDateView) {
+    return (stageView === "all" || (stageView === "unset" && !stage) || stageView === stage) &&
+      (testDateView === "all" || (testDateView === "untested" && !testDate) ||
+        (testDateView === "dated" && Boolean(testDate)));
+  }
+
+  function shortlistDecisionBrief(includeNotes, currentView) {
     var savedPaths = readList();
     var stageState = readCandidateStageState();
     var trialState = readTrialState();
     var noteState = includeNotes ? readCandidateNoteState() : {};
     var testDateState = readCandidateTestDateState();
+    var stageView = readCandidateStageView();
+    var testDateView = readCandidateTestDateView();
     var itemsByPath = {};
 
     document.querySelectorAll("[data-shortlist-item]").forEach(function (item) {
@@ -542,7 +555,10 @@
         return { path: path, item: itemsByPath[path] };
       })
       .filter(function (candidate) {
-        return Boolean(candidate.item);
+        return Boolean(candidate.item) && (!currentView || candidateMatchesView(
+          cleanCandidateStage(stageState[candidate.path]),
+          cleanCandidateTestDate(testDateState[candidate.path]), stageView, testDateView
+        ));
       });
 
     if (candidates.length === 0) {
@@ -570,7 +586,9 @@
         " of " +
         candidates.length * allowedChecks.length,
       "- Private test notes: " + (includeNotes ? savedNotes + " included" : "excluded"),
-      "- Scope: all saved candidates, regardless of the current stage or date view.",
+      currentView
+        ? "- Scope: current view; stage=" + stageView + "; test date=" + testDateView + ". Other saved candidates are excluded."
+        : "- Scope: all saved candidates, regardless of the current stage or date view.",
       "- Review before sharing: tool choices, stages, checks and test dates may also be private.",
       "- Local test dates saved: " + savedTestDates,
       "- Order: candidates appear in the order saved, not by score or rank.",
@@ -679,9 +697,12 @@
   function exportShortlistBrief() {
     var option = document.querySelector("[data-shortlist-brief-notes]");
     var includeNotes = Boolean(option && option.checked);
-    var brief = shortlistDecisionBrief(includeNotes);
+    var currentView = briefUsesCurrentView();
+    var brief = shortlistDecisionBrief(includeNotes, currentView);
     if (!brief) {
-      announce("Save at least one reviewed tool before downloading a decision brief.");
+      announce(currentView
+        ? "No saved candidates match the current view. Change the filters or choose all saved candidates."
+        : "Save at least one reviewed tool before downloading a decision brief.");
       return;
     }
 
@@ -692,7 +713,7 @@
         "text/markdown"
       );
       if (option) option.checked = false;
-      announce("Decision brief download requested for all saved candidates. Private test notes " +
+      announce("Decision brief download requested for " + (currentView ? "the current view" : "all saved candidates") + ". Private test notes " +
         (includeNotes ? "included; review the file before sharing." : "excluded. Review the remaining evaluation details before sharing."));
     } catch (error) {
       announce("The decision brief download could not be started. Your saved data was not changed; try again.");
@@ -1406,14 +1427,7 @@
       var reviewState = reviewStateFor(path, reviewDate, reviewSnapshot);
       var reviewOutput = item.querySelector("[data-shortlist-review-state]");
       var reviewLabel = item.querySelector("[data-shortlist-review-label]");
-      var show =
-        isSaved &&
-        (stageView === "all" ||
-          (stageView === "unset" && !stage) ||
-          stageView === stage) &&
-        (testDateView === "all" ||
-          (testDateView === "untested" && !testDate) ||
-          (testDateView === "dated" && Boolean(testDate)));
+      var show = isSaved && candidateMatchesView(stage, testDate, stageView, testDateView);
 
       item.hidden = !show;
       if (show) {
@@ -1644,7 +1658,13 @@
       exportBackup.disabled = savedCount === 0;
     }
     if (exportBrief) {
-      exportBrief.disabled = savedCount === 0;
+      exportBrief.disabled = (briefUsesCurrentView() ? visibleCount : savedCount) === 0;
+    }
+    var briefCount = document.querySelector("[data-shortlist-brief-count]");
+    if (briefCount) {
+      var count = briefUsesCurrentView() ? visibleCount : savedCount;
+      briefCount.textContent = count + (count === 1 ? " candidate" : " candidates") +
+        (briefUsesCurrentView() ? " in the current view." : " in the full saved list.");
     }
 
     document.querySelectorAll("[data-shortlist-stage-view]").forEach(function (button) {
@@ -2401,6 +2421,10 @@
   });
 
   document.addEventListener("change", function (event) {
+    if (event.target.closest("[data-shortlist-brief-scope]")) {
+      render();
+      return;
+    }
     var input = event.target.closest("[data-candidate-note-input]");
     var testDateInput = event.target.closest("[data-candidate-test-date-input]");
     if (!input && !testDateInput) {
