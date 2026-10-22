@@ -811,6 +811,59 @@
     memoryCandidateTestDateView = backup.testDateView;
   }
 
+  function clearShortlistWithConfirmation() {
+    var keys = [storageKey, trialStorageKey, candidateStageStorageKey,
+      candidateNoteStorageKey, candidateTestDateStorageKey,
+      candidateStageViewStorageKey, candidateTestDateViewStorageKey];
+    var before;
+    try {
+      before = keys.map(function (key) { return window.localStorage.getItem(key); });
+    } catch (error) {
+      announce("Browser storage is unavailable. The shortlist was not cleared.");
+      return;
+    }
+    var current = shortlistBackupPayload();
+    if (current.shortlist.length === 0) return;
+    var checks = Object.keys(current.checks).reduce(function (total, path) {
+      return total + current.checks[path].length;
+    }, 0);
+    var confirmed = window.confirm([
+      "Clear all " + current.shortlist.length + " saved candidates in this browser?",
+      "",
+      "This includes candidates hidden by stage or date filters.",
+      "Also removes: " + Object.keys(current.notes).length + " private notes, " +
+        checks + " completed checks, " + Object.keys(current.stages).length +
+        " decision stages and " + Object.keys(current.testDates).length + " test dates.",
+      "Stage and date views return to All. This cannot be undone here.",
+      "Cancel and download a JSON backup first if you want to keep your evaluation.",
+      "Announcement read status and reset-history checkpoints are not changed."
+    ].join("\n"));
+    if (!confirmed) {
+      announce("Clear cancelled. Your saved candidates and evaluation data were kept.");
+      return;
+    }
+    try {
+      // A confirmation must not delete changes made in another tab while it was open.
+      if (keys.some(function (key, index) { return window.localStorage.getItem(key) !== before[index]; })) {
+        render();
+        announce("Saved data changed while the confirmation was open. Nothing was cleared; review the list and try again.");
+        return;
+      }
+      persistRestoredBackup({ shortlist: [], checks: {}, stages: {}, notes: {},
+        testDates: {}, stageView: "all", testDateView: "all" });
+    } catch (error) {
+      if (error.message === "restore-recovery-unverified") {
+        announce("Clear could not finish and recovery could not be verified. Keep this tab open and review or back up your data before continuing.");
+      } else {
+        announce("The shortlist could not be cleared. Previous data was kept or restored; check browser storage and try again.");
+      }
+      return;
+    }
+    render();
+    notifyChange([]);
+    announce("Shortlist and candidate evaluation data cleared. Announcement read status and reset-history checkpoints were kept.");
+  }
+
   function restoreShortlistBackup(file, input) {
     var requestId = ++restoreRequestId;
     if (!file) {
@@ -2619,13 +2672,7 @@
     }
 
     if (clear) {
-      writeList([]);
-      cleanupEvaluationState([]);
-      writeCandidateStageView("all");
-      writeCandidateTestDateView("all");
-      announce("Shortlist cleared.");
-      render();
-      notifyChange([]);
+      clearShortlistWithConfirmation();
     }
   });
 
