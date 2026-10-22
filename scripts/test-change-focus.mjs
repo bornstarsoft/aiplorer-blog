@@ -10,18 +10,41 @@ const remembered = JSON.stringify({ version: 1, saved: true, unread: true, tool:
 function fixture(query = "", blocked = false, view = null) {
   let url = new URL("https://aiplorer.com/ai-tools/review-updates/" + query);
   const events = {}, storage = new Map([[savedKey, JSON.stringify(["/ai-tools/tools/cursor/"])]]);
+  const downloads = [], revoked = [], timers = [];
+  let downloadFails = false;
   if (view !== null) storage.set(viewKey, view);
   function control(values = []) { return { value: "", checked: false, disabled: false, options: values.map(value => ({ value })), events: {}, focus() { this.focused = true; }, addEventListener(name, fn) { this.events[name] = fn; } }; }
-  const saved = control(), unread = control(), tool = control(["", "cursor", "replit"]), topic = control(["", "Access", "Workflow"]), read = control(), reset = control(), status = {}, empty = {}, controls = {};
+  const saved = control(), unread = control(), tool = control(["", "cursor", "replit"]), topic = control(["", "Access", "Workflow"]), read = control(), reset = control(), exportButton = control(), status = {}, empty = {}, controls = {};
   const entries = [
     ["cursor-new:2", "cursor", "Access"], ["cursor-old:1", "cursor", "Workflow"], ["replit-one:1", "replit", "Access"]
   ].map(([id, slug, category]) => ({ dataset: { changeId: id, changeTool: "/ai-tools/tools/" + slug + "/", changeTopic: category }, badge: {}, checkbox: control(), readControl: {}, querySelector(selector) { return selector === "[data-change-entry-read]" ? this.checkbox : selector === "[data-change-entry-read-control]" ? this.readControl : this.badge; } }));
-  const elements = { "[data-change-saved]": saved, "[data-change-unread]": unread, "select[data-change-tool]": tool, "select[data-change-topic]": topic, "[data-change-read]": read, "[data-change-reset]": reset, "[data-change-status]": status, "[data-change-empty]": empty, "[data-change-controls]": controls };
+  entries.forEach(entry => {
+    const id = entry.dataset.changeId.split(":")[0], slug = entry.dataset.changeTool.split("/")[3];
+    entry.brief = {
+      "[data-brief-tool]": { textContent: slug },
+      "[data-brief-title]": { textContent: id + " announcement", getAttribute: () => "#change-" + id },
+      "[data-brief-date]": { textContent: "Announced 2026-10 (exact day not published)" },
+      "[data-brief-checked]": { textContent: "2026-10-15" },
+      "[data-brief-summary]": { textContent: "Public summary for " + id },
+      "[data-brief-action]": { textContent: "Confirm scope before acting" },
+      "[data-brief-source]": { href: "https://official.example/" + id }
+    };
+    const original = entry.querySelector.bind(entry);
+    entry.querySelector = selector => entry.brief[selector] || original(selector);
+  });
+  const elements = { "[data-change-saved]": saved, "[data-change-unread]": unread, "select[data-change-tool]": tool, "select[data-change-topic]": topic, "[data-change-read]": read, "[data-change-reset]": reset, "[data-change-export]": exportButton, "[data-change-status]": status, "[data-change-empty]": empty, "[data-change-controls]": controls };
   const window = { get location() { return url; }, history: { state: { retained: true }, replaceState(state, _, target) { assert.deepEqual(state, { retained: true }); url = new URL(target, url); } }, addEventListener: (event, fn) => { events[event] = fn; } };
-  runInNewContext(source, { document: { querySelector: () => ({ querySelectorAll: () => entries, querySelector: s => elements[s] }) }, window, URL, URLSearchParams,
+  window.URL = { createObjectURL: blob => { downloads.push({ blob }); return "blob:brief"; }, revokeObjectURL: value => revoked.push(value) };
+  window.setTimeout = fn => timers.push(fn);
+  const document = {
+    querySelector: () => ({ dataset: { changeUrl: "https://aiplorer.com/ai-tools/review-updates/" }, querySelectorAll: () => entries, querySelector: s => elements[s] }),
+    body: { appendChild() {} },
+    createElement: () => ({ click() { if (downloadFails) throw Error("blocked"); downloads.at(-1).filename = this.download; }, remove() { downloads.at(-1).removed = true; } })
+  };
+  runInNewContext(source, { document, window, URL, URLSearchParams, Blob,
     localStorage: { getItem: k => { if (blocked) throw Error("blocked"); return storage.get(k); }, setItem: (k, v) => { if (blocked) throw Error("blocked"); storage.set(k, v); }, removeItem: k => { if (blocked) throw Error("blocked"); storage.delete(k); } }
   });
-  return { saved, unread, tool, topic, read, reset, status, empty, entries, storage, events, url: () => url, navigate: value => { url = new URL(value, url); }, visible: () => entries.filter(e => !e.hidden) };
+  return { saved, unread, tool, topic, read, reset, exportButton, downloads, revoked, timers, failDownload: () => { downloadFails = true; }, status, empty, entries, storage, events, url: () => url, navigate: value => { url = new URL(value, url); }, visible: () => entries.filter(e => !e.hidden) };
 }
 
 test("tool deep link shows only that tool and does not mark records read", () => {
@@ -229,4 +252,65 @@ test("history navigation follows the URL instead of resuming the saved preferenc
   assert.equal(f.visible().length, 3);
   assert.doesNotMatch(f.status.textContent, /Last view restored/);
   assert.equal(f.storage.get(viewKey), remembered);
+});
+
+test("brief includes only filtered public records and preserves source dates and links", async () => {
+  const f = fixture("?tool=cursor&topic=Access");
+  f.exportButton.events.click();
+  assert.equal(f.downloads.length, 1);
+  const text = await f.downloads[0].blob.text();
+  assert.match(text, /Included announcements: 1/);
+  assert.match(text, /cursor-new announcement/);
+  assert.doesNotMatch(text, /cursor-old|replit-one/);
+  assert.match(text, /Announced 2026-10 \(exact day not published\)/);
+  assert.match(text, /Source checked: 2026-10-15/);
+  assert.match(text, /https:\/\/official.example\/cursor-new/);
+  assert.match(text, /https:\/\/aiplorer.com\/ai-tools\/review-updates\/#change-cursor-new/);
+  assert.match(text, /Next step \/ owner \/ check date: \[not recorded\]/);
+  assert.match(f.downloads[0].filename, /^aiplorer-announcements-\d{4}-\d{2}-\d{2}\.txt$/);
+  assert.equal(f.downloads[0].blob.type, "text/plain;charset=utf-8");
+});
+test("export never copies private storage or changes read/filter state", async () => {
+  const f = fixture("?changesSaved=1&unread=1");
+  f.storage.set(readKey, JSON.stringify(["cursor-old:1"]));
+  f.storage.set("aiplorer-candidate-notes-v1", "PRIVATE_NOTE_SENTINEL");
+  f.events.storage({key: readKey});
+  const before = Array.from(f.storage.entries());
+  f.exportButton.events.click();
+  const text = await f.downloads[0].blob.text();
+  assert.match(text, /Included announcements: 1/);
+  assert.doesNotMatch(text, /PRIVATE_NOTE_SENTINEL|cursor-old announcement/);
+  assert.deepEqual(Array.from(f.storage.entries()), before);
+  assert.equal(f.entries[0].checkbox.checked, false);
+});
+test("empty filtered view disables export and does not create a file", () => {
+  const f = fixture("?tool=cursor&unread=1");
+  f.read.events.click();
+  assert.equal(f.exportButton.disabled, true);
+  f.exportButton.events.click();
+  assert.equal(f.downloads.length, 0);
+});
+test("all-read visible entries remain exportable without unread-only filtering", () => {
+  const f = fixture("?tool=cursor");
+  f.read.events.click();
+  assert.equal(f.exportButton.disabled, false);
+  f.exportButton.events.click();
+  assert.equal(f.downloads.length, 1);
+});
+test("export works with blocked storage and cleans up temporary download resources", () => {
+  const f = fixture("?tool=replit", true);
+  f.exportButton.events.click();
+  assert.equal(f.downloads[0].removed, true);
+  assert.match(f.status.textContent, /Download requested for 1 updates/);
+  f.timers.forEach(fn => fn());
+  assert.deepEqual(f.revoked, ["blob:brief"]);
+});
+test("download failure is reported honestly and still cleans up", () => {
+  const f = fixture();
+  f.failDownload(); f.exportButton.events.click();
+  assert.match(f.status.textContent, /Could not download/);
+  assert.equal(f.storage.has(readKey), false);
+  assert.equal(f.downloads[0].removed, true);
+  f.timers.forEach(fn => fn());
+  assert.deepEqual(f.revoked, ["blob:brief"]);
 });

@@ -5,7 +5,7 @@
   {{- $tools = $tools | append .tool -}}
   {{- $topics = $topics | append .topic -}}
 {{- end -}}
-<section class="aiplorer-change-watch" id="tool-changes" aria-labelledby="change-watch-heading" data-change-watch>
+<section class="aiplorer-change-watch" id="tool-changes" aria-labelledby="change-watch-heading" data-change-watch data-change-url="{{ .Permalink }}">
   <div class="aiplorer-shell">
     <div class="aiplorer-change-watch__heading">
       <div>
@@ -33,19 +33,20 @@
         </select>
       </label>
       <button type="button" data-change-read>Mark visible updates read</button>
+      <button type="button" data-change-export title="Download visible updates as a text brief">{{ partial "aiplorer-icon.html" "download" }} <span>Download brief</span></button>
       <button type="button" data-change-reset disabled>Clear filters</button>
     </div>
     <p class="aiplorer-change-watch__status" role="status" data-change-status>{{ len $entries }} updates</p>
-    <p class="aiplorer-change-watch__next">Facing a shutdown or a removed feature? <a href="/guides/keep-your-work-portable-when-an-ai-service-changes/">Use the work-preservation checklist &rarr;</a></p>
+    <p class="aiplorer-change-watch__next">Facing a shutdown or a removed feature? <a href="/guides/keep-your-work-portable-when-an-ai-service-changes/">Use the work-preservation checklist &rarr;</a> <a href="/use-cases/turn-ai-tool-updates-into-a-team-check-in/">Plan a short update review &rarr;</a></p>
     <p class="aiplorer-change-watch__empty" data-change-empty hidden>No updates match this view. Clear the filters or <a href="/ai-tools/tools/">save a tool from the directory</a>.</p>
     <div class="aiplorer-change-watch__list">
       {{ range $entries }}
         <article class="aiplorer-change-entry" id="change-{{ .id }}" data-change-entry data-change-id="{{ .id }}:{{ .revision }}" data-change-tool="{{ .tool }}" data-change-topic="{{ .topic }}">
           <div class="aiplorer-change-entry__when">
-            <a href="{{ .tool }}">{{ .toolTitle }}</a>
+            <a href="{{ .tool }}" data-brief-tool>{{ .toolTitle }}</a>
             <span>{{ .topic }}</span>
-            <span>{{ .dateLabel | default "Announced" }} <time datetime="{{ .announcedAt }}">{{ .announcedAt }}</time>{{ if eq .datePrecision "month" }} (exact day not published){{ end }}</span>
-            <span>Checked <time datetime="{{ .checkedAt }}">{{ .checkedAt }}</time></span>
+            <span data-brief-date>{{ .dateLabel | default "Announced" }} <time datetime="{{ .announcedAt }}">{{ .announcedAt }}</time>{{ if eq .datePrecision "month" }} (exact day not published){{ end }}</span>
+            <span>Checked <time datetime="{{ .checkedAt }}" data-brief-checked>{{ .checkedAt }}</time></span>
             <strong data-change-badge hidden>Unread</strong>
             <label class="aiplorer-change-entry__read" data-change-entry-read-control hidden>
               <input type="checkbox" data-change-entry-read aria-label="Read: {{ .title }}">
@@ -53,11 +54,11 @@
             </label>
           </div>
           <div class="aiplorer-change-entry__body">
-            <h3><a href="#change-{{ .id }}">{{ .title }}</a></h3>
-            <p>{{ .summary }}</p>
-            <p class="aiplorer-change-entry__action"><strong>Check before use</strong> {{ .action }}</p>
+            <h3><a href="#change-{{ .id }}" data-brief-title>{{ .title }}</a></h3>
+            <p data-brief-summary>{{ .summary }}</p>
+            <p class="aiplorer-change-entry__action"><strong>Check before use</strong> <span data-brief-action>{{ .action }}</span></p>
             <nav aria-label="{{ .toolTitle }} update sources and next steps">
-              <a href="{{ .sourceUrl }}" rel="noopener" target="_blank">Official announcement <span class="aiplorer-visually-hidden">(opens in a new tab)</span> <span aria-hidden="true">&nearr;</span></a>
+              <a href="{{ .sourceUrl }}" rel="noopener" target="_blank" data-brief-source>Official announcement <span class="aiplorer-visually-hidden">(opens in a new tab)</span> <span aria-hidden="true">&nearr;</span></a>
               {{ with site.GetPage .guide }}{{ if not .Draft }}<a href="{{ .RelPermalink }}">Practical decision guide <span aria-hidden="true">&rarr;</span></a>{{ end }}{{ end }}
               {{ if in (slice "Agent permissions" "Permissions" "Connections" "Cloud connections" "Integration controls" "Sharing and permissions" "Consent migration") .topic }}
               <a href="/guides/review-connected-ai-app-permissions/">Connected-app permission checklist <span aria-hidden="true">&rarr;</span></a>

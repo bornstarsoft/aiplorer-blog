@@ -9,6 +9,7 @@
   var tool = root.querySelector("select[data-change-tool]");
   var reset = root.querySelector("[data-change-reset]");
   var markRead = root.querySelector("[data-change-read]");
+  var exportBrief = root.querySelector("[data-change-export]");
   var storageKey = "aiplorer-change-read-v1";
   var storageAvailable = true;
   var viewKey = "aiplorer-change-view-v1";
@@ -102,6 +103,7 @@
       (storageAvailable ? "" : ". Read status lasts for this visit; browser storage is unavailable.");
     root.querySelector("[data-change-empty]").hidden = visible > 0;
     markRead.disabled = unread === 0;
+    exportBrief.disabled = visible === 0;
     reset.disabled = !(savedOnly.checked || unreadOnly.checked || tool.value || topic.value);
   }
 
@@ -112,6 +114,52 @@
     savedOnly.checked = false; unreadOnly.checked = false;
     tool.value = ""; topic.value = "";
     rememberView(); saveView(); render();
+  });
+  function briefText(visible, exportedAt) {
+    var lines = [
+      "Aiplorer AI tool update brief", "Exported (UTC): " + exportedAt,
+      "Included announcements: " + visible.length, "",
+      "Selected recorded announcements, not a complete or live feed.",
+      "Export time is not a source-check date. Recheck the official notice before acting.",
+      "This file does not certify a tool, record completed tests or mark notices read.",
+      "Review the selected tools and any notes you add before sharing.", ""
+    ];
+    visible.forEach(function (entry, index) {
+      function text(selector) { return entry.querySelector(selector).textContent.trim(); }
+      var title = entry.querySelector("[data-brief-title]");
+      lines.push(
+        (index + 1) + ". " + text("[data-brief-tool]") + ": " + title.textContent.trim(),
+        text("[data-brief-date]"), "Source checked: " + text("[data-brief-checked]"),
+        "Summary: " + text("[data-brief-summary]"),
+        "Check before use: " + text("[data-brief-action]"),
+        "Official source: " + entry.querySelector("[data-brief-source]").href,
+        "Aiplorer record: " + new URL(title.getAttribute("href"), root.dataset.changeUrl).href,
+        "Next step / owner / check date: [not recorded]", ""
+      );
+    });
+    return lines.join("\n");
+  }
+  exportBrief.addEventListener("click", function () {
+    var visible = entries.filter(function (entry) { return !entry.hidden; });
+    if (!visible.length) return;
+    var objectUrl, download;
+    var status = root.querySelector("[data-change-status]");
+    try {
+      var now = new Date().toISOString();
+      var blob = new Blob([briefText(visible, now)], { type: "text/plain;charset=utf-8" });
+      objectUrl = window.URL.createObjectURL(blob);
+      download = document.createElement("a");
+      download.href = objectUrl;
+      download.download = "aiplorer-announcements-" + now.slice(0, 10) + ".txt";
+      document.body.appendChild(download);
+      download.click();
+      status.textContent = "Download requested for " + visible.length + " updates. Review the file before sharing; read status is unchanged.";
+    } catch (error) {
+      status.textContent = "Could not download this brief. Open the official links or try another browser.";
+    } finally {
+      if (download) download.remove();
+      if (objectUrl) window.setTimeout(function () { window.URL.revokeObjectURL(objectUrl); }, 1000);
+    }
   });
   function updateReadState(change) {
     // Re-read before changing one record; preserve keys from newer cached pages.
