@@ -22,6 +22,10 @@ You can use the same method for code, slides, research or audio.
 
 ## Keep A Small Reference Task
 
+For a ready-made starting point, use the
+[three-case summary reference pack](/use-cases/retest-ai-summaries-with-a-reference-pack/)
+with separate test inputs, an answer key and a reusable comparison worksheet.
+
 Use approved, non-sensitive material. Save the exact input, expected facts and
 previous output before retesting. Keep the account settings and instructions
 the same where possible; record anything you cannot hold constant.

@@ -110,3 +110,5 @@ not a general accuracy claim or permission to process sensitive documents.
 
 Continue with the [retest workflow](/use-cases/retest-a-saved-ai-tool-after-an-update/)
 or the [two-candidate comparison](/use-cases/compare-two-ai-tools-when-results-disagree/).
+To check explicitly corrected facts against unresolved disagreement, try the
+[downloadable summary reference pack](/use-cases/retest-ai-summaries-with-a-reference-pack/).

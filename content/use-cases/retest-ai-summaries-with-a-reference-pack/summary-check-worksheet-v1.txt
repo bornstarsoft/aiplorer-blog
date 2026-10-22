@@ -1,0 +1,47 @@
+Aiplorer Summary Reference Pack | Version 1 | Comparison worksheet
+Blank local worksheet. No Aiplorer shortlist data or private notes are included.
+Keep completed files in an approved location; do not enter sensitive source data.
+
+QUESTION FOR THIS COMPARISON
+[What specific change or unresolved question makes another run useful?]
+
+RUN A
+Date and timezone:
+Tool / account type / visible model or settings (use "not shown" when unknown):
+Input pack version and any deviations:
+Exact instruction and input file location:
+Original output file location:
+
+S-01 outcome (meets these checks / needs correction / could not test):
+Source IDs and observed issue or evidence:
+S-02 outcome:
+Source IDs and observed issue or evidence:
+S-03 outcome:
+Source IDs and observed issue or evidence:
+Repair instructions and separate repaired output location, if any:
+
+RUN B
+Date and timezone:
+Tool / account type / visible model or settings (use "not shown" when unknown):
+What changed since A? What could not be held constant?
+Input pack version and any deviations:
+Exact instruction and input file location:
+Original output file location:
+
+S-01 outcome (meets these checks / needs correction / could not test):
+Source IDs and observed issue or evidence:
+S-02 outcome:
+Source IDs and observed issue or evidence:
+S-03 outcome:
+Source IDs and observed issue or evidence:
+Repair instructions and separate repaired output location, if any:
+
+DECISION AND NEXT VISIT
+Which specific claim handling improved, regressed or stayed unresolved?
+What can this small comparison NOT establish?
+Decision for this workflow (not a general recommendation):
+Next question or relevant change to watch for:
+Non-sensitive one-line reminder for My Shortlist:
+
+Do not infer causation if multiple conditions changed. Do not total these
+outcomes into a ranking. A completed check is not necessarily a passing result.

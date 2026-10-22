@@ -1,0 +1,28 @@
+Aiplorer Summary Reference Pack | Version 1 | Test input
+All source sets below are invented. No real customer or project data.
+
+Run one case at a time in a fresh conversation. Paste the instruction and
+that case's source only. Do not include the answer key or previous outputs.
+
+SHARED INSTRUCTION
+Summarize the supplied source in at most three sentences. Use only the source.
+Preserve uncertainty, missing assignments, explicit corrections and unresolved
+disagreement. Do not invent commitments, dates, owners, totals or resolutions.
+Keep source IDs with the claims they support. Do not add external information.
+
+CASE S-01: TENTATIVE PLANS
+[S-01a] Morgan may review the draft on Thursday; the review date is unconfirmed.
+[S-01b] Casey owns the checklist. No owner is assigned to final approval.
+[S-01c] Customer access has not been approved. No launch date is agreed.
+
+CASE S-02: EXPLICIT CORRECTION
+[S-02a] Morning note: 12 participants completed the practice session.
+[S-02b] Afternoon correction: replace the morning count of 12 with 9 completed
+participants. Three duplicate entries were removed; 9 is the corrected count.
+[S-02c] The session used an internal prototype. No customer rollout is approved.
+
+CASE S-03: UNRESOLVED ESTIMATES
+[S-03a] Team Cedar estimates the migration will take two days.
+[S-03b] Team Pine estimates the same migration will take five days.
+[S-03c] Both estimates remain proposals. Neither has been selected or marked
+as replacing the other. No migration start date has been agreed.

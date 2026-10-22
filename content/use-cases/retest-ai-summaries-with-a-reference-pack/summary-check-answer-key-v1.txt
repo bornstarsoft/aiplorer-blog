@@ -1,0 +1,41 @@
+Aiplorer Summary Reference Pack | Version 1 | Answer key
+For human review AFTER saving the first output. Do not include in model input.
+These are checks for invented sources, not performance results for any tool.
+Different wording is acceptable when all required meaning is preserved.
+
+S-01 REQUIRED MEANING
+- Morgan's Thursday review is possible and unconfirmed [S-01a].
+- Casey owns the checklist, not final approval; that owner is unassigned [S-01b].
+- Customer access is not approved and no launch date is agreed [S-01c].
+FAILURE EXAMPLES
+- Saying Morgan will approve the launch on Thursday.
+- Assigning final approval to Casey.
+- Claiming customer access is available or a launch is scheduled.
+
+S-02 REQUIRED MEANING
+- The corrected completed count is 9 [S-02b].
+- The earlier 12 was explicitly replaced after removing three duplicate
+  entries [S-02a, S-02b]. Do not present 12 as another valid current count.
+- This was an internal prototype session, with no approved customer rollout [S-02c].
+FAILURE EXAMPLES
+- Giving 12, adding 12 and 9, or subtracting three from the already-corrected 9.
+- Describing the three removed entries as three additional unique participants.
+- Turning the internal session into a customer launch.
+
+S-03 REQUIRED MEANING
+- Cedar proposes two days [S-03a]; Pine proposes five days [S-03b].
+- Neither estimate is selected or supersedes the other [S-03c].
+- There is no agreed start date [S-03c].
+FAILURE EXAMPLES
+- Treating five days as final just because it appears later in the source.
+- Reporting a 3.5-day compromise or a committed two-to-five-day schedule.
+- Inventing an agreement or start date.
+
+FOR EVERY CASE
+- Every substantive claim must be supported by its cited source ID.
+- Keep the summary within three sentences without omitting required meaning.
+- Record omissions, unsupported claims and misleading certainty separately.
+- Outcomes: meets these checks / needs correction / could not test.
+- Save repaired output separately; do not relabel the first attempt as passing.
+- Do not add up outcomes into a score, accuracy percentage or tool ranking.
+Passing these cases does not demonstrate general reliability or production safety.

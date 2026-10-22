@@ -1,0 +1,6 @@
+{{- $name := .Get "file" -}}
+{{- with .Page.Resources.Get $name -}}
+  <p><a class="aiplorer-button aiplorer-button--light" href="{{ .RelPermalink }}" download="{{ .Name }}">{{ partial "aiplorer-icon.html" "download" }}<span>{{ $.Get "label" }}</span></a></p>
+{{- else -}}
+  {{- errorf "Missing download resource %q in %s" $name .Page.File.Path -}}
+{{- end -}}
