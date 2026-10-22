@@ -62,6 +62,21 @@
     window.dispatchEvent(new CustomEvent("aiplorer:trial-checks-change"));
   }
 
+  function resetSnapshot(path) {
+    var saved = JSON.parse(window.localStorage.getItem("aiplorer-shortlist-v1") || "[]");
+    var state = JSON.parse(window.localStorage.getItem(storageKey) || "{}");
+    if (!Array.isArray(saved) || !state || typeof state !== "object" || Array.isArray(state)) {
+      throw new Error("invalid-checklist-storage");
+    }
+    return saved.indexOf(path) !== -1 ? state : null;
+  }
+
+  function resetStatus(checklist, message) {
+    var status = checklist.querySelector("[data-trial-status]");
+    if (status) status.textContent = message;
+    announce(checklist.getAttribute("data-trial-title") + ": " + message);
+  }
+
   function renderChecklist(checklist, state) {
     var path = checklist.getAttribute("data-trial-checklist");
     var checked = new Set(cleanChecks(state[path]));
@@ -104,6 +119,8 @@
       return;
     }
 
+    var status = checklist.querySelector("[data-trial-status]");
+    if (status) status.textContent = "";
     var state = readState();
     var checked = Array.from(checklist.querySelectorAll("[data-trial-check]:checked")).map(
       function (item) {
@@ -142,19 +159,54 @@
       return;
     }
 
-    var state = readState();
-    delete state[path];
-    writeState(state);
-    renderChecklist(checklist, state);
-    notifyChange();
-    announce(checklist.getAttribute("data-trial-title") + ": candidate checks reset.");
+    try {
+      var state = resetSnapshot(path);
+      if (!state || cleanChecks(state[path]).length === 0) {
+        render();
+        resetStatus(checklist, "No saved checks to reset.");
+        return;
+      }
+      if (!window.confirm(
+        "Reset candidate checks for " + checklist.getAttribute("data-trial-title") +
+        "?\n\nOnly this tool's checked boxes will be cleared. Your note, last test date, " +
+        "decision stage and other saved tools will stay unchanged. This does not create a history backup."
+      )) {
+        resetStatus(checklist, "Reset cancelled. Checks kept.");
+        return;
+      }
+
+      // Another tab may have changed saved candidates while confirmation was open.
+      state = resetSnapshot(path);
+      if (!state || cleanChecks(state[path]).length === 0) {
+        render();
+        resetStatus(checklist, "No saved checks to reset.");
+        return;
+      }
+      delete state[path];
+      var serialized = JSON.stringify(state);
+      window.localStorage.setItem(storageKey, serialized);
+      if (window.localStorage.getItem(storageKey) !== serialized) {
+        throw new Error("reset-write-unverified");
+      }
+      memoryState = cleanState(state);
+      render();
+      notifyChange();
+      resetStatus(checklist, "Checks reset. Your note, test date and decision stage were kept.");
+      var firstCheck = checklist.querySelector("[data-trial-check]");
+      if (firstCheck) firstCheck.focus();
+    } catch (error) {
+      render();
+      resetStatus(checklist, "Could not verify the reset in browser storage. Check the displayed boxes before leaving; do not assume the reset was saved.");
+    }
   });
 
   window.addEventListener("storage", function (event) {
-    if (event.key === storageKey) {
+    if (event.key === null || event.key === storageKey) {
       render();
     }
   });
+
+  window.addEventListener("pageshow", render);
 
   window.addEventListener("aiplorer:shortlist-change", function (event) {
     var saved = new Set((event.detail && event.detail.paths) || []);

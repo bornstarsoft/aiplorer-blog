@@ -21,6 +21,7 @@
             </a>
           </div>
           <p class="aiplorer-shortlist-followup">A tool changed? <a href="/use-cases/retest-a-saved-ai-tool-after-an-update/">Run a small before-and-after check &rarr;</a></p>
+          <p class="aiplorer-shortlist-followup"><a href="/guides/restart-an-ai-tool-evaluation-without-losing-context/">Keep your previous result before starting another check &rarr;</a></p>
           <p class="aiplorer-shortlist-coverage">Selected announcements checked {{ site.Data.ai_tool_changes.checkedAt }}. Coverage is partial, not a live feed.</p>
         </div>
       </div>
@@ -225,7 +226,7 @@
                       <span>Candidate checks</span>
                       <strong><span data-trial-complete>0 of 4</span> checked</strong>
                     </div>
-                    <button type="button" data-trial-reset disabled>Reset</button>
+                    <button type="button" data-trial-reset disabled>Reset checks</button>
                   </div>
                   <div
                     class="aiplorer-shortlist-card__trial-lens"
@@ -273,6 +274,7 @@
                       <span>Confirmed current plans and limits</span>
                     </label>
                   </div>
+                  <small data-trial-status role="status" aria-live="polite"></small>
                 </div>
                 <div
                   class="aiplorer-shortlist-card__test-date"
