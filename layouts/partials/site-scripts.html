@@ -1,3 +1,6 @@
+{{ if and .IsSection (in (slice "guides" "use-cases") .Section) }}
+  <link rel="stylesheet" href="/css/aiplorer-article-index.css?v=20261023a">
+{{ end }}
 {{ if or .IsHome (eq .Section "ai-tools") }}
 <script defer src="/js/aiplorer-shortlist.js?v=20261023l"></script>
   <script defer src="/js/aiplorer-recent-tools.js?v=20260726c"></script>

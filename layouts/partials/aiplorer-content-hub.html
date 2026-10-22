@@ -7,6 +7,11 @@
     </div>
     <a href="/ai-tools/tools/">Browse tools <span aria-hidden="true">&rarr;</span></a>
   </header>
+  <nav class="aiplorer-shell aiplorer-article-jumps" aria-label="{{ .Title }} sections">
+    <a href="#all-reviewed-articles">All {{ .Title | lower }} <span>{{ len $reviewedPages }}</span>{{ partial "aiplorer-icon.html" "chevron-down" }}</a>
+    {{ if where $reviewedPages "Params.workedExample" true }}<a href="#hub-examples-heading">Worked examples</a>{{ end }}
+    <a href="#content-hub-start">Selected reading</a>
+  </nav>
   {{ with where $reviewedPages "Params.workedExample" true }}
   <section class="aiplorer-shell" aria-labelledby="hub-examples-heading">
     <h2 id="hub-examples-heading">Worked examples</h2>
@@ -17,5 +22,17 @@
   {{ end }}
   <section class="aiplorer-content-hub__content" id="content-hub-start" aria-label="{{ .Title }}">
     <div class="aiplorer-shell"><div class="aiplorer-content-hub__body">{{ .Content }}</div></div>
+  </section>
+  <section class="aiplorer-shell aiplorer-article-index" aria-labelledby="all-reviewed-articles">
+    <h2 id="all-reviewed-articles" tabindex="-1">All {{ .Title | lower }} <span>{{ len $reviewedPages }}</span></h2>
+    <ul>
+      {{ range $reviewedPages.ByTitle }}
+      <li data-article-index-entry>
+        <a href="{{ .RelPermalink }}" data-article-index-link>{{ .Title }}</a>
+        <p>{{ .Description }}</p>
+        <small>About {{ .ReadingTime }} min read{{ with .Resources.Match "*.txt" }} &middot; {{ len . }} text downloads{{ end }}</small>
+      </li>
+      {{ end }}
+    </ul>
   </section>
 </article>
