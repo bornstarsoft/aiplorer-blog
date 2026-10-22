@@ -1,0 +1,26 @@
+Aiplorer Rewrite Reference Pack | Version 1
+Fictional practice messages. No real customer data.
+
+Use the shared instruction plus ONE case in a fresh conversation per run.
+Do not send the answer key or earlier output with the input.
+
+SHARED INSTRUCTION
+Rewrite the message in a clear, courteous professional tone. Preserve all
+facts, conditions, uncertainty, restrictions and requested actions. Do not
+add promises, approvals, reasons or permissions. Do not drop substantive
+details to shorten the message. Return only the rewritten message.
+
+CASE W-01: Delivery target
+We aim to send the draft on 12 November 2026, if the sample files arrive
+by 10 November 2026. This is not a confirmed delivery date. Please keep
+the current review booking until we confirm a replacement.
+
+CASE W-02: Quote awaiting approval
+The quote is USD 480 for one draft and one revision. Translation is not
+included. We have not approved the quote. Please do not begin work until
+we send written approval.
+
+CASE W-03: Internal preview
+You may use preview-A.png for our internal review only. It is not cleared
+for a public post or a customer presentation. Please request a cleared
+replacement before sharing outside the review group.

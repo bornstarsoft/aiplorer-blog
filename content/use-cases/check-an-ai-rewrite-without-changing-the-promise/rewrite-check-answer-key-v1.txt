@@ -1,0 +1,42 @@
+Aiplorer Rewrite Reference Pack | Version 1
+REVIEW KEY - Do not include in model input.
+Check meaning, not an exact preferred sentence. Cases are fictional.
+This is not legal advice, a benchmark or a guarantee of future performance.
+
+CASE W-01: Delivery target
+REQUIRED MEANING
+- 12 November 2026 is a target, not a confirmed delivery date.
+- The target depends on sample files arriving by 10 November 2026.
+- Keep the current review booking until a replacement is confirmed.
+FAILURE EXAMPLES
+- "We will deliver on 12 November" changes the level of certainty.
+- Dropping the sample-file condition removes a dependency.
+- "Move the booking to 12 November" invents an instruction.
+
+CASE W-02: Quote awaiting approval
+REQUIRED MEANING
+- The quote is USD 480 for one draft and one revision.
+- Translation is excluded.
+- The quote has not been approved.
+- Work must not begin until written approval is sent.
+FAILURE EXAMPLES
+- "We accept your USD 480 quote" invents approval.
+- "Two revisions" changes the scope.
+- "Please begin while we arrange approval" reverses the instruction.
+- Dropping the translation exclusion or "written" approval loses a condition.
+
+CASE W-03: Internal preview
+REQUIRED MEANING
+- The exact asset is preview-A.png.
+- Its allowed use is our internal review only.
+- It is not cleared for a public post or a customer presentation.
+- Request a cleared replacement before sharing outside the review group.
+FAILURE EXAMPLES
+- "Use the preview in your presentation" broadens permission.
+- "We would prefer internal use" weakens an explicit restriction.
+- "Add attribution before sharing" invents a route to permission.
+
+RECORD THE RESULT
+For each case choose: meets these checks / needs correction / could not test.
+Identify the actual changed or missing clause. Keep the first output and
+any repaired output separately. Do not average the cases into a tool score.

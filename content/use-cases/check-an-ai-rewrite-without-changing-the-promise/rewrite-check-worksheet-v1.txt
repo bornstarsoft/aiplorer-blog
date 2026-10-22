@@ -1,0 +1,39 @@
+Aiplorer Rewrite Reference Pack | Version 1
+Blank local comparison worksheet. No saved account or browser data.
+Store full outputs only in an approved location. Do not include secrets.
+
+RUN A
+Date:
+Tool:
+Visible settings (use "not shown" if unavailable):
+Exact instruction and input version:
+Location of first output:
+W-01 result and evidence:
+W-02 result and evidence:
+W-03 result and evidence:
+Repair prompts and repaired outputs (separate from the first attempt):
+
+RUN B
+Date and reason for rerun:
+Tool:
+Visible settings (use "not shown" if unavailable):
+Exact instruction and input version:
+Location of first output:
+W-01 result and evidence:
+W-02 result and evidence:
+W-03 result and evidence:
+Repair prompts and repaired outputs (separate from the first attempt):
+
+COMPARE
+For each case: meets these checks / needs correction / could not test.
+Changed facts or scope:
+Changed conditions or certainty:
+Changed permissions or next action:
+Other input/settings differences that limit comparison:
+Do not infer why outputs differ from these two runs alone.
+
+DECISION AND NEXT VISIT
+Specific task this evidence covers:
+Human review still required:
+Next small check and reason to return:
+Do not turn these cases into a ranking or claim general reliability.
