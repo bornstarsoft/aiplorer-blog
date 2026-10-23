@@ -13,6 +13,23 @@ assert.equal((html.match(/id=["']?practice-downloads\b/g) || []).length, 1);
 assert(html.includes("#practice-downloads"));
 assert(html.includes("Keep review keys out of the AI conversation"));
 assert.equal((html.match(/data-practice-pack\b/g) || []).length, 4);
+const tasks = [
+  ["retest-ai-summaries-with-a-reference-pack", "Summarize notes"],
+  ["check-an-ai-rewrite-without-changing-the-promise", "Rewrite a message"],
+  ["test-ai-data-extraction-with-missing-values", "Extract a table"],
+  ["fix-a-zero-value-default-with-ai", "Test a code fix"],
+];
+const jumps = [...html.matchAll(/<a\b[^>]*\bdata-practice-task\b[^>]*>[\s\S]*?<\/a>/g)].map(([link]) => link);
+assert.equal(jumps.length, 4);
+const headings = [...html.matchAll(/<h3\b[^>]*>[\s\S]*?<\/h3>/g)].map(([tag]) => tag);
+for (const [slug, label] of tasks) {
+  const id = "practice-" + slug;
+  assert.equal(jumps.filter(link => attr(link, "href") === "#" + id && link.includes(label)).length, 1);
+  const targets = headings.filter(tag => attr(tag, "id") === id);
+  assert.equal(targets.length, 1, "One stable target per task");
+  assert.equal(attr(targets[0], "tabindex"), "-1", "Keyboard anchor must focus the heading");
+  assert(targets[0].includes("/use-cases/" + slug + "/"));
+}
 const tags = [...html.matchAll(/<a\b[^>]*\bdata-practice-download\b[^>]*>/g)].map(([tag]) => tag);
 const hrefs = tags.map(tag => attr(tag, "href"));
 assert.equal(tags.length, 12);

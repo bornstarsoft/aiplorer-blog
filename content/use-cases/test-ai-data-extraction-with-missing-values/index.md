@@ -7,6 +7,7 @@ audience: "People turning messages or project notes into structured work records
 lastReviewed: "2026-10-23"
 reviewStatus: "reviewed"
 draft: false
+practiceTask: "Extract a table"
 practiceDownloads:
   - file: "extraction-check-inputs-v1.txt"
     label: "Extraction test input (TXT)"

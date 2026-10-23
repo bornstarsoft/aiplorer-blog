@@ -7,6 +7,7 @@ audience: "People comparing summaries or revisiting a saved AI tool after a rele
 lastReviewed: "2026-10-23"
 reviewStatus: "reviewed"
 draft: false
+practiceTask: "Summarize notes"
 practiceDownloads:
   - file: "summary-check-inputs-v1.txt"
     label: "Summary test input (TXT)"

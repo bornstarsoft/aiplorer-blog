@@ -1,11 +1,16 @@
-<section class="aiplorer-shell aiplorer-article-index" aria-labelledby="practice-downloads">
+<section class="aiplorer-shell aiplorer-article-index aiplorer-practice-packs" aria-labelledby="practice-downloads">
   <h2 id="practice-downloads" tabindex="-1">Practice packs <span>{{ len . }}</span></h2>
   <p>Fictional inputs for repeat checks. Keep review keys out of the AI conversation; keep completed worksheets in your own approved location.</p>
+  <nav class="aiplorer-article-jumps" aria-label="Practice pack tasks">
+    {{ range . }}
+      <a href="#practice-{{ path.Base .RelPermalink }}" data-practice-task>{{ .Params.practiceTask | default .Title }}{{ partial "aiplorer-icon.html" "chevron-down" }}</a>
+    {{ end }}
+  </nav>
   <ul>
     {{ range . }}
       {{ $page := . }}
       <li data-practice-pack>
-        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        <h3 id="practice-{{ path.Base .RelPermalink }}" tabindex="-1"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
         <p>{{ .Description }}</p>
         {{ range .Params.practiceDownloads }}
           {{ $label := .label }}

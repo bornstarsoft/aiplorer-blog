@@ -36,7 +36,7 @@ for (const section of ["guides", "use-cases"]) {
   assert.equal(entries.length, new Set(entries).size);
   assert.equal((html.match(/id=["']?all-reviewed-articles\b/g) || []).length, 1);
   assert(html.includes("#all-reviewed-articles"), "Missing stable jump link");
-  assert(html.includes("/css/aiplorer-article-index.css?v=20261023a"));
+  assert(html.includes("/css/aiplorer-article-index.css?v=20261023b"));
   for (const route of entries) assert(existsSync(new URL(`public${route}index.html`, root)), route);
   console.log(`PASS: ${section} indexes all ${entries.length} published reviewed articles without duplicates.`);
 }
