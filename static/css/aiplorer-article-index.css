@@ -117,11 +117,39 @@
 }
 
 .aiplorer-practice-preview summary:focus-visible,
+.aiplorer-practice-copy button:focus-visible,
 .aiplorer-practice-preview pre:focus-visible,
 .aiplorer-article-index a:focus-visible,
 .aiplorer-article-jumps a:focus-visible {
   outline: 2px solid var(--aiplorer-teal, #087c73);
   outline-offset: 4px;
+}
+
+.aiplorer-practice-copy:not([hidden]) {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.aiplorer-practice-copy button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  flex-shrink: 0;
+}
+
+.aiplorer-practice-copy button:disabled {
+  cursor: progress;
+}
+
+.aiplorer-practice-copy [role="status"] {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--aiplorer-text, #16212b);
 }
 
 @media (max-width: 48rem) {

@@ -47,7 +47,14 @@ for (const preview of previews) {
   assert(pre && attr(pre, "tabindex") === "0" && attr(pre, "role") === "region");
   assert(attr(pre, "aria-label").startsWith("Test input for "));
   assert(!/<(?:script|iframe)\b/i.test(preview));
+  assert(/<div\b[^>]*data-practice-copy-controls\b[^>]*\bhidden(?:[\s=>])/.test(preview));
+  const button = preview.match(/<button\b[^>]*data-practice-copy\b[^>]*>/)?.[0];
+  assert(button && attr(button, "type") === "button");
+  assert(attr(button, "aria-label").startsWith("Copy test input for "));
+  const status = preview.match(/<span\b[^>]*data-practice-copy-status\b[^>]*>/)?.[0];
+  assert(status && attr(status, "role") === "status" && attr(status, "aria-live") === "polite");
 }
+assert(html.includes("/js/aiplorer-practice-copy.js?v=20261024a"));
 assert.equal(tags.length, 15);
 assert.equal(new Set(hrefs).size, 15);
 const packs = [
@@ -71,6 +78,9 @@ for (const file of ["reminder-days-v1.mjs", "reminder-days-v1.test.mjs", "code-c
   assert.equal(read(`public${codeRoute}${file}`), read(`content${codeRoute}${file}`));
   assert(!read("public/sitemap.xml").includes(codeRoute + file));
 }
-for (const file of ["public/index.html", "public/guides/index.html", "public/ai-tools/tools/index.html"])
+for (const file of ["public/index.html", "public/guides/index.html", "public/ai-tools/tools/index.html"]) {
   assert(!read(file).includes("data-practice-download"), `Unexpected download shelf: ${file}`);
-console.log("PASS: five input-only collapsed previews, fifteen exact native downloads, no home/guides/tool-index shelf.");
+  assert(!read(file).includes("aiplorer-practice-copy.js"), `Unexpected clipboard script: ${file}`);
+}
+assert(!read("public/use-cases/fix-a-zero-value-default-with-ai/index.html").includes("aiplorer-practice-copy.js"));
+console.log("PASS: five input-only previews with progressive copy controls, fifteen exact native downloads, script scoped to use-cases hub.");

@@ -20,6 +20,10 @@
           {{ with $page.Resources.Get $file }}
             <details class="aiplorer-practice-preview" data-practice-preview="{{ .RelPermalink }}">
               <summary>Preview test input<span class="aiplorer-visually-hidden"> for {{ $page.Title }}</span></summary>
+              <div class="aiplorer-practice-copy" data-practice-copy-controls hidden>
+                <button type="button" class="aiplorer-button aiplorer-button--light" data-practice-copy aria-label="Copy test input for {{ $page.Title }}">{{ partial "aiplorer-icon.html" "copy" }}Copy input</button>
+                <span role="status" aria-live="polite" data-practice-copy-status></span>
+              </div>
               <pre tabindex="0" role="region" aria-label="Test input for {{ $page.Title }}"><code>{{ .Content }}</code></pre>
             </details>
           {{ else }}
