@@ -1,4 +1,8 @@
 {{- $reviewedPages := where (where .RegularPages "Params.reviewStatus" "reviewed") "Draft" false -}}
+{{- $downloadPages := slice -}}
+{{- range $reviewedPages.ByTitle -}}
+  {{- if .Params.practiceDownloads -}}{{- $downloadPages = $downloadPages | append . -}}{{- end -}}
+{{- end -}}
 <article class="aiplorer-content-hub aiplorer-content-hub--compact">
   <header class="aiplorer-shell aiplorer-explorer__title">
     <div>
@@ -9,9 +13,11 @@
   </header>
   <nav class="aiplorer-shell aiplorer-article-jumps" aria-label="{{ .Title }} sections">
     <a href="#all-reviewed-articles">All {{ .Title | lower }} <span>{{ len $reviewedPages }}</span>{{ partial "aiplorer-icon.html" "chevron-down" }}</a>
+    {{ if $downloadPages }}<a href="#practice-downloads">Practice packs <span>{{ len $downloadPages }}</span>{{ partial "aiplorer-icon.html" "download" }}</a>{{ end }}
     {{ if where $reviewedPages "Params.workedExample" true }}<a href="#hub-examples-heading">Worked examples</a>{{ end }}
     <a href="#content-hub-start">Selected reading</a>
   </nav>
+  {{ with $downloadPages }}{{ partial "aiplorer-practice-downloads.html" . }}{{ end }}
   {{ with where $reviewedPages "Params.workedExample" true }}
   <section class="aiplorer-shell" aria-labelledby="hub-examples-heading">
     <h2 id="hub-examples-heading">Worked examples</h2>

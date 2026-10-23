@@ -7,6 +7,13 @@ audience: "People using AI to make work messages clearer while preserving what w
 lastReviewed: "2026-10-23"
 reviewStatus: "reviewed"
 draft: false
+practiceDownloads:
+  - file: "rewrite-check-inputs-v1.txt"
+    label: "Rewrite test input (TXT)"
+  - file: "rewrite-check-answer-key-v1.txt"
+    label: "Rewrite review key (TXT)"
+  - file: "rewrite-check-worksheet-v1.txt"
+    label: "Rewrite comparison worksheet (TXT)"
 ---
 
 ## Better Tone, Same Commitment

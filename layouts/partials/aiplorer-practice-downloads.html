@@ -1,0 +1,21 @@
+<section class="aiplorer-shell aiplorer-article-index" aria-labelledby="practice-downloads">
+  <h2 id="practice-downloads" tabindex="-1">Practice packs <span>{{ len . }}</span></h2>
+  <p>Fictional inputs for repeat checks. Keep review keys out of the AI conversation; keep completed worksheets in your own approved location.</p>
+  <ul>
+    {{ range . }}
+      {{ $page := . }}
+      <li data-practice-pack>
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        <p>{{ .Description }}</p>
+        {{ range .Params.practiceDownloads }}
+          {{ $label := .label }}
+          {{ with $page.Resources.Get .file }}
+            <p><a href="{{ .RelPermalink }}" download="{{ .Name }}" data-practice-download>{{ $label }}</a></p>
+          {{ else }}
+            {{ errorf "Missing practice download %q in %s" .file $page.File.Path }}
+          {{ end }}
+        {{ end }}
+      </li>
+    {{ end }}
+  </ul>
+</section>

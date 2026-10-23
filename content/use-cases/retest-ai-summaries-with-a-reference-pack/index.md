@@ -7,6 +7,13 @@ audience: "People comparing summaries or revisiting a saved AI tool after a rele
 lastReviewed: "2026-10-23"
 reviewStatus: "reviewed"
 draft: false
+practiceDownloads:
+  - file: "summary-check-inputs-v1.txt"
+    label: "Summary test input (TXT)"
+  - file: "summary-check-answer-key-v1.txt"
+    label: "Summary review key (TXT)"
+  - file: "summary-check-worksheet-v1.txt"
+    label: "Summary comparison worksheet (TXT)"
 ---
 
 ## Keep The Same Small Test
