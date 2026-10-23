@@ -34,8 +34,9 @@ provides a buggy function and local regression tests.
 | Rewrite an email or client message | [Meaning-preserving rewrite pack](/use-cases/check-an-ai-rewrite-without-changing-the-promise/) | Dates, prices, permissions and scope that must not change |
 | Turn messages into a table | [Missing-value extraction pack](/use-cases/test-ai-data-extraction-with-missing-values/) | Missing fields, assigned owners and proposed versus confirmed dates |
 | Review a small code fix | [Zero-value regression pack](/use-cases/fix-a-zero-value-default-with-ai/) | Preserve zero, default missing values and inspect the diff without changing the tests |
+| Check a cited claim | [Citation support pack](/use-cases/check-whether-a-citation-supports-a-claim/) | Match the passage to the claim; distinguish unsupported scope from a missing source |
 
-The [practice downloads](/use-cases/#practice-downloads) collect all four
+The [practice downloads](/use-cases/#practice-downloads) collect all five
 packs in one place. These checks do not cover every workflow. If your
 question is about access, permissions or a plan change, check the relevant
 official documentation and account instead of using an output exercise as

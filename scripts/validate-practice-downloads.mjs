@@ -12,15 +12,16 @@ const attr = (tag, name) => {
 assert.equal((html.match(/id=["']?practice-downloads\b/g) || []).length, 1);
 assert(html.includes("#practice-downloads"));
 assert(html.includes("Keep review keys out of the AI conversation"));
-assert.equal((html.match(/data-practice-pack\b/g) || []).length, 4);
+assert.equal((html.match(/data-practice-pack\b/g) || []).length, 5);
 const tasks = [
   ["retest-ai-summaries-with-a-reference-pack", "Summarize notes"],
   ["check-an-ai-rewrite-without-changing-the-promise", "Rewrite a message"],
   ["test-ai-data-extraction-with-missing-values", "Extract a table"],
   ["fix-a-zero-value-default-with-ai", "Test a code fix"],
+  ["check-whether-a-citation-supports-a-claim", "Check a citation"],
 ];
 const jumps = [...html.matchAll(/<a\b[^>]*\bdata-practice-task\b[^>]*>[\s\S]*?<\/a>/g)].map(([link]) => link);
-assert.equal(jumps.length, 4);
+assert.equal(jumps.length, 5);
 const headings = [...html.matchAll(/<h3\b[^>]*>[\s\S]*?<\/h3>/g)].map(([tag]) => tag);
 for (const [slug, label] of tasks) {
   const id = "practice-" + slug;
@@ -32,12 +33,13 @@ for (const [slug, label] of tasks) {
 }
 const tags = [...html.matchAll(/<a\b[^>]*\bdata-practice-download\b[^>]*>/g)].map(([tag]) => tag);
 const hrefs = tags.map(tag => attr(tag, "href"));
-assert.equal(tags.length, 12);
-assert.equal(new Set(hrefs).size, 12);
+assert.equal(tags.length, 15);
+assert.equal(new Set(hrefs).size, 15);
 const packs = [
   ["retest-ai-summaries-with-a-reference-pack", "summary"],
   ["check-an-ai-rewrite-without-changing-the-promise", "rewrite"],
   ["test-ai-data-extraction-with-missing-values", "extraction"],
+  ["check-whether-a-citation-supports-a-claim", "citation"],
 ];
 for (const [slug, prefix] of packs) {
   const route = `/use-cases/${slug}/`;
@@ -56,4 +58,4 @@ for (const file of ["reminder-days-v1.mjs", "reminder-days-v1.test.mjs", "code-c
 }
 for (const file of ["public/index.html", "public/guides/index.html", "public/ai-tools/tools/index.html"])
   assert(!read(file).includes("data-practice-download"), `Unexpected download shelf: ${file}`);
-console.log("PASS: four reviewed packs, twelve unique native downloads with original bytes, no home/guides/tool-index shelf.");
+console.log("PASS: five reviewed packs, fifteen unique native downloads with original bytes, no home/guides/tool-index shelf.");

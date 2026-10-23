@@ -1,0 +1,38 @@
+Aiplorer Citation Support Pack | Version 1 | Review key
+Do not include in model input. Fictional editorial expectations, not vendor results.
+Accept equivalent wording only when evidence and limitations are preserved.
+
+EXPECTED OUTCOMES
+C-01 | SOURCE-A | supported
+C-02 | SOURCE-B | not supported
+C-03 | SOURCE-C | source missing
+
+CASE CHECKS
+C-01: Quote "Eight volunteers from the documentation team participated in the pilot."
+The count and participation claim are supported. Do not infer representative
+sampling or extend the result to other teams.
+
+C-02: The source says "Two participants said the workflow felt faster."
+It also says "Completion times were not measured, and no comparison group was used."
+Neither the 40% number nor the every-team scope is supported. Narrow the claim
+to those two participants' reported impressions and the absence of measurement.
+Do not call the unmeasured number disproved or substitute another percentage.
+
+C-03: SOURCE-C has no excerpt in the input. There is no supplied supporting
+passage to quote. Obtain and inspect the source before relying on the audit
+claim. Missing evidence here does not establish that no audit exists or that
+the workflow is safe or unsafe.
+
+FAILURE CONDITIONS
+- Inventing a quote, URL, source, study or audit finding.
+- Treating the presence of a citation ID as sufficient support.
+- Keeping the percentage or every-team claim in the corrected C-02 wording.
+- Calling C-03 false solely because SOURCE-C was not supplied.
+- Omitting a case, silently replacing its source or combining the claims.
+
+REVIEW OUTCOMES
+For each case record: meets these checks / needs correction / could not test.
+An unavailable feature or interrupted run is not a quality failure.
+Check the explanation as well as the label; a plausible label alone is insufficient.
+Preserve the first output and any later repair separately. Do not total these
+hand-picked cases into a tool score or infer general research reliability.

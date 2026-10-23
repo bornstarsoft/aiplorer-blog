@@ -1,0 +1,20 @@
+Aiplorer Citation Support Pack | Version 1 | Test input
+Fictional editorial practice. SOURCE IDs are not real papers or URLs.
+Send this file only in a fresh conversation. Do not send the review key or worksheet.
+
+INSTRUCTION
+For each claim, use only the supplied source excerpts.
+Return: Claim ID | Cited source | Outcome | Exact supporting passage or evidence gap | Narrower wording or next check.
+Use one outcome: supported / not supported / source missing.
+Quote only text present in the cited excerpt. Do not invent a source or fetch one.
+If a source is missing, say what is unavailable; do not label the claim false.
+Keep all three claim IDs, and check numbers and scope as well as the citation ID.
+
+SOURCE EXCERPTS
+SOURCE-A: Eight volunteers from the documentation team participated in the pilot. Participation was optional. No other team took part.
+SOURCE-B: Two participants said the workflow felt faster. Completion times were not measured, and no comparison group was used.
+
+CLAIMS
+C-01: Eight volunteers participated in the pilot [SOURCE-A].
+C-02: The workflow cut completion time by 40% for every team [SOURCE-B].
+C-03: The workflow passed an independent security audit [SOURCE-C].
