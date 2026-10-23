@@ -20,11 +20,26 @@ This fictional exercise uses a customer-update draft. The inputs and proposed
 outputs below are editorial examples, not a captured model run or a tool ranking.
 You can use the same method for code, slides, research or audio.
 
-## Keep A Small Reference Task
+## Choose The Check That Matches Your Work
 
-For a ready-made starting point, use the
-[three-case summary reference pack](/use-cases/retest-ai-summaries-with-a-reference-pack/)
-with separate test inputs, an answer key and a reusable comparison worksheet.
+Choose one relevant task rather than rerunning every pack. Each pack has a
+fictional input, a separate review key and a blank two-run worksheet.
+Keep the key out of the AI conversation and retain the first output before
+asking for corrections.
+
+| Your task | Start with | Inspect first |
+| --- | --- | --- |
+| Summarize notes or documents | [Summary reference pack](/use-cases/retest-ai-summaries-with-a-reference-pack/) | Corrected facts, unresolved disagreement and tentative commitments |
+| Rewrite an email or client message | [Meaning-preserving rewrite pack](/use-cases/check-an-ai-rewrite-without-changing-the-promise/) | Dates, prices, permissions and scope that must not change |
+| Turn messages into a table | [Missing-value extraction pack](/use-cases/test-ai-data-extraction-with-missing-values/) | Missing fields, assigned owners and proposed versus confirmed dates |
+
+The [practice downloads](/use-cases/#practice-downloads) collect all three
+packs in one place. These checks do not cover every workflow. If your
+question is about access, permissions or a plan change, check the relevant
+official documentation and account instead of using an output exercise as
+evidence about those conditions.
+
+## Keep A Small Reference Task
 
 Use approved, non-sensitive material. Save the exact input, expected facts and
 previous output before retesting. Keep the account settings and instructions
@@ -66,6 +81,29 @@ availability. Better phrasing cannot compensate for a changed commitment.
 These are checks of the supplied examples, not performance measurements.
 One passing output does not establish reliability. Repeat a few relevant cases,
 including missing or conflicting information, before relying on the workflow.
+
+## No Earlier Output? Start A Baseline
+
+Do not label today's result an improvement or regression if the previous
+input, instructions or output are missing. Record a first documented run
+instead. An account setting that is not visible should stay "not shown";
+do not fill in a model version from memory.
+
+For example, suppose you remember a tool inventing deadlines last month,
+but kept no prompt or output. Today it preserves all the uncertainty in
+the fictional source above. The defensible note is:
+
+```text
+Previous evidence: unavailable; remembered result is not a comparable run.
+Today: preserved the four facts in this sample; first documented baseline.
+Decision: continue checking this workflow, not "the update fixed it."
+Next check: the same task with conflicting or explicitly revised dates.
+```
+
+This is an invented note, not an observed product result. A good current
+answer does not prove that an update caused it. Keep "could not test"
+separate from an output failure, and do not change a local test date merely
+because you opened a pack or read an announcement.
 
 ## Separate Output Problems From Access Changes
 
