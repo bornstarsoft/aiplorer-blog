@@ -137,6 +137,9 @@ actual results in your change description, including anything you did not test.
 
 ## Continue
 
+[Choose your next check based on the result](/use-cases/retest-a-saved-ai-tool-after-an-update/#choose-your-next-check),
+keeping a failing assertion separate from a test you could not run.
+
 Use the [code review checklist](/use-cases/how-to-review-ai-generated-code-before-merging/)
 for a larger change, or [compare Coding Tools](/ai-tools/compare/?category=Coding%20Tools).
 Save candidates in [your shortlist](/ai-tools/shortlist/) to revisit their

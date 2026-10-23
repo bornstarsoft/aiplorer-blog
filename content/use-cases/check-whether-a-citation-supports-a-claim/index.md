@@ -87,6 +87,8 @@ unsupported replacement claim. The separate key lists the case checks.
 
 ## Compare A Later Run Without Losing The First
 
+After reviewing the three cases, [choose your next check based on the result](/use-cases/retest-a-saved-ai-tool-after-an-update/#choose-your-next-check).
+
 Use the worksheet to record the exact input, first output, visible settings
 and a passage or gap for each case. Keep any repair prompt and corrected
 answer separate. If there is no saved earlier output, this is a baseline,

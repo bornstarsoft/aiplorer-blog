@@ -24,9 +24,21 @@ const packs = [
 const choiceTable = [...guide.matchAll(/<table\b[^>]*>[\s\S]*?<\/table>/g)]
   .map(([table]) => table).find(table => packs.every(slug => table.includes(`/use-cases/${slug}/`)));
 assert(choiceTable, "One task-choice table must link all five published packs");
+const nextCheck = route + "#choose-your-next-check";
+assert.equal((guide.match(/id=["']?choose-your-next-check\b/g) || []).length, 1);
+const outcomeSection = guide.split(/<h2\b[^>]*id=["']?choose-your-next-check\b[^>]*>/)[1]?.split(/<h2\b/)[0];
+assert(outcomeSection, "Stable next-check destination must exist");
+for (const label of ["Meets These Checks", "Needs Correction", "Could Not Test"])
+  assert(outcomeSection.includes(label), label);
+for (const slug of ["check-an-ai-pilot-result-before-expanding", "record-an-ai-tool-check-without-hiding-a-failed-result", "leave-an-ai-test-note-you-can-resume"]) {
+  assert(links(outcomeSection).includes(`/use-cases/${slug}/`));
+  assert(existsSync(new URL(`public/use-cases/${slug}/index.html`, root)));
+}
+assert(links(hub).includes(nextCheck));
 for (const slug of packs) {
   assert(existsSync(new URL(`public/use-cases/${slug}/index.html`, root)));
   assert.equal(links(choiceTable).filter(href => href === `/use-cases/${slug}/`).length, 1);
+  assert(links(read(`public/use-cases/${slug}/index.html`)).includes(nextCheck), slug + " must link to outcome guidance");
 }
 for (const html of [shortlist, guide])
   assert(links(html).includes("/use-cases/#practice-downloads"));
@@ -42,6 +54,9 @@ for (const marker of [
 const source = read("content" + route.slice(0, -1) + ".md");
 assert(source.includes("do not change a local test date merely"));
 assert(source.includes("access, permissions or a plan change"));
+assert(source.includes("Following these links does not save a result or set a test date."));
+assert(source.includes("correct answer to the citation pack's missing-source case"));
+assert(source.includes("keep each case's outcome separate"));
 assert.equal(sitemap.split(`<loc>https://aiplorer.com${route}</loc>`).length - 1, 1);
 for (const slug of ["scispace", "tome", "example-ai-assistant"]) {
   assert(!sitemap.includes(`/ai-tools/tools/${slug}/`));

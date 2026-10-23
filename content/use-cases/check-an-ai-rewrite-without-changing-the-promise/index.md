@@ -105,6 +105,8 @@ do not turn three invented messages into a tool score or ranking.
 
 ## Return With The Same Reference
 
+After reviewing an answer, [choose your next check based on the result](/use-cases/retest-a-saved-ai-tool-after-an-update/#choose-your-next-check).
+
 Keep version 1 unchanged when rerunning after a relevant tool update or
 instruction change. Record the visible settings and exact prompt. If several
 things changed at once, do not attribute a different result to just one of them.

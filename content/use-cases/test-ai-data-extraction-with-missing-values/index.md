@@ -135,6 +135,9 @@ not a general accuracy score or a tool ranking.
 
 ## Leave A Specific Next Check
 
+Use the [outcome-based next steps](/use-cases/retest-a-saved-ai-tool-after-an-update/#choose-your-next-check)
+to distinguish a result needing correction from a blocked test.
+
 Use an actual run to fill in a short private evaluation note. Do not copy
 the fictional failure above as if it were your own observation.
 

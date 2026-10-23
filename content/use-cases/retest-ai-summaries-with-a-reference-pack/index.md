@@ -90,3 +90,5 @@ for sensitive or high-stakes work.
 
 Continue with the [retest workflow](/use-cases/retest-a-saved-ai-tool-after-an-update/)
 or [record a completed check without hiding a failed result](/use-cases/record-an-ai-tool-check-without-hiding-a-failed-result/).
+
+Finished this pack? [Choose your next check based on the result](/use-cases/retest-a-saved-ai-tool-after-an-update/#choose-your-next-check).

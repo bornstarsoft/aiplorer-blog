@@ -120,6 +120,60 @@ security-sensitive changes. For research, open the original sources. For
 media, verify rights and the actual delivery format. Never put credentials,
 private repositories or customer records into an unapproved test account.
 
+## Choose Your Next Check
+
+Keep the first output and your reviewed worksheet before deciding what to
+do next. Use the outcome for the individual case, not a score for the tool.
+The examples below are fictional notes, not observed product results.
+
+### Meets These Checks
+
+Keep that result as a baseline for this input. Choose one relevant boundary
+case you have not checked, rather than assuming the workflow is ready for
+unattended or sensitive work. If nothing remains unresolved, there is no
+need to rerun it simply because another day has passed.
+
+> Observed: the summary preserved the unapproved launch and missing date.
+> Next check: conflicting source notes; that input has not been checked yet.
+
+Before expanding a workflow, use the
+[small-pilot review](/use-cases/check-an-ai-pilot-result-before-expanding/).
+
+### Needs Correction
+
+Record the specific mismatch and preserve the failed first answer. Change
+one instruction or condition where practical, then keep the repaired output
+separately. If multiple conditions change, do not attribute the difference
+to one cause. A repaired example does not erase the original failure.
+
+> Observed: a proposed review date became a confirmed deadline.
+> Next check: repeat the same input with an explicit uncertainty instruction;
+> compare both answers against the source.
+
+Use the [failed-result note example](/use-cases/record-an-ai-tool-check-without-hiding-a-failed-result/)
+to keep a completed check distinct from a passing result.
+
+### Could Not Test
+
+Record the blocker and what evidence would let you resume. Check the
+provider's current official guidance and your account when access is unclear;
+do not buy a plan or grant extra permissions just to finish a practice pack.
+No output means there is no output-quality result to compare.
+
+> Observed: the required input could not be submitted; no answer was produced.
+> Next check: verify the account's permitted input method before retrying.
+
+An answer that says a cited source is missing is different: it can be the
+correct answer to the citation pack's missing-source case. Review it against
+the key; do not mark the whole run blocked merely because it flags a gap.
+
+For mixed results, keep each case's outcome separate. Leave one concrete
+question or relevant change to watch for in
+[a short test note](/use-cases/leave-an-ai-test-note-you-can-resume/).
+Following these links does not save a result or set a test date. Return to
+the [practice downloads](/use-cases/#practice-downloads) when ready to repeat
+the unchanged inputs.
+
 ## Leave A Useful Note For Your Next Visit
 
 Keep the full evidence in an approved location. A short private note can follow
