@@ -8,6 +8,7 @@ lastReviewed: "2026-10-23"
 reviewStatus: "reviewed"
 draft: false
 practiceTask: "Summarize notes"
+practicePreview: "summary-check-inputs-v1.txt"
 practiceDownloads:
   - file: "summary-check-inputs-v1.txt"
     label: "Summary test input (TXT)"

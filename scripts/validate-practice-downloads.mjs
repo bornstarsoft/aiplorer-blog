@@ -33,6 +33,21 @@ for (const [slug, label] of tasks) {
 }
 const tags = [...html.matchAll(/<a\b[^>]*\bdata-practice-download\b[^>]*>/g)].map(([tag]) => tag);
 const hrefs = tags.map(tag => attr(tag, "href"));
+const previews = [...html.matchAll(/<details\b[^>]*\bdata-practice-preview=[^>]*>[\s\S]*?<\/details>/g)].map(([tag]) => tag);
+assert.equal(previews.length, 5);
+const previewPaths = previews.map(tag => attr(tag, "data-practice-preview"));
+assert.equal(new Set(previewPaths).size, 5);
+for (const preview of previews) {
+  const path = attr(preview, "data-practice-preview");
+  assert(hrefs.includes(path), "Preview must reference an existing download");
+  assert(/(?:-inputs-v1\.txt|\/reminder-days-v1\.mjs)$/.test(path), "Only test input is previewed");
+  assert(!/^<details\b[^>]*\bopen(?:[\s=>])/.test(preview), "Preview starts collapsed");
+  assert(preview.includes("Preview test input") && preview.includes("aiplorer-visually-hidden"));
+  const pre = preview.match(/<pre\b[^>]*>/)?.[0];
+  assert(pre && attr(pre, "tabindex") === "0" && attr(pre, "role") === "region");
+  assert(attr(pre, "aria-label").startsWith("Test input for "));
+  assert(!/<(?:script|iframe)\b/i.test(preview));
+}
 assert.equal(tags.length, 15);
 assert.equal(new Set(hrefs).size, 15);
 const packs = [
@@ -58,4 +73,4 @@ for (const file of ["reminder-days-v1.mjs", "reminder-days-v1.test.mjs", "code-c
 }
 for (const file of ["public/index.html", "public/guides/index.html", "public/ai-tools/tools/index.html"])
   assert(!read(file).includes("data-practice-download"), `Unexpected download shelf: ${file}`);
-console.log("PASS: five reviewed packs, fifteen unique native downloads with original bytes, no home/guides/tool-index shelf.");
+console.log("PASS: five input-only collapsed previews, fifteen exact native downloads, no home/guides/tool-index shelf.");

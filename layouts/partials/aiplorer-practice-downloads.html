@@ -12,6 +12,20 @@
       <li data-practice-pack>
         <h3 id="practice-{{ path.Base .RelPermalink }}" tabindex="-1"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
         <p>{{ .Description }}</p>
+        {{ with .Params.practicePreview }}
+          {{ $file := . }}
+          {{ if not (where $page.Params.practiceDownloads "file" $file) }}
+            {{ errorf "Practice preview %q must be a listed download in %s" $file $page.File.Path }}
+          {{ end }}
+          {{ with $page.Resources.Get $file }}
+            <details class="aiplorer-practice-preview" data-practice-preview="{{ .RelPermalink }}">
+              <summary>Preview test input<span class="aiplorer-visually-hidden"> for {{ $page.Title }}</span></summary>
+              <pre tabindex="0" role="region" aria-label="Test input for {{ $page.Title }}"><code>{{ .Content }}</code></pre>
+            </details>
+          {{ else }}
+            {{ errorf "Missing practice preview %q in %s" $file $page.File.Path }}
+          {{ end }}
+        {{ end }}
         {{ range .Params.practiceDownloads }}
           {{ $label := .label }}
           {{ with $page.Resources.Get .file }}

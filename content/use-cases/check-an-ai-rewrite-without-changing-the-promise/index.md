@@ -8,6 +8,7 @@ lastReviewed: "2026-10-23"
 reviewStatus: "reviewed"
 draft: false
 practiceTask: "Rewrite a message"
+practicePreview: "rewrite-check-inputs-v1.txt"
 practiceDownloads:
   - file: "rewrite-check-inputs-v1.txt"
     label: "Rewrite test input (TXT)"

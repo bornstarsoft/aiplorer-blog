@@ -13,6 +13,7 @@ lastReviewed: "2026-10-23"
 reviewStatus: "reviewed"
 draft: false
 practiceTask: "Test a code fix"
+practicePreview: "reminder-days-v1.mjs"
 practiceDownloads:
   - file: "reminder-days-v1.mjs"
     label: "Buggy sample function (MJS)"

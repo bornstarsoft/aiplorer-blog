@@ -8,6 +8,7 @@ lastReviewed: "2026-10-23"
 reviewStatus: "reviewed"
 draft: false
 practiceTask: "Check a citation"
+practicePreview: "citation-check-inputs-v1.txt"
 practiceDownloads:
   - file: "citation-check-inputs-v1.txt"
     label: "Citation test input (TXT)"
