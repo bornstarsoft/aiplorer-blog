@@ -7,6 +7,13 @@ audience: "People turning messages or project notes into structured work records
 lastReviewed: "2026-10-23"
 reviewStatus: "reviewed"
 draft: false
+practiceDownloads:
+  - file: "extraction-check-inputs-v1.txt"
+    label: "Extraction test input (TXT)"
+  - file: "extraction-check-answer-key-v1.txt"
+    label: "Extraction review key (TXT)"
+  - file: "extraction-check-worksheet-v1.txt"
+    label: "Extraction comparison worksheet (TXT)"
 ---
 
 ## A Complete Table Can Still Be Wrong
@@ -17,6 +24,26 @@ source supplied a value. An empty-looking field may be the correct result.
 
 This is a fictional editorial exercise, not a measured result from a named
 service. It uses three invented requests, with no customer or private data.
+
+## Get The Repeatable Check
+
+Use these unchanged files when revisiting a tool after a relevant update.
+The input contains the instructions and all three requests, without the
+expected answers. Send it in a fresh conversation rather than uploading this
+whole article, which contains the review key.
+
+{{< resource-download file="extraction-check-inputs-v1.txt" label="Download test input (.txt)" >}}
+
+Keep the review key outside the AI conversation. Compare each field with the
+source, not just how polished the resulting table looks.
+
+{{< resource-download file="extraction-check-answer-key-v1.txt" label="Download review key (.txt)" >}}
+
+The blank worksheet separates two runs, original mistakes and later repairs.
+It contains no saved tools or private browser notes. Keep completed copies in
+your own approved location.
+
+{{< resource-download file="extraction-check-worksheet-v1.txt" label="Download comparison worksheet (.txt)" >}}
 
 ## Keep The Source Small Enough To Check
 
@@ -35,6 +62,8 @@ ID | Requester | Assigned owner | Confirmed due date | Uncertainty
 Use "Not stated" when a field is absent. Do not infer an owner from a
 requester or speaker. Keep proposed dates in Uncertainty, not Confirmed due
 date. Preserve every request ID. Use only the supplied text.
+For Uncertainty, use "None stated" only when no uncertainty is stated in
+the request; this does not certify a real-world schedule.
 ```
 
 ## Write The Expected Rows Before Running The Test
@@ -89,6 +118,19 @@ Check each row against the source:
 If a follow-up prompt repairs the table, record both the original failure
 and the correction. A repaired example does not establish that future
 requests will be extracted correctly.
+
+## Compare A Later Run Fairly
+
+Keep the version 1 input and instruction unchanged. Record the tool, run date
+and visible settings; write "not shown" for unknown details. Save the first
+output before asking for corrections. Record each request as **meets these
+checks**, **needs correction** or **could not test**, with the field and source
+text that explain the result.
+
+Repeat only when a relevant change or unresolved question makes another run
+useful. If both the prompt and tool settings changed, do not attribute the
+difference to just one of them. These three requests are practice material,
+not a general accuracy score or a tool ranking.
 
 ## Leave A Specific Next Check
 

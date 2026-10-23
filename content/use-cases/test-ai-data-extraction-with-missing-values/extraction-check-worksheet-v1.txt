@@ -1,0 +1,45 @@
+Aiplorer Extraction Reference Pack | Version 1 | Comparison worksheet
+Blank local worksheet; no Aiplorer saved tools or private notes are included.
+Keep completed copies and outputs in an approved location. Do not enter secrets.
+
+QUESTION FOR THIS COMPARISON
+What relevant change or unresolved question makes another run useful?
+
+RUN A
+Date and timezone:
+Tool / account type / visible settings (write "not shown" when unknown):
+Pack version and any input or instruction changes:
+Exact input and original output file locations:
+IDs present exactly once / five columns preserved:
+R-01 outcome (meets these checks / needs correction / could not test):
+Field, source evidence and observed result:
+R-02 outcome:
+Field, source evidence and observed result:
+R-03 outcome:
+Field, source evidence and observed result:
+Repair instruction and separate corrected output location, if any:
+
+RUN B
+Date and timezone:
+Tool / account type / visible settings (write "not shown" when unknown):
+Pack version and any input or instruction changes:
+What changed since A? What could not be held constant?
+Exact input and original output file locations:
+IDs present exactly once / five columns preserved:
+R-01 outcome (meets these checks / needs correction / could not test):
+Field, source evidence and observed result:
+R-02 outcome:
+Field, source evidence and observed result:
+R-03 outcome:
+Field, source evidence and observed result:
+Repair instruction and separate corrected output location, if any:
+
+DECISION AND NEXT VISIT
+Which field handling improved, regressed or remains unresolved?
+What can these three requests NOT establish?
+Decision for this specific workflow:
+Next question or relevant change to watch for:
+Non-sensitive reminder for My Shortlist:
+
+Do not assume causation when multiple conditions changed. Do not combine
+outcomes into a ranking. A completed check is not necessarily a passing result.

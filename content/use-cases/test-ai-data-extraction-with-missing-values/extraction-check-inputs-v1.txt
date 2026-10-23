@@ -1,0 +1,19 @@
+Aiplorer Extraction Reference Pack | Version 1 | Test input
+Fictional editorial practice. No customer or private data.
+Send the INSTRUCTION and all three SOURCE REQUESTS together in a fresh conversation.
+Do not send the separate review key or worksheet.
+
+INSTRUCTION
+Extract one row per request with these columns:
+ID | Requester | Assigned owner | Confirmed due date | Uncertainty
+
+Use "Not stated" when a field is absent. Do not infer an owner from a
+requester or speaker. Keep proposed dates in Uncertainty, not Confirmed due
+date. Preserve every request ID. Use only the supplied text.
+For Uncertainty, use "None stated" only when no uncertainty is stated in
+the request; this does not certify a real-world schedule.
+
+SOURCE REQUESTS
+R-01: Mia requests a new export button. No owner or deadline has been agreed.
+R-02: Leo will check the login error by 14 November 2026.
+R-03: Priya suggests 18 November 2026 for the demo; the date is not confirmed.

@@ -1,0 +1,32 @@
+Aiplorer Extraction Reference Pack | Version 1 | Review key
+Do not include in model input. Review meaning against the fictional sources.
+Equivalent date formatting and wording are acceptable if the meaning is intact.
+
+EXPECTED ROWS
+ID | Requester | Assigned owner | Confirmed due date | Uncertainty
+R-01 | Mia | Not stated | Not stated | No owner or deadline agreed.
+R-02 | Not stated | Leo | 14 November 2026 | None stated.
+R-03 | Not stated | Not stated | Not stated | Priya proposed 18 November 2026 for the demo; unconfirmed.
+
+FIELD CHECKS
+R-01: A requester is not an assigned owner. Mia must not be copied into owner.
+R-02: Leo is explicitly assigned, but no requester is identified.
+R-03: Priya is a speaker proposing a date, not an established requester or owner.
+The proposed 18 November 2026 date belongs only in Uncertainty.
+"None stated" means the sample states no uncertainty, not that a schedule is verified.
+
+TABLE CHECKS
+Exactly three rows, with R-01, R-02 and R-03 each appearing once.
+All five requested columns remain distinct.
+Missing fields remain explicitly missing, not guessed or silently completed.
+No added priority, deadline, responsibility or commitment.
+
+OUTCOME PER REQUEST
+Meets these checks: the row preserves these facts and missing fields.
+Needs correction: name the field, source evidence and observed mismatch.
+Could not test: no usable run; do not treat this as a pass or fail.
+Record omissions or duplicate IDs as table problems even if other rows look right.
+
+Keep the first output and repair output separate. Do not total outcomes into
+a tool score. This small exercise does not establish future accuracy or
+permission to process sensitive data.
