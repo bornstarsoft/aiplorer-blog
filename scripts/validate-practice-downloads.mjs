@@ -12,11 +12,11 @@ const attr = (tag, name) => {
 assert.equal((html.match(/id=["']?practice-downloads\b/g) || []).length, 1);
 assert(html.includes("#practice-downloads"));
 assert(html.includes("Keep review keys out of the AI conversation"));
-assert.equal((html.match(/data-practice-pack\b/g) || []).length, 3);
+assert.equal((html.match(/data-practice-pack\b/g) || []).length, 4);
 const tags = [...html.matchAll(/<a\b[^>]*\bdata-practice-download\b[^>]*>/g)].map(([tag]) => tag);
 const hrefs = tags.map(tag => attr(tag, "href"));
-assert.equal(tags.length, 9);
-assert.equal(new Set(hrefs).size, 9);
+assert.equal(tags.length, 12);
+assert.equal(new Set(hrefs).size, 12);
 const packs = [
   ["retest-ai-summaries-with-a-reference-pack", "summary"],
   ["check-an-ai-rewrite-without-changing-the-promise", "rewrite"],
@@ -31,6 +31,12 @@ for (const [slug, prefix] of packs) {
     assert(!read("public/sitemap.xml").includes(route + file));
   }
 }
+const codeRoute = "/use-cases/fix-a-zero-value-default-with-ai/";
+for (const file of ["reminder-days-v1.mjs", "reminder-days-v1.test.mjs", "code-check-worksheet-v1.txt"]) {
+  assert(tags.some(tag => attr(tag, "href") === codeRoute + file && attr(tag, "download") === file));
+  assert.equal(read(`public${codeRoute}${file}`), read(`content${codeRoute}${file}`));
+  assert(!read("public/sitemap.xml").includes(codeRoute + file));
+}
 for (const file of ["public/index.html", "public/guides/index.html", "public/ai-tools/tools/index.html"])
   assert(!read(file).includes("data-practice-download"), `Unexpected download shelf: ${file}`);
-console.log("PASS: three reviewed packs, nine unique native downloads with original bytes, no home/guides/tool-index shelf.");
+console.log("PASS: four reviewed packs, twelve unique native downloads with original bytes, no home/guides/tool-index shelf.");

@@ -22,18 +22,20 @@ You can use the same method for code, slides, research or audio.
 
 ## Choose The Check That Matches Your Work
 
-Choose one relevant task rather than rerunning every pack. Each pack has a
-fictional input, a separate review key and a blank two-run worksheet.
-Keep the key out of the AI conversation and retain the first output before
-asking for corrections.
+Choose one relevant task rather than rerunning every pack. The writing and
+extraction packs have fictional inputs, separate review keys and blank
+two-run worksheets. Keep the key out of the AI conversation and retain the
+first output before asking for corrections. The code exercise instead
+provides a buggy function and local regression tests.
 
 | Your task | Start with | Inspect first |
 | --- | --- | --- |
 | Summarize notes or documents | [Summary reference pack](/use-cases/retest-ai-summaries-with-a-reference-pack/) | Corrected facts, unresolved disagreement and tentative commitments |
 | Rewrite an email or client message | [Meaning-preserving rewrite pack](/use-cases/check-an-ai-rewrite-without-changing-the-promise/) | Dates, prices, permissions and scope that must not change |
 | Turn messages into a table | [Missing-value extraction pack](/use-cases/test-ai-data-extraction-with-missing-values/) | Missing fields, assigned owners and proposed versus confirmed dates |
+| Review a small code fix | [Zero-value regression pack](/use-cases/fix-a-zero-value-default-with-ai/) | Preserve zero, default missing values and inspect the diff without changing the tests |
 
-The [practice downloads](/use-cases/#practice-downloads) collect all three
+The [practice downloads](/use-cases/#practice-downloads) collect all four
 packs in one place. These checks do not cover every workflow. If your
 question is about access, permissions or a plan change, check the relevant
 official documentation and account instead of using an output exercise as

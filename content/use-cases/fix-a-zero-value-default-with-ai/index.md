@@ -9,9 +9,16 @@ relatedTools:
   - "/ai-tools/tools/cursor/"
 relatedCategories:
   - "/ai-tools/coding-tools/"
-lastReviewed: "2026-10-14"
+lastReviewed: "2026-10-23"
 reviewStatus: "reviewed"
 draft: false
+practiceDownloads:
+  - file: "reminder-days-v1.mjs"
+    label: "Buggy sample function (MJS)"
+  - file: "reminder-days-v1.test.mjs"
+    label: "Local regression tests (MJS)"
+  - file: "code-check-worksheet-v1.txt"
+    label: "Code comparison worksheet (TXT)"
 ---
 
 ## The Task
@@ -33,6 +40,34 @@ For this exercise, the caller supplies a non-negative integer, `null`, or
 `undefined`. Preserve integers including zero; use seven only for missing
 values. Parsing form strings and rejecting other input belong to the caller
 and are outside this patch.
+
+## Download A Repeatable Local Test
+
+Keep these two code files in the same empty local folder. Inspect them before
+running them with Node.js; neither file installs packages, accesses the
+network or writes files. The site does not run submitted code.
+
+{{< resource-download file="reminder-days-v1.mjs" label="Download buggy function (.mjs)" >}}
+
+{{< resource-download file="reminder-days-v1.test.mjs" label="Download regression tests (.mjs)" >}}
+
+From that folder, run:
+
+```sh
+node reminder-days-v1.test.mjs
+```
+
+**The first run should fail on zero.** That reproduces the bug, not a broken
+download. Preserve this result, then ask for a change to the function file
+only. Keep the tests unchanged and run the same command again. A valid fix
+passes all five checks; the complete example below shows the expected behavior.
+No package installation is needed if Node.js is already available.
+
+{{< resource-download file="code-check-worksheet-v1.txt" label="Download comparison worksheet (.txt)" >}}
+
+Keep a separate copy of the original files and each candidate's proposed
+change. Record failures as well as passes. Do not put private repositories,
+credentials or customer code into this fictional exercise.
 
 ## Give The Assistant A Bounded Request
 
@@ -77,6 +112,17 @@ console.log("PASS: zero is preserved; missing values default to seven.");
 Expected output: `PASS: zero is preserved; missing values default to seven.`
 In the sample run, all five replacement cases passed. That result covers this
 function's stated contract, not an entire application or its security.
+
+The downloadable runner tests the imported function instead of embedding the
+fixed expression. It checks zero first, then positive values, null and an
+omitted argument. A failing assertion stops that run; it does not mean later
+checks passed. Do not edit the expected values to make a candidate look correct.
+
+When revisiting a coding tool after an update, begin from the unchanged buggy
+file, use the same request and preserve the actual diff and first test result.
+If you change the contract or tests, record that as a different experiment.
+The [comparison worksheet](code-check-worksheet-v1.txt) is a blank local record,
+not an automatic test history or a tool score.
 
 ## Before Merging In A Real Project
 

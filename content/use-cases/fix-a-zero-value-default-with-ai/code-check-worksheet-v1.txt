@@ -1,0 +1,47 @@
+Aiplorer Code Practice Pack | Version 1 | Comparison worksheet
+Fictional exercise. Blank local record, not saved browser data or a benchmark.
+Keep completed records and code in an approved location. Do not include secrets.
+
+STARTING POINT
+Original files: reminder-days-v1.mjs and reminder-days-v1.test.mjs.
+Expected first result: assertion failure for zero (actual 7, expected 0).
+Original reproduction result and output location:
+Question for this comparison:
+
+RUN A
+Date and timezone:
+Tool / visible settings (write "not shown" if unknown):
+Exact request and original input file location:
+Proposed diff location:
+Did the candidate alter tests, add dependencies or change the input contract?
+Command: node reminder-days-v1.test.mjs
+Actual exit status and first output location:
+Outcome: meets these checks / needs correction / could not test
+If failed, which assertion stopped the run? Later assertions are not verified.
+Manual diff review and remaining concerns:
+Repair request and separate corrected result, if any:
+
+RUN B
+Start from a separate copy of the unchanged original buggy file.
+Date and timezone:
+Tool / visible settings (write "not shown" if unknown):
+What changed since A? What could not be held constant?
+Exact request and original input file location:
+Proposed diff location:
+Did the candidate alter tests, add dependencies or change the input contract?
+Command: node reminder-days-v1.test.mjs
+Actual exit status and first output location:
+Outcome: meets these checks / needs correction / could not test
+If failed, which assertion stopped the run? Later assertions are not verified.
+Manual diff review and remaining concerns:
+Repair request and separate corrected result, if any:
+
+DECISION AND NEXT VISIT
+What changed in the observed behavior or diff?
+What does this five-check sample NOT establish?
+Next relevant test or review question:
+Non-sensitive reminder for My Shortlist:
+
+A passing run is not production approval or proof of security. Do not rank
+tools from this sample. If the input contract or tests changed, record a new
+experiment rather than claiming a like-for-like improvement.
