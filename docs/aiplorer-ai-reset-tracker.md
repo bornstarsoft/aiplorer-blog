@@ -4,18 +4,22 @@
 
 ACTIVE_WRITER = NONE
 
-- Last AI / WORK-ID: CODEX / AIP-RESET-CHECK; DONE (release preparation).
-- HEAD / WIP: based on main at 508d5ff; history check timestamp, tracker pending
+- Last AI / WORK-ID: CODEX / AIP-RESET-OCT25; DONE (release preparation).
+- HEAD / WIP: based on main at ebb9d95; one usage-reset event, refreshed tracker
   notice and this document only. Other 28 owner WIP files excluded.
-- QA: PASS 150 Node tests, reset validator/self-test, isolated clean minified
-  production build, home/tracker timestamp checks, identical 64 event records,
-  eight draft exclusions, 291 legacy post URLs and sitemap XML validation.
+- QA: PASS 156 Node tests, reset validator/self-test, isolated clean minified
+  production build, home/tracker timestamp checks, previous 64 event records
+  unchanged, eight draft exclusions, 291 legacy post URLs and sitemap XML validation.
+  Browser PASS: home elapsed clock, one unseen record for a saved 64-record
+  check, tracker completion notice, 1280px/390px without horizontal overflow,
+  no page errors.
   Existing legacy-post raw-HTML warning remains unchanged. Live verification
   is pending at commit and will be reported in chat.
-- NEXT_SINGLE_TASK: verify this exact commit and pending notice on production.
+- NEXT_SINGLE_TASK: push this exact three-file release and verify Cloudflare
+  success plus the new record on production home and tracker.
 - BLOCKER / Owner approval: owner authorized source checking, scoped update
-  and production deployment on October 23. New reset completion is NOT
-  confirmed; only the checked-state notice changes. Web GitHub exception applies.
+  and production deployment on October 25. Completion announcement verified;
+  two scheduled source links excluded. Web GitHub exception applies.
 
 
 ## Purpose
@@ -55,9 +59,9 @@ served a different task and reduced the visibility of the historical data.
 
 ## Public Codex History
 
-`data/codex_reset_history.json` contains a manually checked snapshot of 64
+`data/codex_reset_history.json` contains a manually checked snapshot of 65
 public Codex reset/credit announcements observed between September 17, 2025 and
-October 20, 2026 UTC, rechecked on October 23, 2026 KST. Each row stores the UTC announcement
+October 25, 2026 UTC, rechecked on October 25, 2026 KST. Each row stores the UTC announcement
 timestamp, source X post URL, and an explicit `kind`. The seed was checked
 against `https://codex-resets.com/`, which states
 that it collects posts from `@thsottiaux` and is not affiliated with OpenAI.
@@ -82,6 +86,38 @@ present the event count as a count of identical account resets.
 The source can also show a separate reset-watch signal for a possible future
 event. Aiplorer excludes those signals until they appear in the confirmed reset
 announcement log; they are not added as forecasts or event records.
+
+### October 25 Check: One Verified Completion, Two Scheduled Links Excluded
+
+- Checked at 2026-10-25T10:18:20Z (19:18:20 KST).
+- `https://codex-resets.com/api/v1/resets?limit=100`, generated at
+  2026-10-25T10:17:12.785Z, returned 67 entries with no further page. Compared
+  with the previous 64 records: three new source URLs, no removals or timestamp
+  changes. Do not copy the source total directly into Aiplorer.
+- Added only https://x.com/thsottiaux/status/2114237083652882932, at
+  2026-10-25T06:06:16.000Z (15:06:16 KST), classified `usage`. The archive
+  labels it `regular` / `x_post`. Direct X fetch returned 200 with completion
+  wording in the title and description, and matching `article:published_time`.
+  The web search retrieval path returned 403; direct fetch supplied the source
+  metadata. This verifies an announcement, not private account delivery.
+- Excluded the archive's two new `observed` rows at October 22 and 23, 17:00
+  UTC. Their linked posts are
+  https://x.com/thsottiaux/status/2113162413008884099 and
+  https://x.com/thsottiaux/status/2113492502355562875. Direct X descriptions
+  still describe a future arrival deadline, not completion. Do not promote
+  those scheduled times to completed events or count them again with the
+  completion notice. They remain unverified as separate resets.
+- LunarWerx's public API, generated at 2026-10-25T10:15:30.510Z, reports
+  64 records and its latest observation at October 23, 17:42:26 UTC without an
+  announcement link. It has not caught up with this completion announcement;
+  keep its observation timestamps and totals separate from our series.
+- No new banked-credit grant verified. Latest remains October 8 at 03:44:55
+  UTC. Counts: 53 usage, 8 banked, 2 both, 2 unclassified; total 65.
+  Usage-inclusive 55, credit-inclusive 10. The previous 64 event records are
+  unchanged. No prediction, account eligibility, grant quantity or expiry claim.
+- Updated history, tracker notice and this document only. Home uses the shared
+  history, so its elapsed clock and unseen-record state receive the same update
+  without new home sections or manual changes to visitor storage.
 
 ### October 23 Check: Pending Notice, No New Completed Record
 
