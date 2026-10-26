@@ -5,7 +5,8 @@
 ACTIVE_WRITER = NONE
 
 - Last AI / WORK-ID: CODEX / AIP-RESET-OCT26; DONE (release preparation).
-- HEAD / WIP: based on main at f445089; source-check timestamp, pending tracker
+- HEAD / WIP: based on main at ab2b3ff (initial check deployed); post-target
+  source-check timestamp, pending tracker
   notice and this document only. Other 28 owner WIP files excluded.
 - QA: PASS 156 Node tests, reset validator/self-test, isolated clean minified
   production build, home/tracker timestamp checks, all 65 event records
@@ -115,6 +116,27 @@ announcement log; they are not added as forecasts or event records.
 - Updated source-check timestamp, pending public notice and this document
   only. Home elapsed time and saved event fingerprints must not reset or show
   a false new-record badge. No forecast or entitlement claim.
+
+#### Post-Target Recheck
+
+- Rechecked at 2026-10-26T08:46:45Z (17:46:45 KST), after the initial scoped
+  update deployed successfully as ab2b3ff. The latest archive response was
+  generated at 08:42:02.234Z and has 68 rows: a new `observed` row uses
+  07:00:00 UTC and the same announcement URL, 2114588174249071102.
+- Direct X metadata still contains the original announcement, published at
+  05:21:22 UTC, not a new propagation-complete statement. The observation's
+  round-hour timestamp is not verified as a completion time. Keep it out of
+  the event series rather than implying a second completed reset.
+- LunarWerx response generated at 08:40:33.118Z remains at 64 observations,
+  latest October 23 at 17:42:26 UTC. No independent completion or new credit
+  grant was verified. All 65 events remain unchanged.
+- Refreshed the public notice to distinguish the archive observation from a
+  confirmed completion and advanced the checked timestamp only.
+- Final isolated QA PASS: minified production build, 156 tests, history
+  validator/self-test, identical 65 events, both rendered check timestamps,
+  eight draft exclusions, 291 legacy post URLs and sitemap XML. Initial
+  live verification passed; verify the rechecked notice after this follow-up
+  commit deploys. No owner WIP included.
 
 ### October 25 Check: One Verified Completion, Two Scheduled Links Excluded
 
