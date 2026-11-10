@@ -52,6 +52,7 @@ provides a buggy function and local regression tests.
 | Review a test plan | [Test plan pack](/use-cases/check-an-ai-test-plan-against-acceptance-criteria/) | Check defaults, persistence after reload, and the state left by Cancel |
 | Review an incident timeline | [Incident timeline pack](/use-cases/check-an-ai-incident-timeline-against-an-event-log/) | Distinguish first report, suspected cause, and verified recovery |
 | Review a CSV merge | [CSV merge pack](/use-cases/check-an-ai-csv-merge-against-original-records/) | Preserve exact keys, flag conflicting duplicates, and retain unmatched rows |
+| Review a file rename plan | [Rename plan pack](/use-cases/check-an-ai-file-rename-plan-before-applying-it/) | Check destination collisions, format labels, and approved paths |
 
 The [practice downloads](/use-cases/#practice-downloads) collect the
 packs in one place. These checks do not cover every workflow. If your

@@ -82,6 +82,7 @@ function setup(saved = null, mode = "", practicedSaved = null, planned = null, i
   const retryGroup = node({ querySelectorAll: () => [retryOption, ...(includeThird ? [thirdOption] : []), unsafeOption] });
   const chooser = node(), choice = node({ value: "", querySelectorAll: () => [chartGroup, retryGroup] });
   const choiceDetails = node(), choiceDescription = node(), choiceLink = node(), choiceEmpty = node();
+  const reviewReset = node();
   const choiceLabel = node();
   const newMode = node({ value: "new", checked: true });
   const reviewMode = node({ value: "review", checked: false });
@@ -121,6 +122,7 @@ function setup(saved = null, mode = "", practicedSaved = null, planned = null, i
     "[data-practice-choice-description]": choiceDescription,
     "[data-practice-choice-link]": choiceLink,
     "[data-practice-choice-empty]": choiceEmpty,
+    "[data-practice-review-reset]": reviewReset,
     "[data-practice-plan]": plan,
     "[data-practice-plan-title]": planTitle,
     "[data-practice-plan-start]": planStart,
@@ -151,7 +153,7 @@ function setup(saved = null, mode = "", practicedSaved = null, planned = null, i
   vm.runInNewContext(source, { document, window, localStorage });
   return { chart, retry, unsafe, resume, link, title, nextStep, nextStatus, stepDownload, practicedCount, window, storage, writes,
     filter, filterControls, filterEmpty, taskNav, document, chooser, choice, choiceDetails, choiceDescription, choiceLink,
-    choiceEmpty, choiceLabel, choiceMode, newMode, reviewMode, chartOption, retryOption, unsafeOption, chartGroup, retryGroup,
+    choiceEmpty, reviewReset, choiceLabel, choiceMode, newMode, reviewMode, chartOption, retryOption, unsafeOption, chartGroup, retryGroup,
     plan, planTitle, planStart, planDone, planClear, planSave, planStatus,
     choiceControls, afterReview, afterNew, afterRepeat, third, thirdOption };
 }
@@ -264,13 +266,15 @@ test("a cross-tab unmark closes the decision when only a new option remains", ()
   assert.deepEqual(p.writes, []);
 });
 
-test("all reviews completed this visit stay excluded while new practices remain available", () => {
+test("a new review round restores completed candidates without changing saved progress", () => {
   const marks = JSON.stringify([chartId, retryId]);
   const saved = JSON.stringify({ id: thirdId, step: "compare" });
   const p = setup(saved, "", marks, thirdId, true);
   p.chart.restart.click();
   p.chart.finish.click();
   p.afterRepeat.click();
+  assert.equal(p.reviewReset.hidden, true);
+  p.reviewReset.click();
   assert.equal(p.chartOption.disabled, true);
   assert.equal(p.retryOption.disabled, false);
   p.choice.value = retryId;
@@ -282,28 +286,48 @@ test("all reviews completed this visit stay excluded while new practices remain 
   assert.equal(p.choiceLabel.textContent, "Choose next practice");
   assert.equal(p.thirdOption.disabled, false);
   assert.equal(p.choiceEmpty.hidden, false);
-  assert.equal(p.choiceEmpty.textContent, "No more completed practices to review this visit.");
+  assert.equal(p.choiceEmpty.textContent, "No more completed practices to review this round.");
   assert.equal(p.document.activeElement, p.choice);
+  assert.equal(p.reviewReset.hidden, false);
+  p.reviewReset.click();
+  assert.equal(p.reviewReset.hidden, true);
+  assert.equal(p.choiceEmpty.hidden, true);
+  assert.equal(p.choiceLabel.textContent, "Choose a practice to review");
+  assert.equal(p.document.activeElement, p.choice);
+  assert.equal(p.chartOption.disabled, false);
+  assert.equal(p.retryOption.disabled, false);
+  assert.equal(p.thirdOption.disabled, true);
+  assert.equal(p.chart.practiced.checked, true);
+  assert.equal(p.retry.practiced.checked, true);
   assert.equal(p.storage.get(practicedKey), marks);
   assert.equal(p.storage.get(key), saved);
   assert.equal(p.storage.get(planKey), thirdId);
   assert.deepEqual(p.writes, []);
 });
 
-test("the exhausted review list focuses the notice and resets on a fresh page", () => {
+test("an all-practiced list can start multiple review rounds without reloading", () => {
   const marks = JSON.stringify([chartId, retryId]);
   const p = setup(null, "", marks);
-  for (const pack of [p.chart, p.retry]) {
-    pack.restart.click();
-    pack.finish.click();
+  for (let round = 0; round < 2; round++) {
+    for (const pack of [p.chart, p.retry]) {
+      pack.restart.click();
+      pack.finish.click();
+    }
+    assert.equal(p.chartOption.disabled, true);
+    assert.equal(p.retryOption.disabled, true);
+    assert.equal(p.choice.disabled, true);
+    assert.equal(p.choiceControls.hidden, true);
+    assert.equal(p.choiceEmpty.hidden, false);
+    assert.equal(p.choiceEmpty.textContent, "No more completed practices to review this round.");
+    assert.equal(p.document.activeElement, p.choiceEmpty);
+    assert.equal(p.reviewReset.hidden, false);
+    p.reviewReset.click();
+    assert.equal(p.reviewReset.hidden, true);
+    assert.equal(p.chartOption.disabled, false);
+    assert.equal(p.retryOption.disabled, false);
+    assert.equal(p.choice.disabled, false);
+    assert.equal(p.document.activeElement, p.choice);
   }
-  assert.equal(p.chartOption.disabled, true);
-  assert.equal(p.retryOption.disabled, true);
-  assert.equal(p.choice.disabled, true);
-  assert.equal(p.choiceControls.hidden, true);
-  assert.equal(p.choiceEmpty.hidden, false);
-  assert.equal(p.choiceEmpty.textContent, "No more completed practices to review this visit.");
-  assert.equal(p.document.activeElement, p.choiceEmpty);
   assert.deepEqual(p.writes, []);
   const fresh = setup(null, "", marks);
   assert.equal(fresh.chartOption.disabled, false);

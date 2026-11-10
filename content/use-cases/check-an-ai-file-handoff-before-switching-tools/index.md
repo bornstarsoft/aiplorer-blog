@@ -64,3 +64,6 @@ approved access and destination. Check the applicable retention and
 recovery requirements before removing originals. The
 [work portability guide](/guides/keep-your-work-portable-when-an-ai-service-changes/)
 covers the broader transition.
+
+If you need to rename files before the handoff, try the
+[rename plan practice pack](/use-cases/check-an-ai-file-rename-plan-before-applying-it/).

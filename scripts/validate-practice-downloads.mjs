@@ -35,6 +35,7 @@ const tasks = [
   ["check-an-ai-test-plan-against-acceptance-criteria", "Check a test plan"],
   ["check-an-ai-incident-timeline-against-an-event-log", "Check an incident timeline"],
   ["check-an-ai-csv-merge-against-original-records", "Check a CSV merge"],
+  ["check-an-ai-file-rename-plan-before-applying-it", "Check a file rename plan"],
 ];
 assert.equal((html.match(/data-practice-pack\b/g) || []).length, tasks.length);
 const jumps = [...html.matchAll(/<a\b[^>]*\bdata-practice-task\b[^>]*>[\s\S]*?<\/a>/g)].map(([link]) => link);
@@ -72,7 +73,7 @@ for (const preview of previews) {
   assert(status && attr(status, "role") === "status" && attr(status, "aria-live") === "polite");
 }
 assert(html.includes("/js/aiplorer-practice-copy.js?v=20261024a"));
-assert(html.includes("/js/aiplorer-practice-resume.js?v=20261110p"));
+assert(html.includes("/js/aiplorer-practice-resume.js?v=20261110q"));
 assert.match(html, /<div\b[^>]*data-practice-after-review\b[^>]*\bhidden(?:[\s=>])/);
 assert.match(html, /<button\b[^>]*data-practice-after-new\b[^>]*>Choose a new practice<\/button>/);
 assert.match(html, /<button\b[^>]*data-practice-after-repeat\b[^>]*>Review another practice<\/button>/);
@@ -84,6 +85,9 @@ assert(modeInputs.every(tag => attr(tag, "type") === "radio" && attr(tag, "name"
 assert.match(html, /<a\b[^>]*data-practice-choice-link\b[^>]*>Start selected practice<\/a>/);
 assert.match(html, /<p\b[^>]*data-practice-choice-empty\b[^>]*>/);
 const emptyChoice = html.match(/<p\b[^>]*data-practice-choice-empty\b[^>]*>/)[0];
+const reset = html.match(/<button\b[^>]*data-practice-review-reset\b[^>]*>/)?.[0];
+assert(reset && /\bhidden\b/.test(reset) && attr(reset, "type") === "button");
+assert(html.includes(reset + "Start a new review round</button>"));
 assert.equal(attr(emptyChoice, "tabindex"), "-1");
 assert.match(html, /<div\b[^>]*data-practice-plan\b[^>]*\bhidden(?:[\s=>])/);
 const planStart = html.match(/<a\b[^>]*data-practice-plan-start\b[^>]*>/)?.[0];
@@ -154,6 +158,7 @@ const packs = [
   ["check-an-ai-test-plan-against-acceptance-criteria", "test-plan"],
   ["check-an-ai-incident-timeline-against-an-event-log", "incident"],
   ["check-an-ai-csv-merge-against-original-records", "merge"],
+  ["check-an-ai-file-rename-plan-before-applying-it", "rename"],
 ];
 const downloadOrder = new Map();
 for (const [pack] of html.matchAll(/<li\b[^>]*data-practice-pack\b[^>]*>[\s\S]*?<\/li>/g)) {
@@ -393,4 +398,16 @@ const mergePreview = previews.find(tag => attr(tag, "data-practice-preview") ===
 assert(mergePreview.includes("007,Sample A") && !mergePreview.includes("Keep this file out of the test conversation"));
 assert(read("public/use-cases/test-ai-data-extraction-with-missing-values/index.html").includes(mergeRoute));
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${mergeRoute}</loc>`).length, 2);
+const renameRoute = "/use-cases/check-an-ai-file-rename-plan-before-applying-it/";
+const renameArticle = read(`public${renameRoute}index.html`);
+assert(!renameArticle.includes("aiplorer-practice-resume.js"));
+for (const role of ["inputs", "answer-key", "worksheet"]) {
+  const file = `rename-check-${role}-v1.txt`;
+  assert(renameArticle.includes(renameRoute + file));
+  for (const id of ["NAME-01", "NAME-02", "NAME-03"]) assert(read(`public${renameRoute}${file}`).includes(id));
+}
+const renamePreview = previews.find(tag => attr(tag, "data-practice-preview") === renameRoute + "rename-check-inputs-v1.txt");
+assert(renamePreview.includes("drafts/frame-final.png") && !renamePreview.includes("Keep this file out of the test conversation"));
+assert(handoffArticle.includes(renameRoute));
+assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${renameRoute}</loc>`).length, 2);
 console.log(`PASS: ${tasks.length} input-only previews, ${downloadCount} exact step-ordered downloads, guide entry links, script scoped to use-cases hub.`);

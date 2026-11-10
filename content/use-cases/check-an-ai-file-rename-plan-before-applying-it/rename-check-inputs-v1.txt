@@ -1,0 +1,19 @@
+AI FILE RENAME REVIEW - FICTIONAL INPUT - VERSION 1
+
+Review the proposed mapping without running it. For each ID, identify
+what should be blocked or changed and what must be verified first.
+Only paths inside the drafts folder are approved. No overwrites or
+format conversions are approved.
+
+NAME-01 - Destination collision
+drafts/frame-a.png -> drafts/frame-final.png
+drafts/frame-b.png -> drafts/frame-final.png
+No naming priority was supplied.
+
+NAME-02 - Format mismatch
+drafts/cover.png -> drafts/cover-final.jpg
+The proposal changes the name only. The image remains PNG data.
+
+NAME-03 - Outside scope
+archive/notes.txt -> archive/notes-final.txt
+The archive folder is excluded from the approved change.

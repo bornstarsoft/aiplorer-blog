@@ -27,6 +27,7 @@
   const choiceDescription = shelf.querySelector("[data-practice-choice-description]");
   const choiceLink = shelf.querySelector("[data-practice-choice-link]");
   const choiceEmpty = shelf.querySelector("[data-practice-choice-empty]");
+  const reviewReset = shelf.querySelector("[data-practice-review-reset]");
   const choiceGroups = choice ? [...choice.querySelectorAll("optgroup")] : [];
   const plan = shelf.querySelector("[data-practice-plan]");
   const planTitle = shelf.querySelector("[data-practice-plan-title]");
@@ -73,7 +74,7 @@
   let reviewChoices = false;
   let preferReview = false;
   let choosingAfterReview = false;
-  const reviewedThisVisit = new Set();
+  const reviewedThisRound = new Set();
 
   function read() {
     const value = localStorage.getItem(key);
@@ -216,7 +217,7 @@
       }
       if (review) {
         reviewingId = null;
-        reviewedThisVisit.add(id);
+        reviewedThisRound.add(id);
       } else setPracticed(id, true);
       pack.status.textContent = "";
       choice.value = "";
@@ -258,7 +259,7 @@
     chooser.hidden = !ids;
     if (!ids) return;
     const allPracticed = packs.size > 0 && ids.size === packs.size;
-    const hasReviews = [...ids].some(id => !reviewedThisVisit.has(id));
+    const hasReviews = [...ids].some(id => !reviewedThisRound.has(id));
     const mixed = hasReviews && !allPracticed;
     const decide = Boolean(choosingAfterReview && mixed && afterReview && afterNew && afterRepeat && choiceControls);
     const restoreFocus = !decide && afterReview?.contains(document.activeElement);
@@ -273,7 +274,7 @@
     if (choiceLabel) choiceLabel.textContent = reviewChoices ? "Choose a practice to review" : "Choose next practice";
     choiceLink.textContent = reviewChoices ? "Start review" : "Start selected practice";
     const eligible = id => packs.has(id) && (reviewChoices
-      ? ids.has(id) && !reviewedThisVisit.has(id)
+      ? ids.has(id) && !reviewedThisRound.has(id)
       : !ids.has(id));
     let available = 0;
     for (const group of choiceGroups) {
@@ -289,9 +290,10 @@
     choice.disabled = available === 0;
     if (choiceControls) choiceControls.hidden = decide || !available;
     const exhausted = ids.size > 0 && !hasReviews;
-    const notice = exhausted ? "No more completed practices to review this visit." : "All packs have been practiced.";
+    const notice = exhausted ? "No more completed practices to review this round." : "All packs have been practiced.";
     if (choiceEmpty.textContent !== notice) choiceEmpty.textContent = notice;
     choiceEmpty.hidden = !allPracticed && !exhausted;
+    if (reviewReset) reviewReset.hidden = !exhausted;
     const pack = packs.get(choice.value);
     if (!decide && eligible(choice.value)) {
       choiceDescription.textContent = pack.description?.textContent.trim() ?? "";
@@ -360,6 +362,15 @@
   try { render(read()); }
   catch { return; }
   refreshPracticed();
+  reviewReset?.addEventListener("click", () => {
+    if (reviewReset.hidden) return;
+    reviewedThisRound.clear();
+    choosingAfterReview = false;
+    preferReview = true;
+    choice.value = "";
+    refreshPracticed();
+    (choice.disabled ? choiceEmpty : choice).focus();
+  });
   for (const [button, review] of [[afterNew, false], [afterRepeat, true]]) {
     button?.addEventListener("click", () => {
       if (!choosingAfterReview || afterReview.hidden) return;

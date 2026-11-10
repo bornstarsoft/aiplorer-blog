@@ -1,0 +1,17 @@
+AI FILE RENAME REVIEW - TWO-RUN WORKSHEET - VERSION 1
+
+Input version:
+Run A date, tool and visible settings:
+Run B date, tool and visible settings:
+What changed between runs?
+
+For each ID, record meets check, needs correction, or could not test.
+Keep both original answers and the corresponding mapping.
+
+Case     Run A       Run B       Collision, format or scope check
+NAME-01  __________  __________  _________________________________
+NAME-02  __________  __________  _________________________________
+NAME-03  __________  __________  _________________________________
+
+Which paths need confirmation before any rename?
+What would a dry run need to show?
