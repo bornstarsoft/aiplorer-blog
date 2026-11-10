@@ -1,0 +1,20 @@
+AI INCIDENT TIMELINE REVIEW - FICTIONAL INPUT - VERSION 1
+
+Correct each claim about the fictional Sample Queue incident. For
+each ID, state the recorded observation, the uncertainty, and what
+evidence could resolve it. Use only the supplied log. Times are UTC.
+
+INC-01 - First report
+Log: 09:12, first report of delayed jobs was recorded. No earlier
+impact records are available in this sample.
+Draft: "The incident began at 09:12."
+
+INC-02 - Earlier change
+Log: 09:05, a configuration update finished. At 09:25 the incident
+owner listed it as one possible factor. No cause was confirmed.
+Draft: "The 09:05 update caused the failures."
+
+INC-03 - Recovery scope
+Log: 09:42, two newly submitted sample jobs completed. The earlier
+backlog had not been verified. No full recovery was declared.
+Draft: "Service was fully restored at 09:42."

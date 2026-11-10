@@ -50,6 +50,7 @@ provides a buggy function and local regression tests.
 | Review an audio cleanup | [Audio cleanup pack](/use-cases/check-an-ai-audio-cleanup-against-a-brief/) | Check for a lost cue, shifted timing and unapproved replacement speech |
 | Review release notes | [Release notes pack](/use-cases/check-ai-release-notes-against-a-change-log/) | Check rollout scope, temporary workarounds, and planned versus shipped work |
 | Review a test plan | [Test plan pack](/use-cases/check-an-ai-test-plan-against-acceptance-criteria/) | Check defaults, persistence after reload, and the state left by Cancel |
+| Review an incident timeline | [Incident timeline pack](/use-cases/check-an-ai-incident-timeline-against-an-event-log/) | Distinguish first report, suspected cause, and verified recovery |
 
 The [practice downloads](/use-cases/#practice-downloads) collect the
 packs in one place. These checks do not cover every workflow. If your

@@ -1,0 +1,17 @@
+AI INCIDENT TIMELINE REVIEW - TWO-RUN WORKSHEET - VERSION 1
+
+Input version:
+Run A date, tool and visible settings:
+Run B date, tool and visible settings:
+What changed between runs?
+
+For each ID, record meets check, needs correction, or could not test.
+Keep both original answers and the event that supports each check.
+
+Case    Run A       Run B       Event, uncertainty or next check
+INC-01  __________  __________  _________________________________
+INC-02  __________  __________  _________________________________
+INC-03  __________  __________  _________________________________
+
+What did the draft claim beyond the observed events?
+Which evidence would you need before sending a status update?

@@ -9,6 +9,7 @@ const practicedKey = "aiplorer-practiced-packs-v1";
 const planKey = "aiplorer-practice-next-pack-v1";
 const chartId = "practice-chart";
 const retryId = "practice-retry";
+const thirdId = "practice-third";
 
 function node(properties = {}) {
   const attributes = new Map();
@@ -59,7 +60,7 @@ function pack(id, title) {
   };
 }
 
-function setup(saved = null, mode = "", practicedSaved = null, planned = null) {
+function setup(saved = null, mode = "", practicedSaved = null, planned = null, includeThird = false) {
   const storage = new Map([["unrelated", "preserve"]]);
   if (saved !== null) storage.set(key, saved);
   if (practicedSaved !== null) storage.set(practicedKey, practicedSaved);
@@ -67,6 +68,7 @@ function setup(saved = null, mode = "", practicedSaved = null, planned = null) {
   const writes = [];
   const chart = pack(chartId, "Chart check");
   const retry = pack(retryId, "Retry check");
+  const third = pack(thirdId, "Third check");
   const unsafe = pack("javascript:bad", "Invalid target");
   const resume = node(), link = node(), title = node(), window = node();
   const nextStep = node({ value: "" }), nextStatus = node();
@@ -75,20 +77,25 @@ function setup(saved = null, mode = "", practicedSaved = null, planned = null) {
   const filterControls = node(), filter = node({ value: "all" }), filterEmpty = node(), taskNav = node();
   const chartOption = node({ value: chartId }), retryOption = node({ value: retryId });
   const unsafeOption = node({ value: "javascript:bad" });
+  const thirdOption = node({ value: thirdId });
   const chartGroup = node({ querySelectorAll: () => [chartOption] });
-  const retryGroup = node({ querySelectorAll: () => [retryOption, unsafeOption] });
+  const retryGroup = node({ querySelectorAll: () => [retryOption, ...(includeThird ? [thirdOption] : []), unsafeOption] });
   const chooser = node(), choice = node({ value: "", querySelectorAll: () => [chartGroup, retryGroup] });
   const choiceDetails = node(), choiceDescription = node(), choiceLink = node(), choiceEmpty = node();
   const choiceLabel = node();
   const newMode = node({ value: "new", checked: true });
   const reviewMode = node({ value: "review", checked: false });
   const choiceMode = node({ querySelectorAll: () => [newMode, reviewMode] });
+  const choiceControls = node();
+  const afterNew = node(), afterRepeat = node();
+  const afterReview = node({ contains: target => target === afterNew || target === afterRepeat });
   const plan = node(), planTitle = node(), planStart = node(), planDone = node();
   const planClear = node(), planSave = node(), planStatus = node();
   const document = { activeElement: null, querySelector: () => shelf };
   filter.focus = () => { document.activeElement = filter; };
   choice.focus = () => { document.activeElement = choice; };
   choiceEmpty.focus = () => { document.activeElement = choiceEmpty; };
+  afterNew.focus = () => { document.activeElement = afterNew; };
   window.location = { hash: "" };
   const children = {
     "[data-practice-resume]": resume,
@@ -106,6 +113,10 @@ function setup(saved = null, mode = "", practicedSaved = null, planned = null) {
     "[data-practice-choice]": choice,
     "[data-practice-choice-label]": choiceLabel,
     "[data-practice-choice-mode]": choiceMode,
+    "[data-practice-choice-controls]": choiceControls,
+    "[data-practice-after-review]": afterReview,
+    "[data-practice-after-new]": afterNew,
+    "[data-practice-after-repeat]": afterRepeat,
     "[data-practice-choice-details]": choiceDetails,
     "[data-practice-choice-description]": choiceDescription,
     "[data-practice-choice-link]": choiceLink,
@@ -119,7 +130,8 @@ function setup(saved = null, mode = "", practicedSaved = null, planned = null) {
     "[data-practice-plan-status]": planStatus,
   };
   const shelf = { querySelector: s => children[s], querySelectorAll: s =>
-    s === "[data-practice-task]" ? [chart.task, retry.task] : [chart, retry, unsafe] };
+    s === "[data-practice-task]" ? [chart.task, retry.task, ...(includeThird ? [third.task] : [])] :
+      [chart, retry, ...(includeThird ? [third] : []), unsafe] };
   const localStorage = {
     getItem(k) {
       if (mode === "read blocked") throw new Error("Denied");
@@ -140,7 +152,8 @@ function setup(saved = null, mode = "", practicedSaved = null, planned = null) {
   return { chart, retry, unsafe, resume, link, title, nextStep, nextStatus, stepDownload, practicedCount, window, storage, writes,
     filter, filterControls, filterEmpty, taskNav, document, chooser, choice, choiceDetails, choiceDescription, choiceLink,
     choiceEmpty, choiceLabel, choiceMode, newMode, reviewMode, chartOption, retryOption, unsafeOption, chartGroup, retryGroup,
-    plan, planTitle, planStart, planDone, planClear, planSave, planStatus };
+    plan, planTitle, planStart, planDone, planClear, planSave, planStatus,
+    choiceControls, afterReview, afterNew, afterRepeat, third, thirdOption };
 }
 
 test("does not save on visit and leaves native controls usable", () => {
@@ -207,6 +220,47 @@ test("finishing a review when all packs are practiced focuses the review chooser
   p.chart.finish.click();
   assert.equal(p.document.activeElement, p.choice);
   assert.equal(p.choiceEmpty.hidden, false);
+  assert.equal(p.afterReview.hidden, true);
+  assert.equal(p.chartOption.disabled, true, "The review just finished is not suggested again");
+  assert.equal(p.retryOption.disabled, false);
+  assert.deepEqual(p.writes, []);
+});
+
+for (const review of [false, true]) {
+  test(`finishing with both kinds available lets the user choose ${review ? "another review" : "a new practice"}`, () => {
+    const marks = JSON.stringify([chartId, retryId]);
+    const saved = JSON.stringify({ id: thirdId, step: "review" });
+    const p = setup(saved, "", marks, thirdId, true);
+    p.chart.restart.click();
+    p.chart.finish.click();
+    assert.equal(p.afterReview.hidden, false);
+    assert.equal(p.choiceControls.hidden, true);
+    assert.equal(p.document.activeElement, p.afterNew);
+    (review ? p.afterRepeat : p.afterNew).click();
+    assert.equal(p.afterReview.hidden, true);
+    assert.equal(p.choiceControls.hidden, false);
+    assert.equal(p.document.activeElement, p.choice);
+    assert.equal(p.choiceLabel.textContent, review ? "Choose a practice to review" : "Choose next practice");
+    assert.equal(p.chartOption.disabled, true);
+    assert.equal(p.retryOption.disabled, !review);
+    assert.equal(p.thirdOption.disabled, review);
+    assert.equal(p.storage.get(practicedKey), marks);
+    assert.equal(p.storage.get(key), saved);
+    assert.equal(p.storage.get(planKey), thirdId);
+    assert.deepEqual(p.writes, []);
+  });
+}
+
+test("a cross-tab unmark closes the decision when only a new option remains", () => {
+  const p = setup(null, "", JSON.stringify([chartId, retryId]), null, true);
+  p.chart.restart.click();
+  p.chart.finish.click();
+  p.storage.set(practicedKey, JSON.stringify([chartId]));
+  p.window.storage({ key: practicedKey });
+  assert.equal(p.afterReview.hidden, true);
+  assert.equal(p.choiceControls.hidden, false);
+  assert.equal(p.document.activeElement, p.choice);
+  assert.equal(p.choiceLabel.textContent, "Choose next practice");
   assert.deepEqual(p.writes, []);
 });
 

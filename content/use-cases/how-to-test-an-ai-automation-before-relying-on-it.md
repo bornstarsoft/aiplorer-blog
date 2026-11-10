@@ -124,6 +124,10 @@ to rehearse duplicate delivery and an uncertain write without connecting a
 real destination. Save the first result so you can repeat the same check
 after changing workflow instructions or retry settings.
 
+For incident follow-up, try the
+[incident timeline practice pack](/use-cases/check-an-ai-incident-timeline-against-an-event-log/)
+to separate observed events from unconfirmed causes or recovery claims.
+
 Write seven test cases for one reversible workflow and capture the expected
 result for each. Do not expand the workflow until failures are visible,
 important actions require review, and the manual fallback works.

@@ -25,12 +25,18 @@
         <button type="button" class="aiplorer-button aiplorer-button--light" aria-label="Clear saved next practice" data-practice-plan-clear>Clear</button>
       </div>
     </div>
+    <div role="group" aria-label="After review" data-practice-after-review hidden>
+      <div class="aiplorer-practice-plan-actions">
+        <button type="button" class="aiplorer-button aiplorer-button--light" data-practice-after-new>Choose a new practice</button>
+        <button type="button" class="aiplorer-button aiplorer-button--light" data-practice-after-repeat>Review another practice</button>
+      </div>
+    </div>
     <fieldset class="aiplorer-practice-choice-mode" data-practice-choice-mode hidden>
       <legend class="aiplorer-visually-hidden">Practice type</legend>
       <label class="aiplorer-practice-mark"><input type="radio" name="practice-choice-mode" value="new" checked>New practice</label>
       <label class="aiplorer-practice-mark"><input type="radio" name="practice-choice-mode" value="review">Review completed</label>
     </fieldset>
-    <div class="aiplorer-practice-filter">
+    <div class="aiplorer-practice-filter" data-practice-choice-controls>
       <label for="practice-choice" data-practice-choice-label>Choose next practice</label>
       <select id="practice-choice" data-practice-choice>
         <option value="">Choose a task</option>

@@ -252,6 +252,10 @@
   font-size: 0.9375rem;
 }
 
+[data-practice-after-review] .aiplorer-practice-plan-actions {
+  row-gap: 0.5rem;
+}
+
 .aiplorer-practice-plan-actions button:not([hidden]) {
   min-height: 44px;
   width: auto;

@@ -33,6 +33,7 @@ const tasks = [
   ["check-an-ai-audio-cleanup-against-a-brief", "Check audio cleanup"],
   ["check-ai-release-notes-against-a-change-log", "Check release notes"],
   ["check-an-ai-test-plan-against-acceptance-criteria", "Check a test plan"],
+  ["check-an-ai-incident-timeline-against-an-event-log", "Check an incident timeline"],
 ];
 assert.equal((html.match(/data-practice-pack\b/g) || []).length, tasks.length);
 const jumps = [...html.matchAll(/<a\b[^>]*\bdata-practice-task\b[^>]*>[\s\S]*?<\/a>/g)].map(([link]) => link);
@@ -70,7 +71,10 @@ for (const preview of previews) {
   assert(status && attr(status, "role") === "status" && attr(status, "aria-live") === "polite");
 }
 assert(html.includes("/js/aiplorer-practice-copy.js?v=20261024a"));
-assert(html.includes("/js/aiplorer-practice-resume.js?v=20261110n"));
+assert(html.includes("/js/aiplorer-practice-resume.js?v=20261110o"));
+assert.match(html, /<div\b[^>]*data-practice-after-review\b[^>]*\bhidden(?:[\s=>])/);
+assert.match(html, /<button\b[^>]*data-practice-after-new\b[^>]*>Choose a new practice<\/button>/);
+assert.match(html, /<button\b[^>]*data-practice-after-repeat\b[^>]*>Review another practice<\/button>/);
 const modeGroup = html.match(/<fieldset\b[^>]*data-practice-choice-mode\b[^>]*>[\s\S]*?<\/fieldset>/)?.[0];
 assert(modeGroup && /^<fieldset\b[^>]*\bhidden(?:[\s=>])/.test(modeGroup));
 const modeInputs = [...modeGroup.matchAll(/<input\b[^>]*>/g)].map(([tag]) => tag);
@@ -147,6 +151,7 @@ const packs = [
   ["check-an-ai-audio-cleanup-against-a-brief", "audio"],
   ["check-ai-release-notes-against-a-change-log", "release"],
   ["check-an-ai-test-plan-against-acceptance-criteria", "test-plan"],
+  ["check-an-ai-incident-timeline-against-an-event-log", "incident"],
 ];
 const downloadOrder = new Map();
 for (const [pack] of html.matchAll(/<li\b[^>]*data-practice-pack\b[^>]*>[\s\S]*?<\/li>/g)) {
@@ -362,4 +367,16 @@ const testPlanPreview = previews.find(tag => attr(tag, "data-practice-preview") 
 assert(testPlanPreview.includes("A fresh profile") && !testPlanPreview.includes("Keep this file out of the test conversation"));
 assert(read("public/use-cases/check-an-ai-pilot-result-before-expanding/index.html").includes(testPlanRoute));
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${testPlanRoute}</loc>`).length, 2);
+const incidentRoute = "/use-cases/check-an-ai-incident-timeline-against-an-event-log/";
+const incidentArticle = read(`public${incidentRoute}index.html`);
+assert(!incidentArticle.includes("aiplorer-practice-resume.js"));
+for (const role of ["inputs", "answer-key", "worksheet"]) {
+  const file = `incident-check-${role}-v1.txt`;
+  assert(incidentArticle.includes(incidentRoute + file));
+  for (const id of ["INC-01", "INC-02", "INC-03"]) assert(read(`public${incidentRoute}${file}`).includes(id));
+}
+const incidentPreview = previews.find(tag => attr(tag, "data-practice-preview") === incidentRoute + "incident-check-inputs-v1.txt");
+assert(incidentPreview.includes("No cause was confirmed") && !incidentPreview.includes("Keep this file out of the test conversation"));
+assert(read("public/use-cases/how-to-test-an-ai-automation-before-relying-on-it/index.html").includes(incidentRoute));
+assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${incidentRoute}</loc>`).length, 2);
 console.log(`PASS: ${tasks.length} input-only previews, ${downloadCount} exact step-ordered downloads, guide entry links, script scoped to use-cases hub.`);
