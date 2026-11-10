@@ -62,6 +62,7 @@
   let shownId = null;
   let plannedId = null;
   let startedId = null;
+  let reviewingId = null;
 
   function read() {
     const value = localStorage.getItem(key);
@@ -178,30 +179,40 @@
     if (pack && !practiced) planStart.setAttribute("href", "#" + saved);
     else planStart.removeAttribute("href");
     planSave.hidden = saved === undefined || !packs.has(choice.value) || ids.has(choice.value);
+    if (ids && !ids.has(reviewingId)) reviewingId = null;
     for (const [id, entry] of packs) {
       if (!entry.finish) continue;
-      const active = Boolean(ids) && (id === plannedId || id === startedId);
+      const active = Boolean(ids) && (id === plannedId || id === startedId || id === reviewingId);
       entry.finish.hidden = !active;
-      if (active) entry.finish.textContent = ids.has(id) ? "Choose next practice" : "Finish and choose next";
+      if (!active) continue;
+      if (id === reviewingId) entry.finish.textContent = "Finish review and choose next";
+      else entry.finish.textContent = ids.has(id) ? "Choose next practice" : "Finish and choose next";
     }
   }
 
   function finishPractice(id, pack) {
+    const review = id === reviewingId;
     try {
-      if (id !== startedId && localStorage.getItem(planKey) !== id) {
+      if (review && !readPracticed().has(id)) {
+        refreshPracticed();
+        pack.status.textContent = "The practice mark changed.";
+        return;
+      }
+      if (!review && id !== startedId && localStorage.getItem(planKey) !== id) {
         refreshPracticed();
         pack.status.textContent = "The saved next practice changed.";
         return;
       }
-      setPracticed(id, true);
+      if (review) reviewingId = null;
+      else setPracticed(id, true);
       pack.status.textContent = "";
       choice.value = "";
       refreshPracticed();
       (choice.disabled ? choiceEmpty : choice).focus();
-      planStatus.textContent = "Marked as practiced.";
+      planStatus.textContent = review ? "Review finished." : "Marked as practiced.";
     } catch {
       refreshPracticed();
-      pack.status.textContent = "Could not mark this practice as finished.";
+      pack.status.textContent = review ? "Could not finish this review." : "Could not mark this practice as finished.";
     }
   }
 
@@ -332,7 +343,10 @@
   for (const [id, pack] of packs) {
     pack.controls.hidden = false;
     pack.restart?.addEventListener("click", () => {
-      if (!pack.restart.hidden) openPracticeInput("#" + id, true);
+      if (pack.restart.hidden || !openPracticeInput("#" + id, true)) return;
+      reviewingId = id;
+      if (startedId === id) startedId = null;
+      refreshPracticed();
     });
     if (planReady && choiceEmpty && pack.finish) {
       pack.finish.addEventListener("click", () => finishPractice(id, pack));

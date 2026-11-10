@@ -33,6 +33,7 @@
       "check-ai-captions-against-a-reference",
       "check-an-ai-slide-chart-before-sharing",
       "check-an-ai-image-edit-against-a-brief",
+      "check-an-ai-audio-cleanup-against-a-brief",
       "check-an-ai-video-shot-list-before-sharing"
     ]
   }

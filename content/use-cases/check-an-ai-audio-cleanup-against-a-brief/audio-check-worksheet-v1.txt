@@ -1,0 +1,17 @@
+AI AUDIO CLEANUP REVIEW - TWO-RUN WORKSHEET - VERSION 1
+
+Input version:
+Run A date, tool and visible settings:
+Run B date, tool and visible settings:
+What changed between runs?
+
+For each ID, record meets check, needs correction, or could not test.
+Keep both original answers and cite the line of the brief they used.
+
+Case    Run A       Run B       Cue, timing or source to verify
+AUD-01  __________  __________  __________________________________
+AUD-02  __________  __________  __________________________________
+AUD-03  __________  __________  __________________________________
+
+Did either review accept a change outside the approved cleanup?
+Which check still requires listening to an actual export?

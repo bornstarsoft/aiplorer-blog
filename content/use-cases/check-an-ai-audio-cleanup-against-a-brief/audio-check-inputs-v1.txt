@@ -1,0 +1,20 @@
+AI AUDIO CLEANUP REVIEW - FICTIONAL INPUT - VERSION 1
+
+For each ID, state what can be retained, what violates the brief,
+and the next verification step. Use only the fictional notes. Do not
+generate speech, infer missing words, or claim to have heard a file.
+
+AUD-01 - Preserve quiet speech
+Brief: Reduce the fan hum. Keep the quiet spoken cue "Ready."
+Review note: The fan hum is lower. The cue "Ready" is no longer audible.
+
+AUD-02 - Preserve picture alignment
+Brief: The spoken cue must align with the title change at 00:03.000.
+Do not shorten the lead-in.
+Review note: The editor shortened the lead-in. The cue now lands at
+00:02.600 while the picture is unchanged.
+
+AUD-03 - No synthetic replacements
+Brief: Use the approved recorded take. Generated speech is not approved.
+If a word is unusable, flag it for an approved alternate take or rerecord.
+Review note: One clipped word was replaced with generated speech.

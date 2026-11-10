@@ -166,10 +166,52 @@ test("starting a practiced pack again opens and focuses its input without changi
   assert.equal(p.filter.value, "practiced");
   assert.equal(p.chart.practiced.checked, true);
   assert.equal(p.chartOption.disabled, true);
-  assert.equal(p.chart.finish.hidden, true, "Restart does not start a new completion flow");
+  assert.equal(p.chart.finish.hidden, false);
+  assert.equal(p.chart.finish.textContent, "Finish review and choose next");
   assert.equal(p.storage.get(key), saved);
   assert.equal(p.storage.get(planKey), retryId);
   assert.equal(p.storage.get(practicedKey), marks);
+  assert.deepEqual(p.writes, []);
+});
+
+test("finishing a review moves to the next chooser without writing marks or saved state", () => {
+  const saved = JSON.stringify({ id: retryId, step: "review" });
+  const marks = JSON.stringify([chartId]);
+  const p = setup(saved, "write blocked", marks, retryId);
+  p.filter.value = "practiced";
+  p.filter.change();
+  p.chart.restart.click();
+  p.chart.finish.click();
+  assert.equal(p.chart.finish.hidden, true);
+  assert.equal(p.document.activeElement, p.choice);
+  assert.equal(p.planStatus.textContent, "Review finished.");
+  assert.equal(p.filter.value, "practiced");
+  assert.equal(p.chart.practiced.checked, true);
+  assert.equal(p.chartOption.disabled, true);
+  assert.equal(p.retryOption.disabled, false);
+  assert.equal(p.storage.get(key), saved);
+  assert.equal(p.storage.get(planKey), retryId);
+  assert.equal(p.storage.get(practicedKey), marks);
+  assert.deepEqual(p.writes, []);
+});
+
+test("finishing a review when all packs are practiced focuses the empty message", () => {
+  const p = setup(null, "", JSON.stringify([chartId, retryId]));
+  p.chart.restart.click();
+  p.chart.finish.click();
+  assert.equal(p.document.activeElement, p.choiceEmpty);
+  assert.equal(p.choiceEmpty.hidden, false);
+  assert.deepEqual(p.writes, []);
+});
+
+test("a review never restores a practiced mark removed in another tab", () => {
+  const p = setup(null, "", JSON.stringify([chartId]));
+  p.chart.restart.click();
+  p.storage.delete(practicedKey);
+  p.chart.finish.click();
+  assert.equal(p.chart.practiced.checked, false);
+  assert.equal(p.chart.finish.hidden, true);
+  assert.equal(p.chart.status.textContent, "The practice mark changed.");
   assert.deepEqual(p.writes, []);
 });
 

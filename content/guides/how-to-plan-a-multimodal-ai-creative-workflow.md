@@ -96,6 +96,8 @@ audio segment that matters.
 
 Use the [image edit practice pack](/use-cases/check-an-ai-image-edit-against-a-brief/)
 to rehearse checks for changes outside the brief before reviewing a real export.
+For audio, try the [audio cleanup practice pack](/use-cases/check-an-ai-audio-cleanup-against-a-brief/)
+to check preserved cues, timing and approved source material.
 
 Do not create deceptive or harmful representations. Obtain appropriate consent
 for voices, faces, likenesses, private material, and other third-party content.

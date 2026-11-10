@@ -30,6 +30,7 @@ const tasks = [
   ["check-an-ai-tool-comparison-against-test-records", "Check a tool comparison"],
   ["check-an-ai-automation-for-permission-scope", "Check automation permissions"],
   ["check-an-ai-image-edit-against-a-brief", "Check an image edit"],
+  ["check-an-ai-audio-cleanup-against-a-brief", "Check audio cleanup"],
 ];
 assert.equal((html.match(/data-practice-pack\b/g) || []).length, tasks.length);
 const jumps = [...html.matchAll(/<a\b[^>]*\bdata-practice-task\b[^>]*>[\s\S]*?<\/a>/g)].map(([link]) => link);
@@ -67,7 +68,7 @@ for (const preview of previews) {
   assert(status && attr(status, "role") === "status" && attr(status, "aria-live") === "polite");
 }
 assert(html.includes("/js/aiplorer-practice-copy.js?v=20261024a"));
-assert(html.includes("/js/aiplorer-practice-resume.js?v=20261110k"));
+assert(html.includes("/js/aiplorer-practice-resume.js?v=20261110l"));
 assert.match(html, /<a\b[^>]*data-practice-choice-link\b[^>]*>Start selected practice<\/a>/);
 assert.match(html, /<p\b[^>]*data-practice-choice-empty\b[^>]*>/);
 const emptyChoice = html.match(/<p\b[^>]*data-practice-choice-empty\b[^>]*>/)[0];
@@ -135,6 +136,7 @@ const packs = [
   ["check-an-ai-tool-comparison-against-test-records", "comparison"],
   ["check-an-ai-automation-for-permission-scope", "permission"],
   ["check-an-ai-image-edit-against-a-brief", "image-edit"],
+  ["check-an-ai-audio-cleanup-against-a-brief", "audio"],
 ];
 const downloadOrder = new Map();
 for (const [pack] of html.matchAll(/<li\b[^>]*data-practice-pack\b[^>]*>[\s\S]*?<\/li>/g)) {
@@ -314,4 +316,16 @@ const imageEditPreview = previews.find(tag => attr(tag, "data-practice-preview")
 assert(imageEditPreview.includes("Batch 04") && !imageEditPreview.includes("Keep this file out of the test conversation"));
 assert(read("public/guides/how-to-plan-a-multimodal-ai-creative-workflow/index.html").includes(imageEditRoute));
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${imageEditRoute}</loc>`).length, 2);
+const audioRoute = "/use-cases/check-an-ai-audio-cleanup-against-a-brief/";
+const audioArticle = read(`public${audioRoute}index.html`);
+assert(!audioArticle.includes("aiplorer-practice-resume.js"));
+for (const role of ["inputs", "answer-key", "worksheet"]) {
+  const file = `audio-check-${role}-v1.txt`;
+  assert(audioArticle.includes(audioRoute + file));
+  for (const id of ["AUD-01", "AUD-02", "AUD-03"]) assert(read(`public${audioRoute}${file}`).includes(id));
+}
+const audioPreview = previews.find(tag => attr(tag, "data-practice-preview") === audioRoute + "audio-check-inputs-v1.txt");
+assert(audioPreview.includes("00:02.600") && !audioPreview.includes("Keep this file out of the test conversation"));
+assert(read("public/guides/how-to-plan-a-multimodal-ai-creative-workflow/index.html").includes(audioRoute));
+assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${audioRoute}</loc>`).length, 2);
 console.log(`PASS: ${tasks.length} input-only previews, ${downloadCount} exact step-ordered downloads, guide entry links, script scoped to use-cases hub.`);
