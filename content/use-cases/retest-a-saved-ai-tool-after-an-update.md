@@ -44,6 +44,7 @@ provides a buggy function and local regression tests.
 | Review a meeting action list | [Meeting actions pack](/use-cases/check-ai-meeting-actions-against-decisions/) | Separate conditional proposals, cancellations, and confirmed owners |
 | Review a product video shot list | [Video shot list pack](/use-cases/check-an-ai-video-shot-list-before-sharing/) | Check visible controls, implied speed and release audio against the brief |
 | Review a file handoff | [File handoff pack](/use-cases/check-an-ai-file-handoff-before-switching-tools/) | Distinguish a usable import, approved access and permission to remove the original |
+| Review a tool comparison | [Comparison evidence pack](/use-cases/check-an-ai-tool-comparison-against-test-records/) | Check for unmatched inputs, missing results and evidence from an earlier setup |
 
 The [practice downloads](/use-cases/#practice-downloads) collect the
 packs in one place. These checks do not cover every workflow. If your

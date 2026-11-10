@@ -360,9 +360,10 @@ test("the picker exposes only known unpracticed tasks in nonempty groups", () =>
   assert.deepEqual(p.writes, []);
 });
 
-test("previewing and opening a candidate never replaces the saved pack or step", () => {
+test("starting a selected candidate opens its input without changing any stored practice state", () => {
   const saved = JSON.stringify({ id: chartId, step: "compare" });
-  const p = setup(saved, "", JSON.stringify([chartId]));
+  const marks = JSON.stringify([chartId]);
+  const p = setup(saved, "", marks, chartId);
   p.filter.value = "practiced";
   p.filter.change();
   p.choice.value = retryId;
@@ -371,10 +372,26 @@ test("previewing and opening a candidate never replaces the saved pack or step",
   assert.equal(p.choiceDescription.textContent, "Retry check description");
   assert.equal(p.choiceLink.getAttribute("href"), "#" + retryId);
   assert.equal(p.retry.hidden, true);
+  assert.equal(p.retry.preview.open, false, "Selecting is not starting");
   p.choiceLink.click();
   assert.equal(p.filter.value, "all");
   assert.equal(p.retry.hidden, false);
+  assert.equal(p.retry.preview.open, true);
+  assert.equal(p.chart.preview.open, false);
   assert.equal(p.storage.get(key), saved);
+  assert.equal(p.storage.get(planKey), chartId);
+  assert.equal(p.storage.get(practicedKey), marks);
+  assert.deepEqual(p.writes, []);
+});
+
+test("start only opens a preview for a known pack anchor", () => {
+  const p = setup();
+  for (const href of ["#practice-missing", "https://example.invalid/", "x" + chartId]) {
+    p.choiceLink.setAttribute("href", href);
+    p.choiceLink.click();
+  }
+  assert.equal(p.chart.preview.open, false);
+  assert.equal(p.retry.preview.open, false);
   assert.deepEqual(p.writes, []);
 });
 

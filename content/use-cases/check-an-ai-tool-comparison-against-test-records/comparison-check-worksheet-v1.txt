@@ -1,0 +1,18 @@
+AI TOOL COMPARISON REVIEW - TWO-RUN WORKSHEET - VERSION 1
+
+Input version:
+Run A date, tool and visible settings:
+Run B date, tool and visible settings:
+What changed between runs?
+
+Keep both original reviews. For each case, record meets check, needs
+correction, or could not test, then note the evidence and next test.
+
+Case    Run A       Run B       Evidence or unsupported claim
+CMP-01  __________  __________  _________________________________
+CMP-02  __________  __________  _________________________________
+CMP-03  __________  __________  _________________________________
+
+Did either response turn an unmatched, unrun or historical test
+into a current conclusion?
+What one check would make the comparison more useful?

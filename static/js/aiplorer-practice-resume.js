@@ -283,21 +283,25 @@
     return pack.heading;
   }
 
+  function openPracticeInput(hash) {
+    const pack = hash?.startsWith("#") && packs.get(hash.slice(1));
+    if (!pack) return;
+    revealPack(hash);
+    const preview = pack.element.querySelector("[data-practice-preview]");
+    if (preview) preview.open = true;
+  }
+
   try { render(read()); }
   catch { return; }
   refreshPracticed();
   if (choice && choiceLink) {
     choice.addEventListener("change", refreshPracticed);
-    choiceLink.addEventListener("click", () => revealPack(choiceLink.getAttribute("href")));
+    choiceLink.addEventListener("click", () => openPracticeInput(choiceLink.getAttribute("href")));
   }
   if (planReady) {
     planSave.addEventListener("click", () => updatePlan(choice.value));
     planClear.addEventListener("click", () => updatePlan(null));
-    planStart.addEventListener("click", () => {
-      revealPack(planStart.getAttribute("href"));
-      const preview = packs.get(plannedId)?.element.querySelector("[data-practice-preview]");
-      if (preview) preview.open = true;
-    });
+    planStart.addEventListener("click", () => openPracticeInput(planStart.getAttribute("href")));
   }
   if (filterControls && filter && filterEmpty && taskNav) {
     filter.addEventListener("change", refreshPracticed);

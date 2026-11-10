@@ -82,3 +82,6 @@ avoid storing secrets or private source text in them.
 Before extending a small trial, use the
 [pilot-result review](/use-cases/check-an-ai-pilot-result-before-expanding/)
 to separate what you observed from what remains untested.
+
+Try the [comparison evidence practice pack](/use-cases/check-an-ai-tool-comparison-against-test-records/)
+to rehearse checks for unequal inputs, an unrun test and an earlier preset.

@@ -1,0 +1,20 @@
+AI TOOL COMPARISON REVIEW - FICTIONAL INPUT - VERSION 1
+
+Review each claim using only its fictional test record. For each ID, state
+what was observed, what is not established, and the smallest useful next
+test. Do not rank the tools or invent a test result.
+
+CMP-01 - Different inputs
+Record: Cedar summarized a two-page sample in 8 seconds. Slate summarized
+a twelve-page sample in 14 seconds. No matched-input run was recorded.
+Claim: "Cedar is faster than Slate."
+
+CMP-02 - No output to review
+Record: The test account could not submit the approved sample to Slate.
+No output was produced. The reviewer did not determine why access was blocked.
+Claim: "Slate failed the content check."
+
+CMP-03 - Earlier preset
+Record: Cedar preserved the required dates using the earlier preset.
+The team has since selected a different preset. No run with it was recorded.
+Claim: "Cedar passes the date check with the current preset."
