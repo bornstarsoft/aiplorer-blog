@@ -1,0 +1,18 @@
+AI IMAGE EDIT REVIEW - REVIEW KEY - VERSION 1
+Keep this file out of the test conversation.
+
+IMG-01
+The scuff removal meets the requested edit. The gray trim does not.
+Retain the background cleanup only if the approved blue trim is restored.
+
+IMG-02
+The glare reduction can be retained. Restore the exact text "Batch 04"
+and verify the label in the actual export before sharing.
+
+IMG-03
+The margin can be retained if it is plain. Remove the invented cable
+and verify that the extension did not add other objects.
+
+Equivalent wording is acceptable if it separates the requested change
+from the unsupported change. These notes do not establish the quality,
+accuracy or usage rights of an actual image.

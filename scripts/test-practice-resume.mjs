@@ -30,8 +30,10 @@ function pack(id, title) {
   const status = node();
   const mark = node();
   const practiced = node({ checked: false });
-  const preview = node({ open: false });
+  const summary = node({ focus() { this.focused = true; } });
+  const preview = node({ open: false, querySelector: () => summary });
   const finish = node();
+  const restart = node();
   const downloads = ["inputs-v1.txt", "answer-key-v1.txt", "worksheet-v1.txt"].map((file, index) => {
     const download = node({ textContent: ["Test input", "Review key", "Comparison worksheet"][index] });
     download.setAttribute("href", "/use-cases/" + id.slice("practice-".length) + "/" + file);
@@ -48,9 +50,10 @@ function pack(id, title) {
     "[data-practice-practiced]": practiced,
     "[data-practice-preview]": preview,
     "[data-practice-finish]": finish,
+    "[data-practice-restart]": restart,
   };
   return {
-    controls, button, status, downloads, mark, practiced, task, heading, preview, finish, hidden: false,
+    controls, button, status, downloads, mark, practiced, task, heading, preview, summary, finish, restart, hidden: false,
     contains: element => Object.values(children).includes(element),
     querySelector: selector => children[selector], querySelectorAll: () => downloads,
   };
@@ -144,6 +147,44 @@ test("does not save on visit and leaves native controls usable", () => {
   assert.equal(p.plan.hidden, true);
   assert.equal(p.planSave.hidden, true);
   assert.equal(p.chart.finish.hidden, true);
+  assert.equal(p.chart.restart.hidden, true);
+  assert.deepEqual(p.writes, []);
+});
+
+test("starting a practiced pack again opens and focuses its input without changing any stored state", () => {
+  const saved = JSON.stringify({ id: retryId, step: "compare" });
+  const marks = JSON.stringify([chartId]);
+  const p = setup(saved, "", marks, retryId);
+  p.filter.value = "practiced";
+  p.filter.change();
+  assert.equal(p.chart.restart.hidden, false);
+  assert.equal(p.retry.restart.hidden, true);
+  p.chart.restart.click();
+  assert.equal(p.chart.preview.open, true);
+  assert.equal(p.chart.summary.focused, true);
+  assert.equal(p.retry.preview.open, false);
+  assert.equal(p.filter.value, "practiced");
+  assert.equal(p.chart.practiced.checked, true);
+  assert.equal(p.chartOption.disabled, true);
+  assert.equal(p.chart.finish.hidden, true, "Restart does not start a new completion flow");
+  assert.equal(p.storage.get(key), saved);
+  assert.equal(p.storage.get(planKey), retryId);
+  assert.equal(p.storage.get(practicedKey), marks);
+  assert.deepEqual(p.writes, []);
+});
+
+test("the restart action follows practiced changes and is inert on unpracticed packs", () => {
+  const p = setup();
+  p.chart.restart.click();
+  assert.equal(p.chart.preview.open, false);
+  p.storage.set(practicedKey, JSON.stringify([chartId]));
+  p.window.storage({ key: practicedKey });
+  assert.equal(p.chart.restart.hidden, false);
+  p.storage.delete(practicedKey);
+  p.window.storage({ key: practicedKey });
+  assert.equal(p.chart.restart.hidden, true);
+  p.chart.restart.click();
+  assert.equal(p.chart.preview.open, false);
   assert.deepEqual(p.writes, []);
 });
 

@@ -149,7 +149,7 @@
   cursor: progress;
 }
 
-.aiplorer-practice-save button[data-practice-finish][hidden] {
+.aiplorer-practice-save button[hidden] {
   display: none;
 }
 

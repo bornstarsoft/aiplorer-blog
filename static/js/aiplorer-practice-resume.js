@@ -51,6 +51,7 @@
       mark: pack.querySelector("[data-practice-mark]"),
       practiced: pack.querySelector("[data-practice-practiced]"),
       finish: pack.querySelector("[data-practice-finish]"),
+      restart: pack.querySelector("[data-practice-restart]"),
     });
   });
 
@@ -151,9 +152,11 @@
     practicedCount.hidden = !ids?.size;
     practicedCount.textContent = ids?.size ? `${ids.size} of ${packs.size} practiced in this browser` : "";
     for (const [id, pack] of packs) {
+      const practiced = ids?.has(id) ?? false;
+      if (pack.restart) pack.restart.hidden = !practiced;
       if (!pack.practiced || !pack.mark) continue;
       pack.mark.hidden = !ids;
-      pack.practiced.checked = ids?.has(id) ?? false;
+      pack.practiced.checked = practiced;
     }
     renderFilter(ids);
     renderChooser(ids);
@@ -285,12 +288,15 @@
     return pack.heading;
   }
 
-  function openPracticeInput(hash) {
+  function openPracticeInput(hash, focusPreview = false) {
     const pack = hash?.startsWith("#") && packs.get(hash.slice(1));
     if (!pack) return;
     revealPack(hash);
     const preview = pack.element.querySelector("[data-practice-preview]");
-    if (preview) preview.open = true;
+    if (preview) {
+      preview.open = true;
+      if (focusPreview) preview.querySelector("summary")?.focus();
+    }
     return pack.heading.id;
   }
 
@@ -325,6 +331,9 @@
 
   for (const [id, pack] of packs) {
     pack.controls.hidden = false;
+    pack.restart?.addEventListener("click", () => {
+      if (!pack.restart.hidden) openPracticeInput("#" + id, true);
+    });
     if (planReady && choiceEmpty && pack.finish) {
       pack.finish.addEventListener("click", () => finishPractice(id, pack));
     }

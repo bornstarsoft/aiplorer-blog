@@ -94,6 +94,9 @@ Creative output can invent text, objects, people, product details, citations,
 or visual context. Check claims and inspect every frame, slide, caption, and
 audio segment that matters.
 
+Use the [image edit practice pack](/use-cases/check-an-ai-image-edit-against-a-brief/)
+to rehearse checks for changes outside the brief before reviewing a real export.
+
 Do not create deceptive or harmful representations. Obtain appropriate consent
 for voices, faces, likenesses, private material, and other third-party content.
 Apply additional review to public, political, medical, financial, legal, or

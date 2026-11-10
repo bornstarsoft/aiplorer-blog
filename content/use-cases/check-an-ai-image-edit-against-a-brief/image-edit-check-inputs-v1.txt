@@ -1,0 +1,20 @@
+AI IMAGE EDIT REVIEW - FICTIONAL INPUT - VERSION 1
+
+For each ID, state what was correctly changed, what fell outside the brief,
+and the smallest correction or next check. Use only the fictional review
+notes. Do not generate images or claim to have inspected an actual file.
+
+IMG-01 - Local cleanup
+Brief: Remove a scuff from a tabletop behind the product. Keep the
+product's blue trim, shape and position unchanged.
+Review note: The scuff is gone. The trim has changed from blue to gray.
+
+IMG-02 - Exact label
+Brief: Reduce glare on the sample package. The approved label reads
+"Batch 04" and must remain exact.
+Review note: Glare is reduced. The edited label reads "Batch 40."
+
+IMG-03 - Extend only the background
+Brief: Add a plain right margin for a caption. There is no cable in
+the approved image. Do not introduce accessories.
+Review note: The margin is wider. A cable appears in the extended area.

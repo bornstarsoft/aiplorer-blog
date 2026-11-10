@@ -1,0 +1,17 @@
+AI IMAGE EDIT REVIEW - TWO-RUN WORKSHEET - VERSION 1
+
+Input version:
+Run A date, tool and visible settings:
+Run B date, tool and visible settings:
+What changed between runs?
+
+Keep both original answers. For each ID, record meets check, needs
+correction, or could not test, and cite the relevant line of the brief.
+
+Case    Run A       Run B       What to retain, correct or verify
+IMG-01  __________  __________  __________________________________
+IMG-02  __________  __________  __________________________________
+IMG-03  __________  __________  __________________________________
+
+Did either response accept a change outside the brief?
+What would still need inspection in an actual export?
