@@ -68,6 +68,9 @@
       recapPrevious: pack.querySelector("[data-practice-recap-previous]"),
       recapNext: pack.querySelector("[data-practice-recap-next]"),
       recapPosition: pack.querySelector("[data-practice-recap-position]"),
+      recapPicker: pack.querySelector("[data-practice-recap-picker]"),
+      recapSelect: pack.querySelector("[data-practice-recap-select]"),
+      recapOpen: pack.querySelector("[data-practice-recap-open]"),
     });
   });
 
@@ -408,10 +411,28 @@
       pack.recapPosition.hidden = true;
       pack.recapPosition.textContent = "";
     }
+    if (pack.recapPicker) pack.recapPicker.hidden = true;
+    pack.recapSelect?.replaceChildren();
+    if (pack.recapOpen) pack.recapOpen.disabled = true;
     for (const [control] of recapDirections) {
       if (pack[control]) pack[control].hidden = true;
     }
     recapPreview = null;
+  }
+
+  function showRecapPicker(pack, entry) {
+    const { recapPicker, recapSelect, recapOpen } = pack;
+    if (!recapPicker || !recapSelect || !recapOpen || recapEntries.size < 2) return;
+    const options = [...recapEntries.values()].map(({ id, position, link }) => {
+      const option = document.createElement("option");
+      option.value = id;
+      option.textContent = `${position}. ${link.textContent}`;
+      return option;
+    });
+    recapSelect.replaceChildren(...options);
+    recapSelect.value = entry.id;
+    recapOpen.disabled = true;
+    recapPicker.hidden = false;
   }
 
   function openRecapInput(id) {
@@ -430,6 +451,7 @@
       preview.open = true;
       if (entry && pack.recapReturn && !chooser.hidden && recapEntries.get(entry.id) === entry) {
         recapPreview = { pack, entry };
+        showRecapPicker(pack, entry);
         pack.recapReturn.hidden = false;
         if (pack.recapPosition) {
           pack.recapPosition.textContent = ` (${entry.position} of ${recapEntries.size})`;
@@ -515,6 +537,19 @@
 
   for (const [id, pack] of packs) {
     pack.controls.hidden = false;
+    if (pack.recapPicker && pack.recapSelect && pack.recapOpen) {
+      const target = () => {
+        const value = pack.recapSelect.value;
+        return recapPreview?.pack === pack && !pack.recapPicker.hidden && value !== id && recapEntries.has(value) ? value : null;
+      };
+      pack.recapSelect.addEventListener("change", () => {
+        pack.recapOpen.disabled = !target();
+      });
+      pack.recapOpen.addEventListener("click", () => {
+        const selected = target();
+        if (selected) openRecapInput(selected);
+      });
+    }
     pack.recapReturn?.addEventListener("click", () => {
       if (recapPreview?.pack !== pack) return;
       const { link } = recapPreview.entry;

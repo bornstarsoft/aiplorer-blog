@@ -32,6 +32,7 @@
       "check-an-ai-process-guide-against-a-workflow",
       "check-an-ai-prompt-template-before-reusing-it",
       "check-an-ai-file-handoff-before-switching-tools",
+      "check-an-ai-document-index-against-a-file-manifest",
       "check-an-ai-file-rename-plan-before-applying-it",
       "check-an-ai-incident-timeline-against-an-event-log",
       "check-an-automation-before-retrying",

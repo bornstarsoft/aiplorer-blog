@@ -40,6 +40,12 @@ function pack(id, title) {
   const recapPrevious = node();
   const recapNext = node();
   const recapPosition = node();
+  const recapPicker = node();
+  const recapSelect = node({
+    value: "", options: [],
+    replaceChildren(...options) { this.options = options; this.value = ""; },
+  });
+  const recapOpen = node({ disabled: true });
   const downloads = ["inputs-v1.txt", "answer-key-v1.txt", "worksheet-v1.txt"].map((file, index) => {
     const download = node({ textContent: ["Test input", "Review key", "Comparison worksheet"][index] });
     download.setAttribute("href", "/use-cases/" + id.slice("practice-".length) + "/" + file);
@@ -62,9 +68,13 @@ function pack(id, title) {
     "[data-practice-recap-previous]": recapPrevious,
     "[data-practice-recap-next]": recapNext,
     "[data-practice-recap-position]": recapPosition,
+    "[data-practice-recap-picker]": recapPicker,
+    "[data-practice-recap-select]": recapSelect,
+    "[data-practice-recap-open]": recapOpen,
   };
   return {
-    controls, button, status, downloads, mark, practiced, task, heading, preview, summary, finish, restart, reviewProgress, recapReturn, recapPrevious, recapNext, recapPosition, hidden: false,
+    controls, button, status, downloads, mark, practiced, task, heading, preview, summary, finish, restart, reviewProgress, recapReturn, recapPrevious, recapNext, recapPosition,
+    recapPicker, recapSelect, recapOpen, hidden: false,
     contains: element => Object.values(children).includes(element),
     querySelector: selector => children[selector], querySelectorAll: () => downloads,
   };
@@ -527,6 +537,52 @@ test("a one-entry recap shows one of one without navigation or stored changes", 
   assert.equal(p.chart.recapPosition.textContent, " (1 of 1)");
   assert.equal(p.chart.recapPrevious.hidden, true);
   assert.equal(p.chart.recapNext.hidden, true);
+  assert.equal(p.chart.recapPicker.hidden, true);
+  assert.deepEqual(p.writes, []);
+});
+
+test("the recap picker jumps to a selected input only on command without changing progress", () => {
+  const saved = JSON.stringify({ id: chartId, step: "compare" });
+  const marks = JSON.stringify([chartId, retryId, thirdId]);
+  const p = setup(saved, "", marks, chartId, true);
+  for (const pack of [p.retry, p.chart, p.third]) {
+    pack.restart.click();
+    assert.equal(pack.recapPicker.hidden, true);
+    pack.finish.click();
+    pack.preview.open = false;
+  }
+  const [retryLink, , thirdLink] = p.roundList.items.map(item => item.children[0]);
+  retryLink.click({ button: 0, preventDefault() {} });
+  assert.equal(p.retry.recapPicker.hidden, false);
+  assert.equal(p.retry.recapSelect.value, retryId);
+  assert.equal(p.retry.recapOpen.disabled, true);
+  assert.deepEqual(p.retry.recapSelect.options.map(option => [option.value, option.textContent]),
+    [[retryId, "1. Retry check"], [chartId, "2. Chart check"], [thirdId, "3. Third check"]]);
+  p.retry.recapSelect.value = "practice-unknown";
+  p.retry.recapSelect.change();
+  assert.equal(p.retry.recapOpen.disabled, true);
+  p.retry.recapOpen.click();
+  assert.equal(p.third.preview.open, false);
+  p.retry.recapSelect.value = thirdId;
+  p.retry.recapSelect.change();
+  assert.equal(p.retry.recapOpen.disabled, false);
+  assert.equal(p.third.preview.open, false);
+  p.retry.recapOpen.click();
+  assert.equal(p.chart.preview.open, false);
+  assert.equal(p.third.preview.open, true);
+  assert.equal(p.third.summary.focused, true);
+  assert.equal(p.third.recapPosition.textContent, " (3 of 3)");
+  assert.equal(p.third.recapSelect.value, thirdId);
+  assert.equal(p.third.recapOpen.disabled, true);
+  assert.equal(p.retry.recapPicker.hidden, true);
+  assert.deepEqual(p.retry.recapSelect.options, []);
+  p.third.recapReturn.click();
+  assert.equal(p.document.activeElement, thirdLink);
+  assert.equal(p.third.recapPicker.hidden, true);
+  assert.equal(p.roundProgress.textContent, "Review round: 3 finished, 0 left.");
+  assert.equal(p.storage.get(key), saved);
+  assert.equal(p.storage.get(practicedKey), marks);
+  assert.equal(p.storage.get(planKey), chartId);
   assert.deepEqual(p.writes, []);
 });
 

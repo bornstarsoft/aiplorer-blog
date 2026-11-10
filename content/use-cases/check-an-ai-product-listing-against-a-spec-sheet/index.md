@@ -47,3 +47,6 @@ Keep the SKU next to each fact during review. Shared branding or a similar name 
 Compare which claims each run corrects and whether it introduces new ones. For a real listing, confirm that the source sheet is current and leave unverified details out until the product owner confirms them.
 
 Return to the [product listing practice pack](/use-cases/#practice-check-an-ai-product-listing-against-a-spec-sheet) or [choose your next check](/use-cases/retest-a-saved-ai-tool-after-an-update/#choose-your-next-check).
+
+For another check on matching a draft to its source, try the
+[document index practice](/use-cases/check-an-ai-document-index-against-a-file-manifest/).

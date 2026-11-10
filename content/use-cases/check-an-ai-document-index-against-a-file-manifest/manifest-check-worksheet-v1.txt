@@ -1,0 +1,13 @@
+AI DOCUMENT INDEX REVIEW - COMPARISON WORKSHEET - VERSION 1
+
+First run: ____________________  Date: __________
+Later run: ____________________  Date: __________
+Reuse the same draft index, manifest, and packet rule.
+
+ID       | First run evidence | Later run evidence | Pass or needs review
+INDEX-01 |                    |                    | Approved version
+INDEX-02 |                    |                    | Sharing scope
+INDEX-03 |                    |                    | Missing file and hold
+
+Unsupported files or approvals still present: _________________
+One item to confirm with the packet owner: _____________________

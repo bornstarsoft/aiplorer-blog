@@ -1,0 +1,27 @@
+AI DOCUMENT INDEX REVIEW - INPUTS - VERSION 1
+
+Fictional client packet: Alder project briefing. Do not send files.
+Use only the manifest and the packet rule below.
+
+FILE MANIFEST
+brief-v2.pdf       | Present | Superseded, do not share
+brief-v3.pdf       | Present | Approved for this client
+internal-notes.txt | Present | Internal only
+site-map.pdf       | Missing | Required for the client packet
+
+PACKET RULE
+List only present, client-approved files as ready. When a required
+file is missing, mark it missing and hold the packet for the owner.
+
+INDEX-01
+Draft entry: Briefing - brief-v2.pdf - Ready for client
+
+INDEX-02
+Draft entry: Team notes - internal-notes.txt - Ready for client
+
+INDEX-03
+Draft entry: Site map - site-map.pdf - Attached
+
+For each ID, identify the mismatch and cite the relevant manifest row.
+Correct the entry or mark it for removal. State whether the packet
+can be sent. Do not invent a file, approval, or replacement.
