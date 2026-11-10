@@ -1,0 +1,17 @@
+AI RELEASE NOTES REVIEW - TWO-RUN WORKSHEET - VERSION 1
+
+Input version:
+Run A date, tool and visible settings:
+Run B date, tool and visible settings:
+What changed between runs?
+
+For each ID, record meets check, needs correction, or could not test.
+Keep both original answers and the supporting change-log entry.
+
+Case    Run A       Run B       Scope, status or wording to correct
+REL-01  __________  __________  __________________________________
+REL-02  __________  __________  __________________________________
+REL-03  __________  __________  __________________________________
+
+Did either answer imply a rollout, fix or release that was not recorded?
+What would your team verify before acting on the notice?

@@ -48,6 +48,7 @@ provides a buggy function and local regression tests.
 | Review automation permissions | [Permission scope pack](/use-cases/check-an-ai-automation-for-permission-scope/) | Check the approved action, resource, and time window before connecting |
 | Review an image edit | [Image edit pack](/use-cases/check-an-ai-image-edit-against-a-brief/) | Check changes outside the edit area, altered text and invented objects |
 | Review an audio cleanup | [Audio cleanup pack](/use-cases/check-an-ai-audio-cleanup-against-a-brief/) | Check for a lost cue, shifted timing and unapproved replacement speech |
+| Review release notes | [Release notes pack](/use-cases/check-ai-release-notes-against-a-change-log/) | Check rollout scope, temporary workarounds, and planned versus shipped work |
 
 The [practice downloads](/use-cases/#practice-downloads) collect the
 packs in one place. These checks do not cover every workflow. If your

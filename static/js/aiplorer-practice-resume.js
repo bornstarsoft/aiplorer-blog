@@ -16,6 +16,7 @@
   const taskNav = shelf.querySelector("[data-practice-tasks]");
   const chooser = shelf.querySelector("[data-practice-chooser]");
   const choice = shelf.querySelector("[data-practice-choice]");
+  const choiceLabel = shelf.querySelector("[data-practice-choice-label]");
   const choiceDetails = shelf.querySelector("[data-practice-choice-details]");
   const choiceDescription = shelf.querySelector("[data-practice-choice-description]");
   const choiceLink = shelf.querySelector("[data-practice-choice-link]");
@@ -63,6 +64,7 @@
   let plannedId = null;
   let startedId = null;
   let reviewingId = null;
+  let reviewChoices = false;
 
   function read() {
     const value = localStorage.getItem(key);
@@ -241,11 +243,16 @@
     if (!chooser || !choice || !choiceDetails || !choiceDescription || !choiceLink || !choiceEmpty) return;
     chooser.hidden = !ids;
     if (!ids) return;
+    const allPracticed = packs.size > 0 && ids.size === packs.size;
+    if (allPracticed !== reviewChoices) choice.value = "";
+    reviewChoices = allPracticed;
+    if (choiceLabel) choiceLabel.textContent = reviewChoices ? "Choose a practice to review" : "Choose next practice";
+    choiceLink.textContent = reviewChoices ? "Start review" : "Start selected practice";
     let available = 0;
     for (const group of choiceGroups) {
       let groupAvailable = 0;
       for (const option of group.querySelectorAll("option")) {
-        const show = packs.has(option.value) && !ids.has(option.value);
+        const show = packs.has(option.value) && ids.has(option.value) === reviewChoices;
         option.hidden = option.disabled = !show;
         if (show) groupAvailable++;
       }
@@ -253,9 +260,9 @@
       available += groupAvailable;
     }
     choice.disabled = available === 0;
-    choiceEmpty.hidden = available !== 0;
+    choiceEmpty.hidden = !reviewChoices;
     const pack = packs.get(choice.value);
-    if (pack && !ids.has(choice.value)) {
+    if (pack && ids.has(choice.value) === reviewChoices) {
       choiceDescription.textContent = pack.description?.textContent.trim() ?? "";
       choiceLink.setAttribute("href", "#" + pack.heading.id);
       choiceDetails.hidden = false;
@@ -311,16 +318,26 @@
     return pack.heading.id;
   }
 
+  function beginReview(id) {
+    reviewingId = id;
+    if (startedId === id) startedId = null;
+    refreshPracticed();
+  }
+
   try { render(read()); }
   catch { return; }
   refreshPracticed();
   if (choice && choiceLink) {
     choice.addEventListener("change", refreshPracticed);
     choiceLink.addEventListener("click", () => {
+      const review = reviewChoices;
       const id = openPracticeInput(choiceLink.getAttribute("href"));
       if (!id) return;
-      startedId = id;
-      refreshPracticed();
+      if (review) beginReview(id);
+      else {
+        startedId = id;
+        refreshPracticed();
+      }
     });
   }
   if (planReady) {
@@ -344,9 +361,7 @@
     pack.controls.hidden = false;
     pack.restart?.addEventListener("click", () => {
       if (pack.restart.hidden || !openPracticeInput("#" + id, true)) return;
-      reviewingId = id;
-      if (startedId === id) startedId = null;
-      refreshPracticed();
+      beginReview(id);
     });
     if (planReady && choiceEmpty && pack.finish) {
       pack.finish.addEventListener("click", () => finishPractice(id, pack));

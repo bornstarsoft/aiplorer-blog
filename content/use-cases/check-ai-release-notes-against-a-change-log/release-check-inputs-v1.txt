@@ -1,0 +1,21 @@
+AI RELEASE NOTES REVIEW - FICTIONAL INPUT - VERSION 1
+
+Review the draft claims for the fictional Sample Board release.
+For each ID, write a corrected statement and name the entry that
+supports it. Do not infer dates, rollout scope, or test results.
+
+REL-01 - Preview rollout
+Change log: The new layout is available only in invited test workspaces
+that have the preview enabled. No general rollout date was announced.
+Draft: "The new layout is now available to everyone."
+
+REL-02 - Workaround versus fix
+Change log: Batch export still fails on the approved sample. Exporting
+each item individually worked on that sample and is a temporary option.
+No fix was released.
+Draft: "Batch export has been fixed."
+
+REL-03 - Planned versus shipped
+Change log: Scheduled summaries are planned, but excluded from this
+release. No release date was confirmed for them.
+Draft: "Scheduled summaries shipped in this release."

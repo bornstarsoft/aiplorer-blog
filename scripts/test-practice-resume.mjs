@@ -79,6 +79,7 @@ function setup(saved = null, mode = "", practicedSaved = null, planned = null) {
   const retryGroup = node({ querySelectorAll: () => [retryOption, unsafeOption] });
   const chooser = node(), choice = node({ value: "", querySelectorAll: () => [chartGroup, retryGroup] });
   const choiceDetails = node(), choiceDescription = node(), choiceLink = node(), choiceEmpty = node();
+  const choiceLabel = node();
   const plan = node(), planTitle = node(), planStart = node(), planDone = node();
   const planClear = node(), planSave = node(), planStatus = node();
   const document = { activeElement: null, querySelector: () => shelf };
@@ -100,6 +101,7 @@ function setup(saved = null, mode = "", practicedSaved = null, planned = null) {
     "[data-practice-tasks]": taskNav,
     "[data-practice-chooser]": chooser,
     "[data-practice-choice]": choice,
+    "[data-practice-choice-label]": choiceLabel,
     "[data-practice-choice-details]": choiceDetails,
     "[data-practice-choice-description]": choiceDescription,
     "[data-practice-choice-link]": choiceLink,
@@ -133,7 +135,7 @@ function setup(saved = null, mode = "", practicedSaved = null, planned = null) {
   vm.runInNewContext(source, { document, window, localStorage });
   return { chart, retry, unsafe, resume, link, title, nextStep, nextStatus, stepDownload, practicedCount, window, storage, writes,
     filter, filterControls, filterEmpty, taskNav, document, chooser, choice, choiceDetails, choiceDescription, choiceLink,
-    choiceEmpty, chartOption, retryOption, unsafeOption, chartGroup, retryGroup,
+    choiceEmpty, choiceLabel, chartOption, retryOption, unsafeOption, chartGroup, retryGroup,
     plan, planTitle, planStart, planDone, planClear, planSave, planStatus };
 }
 
@@ -195,11 +197,11 @@ test("finishing a review moves to the next chooser without writing marks or save
   assert.deepEqual(p.writes, []);
 });
 
-test("finishing a review when all packs are practiced focuses the empty message", () => {
+test("finishing a review when all packs are practiced focuses the review chooser", () => {
   const p = setup(null, "", JSON.stringify([chartId, retryId]));
   p.chart.restart.click();
   p.chart.finish.click();
-  assert.equal(p.document.activeElement, p.choiceEmpty);
+  assert.equal(p.document.activeElement, p.choice);
   assert.equal(p.choiceEmpty.hidden, false);
   assert.deepEqual(p.writes, []);
 });
@@ -254,12 +256,13 @@ test("finishing only the planned pack opens the chooser and preserves both saved
   assert.equal(p.writes.length, 1, "Choosing again does not rewrite an existing mark");
 });
 
-test("finishing the last unpracticed pack focuses the all-practiced message", () => {
+test("finishing the last unpracticed pack opens the review chooser", () => {
   const p = setup(null, "", JSON.stringify([chartId]), retryId);
   p.retry.finish.click();
-  assert.equal(p.choice.disabled, true);
+  assert.equal(p.choice.disabled, false);
+  assert.equal(p.choiceLabel.textContent, "Choose a practice to review");
   assert.equal(p.choiceEmpty.hidden, false);
-  assert.equal(p.document.activeElement, p.choiceEmpty);
+  assert.equal(p.document.activeElement, p.choice);
 });
 
 test("a stale finish action cannot mark an old plan after a replacement", () => {
@@ -526,7 +529,7 @@ test("direct finish failure retains the current practice and does not move focus
   assert.equal(p.storage.has(planKey), false);
 });
 
-test("a newly practiced candidate clears the preview and all-complete disables the picker", () => {
+test("the picker switches between unpracticed and review choices without leaving a stale selection", () => {
   const p = setup(null, "", JSON.stringify([chartId]));
   p.choice.value = retryId;
   p.choice.change();
@@ -536,13 +539,43 @@ test("a newly practiced candidate clears the preview and all-complete disables t
   assert.equal(p.choiceDescription.textContent, "");
   assert.equal(p.choiceLink.getAttribute("href"), undefined);
   assert.equal(p.choice.value, "");
-  assert.equal(p.choice.disabled, true);
+  assert.equal(p.choice.disabled, false);
+  assert.equal(p.choiceLabel.textContent, "Choose a practice to review");
+  assert.equal(p.chartOption.disabled, false);
+  assert.equal(p.retryOption.disabled, false);
+  assert.equal(p.unsafeOption.disabled, true);
   assert.equal(p.choiceEmpty.hidden, false);
   p.storage.set(practicedKey, JSON.stringify([retryId]));
   p.window.storage({ key: practicedKey });
   assert.equal(p.choice.disabled, false);
   assert.equal(p.chartOption.disabled, false);
+  assert.equal(p.retryOption.disabled, true);
+  assert.equal(p.choiceLabel.textContent, "Choose next practice");
   assert.equal(p.choiceEmpty.hidden, true);
+  assert.deepEqual(p.writes, []);
+});
+
+test("the all-practiced picker starts a review without offering a save or changing progress", () => {
+  const saved = JSON.stringify({ id: retryId, step: "review" });
+  const marks = JSON.stringify([chartId, retryId]);
+  const p = setup(saved, "", marks, retryId);
+  p.filter.value = "unpracticed";
+  p.filter.change();
+  p.choice.value = chartId;
+  p.choice.change();
+  assert.equal(p.choiceLink.textContent, "Start review");
+  assert.equal(p.choiceDetails.hidden, false);
+  assert.equal(p.planSave.hidden, true);
+  assert.equal(p.chart.hidden, true);
+  p.choiceLink.click();
+  assert.equal(p.chart.hidden, false);
+  assert.equal(p.chart.preview.open, true);
+  assert.equal(p.chart.finish.textContent, "Finish review and choose next");
+  p.chart.finish.click();
+  assert.equal(p.document.activeElement, p.choice);
+  assert.equal(p.storage.get(practicedKey), marks);
+  assert.equal(p.storage.get(key), saved);
+  assert.equal(p.storage.get(planKey), retryId);
   assert.deepEqual(p.writes, []);
 });
 

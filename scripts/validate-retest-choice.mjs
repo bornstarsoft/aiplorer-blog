@@ -33,6 +33,7 @@ const packs = [
   "check-an-ai-automation-for-permission-scope",
   "check-an-ai-image-edit-against-a-brief",
   "check-an-ai-audio-cleanup-against-a-brief",
+  "check-ai-release-notes-against-a-change-log",
 ];
 const choiceTable = [...guide.matchAll(/<table\b[^>]*>[\s\S]*?<\/table>/g)]
   .map(([table]) => table).find(table => packs.every(slug => table.includes(`/use-cases/${slug}/`)));

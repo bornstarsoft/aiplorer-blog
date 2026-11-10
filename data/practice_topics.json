@@ -6,7 +6,8 @@
       "check-an-ai-rewrite-without-changing-the-promise",
       "check-whether-a-citation-supports-a-claim",
       "check-an-ai-redaction-before-sharing",
-      "check-an-ai-tool-comparison-against-test-records"
+      "check-an-ai-tool-comparison-against-test-records",
+      "check-ai-release-notes-against-a-change-log"
     ]
   },
   {

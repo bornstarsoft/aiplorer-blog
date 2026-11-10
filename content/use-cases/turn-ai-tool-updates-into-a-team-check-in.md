@@ -87,3 +87,6 @@ a service is unchanged.
 Continue with the [small before-and-after test](/use-cases/retest-a-saved-ai-tool-after-an-update/)
 or the [connected-app permission checklist](/guides/review-connected-ai-app-permissions/).
 For a service closure, start with [preserving your work](/guides/keep-your-work-portable-when-an-ai-service-changes/).
+
+Try the [release notes practice pack](/use-cases/check-ai-release-notes-against-a-change-log/)
+to rehearse checking rollout scope, temporary workarounds, and planned changes.
