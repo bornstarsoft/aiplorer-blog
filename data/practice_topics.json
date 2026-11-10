@@ -7,6 +7,7 @@
       "check-an-ai-translation-against-a-product-glossary",
       "check-an-ai-faq-against-a-support-policy",
       "check-whether-a-citation-supports-a-claim",
+      "check-an-ai-quote-against-a-transcript",
       "check-an-ai-redaction-before-sharing",
       "check-an-ai-tool-comparison-against-test-records",
       "check-ai-release-notes-against-a-change-log"

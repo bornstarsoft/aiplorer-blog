@@ -1,0 +1,19 @@
+AI TRANSCRIPT QUOTE REVIEW - REVIEW KEY - VERSION 1
+Keep this file out of the test conversation.
+
+QUOTE-01
+T01 says tested, not rolled out. Direct quote:
+Mina said, "We tested the checklist with three volunteers."
+
+QUOTE-02
+T02 is Jo's statement. Direct quote:
+Jo said, "The pickup window was clearer after we added a start time."
+
+QUOTE-03
+T03 makes Saturday conditional on room confirmation by Thursday.
+T04 says confirmation has not arrived. Do not say the schedule
+was confirmed. Direct quote:
+Alex said, "We can run another session on Saturday if the room is confirmed by Thursday."
+
+Check direct quotes word for word. A paraphrase should be clearly
+identified and must preserve the speaker and meaning.

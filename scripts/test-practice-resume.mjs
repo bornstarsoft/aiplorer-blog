@@ -41,6 +41,8 @@ function pack(id, title) {
   const recapNext = node();
   const recapPosition = node();
   const recapPicker = node();
+  const recapSearch = node({ value: "" });
+  const recapResults = node();
   const recapSelect = node({
     value: "", options: [],
     replaceChildren(...options) { this.options = options; this.value = ""; },
@@ -69,12 +71,14 @@ function pack(id, title) {
     "[data-practice-recap-next]": recapNext,
     "[data-practice-recap-position]": recapPosition,
     "[data-practice-recap-picker]": recapPicker,
+    "[data-practice-recap-search]": recapSearch,
+    "[data-practice-recap-results]": recapResults,
     "[data-practice-recap-select]": recapSelect,
     "[data-practice-recap-open]": recapOpen,
   };
   return {
     controls, button, status, downloads, mark, practiced, task, heading, preview, summary, finish, restart, reviewProgress, recapReturn, recapPrevious, recapNext, recapPosition,
-    recapPicker, recapSelect, recapOpen, hidden: false,
+    recapPicker, recapSearch, recapResults, recapSelect, recapOpen, hidden: false,
     contains: element => Object.values(children).includes(element),
     querySelector: selector => children[selector], querySelectorAll: () => downloads,
   };
@@ -583,6 +587,57 @@ test("the recap picker jumps to a selected input only on command without changin
   assert.equal(p.storage.get(key), saved);
   assert.equal(p.storage.get(practicedKey), marks);
   assert.equal(p.storage.get(planKey), chartId);
+  assert.deepEqual(p.writes, []);
+});
+
+test("recap title search handles unique, empty and multiple matches without writing progress", () => {
+  const marks = JSON.stringify([chartId, retryId, thirdId]);
+  const p = setup(null, "", marks, null, true);
+  for (const pack of [p.retry, p.chart, p.third]) {
+    pack.restart.click();
+    pack.finish.click();
+    pack.preview.open = false;
+  }
+  p.roundList.items[0].children[0].click({ button: 0, preventDefault() {} });
+  const search = p.retry.recapSearch;
+  const select = p.retry.recapSelect;
+  search.value = "practice-third";
+  search.input();
+  assert.equal(select.disabled, true);
+  assert.equal(select.options[0].textContent, "No matching titles");
+  assert.equal(p.retry.recapResults.textContent, "0 matching titles.");
+  assert.equal(p.retry.recapOpen.disabled, true);
+  let prevented = 0;
+  const enter = { key: "Enter", preventDefault() { prevented++; } };
+  search.keydown(enter);
+  assert.equal(prevented, 0);
+  search.value = "chEcK";
+  search.input();
+  assert.deepEqual(select.options.map(option => option.value), ["", retryId, chartId, thirdId]);
+  assert.equal(select.disabled, false);
+  assert.equal(p.retry.recapOpen.disabled, true);
+  search.value = "  Chec  THIR  ";
+  search.input();
+  assert.deepEqual(select.options.map(option => option.value), [thirdId]);
+  assert.equal(select.options[0].textContent, "3. Third check");
+  assert.equal(select.value, thirdId);
+  assert.equal(p.retry.recapResults.textContent, "1 matching title.");
+  assert.equal(p.retry.recapOpen.disabled, false);
+  assert.equal(p.third.preview.open, false);
+  search.keydown({ ...enter, isComposing: true });
+  assert.equal(prevented, 0);
+  assert.equal(p.third.preview.open, false);
+  search.keydown(enter);
+  assert.equal(prevented, 1);
+  assert.equal(p.third.preview.open, true);
+  assert.equal(p.third.summary.focused, true);
+  assert.equal(p.third.recapPosition.textContent, " (3 of 3)");
+  assert.deepEqual(p.third.recapSelect.options.map(option => option.value), [retryId, chartId, thirdId]);
+  assert.equal(search.value, "");
+  assert.equal(p.retry.recapPicker.hidden, true);
+  assert.equal(p.retry.recapResults.textContent, "");
+  assert.equal(p.storage.get(practicedKey), marks);
+  assert.equal(p.roundProgress.textContent, "Review round: 3 finished, 0 left.");
   assert.deepEqual(p.writes, []);
 });
 

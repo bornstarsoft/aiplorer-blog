@@ -47,3 +47,6 @@ Separate what is present from what is approved. An expected filename does not pr
 Reuse the same draft index and source manifest. Compare which errors each run catches and whether it invents a substitute. For real work, verify sharing scope and the actual attachment list with the packet owner before sending anything.
 
 Return to the [document index practice pack](/use-cases/#practice-check-an-ai-document-index-against-a-file-manifest) or [choose your next check](/use-cases/retest-a-saved-ai-tool-after-an-update/#choose-your-next-check).
+
+For another source check before sharing, try the
+[transcript quote practice](/use-cases/check-an-ai-quote-against-a-transcript/).

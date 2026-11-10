@@ -69,6 +69,8 @@
       recapNext: pack.querySelector("[data-practice-recap-next]"),
       recapPosition: pack.querySelector("[data-practice-recap-position]"),
       recapPicker: pack.querySelector("[data-practice-recap-picker]"),
+      recapSearch: pack.querySelector("[data-practice-recap-search]"),
+      recapResults: pack.querySelector("[data-practice-recap-results]"),
       recapSelect: pack.querySelector("[data-practice-recap-select]"),
       recapOpen: pack.querySelector("[data-practice-recap-open]"),
     });
@@ -412,6 +414,8 @@
       pack.recapPosition.textContent = "";
     }
     if (pack.recapPicker) pack.recapPicker.hidden = true;
+    if (pack.recapSearch) pack.recapSearch.value = "";
+    if (pack.recapResults) pack.recapResults.textContent = "";
     pack.recapSelect?.replaceChildren();
     if (pack.recapOpen) pack.recapOpen.disabled = true;
     for (const [control] of recapDirections) {
@@ -423,16 +427,38 @@
   function showRecapPicker(pack, entry) {
     const { recapPicker, recapSelect, recapOpen } = pack;
     if (!recapPicker || !recapSelect || !recapOpen || recapEntries.size < 2) return;
-    const options = [...recapEntries.values()].map(({ id, position, link }) => {
+    renderRecapMatches(pack, entry.id, entry.id);
+    recapPicker.hidden = false;
+  }
+
+  function renderRecapMatches(pack, currentId, selectedId) {
+    const query = pack.recapSearch?.value.trim().toLowerCase() ?? "";
+    const words = query ? query.split(/\s+/) : [];
+    const matches = [...recapEntries.values()].filter(({ link }) => {
+      const title = link.textContent.toLowerCase();
+      return words.every(word => title.includes(word));
+    });
+    const selection = matches.some(({ id }) => id === selectedId) ? selectedId : matches.length === 1 ? matches[0].id : "";
+    const options = matches.map(({ id, position, link }) => {
       const option = document.createElement("option");
       option.value = id;
       option.textContent = `${position}. ${link.textContent}`;
       return option;
     });
-    recapSelect.replaceChildren(...options);
-    recapSelect.value = entry.id;
-    recapOpen.disabled = true;
-    recapPicker.hidden = false;
+    if (!selection) {
+      const prompt = document.createElement("option");
+      prompt.value = "";
+      prompt.textContent = matches.length ? "Choose a title" : "No matching titles";
+      prompt.disabled = true;
+      options.unshift(prompt);
+    }
+    pack.recapSelect.replaceChildren(...options);
+    pack.recapSelect.value = selection;
+    pack.recapSelect.disabled = matches.length === 0;
+    pack.recapOpen.disabled = !selection || selection === currentId;
+    if (pack.recapResults) {
+      pack.recapResults.textContent = query ? `${matches.length} matching ${matches.length === 1 ? "title" : "titles"}.` : "";
+    }
   }
 
   function openRecapInput(id) {
@@ -540,8 +566,19 @@
     if (pack.recapPicker && pack.recapSelect && pack.recapOpen) {
       const target = () => {
         const value = pack.recapSelect.value;
-        return recapPreview?.pack === pack && !pack.recapPicker.hidden && value !== id && recapEntries.has(value) ? value : null;
+        return recapPreview?.pack === pack && !pack.recapPicker.hidden && value !== id &&
+          recapEntries.has(value) && [...pack.recapSelect.options].some(option => option.value === value && !option.disabled) ? value : null;
       };
+      pack.recapSearch?.addEventListener("input", () => {
+        if (recapPreview?.pack === pack && !pack.recapPicker.hidden) renderRecapMatches(pack, id, pack.recapSelect.value);
+      });
+      pack.recapSearch?.addEventListener("keydown", event => {
+        if (event.key !== "Enter" || event.isComposing) return;
+        const selected = target();
+        if (!selected) return;
+        event.preventDefault();
+        openRecapInput(selected);
+      });
       pack.recapSelect.addEventListener("change", () => {
         pack.recapOpen.disabled = !target();
       });

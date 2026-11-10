@@ -44,6 +44,7 @@ const tasks = [
   ["check-an-ai-prompt-template-before-reusing-it", "Check a reusable prompt"],
   ["check-an-ai-product-listing-against-a-spec-sheet", "Check a product listing"],
   ["check-an-ai-document-index-against-a-file-manifest", "Check a document index"],
+  ["check-an-ai-quote-against-a-transcript", "Check a transcript quote"],
 ];
 assert.equal((html.match(/data-practice-pack\b/g) || []).length, tasks.length);
 const jumps = [...html.matchAll(/<a\b[^>]*\bdata-practice-task\b[^>]*>[\s\S]*?<\/a>/g)].map(([link]) => link);
@@ -82,7 +83,7 @@ for (const preview of previews) {
   assert(status && attr(status, "role") === "status" && attr(status, "aria-live") === "polite");
 }
 assert(html.includes("/js/aiplorer-practice-copy.js?v=20261024a"));
-assert(html.includes("/js/aiplorer-practice-resume.js?v=20261110y"));
+assert(html.includes("/js/aiplorer-practice-resume.js?v=20261110z"));
 const pickers = [...html.matchAll(/<div\b[^>]*data-practice-recap-picker\b[^>]*>[\s\S]*?<\/div>/g)];
 assert.equal(pickers.length, tasks.length);
 const recapPickerIds = new Set();
@@ -92,7 +93,14 @@ for (const [picker] of pickers) {
   const id = select && attr(select, "id");
   assert(id && !recapPickerIds.has(id));
   recapPickerIds.add(id);
-  assert.equal(attr(picker.match(/<label\b[^>]*>/)[0], "for"), id);
+  const labels = [...picker.matchAll(/<label\b[^>]*>/g)].map(([label]) => attr(label, "for"));
+  const search = picker.match(/<input\b[^>]*data-practice-recap-search\b[^>]*>/)?.[0];
+  const searchId = search && attr(search, "id");
+  assert(searchId && !recapPickerIds.has(searchId) && attr(search, "type") === "search");
+  recapPickerIds.add(searchId);
+  assert.deepEqual(labels, [searchId, id]);
+  const results = picker.match(/<span\b[^>]*data-practice-recap-results\b[^>]*>/)?.[0];
+  assert(results && attr(results, "role") === "status");
   const open = picker.match(/<button\b[^>]*data-practice-recap-open\b[^>]*>Open input<\/button>/)?.[0];
   assert(open && /\bdisabled(?:[\s=>])/.test(open) && attr(open, "type") === "button");
 }
@@ -205,6 +213,7 @@ const packs = [
   ["check-an-ai-prompt-template-before-reusing-it", "prompt"],
   ["check-an-ai-product-listing-against-a-spec-sheet", "listing"],
   ["check-an-ai-document-index-against-a-file-manifest", "manifest"],
+  ["check-an-ai-quote-against-a-transcript", "quote"],
 ];
 const downloadOrder = new Map();
 for (const [pack] of html.matchAll(/<li\b[^>]*data-practice-pack\b[^>]*>[\s\S]*?<\/li>/g)) {
@@ -552,4 +561,16 @@ const manifestPreview = previews.find(tag => attr(tag, "data-practice-preview") 
 assert(manifestPreview.includes("FILE MANIFEST") && !manifestPreview.includes("The corrected packet is not ready"));
 assert(listingArticle.includes(manifestRoute));
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${manifestRoute}</loc>`).length, 2);
+const quoteRoute = "/use-cases/check-an-ai-quote-against-a-transcript/";
+const quoteArticle = read(`public${quoteRoute}index.html`);
+assert(!quoteArticle.includes("aiplorer-practice-resume.js"));
+for (const role of ["inputs", "answer-key", "worksheet"]) {
+  const file = `quote-check-${role}-v1.txt`;
+  assert(quoteArticle.includes(quoteRoute + file));
+  for (const id of ["QUOTE-01", "QUOTE-02", "QUOTE-03"]) assert(read(`public${quoteRoute}${file}`).includes(id));
+}
+const quotePreview = previews.find(tag => attr(tag, "data-practice-preview") === quoteRoute + "quote-check-inputs-v1.txt");
+assert(quotePreview.includes("TRANSCRIPT EXCERPT") && !quotePreview.includes("T02 is Jo"));
+assert(manifestArticle.includes(quoteRoute));
+assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${quoteRoute}</loc>`).length, 2);
 console.log(`PASS: ${tasks.length} input-only previews, ${downloadCount} exact step-ordered downloads, guide entry links, script scoped to use-cases hub.`);

@@ -288,7 +288,8 @@
 }
 
 .aiplorer-practice-next select,
-.aiplorer-practice-filter select {
+.aiplorer-practice-filter select,
+[data-practice-recap-search] {
   min-height: 44px;
   min-width: 0;
   max-width: 100%;
@@ -302,6 +303,7 @@
 
 .aiplorer-practice-next select:focus-visible,
 .aiplorer-practice-filter select:focus-visible,
+[data-practice-recap-search]:focus-visible,
 [data-practice-choice-empty]:focus-visible {
   outline: 2px solid var(--aiplorer-teal, #087c73);
   outline-offset: 3px;

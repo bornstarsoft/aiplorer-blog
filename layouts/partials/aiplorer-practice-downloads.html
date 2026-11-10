@@ -107,6 +107,9 @@
               <pre tabindex="0" role="region" aria-label="Test input for {{ $page.Title }}"><code>{{ .Content }}</code></pre>
             </details>
             <div class="aiplorer-practice-filter" data-practice-recap-picker hidden>
+              <label for="practice-recap-search-{{ path.Base $page.RelPermalink }}">Search reviewed titles</label>
+              <input type="search" id="practice-recap-search-{{ path.Base $page.RelPermalink }}" data-practice-recap-search>
+              <span class="aiplorer-visually-hidden" role="status" data-practice-recap-results></span>
               <label for="practice-recap-picker-{{ path.Base $page.RelPermalink }}">Choose reviewed input</label>
               <select id="practice-recap-picker-{{ path.Base $page.RelPermalink }}" data-practice-recap-select></select>
               <button type="button" class="aiplorer-button aiplorer-button--light" data-practice-recap-open disabled>Open input</button>

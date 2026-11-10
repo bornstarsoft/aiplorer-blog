@@ -1,0 +1,23 @@
+AI TRANSCRIPT QUOTE REVIEW - INPUTS - VERSION 1
+
+Fictional volunteer workshop. Review the draft recap using only
+this excerpt. Do not publish or send anything.
+
+TRANSCRIPT EXCERPT
+T01 | Mina: We tested the checklist with three volunteers.
+T02 | Jo: The pickup window was clearer after we added a start time.
+T03 | Alex: We can run another session on Saturday if the room is confirmed by Thursday.
+T04 | Mina: We have not received that confirmation yet.
+
+QUOTE-01
+Draft: Mina said, "We rolled out the checklist to three volunteers."
+
+QUOTE-02
+Draft: Alex said, "The pickup window was clearer after we added a start time."
+
+QUOTE-03
+Draft: Alex confirmed the schedule: "We can run another session on Saturday".
+
+For each ID, cite the transcript line, name the issue, and correct
+the quote and attribution. Preserve conditions. Do not turn a plan
+or possibility into a confirmed decision.
