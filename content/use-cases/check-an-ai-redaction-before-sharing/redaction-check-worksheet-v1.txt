@@ -1,0 +1,18 @@
+AI REDACTION REVIEW - TWO-RUN WORKSHEET - VERSION 1
+Keep each original output separately in an approved location.
+
+Input version:
+Run A date, tool and visible settings:
+Run B date, tool and visible settings:
+What changed between the two runs?
+
+Mark each check: meets check / needs correction / could not test.
+Case    Run A        Run B        Remaining disclosure or lost fact
+RED-01  ___________  ___________  ________________________________
+RED-02  ___________  ___________  ________________________________
+RED-03  ___________  ___________  ________________________________
+
+Did any correction remove a fact the recipient needed?
+What part of a real exported file would still need human review?
+If the two runs cannot be compared, what baseline should be kept?
+Next boundary case to check:

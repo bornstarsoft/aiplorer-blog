@@ -1,6 +1,7 @@
 <section class="aiplorer-shell aiplorer-article-index aiplorer-practice-packs" aria-labelledby="practice-downloads" data-practice-shelf>
   <h2 id="practice-downloads" tabindex="-1">Practice packs <span>{{ len . }}</span></h2>
   <p>Fictional inputs for repeat checks. Keep review keys out of the AI conversation; keep completed worksheets in your own approved location.</p>
+  <p class="aiplorer-practice-count" data-practice-count hidden></p>
   <div class="aiplorer-practice-resume" data-practice-resume hidden>
     <a data-practice-resume-link>Continue practice: <span data-practice-resume-title></span></a>
     <div class="aiplorer-practice-next">
@@ -54,6 +55,9 @@
         {{ end }}
         <div class="aiplorer-practice-save" data-practice-save-controls hidden>
           <button type="button" class="aiplorer-button aiplorer-button--light" data-practice-save aria-pressed="false" aria-label="Save pack: {{ .Title }}">{{ partial "aiplorer-icon.html" "bookmark" }}Save pack</button>
+          <label class="aiplorer-practice-mark" data-practice-mark hidden>
+            <input type="checkbox" data-practice-practiced aria-label="Practiced: {{ .Title }}">Practiced
+          </label>
           <span role="status" data-practice-save-status></span>
         </div>
       </li>

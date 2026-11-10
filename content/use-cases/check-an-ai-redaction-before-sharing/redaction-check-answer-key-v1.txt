@@ -1,0 +1,21 @@
+AI REDACTION REVIEW - REVIEW KEY - VERSION 1
+Keep this file out of the test conversation.
+
+RED-01
+EX-731 appears in both the title and footer. Remove both occurrences.
+An acceptable replacement: "Export issue: A sample export timed out."
+Do not erase the timeout or substitute an account name.
+
+RED-02
+North plus evening matches only Ada in the supplied roster. Evening alone
+matches two people. Keep the shift and issue; omit the name and site.
+An acceptable replacement: "On the evening shift, the scanner stopped
+responding." This follows the supplied rule, not a general privacy guarantee.
+
+RED-03
+CASE-419 remains in the Markdown link target even though the visible label
+does not show it. Remove the whole link and retain the status as plain text.
+An acceptable replacement: "Review pending."
+
+These are checks against a fictional sharing rule. They do not inspect
+attachments, revision history, embedded content or file metadata.

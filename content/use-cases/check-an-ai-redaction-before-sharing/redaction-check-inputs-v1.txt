@@ -1,0 +1,27 @@
+AI REDACTION REVIEW - FICTIONAL INPUT - VERSION 1
+
+For each ID, identify the remaining disclosure and propose a replacement
+that keeps only the facts needed by the intended recipient. Do not copy
+internal identifiers into the proposed replacement. Do not open links or
+send anything. All records, codes and links below are fictional.
+
+RED-01 - Title and footer
+Sharing rule: The recipient needs to know that a sample export timed out,
+not which account it came from.
+Proposed draft:
+  Title: Export issue for account EX-731
+  Body: A sample export timed out.
+  Footer: Filed under EX-731
+
+RED-02 - Combination of details
+Sharing rule: The recipient needs the shift and issue but not the site,
+name, or enough information to match one person in the sample roster.
+Sample roster: Ada / North / evening; Ben / West / evening;
+Cleo / North / day.
+Proposed draft: "A North site worker on the evening shift reported
+that the scanner stopped responding."
+
+RED-03 - Link destination
+Sharing rule: The recipient only needs the fact that the review is pending.
+Share no internal link or record code.
+Proposed Markdown: [Review pending](https://example.invalid/cases/CASE-419)

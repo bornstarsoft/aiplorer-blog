@@ -70,6 +70,9 @@ Keep complete test evidence in an approved location. A short browser note
 and its exported copy are not an audit history. Do not treat a checked
 privacy item or a brief without notes as a privacy or security guarantee.
 
+Try the [redaction review practice pack](/use-cases/check-an-ai-redaction-before-sharing/)
+to rehearse disclosure checks with fictional material before sharing a real file.
+
 ## Return To The Decision, Not Just The File
 
 The downloaded file does not stay synchronized with your shortlist. Before

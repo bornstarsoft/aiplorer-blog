@@ -22,6 +22,7 @@ const tasks = [
   ["check-an-ai-slide-chart-before-sharing", "Review a slide chart"],
   ["check-ai-captions-against-a-reference", "Check captions"],
   ["check-an-ai-schedule-across-time-zones", "Check time zones"],
+  ["check-an-ai-redaction-before-sharing", "Check redactions"],
 ];
 assert.equal((html.match(/data-practice-pack\b/g) || []).length, tasks.length);
 const jumps = [...html.matchAll(/<a\b[^>]*\bdata-practice-task\b[^>]*>[\s\S]*?<\/a>/g)].map(([link]) => link);
@@ -59,7 +60,8 @@ for (const preview of previews) {
   assert(status && attr(status, "role") === "status" && attr(status, "aria-live") === "polite");
 }
 assert(html.includes("/js/aiplorer-practice-copy.js?v=20261024a"));
-assert(html.includes("/js/aiplorer-practice-resume.js?v=20261110c"));
+assert(html.includes("/js/aiplorer-practice-resume.js?v=20261110d"));
+assert.match(html, /<p\b[^>]*data-practice-count\b[^>]*\bhidden(?:[\s=>])/);
 assert.equal((html.match(/data-practice-shelf\b/g) || []).length, 1);
 assert.match(html, /<div\b[^>]*data-practice-resume\b[^>]*\bhidden(?:[\s=>])/);
 const action = html.match(/<a\b[^>]*data-practice-step-download\b[^>]*>/)?.[0];
@@ -86,6 +88,7 @@ const packs = [
   ["check-an-ai-slide-chart-before-sharing", "chart"],
   ["check-ai-captions-against-a-reference", "caption"],
   ["check-an-ai-schedule-across-time-zones", "schedule"],
+  ["check-an-ai-redaction-before-sharing", "redaction"],
 ];
 const downloadOrder = new Map();
 for (const [pack] of html.matchAll(/<li\b[^>]*data-practice-pack\b[^>]*>[\s\S]*?<\/li>/g)) {
@@ -93,6 +96,12 @@ for (const [pack] of html.matchAll(/<li\b[^>]*data-practice-pack\b[^>]*>[\s\S]*?
   assert(heading);
   const id = attr(heading, "id");
   assert(!downloadOrder.has(id));
+  const mark = pack.match(/<label\b[^>]*data-practice-mark\b[^>]*>\s*(<input\b[^>]*>)/);
+  assert(mark && /\bhidden(?:[\s=>])/.test(mark[0]));
+  assert.equal(attr(mark[1], "type"), "checkbox");
+  assert.match(mark[1], /\bdata-practice-practiced\b/);
+  assert(!/\bchecked(?:[\s=>])/.test(mark[1]));
+  assert(attr(mark[1], "aria-label").startsWith("Practiced: "));
   downloadOrder.set(id, [...pack.matchAll(/<a\b[^>]*data-practice-download\b[^>]*>/g)]
     .map(([tag]) => attr(tag, "href")));
 }
@@ -156,4 +165,17 @@ for (const role of ["inputs", "answer-key", "worksheet"]) {
 }
 assert(read("public/guides/how-to-use-ai-meeting-tools-responsibly/index.html").includes(scheduleRoute));
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${scheduleRoute}</loc>`).length, 2);
+const redactionRoute = "/use-cases/check-an-ai-redaction-before-sharing/";
+const redaction = read(`public${redactionRoute}index.html`);
+assert(!redaction.includes("aiplorer-practice-resume.js"));
+for (const role of ["inputs", "answer-key", "worksheet"]) {
+  const file = `redaction-check-${role}-v1.txt`;
+  assert(redaction.includes(redactionRoute + file));
+  for (const id of ["RED-01", "RED-02", "RED-03"]) assert(read(`public${redactionRoute}${file}`).includes(id));
+}
+const redactionPreview = previews.find(tag => attr(tag, "data-practice-preview") === redactionRoute + "redaction-check-inputs-v1.txt");
+assert(redactionPreview.includes("CASE-419") && !redactionPreview.includes("An acceptable replacement"));
+assert(!redactionPreview.includes("<a "), "Fictional link must remain inert text");
+assert(read("public/guides/review-an-ai-tool-decision-brief-before-sharing/index.html").includes(redactionRoute));
+assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${redactionRoute}</loc>`).length, 2);
 console.log(`PASS: ${tasks.length} input-only previews, ${downloadCount} exact step-ordered downloads, guide entry links, script scoped to use-cases hub.`);

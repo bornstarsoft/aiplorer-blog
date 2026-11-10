@@ -5,6 +5,7 @@ import vm from "node:vm";
 
 const source = readFileSync(new URL("../static/js/aiplorer-practice-resume.js", import.meta.url), "utf8");
 const key = "aiplorer-practice-resume-v1";
+const practicedKey = "aiplorer-practiced-packs-v1";
 const chartId = "practice-chart";
 const retryId = "practice-retry";
 
@@ -24,6 +25,8 @@ function pack(id, title) {
   const controls = node();
   const button = node();
   const status = node();
+  const mark = node();
+  const practiced = node({ checked: false });
   const downloads = ["inputs-v1.txt", "answer-key-v1.txt", "worksheet-v1.txt"].map((file, index) => {
     const download = node({ textContent: ["Test input", "Review key", "Comparison worksheet"][index] });
     download.setAttribute("href", "/use-cases/" + id.slice("practice-".length) + "/" + file);
@@ -35,13 +38,16 @@ function pack(id, title) {
     "[data-practice-save-controls]": controls,
     "[data-practice-save]": button,
     "[data-practice-save-status]": status,
+    "[data-practice-mark]": mark,
+    "[data-practice-practiced]": practiced,
   };
-  return { controls, button, status, downloads, querySelector: selector => children[selector], querySelectorAll: () => downloads };
+  return { controls, button, status, downloads, mark, practiced, querySelector: selector => children[selector], querySelectorAll: () => downloads };
 }
 
-function setup(saved = null, mode = "") {
+function setup(saved = null, mode = "", practicedSaved = null) {
   const storage = new Map([["unrelated", "preserve"]]);
   if (saved !== null) storage.set(key, saved);
+  if (practicedSaved !== null) storage.set(practicedKey, practicedSaved);
   const writes = [];
   const chart = pack(chartId, "Chart check");
   const retry = pack(retryId, "Retry check");
@@ -49,6 +55,7 @@ function setup(saved = null, mode = "") {
   const resume = node(), link = node(), title = node(), window = node();
   const nextStep = node({ value: "" }), nextStatus = node();
   const stepDownload = node();
+  const practicedCount = node();
   const children = {
     "[data-practice-resume]": resume,
     "[data-practice-resume-link]": link,
@@ -56,6 +63,7 @@ function setup(saved = null, mode = "") {
     "[data-practice-next-step]": nextStep,
     "[data-practice-next-status]": nextStatus,
     "[data-practice-step-download]": stepDownload,
+    "[data-practice-count]": practicedCount,
   };
   const shelf = { querySelector: s => children[s], querySelectorAll: () => [chart, retry, unsafe] };
   const localStorage = {
@@ -75,7 +83,7 @@ function setup(saved = null, mode = "") {
     },
   };
   vm.runInNewContext(source, { document: { querySelector: () => shelf }, window, localStorage });
-  return { chart, retry, unsafe, resume, link, title, nextStep, nextStatus, stepDownload, window, storage, writes };
+  return { chart, retry, unsafe, resume, link, title, nextStep, nextStatus, stepDownload, practicedCount, window, storage, writes };
 }
 
 test("does not save on visit and leaves native controls usable", () => {
@@ -83,6 +91,8 @@ test("does not save on visit and leaves native controls usable", () => {
   assert.equal(p.resume.hidden, true);
   assert.equal(p.chart.controls.hidden, false);
   assert.equal(p.unsafe.controls.hidden, true);
+  assert.equal(p.chart.mark.hidden, false);
+  assert.equal(p.practicedCount.hidden, true);
   assert.deepEqual(p.writes, []);
 });
 
@@ -133,9 +143,72 @@ test("refreshes after back navigation and cross-tab changes without writing", ()
 test("blocked reads leave the save controls hidden", () => {
   const p = setup(chartId, "read blocked");
   assert.equal(p.chart.controls.hidden, true);
+  assert.equal(p.chart.mark.hidden, true);
   assert.equal(p.resume.hidden, true);
   assert.deepEqual(p.writes, []);
 });
+
+test("practiced marks are explicit, reversible and separate from the saved next step", () => {
+  const saved = JSON.stringify({ id: chartId, step: "compare" });
+  const p = setup(saved);
+  p.retry.practiced.checked = true;
+  p.retry.practiced.change();
+  assert.equal(p.practicedCount.textContent, "1 of 2 practiced in this browser");
+  assert.equal(p.practicedCount.hidden, false);
+  assert.equal(p.storage.get(key), saved);
+  assert.equal(p.nextStep.value, "compare");
+  assert.deepEqual(p.writes, [[practicedKey, JSON.stringify([retryId])]]);
+  p.chart.button.click();
+  assert.equal(p.retry.practiced.checked, true);
+  p.retry.practiced.checked = false;
+  p.retry.practiced.change();
+  assert.equal(p.storage.has(practicedKey), false);
+  assert.equal(p.practicedCount.hidden, true);
+  assert.equal(p.practicedCount.textContent, "");
+});
+
+test("restores only distinct current pack IDs, without migrating storage", () => {
+  const p = setup(null, "", JSON.stringify([chartId, chartId, "practice-missing", "javascript:bad"]));
+  assert.equal(p.chart.practiced.checked, true);
+  assert.equal(p.retry.practiced.checked, false);
+  assert.equal(p.practicedCount.textContent, "1 of 2 practiced in this browser");
+  assert.deepEqual(p.writes, []);
+  for (const value of ["{broken", JSON.stringify({ id: chartId }), "null"]) {
+    const invalid = setup(null, "", value);
+    assert.equal(invalid.practicedCount.hidden, true);
+    assert.equal(invalid.chart.practiced.checked, false);
+    assert.deepEqual(invalid.writes, []);
+  }
+});
+
+test("merges marks with current storage and refreshes across tabs without changing resume", () => {
+  const p = setup(chartId);
+  p.storage.set(practicedKey, JSON.stringify([retryId]));
+  p.chart.practiced.checked = true;
+  p.chart.practiced.change();
+  assert.deepEqual(JSON.parse(p.storage.get(practicedKey)), [retryId, chartId]);
+  assert.equal(p.retry.practiced.checked, true);
+  p.storage.set(practicedKey, JSON.stringify([retryId]));
+  p.window.storage({ key: practicedKey });
+  assert.equal(p.chart.practiced.checked, false);
+  assert.equal(p.chart.button.getAttribute("aria-pressed"), "true");
+  p.storage.delete(practicedKey);
+  p.window.pageshow();
+  assert.equal(p.retry.practiced.checked, false);
+  assert.equal(p.practicedCount.hidden, true);
+});
+
+for (const mode of ["write blocked", "write ignored", "remove blocked"]) {
+  test(`practice mark rolls back when storage is ${mode}`, () => {
+    const marked = mode === "remove blocked";
+    const p = setup(chartId, mode, marked ? JSON.stringify([chartId]) : null);
+    p.chart.practiced.checked = !marked;
+    p.chart.practiced.change();
+    assert.equal(p.chart.practiced.checked, marked);
+    assert.equal(p.chart.status.textContent, "Could not update the practice mark.");
+    assert.equal(p.storage.get(key), chartId);
+  });
+}
 
 for (const mode of ["write blocked", "write ignored", "remove blocked"]) {
   test(`${mode} does not claim success or lose the saved selection`, () => {

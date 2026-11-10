@@ -9,9 +9,11 @@
   const nextStep = shelf.querySelector("[data-practice-next-step]");
   const nextStatus = shelf.querySelector("[data-practice-next-status]");
   const stepDownload = shelf.querySelector("[data-practice-step-download]");
+  const practicedCount = shelf.querySelector("[data-practice-count]");
   if (!resume || !link || !title || !nextStep || !nextStatus) return;
 
   const key = "aiplorer-practice-resume-v1";
+  const practicedKey = "aiplorer-practiced-packs-v1";
   const packs = new Map();
   shelf.querySelectorAll("[data-practice-pack]").forEach(pack => {
     const heading = pack.querySelector("[data-practice-heading]");
@@ -19,7 +21,12 @@
     const button = pack.querySelector("[data-practice-save]");
     const status = pack.querySelector("[data-practice-save-status]");
     if (!heading || !/^practice-[a-z0-9-]+$/.test(heading.id) || !controls || !button || !status) return;
-    packs.set(heading.id, { heading, controls, button, status, downloads: pack.querySelectorAll("[data-practice-download]") });
+    packs.set(heading.id, {
+      heading, controls, button, status,
+      downloads: pack.querySelectorAll("[data-practice-download]"),
+      mark: pack.querySelector("[data-practice-mark]"),
+      practiced: pack.querySelector("[data-practice-practiced]"),
+    });
   });
 
   // The shelf lists the input, review material and worksheet in that order.
@@ -88,11 +95,53 @@
     catch { render(empty); }
   }
 
+  function readPracticed() {
+    const raw = localStorage.getItem(practicedKey);
+    if (raw === null) return new Set();
+    try {
+      const ids = JSON.parse(raw);
+      return new Set(Array.isArray(ids) ? ids.filter(id => packs.has(id)) : []);
+    } catch {
+      return new Set();
+    }
+  }
+
+  function refreshPracticed() {
+    if (!practicedCount) return;
+    let ids;
+    try { ids = readPracticed(); } catch { /* Storage is unavailable. */ }
+    practicedCount.hidden = !ids?.size;
+    practicedCount.textContent = ids?.size ? `${ids.size} of ${packs.size} practiced in this browser` : "";
+    for (const [id, pack] of packs) {
+      if (!pack.practiced || !pack.mark) continue;
+      pack.mark.hidden = !ids;
+      pack.practiced.checked = ids?.has(id) ?? false;
+    }
+  }
+
   try { render(read()); }
   catch { return; }
+  refreshPracticed();
 
   for (const [id, pack] of packs) {
     pack.controls.hidden = false;
+    if (practicedCount && pack.practiced && pack.mark) {
+      pack.practiced.addEventListener("change", () => {
+        try {
+          const ids = readPracticed();
+          if (pack.practiced.checked) ids.add(id);
+          else ids.delete(id);
+          const value = ids.size ? JSON.stringify([...ids]) : null;
+          if (value === null) localStorage.removeItem(practicedKey);
+          else localStorage.setItem(practicedKey, value);
+          if (localStorage.getItem(practicedKey) !== value) throw new Error("Practice mark did not persist");
+          pack.status.textContent = "";
+        } catch {
+          pack.status.textContent = "Could not update the practice mark.";
+        }
+        refreshPracticed();
+      });
+    }
     pack.button.addEventListener("click", () => {
       try {
         const next = read().id === id ? null : id;
@@ -121,8 +170,12 @@
       nextStatus.textContent = "Could not update the next step.";
     }
   });
-  window.addEventListener("pageshow", refresh);
+  window.addEventListener("pageshow", () => {
+    refresh();
+    refreshPracticed();
+  });
   window.addEventListener("storage", event => {
     if (event.key === key || event.key === null) refresh();
+    if (event.key === practicedKey || event.key === null) refreshPracticed();
   });
 })();
