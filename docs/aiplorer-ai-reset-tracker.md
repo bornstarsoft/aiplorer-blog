@@ -4,22 +4,19 @@
 
 ACTIVE_WRITER = NONE
 
-- Last AI / WORK-ID: CODEX / AIP-RESET-OCT28; DONE (release preparation).
-- HEAD / WIP: based on main at e46625f; one usage-reset event, completion tracker
-  notice and this document only. Other 28 owner WIP files excluded.
-- QA: PASS 156 Node tests, reset validator/self-test, isolated clean minified
-  production build, home/tracker timestamp checks, previous 65 event records
-  unchanged, eight draft exclusions, 291 legacy post URLs and sitemap XML validation.
-  Browser PASS: home elapsed clock, one unseen record for a saved
-  65-record check, tracker completion notice, 1280px/390px without horizontal overflow,
-  no page errors.
-  Existing legacy-post raw-HTML warning remains unchanged. Live verification
-  is pending at commit and will be reported in chat.
-- NEXT_SINGLE_TASK: push this exact three-file release and verify Cloudflare
-  success plus the new record and completion notice on production home/tracker.
-- BLOCKER / Owner approval: owner authorized source checking, scoped update
-  and production deployment on October 28. Completion announcement verified;
-  earlier scheduled/observation links excluded. Web GitHub exception applies.
+- Last AI / WORK-ID: CODEX / AIP-RESET-NOV10; DONE (release preparation).
+- HEAD / WIP: based on main at 29ec3e3; two banked announcements, updated
+  tracker notice and this document only. Other 28 owner WIP files excluded.
+- QA: PASS 156 Node tests, reset validator/self-test, isolated minified Hugo
+  build, 68 rendered record fingerprints, 12 credit rows including combined
+  events, and unchanged latest usage timestamp and previous 66 events.
+  Eight draft exclusions, 291 legacy post URLs and sitemap XML also passed.
+  Existing legacy-post raw-HTML warning remains unchanged. Browser NOT_RUN;
+  no template or script changes. Live verification is pending at commit.
+- NEXT_SINGLE_TASK: deploy the exact three-file release and verify the banked
+  label on production home and both new credit entries on the tracker.
+- BLOCKER / Owner approval: none. Owner authorized verification and production
+  deployment on November 10. Web GitHub exception applies.
 
 
 ## Purpose
@@ -59,9 +56,9 @@ served a different task and reduced the visibility of the historical data.
 
 ## Public Codex History
 
-`data/codex_reset_history.json` contains a manually checked snapshot of 66
+`data/codex_reset_history.json` contains a manually checked snapshot of 68
 public Codex reset/credit announcements observed between September 17, 2025 and
-October 28, 2026 UTC, rechecked on October 28, 2026 KST. Each row stores the UTC announcement
+November 1, 2026 UTC, rechecked on November 10, 2026 KST. Each row stores the UTC announcement
 timestamp, source X post URL, and an explicit `kind`. The seed was checked
 against `https://codex-resets.com/`, which states
 that it collects posts from `@thsottiaux` and is not affiliated with OpenAI.
@@ -86,6 +83,29 @@ present the event count as a count of identical account resets.
 The source can also show a separate reset-watch signal for a possible future
 event. Aiplorer excludes those signals until they appear in the confirmed reset
 announcement log; they are not added as forecasts or event records.
+
+### November 10 Check: Two Banked Announcements Added
+
+- Checked at 2026-11-10T05:18:31Z (14:18:31 KST).
+- The Codex Resets API (`/api/v1/resets?limit=100`) snapshot generated at
+  05:17:05.533Z returned 71 rows with no further page. All 66 previous
+  Aiplorer records match their source URLs and timestamps. Of the five
+  unmatched rows, three are the previously excluded October 22, 23 and 26
+  observations linked to pre-completion notices.
+- Added two `banked` records. Direct X metadata confirmed both banked labels
+  and their publication timestamps:
+  - https://x.com/thsottiaux/status/2116692529970311254 at
+    2026-11-01T00:43:20.000Z (November 1, 09:43:20 KST).
+  - https://x.com/thsottiaux/status/2117035794678546764 at
+    2026-11-01T23:27:20.000Z (November 2, 08:27:20 KST).
+- LunarWerx's API snapshot at 05:10:29.530Z reports 70 observations and uses
+  other times for the late-October/early-November records. Its latest linked
+  post is a request for a banked reset, not a third credit announcement.
+  Do not merge those observation times or totals with this history.
+- Total: 68 records (54 usage, 10 banked, 2 both, 2 unclassified).
+  No new usage reset verified; latest usage stays October 28 at 06:29:38 UTC.
+  The banked announcement clock uses the newer post. No account eligibility,
+  credit balance, expiry or precise delivery time is inferred.
 
 ### October 28 Check: One Completion Announcement Added
 
