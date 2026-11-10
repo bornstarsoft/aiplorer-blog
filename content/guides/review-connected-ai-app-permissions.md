@@ -71,6 +71,9 @@ approved change, they inspect the configured repository list and test a small
 demo task. If another workflow fails, they record the dependency and seek an
 approved resolution instead of silently restoring broad access.
 
+Use the [automation permission practice pack](/use-cases/check-an-ai-automation-for-permission-scope/)
+to rehearse action, resource, and time checks with fictional approvals.
+
 ## Leave A Useful Review Note
 
 ```text

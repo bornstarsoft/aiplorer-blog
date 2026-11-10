@@ -1,0 +1,22 @@
+AI AUTOMATION PERMISSION REVIEW - FICTIONAL INPUT - VERSION 1
+
+For each ID, identify the approved scope, the mismatch, and the next
+permitted check. Use only these fictional records. Do not connect an
+account, change permissions, or infer that a narrower setting exists.
+
+PERM-01 - Action scope
+Approval: Read the rows of a sample sheet and show a count in the preview.
+No sheet edits were approved.
+Proposed setup: Grant edit access and add a "Checked" column to the sheet.
+
+PERM-02 - Resource scope
+Approval: Read only the Demo Inputs folder. No other folders were approved.
+The only proposed connection can read every project folder. No narrower
+connection or approved sample copy has been verified.
+Proposed setup: Use the broad connection and prompt the AI to ignore
+the other folders.
+
+PERM-03 - Time scope
+Approval: Use the test connection for one trial. The trial has ended and
+there is no new approval. The current connection status has not been checked.
+Proposed setup: Leave the connection enabled so the team can use it later.

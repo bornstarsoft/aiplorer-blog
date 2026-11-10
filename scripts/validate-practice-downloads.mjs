@@ -28,6 +28,7 @@ const tasks = [
   ["check-an-ai-video-shot-list-before-sharing", "Review a video shot list"],
   ["check-an-ai-file-handoff-before-switching-tools", "Check a file handoff"],
   ["check-an-ai-tool-comparison-against-test-records", "Check a tool comparison"],
+  ["check-an-ai-automation-for-permission-scope", "Check automation permissions"],
 ];
 assert.equal((html.match(/data-practice-pack\b/g) || []).length, tasks.length);
 const jumps = [...html.matchAll(/<a\b[^>]*\bdata-practice-task\b[^>]*>[\s\S]*?<\/a>/g)].map(([link]) => link);
@@ -65,7 +66,7 @@ for (const preview of previews) {
   assert(status && attr(status, "role") === "status" && attr(status, "aria-live") === "polite");
 }
 assert(html.includes("/js/aiplorer-practice-copy.js?v=20261024a"));
-assert(html.includes("/js/aiplorer-practice-resume.js?v=20261110i"));
+assert(html.includes("/js/aiplorer-practice-resume.js?v=20261110j"));
 assert.match(html, /<a\b[^>]*data-practice-choice-link\b[^>]*>Start selected practice<\/a>/);
 assert.match(html, /<p\b[^>]*data-practice-choice-empty\b[^>]*>/);
 const emptyChoice = html.match(/<p\b[^>]*data-practice-choice-empty\b[^>]*>/)[0];
@@ -131,6 +132,7 @@ const packs = [
   ["check-an-ai-video-shot-list-before-sharing", "shot"],
   ["check-an-ai-file-handoff-before-switching-tools", "handoff"],
   ["check-an-ai-tool-comparison-against-test-records", "comparison"],
+  ["check-an-ai-automation-for-permission-scope", "permission"],
 ];
 const downloadOrder = new Map();
 for (const [pack] of html.matchAll(/<li\b[^>]*data-practice-pack\b[^>]*>[\s\S]*?<\/li>/g)) {
@@ -283,4 +285,16 @@ const comparisonPreview = previews.find(tag => attr(tag, "data-practice-preview"
 assert(comparisonPreview.includes("No matched-input run") && !comparisonPreview.includes("Keep this file out of the test conversation"));
 assert(read("public/use-cases/compare-two-ai-tools-when-results-disagree/index.html").includes(comparisonRoute));
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${comparisonRoute}</loc>`).length, 2);
+const permissionRoute = "/use-cases/check-an-ai-automation-for-permission-scope/";
+const permissionArticle = read(`public${permissionRoute}index.html`);
+assert(!permissionArticle.includes("aiplorer-practice-resume.js"));
+for (const role of ["inputs", "answer-key", "worksheet"]) {
+  const file = `permission-check-${role}-v1.txt`;
+  assert(permissionArticle.includes(permissionRoute + file));
+  for (const id of ["PERM-01", "PERM-02", "PERM-03"]) assert(read(`public${permissionRoute}${file}`).includes(id));
+}
+const permissionPreview = previews.find(tag => attr(tag, "data-practice-preview") === permissionRoute + "permission-check-inputs-v1.txt");
+assert(permissionPreview.includes("Demo Inputs") && !permissionPreview.includes("Keep this file out of the test conversation"));
+assert(read("public/guides/review-connected-ai-app-permissions/index.html").includes(permissionRoute));
+assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${permissionRoute}</loc>`).length, 2);
 console.log(`PASS: ${tasks.length} input-only previews, ${downloadCount} exact step-ordered downloads, guide entry links, script scoped to use-cases hub.`);

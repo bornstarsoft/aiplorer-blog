@@ -395,6 +395,54 @@ test("start only opens a preview for a known pack anchor", () => {
   assert.deepEqual(p.writes, []);
 });
 
+test("finishing a directly started pack writes only its practiced mark", () => {
+  const saved = JSON.stringify({ id: chartId, step: "review" });
+  const p = setup(saved, "", null, chartId);
+  p.choice.value = retryId;
+  p.choice.change();
+  assert.equal(p.retry.finish.hidden, true, "Selecting does not start a practice");
+  p.choiceLink.click();
+  assert.equal(p.retry.finish.hidden, false);
+  assert.equal(p.chart.finish.hidden, false, "The planned pack remains usable");
+  assert.deepEqual(p.writes, [], "Starting does not write");
+  p.retry.finish.click();
+  assert.equal(p.retry.practiced.checked, true);
+  assert.equal(p.retryOption.disabled, true);
+  assert.equal(p.document.activeElement, p.choice);
+  assert.equal(p.storage.get(key), saved);
+  assert.equal(p.storage.get(planKey), chartId);
+  assert.deepEqual(p.writes, [[practicedKey, JSON.stringify([retryId])]]);
+});
+
+test("switching directly started packs does not finish the previous pack", () => {
+  const p = setup();
+  for (const id of [retryId, chartId]) {
+    p.choice.value = id;
+    p.choice.change();
+    p.choiceLink.click();
+  }
+  assert.equal(p.retry.finish.hidden, true);
+  assert.equal(p.chart.finish.hidden, false);
+  p.retry.finish.click();
+  assert.equal(p.retry.practiced.checked, false);
+  assert.deepEqual(p.writes, []);
+  assert.equal(setup().chart.finish.hidden, true, "The started pack is not restored on reload");
+});
+
+test("direct finish failure retains the current practice and does not move focus", () => {
+  const p = setup(null, "write ignored");
+  p.choice.value = retryId;
+  p.choice.change();
+  p.choiceLink.click();
+  p.document.activeElement = p.retry.finish;
+  p.retry.finish.click();
+  assert.equal(p.retry.finish.hidden, false);
+  assert.equal(p.retry.practiced.checked, false);
+  assert.equal(p.document.activeElement, p.retry.finish);
+  assert.equal(p.retry.status.textContent, "Could not mark this practice as finished.");
+  assert.equal(p.storage.has(planKey), false);
+});
+
 test("a newly practiced candidate clears the preview and all-complete disables the picker", () => {
   const p = setup(null, "", JSON.stringify([chartId]));
   p.choice.value = retryId;

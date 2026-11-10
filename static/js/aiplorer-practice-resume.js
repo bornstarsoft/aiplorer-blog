@@ -60,6 +60,7 @@
   const empty = { id: null, step: "" };
   let shownId = null;
   let plannedId = null;
+  let startedId = null;
 
   function read() {
     const value = localStorage.getItem(key);
@@ -176,14 +177,15 @@
     planSave.hidden = saved === undefined || !packs.has(choice.value) || ids.has(choice.value);
     for (const [id, entry] of packs) {
       if (!entry.finish) continue;
-      entry.finish.hidden = id !== plannedId;
-      if (id === plannedId) entry.finish.textContent = practiced ? "Choose next practice" : "Finish and choose next";
+      const active = Boolean(ids) && (id === plannedId || id === startedId);
+      entry.finish.hidden = !active;
+      if (active) entry.finish.textContent = ids.has(id) ? "Choose next practice" : "Finish and choose next";
     }
   }
 
-  function finishPlan(id, pack) {
+  function finishPractice(id, pack) {
     try {
-      if (localStorage.getItem(planKey) !== id) {
+      if (id !== startedId && localStorage.getItem(planKey) !== id) {
         refreshPracticed();
         pack.status.textContent = "The saved next practice changed.";
         return;
@@ -289,6 +291,7 @@
     revealPack(hash);
     const preview = pack.element.querySelector("[data-practice-preview]");
     if (preview) preview.open = true;
+    return pack.heading.id;
   }
 
   try { render(read()); }
@@ -296,7 +299,12 @@
   refreshPracticed();
   if (choice && choiceLink) {
     choice.addEventListener("change", refreshPracticed);
-    choiceLink.addEventListener("click", () => openPracticeInput(choiceLink.getAttribute("href")));
+    choiceLink.addEventListener("click", () => {
+      const id = openPracticeInput(choiceLink.getAttribute("href"));
+      if (!id) return;
+      startedId = id;
+      refreshPracticed();
+    });
   }
   if (planReady) {
     planSave.addEventListener("click", () => updatePlan(choice.value));
@@ -318,7 +326,7 @@
   for (const [id, pack] of packs) {
     pack.controls.hidden = false;
     if (planReady && choiceEmpty && pack.finish) {
-      pack.finish.addEventListener("click", () => finishPlan(id, pack));
+      pack.finish.addEventListener("click", () => finishPractice(id, pack));
     }
     if (practicedCount && pack.practiced && pack.mark) {
       pack.practiced.addEventListener("change", () => {

@@ -1,0 +1,17 @@
+AI AUTOMATION PERMISSION REVIEW - TWO-RUN WORKSHEET - VERSION 1
+
+Input version:
+Run A date, tool and visible settings:
+Run B date, tool and visible settings:
+What changed between runs?
+
+Keep both original answers. For each ID, record meets check, needs
+correction, or could not test, and cite the relevant approval.
+
+Case     Run A       Run B       Scope mismatch or next allowed check
+PERM-01  __________  __________  ___________________________________
+PERM-02  __________  __________  ___________________________________
+PERM-03  __________  __________  ___________________________________
+
+Did either answer confuse an instruction with a permission boundary?
+Which setting or approval still needs a human check?
