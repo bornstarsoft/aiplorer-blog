@@ -16,11 +16,20 @@
       <span role="status" data-practice-next-status></span>
     </div>
   </div>
-  <nav class="aiplorer-article-jumps" aria-label="Practice pack tasks">
+  <div class="aiplorer-practice-filter" data-practice-filter-controls hidden>
+    <label for="practice-filter">Show practice packs</label>
+    <select id="practice-filter" data-practice-filter>
+      <option value="all">All packs</option>
+      <option value="unpracticed">Not practiced yet</option>
+      <option value="practiced">Practiced</option>
+    </select>
+  </div>
+  <nav class="aiplorer-article-jumps" aria-label="Practice pack tasks" data-practice-tasks>
     {{ range . }}
       <a href="#practice-{{ path.Base .RelPermalink }}" data-practice-task>{{ .Params.practiceTask | default .Title }}{{ partial "aiplorer-icon.html" "chevron-down" }}</a>
     {{ end }}
   </nav>
+  <p class="aiplorer-practice-count" data-practice-empty role="status" hidden></p>
   <ul>
     {{ range . }}
       {{ $page := . }}

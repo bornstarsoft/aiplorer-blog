@@ -1,0 +1,21 @@
+AI SPREADSHEET FORMULA REVIEW - REVIEW KEY - VERSION 1
+Keep this file out of the test conversation.
+
+One acceptable C2 formula in English Excel notation:
+=IF(ISBLANK(B2),"Missing",IF(B2>=$F$1,"Review","Within limit"))
+
+FORM-01
+An empty B2 gives C2 = Missing. A numeric zero in B3 gives
+C3 = Within limit. Do not use a test that classifies zero as missing.
+
+FORM-02
+B4 and F1 are both 10, so C4 = Review. The comparison includes equality.
+
+FORM-03
+B5 is 12, so C5 = Review. The copied formula should reference B5
+and $F$1, not F4. One acceptable C5 formula:
+=IF(ISBLANK(B5),"Missing",IF(B5>=$F$1,"Review","Within limit"))
+
+Equivalent formulas are acceptable if they meet the sample contract.
+This does not establish behavior for empty-string formulas, text, errors,
+external references or a different locale.

@@ -23,6 +23,7 @@ const tasks = [
   ["check-ai-captions-against-a-reference", "Check captions"],
   ["check-an-ai-schedule-across-time-zones", "Check time zones"],
   ["check-an-ai-redaction-before-sharing", "Check redactions"],
+  ["check-an-ai-spreadsheet-formula-before-copying-it", "Check a formula"],
 ];
 assert.equal((html.match(/data-practice-pack\b/g) || []).length, tasks.length);
 const jumps = [...html.matchAll(/<a\b[^>]*\bdata-practice-task\b[^>]*>[\s\S]*?<\/a>/g)].map(([link]) => link);
@@ -60,7 +61,13 @@ for (const preview of previews) {
   assert(status && attr(status, "role") === "status" && attr(status, "aria-live") === "polite");
 }
 assert(html.includes("/js/aiplorer-practice-copy.js?v=20261024a"));
-assert(html.includes("/js/aiplorer-practice-resume.js?v=20261110d"));
+assert(html.includes("/js/aiplorer-practice-resume.js?v=20261110e"));
+assert.match(html, /<div\b[^>]*data-practice-filter-controls\b[^>]*\bhidden(?:[\s=>])/);
+assert.match(html, /<label\b[^>]*for=["']?practice-filter\b[^>]*>Show practice packs<\/label>/);
+const filter = html.match(/<select\b[^>]*data-practice-filter\b[^>]*>[\s\S]*?<\/select>/)?.[0];
+assert(filter);
+assert.deepEqual([...filter.matchAll(/<option\b[^>]*>/g)].map(([tag]) => attr(tag, "value")), ["all", "unpracticed", "practiced"]);
+assert.match(html, /<p\b[^>]*data-practice-empty\b[^>]*\bhidden(?:[\s=>])/);
 assert.match(html, /<p\b[^>]*data-practice-count\b[^>]*\bhidden(?:[\s=>])/);
 assert.equal((html.match(/data-practice-shelf\b/g) || []).length, 1);
 assert.match(html, /<div\b[^>]*data-practice-resume\b[^>]*\bhidden(?:[\s=>])/);
@@ -89,9 +96,11 @@ const packs = [
   ["check-ai-captions-against-a-reference", "caption"],
   ["check-an-ai-schedule-across-time-zones", "schedule"],
   ["check-an-ai-redaction-before-sharing", "redaction"],
+  ["check-an-ai-spreadsheet-formula-before-copying-it", "formula"],
 ];
 const downloadOrder = new Map();
 for (const [pack] of html.matchAll(/<li\b[^>]*data-practice-pack\b[^>]*>[\s\S]*?<\/li>/g)) {
+  assert(!/^<li\b[^>]*\bhidden(?:[\s=>])/.test(pack), "Unfiltered list works without JavaScript");
   const heading = pack.match(/<h3\b[^>]*>/)?.[0];
   assert(heading);
   const id = attr(heading, "id");
@@ -178,4 +187,16 @@ assert(redactionPreview.includes("CASE-419") && !redactionPreview.includes("An a
 assert(!redactionPreview.includes("<a "), "Fictional link must remain inert text");
 assert(read("public/guides/review-an-ai-tool-decision-brief-before-sharing/index.html").includes(redactionRoute));
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${redactionRoute}</loc>`).length, 2);
+const formulaRoute = "/use-cases/check-an-ai-spreadsheet-formula-before-copying-it/";
+const formulaArticle = read(`public${formulaRoute}index.html`);
+assert(!formulaArticle.includes("aiplorer-practice-resume.js"));
+for (const role of ["inputs", "answer-key", "worksheet"]) {
+  const file = `formula-check-${role}-v1.txt`;
+  assert(formulaArticle.includes(formulaRoute + file));
+  for (const id of ["FORM-01", "FORM-02", "FORM-03"]) assert(read(`public${formulaRoute}${file}`).includes(id));
+}
+const formulaPreview = previews.find(tag => attr(tag, "data-practice-preview") === formulaRoute + "formula-check-inputs-v1.txt");
+assert(formulaPreview.includes("FORM-03") && !formulaPreview.includes("ISBLANK"));
+assert(read("public/use-cases/test-ai-data-extraction-with-missing-values/index.html").includes(formulaRoute));
+assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${formulaRoute}</loc>`).length, 2);
 console.log(`PASS: ${tasks.length} input-only previews, ${downloadCount} exact step-ordered downloads, guide entry links, script scoped to use-cases hub.`);

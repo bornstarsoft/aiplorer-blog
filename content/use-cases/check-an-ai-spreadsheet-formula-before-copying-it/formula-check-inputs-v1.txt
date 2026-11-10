@@ -1,0 +1,21 @@
+AI SPREADSHEET FORMULA REVIEW - FICTIONAL INPUT - VERSION 1
+
+Review a formula intended for C2, then copied down to C5 in Excel. Return
+a corrected C2 formula, the expected labels in C2:C5, and the cell
+references that should appear in the copied C5 formula. Do not connect
+to a real workbook or replace live data.
+
+Rule: If the count cell in column B is genuinely empty, return Missing.
+If the count is at least the threshold in F1, return Review.
+Otherwise return Within limit. Counts are numbers or genuinely empty.
+Zero is a recorded count, not a missing entry.
+
+Threshold: F1 = 10. Keep F2 = 10, F3 = 10 and F4 = 99 as unrelated
+values; do not use them as thresholds.
+
+FORM-01: Leave B2 empty and enter the number 0 in B3.
+FORM-02: Enter the number 10 in B4.
+FORM-03: Enter the number 12 in B5 and inspect the formula after fill-down.
+
+Draft C2 formula:
+=IF(B2=0,"Missing",IF(B2>F1,"Review","Within limit"))

@@ -40,6 +40,7 @@ provides a buggy function and local regression tests.
 | Review captions | [Caption review pack](/use-cases/check-ai-captions-against-a-reference/) | Preserve negation and identifiers; leave an unverified speaker unknown |
 | Review a schedule across time zones | [Schedule review pack](/use-cases/check-an-ai-schedule-across-time-zones/) | Check date rollover, ambiguous times and elapsed duration |
 | Review a redacted draft | [Redaction review pack](/use-cases/check-an-ai-redaction-before-sharing/) | Check repeated identifiers, identifying combinations and link targets |
+| Review a spreadsheet formula | [Formula review pack](/use-cases/check-an-ai-spreadsheet-formula-before-copying-it/) | Distinguish blank from zero, check equality, and keep the threshold reference fixed |
 
 The [practice downloads](/use-cases/#practice-downloads) collect the
 packs in one place. These checks do not cover every workflow. If your

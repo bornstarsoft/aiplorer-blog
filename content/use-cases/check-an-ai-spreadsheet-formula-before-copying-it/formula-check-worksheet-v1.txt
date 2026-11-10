@@ -1,0 +1,18 @@
+AI SPREADSHEET FORMULA REVIEW - TWO-RUN WORKSHEET - VERSION 1
+
+Input version:
+Run A date, tool and visible settings:
+Run B date, tool and visible settings:
+What changed between the two runs?
+
+Keep the original formulas separately. Record observed values and mark each
+case: meets check / needs correction / could not test.
+
+Case     Run A       Run B       Observed result or wrong reference
+FORM-01  __________  __________  _________________________________
+FORM-02  __________  __________  _________________________________
+FORM-03  __________  __________  _________________________________
+
+Which reference moved when the formula was copied?
+Did the same input and sheet layout apply to both runs?
+Next boundary case to check:

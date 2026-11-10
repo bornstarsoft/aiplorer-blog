@@ -22,6 +22,8 @@ function node(properties = {}) {
 
 function pack(id, title) {
   const heading = node({ id, textContent: title });
+  const task = node({ hidden: false });
+  task.setAttribute("href", "#" + id);
   const controls = node();
   const button = node();
   const status = node();
@@ -41,7 +43,11 @@ function pack(id, title) {
     "[data-practice-mark]": mark,
     "[data-practice-practiced]": practiced,
   };
-  return { controls, button, status, downloads, mark, practiced, querySelector: selector => children[selector], querySelectorAll: () => downloads };
+  return {
+    controls, button, status, downloads, mark, practiced, task, heading, hidden: false,
+    contains: element => Object.values(children).includes(element),
+    querySelector: selector => children[selector], querySelectorAll: () => downloads,
+  };
 }
 
 function setup(saved = null, mode = "", practicedSaved = null) {
@@ -56,6 +62,10 @@ function setup(saved = null, mode = "", practicedSaved = null) {
   const nextStep = node({ value: "" }), nextStatus = node();
   const stepDownload = node();
   const practicedCount = node();
+  const filterControls = node(), filter = node({ value: "all" }), filterEmpty = node(), taskNav = node();
+  const document = { activeElement: null, querySelector: () => shelf };
+  filter.focus = () => { document.activeElement = filter; };
+  window.location = { hash: "" };
   const children = {
     "[data-practice-resume]": resume,
     "[data-practice-resume-link]": link,
@@ -64,8 +74,13 @@ function setup(saved = null, mode = "", practicedSaved = null) {
     "[data-practice-next-status]": nextStatus,
     "[data-practice-step-download]": stepDownload,
     "[data-practice-count]": practicedCount,
+    "[data-practice-filter-controls]": filterControls,
+    "[data-practice-filter]": filter,
+    "[data-practice-empty]": filterEmpty,
+    "[data-practice-tasks]": taskNav,
   };
-  const shelf = { querySelector: s => children[s], querySelectorAll: () => [chart, retry, unsafe] };
+  const shelf = { querySelector: s => children[s], querySelectorAll: s =>
+    s === "[data-practice-task]" ? [chart.task, retry.task] : [chart, retry, unsafe] };
   const localStorage = {
     getItem(k) {
       if (mode === "read blocked") throw new Error("Denied");
@@ -82,8 +97,9 @@ function setup(saved = null, mode = "", practicedSaved = null) {
       storage.delete(k);
     },
   };
-  vm.runInNewContext(source, { document: { querySelector: () => shelf }, window, localStorage });
-  return { chart, retry, unsafe, resume, link, title, nextStep, nextStatus, stepDownload, practicedCount, window, storage, writes };
+  vm.runInNewContext(source, { document, window, localStorage });
+  return { chart, retry, unsafe, resume, link, title, nextStep, nextStatus, stepDownload, practicedCount, window, storage, writes,
+    filter, filterControls, filterEmpty, taskNav, document };
 }
 
 test("does not save on visit and leaves native controls usable", () => {
@@ -143,8 +159,73 @@ test("refreshes after back navigation and cross-tab changes without writing", ()
 test("blocked reads leave the save controls hidden", () => {
   const p = setup(chartId, "read blocked");
   assert.equal(p.chart.controls.hidden, true);
+  assert.equal(p.filterControls.hidden, true);
+  assert.equal(p.chart.hidden, false);
   assert.equal(p.chart.mark.hidden, true);
   assert.equal(p.resume.hidden, true);
+  assert.deepEqual(p.writes, []);
+});
+
+test("shows all, practiced or not-yet-practiced packs and matching jump links without writing", () => {
+  const p = setup(null, "", JSON.stringify([chartId]));
+  assert.equal(p.filterControls.hidden, false);
+  for (const [value, hiddenChart, hiddenRetry] of [
+    ["practiced", false, true], ["unpracticed", true, false], ["all", false, false],
+  ]) {
+    p.filter.value = value;
+    p.filter.change();
+    assert.equal(p.chart.hidden, hiddenChart);
+    assert.equal(p.chart.task.hidden, hiddenChart);
+    assert.equal(p.retry.hidden, hiddenRetry);
+    assert.equal(p.retry.task.hidden, hiddenRetry);
+    assert.equal(p.filterEmpty.hidden, true);
+  }
+  assert.deepEqual(p.writes, []);
+});
+
+test("updates filtered views and empty messages after marks change", () => {
+  const p = setup();
+  p.filter.value = "practiced";
+  p.filter.change();
+  assert.equal(p.filterEmpty.textContent, "No practiced packs yet.");
+  assert.equal(p.taskNav.hidden, true);
+  p.storage.set(practicedKey, JSON.stringify([chartId, retryId]));
+  p.window.storage({ key: practicedKey });
+  assert.equal(p.filterEmpty.hidden, true);
+  assert.equal(p.taskNav.hidden, false);
+  p.filter.value = "unpracticed";
+  p.filter.change();
+  assert.equal(p.filterEmpty.textContent, "All packs have been practiced.");
+  assert.equal(p.filterEmpty.hidden, false);
+});
+
+test("returns focus to the filter when a marked pack disappears", () => {
+  const p = setup();
+  p.filter.value = "unpracticed";
+  p.filter.change();
+  p.document.activeElement = p.chart.practiced;
+  p.chart.practiced.checked = true;
+  p.chart.practiced.change();
+  assert.equal(p.chart.hidden, true);
+  assert.equal(p.document.activeElement, p.filter);
+});
+
+test("continue and direct anchors reveal filtered packs without rewriting storage", () => {
+  const p = setup(chartId, "", JSON.stringify([chartId]));
+  p.filter.value = "unpracticed";
+  p.filter.change();
+  p.link.click();
+  assert.equal(p.filter.value, "all");
+  assert.equal(p.chart.hidden, false);
+  assert.equal(p.link.getAttribute("href"), "#" + chartId);
+  p.filter.value = "practiced";
+  p.filter.change();
+  p.retry.heading.focus = () => { p.document.activeElement = p.retry.heading; };
+  p.retry.heading.scrollIntoView = () => {};
+  p.window.location.hash = "#" + retryId;
+  p.window.hashchange();
+  assert.equal(p.retry.hidden, false);
+  assert.equal(p.document.activeElement, p.retry.heading);
   assert.deepEqual(p.writes, []);
 });
 

@@ -10,10 +10,16 @@
   const nextStatus = shelf.querySelector("[data-practice-next-status]");
   const stepDownload = shelf.querySelector("[data-practice-step-download]");
   const practicedCount = shelf.querySelector("[data-practice-count]");
+  const filterControls = shelf.querySelector("[data-practice-filter-controls]");
+  const filter = shelf.querySelector("[data-practice-filter]");
+  const filterEmpty = shelf.querySelector("[data-practice-empty]");
+  const taskNav = shelf.querySelector("[data-practice-tasks]");
   if (!resume || !link || !title || !nextStep || !nextStatus) return;
 
   const key = "aiplorer-practice-resume-v1";
   const practicedKey = "aiplorer-practiced-packs-v1";
+  const taskLinks = new Map([...shelf.querySelectorAll("[data-practice-task]")]
+    .map(link => [link.getAttribute("href"), link]));
   const packs = new Map();
   shelf.querySelectorAll("[data-practice-pack]").forEach(pack => {
     const heading = pack.querySelector("[data-practice-heading]");
@@ -22,7 +28,8 @@
     const status = pack.querySelector("[data-practice-save-status]");
     if (!heading || !/^practice-[a-z0-9-]+$/.test(heading.id) || !controls || !button || !status) return;
     packs.set(heading.id, {
-      heading, controls, button, status,
+      element: pack, heading, controls, button, status,
+      task: taskLinks.get("#" + heading.id),
       downloads: pack.querySelectorAll("[data-practice-download]"),
       mark: pack.querySelector("[data-practice-mark]"),
       practiced: pack.querySelector("[data-practice-practiced]"),
@@ -117,11 +124,54 @@
       pack.mark.hidden = !ids;
       pack.practiced.checked = ids?.has(id) ?? false;
     }
+    renderFilter(ids);
+  }
+
+  function renderFilter(ids) {
+    if (!filterControls || !filter || !filterEmpty || !taskNav) return;
+    const mode = filter.value;
+    const filtered = Boolean(ids) && (mode === "practiced" || mode === "unpracticed");
+    filterControls.hidden = !ids;
+    let visible = 0;
+    for (const [id, pack] of packs) {
+      const hidden = Boolean(filtered && ids.has(id) !== (mode === "practiced"));
+      if (hidden && (pack.element.contains(document.activeElement) || pack.task === document.activeElement)) {
+        filter.focus();
+      }
+      pack.element.hidden = hidden;
+      if (pack.task) pack.task.hidden = hidden;
+      if (!hidden) visible++;
+    }
+    const empty = filtered && visible === 0;
+    taskNav.hidden = empty;
+    filterEmpty.hidden = !empty;
+    filterEmpty.textContent = empty
+      ? (mode === "practiced" ? "No practiced packs yet." : "All packs have been practiced.")
+      : "";
+  }
+
+  function revealPack(hash) {
+    const pack = hash && packs.get(hash.slice(1));
+    if (!filter || !pack?.element.hidden) return null;
+    filter.value = "all";
+    refreshPracticed();
+    return pack.heading;
   }
 
   try { render(read()); }
   catch { return; }
   refreshPracticed();
+  if (filterControls && filter && filterEmpty && taskNav) {
+    filter.addEventListener("change", refreshPracticed);
+    link.addEventListener("click", () => revealPack(link.getAttribute("href")));
+    window.addEventListener("hashchange", () => {
+      const heading = revealPack(window.location.hash);
+      if (heading) {
+        heading.focus({ preventScroll: true });
+        heading.scrollIntoView();
+      }
+    });
+  }
 
   for (const [id, pack] of packs) {
     pack.controls.hidden = false;

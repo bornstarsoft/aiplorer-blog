@@ -159,3 +159,6 @@ Continue with the [retest workflow](/use-cases/retest-a-saved-ai-tool-after-an-u
 or the [two-candidate comparison](/use-cases/compare-two-ai-tools-when-results-disagree/).
 To check explicitly corrected facts against unresolved disagreement, try the
 [downloadable summary reference pack](/use-cases/retest-ai-summaries-with-a-reference-pack/).
+If the extracted values feed a spreadsheet rule, try the
+[formula review practice pack](/use-cases/check-an-ai-spreadsheet-formula-before-copying-it/)
+to check blanks, zero, and references before filling a formula down.
