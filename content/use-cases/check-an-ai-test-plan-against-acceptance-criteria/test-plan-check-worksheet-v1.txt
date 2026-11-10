@@ -1,0 +1,17 @@
+AI TEST PLAN REVIEW - TWO-RUN WORKSHEET - VERSION 1
+
+Input version:
+Run A date, tool and visible settings:
+Run B date, tool and visible settings:
+What changed between runs?
+
+For each ID, record meets check, needs correction, or could not test.
+Keep both original plans and the criterion they address.
+
+Case     Run A       Run B       Missing state, action or observation
+TEST-01  __________  __________  ___________________________________
+TEST-02  __________  __________  ___________________________________
+TEST-03  __________  __________  ___________________________________
+
+What failure could still pass the proposed test?
+What evidence would a real run need to capture?

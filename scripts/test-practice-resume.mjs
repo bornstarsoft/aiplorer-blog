@@ -80,6 +80,9 @@ function setup(saved = null, mode = "", practicedSaved = null, planned = null) {
   const chooser = node(), choice = node({ value: "", querySelectorAll: () => [chartGroup, retryGroup] });
   const choiceDetails = node(), choiceDescription = node(), choiceLink = node(), choiceEmpty = node();
   const choiceLabel = node();
+  const newMode = node({ value: "new", checked: true });
+  const reviewMode = node({ value: "review", checked: false });
+  const choiceMode = node({ querySelectorAll: () => [newMode, reviewMode] });
   const plan = node(), planTitle = node(), planStart = node(), planDone = node();
   const planClear = node(), planSave = node(), planStatus = node();
   const document = { activeElement: null, querySelector: () => shelf };
@@ -102,6 +105,7 @@ function setup(saved = null, mode = "", practicedSaved = null, planned = null) {
     "[data-practice-chooser]": chooser,
     "[data-practice-choice]": choice,
     "[data-practice-choice-label]": choiceLabel,
+    "[data-practice-choice-mode]": choiceMode,
     "[data-practice-choice-details]": choiceDetails,
     "[data-practice-choice-description]": choiceDescription,
     "[data-practice-choice-link]": choiceLink,
@@ -135,7 +139,7 @@ function setup(saved = null, mode = "", practicedSaved = null, planned = null) {
   vm.runInNewContext(source, { document, window, localStorage });
   return { chart, retry, unsafe, resume, link, title, nextStep, nextStatus, stepDownload, practicedCount, window, storage, writes,
     filter, filterControls, filterEmpty, taskNav, document, chooser, choice, choiceDetails, choiceDescription, choiceLink,
-    choiceEmpty, choiceLabel, chartOption, retryOption, unsafeOption, chartGroup, retryGroup,
+    choiceEmpty, choiceLabel, choiceMode, newMode, reviewMode, chartOption, retryOption, unsafeOption, chartGroup, retryGroup,
     plan, planTitle, planStart, planDone, planClear, planSave, planStatus };
 }
 
@@ -559,6 +563,7 @@ test("the all-practiced picker starts a review without offering a save or changi
   const saved = JSON.stringify({ id: retryId, step: "review" });
   const marks = JSON.stringify([chartId, retryId]);
   const p = setup(saved, "", marks, retryId);
+  assert.equal(p.choiceMode.hidden, true);
   p.filter.value = "unpracticed";
   p.filter.change();
   p.choice.value = chartId;
@@ -576,6 +581,56 @@ test("the all-practiced picker starts a review without offering a save or changi
   assert.equal(p.storage.get(practicedKey), marks);
   assert.equal(p.storage.get(key), saved);
   assert.equal(p.storage.get(planKey), retryId);
+  assert.deepEqual(p.writes, []);
+});
+
+test("mixed progress allows explicit review and returns to new choices after finishing", () => {
+  const saved = JSON.stringify({ id: retryId, step: "review" });
+  const marks = JSON.stringify([chartId]);
+  const p = setup(saved, "", marks, retryId);
+  assert.equal(p.choiceMode.hidden, false);
+  assert.equal(p.newMode.checked, true);
+  p.choice.value = retryId;
+  p.choice.change();
+  assert.equal(p.planSave.hidden, false);
+  p.reviewMode.checked = true;
+  p.reviewMode.change();
+  assert.equal(p.choice.value, "");
+  assert.equal(p.reviewMode.checked, true);
+  assert.equal(p.newMode.checked, false);
+  assert.equal(p.choiceLabel.textContent, "Choose a practice to review");
+  assert.equal(p.chartOption.disabled, false);
+  assert.equal(p.retryOption.disabled, true);
+  assert.equal(p.choiceEmpty.hidden, true);
+  p.choice.value = chartId;
+  p.choice.change();
+  assert.equal(p.choiceLink.textContent, "Start review");
+  assert.equal(p.planSave.hidden, true);
+  p.choiceLink.click();
+  assert.equal(p.chart.preview.open, true);
+  p.chart.finish.click();
+  assert.equal(p.choiceLabel.textContent, "Choose next practice");
+  assert.equal(p.newMode.checked, true);
+  assert.equal(p.retryOption.disabled, false);
+  assert.equal(p.chartOption.disabled, true);
+  assert.equal(p.document.activeElement, p.choice);
+  assert.equal(p.storage.get(practicedKey), marks);
+  assert.equal(p.storage.get(key), saved);
+  assert.equal(p.storage.get(planKey), retryId);
+  assert.deepEqual(p.writes, []);
+});
+
+test("removing every mark while in review switches back to new practice", () => {
+  const p = setup(null, "", JSON.stringify([chartId]));
+  p.reviewMode.checked = true;
+  p.reviewMode.change();
+  p.storage.delete(practicedKey);
+  p.window.storage({ key: practicedKey });
+  assert.equal(p.choiceMode.hidden, true);
+  assert.equal(p.newMode.checked, true);
+  assert.equal(p.choiceLabel.textContent, "Choose next practice");
+  assert.equal(p.chartOption.disabled, false);
+  assert.equal(p.retryOption.disabled, false);
   assert.deepEqual(p.writes, []);
 });
 

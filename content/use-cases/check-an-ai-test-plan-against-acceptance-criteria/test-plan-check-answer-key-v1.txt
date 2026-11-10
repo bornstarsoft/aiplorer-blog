@@ -1,0 +1,18 @@
+AI TEST PLAN REVIEW - REVIEW KEY - VERSION 1
+Keep this file out of the test conversation.
+
+TEST-01
+Use a fresh profile with no saved preference. Open preferences and
+assert Off without setting or saving it first.
+
+TEST-02
+Start from saved Off. Set On and Save. Reload in the same profile and
+assert On. The visible change before reload is not evidence of persistence.
+
+TEST-03
+Start from saved On. Change to Off without saving and Cancel. Reopen
+preferences and assert On, then reload and assert On again. Closing
+the dialog alone does not establish that the change was discarded.
+
+Equivalent plans are acceptable if the starting state and expected
+result distinguish the requested behavior from the stated failure.

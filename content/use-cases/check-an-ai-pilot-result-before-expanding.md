@@ -87,3 +87,7 @@ private note, and does not transfer data to another browser.
 Continue in [your shortlist](/ai-tools/shortlist/), or use the
 [small retest exercise](/use-cases/retest-a-saved-ai-tool-after-an-update/)
 when the product or your own workflow changes.
+
+Before running a pilot, try the
+[test plan practice pack](/use-cases/check-an-ai-test-plan-against-acceptance-criteria/)
+to check whether the proposed tests would catch failures in the stated requirements.

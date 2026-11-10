@@ -1,0 +1,21 @@
+AI TEST PLAN REVIEW - FICTIONAL INPUT - VERSION 1
+
+Review a proposed test plan for the fictional Sample Board preferences.
+For each ID, identify the gap and propose a starting state, action and
+observable expected result. Do not claim any test was run.
+
+TEST-01 - Default state
+Acceptance: A fresh profile with no stored notification preference defaults
+to Off.
+Draft test: Open a profile previously saved with Off. Assert Off.
+
+TEST-02 - Persistence
+Acceptance: An explicit Save keeps the new preference after reload in the
+same profile.
+Draft test: Turn the switch On, click Save, and assert that the switch
+still shows On without reloading.
+
+TEST-03 - Discarding an unsaved change
+Acceptance: Cancel discards an unsaved change and preserves the previous
+stored value, including after reload.
+Draft test: Change the switch, click Cancel, and assert that the dialog closes.

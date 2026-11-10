@@ -17,6 +17,8 @@
   const chooser = shelf.querySelector("[data-practice-chooser]");
   const choice = shelf.querySelector("[data-practice-choice]");
   const choiceLabel = shelf.querySelector("[data-practice-choice-label]");
+  const choiceMode = shelf.querySelector("[data-practice-choice-mode]");
+  const modeOptions = choiceMode ? [...choiceMode.querySelectorAll("input")] : [];
   const choiceDetails = shelf.querySelector("[data-practice-choice-details]");
   const choiceDescription = shelf.querySelector("[data-practice-choice-description]");
   const choiceLink = shelf.querySelector("[data-practice-choice-link]");
@@ -65,6 +67,7 @@
   let startedId = null;
   let reviewingId = null;
   let reviewChoices = false;
+  let preferReview = false;
 
   function read() {
     const value = localStorage.getItem(key);
@@ -209,6 +212,7 @@
       else setPracticed(id, true);
       pack.status.textContent = "";
       choice.value = "";
+      preferReview = false;
       refreshPracticed();
       (choice.disabled ? choiceEmpty : choice).focus();
       planStatus.textContent = review ? "Review finished." : "Marked as practiced.";
@@ -244,8 +248,12 @@
     chooser.hidden = !ids;
     if (!ids) return;
     const allPracticed = packs.size > 0 && ids.size === packs.size;
-    if (allPracticed !== reviewChoices) choice.value = "";
-    reviewChoices = allPracticed;
+    if (ids.size === 0) preferReview = false;
+    const review = allPracticed || (preferReview && ids.size > 0);
+    if (review !== reviewChoices) choice.value = "";
+    reviewChoices = review;
+    if (choiceMode) choiceMode.hidden = ids.size === 0 || allPracticed;
+    for (const option of modeOptions) option.checked = (option.value === "review") === reviewChoices;
     if (choiceLabel) choiceLabel.textContent = reviewChoices ? "Choose a practice to review" : "Choose next practice";
     choiceLink.textContent = reviewChoices ? "Start review" : "Start selected practice";
     let available = 0;
@@ -260,7 +268,7 @@
       available += groupAvailable;
     }
     choice.disabled = available === 0;
-    choiceEmpty.hidden = !reviewChoices;
+    choiceEmpty.hidden = !allPracticed;
     const pack = packs.get(choice.value);
     if (pack && ids.has(choice.value) === reviewChoices) {
       choiceDescription.textContent = pack.description?.textContent.trim() ?? "";
@@ -327,6 +335,13 @@
   try { render(read()); }
   catch { return; }
   refreshPracticed();
+  for (const option of modeOptions) {
+    option.addEventListener("change", () => {
+      if (choiceMode.hidden || !option.checked) return;
+      preferReview = option.value === "review";
+      refreshPracticed();
+    });
+  }
   if (choice && choiceLink) {
     choice.addEventListener("change", refreshPracticed);
     choiceLink.addEventListener("click", () => {

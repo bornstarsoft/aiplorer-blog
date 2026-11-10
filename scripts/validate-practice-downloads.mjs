@@ -32,6 +32,7 @@ const tasks = [
   ["check-an-ai-image-edit-against-a-brief", "Check an image edit"],
   ["check-an-ai-audio-cleanup-against-a-brief", "Check audio cleanup"],
   ["check-ai-release-notes-against-a-change-log", "Check release notes"],
+  ["check-an-ai-test-plan-against-acceptance-criteria", "Check a test plan"],
 ];
 assert.equal((html.match(/data-practice-pack\b/g) || []).length, tasks.length);
 const jumps = [...html.matchAll(/<a\b[^>]*\bdata-practice-task\b[^>]*>[\s\S]*?<\/a>/g)].map(([link]) => link);
@@ -69,7 +70,12 @@ for (const preview of previews) {
   assert(status && attr(status, "role") === "status" && attr(status, "aria-live") === "polite");
 }
 assert(html.includes("/js/aiplorer-practice-copy.js?v=20261024a"));
-assert(html.includes("/js/aiplorer-practice-resume.js?v=20261110m"));
+assert(html.includes("/js/aiplorer-practice-resume.js?v=20261110n"));
+const modeGroup = html.match(/<fieldset\b[^>]*data-practice-choice-mode\b[^>]*>[\s\S]*?<\/fieldset>/)?.[0];
+assert(modeGroup && /^<fieldset\b[^>]*\bhidden(?:[\s=>])/.test(modeGroup));
+const modeInputs = [...modeGroup.matchAll(/<input\b[^>]*>/g)].map(([tag]) => tag);
+assert.deepEqual(modeInputs.map(tag => attr(tag, "value")), ["new", "review"]);
+assert(modeInputs.every(tag => attr(tag, "type") === "radio" && attr(tag, "name") === "practice-choice-mode"));
 assert.match(html, /<a\b[^>]*data-practice-choice-link\b[^>]*>Start selected practice<\/a>/);
 assert.match(html, /<p\b[^>]*data-practice-choice-empty\b[^>]*>/);
 const emptyChoice = html.match(/<p\b[^>]*data-practice-choice-empty\b[^>]*>/)[0];
@@ -140,6 +146,7 @@ const packs = [
   ["check-an-ai-image-edit-against-a-brief", "image-edit"],
   ["check-an-ai-audio-cleanup-against-a-brief", "audio"],
   ["check-ai-release-notes-against-a-change-log", "release"],
+  ["check-an-ai-test-plan-against-acceptance-criteria", "test-plan"],
 ];
 const downloadOrder = new Map();
 for (const [pack] of html.matchAll(/<li\b[^>]*data-practice-pack\b[^>]*>[\s\S]*?<\/li>/g)) {
@@ -343,4 +350,16 @@ const releasePreview = previews.find(tag => attr(tag, "data-practice-preview") =
 assert(releasePreview.includes("No fix was released") && !releasePreview.includes("Keep this file out of the test conversation"));
 assert(read("public/use-cases/turn-ai-tool-updates-into-a-team-check-in/index.html").includes(releaseRoute));
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${releaseRoute}</loc>`).length, 2);
+const testPlanRoute = "/use-cases/check-an-ai-test-plan-against-acceptance-criteria/";
+const testPlanArticle = read(`public${testPlanRoute}index.html`);
+assert(!testPlanArticle.includes("aiplorer-practice-resume.js"));
+for (const role of ["inputs", "answer-key", "worksheet"]) {
+  const file = `test-plan-check-${role}-v1.txt`;
+  assert(testPlanArticle.includes(testPlanRoute + file));
+  for (const id of ["TEST-01", "TEST-02", "TEST-03"]) assert(read(`public${testPlanRoute}${file}`).includes(id));
+}
+const testPlanPreview = previews.find(tag => attr(tag, "data-practice-preview") === testPlanRoute + "test-plan-check-inputs-v1.txt");
+assert(testPlanPreview.includes("A fresh profile") && !testPlanPreview.includes("Keep this file out of the test conversation"));
+assert(read("public/use-cases/check-an-ai-pilot-result-before-expanding/index.html").includes(testPlanRoute));
+assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${testPlanRoute}</loc>`).length, 2);
 console.log(`PASS: ${tasks.length} input-only previews, ${downloadCount} exact step-ordered downloads, guide entry links, script scoped to use-cases hub.`);
