@@ -36,6 +36,7 @@ function pack(id, title) {
   const finish = node();
   const restart = node();
   const reviewProgress = node();
+  const recapReturn = node();
   const downloads = ["inputs-v1.txt", "answer-key-v1.txt", "worksheet-v1.txt"].map((file, index) => {
     const download = node({ textContent: ["Test input", "Review key", "Comparison worksheet"][index] });
     download.setAttribute("href", "/use-cases/" + id.slice("practice-".length) + "/" + file);
@@ -54,9 +55,10 @@ function pack(id, title) {
     "[data-practice-finish]": finish,
     "[data-practice-restart]": restart,
     "[data-practice-active-review-progress]": reviewProgress,
+    "[data-practice-recap-return]": recapReturn,
   };
   return {
-    controls, button, status, downloads, mark, practiced, task, heading, preview, summary, finish, restart, reviewProgress, hidden: false,
+    controls, button, status, downloads, mark, practiced, task, heading, preview, summary, finish, restart, reviewProgress, recapReturn, hidden: false,
     contains: element => Object.values(children).includes(element),
     querySelector: selector => children[selector], querySelectorAll: () => downloads,
   };
@@ -102,7 +104,10 @@ function setup(saved = null, mode = "", practicedSaved = null, planned = null, i
   const planClear = node(), planSave = node(), planStatus = node();
   const document = {
     activeElement: null, querySelector: () => shelf,
-    createElement: tagName => node({ tagName, children: [], append(child) { this.children.push(child); } }),
+    createElement: tagName => node({
+      tagName, children: [], append(child) { this.children.push(child); },
+      focus() { document.activeElement = this; },
+    }),
   };
   filter.focus = () => { document.activeElement = filter; };
   choice.focus = () => { document.activeElement = choice; };
@@ -353,12 +358,13 @@ test("the recap lists only finished reviews once and in completion order", () =>
   assert.deepEqual(p.writes, []);
 });
 
-test("a recap link reveals and focuses the preview without starting a review or changing progress", () => {
+test("a recap preview returns focus to its link without starting a review or changing progress", () => {
   const marks = JSON.stringify([chartId, retryId]);
   const saved = JSON.stringify({ id: thirdId, step: "compare" });
   const p = setup(saved, "", marks, thirdId, true);
   for (const pack of [p.retry, p.chart]) {
     pack.restart.click();
+    assert.equal(pack.recapReturn.hidden, true);
     pack.finish.click();
     pack.preview.open = false;
   }
@@ -374,12 +380,19 @@ test("a recap link reveals and focuses the preview without starting a review or 
   link.click({ ...click, ctrlKey: true });
   assert.equal(prevented, 0);
   assert.equal(p.chart.preview.open, false);
+  assert.equal(p.chart.recapReturn.hidden, true);
   link.click(click);
   assert.equal(prevented, 1);
   assert.equal(p.filter.value, "all");
   assert.equal(p.chart.hidden, false);
   assert.equal(p.chart.preview.open, true);
   assert.equal(p.chart.summary.focused, true);
+  assert.equal(p.chart.recapReturn.hidden, false);
+  assert.equal(p.retry.recapReturn.hidden, true);
+  p.chart.recapReturn.click();
+  assert.equal(p.document.activeElement, link);
+  assert.equal(p.chart.recapReturn.hidden, true);
+  assert.equal(p.chart.preview.open, true);
   assert.equal(p.retry.preview.open, false);
   assert.equal(p.chart.finish.hidden, true);
   assert.equal(p.chart.reviewProgress.hidden, true);
@@ -390,6 +403,31 @@ test("a recap link reveals and focuses the preview without starting a review or 
   assert.equal(p.storage.get(practicedKey), marks);
   assert.equal(p.storage.get(key), saved);
   assert.equal(p.storage.get(planKey), thirdId);
+  assert.deepEqual(p.writes, []);
+});
+
+test("changing the preview or starting another round clears stale recap return controls", () => {
+  const p = setup(null, "", JSON.stringify([chartId, retryId]));
+  for (const pack of [p.chart, p.retry]) {
+    pack.restart.click();
+    pack.finish.click();
+  }
+  const click = { button: 0, preventDefault() {} };
+  const [chartLink, retryLink] = p.roundList.items.map(item => item.children[0]);
+  chartLink.click(click);
+  retryLink.click(click);
+  assert.equal(p.chart.recapReturn.hidden, true);
+  assert.equal(p.retry.recapReturn.hidden, false);
+  p.retry.restart.click();
+  assert.equal(p.retry.recapReturn.hidden, true);
+  p.retry.finish.click();
+  retryLink.click(click);
+  assert.equal(p.retry.recapReturn.hidden, false);
+  p.reviewReset.click();
+  assert.equal(p.retry.recapReturn.hidden, true);
+  assert.equal(p.document.activeElement, p.choice);
+  p.retry.recapReturn.click();
+  assert.equal(p.document.activeElement, p.choice);
   assert.deepEqual(p.writes, []);
 });
 

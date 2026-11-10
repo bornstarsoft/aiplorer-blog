@@ -1,0 +1,28 @@
+AI SLIDE OUTLINE REVIEW - INPUTS - VERSION 1
+
+Fictional internal brief: shift handoff checklist pilot.
+
+B1. Audience: two warehouse shift leads. They already know the handoff
+process. The presentation is an internal decision brief, not a customer pitch.
+B2. Problem: handoff notes sometimes omit an owner or next step. The pilot
+has not started. During the pilot, count notes with both an owner and a next
+step. No results or time savings have been measured.
+B3. Decision today: approve a two-week test on the evening shift and name
+one pilot owner. Other shifts stay on the current process until a later
+decision based on the pilot evidence.
+
+SLIDE-01
+Draft title: Why customers should choose our warehouse service.
+Draft point: Open with a sales message for prospective customers.
+
+SLIDE-02
+Draft title: The checklist reduced handoff time by 30%.
+Draft point: Show the improvement as a measured result.
+
+SLIDE-03
+Draft title: Approve the warehouse-wide rollout.
+Draft point: Require the new checklist on all shifts starting tomorrow.
+
+For each ID, cite the relevant brief clause, identify the mismatch, and
+propose one revised title and point. Do not invent a result or expand
+the decision beyond the brief.

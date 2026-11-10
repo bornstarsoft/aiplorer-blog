@@ -47,3 +47,7 @@ Prefer a count with its group over a percentage without a denominator. Leave an 
 Reuse the same counts and draft claims. Note whether each run corrects the numbers without overstating the result. For real reports, check how respondents were recruited and use approved aggregate data instead of raw comments or respondent identifiers.
 
 Return to the [survey summary practice pack](/use-cases/#practice-check-an-ai-survey-summary-against-response-counts) or [choose your next check](/use-cases/retest-a-saved-ai-tool-after-an-update/#choose-your-next-check).
+
+When those findings are headed into a deck, try the
+[slide outline practice](/use-cases/check-an-ai-slide-outline-against-a-brief/)
+to check that the presentation makes only supported claims.

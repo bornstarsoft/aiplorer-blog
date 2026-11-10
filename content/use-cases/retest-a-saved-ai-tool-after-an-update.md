@@ -56,6 +56,7 @@ provides a buggy function and local regression tests.
 | Review a product translation | [Product glossary pack](/use-cases/check-an-ai-translation-against-a-product-glossary/) | Match button labels, prohibitions, and measurements to the source |
 | Review a customer support FAQ | [Support policy pack](/use-cases/check-an-ai-faq-against-a-support-policy/) | Check policy versions, exceptions, and promises |
 | Review a survey summary | [Survey response pack](/use-cases/check-an-ai-survey-summary-against-response-counts/) | Check denominators, overlapping choices, and sample limits |
+| Review a slide outline | [Presentation brief pack](/use-cases/check-an-ai-slide-outline-against-a-brief/) | Check the audience, evidence, and decision scope |
 
 The [practice downloads](/use-cases/#practice-downloads) collect the
 packs in one place. These checks do not cover every workflow. If your

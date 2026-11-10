@@ -39,6 +39,7 @@ const tasks = [
   ["check-an-ai-translation-against-a-product-glossary", "Check a product translation"],
   ["check-an-ai-faq-against-a-support-policy", "Check a support FAQ"],
   ["check-an-ai-survey-summary-against-response-counts", "Check a survey summary"],
+  ["check-an-ai-slide-outline-against-a-brief", "Check a slide outline"],
 ];
 assert.equal((html.match(/data-practice-pack\b/g) || []).length, tasks.length);
 const jumps = [...html.matchAll(/<a\b[^>]*\bdata-practice-task\b[^>]*>[\s\S]*?<\/a>/g)].map(([link]) => link);
@@ -76,7 +77,10 @@ for (const preview of previews) {
   assert(status && attr(status, "role") === "status" && attr(status, "aria-live") === "polite");
 }
 assert(html.includes("/js/aiplorer-practice-copy.js?v=20261024a"));
-assert(html.includes("/js/aiplorer-practice-resume.js?v=20261110t"));
+assert(html.includes("/js/aiplorer-practice-resume.js?v=20261110u"));
+const returnButtons = [...html.matchAll(/<button\b[^>]*data-practice-recap-return\b[^>]*>Back to review list<\/button>/g)];
+assert.equal(returnButtons.length, tasks.length);
+assert(returnButtons.every(([tag]) => /\bhidden(?:[\s=>])/.test(tag) && attr(tag, "type") === "button"));
 const recap = html.match(/<section\b[^>]*data-practice-round-recap\b[^>]*>[\s\S]*?<\/section>/)?.[0];
 assert(recap && /^<section\b[^>]*\bhidden(?:[\s=>])/.test(recap));
 assert.match(recap, /<ol\b[^>]*data-practice-round-list\b[^>]*><\/ol>/);
@@ -172,6 +176,7 @@ const packs = [
   ["check-an-ai-translation-against-a-product-glossary", "glossary"],
   ["check-an-ai-faq-against-a-support-policy", "faq"],
   ["check-an-ai-survey-summary-against-response-counts", "survey"],
+  ["check-an-ai-slide-outline-against-a-brief", "outline"],
 ];
 const downloadOrder = new Map();
 for (const [pack] of html.matchAll(/<li\b[^>]*data-practice-pack\b[^>]*>[\s\S]*?<\/li>/g)) {
@@ -459,4 +464,16 @@ const surveyPreview = previews.find(tag => attr(tag, "data-practice-preview") ==
 assert(surveyPreview.includes("24 answered: 18 yes") && !surveyPreview.includes("uses the share for question respondents"));
 assert(faqArticle.includes(surveyRoute));
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${surveyRoute}</loc>`).length, 2);
+const outlineRoute = "/use-cases/check-an-ai-slide-outline-against-a-brief/";
+const outlineArticle = read(`public${outlineRoute}index.html`);
+assert(!outlineArticle.includes("aiplorer-practice-resume.js"));
+for (const role of ["inputs", "answer-key", "worksheet"]) {
+  const file = `outline-check-${role}-v1.txt`;
+  assert(outlineArticle.includes(outlineRoute + file));
+  for (const id of ["SLIDE-01", "SLIDE-02", "SLIDE-03"]) assert(read(`public${outlineRoute}${file}`).includes(id));
+}
+const outlinePreview = previews.find(tag => attr(tag, "data-practice-preview") === outlineRoute + "outline-check-inputs-v1.txt");
+assert(outlinePreview.includes("Fictional internal brief") && !outlinePreview.includes("Remove the customer pitch."));
+assert(surveyArticle.includes(outlineRoute));
+assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${outlineRoute}</loc>`).length, 2);
 console.log(`PASS: ${tasks.length} input-only previews, ${downloadCount} exact step-ordered downloads, guide entry links, script scoped to use-cases hub.`);

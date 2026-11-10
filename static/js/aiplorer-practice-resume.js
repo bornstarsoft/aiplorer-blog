@@ -64,6 +64,7 @@
       finish: pack.querySelector("[data-practice-finish]"),
       restart: pack.querySelector("[data-practice-restart]"),
       reviewProgress: pack.querySelector("[data-practice-active-review-progress]"),
+      recapReturn: pack.querySelector("[data-practice-recap-return]"),
     });
   });
 
@@ -78,6 +79,7 @@
   let reviewChoices = false;
   let preferReview = false;
   let choosingAfterReview = false;
+  let recapReturn = null;
   const reviewedThisRound = new Set();
 
   function read() {
@@ -276,7 +278,10 @@
   function renderChooser(ids, remaining) {
     if (!chooser || !choice || !choiceDetails || !choiceDescription || !choiceLink || !choiceEmpty) return;
     chooser.hidden = !ids;
-    if (!ids) return;
+    if (!ids) {
+      clearRecapReturn();
+      return;
+    }
     const allPracticed = packs.size > 0 && ids.size === packs.size;
     const hasReviews = remaining > 0;
     const mixed = hasReviews && !allPracticed;
@@ -333,6 +338,7 @@
     if (!roundRecap || !roundList) return;
     const show = exhausted && reviewedThisRound.size > 0;
     if (roundRecap.hidden === !show) return;
+    if (!show) clearRecapReturn();
     const entries = show ? [...reviewedThisRound].map(id => {
       const item = document.createElement("li");
       const previewLink = document.createElement("a");
@@ -343,7 +349,7 @@
       previewLink.textContent = title;
       previewLink.addEventListener("click", event => {
         if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-        if (openPracticeInput(hash, true)) event.preventDefault();
+        if (openPracticeInput(hash, true, previewLink)) event.preventDefault();
       });
       item.append(previewLink);
       return item;
@@ -383,13 +389,24 @@
     return pack.heading;
   }
 
-  function openPracticeInput(hash, focusPreview = false) {
+  function clearRecapReturn() {
+    if (!recapReturn) return;
+    recapReturn.button.hidden = true;
+    recapReturn = null;
+  }
+
+  function openPracticeInput(hash, focusPreview = false, returnLink = null) {
     const pack = hash?.startsWith("#") && packs.get(hash.slice(1));
     if (!pack) return;
     revealPack(hash);
+    clearRecapReturn();
     const preview = pack.element.querySelector("[data-practice-preview]");
     if (preview) {
       preview.open = true;
+      if (returnLink && pack.recapReturn) {
+        recapReturn = { button: pack.recapReturn, link: returnLink };
+        pack.recapReturn.hidden = false;
+      }
       if (focusPreview) preview.querySelector("summary")?.focus();
     }
     return pack.heading.id;
@@ -462,6 +479,12 @@
 
   for (const [id, pack] of packs) {
     pack.controls.hidden = false;
+    pack.recapReturn?.addEventListener("click", () => {
+      if (recapReturn?.button !== pack.recapReturn) return;
+      const { link } = recapReturn;
+      clearRecapReturn();
+      link.focus();
+    });
     pack.restart?.addEventListener("click", () => {
       if (pack.restart.hidden || !openPracticeInput("#" + id, true)) return;
       beginReview(id);
