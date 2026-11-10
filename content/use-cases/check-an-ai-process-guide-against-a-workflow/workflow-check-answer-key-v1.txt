@@ -1,0 +1,19 @@
+AI PROCESS GUIDE REVIEW - REVIEW KEY - VERSION 1
+Keep this file out of the test conversation.
+
+FLOW-01
+W1: Wait for the event lead to record approval for the exact proof
+version. Only then send that version to print.
+
+FLOW-02
+W2: Put the request on hold and ask the venue coordinator for the room
+number. Update the proof and have the event lead approve that corrected
+version before printing. Do not reuse the room or an old approval.
+
+FLOW-03
+W3: The venue coordinator picks up the signs and confirms pickup in
+the task log. The design volunteer closes the task after confirmation.
+A ready-to-collect notice is not evidence of pickup.
+
+Accept equivalent wording that preserves the order, owner, and
+evidence needed for each decision.

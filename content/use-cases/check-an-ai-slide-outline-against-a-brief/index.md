@@ -47,3 +47,7 @@ Rewrite only what the brief supports. Mark missing evidence instead of filling i
 Compare which draft catches each mismatch before you invest time in slide design. For a real deck, confirm the audience, evidence, and approval scope with the owner.
 
 Return to the [slide outline practice pack](/use-cases/#practice-check-an-ai-slide-outline-against-a-brief) or [choose your next check](/use-cases/retest-a-saved-ai-tool-after-an-update/#choose-your-next-check).
+
+When an approved plan becomes a set of instructions, try the
+[process guide practice](/use-cases/check-an-ai-process-guide-against-a-workflow/)
+to check that the draft preserves each decision and handoff.

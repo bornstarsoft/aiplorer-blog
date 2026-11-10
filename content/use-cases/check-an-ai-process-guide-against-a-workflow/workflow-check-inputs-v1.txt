@@ -1,0 +1,29 @@
+AI PROCESS GUIDE REVIEW - INPUTS - VERSION 1
+
+Fictional team: Harbour Hall volunteer event. Do not contact anyone
+or send anything to print. Review the draft only.
+
+APPROVED WORKFLOW
+W1. The design volunteer prepares a proof with the venue name, room
+number, and event date. Send to print only after the event lead
+records approval for that exact proof version.
+W2. If the room number is missing, put the request on hold. Ask the
+venue coordinator for the correct room, update the proof, and get
+the event lead's approval for the corrected version before printing.
+W3. After printing, the venue coordinator collects the signs and confirms
+pickup in the task log. The design volunteer then closes the task.
+
+FLOW-01
+Draft: Send the proof to print as soon as the design volunteer is done.
+Ask the event lead to approve it while it is printing.
+
+FLOW-02
+Draft: If the room is missing, reuse the room from the previous event.
+Print the updated proof under the previous approval.
+
+FLOW-03
+Draft: The design volunteer collects the signs. Close the task when the
+print shop marks them ready.
+
+For each ID, cite the relevant workflow rule, describe the mismatch,
+and write a corrected instruction. Do not invent missing venue details.

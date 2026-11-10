@@ -108,6 +108,7 @@
             </details>
             <div class="aiplorer-practice-plan-actions">
               <button type="button" class="aiplorer-button aiplorer-button--light" data-practice-recap-return hidden>Back to review list</button>
+              <button type="button" class="aiplorer-button aiplorer-button--light" data-practice-recap-next hidden>Preview next input</button>
             </div>
           {{ else }}
             {{ errorf "Missing practice preview %q in %s" $file $page.File.Path }}

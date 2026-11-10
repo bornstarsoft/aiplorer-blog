@@ -1,0 +1,13 @@
+AI PROCESS GUIDE REVIEW - COMPARISON WORKSHEET - VERSION 1
+
+First run: ____________________  Date: __________
+Later run: ____________________  Date: __________
+Use the same approved workflow and draft for both runs.
+
+ID      | First run evidence | Later run evidence | Pass or needs review
+FLOW-01 |                    |                    | Approval before print
+FLOW-02 |                    |                    | Hold and re-approve
+FLOW-03 |                    |                    | Pickup owner and proof
+
+Steps that still proceed on an assumption: ___________________
+One decision to confirm with a real process owner: ____________

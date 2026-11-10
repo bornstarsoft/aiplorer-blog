@@ -40,6 +40,7 @@ const tasks = [
   ["check-an-ai-faq-against-a-support-policy", "Check a support FAQ"],
   ["check-an-ai-survey-summary-against-response-counts", "Check a survey summary"],
   ["check-an-ai-slide-outline-against-a-brief", "Check a slide outline"],
+  ["check-an-ai-process-guide-against-a-workflow", "Check a process guide"],
 ];
 assert.equal((html.match(/data-practice-pack\b/g) || []).length, tasks.length);
 const jumps = [...html.matchAll(/<a\b[^>]*\bdata-practice-task\b[^>]*>[\s\S]*?<\/a>/g)].map(([link]) => link);
@@ -77,10 +78,13 @@ for (const preview of previews) {
   assert(status && attr(status, "role") === "status" && attr(status, "aria-live") === "polite");
 }
 assert(html.includes("/js/aiplorer-practice-copy.js?v=20261024a"));
-assert(html.includes("/js/aiplorer-practice-resume.js?v=20261110u"));
+assert(html.includes("/js/aiplorer-practice-resume.js?v=20261110v"));
 const returnButtons = [...html.matchAll(/<button\b[^>]*data-practice-recap-return\b[^>]*>Back to review list<\/button>/g)];
 assert.equal(returnButtons.length, tasks.length);
 assert(returnButtons.every(([tag]) => /\bhidden(?:[\s=>])/.test(tag) && attr(tag, "type") === "button"));
+const nextButtons = [...html.matchAll(/<button\b[^>]*data-practice-recap-next\b[^>]*>Preview next input<\/button>/g)];
+assert.equal(nextButtons.length, tasks.length);
+assert(nextButtons.every(([tag]) => /\bhidden(?:[\s=>])/.test(tag) && attr(tag, "type") === "button"));
 const recap = html.match(/<section\b[^>]*data-practice-round-recap\b[^>]*>[\s\S]*?<\/section>/)?.[0];
 assert(recap && /^<section\b[^>]*\bhidden(?:[\s=>])/.test(recap));
 assert.match(recap, /<ol\b[^>]*data-practice-round-list\b[^>]*><\/ol>/);
@@ -177,6 +181,7 @@ const packs = [
   ["check-an-ai-faq-against-a-support-policy", "faq"],
   ["check-an-ai-survey-summary-against-response-counts", "survey"],
   ["check-an-ai-slide-outline-against-a-brief", "outline"],
+  ["check-an-ai-process-guide-against-a-workflow", "workflow"],
 ];
 const downloadOrder = new Map();
 for (const [pack] of html.matchAll(/<li\b[^>]*data-practice-pack\b[^>]*>[\s\S]*?<\/li>/g)) {
@@ -476,4 +481,16 @@ const outlinePreview = previews.find(tag => attr(tag, "data-practice-preview") =
 assert(outlinePreview.includes("Fictional internal brief") && !outlinePreview.includes("Remove the customer pitch."));
 assert(surveyArticle.includes(outlineRoute));
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${outlineRoute}</loc>`).length, 2);
+const workflowRoute = "/use-cases/check-an-ai-process-guide-against-a-workflow/";
+const workflowArticle = read(`public${workflowRoute}index.html`);
+assert(!workflowArticle.includes("aiplorer-practice-resume.js"));
+for (const role of ["inputs", "answer-key", "worksheet"]) {
+  const file = `workflow-check-${role}-v1.txt`;
+  assert(workflowArticle.includes(workflowRoute + file));
+  for (const id of ["FLOW-01", "FLOW-02", "FLOW-03"]) assert(read(`public${workflowRoute}${file}`).includes(id));
+}
+const workflowPreview = previews.find(tag => attr(tag, "data-practice-preview") === workflowRoute + "workflow-check-inputs-v1.txt");
+assert(workflowPreview.includes("APPROVED WORKFLOW") && !workflowPreview.includes("A ready-to-collect notice"));
+assert(outlineArticle.includes(workflowRoute));
+assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${workflowRoute}</loc>`).length, 2);
 console.log(`PASS: ${tasks.length} input-only previews, ${downloadCount} exact step-ordered downloads, guide entry links, script scoped to use-cases hub.`);
