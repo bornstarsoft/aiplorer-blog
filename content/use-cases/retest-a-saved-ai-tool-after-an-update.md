@@ -55,6 +55,7 @@ provides a buggy function and local regression tests.
 | Review a file rename plan | [Rename plan pack](/use-cases/check-an-ai-file-rename-plan-before-applying-it/) | Check destination collisions, format labels, and approved paths |
 | Review a product translation | [Product glossary pack](/use-cases/check-an-ai-translation-against-a-product-glossary/) | Match button labels, prohibitions, and measurements to the source |
 | Review a customer support FAQ | [Support policy pack](/use-cases/check-an-ai-faq-against-a-support-policy/) | Check policy versions, exceptions, and promises |
+| Review a survey summary | [Survey response pack](/use-cases/check-an-ai-survey-summary-against-response-counts/) | Check denominators, overlapping choices, and sample limits |
 
 The [practice downloads](/use-cases/#practice-downloads) collect the
 packs in one place. These checks do not cover every workflow. If your

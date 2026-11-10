@@ -38,6 +38,7 @@ const tasks = [
   ["check-an-ai-file-rename-plan-before-applying-it", "Check a file rename plan"],
   ["check-an-ai-translation-against-a-product-glossary", "Check a product translation"],
   ["check-an-ai-faq-against-a-support-policy", "Check a support FAQ"],
+  ["check-an-ai-survey-summary-against-response-counts", "Check a survey summary"],
 ];
 assert.equal((html.match(/data-practice-pack\b/g) || []).length, tasks.length);
 const jumps = [...html.matchAll(/<a\b[^>]*\bdata-practice-task\b[^>]*>[\s\S]*?<\/a>/g)].map(([link]) => link);
@@ -75,7 +76,7 @@ for (const preview of previews) {
   assert(status && attr(status, "role") === "status" && attr(status, "aria-live") === "polite");
 }
 assert(html.includes("/js/aiplorer-practice-copy.js?v=20261024a"));
-assert(html.includes("/js/aiplorer-practice-resume.js?v=20261110s"));
+assert(html.includes("/js/aiplorer-practice-resume.js?v=20261110t"));
 const recap = html.match(/<section\b[^>]*data-practice-round-recap\b[^>]*>[\s\S]*?<\/section>/)?.[0];
 assert(recap && /^<section\b[^>]*\bhidden(?:[\s=>])/.test(recap));
 assert.match(recap, /<ol\b[^>]*data-practice-round-list\b[^>]*><\/ol>/);
@@ -170,6 +171,7 @@ const packs = [
   ["check-an-ai-file-rename-plan-before-applying-it", "rename"],
   ["check-an-ai-translation-against-a-product-glossary", "glossary"],
   ["check-an-ai-faq-against-a-support-policy", "faq"],
+  ["check-an-ai-survey-summary-against-response-counts", "survey"],
 ];
 const downloadOrder = new Map();
 for (const [pack] of html.matchAll(/<li\b[^>]*data-practice-pack\b[^>]*>[\s\S]*?<\/li>/g)) {
@@ -445,4 +447,16 @@ const faqPreview = previews.find(tag => attr(tag, "data-practice-preview") === f
 assert(faqPreview.includes("CURRENT POLICY V3") && !faqPreview.includes("P1 controls"));
 assert(glossaryArticle.includes(faqRoute));
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${faqRoute}</loc>`).length, 2);
+const surveyRoute = "/use-cases/check-an-ai-survey-summary-against-response-counts/";
+const surveyArticle = read(`public${surveyRoute}index.html`);
+assert(!surveyArticle.includes("aiplorer-practice-resume.js"));
+for (const role of ["inputs", "answer-key", "worksheet"]) {
+  const file = `survey-check-${role}-v1.txt`;
+  assert(surveyArticle.includes(surveyRoute + file));
+  for (const id of ["SURV-01", "SURV-02", "SURV-03"]) assert(read(`public${surveyRoute}${file}`).includes(id));
+}
+const surveyPreview = previews.find(tag => attr(tag, "data-practice-preview") === surveyRoute + "survey-check-inputs-v1.txt");
+assert(surveyPreview.includes("24 answered: 18 yes") && !surveyPreview.includes("uses the share for question respondents"));
+assert(faqArticle.includes(surveyRoute));
+assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${surveyRoute}</loc>`).length, 2);
 console.log(`PASS: ${tasks.length} input-only previews, ${downloadCount} exact step-ordered downloads, guide entry links, script scoped to use-cases hub.`);

@@ -1,0 +1,29 @@
+AI SURVEY SUMMARY REVIEW - INPUTS - VERSION 1
+
+Fictional pilot: shared project planner. All counts are made up.
+50 pilot participants were invited. 30 returned the survey. No one
+outside the pilot was surveyed.
+
+Q1. Was setup easy?
+24 answered: 18 yes, 6 no. Six returned surveys skipped Q1.
+
+Q2. Which features did you use? Select all that apply.
+30 answered. 19 selected Shared lists. 14 selected Reminders.
+The export does not include the overlap between these choices.
+
+Q3. Would you use the planner again?
+30 answered: 21 yes, 9 no.
+
+SURV-01
+Draft: 75% of the 30 survey respondents said setup was easy.
+
+SURV-02
+Draft: 33 people used Shared lists or Reminders.
+
+SURV-03
+Draft: 70% of all customers would use the planner again.
+
+Review each claim. Cite the relevant question and counts, explain what
+the draft gets wrong, and give a corrected sentence. Do not assume that
+people who skipped a question answered no. Do not guess the overlap
+or generalize beyond the people who answered.

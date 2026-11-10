@@ -1,0 +1,13 @@
+AI SURVEY SUMMARY REVIEW - COMPARISON WORKSHEET - VERSION 1
+
+First run: ____________________  Date: __________
+Later run: ____________________  Date: __________
+Use the same response table and draft claims for both runs.
+
+ID       | First run evidence | Later run evidence | Pass or needs review
+SURV-01  |                    |                    | Correct denominator
+SURV-02  |                    |                    | No overlap assumption
+SURV-03  |                    |                    | Sample-limited wording
+
+New assumptions introduced: _______________________________
+One number to confirm before sharing a real summary: ________

@@ -1,0 +1,20 @@
+AI SURVEY SUMMARY REVIEW - REVIEW KEY - VERSION 1
+Keep this file out of the test conversation.
+
+SURV-01
+Q1: 18 of the 24 who answered said setup was easy (75%).
+Six of the 30 returned surveys skipped the question. The draft
+uses the share for question respondents but names all 30.
+
+SURV-02
+Q2: 19 of 30 selected Shared lists and 14 of 30 selected Reminders.
+Report each separately. The unique total is unknown without overlap
+data; adding the selections does not count unique people.
+
+SURV-03
+Q3: 21 of 30 pilot respondents said they would use the planner again.
+This describes stated intent among survey respondents, not actual
+reuse or intent among all customers.
+
+Accept equivalent wording when it preserves each group and denominator
+and leaves unsupported conclusions out.

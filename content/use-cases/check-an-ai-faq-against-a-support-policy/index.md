@@ -47,3 +47,6 @@ Different phrasing is fine. The answer should preserve the rule, its exceptions,
 Use the same sources and questions for each run. Record whether the answer identifies the current rule, preserves the exception, and avoids inventing a promise. For real help content, confirm the version with the policy owner and use fictional order details during testing.
 
 Return to the [support FAQ practice pack](/use-cases/#practice-check-an-ai-faq-against-a-support-policy) or [choose your next check](/use-cases/retest-a-saved-ai-tool-after-an-update/#choose-your-next-check).
+
+For a related check on claims made from customer feedback, try the
+[survey summary practice](/use-cases/check-an-ai-survey-summary-against-response-counts/).

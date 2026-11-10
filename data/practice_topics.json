@@ -17,6 +17,7 @@
     "packs": [
       "test-ai-data-extraction-with-missing-values",
       "check-an-ai-csv-merge-against-original-records",
+      "check-an-ai-survey-summary-against-response-counts",
       "check-an-ai-spreadsheet-formula-before-copying-it",
       "check-an-ai-test-plan-against-acceptance-criteria",
       "fix-a-zero-value-default-with-ai"

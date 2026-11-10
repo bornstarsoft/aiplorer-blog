@@ -335,7 +335,17 @@
     if (roundRecap.hidden === !show) return;
     const entries = show ? [...reviewedThisRound].map(id => {
       const item = document.createElement("li");
-      item.textContent = packs.get(id).heading.textContent.trim();
+      const previewLink = document.createElement("a");
+      const hash = "#" + id;
+      const title = packs.get(id).heading.textContent.trim();
+      previewLink.setAttribute("href", hash);
+      previewLink.setAttribute("aria-label", `Preview test input: ${title}`);
+      previewLink.textContent = title;
+      previewLink.addEventListener("click", event => {
+        if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        if (openPracticeInput(hash, true)) event.preventDefault();
+      });
+      item.append(previewLink);
       return item;
     }) : [];
     roundList.replaceChildren(...entries);

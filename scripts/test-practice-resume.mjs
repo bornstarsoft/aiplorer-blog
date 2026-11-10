@@ -100,7 +100,10 @@ function setup(saved = null, mode = "", practicedSaved = null, planned = null, i
   const afterReview = node({ contains: target => target === afterNew || target === afterRepeat });
   const plan = node(), planTitle = node(), planStart = node(), planDone = node();
   const planClear = node(), planSave = node(), planStatus = node();
-  const document = { activeElement: null, querySelector: () => shelf, createElement: tagName => node({ tagName }) };
+  const document = {
+    activeElement: null, querySelector: () => shelf,
+    createElement: tagName => node({ tagName, children: [], append(child) { this.children.push(child); } }),
+  };
   filter.focus = () => { document.activeElement = filter; };
   choice.focus = () => { document.activeElement = choice; };
   choiceEmpty.focus = () => { document.activeElement = choiceEmpty; };
@@ -313,7 +316,7 @@ test("a new review round restores completed candidates without changing saved pr
   assert.equal(p.reviewReset.hidden, false);
   assert.equal(p.roundProgress.textContent, "Review round: 2 finished, 0 left.");
   assert.equal(p.roundRecap.hidden, false);
-  assert.deepEqual(p.roundList.items.map(item => [item.tagName, item.textContent]), [["li", "Chart check"], ["li", "Retry check"]]);
+  assert.deepEqual(p.roundList.items.map(item => [item.tagName, item.children[0].textContent]), [["li", "Chart check"], ["li", "Retry check"]]);
   p.reviewReset.click();
   assert.equal(p.reviewReset.hidden, true);
   assert.equal(p.roundRecap.hidden, true);
@@ -341,12 +344,52 @@ test("the recap lists only finished reviews once and in completion order", () =>
     pack.finish.click();
   }
   assert.equal(p.roundRecap.hidden, false);
-  assert.deepEqual(p.roundList.items.map(item => item.textContent), ["Retry check", "Chart check"]);
+  assert.deepEqual(p.roundList.items.map(item => item.children[0].textContent), ["Retry check", "Chart check"]);
   p.reviewReset.click();
   p.chart.restart.click();
   p.chart.finish.click();
   assert.equal(p.roundRecap.hidden, true);
   assert.deepEqual(p.roundList.items, []);
+  assert.deepEqual(p.writes, []);
+});
+
+test("a recap link reveals and focuses the preview without starting a review or changing progress", () => {
+  const marks = JSON.stringify([chartId, retryId]);
+  const saved = JSON.stringify({ id: thirdId, step: "compare" });
+  const p = setup(saved, "", marks, thirdId, true);
+  for (const pack of [p.retry, p.chart]) {
+    pack.restart.click();
+    pack.finish.click();
+    pack.preview.open = false;
+  }
+  p.filter.value = "unpracticed";
+  p.filter.change();
+  assert.equal(p.chart.hidden, true);
+  const link = p.roundList.items[1].children[0];
+  assert.equal(link.tagName, "a");
+  assert.equal(link.getAttribute("href"), "#" + chartId);
+  assert.equal(link.getAttribute("aria-label"), "Preview test input: Chart check");
+  let prevented = 0;
+  const click = { button: 0, preventDefault() { prevented++; } };
+  link.click({ ...click, ctrlKey: true });
+  assert.equal(prevented, 0);
+  assert.equal(p.chart.preview.open, false);
+  link.click(click);
+  assert.equal(prevented, 1);
+  assert.equal(p.filter.value, "all");
+  assert.equal(p.chart.hidden, false);
+  assert.equal(p.chart.preview.open, true);
+  assert.equal(p.chart.summary.focused, true);
+  assert.equal(p.retry.preview.open, false);
+  assert.equal(p.chart.finish.hidden, true);
+  assert.equal(p.chart.reviewProgress.hidden, true);
+  assert.equal(p.roundRecap.hidden, false);
+  assert.equal(p.roundList.items[1].children[0], link);
+  assert.equal(p.roundProgress.textContent, "Review round: 2 finished, 0 left.");
+  assert.equal(p.chart.practiced.checked, true);
+  assert.equal(p.storage.get(practicedKey), marks);
+  assert.equal(p.storage.get(key), saved);
+  assert.equal(p.storage.get(planKey), thirdId);
   assert.deepEqual(p.writes, []);
 });
 
