@@ -65,6 +65,9 @@ must preserve a five-slide proposal with a chart and speaker notes.
 The acceptance test is whether the recipient can continue the work, not
 whether the replacement service produces an impressive new preview.
 
+Use the [file handoff practice pack](/use-cases/check-an-ai-file-handoff-before-switching-tools/)
+to rehearse checks for failed imports, recipient access, and premature removal.
+
 ## Keep A Short Exit Record
 
 ```text

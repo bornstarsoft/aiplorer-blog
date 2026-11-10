@@ -28,6 +28,7 @@ const packs = [
   "check-an-ai-spreadsheet-formula-before-copying-it",
   "check-ai-meeting-actions-against-decisions",
   "check-an-ai-video-shot-list-before-sharing",
+  "check-an-ai-file-handoff-before-switching-tools",
 ];
 const choiceTable = [...guide.matchAll(/<table\b[^>]*>[\s\S]*?<\/table>/g)]
   .map(([table]) => table).find(table => packs.every(slug => table.includes(`/use-cases/${slug}/`)));

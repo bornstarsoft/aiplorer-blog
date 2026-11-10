@@ -50,6 +50,7 @@
       downloads: pack.querySelectorAll("[data-practice-download]"),
       mark: pack.querySelector("[data-practice-mark]"),
       practiced: pack.querySelector("[data-practice-practiced]"),
+      finish: pack.querySelector("[data-practice-finish]"),
     });
   });
 
@@ -131,6 +132,17 @@
     }
   }
 
+  function setPracticed(id, checked) {
+    const ids = readPracticed();
+    if (ids.has(id) === checked) return;
+    if (checked) ids.add(id);
+    else ids.delete(id);
+    const value = ids.size ? JSON.stringify([...ids]) : null;
+    if (value === null) localStorage.removeItem(practicedKey);
+    else localStorage.setItem(practicedKey, value);
+    if (localStorage.getItem(practicedKey) !== value) throw new Error("Practice mark did not persist");
+  }
+
   function refreshPracticed() {
     if (!practicedCount) return;
     let ids;
@@ -162,6 +174,30 @@
     if (pack && !practiced) planStart.setAttribute("href", "#" + saved);
     else planStart.removeAttribute("href");
     planSave.hidden = saved === undefined || !packs.has(choice.value) || ids.has(choice.value);
+    for (const [id, entry] of packs) {
+      if (!entry.finish) continue;
+      entry.finish.hidden = id !== plannedId;
+      if (id === plannedId) entry.finish.textContent = practiced ? "Choose next practice" : "Finish and choose next";
+    }
+  }
+
+  function finishPlan(id, pack) {
+    try {
+      if (localStorage.getItem(planKey) !== id) {
+        refreshPracticed();
+        pack.status.textContent = "The saved next practice changed.";
+        return;
+      }
+      setPracticed(id, true);
+      pack.status.textContent = "";
+      choice.value = "";
+      refreshPracticed();
+      (choice.disabled ? choiceEmpty : choice).focus();
+      planStatus.textContent = "Marked as practiced.";
+    } catch {
+      refreshPracticed();
+      pack.status.textContent = "Could not mark this practice as finished.";
+    }
   }
 
   function updatePlan(id) {
@@ -277,16 +313,13 @@
 
   for (const [id, pack] of packs) {
     pack.controls.hidden = false;
+    if (planReady && choiceEmpty && pack.finish) {
+      pack.finish.addEventListener("click", () => finishPlan(id, pack));
+    }
     if (practicedCount && pack.practiced && pack.mark) {
       pack.practiced.addEventListener("change", () => {
         try {
-          const ids = readPracticed();
-          if (pack.practiced.checked) ids.add(id);
-          else ids.delete(id);
-          const value = ids.size ? JSON.stringify([...ids]) : null;
-          if (value === null) localStorage.removeItem(practicedKey);
-          else localStorage.setItem(practicedKey, value);
-          if (localStorage.getItem(practicedKey) !== value) throw new Error("Practice mark did not persist");
+          setPracticed(id, pack.practiced.checked);
           pack.status.textContent = "";
         } catch {
           pack.status.textContent = "Could not update the practice mark.";

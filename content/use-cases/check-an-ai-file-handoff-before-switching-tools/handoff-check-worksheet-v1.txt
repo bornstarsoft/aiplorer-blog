@@ -1,0 +1,18 @@
+AI FILE HANDOFF REVIEW - TWO-RUN WORKSHEET - VERSION 1
+
+Input version:
+Run A date, tool and visible settings:
+Run B date, tool and visible settings:
+What changed between runs?
+
+For each ID, record meets check, needs correction, or could not test.
+Preserve both original answers and the record that supports each check.
+
+Case     Run A       Run B       Evidence, blocker or next check
+HAND-01  __________  __________  ________________________________
+HAND-02  __________  __________  ________________________________
+HAND-03  __________  __________  ________________________________
+
+Did either answer confuse an export, a usable copy or removal approval?
+Who should verify the outstanding step in a real handoff?
+Next boundary case to check:

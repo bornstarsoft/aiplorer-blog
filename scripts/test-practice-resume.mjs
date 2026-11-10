@@ -31,6 +31,7 @@ function pack(id, title) {
   const mark = node();
   const practiced = node({ checked: false });
   const preview = node({ open: false });
+  const finish = node();
   const downloads = ["inputs-v1.txt", "answer-key-v1.txt", "worksheet-v1.txt"].map((file, index) => {
     const download = node({ textContent: ["Test input", "Review key", "Comparison worksheet"][index] });
     download.setAttribute("href", "/use-cases/" + id.slice("practice-".length) + "/" + file);
@@ -46,9 +47,10 @@ function pack(id, title) {
     "[data-practice-mark]": mark,
     "[data-practice-practiced]": practiced,
     "[data-practice-preview]": preview,
+    "[data-practice-finish]": finish,
   };
   return {
-    controls, button, status, downloads, mark, practiced, task, heading, preview, hidden: false,
+    controls, button, status, downloads, mark, practiced, task, heading, preview, finish, hidden: false,
     contains: element => Object.values(children).includes(element),
     querySelector: selector => children[selector], querySelectorAll: () => downloads,
   };
@@ -79,6 +81,7 @@ function setup(saved = null, mode = "", practicedSaved = null, planned = null) {
   const document = { activeElement: null, querySelector: () => shelf };
   filter.focus = () => { document.activeElement = filter; };
   choice.focus = () => { document.activeElement = choice; };
+  choiceEmpty.focus = () => { document.activeElement = choiceEmpty; };
   window.location = { hash: "" };
   const children = {
     "[data-practice-resume]": resume,
@@ -140,7 +143,64 @@ test("does not save on visit and leaves native controls usable", () => {
   assert.equal(p.practicedCount.hidden, true);
   assert.equal(p.plan.hidden, true);
   assert.equal(p.planSave.hidden, true);
+  assert.equal(p.chart.finish.hidden, true);
   assert.deepEqual(p.writes, []);
+});
+
+test("finishing only the planned pack opens the chooser and preserves both saved slots", () => {
+  const saved = JSON.stringify({ id: chartId, step: "compare" });
+  const p = setup(saved, "", null, retryId);
+  assert.equal(p.chart.finish.hidden, true);
+  assert.equal(p.retry.finish.hidden, false);
+  assert.equal(p.retry.finish.textContent, "Finish and choose next");
+  p.choice.value = retryId;
+  p.choice.change();
+  p.retry.finish.click();
+  assert.equal(p.retry.practiced.checked, true);
+  assert.equal(p.planDone.hidden, false);
+  assert.equal(p.retry.finish.textContent, "Choose next practice");
+  assert.equal(p.retryOption.disabled, true);
+  assert.equal(p.chartOption.disabled, false);
+  assert.equal(p.choice.value, "");
+  assert.equal(p.document.activeElement, p.choice);
+  assert.equal(p.storage.get(key), saved);
+  assert.equal(p.storage.get(planKey), retryId);
+  assert.equal(p.nextStep.value, "compare");
+  assert.deepEqual(p.writes, [[practicedKey, JSON.stringify([retryId])]]);
+  p.retry.finish.click();
+  assert.equal(p.writes.length, 1, "Choosing again does not rewrite an existing mark");
+});
+
+test("finishing the last unpracticed pack focuses the all-practiced message", () => {
+  const p = setup(null, "", JSON.stringify([chartId]), retryId);
+  p.retry.finish.click();
+  assert.equal(p.choice.disabled, true);
+  assert.equal(p.choiceEmpty.hidden, false);
+  assert.equal(p.document.activeElement, p.choiceEmpty);
+});
+
+test("a stale finish action cannot mark an old plan after a replacement", () => {
+  const p = setup(null, "", null, retryId);
+  p.storage.set(planKey, chartId);
+  p.retry.finish.click();
+  assert.equal(p.retry.practiced.checked, false);
+  assert.equal(p.retry.finish.hidden, true);
+  assert.equal(p.chart.finish.hidden, false);
+  assert.equal(p.retry.status.textContent, "The saved next practice changed.");
+  assert.deepEqual(p.writes, []);
+});
+
+test("failed completion does not move focus or claim that the pack is done", () => {
+  for (const mode of ["write blocked", "write ignored"]) {
+    const p = setup(chartId, mode, null, retryId);
+    p.document.activeElement = p.retry.finish;
+    p.retry.finish.click();
+    assert.equal(p.retry.practiced.checked, false);
+    assert.equal(p.planDone.hidden, true);
+    assert.equal(p.document.activeElement, p.retry.finish);
+    assert.equal(p.retry.status.textContent, "Could not mark this practice as finished.");
+    assert.equal(p.storage.get(key), chartId);
+  }
 });
 
 test("only the save command plans a pack and replacing or clearing it preserves resume", () => {

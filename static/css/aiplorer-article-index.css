@@ -149,6 +149,10 @@
   cursor: progress;
 }
 
+.aiplorer-practice-save button[data-practice-finish][hidden] {
+  display: none;
+}
+
 .aiplorer-practice-copy [role="status"],
 .aiplorer-practice-save [role="status"] {
   font-size: 0.875rem;
@@ -282,9 +286,15 @@
 }
 
 .aiplorer-practice-next select:focus-visible,
-.aiplorer-practice-filter select:focus-visible {
+.aiplorer-practice-filter select:focus-visible,
+[data-practice-choice-empty]:focus-visible {
   outline: 2px solid var(--aiplorer-teal, #087c73);
   outline-offset: 3px;
+}
+
+#practice-choice,
+[data-practice-choice-empty] {
+  scroll-margin-block: 1rem;
 }
 
 @media (max-width: 48rem) {

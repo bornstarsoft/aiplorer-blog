@@ -26,6 +26,7 @@ const tasks = [
   ["check-an-ai-spreadsheet-formula-before-copying-it", "Check a formula"],
   ["check-ai-meeting-actions-against-decisions", "Check meeting actions"],
   ["check-an-ai-video-shot-list-before-sharing", "Review a video shot list"],
+  ["check-an-ai-file-handoff-before-switching-tools", "Check a file handoff"],
 ];
 assert.equal((html.match(/data-practice-pack\b/g) || []).length, tasks.length);
 const jumps = [...html.matchAll(/<a\b[^>]*\bdata-practice-task\b[^>]*>[\s\S]*?<\/a>/g)].map(([link]) => link);
@@ -63,7 +64,10 @@ for (const preview of previews) {
   assert(status && attr(status, "role") === "status" && attr(status, "aria-live") === "polite");
 }
 assert(html.includes("/js/aiplorer-practice-copy.js?v=20261024a"));
-assert(html.includes("/js/aiplorer-practice-resume.js?v=20261110g"));
+assert(html.includes("/js/aiplorer-practice-resume.js?v=20261110h"));
+assert.match(html, /<p\b[^>]*data-practice-choice-empty\b[^>]*>/);
+const emptyChoice = html.match(/<p\b[^>]*data-practice-choice-empty\b[^>]*>/)[0];
+assert.equal(attr(emptyChoice, "tabindex"), "-1");
 assert.match(html, /<div\b[^>]*data-practice-plan\b[^>]*\bhidden(?:[\s=>])/);
 const planStart = html.match(/<a\b[^>]*data-practice-plan-start\b[^>]*>/)?.[0];
 assert(planStart && attr(planStart, "href") === null);
@@ -123,6 +127,7 @@ const packs = [
   ["check-an-ai-spreadsheet-formula-before-copying-it", "formula"],
   ["check-ai-meeting-actions-against-decisions", "action"],
   ["check-an-ai-video-shot-list-before-sharing", "shot"],
+  ["check-an-ai-file-handoff-before-switching-tools", "handoff"],
 ];
 const downloadOrder = new Map();
 for (const [pack] of html.matchAll(/<li\b[^>]*data-practice-pack\b[^>]*>[\s\S]*?<\/li>/g)) {
@@ -137,6 +142,8 @@ for (const [pack] of html.matchAll(/<li\b[^>]*data-practice-pack\b[^>]*>[\s\S]*?
   assert.match(mark[1], /\bdata-practice-practiced\b/);
   assert(!/\bchecked(?:[\s=>])/.test(mark[1]));
   assert(attr(mark[1], "aria-label").startsWith("Practiced: "));
+  const finish = pack.match(/<button\b[^>]*data-practice-finish\b[^>]*>/)?.[0];
+  assert(finish && /\bhidden(?:[\s=>])/.test(finish) && attr(finish, "type") === "button");
   downloadOrder.set(id, [...pack.matchAll(/<a\b[^>]*data-practice-download\b[^>]*>/g)]
     .map(([tag]) => attr(tag, "href")));
 }
@@ -249,4 +256,16 @@ const shotPreview = previews.find(tag => attr(tag, "data-practice-preview") === 
 assert(shotPreview.includes("TMP-03") && !shotPreview.includes("Keep this file out of the test conversation"));
 assert(read("public/use-cases/plan-a-product-video-without-inventing-claims/index.html").includes(shotRoute));
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${shotRoute}</loc>`).length, 2);
+const handoffRoute = "/use-cases/check-an-ai-file-handoff-before-switching-tools/";
+const handoffArticle = read(`public${handoffRoute}index.html`);
+assert(!handoffArticle.includes("aiplorer-practice-resume.js"));
+for (const role of ["inputs", "answer-key", "worksheet"]) {
+  const file = `handoff-check-${role}-v1.txt`;
+  assert(handoffArticle.includes(handoffRoute + file));
+  for (const id of ["HAND-01", "HAND-02", "HAND-03"]) assert(read(`public${handoffRoute}${file}`).includes(id));
+}
+const handoffPreview = previews.find(tag => attr(tag, "data-practice-preview") === handoffRoute + "handoff-check-inputs-v1.txt");
+assert(handoffPreview.includes("Access denied") && !handoffPreview.includes("Do not claim corruption was diagnosed"));
+assert(read("public/guides/keep-your-work-portable-when-an-ai-service-changes/index.html").includes(handoffRoute));
+assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${handoffRoute}</loc>`).length, 2);
 console.log(`PASS: ${tasks.length} input-only previews, ${downloadCount} exact step-ordered downloads, guide entry links, script scoped to use-cases hub.`);
