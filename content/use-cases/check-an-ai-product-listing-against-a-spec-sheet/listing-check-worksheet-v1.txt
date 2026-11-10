@@ -1,0 +1,13 @@
+AI PRODUCT LISTING REVIEW - COMPARISON WORKSHEET - VERSION 1
+
+First run: ____________________  Date: __________
+Later run: ____________________  Date: __________
+Reuse the same SKU, spec sheet, and three draft claims.
+
+ID      | First run evidence | Later run evidence | Pass or needs review
+SPEC-01 |                    |                    | Correct variant quantity
+SPEC-02 |                    |                    | Width and unit
+SPEC-03 |                    |                    | Verified fit only
+
+Unsupported claims still present: ______________________________
+One detail to confirm with the product owner: ___________________

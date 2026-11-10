@@ -39,6 +39,7 @@ function pack(id, title) {
   const recapReturn = node();
   const recapPrevious = node();
   const recapNext = node();
+  const recapPosition = node();
   const downloads = ["inputs-v1.txt", "answer-key-v1.txt", "worksheet-v1.txt"].map((file, index) => {
     const download = node({ textContent: ["Test input", "Review key", "Comparison worksheet"][index] });
     download.setAttribute("href", "/use-cases/" + id.slice("practice-".length) + "/" + file);
@@ -60,9 +61,10 @@ function pack(id, title) {
     "[data-practice-recap-return]": recapReturn,
     "[data-practice-recap-previous]": recapPrevious,
     "[data-practice-recap-next]": recapNext,
+    "[data-practice-recap-position]": recapPosition,
   };
   return {
-    controls, button, status, downloads, mark, practiced, task, heading, preview, summary, finish, restart, reviewProgress, recapReturn, recapPrevious, recapNext, hidden: false,
+    controls, button, status, downloads, mark, practiced, task, heading, preview, summary, finish, restart, reviewProgress, recapReturn, recapPrevious, recapNext, recapPosition, hidden: false,
     contains: element => Object.values(children).includes(element),
     querySelector: selector => children[selector], querySelectorAll: () => downloads,
   };
@@ -434,6 +436,7 @@ test("changing the preview or starting another round clears stale recap return c
   p.reviewReset.click();
   assert.equal(p.retry.recapReturn.hidden, true);
   assert.equal(p.retry.recapPrevious.hidden, true);
+  assert.equal(p.retry.recapPosition.hidden, true);
   assert.equal(p.document.activeElement, p.choice);
   p.retry.recapReturn.click();
   assert.equal(p.document.activeElement, p.choice);
@@ -448,17 +451,23 @@ test("preview navigation follows completion order both ways without wrapping or 
     pack.restart.click();
     assert.equal(pack.recapPrevious.hidden, true);
     assert.equal(pack.recapNext.hidden, true);
+    assert.equal(pack.recapPosition.hidden, true);
     pack.finish.click();
     pack.preview.open = false;
     pack.summary.focused = false;
   }
   const [retryLink, chartLink, thirdLink] = p.roundList.items.map(item => item.children[0]);
   retryLink.click({ button: 0, preventDefault() {} });
+  assert.equal(p.retry.recapPosition.hidden, false);
+  assert.equal(p.retry.recapPosition.textContent, " (1 of 3)");
   assert.equal(p.retry.recapPrevious.hidden, true);
   assert.equal(p.retry.recapNext.hidden, false);
   assert.equal(p.retry.recapNext.getAttribute("aria-label"), "Preview next input: Chart check");
   p.retry.recapNext.click();
   assert.equal(p.retry.recapNext.hidden, true);
+  assert.equal(p.retry.recapPosition.hidden, true);
+  assert.equal(p.chart.recapPosition.hidden, false);
+  assert.equal(p.chart.recapPosition.textContent, " (2 of 3)");
   assert.equal(p.chart.preview.open, true);
   assert.equal(p.chart.summary.focused, true);
   assert.equal(p.third.preview.open, false);
@@ -466,6 +475,9 @@ test("preview navigation follows completion order both ways without wrapping or 
   assert.equal(p.chart.recapPrevious.hidden, false);
   p.chart.recapNext.click();
   assert.equal(p.chart.recapNext.hidden, true);
+  assert.equal(p.chart.recapPosition.hidden, true);
+  assert.equal(p.third.recapPosition.hidden, false);
+  assert.equal(p.third.recapPosition.textContent, " (3 of 3)");
   assert.equal(p.third.preview.open, true);
   assert.equal(p.third.summary.focused, true);
   assert.equal(p.third.recapNext.hidden, true);
@@ -478,11 +490,14 @@ test("preview navigation follows completion order both ways without wrapping or 
   p.third.recapPrevious.click();
   assert.equal(p.third.recapPrevious.hidden, true);
   assert.equal(p.third.recapReturn.hidden, true);
+  assert.equal(p.third.recapPosition.hidden, true);
+  assert.equal(p.chart.recapPosition.textContent, " (2 of 3)");
   assert.equal(p.chart.preview.open, true);
   assert.equal(p.chart.summary.focused, true);
   p.retry.preview.open = false;
   p.retry.summary.focused = false;
   p.chart.recapPrevious.click();
+  assert.equal(p.retry.recapPosition.textContent, " (1 of 3)");
   assert.equal(p.retry.preview.open, true);
   assert.equal(p.retry.summary.focused, true);
   assert.equal(p.retry.recapPrevious.hidden, true);
@@ -490,6 +505,8 @@ test("preview navigation follows completion order both ways without wrapping or 
   p.retry.recapPrevious.click();
   p.retry.recapReturn.click();
   assert.equal(p.document.activeElement, retryLink);
+  assert.equal(p.retry.recapPosition.hidden, true);
+  assert.equal(p.retry.recapPosition.textContent, "");
   assert.deepEqual(p.roundList.items.map(item => item.children[0]), [retryLink, chartLink, thirdLink]);
   assert.equal(p.roundProgress.textContent, "Review round: 3 finished, 0 left.");
   for (const pack of [p.retry, p.chart, p.third]) {
@@ -498,6 +515,18 @@ test("preview navigation follows completion order both ways without wrapping or 
   }
   assert.equal(p.storage.get(key), saved);
   assert.equal(p.storage.get(practicedKey), marks);
+  assert.deepEqual(p.writes, []);
+});
+
+test("a one-entry recap shows one of one without navigation or stored changes", () => {
+  const p = setup(null, "", JSON.stringify([chartId]));
+  p.chart.restart.click();
+  p.chart.finish.click();
+  p.roundList.items[0].children[0].click({ button: 0, preventDefault() {} });
+  assert.equal(p.chart.recapPosition.hidden, false);
+  assert.equal(p.chart.recapPosition.textContent, " (1 of 1)");
+  assert.equal(p.chart.recapPrevious.hidden, true);
+  assert.equal(p.chart.recapNext.hidden, true);
   assert.deepEqual(p.writes, []);
 });
 

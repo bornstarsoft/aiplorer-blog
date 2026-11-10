@@ -42,6 +42,7 @@ const tasks = [
   ["check-an-ai-slide-outline-against-a-brief", "Check a slide outline"],
   ["check-an-ai-process-guide-against-a-workflow", "Check a process guide"],
   ["check-an-ai-prompt-template-before-reusing-it", "Check a reusable prompt"],
+  ["check-an-ai-product-listing-against-a-spec-sheet", "Check a product listing"],
 ];
 assert.equal((html.match(/data-practice-pack\b/g) || []).length, tasks.length);
 const jumps = [...html.matchAll(/<a\b[^>]*\bdata-practice-task\b[^>]*>[\s\S]*?<\/a>/g)].map(([link]) => link);
@@ -67,6 +68,7 @@ for (const preview of previews) {
   assert(/(?:-inputs-v1\.txt|\/reminder-days-v1\.mjs)$/.test(path), "Only test input is previewed");
   assert(!/^<details\b[^>]*\bopen(?:[\s=>])/.test(preview), "Preview starts collapsed");
   assert(preview.includes("Preview test input") && preview.includes("aiplorer-visually-hidden"));
+  assert.match(preview, /<summary>[^<]*<span\b[^>]*data-practice-recap-position\b[^>]*\bhidden(?:[\s=>])/);
   const pre = preview.match(/<pre\b[^>]*>/)?.[0];
   assert(pre && attr(pre, "tabindex") === "0" && attr(pre, "role") === "region");
   assert(attr(pre, "aria-label").startsWith("Test input for "));
@@ -79,7 +81,7 @@ for (const preview of previews) {
   assert(status && attr(status, "role") === "status" && attr(status, "aria-live") === "polite");
 }
 assert(html.includes("/js/aiplorer-practice-copy.js?v=20261024a"));
-assert(html.includes("/js/aiplorer-practice-resume.js?v=20261110w"));
+assert(html.includes("/js/aiplorer-practice-resume.js?v=20261110x"));
 const returnButtons = [...html.matchAll(/<button\b[^>]*data-practice-recap-return\b[^>]*>Back to review list<\/button>/g)];
 assert.equal(returnButtons.length, tasks.length);
 assert(returnButtons.every(([tag]) => /\bhidden(?:[\s=>])/.test(tag) && attr(tag, "type") === "button"));
@@ -187,6 +189,7 @@ const packs = [
   ["check-an-ai-slide-outline-against-a-brief", "outline"],
   ["check-an-ai-process-guide-against-a-workflow", "workflow"],
   ["check-an-ai-prompt-template-before-reusing-it", "prompt"],
+  ["check-an-ai-product-listing-against-a-spec-sheet", "listing"],
 ];
 const downloadOrder = new Map();
 for (const [pack] of html.matchAll(/<li\b[^>]*data-practice-pack\b[^>]*>[\s\S]*?<\/li>/g)) {
@@ -510,4 +513,16 @@ const promptPreview = previews.find(tag => attr(tag, "data-practice-preview") ==
 assert(promptPreview.includes("OUTPUT CONTRACT") && !promptPreview.includes("Update sign list | Mina | Not stated"));
 assert(workflowArticle.includes(promptRoute));
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${promptRoute}</loc>`).length, 2);
+const listingRoute = "/use-cases/check-an-ai-product-listing-against-a-spec-sheet/";
+const listingArticle = read(`public${listingRoute}index.html`);
+assert(!listingArticle.includes("aiplorer-practice-resume.js"));
+for (const role of ["inputs", "answer-key", "worksheet"]) {
+  const file = `listing-check-${role}-v1.txt`;
+  assert(listingArticle.includes(listingRoute + file));
+  for (const id of ["SPEC-01", "SPEC-02", "SPEC-03"]) assert(read(`public${listingRoute}${file}`).includes(id));
+}
+const listingPreview = previews.find(tag => attr(tag, "data-practice-preview") === listingRoute + "listing-check-inputs-v1.txt");
+assert(listingPreview.includes("APPROVED SPEC SHEET") && !listingPreview.includes("Correction: The COVE-S pack"));
+assert(promptArticle.includes(listingRoute));
+assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${listingRoute}</loc>`).length, 2);
 console.log(`PASS: ${tasks.length} input-only previews, ${downloadCount} exact step-ordered downloads, guide entry links, script scoped to use-cases hub.`);

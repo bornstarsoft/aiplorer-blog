@@ -1,0 +1,18 @@
+AI PRODUCT LISTING REVIEW - REVIEW KEY - VERSION 1
+Keep this file out of the test conversation.
+
+SPEC-01
+COVE-S has one organizer per pack. Two is the COVE-L quantity.
+Correction: The COVE-S pack contains one organizer.
+
+SPEC-02
+The width is 120 mm, not 120 cm. Keep the source unit.
+Correction: The outside width of COVE-S is 120 mm.
+
+SPEC-03
+The sheet verifies COVE-S with the Cove D2 drawer only.
+Correction: COVE-S fit was checked with the Cove D2 drawer.
+Do not claim a fit or a lack of fit for other drawers.
+
+Accept equivalent wording that preserves the exact variant and
+does not make additional compatibility claims.

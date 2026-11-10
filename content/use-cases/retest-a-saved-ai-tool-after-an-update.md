@@ -59,6 +59,7 @@ provides a buggy function and local regression tests.
 | Review a slide outline | [Presentation brief pack](/use-cases/check-an-ai-slide-outline-against-a-brief/) | Check the audience, evidence, and decision scope |
 | Review a process guide | [Workflow pack](/use-cases/check-an-ai-process-guide-against-a-workflow/) | Check approvals, exceptions, and handoff owners |
 | Review a reusable prompt | [Prompt template pack](/use-cases/check-an-ai-prompt-template-before-reusing-it/) | Check missing values, quoted instructions, and allowed fields |
+| Review a product listing | [Spec sheet pack](/use-cases/check-an-ai-product-listing-against-a-spec-sheet/) | Check variant, unit, and verified fit |
 
 The [practice downloads](/use-cases/#practice-downloads) collect the
 packs in one place. These checks do not cover every workflow. If your

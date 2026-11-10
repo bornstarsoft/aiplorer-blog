@@ -47,3 +47,6 @@ A stronger template names the allowed fields, the placeholder for missing values
 Try the revised template on the same three fictional notes. Compare the resulting rows, not just the prompt wording. Before using it at work, test new cases and check outputs before passing them downstream.
 
 Return to the [reusable prompt practice pack](/use-cases/#practice-check-an-ai-prompt-template-before-reusing-it) or [choose your next check](/use-cases/retest-a-saved-ai-tool-after-an-update/#choose-your-next-check).
+
+For a similar check on details drawn from structured input, try the
+[product listing practice](/use-cases/check-an-ai-product-listing-against-a-spec-sheet/).

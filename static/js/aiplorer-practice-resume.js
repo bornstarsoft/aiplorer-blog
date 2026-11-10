@@ -67,6 +67,7 @@
       recapReturn: pack.querySelector("[data-practice-recap-return]"),
       recapPrevious: pack.querySelector("[data-practice-recap-previous]"),
       recapNext: pack.querySelector("[data-practice-recap-next]"),
+      recapPosition: pack.querySelector("[data-practice-recap-position]"),
     });
   });
 
@@ -356,7 +357,7 @@
       previewLink.setAttribute("href", hash);
       previewLink.setAttribute("aria-label", `Preview test input: ${title}`);
       previewLink.textContent = title;
-      recapEntries.set(id, { id, link: previewLink, previousId: ids[index - 1], nextId: ids[index + 1] });
+      recapEntries.set(id, { id, link: previewLink, position: index + 1, previousId: ids[index - 1], nextId: ids[index + 1] });
       previewLink.addEventListener("click", event => {
         if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
         if (openRecapInput(id)) event.preventDefault();
@@ -403,6 +404,10 @@
     if (!recapPreview) return;
     const { pack } = recapPreview;
     pack.recapReturn.hidden = true;
+    if (pack.recapPosition) {
+      pack.recapPosition.hidden = true;
+      pack.recapPosition.textContent = "";
+    }
     for (const [control] of recapDirections) {
       if (pack[control]) pack[control].hidden = true;
     }
@@ -426,6 +431,10 @@
       if (entry && pack.recapReturn && !chooser.hidden && recapEntries.get(entry.id) === entry) {
         recapPreview = { pack, entry };
         pack.recapReturn.hidden = false;
+        if (pack.recapPosition) {
+          pack.recapPosition.textContent = ` (${entry.position} of ${recapEntries.size})`;
+          pack.recapPosition.hidden = false;
+        }
         for (const [control, neighborId, label] of recapDirections) {
           const button = pack[control];
           const neighbor = recapEntries.get(entry[neighborId]);

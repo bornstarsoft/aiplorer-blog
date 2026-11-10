@@ -1,0 +1,23 @@
+AI PRODUCT LISTING REVIEW - INPUTS - VERSION 1
+
+Fictional product: Cove drawer organizer. Review the copy only.
+Target listing: COVE-S (Short). Do not combine variants.
+
+APPROVED SPEC SHEET
+SKU    | Variant | Organizers per pack | Outside width | Fit checked
+COVE-S | Short   | 1                   | 120 mm        | Cove D2 drawer
+COVE-L | Long    | 2                   | 160 mm        | Cove D4 drawer
+
+No other drawers have been tested. Keep source units.
+
+SPEC-01
+Draft: COVE-S includes two organizers.
+
+SPEC-02
+Draft: COVE-S is 120 cm wide.
+
+SPEC-03
+Draft: COVE-S fits every drawer in the Cove range.
+
+For each ID, identify the mismatch and cite the relevant row or note.
+Propose a corrected sentence that keeps the claim within the sheet.
