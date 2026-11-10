@@ -1,9 +1,19 @@
 <section class="aiplorer-shell aiplorer-article-index aiplorer-practice-packs" aria-labelledby="practice-downloads" data-practice-shelf>
   <h2 id="practice-downloads" tabindex="-1">Practice packs <span>{{ len . }}</span></h2>
   <p>Fictional inputs for repeat checks. Keep review keys out of the AI conversation; keep completed worksheets in your own approved location.</p>
-  <p class="aiplorer-practice-resume" data-practice-resume hidden>
+  <div class="aiplorer-practice-resume" data-practice-resume hidden>
     <a data-practice-resume-link>Continue practice: <span data-practice-resume-title></span></a>
-  </p>
+    <div class="aiplorer-practice-next">
+      <label for="practice-next-step">Next step</label>
+      <select id="practice-next-step" data-practice-next-step>
+        <option value="">No step selected</option>
+        <option value="input">Run the test input</option>
+        <option value="review">Review the first result</option>
+        <option value="compare">Compare two runs</option>
+      </select>
+      <span role="status" data-practice-next-status></span>
+    </div>
+  </div>
   <nav class="aiplorer-article-jumps" aria-label="Practice pack tasks">
     {{ range . }}
       <a href="#practice-{{ path.Base .RelPermalink }}" data-practice-task>{{ .Params.practiceTask | default .Title }}{{ partial "aiplorer-icon.html" "chevron-down" }}</a>

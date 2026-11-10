@@ -20,6 +20,7 @@ const tasks = [
   ["check-whether-a-citation-supports-a-claim", "Check a citation"],
   ["check-an-automation-before-retrying", "Check an automation retry"],
   ["check-an-ai-slide-chart-before-sharing", "Review a slide chart"],
+  ["check-ai-captions-against-a-reference", "Check captions"],
 ];
 assert.equal((html.match(/data-practice-pack\b/g) || []).length, tasks.length);
 const jumps = [...html.matchAll(/<a\b[^>]*\bdata-practice-task\b[^>]*>[\s\S]*?<\/a>/g)].map(([link]) => link);
@@ -57,9 +58,15 @@ for (const preview of previews) {
   assert(status && attr(status, "role") === "status" && attr(status, "aria-live") === "polite");
 }
 assert(html.includes("/js/aiplorer-practice-copy.js?v=20261024a"));
-assert(html.includes("/js/aiplorer-practice-resume.js?v=20261110a"));
+assert(html.includes("/js/aiplorer-practice-resume.js?v=20261110b"));
 assert.equal((html.match(/data-practice-shelf\b/g) || []).length, 1);
-assert.match(html, /<p\b[^>]*data-practice-resume\b[^>]*\bhidden(?:[\s=>])/);
+assert.match(html, /<div\b[^>]*data-practice-resume\b[^>]*\bhidden(?:[\s=>])/);
+const nextStep = html.match(/<select\b[^>]*data-practice-next-step\b[^>]*>[\s\S]*?<\/select>/)?.[0];
+assert(nextStep);
+const options = [...nextStep.matchAll(/<option\b[^>]*>/g)]
+  .map(([tag]) => attr(tag, "value") ?? (/\svalue(?=[\s>])/.test(tag) ? "" : null));
+assert.deepEqual(options, ["", "input", "review", "compare"]);
+assert.match(html, /<label\b[^>]*for=["']?practice-next-step\b[^>]*>Next step<\/label>/);
 assert.equal((html.match(/<div\b[^>]*data-practice-save-controls\b[^>]*\bhidden(?:[\s=>])/g) || []).length, tasks.length);
 const saveButtons = [...html.matchAll(/<button\b[^>]*\bdata-practice-save\b[^>]*>/g)].map(([tag]) => tag);
 assert.equal(saveButtons.length, tasks.length);
@@ -74,6 +81,7 @@ const packs = [
   ["check-whether-a-citation-supports-a-claim", "citation"],
   ["check-an-automation-before-retrying", "retry"],
   ["check-an-ai-slide-chart-before-sharing", "chart"],
+  ["check-ai-captions-against-a-reference", "caption"],
 ];
 const downloadCount = (packs.length + 1) * 3;
 assert.equal(tags.length, downloadCount);
@@ -114,4 +122,10 @@ assert(!chart.includes("aiplorer-practice-resume.js"));
 for (const role of ["inputs", "answer-key", "worksheet"])
   assert(chart.includes(chartRoute + `chart-check-${role}-v1.txt`));
 assert(read("public/guides/ai-presentation-client-handoff-checklist/index.html").includes(chartRoute));
+const captionRoute = "/use-cases/check-ai-captions-against-a-reference/";
+const caption = read(`public${captionRoute}index.html`);
+assert(!caption.includes("aiplorer-practice-resume.js"));
+for (const role of ["inputs", "answer-key", "worksheet"])
+  assert(caption.includes(captionRoute + `caption-check-${role}-v1.txt`));
+assert(read("public/guides/how-to-use-ai-meeting-tools-responsibly/index.html").includes(captionRoute));
 console.log(`PASS: ${tasks.length} input-only previews, ${downloadCount} exact native downloads, retry entry links, script scoped to use-cases hub.`);

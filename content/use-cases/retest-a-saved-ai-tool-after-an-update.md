@@ -37,6 +37,7 @@ provides a buggy function and local regression tests.
 | Check a cited claim | [Citation support pack](/use-cases/check-whether-a-citation-supports-a-claim/) | Match the passage to the claim; distinguish unsupported scope from a missing source |
 | Review an automation retry | [Automation retry pack](/use-cases/check-an-automation-before-retrying/) | Distinguish a duplicate, an unknown write, and a separate request |
 | Review a slide chart | [Slide chart review pack](/use-cases/check-an-ai-slide-chart-before-sharing/) | Check the denominator, the change unit, and observed versus unmeasured values |
+| Review captions | [Caption review pack](/use-cases/check-ai-captions-against-a-reference/) | Preserve negation and identifiers; leave an unverified speaker unknown |
 
 The [practice downloads](/use-cases/#practice-downloads) collect the
 packs in one place. These checks do not cover every workflow. If your

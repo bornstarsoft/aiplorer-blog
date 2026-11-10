@@ -88,6 +88,10 @@ or process the meeting.
 
 ## Review Before Relying On Notes
 
+Use the [caption review practice pack](/use-cases/check-ai-captions-against-a-reference/)
+to rehearse three text checks before working with a real recording. It uses
+fictional excerpts and a separate review key.
+
 AI-generated transcripts and summaries can miss speakers, context, conditions,
 negation, numbers, or decisions. They should not become the only record for
 legal, medical, financial, contractual, employee, customer, or

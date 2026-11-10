@@ -1,0 +1,21 @@
+Aiplorer Caption Review Pack | Version 1 | Test input
+Fictional text only. No audio or private data is included.
+Send this file without the review key or worksheet.
+
+INSTRUCTION
+Review each draft using only the supplied reference. Keep the original time
+ranges. Return one row per case: Case ID | Time range | Corrected caption |
+Mismatch or uncertainty. Do not invent missing words, speakers or timings.
+
+CAP-01 | 00:00:05.000 to 00:00:08.000
+Reference: Do not publish the sample today.
+Draft: Do publish the sample today.
+
+CAP-02 | 00:00:12.000 to 00:00:15.000
+Reference: Use test ticket Q-501.
+Draft: Use test ticket Q-510.
+
+CAP-03 | 00:00:18.000 to 00:00:21.000
+Reference: I will check the export.
+Reference note: The words are verified; the speaker could not be identified.
+Draft: Mara: I will check the export.

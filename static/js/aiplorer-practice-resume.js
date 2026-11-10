@@ -6,7 +6,9 @@
   const resume = shelf.querySelector("[data-practice-resume]");
   const link = shelf.querySelector("[data-practice-resume-link]");
   const title = shelf.querySelector("[data-practice-resume-title]");
-  if (!resume || !link || !title) return;
+  const nextStep = shelf.querySelector("[data-practice-next-step]");
+  const nextStatus = shelf.querySelector("[data-practice-next-status]");
+  if (!resume || !link || !title || !nextStep || !nextStatus) return;
 
   const key = "aiplorer-practice-resume-v1";
   const packs = new Map();
@@ -19,12 +21,40 @@
     packs.set(heading.id, { heading, controls, button, status });
   });
 
-  function render(id) {
+  const steps = new Set(["", "input", "review", "compare"]);
+  const empty = { id: null, step: "" };
+  let shownId = null;
+
+  function read() {
+    const value = localStorage.getItem(key);
+    // Older saves contain only the public anchor. Leave them intact until a click.
+    if (packs.has(value)) return { id: value, step: "" };
+    if (value === null) return empty;
+    try {
+      const saved = JSON.parse(value);
+      if (packs.has(saved?.id)) return { id: saved.id, step: steps.has(saved.step) ? saved.step : "" };
+    } catch {
+      // Invalid or removed entries do not become links.
+    }
+    return empty;
+  }
+
+  function write(id, step = "") {
+    const value = step ? JSON.stringify({ id, step }) : id;
+    if (value === null) localStorage.removeItem(key);
+    else localStorage.setItem(key, value);
+    if (localStorage.getItem(key) !== value) throw new Error("Practice selection did not persist");
+  }
+
+  function render({ id, step }) {
     const selected = packs.get(id);
+    shownId = id;
     resume.hidden = !selected;
     if (selected) link.setAttribute("href", "#" + selected.heading.id);
     else link.removeAttribute("href");
     title.textContent = selected ? selected.heading.textContent.trim() : "";
+    nextStep.value = step;
+    nextStatus.textContent = "";
     for (const [packId, pack] of packs) {
       pack.button.setAttribute("aria-pressed", String(id === packId));
       pack.status.textContent = "";
@@ -32,23 +62,20 @@
   }
 
   function refresh() {
-    try { render(localStorage.getItem(key)); }
-    catch { render(null); }
+    try { render(read()); }
+    catch { render(empty); }
   }
 
-  try { render(localStorage.getItem(key)); }
+  try { render(read()); }
   catch { return; }
 
   for (const [id, pack] of packs) {
     pack.controls.hidden = false;
     pack.button.addEventListener("click", () => {
       try {
-        const next = localStorage.getItem(key) === id ? null : id;
-        if (next === null) localStorage.removeItem(key);
-        else localStorage.setItem(key, next);
-        const saved = localStorage.getItem(key);
-        render(saved);
-        if (saved !== next) throw new Error("Saved pack did not persist");
+        const next = read().id === id ? null : id;
+        write(next);
+        render({ id: next, step: "" });
         pack.status.textContent = next === null ? "Saved pack removed." : "Saved for this browser.";
       } catch {
         refresh();
@@ -56,6 +83,22 @@
       }
     });
   }
+  nextStep.addEventListener("change", () => {
+    const step = nextStep.value;
+    try {
+      const current = read();
+      if (!current.id || current.id !== shownId || !steps.has(step)) {
+        render(current);
+        return;
+      }
+      write(current.id, step);
+      render({ id: current.id, step });
+      nextStatus.textContent = step ? "Next step saved." : "Next step cleared.";
+    } catch {
+      refresh();
+      nextStatus.textContent = "Could not update the next step.";
+    }
+  });
   window.addEventListener("pageshow", refresh);
   window.addEventListener("storage", event => {
     if (event.key === key || event.key === null) refresh();

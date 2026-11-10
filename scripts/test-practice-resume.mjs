@@ -41,10 +41,13 @@ function setup(saved = null, mode = "") {
   const retry = pack(retryId, "Retry check");
   const unsafe = pack("javascript:bad", "Invalid target");
   const resume = node(), link = node(), title = node(), window = node();
+  const nextStep = node({ value: "" }), nextStatus = node();
   const children = {
     "[data-practice-resume]": resume,
     "[data-practice-resume-link]": link,
     "[data-practice-resume-title]": title,
+    "[data-practice-next-step]": nextStep,
+    "[data-practice-next-status]": nextStatus,
   };
   const shelf = { querySelector: s => children[s], querySelectorAll: () => [chart, retry, unsafe] };
   const localStorage = {
@@ -64,7 +67,7 @@ function setup(saved = null, mode = "") {
     },
   };
   vm.runInNewContext(source, { document: { querySelector: () => shelf }, window, localStorage });
-  return { chart, retry, unsafe, resume, link, title, window, storage, writes };
+  return { chart, retry, unsafe, resume, link, title, nextStep, nextStatus, window, storage, writes };
 }
 
 test("does not save on visit and leaves native controls usable", () => {
@@ -136,3 +139,72 @@ for (const mode of ["write blocked", "write ignored", "remove blocked"]) {
     assert.equal(target.status.textContent, "Could not update the saved pack.");
   });
 }
+
+test("restores an explicit next step while preserving old anchor-only saves", () => {
+  const old = setup(chartId);
+  assert.equal(old.nextStep.value, "");
+  assert.deepEqual(old.writes, []);
+  const p = setup(JSON.stringify({ id: chartId, step: "review" }));
+  assert.equal(p.nextStep.value, "review");
+  assert.equal(p.link.getAttribute("href"), "#" + chartId);
+  assert.deepEqual(p.writes, []);
+});
+
+test("ignores invalid saved steps and malformed records", () => {
+  const p = setup(JSON.stringify({ id: chartId, step: "private text" }));
+  assert.equal(p.resume.hidden, false);
+  assert.equal(p.nextStep.value, "");
+  for (const raw of ["{broken", "null", JSON.stringify({ id: "practice-missing", step: "review" })]) {
+    const invalid = setup(raw);
+    assert.equal(invalid.resume.hidden, true);
+    assert.deepEqual(invalid.writes, []);
+  }
+});
+
+test("writes only a pack and allowlisted step, and clears the step alone", () => {
+  const p = setup(chartId);
+  p.nextStep.value = "compare";
+  p.nextStep.change();
+  assert.deepEqual(JSON.parse(p.storage.get(key)), { id: chartId, step: "compare" });
+  assert.equal(p.nextStatus.textContent, "Next step saved.");
+  p.nextStep.value = "free text";
+  p.nextStep.change();
+  assert.equal(p.writes.length, 1);
+  assert.equal(p.nextStep.value, "compare");
+  p.nextStep.value = "";
+  p.nextStep.change();
+  assert.equal(p.storage.get(key), chartId);
+  assert.equal(p.nextStatus.textContent, "Next step cleared.");
+});
+
+test("changing or unsaving the pack cannot carry a step to another pack", () => {
+  const p = setup(JSON.stringify({ id: chartId, step: "review" }));
+  p.retry.button.click();
+  assert.equal(p.nextStep.value, "");
+  assert.equal(p.storage.get(key), retryId);
+  p.nextStep.value = "input";
+  p.nextStep.change();
+  p.retry.button.click();
+  assert.equal(p.storage.has(key), false);
+  assert.equal(p.resume.hidden, true);
+});
+
+test("stale next-step selection cannot write over a different pack from another tab", () => {
+  const p = setup(chartId);
+  p.storage.set(key, JSON.stringify({ id: retryId, step: "input" }));
+  p.nextStep.value = "review";
+  p.nextStep.change();
+  assert.equal(p.title.textContent, "Retry check");
+  assert.equal(p.nextStep.value, "input");
+  assert.deepEqual(p.writes, []);
+});
+
+test("storage failures restore the last saved next step without claiming success", () => {
+  for (const mode of ["write blocked", "write ignored"]) {
+    const p = setup(JSON.stringify({ id: chartId, step: "input" }), mode);
+    p.nextStep.value = "compare";
+    p.nextStep.change();
+    assert.equal(p.nextStep.value, "input");
+    assert.equal(p.nextStatus.textContent, "Could not update the next step.");
+  }
+});

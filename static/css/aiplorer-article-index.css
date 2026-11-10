@@ -180,6 +180,32 @@
   overflow-wrap: anywhere;
 }
 
+.aiplorer-practice-next {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+  margin: 0 0 1rem;
+  font-size: 0.9375rem;
+}
+
+.aiplorer-practice-next select {
+  min-height: 44px;
+  min-width: 0;
+  max-width: 100%;
+  padding: 0.375rem 0.625rem;
+  border: 1px solid var(--aiplorer-muted, #52616d);
+  border-radius: 4px;
+  background: #fff;
+  color: var(--aiplorer-text, #16212b);
+  font: inherit;
+}
+
+.aiplorer-practice-next select:focus-visible {
+  outline: 2px solid var(--aiplorer-teal, #087c73);
+  outline-offset: 3px;
+}
+
 @media (max-width: 48rem) {
   .aiplorer-article-index ul {
     grid-template-columns: minmax(0, 1fr);

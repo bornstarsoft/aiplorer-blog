@@ -1,0 +1,25 @@
+Aiplorer Caption Review Pack | Version 1 | Comparison worksheet
+Keep completed copies and evidence in an approved location.
+
+RUN A
+Date, timezone, tool and visible settings:
+Pack version, exact input and first-output locations:
+CAP-01 negation and timing evidence:
+CAP-02 identifier and timing evidence:
+CAP-03 wording, attribution and timing evidence:
+Separate corrections and corrected-output location:
+
+RUN B
+Date, timezone, tool and visible settings:
+Pack version, exact input and first-output locations:
+What changed since A? What could not be held constant?
+CAP-01 negation and timing evidence:
+CAP-02 identifier and timing evidence:
+CAP-03 wording, attribution and timing evidence:
+Separate corrections and corrected-output location:
+
+NEXT CHECK
+Per case: meets these checks / needs correction / could not test.
+Without comparable earlier evidence, treat this as a baseline.
+What still needs review against the actual recording or exported captions?
+What would make it useful to run this check again?

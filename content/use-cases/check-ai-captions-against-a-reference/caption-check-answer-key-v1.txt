@@ -1,0 +1,18 @@
+Aiplorer Caption Review Pack | Version 1 | Review key
+Keep this separate from the test conversation.
+
+CAP-01 | 00:00:05.000 to 00:00:08.000
+Do not publish the sample today.
+Restore "not". Do not convert the restriction into an approval.
+
+CAP-02 | 00:00:12.000 to 00:00:15.000
+Use test ticket Q-501.
+Preserve the exact identifier. Q-510 is not supported.
+
+CAP-03 | 00:00:18.000 to 00:00:21.000
+Unknown speaker: I will check the export.
+Keep the verified words and explicitly mark the speaker unknown. Do not
+assign the follow-up to Mara, pick another name, or delete the spoken words.
+
+Preserve all three time ranges. This is a review of supplied text, not
+evidence of accurate audio transcription or caption synchronization.
