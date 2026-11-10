@@ -118,6 +118,7 @@
 
 .aiplorer-practice-preview summary:focus-visible,
 .aiplorer-practice-copy button:focus-visible,
+.aiplorer-practice-save button:focus-visible,
 .aiplorer-practice-preview pre:focus-visible,
 .aiplorer-article-index a:focus-visible,
 .aiplorer-article-jumps a:focus-visible {
@@ -125,7 +126,8 @@
   outline-offset: 4px;
 }
 
-.aiplorer-practice-copy:not([hidden]) {
+.aiplorer-practice-copy:not([hidden]),
+.aiplorer-practice-save:not([hidden]) {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -133,7 +135,8 @@
   margin-bottom: 0.75rem;
 }
 
-.aiplorer-practice-copy button {
+.aiplorer-practice-copy button,
+.aiplorer-practice-save button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -146,10 +149,35 @@
   cursor: progress;
 }
 
-.aiplorer-practice-copy [role="status"] {
+.aiplorer-practice-copy [role="status"],
+.aiplorer-practice-save [role="status"] {
   font-size: 0.875rem;
   line-height: 1.5;
   color: var(--aiplorer-text, #16212b);
+}
+
+.aiplorer-practice-save:not([hidden]) {
+  margin: 0.75rem 0 0;
+}
+
+.aiplorer-practice-save button[aria-pressed="true"] {
+  background: #edf8f6;
+  border-color: var(--aiplorer-teal, #087c73);
+  color: #075b54;
+}
+
+.aiplorer-practice-save button[aria-pressed="true"] svg {
+  fill: currentColor;
+}
+
+.aiplorer-practice-resume a {
+  display: inline-block;
+  min-height: 44px;
+  padding: 0.625rem 0;
+  color: var(--aiplorer-teal, #087c73);
+  font-weight: 650;
+  text-decoration: underline;
+  overflow-wrap: anywhere;
 }
 
 @media (max-width: 48rem) {

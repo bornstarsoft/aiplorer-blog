@@ -36,6 +36,7 @@ provides a buggy function and local regression tests.
 | Review a small code fix | [Zero-value regression pack](/use-cases/fix-a-zero-value-default-with-ai/) | Preserve zero, default missing values and inspect the diff without changing the tests |
 | Check a cited claim | [Citation support pack](/use-cases/check-whether-a-citation-supports-a-claim/) | Match the passage to the claim; distinguish unsupported scope from a missing source |
 | Review an automation retry | [Automation retry pack](/use-cases/check-an-automation-before-retrying/) | Distinguish a duplicate, an unknown write, and a separate request |
+| Review a slide chart | [Slide chart review pack](/use-cases/check-an-ai-slide-chart-before-sharing/) | Check the denominator, the change unit, and observed versus unmeasured values |
 
 The [practice downloads](/use-cases/#practice-downloads) collect the
 packs in one place. These checks do not cover every workflow. If your

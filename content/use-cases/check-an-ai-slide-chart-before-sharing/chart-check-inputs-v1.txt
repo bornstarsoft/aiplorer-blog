@@ -1,0 +1,27 @@
+Aiplorer Slide Chart Review Pack | Version 1 | Test input
+Fictional data only. Send this file without the review key or worksheet.
+
+INSTRUCTION
+Use only the supplied records. Do not browse or fill in missing data.
+Return one row per case: Case ID | Problem | Corrected headline | Values
+and labels to display | Limitation. For V-02, describe the change in
+percentage points. For V-03, show observed values only.
+
+V-01
+Source: 50 people were invited to a pilot. 20 replied to an optional
+survey; 12 of those respondents reported completing onboarding.
+No completion information is available for the 30 nonrespondents.
+Draft: "60% of invitees completed onboarding." Chart: "Completed: 60%
+of 50 invitees."
+
+V-02
+Source: 40 of 100 eligible requests were completed in period A.
+50 of 100 eligible requests were completed in period B. The definition
+of completion did not change. No cause of the change was established.
+Draft: "Completion improved by 10%." Chart labels: A 40%, B 50%.
+
+V-03
+Source: 24 requests were recorded in October and 30 in November.
+December has not been measured.
+Draft: "Requests reached 36 in December." The chart includes October 24,
+November 30 and December 36 as actual counts.

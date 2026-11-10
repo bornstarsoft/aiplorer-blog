@@ -21,6 +21,7 @@ const packs = [
   "fix-a-zero-value-default-with-ai",
   "check-whether-a-citation-supports-a-claim",
   "check-an-automation-before-retrying",
+  "check-an-ai-slide-chart-before-sharing",
 ];
 const choiceTable = [...guide.matchAll(/<table\b[^>]*>[\s\S]*?<\/table>/g)]
   .map(([table]) => table).find(table => packs.every(slug => table.includes(`/use-cases/${slug}/`)));

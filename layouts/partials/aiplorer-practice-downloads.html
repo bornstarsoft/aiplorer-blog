@@ -1,6 +1,9 @@
-<section class="aiplorer-shell aiplorer-article-index aiplorer-practice-packs" aria-labelledby="practice-downloads">
+<section class="aiplorer-shell aiplorer-article-index aiplorer-practice-packs" aria-labelledby="practice-downloads" data-practice-shelf>
   <h2 id="practice-downloads" tabindex="-1">Practice packs <span>{{ len . }}</span></h2>
   <p>Fictional inputs for repeat checks. Keep review keys out of the AI conversation; keep completed worksheets in your own approved location.</p>
+  <p class="aiplorer-practice-resume" data-practice-resume hidden>
+    <a data-practice-resume-link>Continue practice: <span data-practice-resume-title></span></a>
+  </p>
   <nav class="aiplorer-article-jumps" aria-label="Practice pack tasks">
     {{ range . }}
       <a href="#practice-{{ path.Base .RelPermalink }}" data-practice-task>{{ .Params.practiceTask | default .Title }}{{ partial "aiplorer-icon.html" "chevron-down" }}</a>
@@ -10,7 +13,7 @@
     {{ range . }}
       {{ $page := . }}
       <li data-practice-pack>
-        <h3 id="practice-{{ path.Base .RelPermalink }}" tabindex="-1"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+        <h3 id="practice-{{ path.Base .RelPermalink }}" tabindex="-1" data-practice-heading><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
         <p>{{ .Description }}</p>
         {{ with .Params.practicePreview }}
           {{ $file := . }}
@@ -38,6 +41,10 @@
             {{ errorf "Missing practice download %q in %s" .file $page.File.Path }}
           {{ end }}
         {{ end }}
+        <div class="aiplorer-practice-save" data-practice-save-controls hidden>
+          <button type="button" class="aiplorer-button aiplorer-button--light" data-practice-save aria-pressed="false" aria-label="Save pack: {{ .Title }}">{{ partial "aiplorer-icon.html" "bookmark" }}Save pack</button>
+          <span role="status" data-practice-save-status></span>
+        </div>
       </li>
     {{ end }}
   </ul>

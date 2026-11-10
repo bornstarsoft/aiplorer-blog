@@ -45,6 +45,10 @@ Final approver:
 
 ## Test The Handoff, Not Just The Preview
 
+Start with the [slide chart review practice pack](/use-cases/check-an-ai-slide-chart-before-sharing/)
+if you need a small, reusable check for numbers and labels. It uses fictional
+data and a separate review key; test the actual export with the steps below.
+
 | Stage | What to inspect | Evidence to keep |
 | --- | --- | --- |
 | Facts | Numbers, dates, quotations, comparisons, and chart labels | Original sources and corrected slides |

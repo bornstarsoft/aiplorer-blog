@@ -19,6 +19,7 @@ const tasks = [
   ["fix-a-zero-value-default-with-ai", "Test a code fix"],
   ["check-whether-a-citation-supports-a-claim", "Check a citation"],
   ["check-an-automation-before-retrying", "Check an automation retry"],
+  ["check-an-ai-slide-chart-before-sharing", "Review a slide chart"],
 ];
 assert.equal((html.match(/data-practice-pack\b/g) || []).length, tasks.length);
 const jumps = [...html.matchAll(/<a\b[^>]*\bdata-practice-task\b[^>]*>[\s\S]*?<\/a>/g)].map(([link]) => link);
@@ -56,12 +57,23 @@ for (const preview of previews) {
   assert(status && attr(status, "role") === "status" && attr(status, "aria-live") === "polite");
 }
 assert(html.includes("/js/aiplorer-practice-copy.js?v=20261024a"));
+assert(html.includes("/js/aiplorer-practice-resume.js?v=20261110a"));
+assert.equal((html.match(/data-practice-shelf\b/g) || []).length, 1);
+assert.match(html, /<p\b[^>]*data-practice-resume\b[^>]*\bhidden(?:[\s=>])/);
+assert.equal((html.match(/<div\b[^>]*data-practice-save-controls\b[^>]*\bhidden(?:[\s=>])/g) || []).length, tasks.length);
+const saveButtons = [...html.matchAll(/<button\b[^>]*\bdata-practice-save\b[^>]*>/g)].map(([tag]) => tag);
+assert.equal(saveButtons.length, tasks.length);
+for (const tag of saveButtons) {
+  assert.equal(attr(tag, "aria-pressed"), "false");
+  assert(attr(tag, "aria-label").startsWith("Save pack: "));
+}
 const packs = [
   ["retest-ai-summaries-with-a-reference-pack", "summary"],
   ["check-an-ai-rewrite-without-changing-the-promise", "rewrite"],
   ["test-ai-data-extraction-with-missing-values", "extraction"],
   ["check-whether-a-citation-supports-a-claim", "citation"],
   ["check-an-automation-before-retrying", "retry"],
+  ["check-an-ai-slide-chart-before-sharing", "chart"],
 ];
 const downloadCount = (packs.length + 1) * 3;
 assert.equal(tags.length, downloadCount);
@@ -84,6 +96,7 @@ for (const file of ["reminder-days-v1.mjs", "reminder-days-v1.test.mjs", "code-c
 for (const file of ["public/index.html", "public/guides/index.html", "public/ai-tools/tools/index.html"]) {
   assert(!read(file).includes("data-practice-download"), `Unexpected download shelf: ${file}`);
   assert(!read(file).includes("aiplorer-practice-copy.js"), `Unexpected clipboard script: ${file}`);
+  assert(!read(file).includes("aiplorer-practice-resume.js"), `Unexpected practice save script: ${file}`);
 }
 assert(!read("public/use-cases/fix-a-zero-value-default-with-ai/index.html").includes("aiplorer-practice-copy.js"));
 const retryRoute = "/use-cases/check-an-automation-before-retrying/";
@@ -95,4 +108,10 @@ for (const role of ["inputs", "answer-key", "worksheet"]) {
   assert(retryArticle.includes(retryRoute + file));
 }
 assert(read("public/use-cases/how-to-test-an-ai-automation-before-relying-on-it/index.html").includes(retryRoute));
+const chartRoute = "/use-cases/check-an-ai-slide-chart-before-sharing/";
+const chart = read(`public${chartRoute}index.html`);
+assert(!chart.includes("aiplorer-practice-resume.js"));
+for (const role of ["inputs", "answer-key", "worksheet"])
+  assert(chart.includes(chartRoute + `chart-check-${role}-v1.txt`));
+assert(read("public/guides/ai-presentation-client-handoff-checklist/index.html").includes(chartRoute));
 console.log(`PASS: ${tasks.length} input-only previews, ${downloadCount} exact native downloads, retry entry links, script scoped to use-cases hub.`);

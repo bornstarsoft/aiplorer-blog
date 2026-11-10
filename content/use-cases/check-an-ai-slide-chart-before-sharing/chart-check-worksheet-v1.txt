@@ -1,0 +1,25 @@
+Aiplorer Slide Chart Review Pack | Version 1 | Comparison worksheet
+Keep completed copies and evidence in an approved location.
+
+RUN A
+Date, timezone, tool and visible settings:
+Exact input and first-output locations:
+V-01 denominator, corrected headline and limits:
+V-02 period labels, change unit and limits:
+V-03 observed points and treatment of the missing period:
+Separate correction notes and corrected-output location:
+
+RUN B
+Date, timezone, tool and visible settings:
+Exact input and first-output locations:
+What changed since A? What could not be held constant?
+V-01 denominator, corrected headline and limits:
+V-02 period labels, change unit and limits:
+V-03 observed points and treatment of the missing period:
+Separate correction notes and corrected-output location:
+
+NEXT CHECK
+Per case: meets these checks / needs correction / could not test.
+No comparable earlier output? Label this run a baseline.
+Which label, axis, source note or editing check still needs a real export?
+What relevant change or unresolved question would trigger another run?

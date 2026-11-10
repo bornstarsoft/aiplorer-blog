@@ -1,0 +1,20 @@
+Aiplorer Slide Chart Review Pack | Version 1 | Review key
+Keep separate from the test conversation. These are editorial expectations.
+
+V-01: 12 of 20 respondents reported completing onboarding (60%).
+Use respondent counts and label the base as 20. The 50 invitees are context,
+not the denominator of the 60% statistic. Do not assign a completion status
+to the 30 people who did not respond or generalize to all invitees.
+
+V-02: Completion rose from 40% in A to 50% in B, up 10 percentage points.
+Label the periods and the completion share; the base is 100 in each period.
+A 25% relative increase is correct if labeled, but not a substitute for the
+requested percentage-point statement. Do not infer a causal effect.
+
+V-03: Requests recorded: 24 in October and 30 in November.
+Show the two observed counts, labeled by month. Omit December from the
+observed series, or note that it was not measured. Do not plot 36 or zero
+as a December observation.
+
+Accept equivalent wording only when the displayed numbers, labels and
+limitations agree. A good text review is not an export or rendering test.
