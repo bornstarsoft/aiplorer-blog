@@ -115,3 +115,7 @@ sharing, and availability.
 Test the action-item format on a low-risk meeting with clear permission. Ask
 owners to confirm every commitment, then review whether the resulting record
 is shorter, clearer, and safer to share than the raw AI output.
+
+Start with the [meeting actions practice pack](/use-cases/check-ai-meeting-actions-against-decisions/)
+to check a conditional proposal, a cancellation, and a reviewer mistaken
+for an owner using fictional notes.

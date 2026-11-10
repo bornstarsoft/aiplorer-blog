@@ -1,0 +1,18 @@
+AI MEETING ACTION REVIEW - TWO-RUN WORKSHEET - VERSION 1
+
+Input version:
+Run A date, tool and visible settings:
+Run B date, tool and visible settings:
+What changed between runs?
+
+Keep both original outputs. For each case, note meets check, needs
+correction, or could not test, and cite the decisive source note.
+
+Case    Run A       Run B       Status, scope, owner or date to verify
+ACT-01  __________  __________  _____________________________________
+ACT-02  __________  __________  _____________________________________
+ACT-03  __________  __________  _____________________________________
+
+Did either output assign a proposal or reopen a canceled task?
+Did either output confuse the reviewer, owner, draft date or send date?
+Next boundary case to check:

@@ -1,0 +1,23 @@
+AI MEETING ACTION REVIEW - FICTIONAL INPUT - VERSION 1
+
+Correct the proposed action list using only the fictional notes. For
+each ID, report status (proposed, canceled, or confirmed), action scope,
+owner, due date, and any distinct reviewer. Preserve missing information.
+Quote the decisive note. Do not send anything or create tasks.
+
+ACT-01 - Conditional proposal
+Earlier note: "Mina can volunteer to export the sample if the owner approves."
+Final decision: "Approval is pending. Do not assign the export yet.
+No due date was set."
+Draft: "Mina will export the sample by Friday."
+
+ACT-02 - Canceled request
+Earlier note: "Ask Ren to prepare a separate reminder."
+Final decision: "The reminder was canceled. The existing update is enough;
+there is no replacement task."
+Draft: "Ren needs to send a reminder."
+
+ACT-03 - Owner versus reviewer
+Final decision: "Sol accepts ownership of the draft FAQ, due 2026-11-13.
+Ari will review it after the draft is ready. We did not agree to send it."
+Draft: "Sol and Ari will send the FAQ on 2026-11-13."

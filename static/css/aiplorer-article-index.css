@@ -197,7 +197,8 @@
   font-size: 0.9375rem;
 }
 
-.aiplorer-practice-resume a:not([hidden]) {
+.aiplorer-practice-resume a:not([hidden]),
+.aiplorer-practice-chooser a:not([hidden]) {
   display: inline-block;
   min-height: 44px;
   padding: 0.625rem 0;
@@ -205,6 +206,27 @@
   font-weight: 650;
   text-decoration: underline;
   overflow-wrap: anywhere;
+}
+
+.aiplorer-practice-chooser:not([hidden]) {
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--aiplorer-line, #d9e2e7);
+}
+
+.aiplorer-practice-chooser .aiplorer-practice-filter {
+  margin-bottom: 0;
+}
+
+.aiplorer-practice-chooser p:not([hidden]) {
+  margin: 0.5rem 0 0;
+  color: var(--aiplorer-muted, #52616d);
+  font-size: 0.9375rem;
+}
+
+.aiplorer-practice-chooser option[hidden],
+.aiplorer-practice-chooser optgroup[hidden] {
+  display: none;
 }
 
 .aiplorer-practice-next,

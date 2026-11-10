@@ -1,0 +1,17 @@
+AI MEETING ACTION REVIEW - REVIEW KEY - VERSION 1
+Keep this file out of the test conversation.
+
+ACT-01: Proposed, pending approval. Scope is a possible sample export.
+Mina volunteered conditionally and is not the confirmed owner. No due
+date or separate reviewer was set. The final note forbids assignment.
+
+ACT-02: Canceled, no open reminder and no replacement task. The earlier
+request was superseded. Do not report Ren as an owner of an open action
+or invent a due date.
+
+ACT-03: Confirmed scope is drafting the FAQ, not sending it. Sol owns
+the draft and its due date is 2026-11-13. Ari reviews the draft afterward;
+no reviewer deadline or send date was set.
+
+Equivalent wording is acceptable if these boundaries remain visible and
+each answer points to the decisive note.

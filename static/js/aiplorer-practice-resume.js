@@ -14,6 +14,13 @@
   const filter = shelf.querySelector("[data-practice-filter]");
   const filterEmpty = shelf.querySelector("[data-practice-empty]");
   const taskNav = shelf.querySelector("[data-practice-tasks]");
+  const chooser = shelf.querySelector("[data-practice-chooser]");
+  const choice = shelf.querySelector("[data-practice-choice]");
+  const choiceDetails = shelf.querySelector("[data-practice-choice-details]");
+  const choiceDescription = shelf.querySelector("[data-practice-choice-description]");
+  const choiceLink = shelf.querySelector("[data-practice-choice-link]");
+  const choiceEmpty = shelf.querySelector("[data-practice-choice-empty]");
+  const choiceGroups = choice ? [...choice.querySelectorAll("optgroup")] : [];
   if (!resume || !link || !title || !nextStep || !nextStatus) return;
 
   const key = "aiplorer-practice-resume-v1";
@@ -30,6 +37,7 @@
     packs.set(heading.id, {
       element: pack, heading, controls, button, status,
       task: taskLinks.get("#" + heading.id),
+      description: pack.querySelector("[data-practice-description]"),
       downloads: pack.querySelectorAll("[data-practice-download]"),
       mark: pack.querySelector("[data-practice-mark]"),
       practiced: pack.querySelector("[data-practice-practiced]"),
@@ -125,6 +133,38 @@
       pack.practiced.checked = ids?.has(id) ?? false;
     }
     renderFilter(ids);
+    renderChooser(ids);
+  }
+
+  function renderChooser(ids) {
+    if (!chooser || !choice || !choiceDetails || !choiceDescription || !choiceLink || !choiceEmpty) return;
+    chooser.hidden = !ids;
+    if (!ids) return;
+    let available = 0;
+    for (const group of choiceGroups) {
+      let groupAvailable = 0;
+      for (const option of group.querySelectorAll("option")) {
+        const show = packs.has(option.value) && !ids.has(option.value);
+        option.hidden = option.disabled = !show;
+        if (show) groupAvailable++;
+      }
+      group.hidden = group.disabled = groupAvailable === 0;
+      available += groupAvailable;
+    }
+    choice.disabled = available === 0;
+    choiceEmpty.hidden = available !== 0;
+    const pack = packs.get(choice.value);
+    if (pack && !ids.has(choice.value)) {
+      choiceDescription.textContent = pack.description?.textContent.trim() ?? "";
+      choiceLink.setAttribute("href", "#" + pack.heading.id);
+      choiceDetails.hidden = false;
+    } else {
+      choice.value = "";
+      if (document.activeElement === choiceLink && available) choice.focus();
+      choiceDescription.textContent = "";
+      choiceLink.removeAttribute("href");
+      choiceDetails.hidden = true;
+    }
   }
 
   function renderFilter(ids) {
@@ -161,6 +201,10 @@
   try { render(read()); }
   catch { return; }
   refreshPracticed();
+  if (choice && choiceLink) {
+    choice.addEventListener("change", refreshPracticed);
+    choiceLink.addEventListener("click", () => revealPack(choiceLink.getAttribute("href")));
+  }
   if (filterControls && filter && filterEmpty && taskNav) {
     filter.addEventListener("change", refreshPracticed);
     link.addEventListener("click", () => revealPack(link.getAttribute("href")));

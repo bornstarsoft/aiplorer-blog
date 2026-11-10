@@ -16,6 +16,31 @@
       <span role="status" data-practice-next-status></span>
     </div>
   </div>
+  <div class="aiplorer-practice-chooser" data-practice-chooser hidden>
+    <div class="aiplorer-practice-filter">
+      <label for="practice-choice">Choose next practice</label>
+      <select id="practice-choice" data-practice-choice>
+        <option value="">Choose a task</option>
+        {{ $packs := . }}
+        {{ range site.Data.practice_topics }}
+          {{ $topic := . }}
+          <optgroup label="{{ .label }}">
+            {{ range $packs }}
+              {{ $slug := path.Base .RelPermalink }}
+              {{ if in $topic.packs $slug }}
+                <option value="practice-{{ $slug }}">{{ .Params.practiceTask | default .Title }}</option>
+              {{ end }}
+            {{ end }}
+          </optgroup>
+        {{ end }}
+      </select>
+    </div>
+    <div data-practice-choice-details hidden>
+      <p data-practice-choice-description></p>
+      <a data-practice-choice-link>Go to practice pack</a>
+    </div>
+    <p role="status" data-practice-choice-empty hidden>All packs have been practiced.</p>
+  </div>
   <div class="aiplorer-practice-filter" data-practice-filter-controls hidden>
     <label for="practice-filter">Show practice packs</label>
     <select id="practice-filter" data-practice-filter>
@@ -35,7 +60,7 @@
       {{ $page := . }}
       <li data-practice-pack>
         <h3 id="practice-{{ path.Base .RelPermalink }}" tabindex="-1" data-practice-heading><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-        <p>{{ .Description }}</p>
+        <p data-practice-description>{{ .Description }}</p>
         {{ with .Params.practicePreview }}
           {{ $file := . }}
           {{ if not (where $page.Params.practiceDownloads "file" $file) }}

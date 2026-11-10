@@ -37,6 +37,7 @@ function pack(id, title) {
   });
   const children = {
     "[data-practice-heading]": heading,
+    "[data-practice-description]": node({ textContent: title + " description" }),
     "[data-practice-save-controls]": controls,
     "[data-practice-save]": button,
     "[data-practice-save-status]": status,
@@ -63,8 +64,15 @@ function setup(saved = null, mode = "", practicedSaved = null) {
   const stepDownload = node();
   const practicedCount = node();
   const filterControls = node(), filter = node({ value: "all" }), filterEmpty = node(), taskNav = node();
+  const chartOption = node({ value: chartId }), retryOption = node({ value: retryId });
+  const unsafeOption = node({ value: "javascript:bad" });
+  const chartGroup = node({ querySelectorAll: () => [chartOption] });
+  const retryGroup = node({ querySelectorAll: () => [retryOption, unsafeOption] });
+  const chooser = node(), choice = node({ value: "", querySelectorAll: () => [chartGroup, retryGroup] });
+  const choiceDetails = node(), choiceDescription = node(), choiceLink = node(), choiceEmpty = node();
   const document = { activeElement: null, querySelector: () => shelf };
   filter.focus = () => { document.activeElement = filter; };
+  choice.focus = () => { document.activeElement = choice; };
   window.location = { hash: "" };
   const children = {
     "[data-practice-resume]": resume,
@@ -78,6 +86,12 @@ function setup(saved = null, mode = "", practicedSaved = null) {
     "[data-practice-filter]": filter,
     "[data-practice-empty]": filterEmpty,
     "[data-practice-tasks]": taskNav,
+    "[data-practice-chooser]": chooser,
+    "[data-practice-choice]": choice,
+    "[data-practice-choice-details]": choiceDetails,
+    "[data-practice-choice-description]": choiceDescription,
+    "[data-practice-choice-link]": choiceLink,
+    "[data-practice-choice-empty]": choiceEmpty,
   };
   const shelf = { querySelector: s => children[s], querySelectorAll: s =>
     s === "[data-practice-task]" ? [chart.task, retry.task] : [chart, retry, unsafe] };
@@ -99,7 +113,8 @@ function setup(saved = null, mode = "", practicedSaved = null) {
   };
   vm.runInNewContext(source, { document, window, localStorage });
   return { chart, retry, unsafe, resume, link, title, nextStep, nextStatus, stepDownload, practicedCount, window, storage, writes,
-    filter, filterControls, filterEmpty, taskNav, document };
+    filter, filterControls, filterEmpty, taskNav, document, chooser, choice, choiceDetails, choiceDescription, choiceLink,
+    choiceEmpty, chartOption, retryOption, unsafeOption, chartGroup, retryGroup };
 }
 
 test("does not save on visit and leaves native controls usable", () => {
@@ -160,9 +175,61 @@ test("blocked reads leave the save controls hidden", () => {
   const p = setup(chartId, "read blocked");
   assert.equal(p.chart.controls.hidden, true);
   assert.equal(p.filterControls.hidden, true);
+  assert.equal(p.chooser.hidden, true);
   assert.equal(p.chart.hidden, false);
   assert.equal(p.chart.mark.hidden, true);
   assert.equal(p.resume.hidden, true);
+  assert.deepEqual(p.writes, []);
+});
+
+test("the picker exposes only known unpracticed tasks in nonempty groups", () => {
+  const p = setup(chartId, "", JSON.stringify([chartId]));
+  assert.equal(p.chooser.hidden, false);
+  assert.equal(p.chartOption.disabled, true);
+  assert.equal(p.chartOption.hidden, true);
+  assert.equal(p.chartGroup.hidden, true);
+  assert.equal(p.retryOption.disabled, false);
+  assert.equal(p.retryGroup.hidden, false);
+  assert.equal(p.unsafeOption.disabled, true);
+  assert.equal(p.choiceDetails.hidden, true);
+  assert.deepEqual(p.writes, []);
+});
+
+test("previewing and opening a candidate never replaces the saved pack or step", () => {
+  const saved = JSON.stringify({ id: chartId, step: "compare" });
+  const p = setup(saved, "", JSON.stringify([chartId]));
+  p.filter.value = "practiced";
+  p.filter.change();
+  p.choice.value = retryId;
+  p.choice.change();
+  assert.equal(p.choiceDetails.hidden, false);
+  assert.equal(p.choiceDescription.textContent, "Retry check description");
+  assert.equal(p.choiceLink.getAttribute("href"), "#" + retryId);
+  assert.equal(p.retry.hidden, true);
+  p.choiceLink.click();
+  assert.equal(p.filter.value, "all");
+  assert.equal(p.retry.hidden, false);
+  assert.equal(p.storage.get(key), saved);
+  assert.deepEqual(p.writes, []);
+});
+
+test("a newly practiced candidate clears the preview and all-complete disables the picker", () => {
+  const p = setup(null, "", JSON.stringify([chartId]));
+  p.choice.value = retryId;
+  p.choice.change();
+  p.storage.set(practicedKey, JSON.stringify([chartId, retryId]));
+  p.window.storage({ key: practicedKey });
+  assert.equal(p.choiceDetails.hidden, true);
+  assert.equal(p.choiceDescription.textContent, "");
+  assert.equal(p.choiceLink.getAttribute("href"), undefined);
+  assert.equal(p.choice.value, "");
+  assert.equal(p.choice.disabled, true);
+  assert.equal(p.choiceEmpty.hidden, false);
+  p.storage.set(practicedKey, JSON.stringify([retryId]));
+  p.window.storage({ key: practicedKey });
+  assert.equal(p.choice.disabled, false);
+  assert.equal(p.chartOption.disabled, false);
+  assert.equal(p.choiceEmpty.hidden, true);
   assert.deepEqual(p.writes, []);
 });
 

@@ -24,6 +24,7 @@ const tasks = [
   ["check-an-ai-schedule-across-time-zones", "Check time zones"],
   ["check-an-ai-redaction-before-sharing", "Check redactions"],
   ["check-an-ai-spreadsheet-formula-before-copying-it", "Check a formula"],
+  ["check-ai-meeting-actions-against-decisions", "Check meeting actions"],
 ];
 assert.equal((html.match(/data-practice-pack\b/g) || []).length, tasks.length);
 const jumps = [...html.matchAll(/<a\b[^>]*\bdata-practice-task\b[^>]*>[\s\S]*?<\/a>/g)].map(([link]) => link);
@@ -61,7 +62,25 @@ for (const preview of previews) {
   assert(status && attr(status, "role") === "status" && attr(status, "aria-live") === "polite");
 }
 assert(html.includes("/js/aiplorer-practice-copy.js?v=20261024a"));
-assert(html.includes("/js/aiplorer-practice-resume.js?v=20261110e"));
+assert(html.includes("/js/aiplorer-practice-resume.js?v=20261110f"));
+assert.match(html, /<div\b[^>]*data-practice-chooser\b[^>]*\bhidden(?:[\s=>])/);
+assert.match(html, /<label\b[^>]*for=["']?practice-choice\b[^>]*>Choose next practice<\/label>/);
+assert.match(html, /<div\b[^>]*data-practice-choice-details\b[^>]*\bhidden(?:[\s=>])/);
+const choice = html.match(/<select\b[^>]*data-practice-choice\b[^>]*>[\s\S]*?<\/select>/)?.[0];
+assert(choice);
+const topics = JSON.parse(read("data/practice_topics.json"));
+const groups = [...choice.matchAll(/(<optgroup\b[^>]*>)([\s\S]*?)<\/optgroup>/g)];
+assert.deepEqual(groups.map(([, tag]) => attr(tag, "label")), topics.map(topic => topic.label));
+const taskLabels = new Map(tasks.map(([slug, label]) => ["practice-" + slug, label]));
+const pickerIds = [];
+for (const [i, [, , body]] of groups.entries()) {
+  const options = [...body.matchAll(/(<option\b[^>]*>)([^<]+)/g)];
+  const ids = options.map(([, tag]) => attr(tag, "value"));
+  assert.deepEqual(ids.slice().sort(), topics[i].packs.map(slug => "practice-" + slug).sort());
+  for (const [, tag, label] of options) assert.equal(label.trim(), taskLabels.get(attr(tag, "value")));
+  pickerIds.push(...ids);
+}
+assert.deepEqual(pickerIds.sort(), [...taskLabels.keys()].sort(), "One picker option per published pack");
 assert.match(html, /<div\b[^>]*data-practice-filter-controls\b[^>]*\bhidden(?:[\s=>])/);
 assert.match(html, /<label\b[^>]*for=["']?practice-filter\b[^>]*>Show practice packs<\/label>/);
 const filter = html.match(/<select\b[^>]*data-practice-filter\b[^>]*>[\s\S]*?<\/select>/)?.[0];
@@ -97,6 +116,7 @@ const packs = [
   ["check-an-ai-schedule-across-time-zones", "schedule"],
   ["check-an-ai-redaction-before-sharing", "redaction"],
   ["check-an-ai-spreadsheet-formula-before-copying-it", "formula"],
+  ["check-ai-meeting-actions-against-decisions", "action"],
 ];
 const downloadOrder = new Map();
 for (const [pack] of html.matchAll(/<li\b[^>]*data-practice-pack\b[^>]*>[\s\S]*?<\/li>/g)) {
@@ -199,4 +219,16 @@ const formulaPreview = previews.find(tag => attr(tag, "data-practice-preview") =
 assert(formulaPreview.includes("FORM-03") && !formulaPreview.includes("ISBLANK"));
 assert(read("public/use-cases/test-ai-data-extraction-with-missing-values/index.html").includes(formulaRoute));
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${formulaRoute}</loc>`).length, 2);
+const actionRoute = "/use-cases/check-ai-meeting-actions-against-decisions/";
+const actionArticle = read(`public${actionRoute}index.html`);
+assert(!actionArticle.includes("aiplorer-practice-resume.js"));
+for (const role of ["inputs", "answer-key", "worksheet"]) {
+  const file = `action-check-${role}-v1.txt`;
+  assert(actionArticle.includes(actionRoute + file));
+  for (const id of ["ACT-01", "ACT-02", "ACT-03"]) assert(read(`public${actionRoute}${file}`).includes(id));
+}
+const actionPreview = previews.find(tag => attr(tag, "data-practice-preview") === actionRoute + "action-check-inputs-v1.txt");
+assert(actionPreview.includes("ACT-03") && !actionPreview.includes("Equivalent wording"));
+assert(read("public/use-cases/how-to-turn-ai-meeting-notes-into-action-items/index.html").includes(actionRoute));
+assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${actionRoute}</loc>`).length, 2);
 console.log(`PASS: ${tasks.length} input-only previews, ${downloadCount} exact step-ordered downloads, guide entry links, script scoped to use-cases hub.`);
