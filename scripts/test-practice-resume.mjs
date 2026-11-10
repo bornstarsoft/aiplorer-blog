@@ -86,6 +86,11 @@ function setup(saved = null, mode = "", practicedSaved = null, planned = null, i
   const choiceDetails = node(), choiceDescription = node(), choiceLink = node(), choiceEmpty = node();
   const reviewReset = node();
   const roundProgress = node();
+  const roundRecap = node();
+  const roundList = node({
+    items: [],
+    replaceChildren(...items) { this.items = items; },
+  });
   const choiceLabel = node();
   const newMode = node({ value: "new", checked: true });
   const reviewMode = node({ value: "review", checked: false });
@@ -95,7 +100,7 @@ function setup(saved = null, mode = "", practicedSaved = null, planned = null, i
   const afterReview = node({ contains: target => target === afterNew || target === afterRepeat });
   const plan = node(), planTitle = node(), planStart = node(), planDone = node();
   const planClear = node(), planSave = node(), planStatus = node();
-  const document = { activeElement: null, querySelector: () => shelf };
+  const document = { activeElement: null, querySelector: () => shelf, createElement: tagName => node({ tagName }) };
   filter.focus = () => { document.activeElement = filter; };
   choice.focus = () => { document.activeElement = choice; };
   choiceEmpty.focus = () => { document.activeElement = choiceEmpty; };
@@ -127,6 +132,8 @@ function setup(saved = null, mode = "", practicedSaved = null, planned = null, i
     "[data-practice-choice-empty]": choiceEmpty,
     "[data-practice-review-reset]": reviewReset,
     "[data-practice-round-progress]": roundProgress,
+    "[data-practice-round-recap]": roundRecap,
+    "[data-practice-round-list]": roundList,
     "[data-practice-plan]": plan,
     "[data-practice-plan-title]": planTitle,
     "[data-practice-plan-start]": planStart,
@@ -157,7 +164,7 @@ function setup(saved = null, mode = "", practicedSaved = null, planned = null, i
   vm.runInNewContext(source, { document, window, localStorage });
   return { chart, retry, unsafe, resume, link, title, nextStep, nextStatus, stepDownload, practicedCount, window, storage, writes,
     filter, filterControls, filterEmpty, taskNav, document, chooser, choice, choiceDetails, choiceDescription, choiceLink,
-    choiceEmpty, reviewReset, roundProgress, choiceLabel, choiceMode, newMode, reviewMode, chartOption, retryOption, unsafeOption, chartGroup, retryGroup,
+    choiceEmpty, reviewReset, roundProgress, roundRecap, roundList, choiceLabel, choiceMode, newMode, reviewMode, chartOption, retryOption, unsafeOption, chartGroup, retryGroup,
     plan, planTitle, planStart, planDone, planClear, planSave, planStatus,
     choiceControls, afterReview, afterNew, afterRepeat, third, thirdOption };
 }
@@ -199,7 +206,7 @@ test("starting a practiced pack again opens and focuses its input without changi
   assert.deepEqual(p.writes, []);
 });
 
-test("finishing a review moves to the next chooser without writing marks or saved state", () => {
+test("finishing the only review focuses the round notice without writing saved state", () => {
   const saved = JSON.stringify({ id: retryId, step: "review" });
   const marks = JSON.stringify([chartId]);
   const p = setup(saved, "write blocked", marks, retryId);
@@ -208,7 +215,8 @@ test("finishing a review moves to the next chooser without writing marks or save
   p.chart.restart.click();
   p.chart.finish.click();
   assert.equal(p.chart.finish.hidden, true);
-  assert.equal(p.document.activeElement, p.choice);
+  assert.equal(p.document.activeElement, p.choiceEmpty);
+  assert.equal(p.roundRecap.hidden, false);
   assert.equal(p.planStatus.textContent, "Review finished.");
   assert.equal(p.filter.value, "practiced");
   assert.equal(p.chart.practiced.checked, true);
@@ -275,6 +283,7 @@ test("a new review round restores completed candidates without changing saved pr
   const saved = JSON.stringify({ id: thirdId, step: "compare" });
   const p = setup(saved, "", marks, thirdId, true);
   assert.equal(p.roundProgress.hidden, true);
+  assert.equal(p.roundRecap.hidden, true);
   assert.equal(p.chart.reviewProgress.hidden, true);
   p.chart.restart.click();
   assert.equal(p.chart.reviewProgress.hidden, false);
@@ -282,6 +291,7 @@ test("a new review round restores completed candidates without changing saved pr
   assert.equal(p.retry.reviewProgress.hidden, true);
   p.chart.finish.click();
   assert.equal(p.chart.reviewProgress.hidden, true);
+  assert.equal(p.roundRecap.hidden, true);
   assert.equal(p.roundProgress.textContent, "Review round: 1 finished, 1 left.");
   p.afterRepeat.click();
   assert.equal(p.reviewReset.hidden, true);
@@ -299,11 +309,15 @@ test("a new review round restores completed candidates without changing saved pr
   assert.equal(p.thirdOption.disabled, false);
   assert.equal(p.choiceEmpty.hidden, false);
   assert.equal(p.choiceEmpty.textContent, "No more completed practices to review this round.");
-  assert.equal(p.document.activeElement, p.choice);
+  assert.equal(p.document.activeElement, p.choiceEmpty);
   assert.equal(p.reviewReset.hidden, false);
   assert.equal(p.roundProgress.textContent, "Review round: 2 finished, 0 left.");
+  assert.equal(p.roundRecap.hidden, false);
+  assert.deepEqual(p.roundList.items.map(item => [item.tagName, item.textContent]), [["li", "Chart check"], ["li", "Retry check"]]);
   p.reviewReset.click();
   assert.equal(p.reviewReset.hidden, true);
+  assert.equal(p.roundRecap.hidden, true);
+  assert.equal(p.roundList.items.length, 0);
   assert.equal(p.choiceEmpty.hidden, true);
   assert.equal(p.choiceLabel.textContent, "Choose a practice to review");
   assert.equal(p.document.activeElement, p.choice);
@@ -317,6 +331,22 @@ test("a new review round restores completed candidates without changing saved pr
   assert.equal(p.storage.get(practicedKey), marks);
   assert.equal(p.storage.get(key), saved);
   assert.equal(p.storage.get(planKey), thirdId);
+  assert.deepEqual(p.writes, []);
+});
+
+test("the recap lists only finished reviews once and in completion order", () => {
+  const p = setup(null, "", JSON.stringify([chartId, retryId]));
+  for (const pack of [p.retry, p.retry, p.chart]) {
+    pack.restart.click();
+    pack.finish.click();
+  }
+  assert.equal(p.roundRecap.hidden, false);
+  assert.deepEqual(p.roundList.items.map(item => item.textContent), ["Retry check", "Chart check"]);
+  p.reviewReset.click();
+  p.chart.restart.click();
+  p.chart.finish.click();
+  assert.equal(p.roundRecap.hidden, true);
+  assert.deepEqual(p.roundList.items, []);
   assert.deepEqual(p.writes, []);
 });
 
@@ -770,7 +800,7 @@ test("mixed progress allows explicit review and returns to new choices after fin
   assert.equal(p.newMode.checked, true);
   assert.equal(p.retryOption.disabled, false);
   assert.equal(p.chartOption.disabled, true);
-  assert.equal(p.document.activeElement, p.choice);
+  assert.equal(p.document.activeElement, p.choiceEmpty);
   assert.equal(p.storage.get(practicedKey), marks);
   assert.equal(p.storage.get(key), saved);
   assert.equal(p.storage.get(planKey), retryId);

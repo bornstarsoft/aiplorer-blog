@@ -1,0 +1,31 @@
+AI SUPPORT FAQ REVIEW - INPUTS - VERSION 1
+
+Fictional store: Paper Finch. All policy excerpts and cases are made up.
+Use the current policy for all cases. The archived excerpt is not in force.
+
+CURRENT POLICY V3
+P1. Unopened standard items: request a return within 14 calendar days of
+delivery.
+P2. Custom items are not eligible for ordinary returns. If a custom item
+arrives damaged, report it for review under P3.
+P3. For delivery damage, contact support within 7 calendar days of delivery
+with the order reference and a photo. Support reviews the report before
+deciding the next step. A refund or replacement is not guaranteed.
+
+ARCHIVED POLICY V2
+Unopened standard items: request a return within 30 days of delivery.
+
+FAQ-01
+Question: How long do I have to request a return for an unopened notebook?
+Draft: You can request a return within 30 days of delivery.
+
+FAQ-02
+Question: My custom notebook arrived damaged. Can you help?
+Draft: Custom items are final sale. There is nothing we can do.
+
+FAQ-03
+Question: A standard item arrived damaged. What should I do?
+Draft: Send us a photo and you will get an immediate refund.
+
+For each ID, identify the unsupported wording, cite the current policy
+section, and write a corrected answer. Do not invent remedies or exceptions.

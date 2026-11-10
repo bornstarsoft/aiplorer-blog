@@ -28,6 +28,8 @@
   const choiceLink = shelf.querySelector("[data-practice-choice-link]");
   const choiceEmpty = shelf.querySelector("[data-practice-choice-empty]");
   const roundProgress = shelf.querySelector("[data-practice-round-progress]");
+  const roundRecap = shelf.querySelector("[data-practice-round-recap]");
+  const roundList = shelf.querySelector("[data-practice-round-list]");
   const reviewReset = shelf.querySelector("[data-practice-review-reset]");
   const choiceGroups = choice ? [...choice.querySelectorAll("optgroup")] : [];
   const plan = shelf.querySelector("[data-practice-plan]");
@@ -240,7 +242,8 @@
       preferReview = false;
       choosingAfterReview = review;
       refreshPracticed();
-      const next = afterReview && !afterReview.hidden ? afterNew : (choice.disabled ? choiceEmpty : choice);
+      const roundEnded = review && roundRecap && !roundRecap.hidden;
+      const next = afterReview && !afterReview.hidden ? afterNew : (roundEnded || choice.disabled ? choiceEmpty : choice);
       next.focus();
       planStatus.textContent = review ? "Review finished." : "Marked as practiced.";
     } catch {
@@ -310,6 +313,7 @@
     if (choiceEmpty.textContent !== notice) choiceEmpty.textContent = notice;
     choiceEmpty.hidden = !allPracticed && !exhausted;
     if (reviewReset) reviewReset.hidden = !exhausted;
+    renderRoundRecap(exhausted);
     const pack = packs.get(choice.value);
     if (!decide && eligible(choice.value)) {
       choiceDescription.textContent = pack.description?.textContent.trim() ?? "";
@@ -323,6 +327,19 @@
       choiceDetails.hidden = true;
     }
     if (restoreFocus) (available ? choice : choiceEmpty).focus();
+  }
+
+  function renderRoundRecap(exhausted) {
+    if (!roundRecap || !roundList) return;
+    const show = exhausted && reviewedThisRound.size > 0;
+    if (roundRecap.hidden === !show) return;
+    const entries = show ? [...reviewedThisRound].map(id => {
+      const item = document.createElement("li");
+      item.textContent = packs.get(id).heading.textContent.trim();
+      return item;
+    }) : [];
+    roundList.replaceChildren(...entries);
+    roundRecap.hidden = !show;
   }
 
   function renderFilter(ids) {

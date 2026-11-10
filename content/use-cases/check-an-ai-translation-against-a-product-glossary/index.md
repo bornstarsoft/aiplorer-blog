@@ -47,3 +47,6 @@ An alternative sentence is fine if it preserves the instruction, uses the exact 
 Reuse the same glossary and source lines. Compare each answer against the review key and record which errors it missed or introduced. For real releases, confirm labels against the shipped interface and send safety-critical instructions to a qualified reviewer before publishing.
 
 Return to the [product translation practice pack](/use-cases/#practice-check-an-ai-translation-against-a-product-glossary) or [choose your next check](/use-cases/retest-a-saved-ai-tool-after-an-update/#choose-your-next-check).
+
+For another check on what customer-facing wording promises, try the
+[support FAQ practice](/use-cases/check-an-ai-faq-against-a-support-policy/).

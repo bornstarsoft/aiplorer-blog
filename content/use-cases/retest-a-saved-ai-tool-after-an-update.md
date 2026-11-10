@@ -54,6 +54,7 @@ provides a buggy function and local regression tests.
 | Review a CSV merge | [CSV merge pack](/use-cases/check-an-ai-csv-merge-against-original-records/) | Preserve exact keys, flag conflicting duplicates, and retain unmatched rows |
 | Review a file rename plan | [Rename plan pack](/use-cases/check-an-ai-file-rename-plan-before-applying-it/) | Check destination collisions, format labels, and approved paths |
 | Review a product translation | [Product glossary pack](/use-cases/check-an-ai-translation-against-a-product-glossary/) | Match button labels, prohibitions, and measurements to the source |
+| Review a customer support FAQ | [Support policy pack](/use-cases/check-an-ai-faq-against-a-support-policy/) | Check policy versions, exceptions, and promises |
 
 The [practice downloads](/use-cases/#practice-downloads) collect the
 packs in one place. These checks do not cover every workflow. If your
