@@ -6,6 +6,7 @@ import vm from "node:vm";
 const source = readFileSync(new URL("../static/js/aiplorer-practice-resume.js", import.meta.url), "utf8");
 const key = "aiplorer-practice-resume-v1";
 const practicedKey = "aiplorer-practiced-packs-v1";
+const planKey = "aiplorer-practice-next-pack-v1";
 const chartId = "practice-chart";
 const retryId = "practice-retry";
 
@@ -29,6 +30,7 @@ function pack(id, title) {
   const status = node();
   const mark = node();
   const practiced = node({ checked: false });
+  const preview = node({ open: false });
   const downloads = ["inputs-v1.txt", "answer-key-v1.txt", "worksheet-v1.txt"].map((file, index) => {
     const download = node({ textContent: ["Test input", "Review key", "Comparison worksheet"][index] });
     download.setAttribute("href", "/use-cases/" + id.slice("practice-".length) + "/" + file);
@@ -43,18 +45,20 @@ function pack(id, title) {
     "[data-practice-save-status]": status,
     "[data-practice-mark]": mark,
     "[data-practice-practiced]": practiced,
+    "[data-practice-preview]": preview,
   };
   return {
-    controls, button, status, downloads, mark, practiced, task, heading, hidden: false,
+    controls, button, status, downloads, mark, practiced, task, heading, preview, hidden: false,
     contains: element => Object.values(children).includes(element),
     querySelector: selector => children[selector], querySelectorAll: () => downloads,
   };
 }
 
-function setup(saved = null, mode = "", practicedSaved = null) {
+function setup(saved = null, mode = "", practicedSaved = null, planned = null) {
   const storage = new Map([["unrelated", "preserve"]]);
   if (saved !== null) storage.set(key, saved);
   if (practicedSaved !== null) storage.set(practicedKey, practicedSaved);
+  if (planned !== null) storage.set(planKey, planned);
   const writes = [];
   const chart = pack(chartId, "Chart check");
   const retry = pack(retryId, "Retry check");
@@ -70,6 +74,8 @@ function setup(saved = null, mode = "", practicedSaved = null) {
   const retryGroup = node({ querySelectorAll: () => [retryOption, unsafeOption] });
   const chooser = node(), choice = node({ value: "", querySelectorAll: () => [chartGroup, retryGroup] });
   const choiceDetails = node(), choiceDescription = node(), choiceLink = node(), choiceEmpty = node();
+  const plan = node(), planTitle = node(), planStart = node(), planDone = node();
+  const planClear = node(), planSave = node(), planStatus = node();
   const document = { activeElement: null, querySelector: () => shelf };
   filter.focus = () => { document.activeElement = filter; };
   choice.focus = () => { document.activeElement = choice; };
@@ -92,6 +98,13 @@ function setup(saved = null, mode = "", practicedSaved = null) {
     "[data-practice-choice-description]": choiceDescription,
     "[data-practice-choice-link]": choiceLink,
     "[data-practice-choice-empty]": choiceEmpty,
+    "[data-practice-plan]": plan,
+    "[data-practice-plan-title]": planTitle,
+    "[data-practice-plan-start]": planStart,
+    "[data-practice-plan-done]": planDone,
+    "[data-practice-plan-clear]": planClear,
+    "[data-practice-plan-save]": planSave,
+    "[data-practice-plan-status]": planStatus,
   };
   const shelf = { querySelector: s => children[s], querySelectorAll: s =>
     s === "[data-practice-task]" ? [chart.task, retry.task] : [chart, retry, unsafe] };
@@ -114,7 +127,8 @@ function setup(saved = null, mode = "", practicedSaved = null) {
   vm.runInNewContext(source, { document, window, localStorage });
   return { chart, retry, unsafe, resume, link, title, nextStep, nextStatus, stepDownload, practicedCount, window, storage, writes,
     filter, filterControls, filterEmpty, taskNav, document, chooser, choice, choiceDetails, choiceDescription, choiceLink,
-    choiceEmpty, chartOption, retryOption, unsafeOption, chartGroup, retryGroup };
+    choiceEmpty, chartOption, retryOption, unsafeOption, chartGroup, retryGroup,
+    plan, planTitle, planStart, planDone, planClear, planSave, planStatus };
 }
 
 test("does not save on visit and leaves native controls usable", () => {
@@ -124,8 +138,99 @@ test("does not save on visit and leaves native controls usable", () => {
   assert.equal(p.unsafe.controls.hidden, true);
   assert.equal(p.chart.mark.hidden, false);
   assert.equal(p.practicedCount.hidden, true);
+  assert.equal(p.plan.hidden, true);
+  assert.equal(p.planSave.hidden, true);
   assert.deepEqual(p.writes, []);
 });
+
+test("only the save command plans a pack and replacing or clearing it preserves resume", () => {
+  const saved = JSON.stringify({ id: chartId, step: "review" });
+  const p = setup(saved);
+  p.choice.value = retryId;
+  p.choice.change();
+  assert.equal(p.planSave.hidden, false);
+  assert.deepEqual(p.writes, []);
+  p.planSave.click();
+  assert.equal(p.planTitle.textContent, "Retry check");
+  assert.equal(p.planStart.getAttribute("href"), "#" + retryId);
+  assert.equal(p.planStatus.textContent, "Saved for next visit.");
+  p.choice.value = chartId;
+  p.choice.change();
+  p.planSave.click();
+  assert.equal(p.planTitle.textContent, "Chart check");
+  p.planClear.click();
+  assert.equal(p.plan.hidden, true);
+  assert.equal(p.document.activeElement, p.choice);
+  assert.equal(p.storage.get(key), saved);
+  assert.equal(p.nextStep.value, "review");
+  assert.deepEqual(p.writes, [[planKey, retryId], [planKey, chartId], [planKey, null]]);
+});
+
+test("restores a known saved next pack and opens the input without changing progress", () => {
+  const p = setup(chartId, "", JSON.stringify([chartId]), retryId);
+  assert.equal(p.plan.hidden, false);
+  assert.equal(p.planTitle.textContent, "Retry check");
+  p.filter.value = "practiced";
+  p.filter.change();
+  assert.equal(p.retry.hidden, true);
+  p.planStart.click();
+  assert.equal(p.retry.hidden, false);
+  assert.equal(p.retry.preview.open, true);
+  assert.equal(p.chart.preview.open, false);
+  assert.equal(p.link.getAttribute("href"), "#" + chartId);
+  assert.deepEqual(p.writes, []);
+});
+
+test("removed or unknown pack IDs cannot start a practice", () => {
+  for (const id of ["practice-missing", "javascript:bad", "https://example.invalid/"]) {
+    const p = setup(chartId, "", null, id);
+    assert.equal(p.plan.hidden, true);
+    assert.equal(p.planStart.getAttribute("href"), undefined);
+    assert.deepEqual(p.writes, []);
+  }
+});
+
+test("practiced packs cannot be newly planned; a completed plan remains clearable", () => {
+  const p = setup(chartId, "", JSON.stringify([retryId]), retryId);
+  assert.equal(p.planStart.hidden, true);
+  assert.equal(p.planDone.hidden, false);
+  assert.equal(p.plan.hidden, false);
+  p.planClear.click();
+  assert.equal(p.plan.hidden, true);
+  p.choice.value = chartId;
+  p.choice.change();
+  p.storage.set(practicedKey, JSON.stringify([chartId, retryId]));
+  p.planSave.click();
+  assert.equal(p.plan.hidden, true);
+  assert.equal(p.storage.has(planKey), false);
+  assert.deepEqual(p.writes, [[planKey, null]]);
+});
+
+test("an out-of-date clear cannot remove a replacement from another tab", () => {
+  const p = setup(null, "", null, chartId);
+  p.storage.set(planKey, retryId);
+  p.planClear.click();
+  assert.equal(p.planTitle.textContent, "Retry check");
+  assert.equal(p.storage.get(planKey), retryId);
+  assert.deepEqual(p.writes, []);
+  p.storage.delete(planKey);
+  p.window.storage({ key: planKey });
+  assert.equal(p.plan.hidden, true);
+});
+
+for (const mode of ["write blocked", "write ignored", "remove blocked"]) {
+  test(`a ${mode} next pack change keeps the previous state`, () => {
+    const p = setup(chartId, mode, null, chartId);
+    p.choice.value = retryId;
+    p.choice.change();
+    if (mode === "remove blocked") p.planClear.click();
+    else p.planSave.click();
+    assert.equal(p.planStatus.textContent, "Could not save the next practice.");
+    assert.equal(p.planTitle.textContent, "Chart check");
+    assert.equal(p.storage.get(planKey), chartId);
+    assert.equal(p.storage.get(key), chartId);
+  });
+}
 
 test("restores only a valid current pack", () => {
   const p = setup(chartId);

@@ -1,0 +1,18 @@
+AI VIDEO SHOT LIST REVIEW - TWO-RUN WORKSHEET - VERSION 1
+
+Input version:
+Run A date, tool and visible settings:
+Run B date, tool and visible settings:
+What changed between runs?
+
+For each ID, record meets check, needs correction, or could not test.
+Preserve both original answers and note the relevant line of the brief.
+
+Case     Run A       Run B       Control, edit or asset to correct
+SHOT-01  __________  __________  _________________________________
+SHOT-02  __________  __________  _________________________________
+SHOT-03  __________  __________  _________________________________
+
+Which corrected choice still needs inspection in the actual export?
+What evidence or permission is still missing?
+Next boundary case to check:

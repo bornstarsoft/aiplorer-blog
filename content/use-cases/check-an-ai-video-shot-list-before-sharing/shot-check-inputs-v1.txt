@@ -1,0 +1,22 @@
+AI VIDEO SHOT LIST REVIEW - FICTIONAL INPUT - VERSION 1
+
+Review a public demo plan for the fictional Sample Board. For each ID,
+state what to keep, what to remove or change, and why. Use only this brief.
+Do not create media, look up assets or infer permission.
+
+SHOT-01 - Screen controls
+Brief: The approved capture shows a list and a Status filter. No export
+control or export claim has been approved.
+Draft: Keep the list, add an Export button beside the Status filter,
+and overlay "Export anything."
+
+SHOT-02 - Implied speed
+Brief: The approved sequence shows the Processing and Ready states.
+No speed has been measured. A time jump must be labeled "Sequence shortened."
+Draft: Cut directly from Processing to Ready with no edit label and
+overlay "Instant results."
+
+SHOT-03 - Release audio
+Brief: The approved title card reads "Sample Board." Track TMP-03 is a
+placeholder approved for private review only. The public version may be silent.
+Draft: Keep the title card and use TMP-03 in the public export.

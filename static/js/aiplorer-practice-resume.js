@@ -21,10 +21,19 @@
   const choiceLink = shelf.querySelector("[data-practice-choice-link]");
   const choiceEmpty = shelf.querySelector("[data-practice-choice-empty]");
   const choiceGroups = choice ? [...choice.querySelectorAll("optgroup")] : [];
+  const plan = shelf.querySelector("[data-practice-plan]");
+  const planTitle = shelf.querySelector("[data-practice-plan-title]");
+  const planStart = shelf.querySelector("[data-practice-plan-start]");
+  const planDone = shelf.querySelector("[data-practice-plan-done]");
+  const planClear = shelf.querySelector("[data-practice-plan-clear]");
+  const planSave = shelf.querySelector("[data-practice-plan-save]");
+  const planStatus = shelf.querySelector("[data-practice-plan-status]");
+  const planReady = choice && plan && planTitle && planStart && planDone && planClear && planSave && planStatus;
   if (!resume || !link || !title || !nextStep || !nextStatus) return;
 
   const key = "aiplorer-practice-resume-v1";
   const practicedKey = "aiplorer-practiced-packs-v1";
+  const planKey = "aiplorer-practice-next-pack-v1";
   const taskLinks = new Map([...shelf.querySelectorAll("[data-practice-task]")]
     .map(link => [link.getAttribute("href"), link]));
   const packs = new Map();
@@ -49,6 +58,7 @@
   const steps = new Set(["", ...downloadIndex.keys()]);
   const empty = { id: null, step: "" };
   let shownId = null;
+  let plannedId = null;
 
   function read() {
     const value = localStorage.getItem(key);
@@ -134,6 +144,45 @@
     }
     renderFilter(ids);
     renderChooser(ids);
+    renderPlan(ids);
+  }
+
+  function renderPlan(ids) {
+    if (!planReady) return;
+    planStatus.textContent = "";
+    let saved;
+    try { if (ids) saved = localStorage.getItem(planKey); } catch { /* Storage is unavailable. */ }
+    const pack = packs.get(saved);
+    const practiced = Boolean(pack && ids?.has(saved));
+    plannedId = pack ? saved : null;
+    plan.hidden = !pack;
+    planTitle.textContent = pack?.heading.textContent.trim() ?? "";
+    planStart.hidden = !pack || practiced;
+    planDone.hidden = !practiced;
+    if (pack && !practiced) planStart.setAttribute("href", "#" + saved);
+    else planStart.removeAttribute("href");
+    planSave.hidden = saved === undefined || !packs.has(choice.value) || ids.has(choice.value);
+  }
+
+  function updatePlan(id) {
+    try {
+      const saved = localStorage.getItem(planKey);
+      // Do not clear a different pack saved in another tab.
+      if (id === null ? saved !== plannedId : !packs.has(id) || readPracticed().has(id)) {
+        refreshPracticed();
+        planStatus.textContent = "Next practice changed. Choose again.";
+        return;
+      }
+      if (id === null) localStorage.removeItem(planKey);
+      else if (saved !== id) localStorage.setItem(planKey, id);
+      if (localStorage.getItem(planKey) !== id) throw new Error("Next practice did not persist");
+      refreshPracticed();
+      if (id === null) (choice.disabled ? filter : choice)?.focus();
+      planStatus.textContent = id === null ? "Next practice cleared." : "Saved for next visit.";
+    } catch {
+      refreshPracticed();
+      planStatus.textContent = "Could not save the next practice.";
+    }
   }
 
   function renderChooser(ids) {
@@ -205,6 +254,15 @@
     choice.addEventListener("change", refreshPracticed);
     choiceLink.addEventListener("click", () => revealPack(choiceLink.getAttribute("href")));
   }
+  if (planReady) {
+    planSave.addEventListener("click", () => updatePlan(choice.value));
+    planClear.addEventListener("click", () => updatePlan(null));
+    planStart.addEventListener("click", () => {
+      revealPack(planStart.getAttribute("href"));
+      const preview = packs.get(plannedId)?.element.querySelector("[data-practice-preview]");
+      if (preview) preview.open = true;
+    });
+  }
   if (filterControls && filter && filterEmpty && taskNav) {
     filter.addEventListener("change", refreshPracticed);
     link.addEventListener("click", () => revealPack(link.getAttribute("href")));
@@ -270,6 +328,6 @@
   });
   window.addEventListener("storage", event => {
     if (event.key === key || event.key === null) refresh();
-    if (event.key === practicedKey || event.key === null) refreshPracticed();
+    if (event.key === practicedKey || event.key === planKey || event.key === null) refreshPracticed();
   });
 })();

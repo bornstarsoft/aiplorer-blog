@@ -42,6 +42,7 @@ provides a buggy function and local regression tests.
 | Review a redacted draft | [Redaction review pack](/use-cases/check-an-ai-redaction-before-sharing/) | Check repeated identifiers, identifying combinations and link targets |
 | Review a spreadsheet formula | [Formula review pack](/use-cases/check-an-ai-spreadsheet-formula-before-copying-it/) | Distinguish blank from zero, check equality, and keep the threshold reference fixed |
 | Review a meeting action list | [Meeting actions pack](/use-cases/check-ai-meeting-actions-against-decisions/) | Separate conditional proposals, cancellations, and confirmed owners |
+| Review a product video shot list | [Video shot list pack](/use-cases/check-an-ai-video-shot-list-before-sharing/) | Check visible controls, implied speed and release audio against the brief |
 
 The [practice downloads](/use-cases/#practice-downloads) collect the
 packs in one place. These checks do not cover every workflow. If your

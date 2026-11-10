@@ -90,6 +90,9 @@ for a future video test. You do not yet have a validated finished advertisement.
 Keep the original draft beside the correction so another reviewer can see
 which claims were removed and why.
 
+Try the [video shot list review pack](/use-cases/check-an-ai-video-shot-list-before-sharing/)
+to rehearse checks for invented controls, misleading edits and release audio.
+
 Explore the reviewed [Kling AI](/ai-tools/tools/kling-ai/) and
 [Seedance](/ai-tools/tools/seedance/) pages, then use the
 [Video Tools comparison](/ai-tools/compare/?category=Video%20Tools) to check

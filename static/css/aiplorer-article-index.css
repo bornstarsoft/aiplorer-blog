@@ -218,10 +218,39 @@
   margin-bottom: 0;
 }
 
-.aiplorer-practice-chooser p:not([hidden]) {
+.aiplorer-practice-chooser p:not([hidden]):not(:empty) {
   margin: 0.5rem 0 0;
   color: var(--aiplorer-muted, #52616d);
   font-size: 0.9375rem;
+}
+
+.aiplorer-practice-plan:not([hidden]) {
+  margin-bottom: 0.75rem;
+  padding-left: 0.75rem;
+  border-left: 2px solid var(--aiplorer-teal, #087c73);
+}
+
+.aiplorer-practice-plan-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 0.75rem;
+  font-size: 0.9375rem;
+}
+
+.aiplorer-practice-plan-actions button:not([hidden]) {
+  min-height: 44px;
+  width: auto;
+  max-width: 100%;
+}
+
+.aiplorer-practice-plan-actions button[hidden] {
+  display: none;
+}
+
+.aiplorer-practice-plan-actions button:focus-visible {
+  outline: 2px solid var(--aiplorer-teal, #087c73);
+  outline-offset: 3px;
 }
 
 .aiplorer-practice-chooser option[hidden],

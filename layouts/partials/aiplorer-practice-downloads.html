@@ -17,6 +17,14 @@
     </div>
   </div>
   <div class="aiplorer-practice-chooser" data-practice-chooser hidden>
+    <div class="aiplorer-practice-plan" data-practice-plan hidden>
+      <p>Next practice: <strong data-practice-plan-title></strong></p>
+      <div class="aiplorer-practice-plan-actions">
+        <a data-practice-plan-start>Start practice</a>
+        <span data-practice-plan-done hidden>Already practiced</span>
+        <button type="button" class="aiplorer-button aiplorer-button--light" aria-label="Clear saved next practice" data-practice-plan-clear>Clear</button>
+      </div>
+    </div>
     <div class="aiplorer-practice-filter">
       <label for="practice-choice">Choose next practice</label>
       <select id="practice-choice" data-practice-choice>
@@ -37,8 +45,12 @@
     </div>
     <div data-practice-choice-details hidden>
       <p data-practice-choice-description></p>
-      <a data-practice-choice-link>Go to practice pack</a>
+      <div class="aiplorer-practice-plan-actions">
+        <a data-practice-choice-link>Go to practice pack</a>
+        <button type="button" class="aiplorer-button aiplorer-button--light" data-practice-plan-save hidden>{{ partial "aiplorer-icon.html" "bookmark" }}Save for next visit</button>
+      </div>
     </div>
+    <p role="status" data-practice-plan-status></p>
     <p role="status" data-practice-choice-empty hidden>All packs have been practiced.</p>
   </div>
   <div class="aiplorer-practice-filter" data-practice-filter-controls hidden>
