@@ -1,0 +1,17 @@
+AI CSV MERGE REVIEW - REVIEW KEY - VERSION 1
+Keep this file out of the test conversation.
+
+MERGE-01
+Keep 007,Sample A,Mina and 7,Sample B,Sol. The leading zeros are
+part of the key. Do not normalize 007 to 7.
+
+MERGE-02
+Keep one K12,Sample C row with an empty owner and flag the Ari/Ren
+conflict separately. The source does not support choosing either owner.
+
+MERGE-03
+Keep L3,Sample D with an empty owner and L4,Sample E,Jo. Do not
+infer an owner for L3 or remove it from the base set.
+
+Equivalent formats are acceptable if they preserve the base keys,
+the specified blanks, and the unresolved conflict.

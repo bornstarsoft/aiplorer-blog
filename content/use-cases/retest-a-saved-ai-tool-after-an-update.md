@@ -51,6 +51,7 @@ provides a buggy function and local regression tests.
 | Review release notes | [Release notes pack](/use-cases/check-ai-release-notes-against-a-change-log/) | Check rollout scope, temporary workarounds, and planned versus shipped work |
 | Review a test plan | [Test plan pack](/use-cases/check-an-ai-test-plan-against-acceptance-criteria/) | Check defaults, persistence after reload, and the state left by Cancel |
 | Review an incident timeline | [Incident timeline pack](/use-cases/check-an-ai-incident-timeline-against-an-event-log/) | Distinguish first report, suspected cause, and verified recovery |
+| Review a CSV merge | [CSV merge pack](/use-cases/check-an-ai-csv-merge-against-original-records/) | Preserve exact keys, flag conflicting duplicates, and retain unmatched rows |
 
 The [practice downloads](/use-cases/#practice-downloads) collect the
 packs in one place. These checks do not cover every workflow. If your

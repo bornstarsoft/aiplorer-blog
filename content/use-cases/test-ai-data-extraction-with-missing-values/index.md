@@ -162,3 +162,5 @@ To check explicitly corrected facts against unresolved disagreement, try the
 If the extracted values feed a spreadsheet rule, try the
 [formula review practice pack](/use-cases/check-an-ai-spreadsheet-formula-before-copying-it/)
 to check blanks, zero, and references before filling a formula down.
+If you need to combine those rows with another export, try the
+[CSV merge practice pack](/use-cases/check-an-ai-csv-merge-against-original-records/).

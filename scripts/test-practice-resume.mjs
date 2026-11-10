@@ -264,6 +264,53 @@ test("a cross-tab unmark closes the decision when only a new option remains", ()
   assert.deepEqual(p.writes, []);
 });
 
+test("all reviews completed this visit stay excluded while new practices remain available", () => {
+  const marks = JSON.stringify([chartId, retryId]);
+  const saved = JSON.stringify({ id: thirdId, step: "compare" });
+  const p = setup(saved, "", marks, thirdId, true);
+  p.chart.restart.click();
+  p.chart.finish.click();
+  p.afterRepeat.click();
+  assert.equal(p.chartOption.disabled, true);
+  assert.equal(p.retryOption.disabled, false);
+  p.choice.value = retryId;
+  p.choice.change();
+  p.choiceLink.click();
+  p.retry.finish.click();
+  assert.equal(p.afterReview.hidden, true);
+  assert.equal(p.choiceMode.hidden, true);
+  assert.equal(p.choiceLabel.textContent, "Choose next practice");
+  assert.equal(p.thirdOption.disabled, false);
+  assert.equal(p.choiceEmpty.hidden, false);
+  assert.equal(p.choiceEmpty.textContent, "No more completed practices to review this visit.");
+  assert.equal(p.document.activeElement, p.choice);
+  assert.equal(p.storage.get(practicedKey), marks);
+  assert.equal(p.storage.get(key), saved);
+  assert.equal(p.storage.get(planKey), thirdId);
+  assert.deepEqual(p.writes, []);
+});
+
+test("the exhausted review list focuses the notice and resets on a fresh page", () => {
+  const marks = JSON.stringify([chartId, retryId]);
+  const p = setup(null, "", marks);
+  for (const pack of [p.chart, p.retry]) {
+    pack.restart.click();
+    pack.finish.click();
+  }
+  assert.equal(p.chartOption.disabled, true);
+  assert.equal(p.retryOption.disabled, true);
+  assert.equal(p.choice.disabled, true);
+  assert.equal(p.choiceControls.hidden, true);
+  assert.equal(p.choiceEmpty.hidden, false);
+  assert.equal(p.choiceEmpty.textContent, "No more completed practices to review this visit.");
+  assert.equal(p.document.activeElement, p.choiceEmpty);
+  assert.deepEqual(p.writes, []);
+  const fresh = setup(null, "", marks);
+  assert.equal(fresh.chartOption.disabled, false);
+  assert.equal(fresh.retryOption.disabled, false);
+  assert.equal(fresh.choiceLabel.textContent, "Choose a practice to review");
+});
+
 test("a review never restores a practiced mark removed in another tab", () => {
   const p = setup(null, "", JSON.stringify([chartId]));
   p.chart.restart.click();

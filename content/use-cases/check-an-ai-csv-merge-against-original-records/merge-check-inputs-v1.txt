@@ -1,0 +1,22 @@
+AI CSV MERGE REVIEW - FICTIONAL INPUT - VERSION 1
+
+Treat IDs as exact text. Keep one output row for each base row.
+If the owner table has no match, leave owner blank. If matching
+owners conflict, leave owner blank and flag the conflict.
+For each ID below, explain the error and propose the corrected rows.
+
+MERGE-01 - Exact keys
+Base (id,item): 007,Sample A / 7,Sample B
+Owners (id,owner): 007,Mina / 7,Sol
+Draft (id,item,owner): 7,Sample A,Sol / 7,Sample B,Sol
+
+MERGE-02 - Conflicting matches
+Base (id,item): K12,Sample C
+Owners (id,owner): K12,Ari / K12,Ren
+No ordering or priority is supplied.
+Draft (id,item,owner): K12,Sample C,Ren
+
+MERGE-03 - No match
+Base (id,item): L3,Sample D / L4,Sample E
+Owners (id,owner): L4,Jo
+Draft (id,item,owner): L4,Sample E,Jo

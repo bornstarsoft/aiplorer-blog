@@ -1,0 +1,17 @@
+AI CSV MERGE REVIEW - TWO-RUN WORKSHEET - VERSION 1
+
+Input version:
+Run A date, tool and visible settings:
+Run B date, tool and visible settings:
+What changed between runs?
+
+Keep both original answers. For each ID, record meets check,
+needs correction, or could not test, and note the source row.
+
+Case      Run A       Run B       Key, row or owner to verify
+MERGE-01  __________  __________  ________________________________
+MERGE-02  __________  __________  ________________________________
+MERGE-03  __________  __________  ________________________________
+
+Which values must remain text or blank?
+What would you check in the destination after a real import?

@@ -72,8 +72,8 @@
   let reviewingId = null;
   let reviewChoices = false;
   let preferReview = false;
-  let afterReviewId = null;
-  let excludedReviewId = null;
+  let choosingAfterReview = false;
+  const reviewedThisVisit = new Set();
 
   function read() {
     const value = localStorage.getItem(key);
@@ -214,13 +214,14 @@
         pack.status.textContent = "The saved next practice changed.";
         return;
       }
-      if (review) reviewingId = null;
-      else setPracticed(id, true);
+      if (review) {
+        reviewingId = null;
+        reviewedThisVisit.add(id);
+      } else setPracticed(id, true);
       pack.status.textContent = "";
       choice.value = "";
       preferReview = false;
-      afterReviewId = review ? id : null;
-      excludedReviewId = null;
+      choosingAfterReview = review;
       refreshPracticed();
       const next = afterReview && !afterReview.hidden ? afterNew : (choice.disabled ? choiceEmpty : choice);
       next.focus();
@@ -257,31 +258,28 @@
     chooser.hidden = !ids;
     if (!ids) return;
     const allPracticed = packs.size > 0 && ids.size === packs.size;
-    const mixed = ids.size > 0 && !allPracticed;
-    const hasOtherReviews = ids.size > (ids.has(afterReviewId) ? 1 : 0);
-    const decide = Boolean(afterReviewId && mixed && hasOtherReviews && afterReview && afterNew && afterRepeat && choiceControls);
+    const hasReviews = [...ids].some(id => !reviewedThisVisit.has(id));
+    const mixed = hasReviews && !allPracticed;
+    const decide = Boolean(choosingAfterReview && mixed && afterReview && afterNew && afterRepeat && choiceControls);
     const restoreFocus = !decide && afterReview?.contains(document.activeElement);
-    if (afterReviewId && !decide) {
-      if (allPracticed && hasOtherReviews) excludedReviewId = afterReviewId;
-      afterReviewId = null;
-    }
-    if (ids.size < 2) excludedReviewId = null;
+    if (!decide) choosingAfterReview = false;
     if (afterReview) afterReview.hidden = !decide;
-    if (choiceControls) choiceControls.hidden = decide;
-    if (ids.size === 0) preferReview = false;
-    const review = allPracticed || (preferReview && ids.size > 0);
+    if (!hasReviews) preferReview = false;
+    const review = allPracticed || preferReview;
     if (review !== reviewChoices) choice.value = "";
     reviewChoices = review;
     if (choiceMode) choiceMode.hidden = !mixed || decide;
     for (const option of modeOptions) option.checked = (option.value === "review") === reviewChoices;
     if (choiceLabel) choiceLabel.textContent = reviewChoices ? "Choose a practice to review" : "Choose next practice";
     choiceLink.textContent = reviewChoices ? "Start review" : "Start selected practice";
+    const eligible = id => packs.has(id) && (reviewChoices
+      ? ids.has(id) && !reviewedThisVisit.has(id)
+      : !ids.has(id));
     let available = 0;
     for (const group of choiceGroups) {
       let groupAvailable = 0;
       for (const option of group.querySelectorAll("option")) {
-        const show = packs.has(option.value) && ids.has(option.value) === reviewChoices &&
-          (!reviewChoices || option.value !== excludedReviewId);
+        const show = eligible(option.value);
         option.hidden = option.disabled = !show;
         if (show) groupAvailable++;
       }
@@ -289,10 +287,13 @@
       available += groupAvailable;
     }
     choice.disabled = available === 0;
-    choiceEmpty.hidden = !allPracticed;
+    if (choiceControls) choiceControls.hidden = decide || !available;
+    const exhausted = ids.size > 0 && !hasReviews;
+    const notice = exhausted ? "No more completed practices to review this visit." : "All packs have been practiced.";
+    if (choiceEmpty.textContent !== notice) choiceEmpty.textContent = notice;
+    choiceEmpty.hidden = !allPracticed && !exhausted;
     const pack = packs.get(choice.value);
-    if (!decide && pack && ids.has(choice.value) === reviewChoices &&
-        (!reviewChoices || choice.value !== excludedReviewId)) {
+    if (!decide && eligible(choice.value)) {
       choiceDescription.textContent = pack.description?.textContent.trim() ?? "";
       choiceLink.setAttribute("href", "#" + pack.heading.id);
       choiceDetails.hidden = false;
@@ -303,7 +304,7 @@
       choiceLink.removeAttribute("href");
       choiceDetails.hidden = true;
     }
-    if (restoreFocus && available) choice.focus();
+    if (restoreFocus) (available ? choice : choiceEmpty).focus();
   }
 
   function renderFilter(ids) {
@@ -350,8 +351,7 @@
   }
 
   function beginReview(id) {
-    afterReviewId = null;
-    excludedReviewId = null;
+    choosingAfterReview = false;
     reviewingId = id;
     if (startedId === id) startedId = null;
     refreshPracticed();
@@ -362,9 +362,8 @@
   refreshPracticed();
   for (const [button, review] of [[afterNew, false], [afterRepeat, true]]) {
     button?.addEventListener("click", () => {
-      if (!afterReviewId || afterReview.hidden) return;
-      excludedReviewId = review ? afterReviewId : null;
-      afterReviewId = null;
+      if (!choosingAfterReview || afterReview.hidden) return;
+      choosingAfterReview = false;
       preferReview = review;
       refreshPracticed();
       (choice.disabled ? choiceEmpty : choice).focus();
@@ -373,7 +372,6 @@
   for (const option of modeOptions) {
     option.addEventListener("change", () => {
       if (choiceMode.hidden || !option.checked) return;
-      excludedReviewId = null;
       preferReview = option.value === "review";
       refreshPracticed();
     });
