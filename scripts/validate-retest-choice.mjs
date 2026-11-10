@@ -23,6 +23,7 @@ const packs = [
   "check-an-automation-before-retrying",
   "check-an-ai-slide-chart-before-sharing",
   "check-ai-captions-against-a-reference",
+  "check-an-ai-schedule-across-time-zones",
 ];
 const choiceTable = [...guide.matchAll(/<table\b[^>]*>[\s\S]*?<\/table>/g)]
   .map(([table]) => table).find(table => packs.every(slug => table.includes(`/use-cases/${slug}/`)));

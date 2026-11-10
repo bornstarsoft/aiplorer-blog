@@ -170,7 +170,7 @@
   fill: currentColor;
 }
 
-.aiplorer-practice-resume a {
+.aiplorer-practice-resume a:not([hidden]) {
   display: inline-block;
   min-height: 44px;
   padding: 0.625rem 0;

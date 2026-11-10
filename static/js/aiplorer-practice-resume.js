@@ -8,6 +8,7 @@
   const title = shelf.querySelector("[data-practice-resume-title]");
   const nextStep = shelf.querySelector("[data-practice-next-step]");
   const nextStatus = shelf.querySelector("[data-practice-next-status]");
+  const stepDownload = shelf.querySelector("[data-practice-step-download]");
   if (!resume || !link || !title || !nextStep || !nextStatus) return;
 
   const key = "aiplorer-practice-resume-v1";
@@ -18,10 +19,12 @@
     const button = pack.querySelector("[data-practice-save]");
     const status = pack.querySelector("[data-practice-save-status]");
     if (!heading || !/^practice-[a-z0-9-]+$/.test(heading.id) || !controls || !button || !status) return;
-    packs.set(heading.id, { heading, controls, button, status });
+    packs.set(heading.id, { heading, controls, button, status, downloads: pack.querySelectorAll("[data-practice-download]") });
   });
 
-  const steps = new Set(["", "input", "review", "compare"]);
+  // The shelf lists the input, review material and worksheet in that order.
+  const downloadIndex = new Map([["input", 0], ["review", 1], ["compare", 2]]);
+  const steps = new Set(["", ...downloadIndex.keys()]);
   const empty = { id: null, step: "" };
   let shownId = null;
 
@@ -55,6 +58,25 @@
     title.textContent = selected ? selected.heading.textContent.trim() : "";
     nextStep.value = step;
     nextStatus.textContent = "";
+    if (stepDownload) {
+      const resource = selected?.downloads.length === downloadIndex.size
+        ? selected.downloads[downloadIndex.get(step)]
+        : null;
+      const href = resource?.getAttribute("href");
+      const folder = "/use-cases/" + id?.slice("practice-".length) + "/";
+      const file = href?.startsWith(folder) ? href.slice(folder.length) : "";
+      const valid = /^[a-z0-9][a-z0-9.-]*\.(txt|mjs)$/.test(file) && resource.getAttribute("download") === file;
+      stepDownload.hidden = !valid;
+      if (valid) {
+        stepDownload.setAttribute("href", href);
+        stepDownload.setAttribute("download", file);
+        stepDownload.textContent = "Download: " + resource.textContent.trim();
+      } else {
+        stepDownload.removeAttribute("href");
+        stepDownload.removeAttribute("download");
+        stepDownload.textContent = "";
+      }
+    }
     for (const [packId, pack] of packs) {
       pack.button.setAttribute("aria-pressed", String(id === packId));
       pack.status.textContent = "";

@@ -38,6 +38,7 @@ provides a buggy function and local regression tests.
 | Review an automation retry | [Automation retry pack](/use-cases/check-an-automation-before-retrying/) | Distinguish a duplicate, an unknown write, and a separate request |
 | Review a slide chart | [Slide chart review pack](/use-cases/check-an-ai-slide-chart-before-sharing/) | Check the denominator, the change unit, and observed versus unmeasured values |
 | Review captions | [Caption review pack](/use-cases/check-ai-captions-against-a-reference/) | Preserve negation and identifiers; leave an unverified speaker unknown |
+| Review a schedule across time zones | [Schedule review pack](/use-cases/check-an-ai-schedule-across-time-zones/) | Check date rollover, ambiguous times and elapsed duration |
 
 The [practice downloads](/use-cases/#practice-downloads) collect the
 packs in one place. These checks do not cover every workflow. If your

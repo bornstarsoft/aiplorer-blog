@@ -92,6 +92,10 @@ Use the [caption review practice pack](/use-cases/check-ai-captions-against-a-re
 to rehearse three text checks before working with a real recording. It uses
 fictional excerpts and a separate review key.
 
+For AI-drafted meeting times, try the
+[time-zone schedule practice pack](/use-cases/check-an-ai-schedule-across-time-zones/)
+before acting on a real invitation.
+
 AI-generated transcripts and summaries can miss speakers, context, conditions,
 negation, numbers, or decisions. They should not become the only record for
 legal, medical, financial, contractual, employee, customer, or

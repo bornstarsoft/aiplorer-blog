@@ -1,0 +1,18 @@
+AI SCHEDULE REVIEW - TWO-RUN WORKSHEET - VERSION 1
+Keep the exact fictional input and each original output separately.
+
+Input version:
+Run A date, tool and visible settings:
+Run B date, tool and visible settings:
+What changed between the two runs?
+
+Mark each check: meets check / needs correction / could not test.
+Case    Run A        Run B        Evidence or missing confirmation
+SCH-01  ___________  ___________  ________________________________
+SCH-02  ___________  ___________  ________________________________
+SCH-03  ___________  ___________  ________________________________
+
+Which instant, date, offset or duration needs a correction?
+What must the organizer confirm before an invite is sent?
+If the runs are not comparable, what baseline should be kept?
+Next boundary case to check:

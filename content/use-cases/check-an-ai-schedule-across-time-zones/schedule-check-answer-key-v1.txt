@@ -1,0 +1,22 @@
+AI SCHEDULE REVIEW - REVIEW KEY - VERSION 1
+Keep this file out of the test conversation.
+
+SCH-01
+2026-11-06 17:00 America/Los_Angeles (UTC-08:00)
+= 2026-11-07 01:00 UTC
+= 2026-11-07 10:00 Asia/Seoul (UTC+09:00), Saturday.
+Accept only if the conversion preserves the instant and updates the date.
+
+SCH-02
+First 01:30 at UTC-04:00 = 2026-11-01 05:30 UTC.
+Second 01:30 at UTC-05:00 = 2026-11-01 06:30 UTC.
+Accept only if both are candidates and neither is marked confirmed.
+Ask the organizer for the intended offset, occurrence or UTC time.
+
+SCH-03
+2026-11-01 00:30 at UTC-04:00 = 2026-11-01 04:30 UTC.
+2026-11-01 01:30 at UTC-05:00 = 2026-11-01 06:30 UTC.
+Accept only if the endpoints and elapsed duration of two hours agree.
+
+A passing response establishes only that it meets this sample's checks.
+It does not verify a real invitation, recurrence or calendar integration.

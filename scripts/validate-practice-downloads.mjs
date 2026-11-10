@@ -21,6 +21,7 @@ const tasks = [
   ["check-an-automation-before-retrying", "Check an automation retry"],
   ["check-an-ai-slide-chart-before-sharing", "Review a slide chart"],
   ["check-ai-captions-against-a-reference", "Check captions"],
+  ["check-an-ai-schedule-across-time-zones", "Check time zones"],
 ];
 assert.equal((html.match(/data-practice-pack\b/g) || []).length, tasks.length);
 const jumps = [...html.matchAll(/<a\b[^>]*\bdata-practice-task\b[^>]*>[\s\S]*?<\/a>/g)].map(([link]) => link);
@@ -58,9 +59,11 @@ for (const preview of previews) {
   assert(status && attr(status, "role") === "status" && attr(status, "aria-live") === "polite");
 }
 assert(html.includes("/js/aiplorer-practice-copy.js?v=20261024a"));
-assert(html.includes("/js/aiplorer-practice-resume.js?v=20261110b"));
+assert(html.includes("/js/aiplorer-practice-resume.js?v=20261110c"));
 assert.equal((html.match(/data-practice-shelf\b/g) || []).length, 1);
 assert.match(html, /<div\b[^>]*data-practice-resume\b[^>]*\bhidden(?:[\s=>])/);
+const action = html.match(/<a\b[^>]*data-practice-step-download\b[^>]*>/)?.[0];
+assert(action && /\bhidden(?:[\s=>])/.test(action) && attr(action, "href") === null);
 const nextStep = html.match(/<select\b[^>]*data-practice-next-step\b[^>]*>[\s\S]*?<\/select>/)?.[0];
 assert(nextStep);
 const options = [...nextStep.matchAll(/<option\b[^>]*>/g)]
@@ -82,13 +85,25 @@ const packs = [
   ["check-an-automation-before-retrying", "retry"],
   ["check-an-ai-slide-chart-before-sharing", "chart"],
   ["check-ai-captions-against-a-reference", "caption"],
+  ["check-an-ai-schedule-across-time-zones", "schedule"],
 ];
+const downloadOrder = new Map();
+for (const [pack] of html.matchAll(/<li\b[^>]*data-practice-pack\b[^>]*>[\s\S]*?<\/li>/g)) {
+  const heading = pack.match(/<h3\b[^>]*>/)?.[0];
+  assert(heading);
+  const id = attr(heading, "id");
+  assert(!downloadOrder.has(id));
+  downloadOrder.set(id, [...pack.matchAll(/<a\b[^>]*data-practice-download\b[^>]*>/g)]
+    .map(([tag]) => attr(tag, "href")));
+}
 const downloadCount = (packs.length + 1) * 3;
 assert.equal(tags.length, downloadCount);
 assert.equal(new Set(hrefs).size, downloadCount);
 for (const [slug, prefix] of packs) {
   const route = `/use-cases/${slug}/`;
-  for (const role of ["inputs", "answer-key", "worksheet"]) {
+  const roles = ["inputs", "answer-key", "worksheet"];
+  assert.deepEqual(downloadOrder.get("practice-" + slug), roles.map(role => route + `${prefix}-check-${role}-v1.txt`));
+  for (const role of roles) {
     const file = `${prefix}-check-${role}-v1.txt`;
     assert(tags.some(tag => attr(tag, "href") === route + file && attr(tag, "download") === file));
     assert.equal(read(`public${route}${file}`), read(`content${route}${file}`));
@@ -96,7 +111,9 @@ for (const [slug, prefix] of packs) {
   }
 }
 const codeRoute = "/use-cases/fix-a-zero-value-default-with-ai/";
-for (const file of ["reminder-days-v1.mjs", "reminder-days-v1.test.mjs", "code-check-worksheet-v1.txt"]) {
+const codeFiles = ["reminder-days-v1.mjs", "reminder-days-v1.test.mjs", "code-check-worksheet-v1.txt"];
+assert.deepEqual(downloadOrder.get("practice-fix-a-zero-value-default-with-ai"), codeFiles.map(file => codeRoute + file));
+for (const file of codeFiles) {
   assert(tags.some(tag => attr(tag, "href") === codeRoute + file && attr(tag, "download") === file));
   assert.equal(read(`public${codeRoute}${file}`), read(`content${codeRoute}${file}`));
   assert(!read("public/sitemap.xml").includes(codeRoute + file));
@@ -128,4 +145,15 @@ assert(!caption.includes("aiplorer-practice-resume.js"));
 for (const role of ["inputs", "answer-key", "worksheet"])
   assert(caption.includes(captionRoute + `caption-check-${role}-v1.txt`));
 assert(read("public/guides/how-to-use-ai-meeting-tools-responsibly/index.html").includes(captionRoute));
-console.log(`PASS: ${tasks.length} input-only previews, ${downloadCount} exact native downloads, retry entry links, script scoped to use-cases hub.`);
+const scheduleRoute = "/use-cases/check-an-ai-schedule-across-time-zones/";
+const schedule = read(`public${scheduleRoute}index.html`);
+assert(!schedule.includes("aiplorer-practice-resume.js"));
+for (const role of ["inputs", "answer-key", "worksheet"]) {
+  const file = `schedule-check-${role}-v1.txt`;
+  assert(schedule.includes(scheduleRoute + file));
+  const contents = read(`public${scheduleRoute}${file}`);
+  for (const id of ["SCH-01", "SCH-02", "SCH-03"]) assert(contents.includes(id));
+}
+assert(read("public/guides/how-to-use-ai-meeting-tools-responsibly/index.html").includes(scheduleRoute));
+assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${scheduleRoute}</loc>`).length, 2);
+console.log(`PASS: ${tasks.length} input-only previews, ${downloadCount} exact step-ordered downloads, guide entry links, script scoped to use-cases hub.`);
