@@ -65,6 +65,7 @@
       restart: pack.querySelector("[data-practice-restart]"),
       reviewProgress: pack.querySelector("[data-practice-active-review-progress]"),
       recapReturn: pack.querySelector("[data-practice-recap-return]"),
+      recapPrevious: pack.querySelector("[data-practice-recap-previous]"),
       recapNext: pack.querySelector("[data-practice-recap-next]"),
     });
   });
@@ -82,6 +83,10 @@
   let choosingAfterReview = false;
   let recapPreview = null;
   const recapEntries = new Map();
+  const recapDirections = [
+    ["recapPrevious", "previousId", "Preview previous input"],
+    ["recapNext", "nextId", "Preview next input"],
+  ];
   const reviewedThisRound = new Set();
 
   function read() {
@@ -351,7 +356,7 @@
       previewLink.setAttribute("href", hash);
       previewLink.setAttribute("aria-label", `Preview test input: ${title}`);
       previewLink.textContent = title;
-      recapEntries.set(id, { id, link: previewLink, nextId: ids[index + 1] });
+      recapEntries.set(id, { id, link: previewLink, previousId: ids[index - 1], nextId: ids[index + 1] });
       previewLink.addEventListener("click", event => {
         if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
         if (openRecapInput(id)) event.preventDefault();
@@ -398,7 +403,9 @@
     if (!recapPreview) return;
     const { pack } = recapPreview;
     pack.recapReturn.hidden = true;
-    if (pack.recapNext) pack.recapNext.hidden = true;
+    for (const [control] of recapDirections) {
+      if (pack[control]) pack[control].hidden = true;
+    }
     recapPreview = null;
   }
 
@@ -419,10 +426,12 @@
       if (entry && pack.recapReturn && !chooser.hidden && recapEntries.get(entry.id) === entry) {
         recapPreview = { pack, entry };
         pack.recapReturn.hidden = false;
-        const next = recapEntries.get(entry.nextId);
-        if (pack.recapNext && next) {
-          pack.recapNext.setAttribute("aria-label", `Preview next input: ${next.link.textContent}`);
-          pack.recapNext.hidden = false;
+        for (const [control, neighborId, label] of recapDirections) {
+          const button = pack[control];
+          const neighbor = recapEntries.get(entry[neighborId]);
+          if (!button || !neighbor) continue;
+          button.setAttribute("aria-label", `${label}: ${neighbor.link.textContent}`);
+          button.hidden = false;
         }
       }
       if (focusPreview) preview.querySelector("summary")?.focus();
@@ -503,10 +512,13 @@
       clearRecapPreview();
       link.focus();
     });
-    pack.recapNext?.addEventListener("click", () => {
-      if (recapPreview?.pack !== pack || pack.recapNext.hidden) return;
-      openRecapInput(recapPreview.entry.nextId);
-    });
+    for (const [control, neighborId] of recapDirections) {
+      const button = pack[control];
+      button?.addEventListener("click", () => {
+        if (recapPreview?.pack !== pack || button.hidden) return;
+        openRecapInput(recapPreview.entry[neighborId]);
+      });
+    }
     pack.restart?.addEventListener("click", () => {
       if (pack.restart.hidden || !openPracticeInput("#" + id, true)) return;
       beginReview(id);

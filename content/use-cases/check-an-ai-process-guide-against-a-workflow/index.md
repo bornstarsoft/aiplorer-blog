@@ -47,3 +47,7 @@ Walk through the normal path and the exception separately. Check who acts and wh
 Reuse the same workflow and draft. Note whether each run preserves the approval, exception, and handoff. For a real procedure, confirm each decision with its owner before adopting the rewrite.
 
 Return to the [process guide practice pack](/use-cases/#practice-check-an-ai-process-guide-against-a-workflow) or [choose your next check](/use-cases/retest-a-saved-ai-tool-after-an-update/#choose-your-next-check).
+
+For another handoff check, try the
+[reusable prompt practice](/use-cases/check-an-ai-prompt-template-before-reusing-it/)
+to test which details the AI keeps, leaves unknown, or should omit.

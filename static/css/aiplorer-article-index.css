@@ -252,7 +252,8 @@
   font-size: 0.9375rem;
 }
 
-[data-practice-after-review] .aiplorer-practice-plan-actions {
+[data-practice-after-review] .aiplorer-practice-plan-actions,
+[data-practice-recap-actions] {
   row-gap: 0.5rem;
 }
 

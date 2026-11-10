@@ -37,6 +37,7 @@ function pack(id, title) {
   const restart = node();
   const reviewProgress = node();
   const recapReturn = node();
+  const recapPrevious = node();
   const recapNext = node();
   const downloads = ["inputs-v1.txt", "answer-key-v1.txt", "worksheet-v1.txt"].map((file, index) => {
     const download = node({ textContent: ["Test input", "Review key", "Comparison worksheet"][index] });
@@ -57,10 +58,11 @@ function pack(id, title) {
     "[data-practice-restart]": restart,
     "[data-practice-active-review-progress]": reviewProgress,
     "[data-practice-recap-return]": recapReturn,
+    "[data-practice-recap-previous]": recapPrevious,
     "[data-practice-recap-next]": recapNext,
   };
   return {
-    controls, button, status, downloads, mark, practiced, task, heading, preview, summary, finish, restart, reviewProgress, recapReturn, recapNext, hidden: false,
+    controls, button, status, downloads, mark, practiced, task, heading, preview, summary, finish, restart, reviewProgress, recapReturn, recapPrevious, recapNext, hidden: false,
     contains: element => Object.values(children).includes(element),
     querySelector: selector => children[selector], querySelectorAll: () => downloads,
   };
@@ -422,6 +424,7 @@ test("changing the preview or starting another round clears stale recap return c
   assert.equal(p.chart.recapReturn.hidden, true);
   assert.equal(p.chart.recapNext.hidden, true);
   assert.equal(p.retry.recapReturn.hidden, false);
+  assert.equal(p.retry.recapPrevious.hidden, false);
   assert.equal(p.retry.recapNext.hidden, true);
   p.retry.restart.click();
   assert.equal(p.retry.recapReturn.hidden, true);
@@ -430,18 +433,20 @@ test("changing the preview or starting another round clears stale recap return c
   assert.equal(p.retry.recapReturn.hidden, false);
   p.reviewReset.click();
   assert.equal(p.retry.recapReturn.hidden, true);
+  assert.equal(p.retry.recapPrevious.hidden, true);
   assert.equal(p.document.activeElement, p.choice);
   p.retry.recapReturn.click();
   assert.equal(p.document.activeElement, p.choice);
   assert.deepEqual(p.writes, []);
 });
 
-test("next preview follows completion order, stops at the last entry and does not update progress", () => {
+test("preview navigation follows completion order both ways without wrapping or updating progress", () => {
   const saved = JSON.stringify({ id: chartId, step: "compare" });
   const marks = JSON.stringify([chartId, retryId, thirdId]);
   const p = setup(saved, "", marks, null, true);
   for (const pack of [p.retry, p.chart, p.third]) {
     pack.restart.click();
+    assert.equal(pack.recapPrevious.hidden, true);
     assert.equal(pack.recapNext.hidden, true);
     pack.finish.click();
     pack.preview.open = false;
@@ -449,6 +454,7 @@ test("next preview follows completion order, stops at the last entry and does no
   }
   const [retryLink, chartLink, thirdLink] = p.roundList.items.map(item => item.children[0]);
   retryLink.click({ button: 0, preventDefault() {} });
+  assert.equal(p.retry.recapPrevious.hidden, true);
   assert.equal(p.retry.recapNext.hidden, false);
   assert.equal(p.retry.recapNext.getAttribute("aria-label"), "Preview next input: Chart check");
   p.retry.recapNext.click();
@@ -457,6 +463,7 @@ test("next preview follows completion order, stops at the last entry and does no
   assert.equal(p.chart.summary.focused, true);
   assert.equal(p.third.preview.open, false);
   assert.equal(p.chart.recapNext.hidden, false);
+  assert.equal(p.chart.recapPrevious.hidden, false);
   p.chart.recapNext.click();
   assert.equal(p.chart.recapNext.hidden, true);
   assert.equal(p.third.preview.open, true);
@@ -464,8 +471,25 @@ test("next preview follows completion order, stops at the last entry and does no
   assert.equal(p.third.recapNext.hidden, true);
   p.third.recapNext.click();
   assert.equal(p.third.recapReturn.hidden, false);
-  p.third.recapReturn.click();
-  assert.equal(p.document.activeElement, thirdLink);
+  assert.equal(p.third.recapPrevious.hidden, false);
+  assert.equal(p.third.recapPrevious.getAttribute("aria-label"), "Preview previous input: Chart check");
+  p.chart.preview.open = false;
+  p.chart.summary.focused = false;
+  p.third.recapPrevious.click();
+  assert.equal(p.third.recapPrevious.hidden, true);
+  assert.equal(p.third.recapReturn.hidden, true);
+  assert.equal(p.chart.preview.open, true);
+  assert.equal(p.chart.summary.focused, true);
+  p.retry.preview.open = false;
+  p.retry.summary.focused = false;
+  p.chart.recapPrevious.click();
+  assert.equal(p.retry.preview.open, true);
+  assert.equal(p.retry.summary.focused, true);
+  assert.equal(p.retry.recapPrevious.hidden, true);
+  assert.equal(p.retry.recapNext.hidden, false);
+  p.retry.recapPrevious.click();
+  p.retry.recapReturn.click();
+  assert.equal(p.document.activeElement, retryLink);
   assert.deepEqual(p.roundList.items.map(item => item.children[0]), [retryLink, chartLink, thirdLink]);
   assert.equal(p.roundProgress.textContent, "Review round: 3 finished, 0 left.");
   for (const pack of [p.retry, p.chart, p.third]) {

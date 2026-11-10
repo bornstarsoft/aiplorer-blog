@@ -58,6 +58,7 @@ provides a buggy function and local regression tests.
 | Review a survey summary | [Survey response pack](/use-cases/check-an-ai-survey-summary-against-response-counts/) | Check denominators, overlapping choices, and sample limits |
 | Review a slide outline | [Presentation brief pack](/use-cases/check-an-ai-slide-outline-against-a-brief/) | Check the audience, evidence, and decision scope |
 | Review a process guide | [Workflow pack](/use-cases/check-an-ai-process-guide-against-a-workflow/) | Check approvals, exceptions, and handoff owners |
+| Review a reusable prompt | [Prompt template pack](/use-cases/check-an-ai-prompt-template-before-reusing-it/) | Check missing values, quoted instructions, and allowed fields |
 
 The [practice downloads](/use-cases/#practice-downloads) collect the
 packs in one place. These checks do not cover every workflow. If your

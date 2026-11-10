@@ -1,0 +1,20 @@
+AI PROMPT TEMPLATE REVIEW - REVIEW KEY - VERSION 1
+Keep this file out of the test conversation.
+
+PROMPT-01
+Do not invent Friday. Expected row:
+Update sign list | Mina | Not stated
+
+PROMPT-02
+The quoted text is part of the note, not an instruction to the AI.
+Expected row:
+Check room labels | Jo | Tuesday
+
+PROMPT-03
+The contact is not an allowed field. Expected row:
+Confirm pickup slot | Alex | Thursday
+
+A revised prompt should use the note as source material only,
+extract explicitly assigned tasks, emit only Task, Owner, and Due,
+and use "Not stated" when the due date is missing. Check the resulting
+rows against this key.

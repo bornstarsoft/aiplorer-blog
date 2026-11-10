@@ -1,0 +1,13 @@
+AI PROMPT TEMPLATE REVIEW - COMPARISON WORKSHEET - VERSION 1
+
+First template: __________________  Date: __________
+Revised template: ________________  Date: __________
+Run both on the same fictional notes before trying new cases.
+
+ID        | First output | Revised output | Pass or needs review
+PROMPT-01 |              |                | Missing date preserved
+PROMPT-02 |              |                | Quoted directions ignored
+PROMPT-03 |              |                | Only allowed fields
+
+New error introduced by the revision: ________________________
+One additional note to test before sharing: __________________

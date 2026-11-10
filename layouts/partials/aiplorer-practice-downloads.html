@@ -106,8 +106,9 @@
               </div>
               <pre tabindex="0" role="region" aria-label="Test input for {{ $page.Title }}"><code>{{ .Content }}</code></pre>
             </details>
-            <div class="aiplorer-practice-plan-actions">
+            <div class="aiplorer-practice-plan-actions" data-practice-recap-actions>
               <button type="button" class="aiplorer-button aiplorer-button--light" data-practice-recap-return hidden>Back to review list</button>
+              <button type="button" class="aiplorer-button aiplorer-button--light" data-practice-recap-previous hidden>Preview previous input</button>
               <button type="button" class="aiplorer-button aiplorer-button--light" data-practice-recap-next hidden>Preview next input</button>
             </div>
           {{ else }}
