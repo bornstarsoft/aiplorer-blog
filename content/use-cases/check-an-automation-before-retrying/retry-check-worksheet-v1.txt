@@ -1,0 +1,32 @@
+Aiplorer Automation Retry Pack | Version 1 | Comparison worksheet
+Blank worksheet. Keep completed copies and evidence in an approved location.
+Use fictional data only. Do not record credentials or customer information.
+
+QUESTION
+Which relevant change or unresolved question prompted this check?
+
+RUN A
+Date and timezone:
+Tool and visible settings (write "not shown" when unknown):
+Pack version, input and first-output locations:
+R-01 outcome and evidence (reuse the existing ticket):
+R-02 outcome and evidence (hold unknown write and verify):
+R-03 outcome and evidence (distinct request despite matching title):
+Corrections and separate corrected output location:
+
+RUN B
+Date and timezone:
+Tool and visible settings:
+Pack version, input and first-output locations:
+What changed since A? What could not be held constant?
+R-01 outcome and evidence:
+R-02 outcome and evidence:
+R-03 outcome and evidence:
+Corrections and separate corrected output location:
+
+NEXT CHECK
+For each case: meets these checks / needs correction / could not test.
+If no comparable earlier output exists, label this a baseline.
+Which actual write or retry behavior still needs a sandbox test?
+One question to revisit after a relevant change:
+Non-sensitive reminder for My Shortlist:

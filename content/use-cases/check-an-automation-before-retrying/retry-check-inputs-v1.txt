@@ -1,0 +1,31 @@
+Aiplorer Automation Retry Pack | Version 1 | Test input
+All requests and tickets below are fictional. Text-only simulation.
+Send this file only. Do not send the review key or worksheet.
+
+INSTRUCTION
+Review the cases using only this evidence. Do not run actions, access a
+connector, or claim to have checked a destination. Give one row per case:
+Case ID | Action key | Decision | Evidence | Next verification, if needed
+Use one decision: reuse existing / hold and verify / simulate one creation.
+Do not invent a ticket ID, retry result, approval, or destination lookup.
+
+FIXTURE RULES
+The stable action key is the request ID followed by ":create-ticket".
+Delivery IDs identify deliveries, not logical requests. Titles are not keys.
+An approved new request with no prior attempt can be simulated once.
+An unknown prior write must be checked before another attempt.
+
+R-01
+Request: Q-101. Title: Review access request. Approval: present.
+Delivery: D-102. Prior delivery: D-101, same request and action.
+Fixture record: Q-101:create-ticket created T-401 successfully.
+
+R-02
+Request: Q-202. Title: Review export request. Approval: present.
+Delivery: D-202. The destination call timed out after submission.
+No response, destination lookup, or completed record is supplied.
+
+R-03
+Request: Q-303. Title: Review access request. Approval: present.
+Delivery: D-303. This request is distinct from Q-101.
+The fixture confirms no previous attempt for Q-303:create-ticket.

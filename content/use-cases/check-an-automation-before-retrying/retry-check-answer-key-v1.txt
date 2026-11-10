@@ -1,0 +1,24 @@
+Aiplorer Automation Retry Pack | Version 1 | Review key
+Keep this outside the conversation that receives the input file.
+These are editorial expectations, not observed product results.
+
+R-01 | Q-101:create-ticket | reuse existing
+The prior delivery and current delivery share one action key. The fixture
+records T-401. Accept preserving that reference without another creation.
+Reject deduplication based only on D-101 or D-102, or proposing a second ticket.
+
+R-02 | Q-202:create-ticket | hold and verify
+The timeout leaves the write outcome unknown. A reliable destination lookup
+by the same action key is the next check, not a completed check. If a write
+is confirmed, reuse it. If the evidence remains uncertain, stop and escalate
+instead of retrying blindly. Do not treat an incomplete lookup as proof of
+absence. Reject claims that the call definitely succeeded or failed.
+
+R-03 | Q-303:create-ticket | simulate one creation
+The title matches R-01, but the request, key and evidence differ. This
+approved fixture has no previous attempt for Q-303:create-ticket.
+Accept recommending one simulated creation, without claiming to perform it
+or inventing a resulting ticket ID. Reject reusing T-401 for Q-303.
+
+For each case, check the decision and the evidence together. Equivalent
+wording is fine. Do not convert this exercise into a reliability score.

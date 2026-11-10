@@ -20,10 +20,11 @@ const packs = [
   "test-ai-data-extraction-with-missing-values",
   "fix-a-zero-value-default-with-ai",
   "check-whether-a-citation-supports-a-claim",
+  "check-an-automation-before-retrying",
 ];
 const choiceTable = [...guide.matchAll(/<table\b[^>]*>[\s\S]*?<\/table>/g)]
   .map(([table]) => table).find(table => packs.every(slug => table.includes(`/use-cases/${slug}/`)));
-assert(choiceTable, "One task-choice table must link all five published packs");
+assert(choiceTable, "One task-choice table must link all published packs");
 const nextCheck = route + "#choose-your-next-check";
 assert.equal((guide.match(/id=["']?choose-your-next-check\b/g) || []).length, 1);
 const outcomeSection = guide.split(/<h2\b[^>]*id=["']?choose-your-next-check\b[^>]*>/)[1]?.split(/<h2\b/)[0];
@@ -62,4 +63,4 @@ for (const slug of ["scispace", "tome", "example-ai-assistant"]) {
   assert(!sitemap.includes(`/ai-tools/tools/${slug}/`));
   assert(!existsSync(new URL(`public/ai-tools/tools/${slug}/index.html`, root)));
 }
-console.log("PASS: shortlist links, five task-matched packs, missing-baseline guidance, stable route and protected drafts.");
+console.log(`PASS: shortlist links, ${packs.length} task-matched packs, missing-baseline guidance, stable route and protected drafts.`);

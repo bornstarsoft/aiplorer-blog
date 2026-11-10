@@ -12,16 +12,17 @@ const attr = (tag, name) => {
 assert.equal((html.match(/id=["']?practice-downloads\b/g) || []).length, 1);
 assert(html.includes("#practice-downloads"));
 assert(html.includes("Keep review keys out of the AI conversation"));
-assert.equal((html.match(/data-practice-pack\b/g) || []).length, 5);
 const tasks = [
   ["retest-ai-summaries-with-a-reference-pack", "Summarize notes"],
   ["check-an-ai-rewrite-without-changing-the-promise", "Rewrite a message"],
   ["test-ai-data-extraction-with-missing-values", "Extract a table"],
   ["fix-a-zero-value-default-with-ai", "Test a code fix"],
   ["check-whether-a-citation-supports-a-claim", "Check a citation"],
+  ["check-an-automation-before-retrying", "Check an automation retry"],
 ];
+assert.equal((html.match(/data-practice-pack\b/g) || []).length, tasks.length);
 const jumps = [...html.matchAll(/<a\b[^>]*\bdata-practice-task\b[^>]*>[\s\S]*?<\/a>/g)].map(([link]) => link);
-assert.equal(jumps.length, 5);
+assert.equal(jumps.length, tasks.length);
 const headings = [...html.matchAll(/<h3\b[^>]*>[\s\S]*?<\/h3>/g)].map(([tag]) => tag);
 for (const [slug, label] of tasks) {
   const id = "practice-" + slug;
@@ -34,9 +35,9 @@ for (const [slug, label] of tasks) {
 const tags = [...html.matchAll(/<a\b[^>]*\bdata-practice-download\b[^>]*>/g)].map(([tag]) => tag);
 const hrefs = tags.map(tag => attr(tag, "href"));
 const previews = [...html.matchAll(/<details\b[^>]*\bdata-practice-preview=[^>]*>[\s\S]*?<\/details>/g)].map(([tag]) => tag);
-assert.equal(previews.length, 5);
+assert.equal(previews.length, tasks.length);
 const previewPaths = previews.map(tag => attr(tag, "data-practice-preview"));
-assert.equal(new Set(previewPaths).size, 5);
+assert.equal(new Set(previewPaths).size, tasks.length);
 for (const preview of previews) {
   const path = attr(preview, "data-practice-preview");
   assert(hrefs.includes(path), "Preview must reference an existing download");
@@ -55,14 +56,16 @@ for (const preview of previews) {
   assert(status && attr(status, "role") === "status" && attr(status, "aria-live") === "polite");
 }
 assert(html.includes("/js/aiplorer-practice-copy.js?v=20261024a"));
-assert.equal(tags.length, 15);
-assert.equal(new Set(hrefs).size, 15);
 const packs = [
   ["retest-ai-summaries-with-a-reference-pack", "summary"],
   ["check-an-ai-rewrite-without-changing-the-promise", "rewrite"],
   ["test-ai-data-extraction-with-missing-values", "extraction"],
   ["check-whether-a-citation-supports-a-claim", "citation"],
+  ["check-an-automation-before-retrying", "retry"],
 ];
+const downloadCount = (packs.length + 1) * 3;
+assert.equal(tags.length, downloadCount);
+assert.equal(new Set(hrefs).size, downloadCount);
 for (const [slug, prefix] of packs) {
   const route = `/use-cases/${slug}/`;
   for (const role of ["inputs", "answer-key", "worksheet"]) {
@@ -83,4 +86,13 @@ for (const file of ["public/index.html", "public/guides/index.html", "public/ai-
   assert(!read(file).includes("aiplorer-practice-copy.js"), `Unexpected clipboard script: ${file}`);
 }
 assert(!read("public/use-cases/fix-a-zero-value-default-with-ai/index.html").includes("aiplorer-practice-copy.js"));
-console.log("PASS: five input-only previews with progressive copy controls, fifteen exact native downloads, script scoped to use-cases hub.");
+const retryRoute = "/use-cases/check-an-automation-before-retrying/";
+const retryArticle = read(`public${retryRoute}index.html`);
+assert(!retryArticle.includes("aiplorer-practice-copy.js"));
+assert(retryArticle.includes("text-only conversation without connected actions"));
+for (const role of ["inputs", "answer-key", "worksheet"]) {
+  const file = `retry-check-${role}-v1.txt`;
+  assert(retryArticle.includes(retryRoute + file));
+}
+assert(read("public/use-cases/how-to-test-an-ai-automation-before-relying-on-it/index.html").includes(retryRoute));
+console.log(`PASS: ${tasks.length} input-only previews, ${downloadCount} exact native downloads, retry entry links, script scoped to use-cases hub.`);

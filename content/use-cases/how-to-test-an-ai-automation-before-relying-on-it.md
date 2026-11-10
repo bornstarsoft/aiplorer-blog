@@ -119,6 +119,11 @@ to compare a small candidate set with reliability and control visible.
 
 ## Next Steps
 
+Use the [automation retry practice pack](/use-cases/check-an-automation-before-retrying/)
+to rehearse duplicate delivery and an uncertain write without connecting a
+real destination. Save the first result so you can repeat the same check
+after changing workflow instructions or retry settings.
+
 Write seven test cases for one reversible workflow and capture the expected
 result for each. Do not expand the workflow until failures are visible,
 important actions require review, and the manual fallback works.

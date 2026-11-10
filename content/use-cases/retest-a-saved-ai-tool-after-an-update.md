@@ -22,9 +22,9 @@ You can use the same method for code, slides, research or audio.
 
 ## Choose The Check That Matches Your Work
 
-Choose one relevant task rather than rerunning every pack. The writing and
-extraction packs have fictional inputs, separate review keys and blank
-two-run worksheets. Keep the key out of the AI conversation and retain the
+Choose one relevant task rather than rerunning every pack. The text-based
+packs have fictional inputs, separate review keys and blank two-run
+worksheets. Keep the key out of the AI conversation and retain the
 first output before asking for corrections. The code exercise instead
 provides a buggy function and local regression tests.
 
@@ -35,8 +35,9 @@ provides a buggy function and local regression tests.
 | Turn messages into a table | [Missing-value extraction pack](/use-cases/test-ai-data-extraction-with-missing-values/) | Missing fields, assigned owners and proposed versus confirmed dates |
 | Review a small code fix | [Zero-value regression pack](/use-cases/fix-a-zero-value-default-with-ai/) | Preserve zero, default missing values and inspect the diff without changing the tests |
 | Check a cited claim | [Citation support pack](/use-cases/check-whether-a-citation-supports-a-claim/) | Match the passage to the claim; distinguish unsupported scope from a missing source |
+| Review an automation retry | [Automation retry pack](/use-cases/check-an-automation-before-retrying/) | Distinguish a duplicate, an unknown write, and a separate request |
 
-The [practice downloads](/use-cases/#practice-downloads) collect all five
+The [practice downloads](/use-cases/#practice-downloads) collect the
 packs in one place. These checks do not cover every workflow. If your
 question is about access, permissions or a plan change, check the relevant
 official documentation and account instead of using an output exercise as
