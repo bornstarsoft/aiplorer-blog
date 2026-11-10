@@ -62,3 +62,6 @@ For real work, review a dry run on an approved sample and confirm how
 to recover the original names before changing files. See the
 [file handoff practice](/use-cases/check-an-ai-file-handoff-before-switching-tools/)
 for a related check on preserving originals and verifying the destination.
+
+For a similar check on whether wording matches the source, try the
+[product translation practice](/use-cases/check-an-ai-translation-against-a-product-glossary/).

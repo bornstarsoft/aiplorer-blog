@@ -36,6 +36,7 @@ const tasks = [
   ["check-an-ai-incident-timeline-against-an-event-log", "Check an incident timeline"],
   ["check-an-ai-csv-merge-against-original-records", "Check a CSV merge"],
   ["check-an-ai-file-rename-plan-before-applying-it", "Check a file rename plan"],
+  ["check-an-ai-translation-against-a-product-glossary", "Check a product translation"],
 ];
 assert.equal((html.match(/data-practice-pack\b/g) || []).length, tasks.length);
 const jumps = [...html.matchAll(/<a\b[^>]*\bdata-practice-task\b[^>]*>[\s\S]*?<\/a>/g)].map(([link]) => link);
@@ -73,7 +74,10 @@ for (const preview of previews) {
   assert(status && attr(status, "role") === "status" && attr(status, "aria-live") === "polite");
 }
 assert(html.includes("/js/aiplorer-practice-copy.js?v=20261024a"));
-assert(html.includes("/js/aiplorer-practice-resume.js?v=20261110q"));
+assert(html.includes("/js/aiplorer-practice-resume.js?v=20261110r"));
+const roundProgress = html.match(/<p\b[^>]*data-practice-round-progress\b[^>]*>/)?.[0];
+assert(roundProgress && /\bhidden\b/.test(roundProgress) && attr(roundProgress, "role") === "status");
+assert.equal([...html.matchAll(/<p\b[^>]*data-practice-active-review-progress\b[^>]*\bhidden(?:[\s=>])/g)].length, tasks.length);
 assert.match(html, /<div\b[^>]*data-practice-after-review\b[^>]*\bhidden(?:[\s=>])/);
 assert.match(html, /<button\b[^>]*data-practice-after-new\b[^>]*>Choose a new practice<\/button>/);
 assert.match(html, /<button\b[^>]*data-practice-after-repeat\b[^>]*>Review another practice<\/button>/);
@@ -159,6 +163,7 @@ const packs = [
   ["check-an-ai-incident-timeline-against-an-event-log", "incident"],
   ["check-an-ai-csv-merge-against-original-records", "merge"],
   ["check-an-ai-file-rename-plan-before-applying-it", "rename"],
+  ["check-an-ai-translation-against-a-product-glossary", "glossary"],
 ];
 const downloadOrder = new Map();
 for (const [pack] of html.matchAll(/<li\b[^>]*data-practice-pack\b[^>]*>[\s\S]*?<\/li>/g)) {
@@ -410,4 +415,16 @@ const renamePreview = previews.find(tag => attr(tag, "data-practice-preview") ==
 assert(renamePreview.includes("drafts/frame-final.png") && !renamePreview.includes("Keep this file out of the test conversation"));
 assert(handoffArticle.includes(renameRoute));
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${renameRoute}</loc>`).length, 2);
+const glossaryRoute = "/use-cases/check-an-ai-translation-against-a-product-glossary/";
+const glossaryArticle = read(`public${glossaryRoute}index.html`);
+assert(!glossaryArticle.includes("aiplorer-practice-resume.js"));
+for (const role of ["inputs", "answer-key", "worksheet"]) {
+  const file = `glossary-check-${role}-v1.txt`;
+  assert(glossaryArticle.includes(glossaryRoute + file));
+  for (const id of ["TERM-01", "TERM-02", "TERM-03"]) assert(read(`public${glossaryRoute}${file}`).includes(id));
+}
+const glossaryPreview = previews.find(tag => attr(tag, "data-practice-preview") === glossaryRoute + "glossary-check-inputs-v1.txt");
+assert(glossaryPreview.includes("Vincular dispositivo") && !glossaryPreview.includes("No desconectes"));
+assert(renameArticle.includes(glossaryRoute));
+assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${glossaryRoute}</loc>`).length, 2);
 console.log(`PASS: ${tasks.length} input-only previews, ${downloadCount} exact step-ordered downloads, guide entry links, script scoped to use-cases hub.`);

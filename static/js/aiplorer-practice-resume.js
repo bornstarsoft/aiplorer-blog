@@ -27,6 +27,7 @@
   const choiceDescription = shelf.querySelector("[data-practice-choice-description]");
   const choiceLink = shelf.querySelector("[data-practice-choice-link]");
   const choiceEmpty = shelf.querySelector("[data-practice-choice-empty]");
+  const roundProgress = shelf.querySelector("[data-practice-round-progress]");
   const reviewReset = shelf.querySelector("[data-practice-review-reset]");
   const choiceGroups = choice ? [...choice.querySelectorAll("optgroup")] : [];
   const plan = shelf.querySelector("[data-practice-plan]");
@@ -60,6 +61,7 @@
       practiced: pack.querySelector("[data-practice-practiced]"),
       finish: pack.querySelector("[data-practice-finish]"),
       restart: pack.querySelector("[data-practice-restart]"),
+      reviewProgress: pack.querySelector("[data-practice-active-review-progress]"),
     });
   });
 
@@ -172,8 +174,22 @@
       pack.practiced.checked = practiced;
     }
     renderFilter(ids);
-    renderChooser(ids);
+    const remaining = ids ? [...ids].filter(id => !reviewedThisRound.has(id)).length : 0;
+    renderChooser(ids, remaining);
     renderPlan(ids);
+    const inReview = ids?.has(reviewingId);
+    const progress = ids?.size ? `Review round: ${reviewedThisRound.size} finished, ${remaining} left.` : "";
+    const showRound = inReview || choosingAfterReview || reviewChoices || !remaining;
+    setReviewProgress(roundProgress, showRound ? progress : "");
+    for (const [id, pack] of packs) {
+      setReviewProgress(pack.reviewProgress, inReview && id === reviewingId ? progress : "");
+    }
+  }
+
+  function setReviewProgress(element, message) {
+    if (!element) return;
+    element.hidden = !message;
+    if (element.textContent !== message) element.textContent = message;
   }
 
   function renderPlan(ids) {
@@ -254,12 +270,12 @@
     }
   }
 
-  function renderChooser(ids) {
+  function renderChooser(ids, remaining) {
     if (!chooser || !choice || !choiceDetails || !choiceDescription || !choiceLink || !choiceEmpty) return;
     chooser.hidden = !ids;
     if (!ids) return;
     const allPracticed = packs.size > 0 && ids.size === packs.size;
-    const hasReviews = [...ids].some(id => !reviewedThisRound.has(id));
+    const hasReviews = remaining > 0;
     const mixed = hasReviews && !allPracticed;
     const decide = Boolean(choosingAfterReview && mixed && afterReview && afterNew && afterRepeat && choiceControls);
     const restoreFocus = !decide && afterReview?.contains(document.activeElement);

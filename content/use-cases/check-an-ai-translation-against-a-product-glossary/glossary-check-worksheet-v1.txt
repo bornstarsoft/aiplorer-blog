@@ -1,0 +1,13 @@
+AI PRODUCT TRANSLATION REVIEW - COMPARISON WORKSHEET - VERSION 1
+
+First run: ____________________  Date: __________
+Later run: ____________________  Date: __________
+Use the same source, glossary, and rules for both runs.
+
+ID       | First run evidence | Later run evidence | Pass or needs review
+TERM-01  |                    |                    | Exact UI label
+TERM-02  |                    |                    | Prohibition and condition
+TERM-03  |                    |                    | Minimum quantity and unit
+
+New instructions or unsupported wording: ____________________
+Issue to check before using a real translation: ______________

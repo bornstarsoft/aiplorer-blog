@@ -1,0 +1,17 @@
+AI PRODUCT TRANSLATION REVIEW - REVIEW KEY - VERSION 1
+Keep this file out of the test conversation.
+
+TERM-01
+The draft substitutes an unapproved button label. Use the literal label
+"Vincular dispositivo" so the instruction matches the interface.
+
+TERM-02
+The draft says to unplug the hub. Restore the prohibition ("No desconectes")
+and retain the condition "mientras parpadea la luz de estado".
+
+TERM-03
+The draft shortens the distance from 10 cm to 10 mm. Keep "al menos 10 cm".
+Do not convert units in this exercise.
+
+Accept equivalent Spanish phrasing if the label, prohibition, timing,
+minimum quantity, and unit are preserved.

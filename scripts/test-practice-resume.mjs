@@ -35,6 +35,7 @@ function pack(id, title) {
   const preview = node({ open: false, querySelector: () => summary });
   const finish = node();
   const restart = node();
+  const reviewProgress = node();
   const downloads = ["inputs-v1.txt", "answer-key-v1.txt", "worksheet-v1.txt"].map((file, index) => {
     const download = node({ textContent: ["Test input", "Review key", "Comparison worksheet"][index] });
     download.setAttribute("href", "/use-cases/" + id.slice("practice-".length) + "/" + file);
@@ -52,9 +53,10 @@ function pack(id, title) {
     "[data-practice-preview]": preview,
     "[data-practice-finish]": finish,
     "[data-practice-restart]": restart,
+    "[data-practice-active-review-progress]": reviewProgress,
   };
   return {
-    controls, button, status, downloads, mark, practiced, task, heading, preview, summary, finish, restart, hidden: false,
+    controls, button, status, downloads, mark, practiced, task, heading, preview, summary, finish, restart, reviewProgress, hidden: false,
     contains: element => Object.values(children).includes(element),
     querySelector: selector => children[selector], querySelectorAll: () => downloads,
   };
@@ -83,6 +85,7 @@ function setup(saved = null, mode = "", practicedSaved = null, planned = null, i
   const chooser = node(), choice = node({ value: "", querySelectorAll: () => [chartGroup, retryGroup] });
   const choiceDetails = node(), choiceDescription = node(), choiceLink = node(), choiceEmpty = node();
   const reviewReset = node();
+  const roundProgress = node();
   const choiceLabel = node();
   const newMode = node({ value: "new", checked: true });
   const reviewMode = node({ value: "review", checked: false });
@@ -123,6 +126,7 @@ function setup(saved = null, mode = "", practicedSaved = null, planned = null, i
     "[data-practice-choice-link]": choiceLink,
     "[data-practice-choice-empty]": choiceEmpty,
     "[data-practice-review-reset]": reviewReset,
+    "[data-practice-round-progress]": roundProgress,
     "[data-practice-plan]": plan,
     "[data-practice-plan-title]": planTitle,
     "[data-practice-plan-start]": planStart,
@@ -153,7 +157,7 @@ function setup(saved = null, mode = "", practicedSaved = null, planned = null, i
   vm.runInNewContext(source, { document, window, localStorage });
   return { chart, retry, unsafe, resume, link, title, nextStep, nextStatus, stepDownload, practicedCount, window, storage, writes,
     filter, filterControls, filterEmpty, taskNav, document, chooser, choice, choiceDetails, choiceDescription, choiceLink,
-    choiceEmpty, reviewReset, choiceLabel, choiceMode, newMode, reviewMode, chartOption, retryOption, unsafeOption, chartGroup, retryGroup,
+    choiceEmpty, reviewReset, roundProgress, choiceLabel, choiceMode, newMode, reviewMode, chartOption, retryOption, unsafeOption, chartGroup, retryGroup,
     plan, planTitle, planStart, planDone, planClear, planSave, planStatus,
     choiceControls, afterReview, afterNew, afterRepeat, third, thirdOption };
 }
@@ -270,8 +274,15 @@ test("a new review round restores completed candidates without changing saved pr
   const marks = JSON.stringify([chartId, retryId]);
   const saved = JSON.stringify({ id: thirdId, step: "compare" });
   const p = setup(saved, "", marks, thirdId, true);
+  assert.equal(p.roundProgress.hidden, true);
+  assert.equal(p.chart.reviewProgress.hidden, true);
   p.chart.restart.click();
+  assert.equal(p.chart.reviewProgress.hidden, false);
+  assert.equal(p.chart.reviewProgress.textContent, "Review round: 0 finished, 2 left.");
+  assert.equal(p.retry.reviewProgress.hidden, true);
   p.chart.finish.click();
+  assert.equal(p.chart.reviewProgress.hidden, true);
+  assert.equal(p.roundProgress.textContent, "Review round: 1 finished, 1 left.");
   p.afterRepeat.click();
   assert.equal(p.reviewReset.hidden, true);
   p.reviewReset.click();
@@ -280,6 +291,7 @@ test("a new review round restores completed candidates without changing saved pr
   p.choice.value = retryId;
   p.choice.change();
   p.choiceLink.click();
+  assert.equal(p.retry.reviewProgress.textContent, "Review round: 1 finished, 1 left.");
   p.retry.finish.click();
   assert.equal(p.afterReview.hidden, true);
   assert.equal(p.choiceMode.hidden, true);
@@ -289,6 +301,7 @@ test("a new review round restores completed candidates without changing saved pr
   assert.equal(p.choiceEmpty.textContent, "No more completed practices to review this round.");
   assert.equal(p.document.activeElement, p.choice);
   assert.equal(p.reviewReset.hidden, false);
+  assert.equal(p.roundProgress.textContent, "Review round: 2 finished, 0 left.");
   p.reviewReset.click();
   assert.equal(p.reviewReset.hidden, true);
   assert.equal(p.choiceEmpty.hidden, true);
@@ -299,9 +312,28 @@ test("a new review round restores completed candidates without changing saved pr
   assert.equal(p.thirdOption.disabled, true);
   assert.equal(p.chart.practiced.checked, true);
   assert.equal(p.retry.practiced.checked, true);
+  assert.equal(p.roundProgress.hidden, false);
+  assert.equal(p.roundProgress.textContent, "Review round: 0 finished, 2 left.");
   assert.equal(p.storage.get(practicedKey), marks);
   assert.equal(p.storage.get(key), saved);
   assert.equal(p.storage.get(planKey), thirdId);
+  assert.deepEqual(p.writes, []);
+});
+
+test("review counts are distinct and follow eligibility changes without writing storage", () => {
+  const p = setup(null, "", JSON.stringify([chartId, retryId]), null, true);
+  for (let i = 0; i < 2; i++) {
+    p.chart.restart.click();
+    p.chart.finish.click();
+  }
+  assert.equal(p.roundProgress.textContent, "Review round: 1 finished, 1 left.");
+  p.afterRepeat.click();
+  p.storage.set(practicedKey, JSON.stringify([retryId, thirdId]));
+  p.window.storage({ key: practicedKey });
+  assert.equal(p.roundProgress.textContent, "Review round: 1 finished, 2 left.");
+  p.storage.delete(practicedKey);
+  p.window.storage({ key: practicedKey });
+  assert.equal(p.roundProgress.hidden, true);
   assert.deepEqual(p.writes, []);
 });
 

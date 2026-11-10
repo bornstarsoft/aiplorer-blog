@@ -1,0 +1,29 @@
+AI PRODUCT TRANSLATION REVIEW - INPUTS - VERSION 1
+
+Fictional product: Arbor Desk Hub. Do not operate real equipment.
+Target: Spanish quick-start card.
+
+Rules
+- Match visible controls to the approved Spanish glossary exactly.
+- Preserve prohibitions, conditions, and timing from the source.
+- Keep the source quantity and unit. Do not convert measurements.
+
+Glossary
+Pair device (button) = Vincular dispositivo
+Status light = luz de estado
+
+TERM-01
+Source: Select Pair device.
+Draft: Selecciona Emparejar equipo.
+
+TERM-02
+Source: Do not unplug the hub while the status light is flashing.
+Draft: Desconecta el concentrador mientras parpadea la luz de estado.
+
+TERM-03
+Source: Leave at least 10 cm behind the hub.
+Draft: Deja al menos 10 mm detrás del concentrador.
+
+Review each line against the source and glossary. For each ID, identify
+the change, cite the controlling rule or source phrase, and propose a
+corrected Spanish line. Do not add instructions or invent glossary terms.

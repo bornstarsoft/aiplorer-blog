@@ -25,6 +25,7 @@
         <button type="button" class="aiplorer-button aiplorer-button--light" aria-label="Clear saved next practice" data-practice-plan-clear>Clear</button>
       </div>
     </div>
+    <p class="aiplorer-practice-count" role="status" data-practice-round-progress hidden></p>
     <div role="group" aria-label="After review" data-practice-after-review hidden>
       <div class="aiplorer-practice-plan-actions">
         <button type="button" class="aiplorer-button aiplorer-button--light" data-practice-after-new>Choose a new practice</button>
@@ -113,6 +114,7 @@
             {{ errorf "Missing practice download %q in %s" .file $page.File.Path }}
           {{ end }}
         {{ end }}
+        <p class="aiplorer-practice-count" data-practice-active-review-progress hidden></p>
         <div class="aiplorer-practice-save" data-practice-save-controls hidden>
           <button type="button" class="aiplorer-button aiplorer-button--light" data-practice-save aria-pressed="false" aria-label="Save pack: {{ .Title }}">{{ partial "aiplorer-icon.html" "bookmark" }}Save pack</button>
           <label class="aiplorer-practice-mark" data-practice-mark hidden>

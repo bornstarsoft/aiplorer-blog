@@ -4,6 +4,7 @@
     "packs": [
       "retest-ai-summaries-with-a-reference-pack",
       "check-an-ai-rewrite-without-changing-the-promise",
+      "check-an-ai-translation-against-a-product-glossary",
       "check-whether-a-citation-supports-a-claim",
       "check-an-ai-redaction-before-sharing",
       "check-an-ai-tool-comparison-against-test-records",
