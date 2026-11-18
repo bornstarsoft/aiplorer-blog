@@ -4,6 +4,8 @@
   if (!root) return;
   var entries = Array.from(root.querySelectorAll("[data-change-entry]"));
   var upcoming = root.querySelector("[data-change-upcoming]");
+  var exportCalendar = upcoming && upcoming.querySelector("[data-change-export-calendar]");
+  var calendarStatus = upcoming && upcoming.querySelector("[data-change-calendar-status]");
   var savedOnly = root.querySelector("[data-change-saved]");
   var unreadOnly = root.querySelector("[data-change-unread]");
   var followOnly = root.querySelector("[data-change-follow-only]");
@@ -104,16 +106,16 @@
   resumeView();
 
   function renderUpcoming() {
-    if (!upcoming) return;
+    if (!upcoming) return [];
     var now = new Date();
     var today = now.getFullYear() + "-" + String(now.getMonth() + 1).padStart(2, "0") +
       "-" + String(now.getDate()).padStart(2, "0");
-    var hasUpcoming = false;
-    upcoming.querySelectorAll("[data-change-transition-date]").forEach(function (item) {
+    var dates = Array.from(upcoming.querySelectorAll("[data-change-transition-date]")).filter(function (item) {
       item.hidden = item.dataset.changeTransitionDate < today;
-      if (!item.hidden) hasUpcoming = true;
+      return !item.hidden;
     });
-    upcoming.hidden = !hasUpcoming;
+    upcoming.hidden = dates.length === 0;
+    return dates;
   }
 
   function nextUnreadIndex(afterIndex) {
@@ -223,26 +225,74 @@
     });
     return lines.join("\n");
   }
-  exportBrief.addEventListener("click", function () {
-    var visible = entries.filter(function (entry) { return !entry.hidden; });
-    if (!visible.length) return;
+  function downloadText(text, filename, type) {
     var objectUrl, download;
-    var status = root.querySelector("[data-change-status]");
     try {
-      var now = new Date().toISOString();
-      var blob = new Blob([briefText(visible, now)], { type: "text/plain;charset=utf-8" });
-      objectUrl = window.URL.createObjectURL(blob);
+      objectUrl = window.URL.createObjectURL(new Blob([text], { type: type }));
       download = document.createElement("a");
       download.href = objectUrl;
-      download.download = "aiplorer-announcements-" + now.slice(0, 10) + ".txt";
+      download.download = filename;
       document.body.appendChild(download);
       download.click();
-      status.textContent = "Download requested for " + visible.length + " updates. Review the file before sharing; read status is unchanged.";
-    } catch (error) {
-      status.textContent = "Could not download this brief. Open the official links or try another browser.";
     } finally {
       if (download) download.remove();
       if (objectUrl) window.setTimeout(function () { window.URL.revokeObjectURL(objectUrl); }, 1000);
+    }
+  }
+
+  function calendarValue(value) {
+    return value.replace(/\\/g, "\\\\").replace(/\r\n|\r|\n/g, "\\n").replace(/[;,]/g, "\\$&");
+  }
+  function calendarText(dates, exportedAt) {
+    var lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Aiplorer//Change Watch dates//EN"];
+    var stamp = exportedAt.replace(/[-:]/g, "").replace(/\.\d+Z$/, "Z");
+    dates.forEach(function (item) {
+      var id = item.dataset.changeTransitionId;
+      var record = new URL("#change-" + id, root.dataset.changeUrl).href;
+      var description = "Calendar snapshot, not a subscription. Verify the current official notice.\n" +
+        "Official source: " + item.dataset.changeTransitionSource + "\nAiplorer record: " + record;
+      lines.push("BEGIN:VEVENT",
+        "UID:" + id + "@aiplorer.com",
+        "DTSTAMP:" + stamp,
+        "DTSTART;VALUE=DATE:" + item.dataset.changeTransitionDate.replace(/-/g, ""),
+        "SUMMARY:" + calendarValue("Scheduled: " + item.querySelector("a").textContent.trim()),
+        "DESCRIPTION:" + calendarValue(description),
+        "URL:" + record, "TRANSP:TRANSPARENT", "END:VEVENT");
+    });
+    lines.push("END:VCALENDAR");
+    // Count UTF-8 bytes and fold between complete characters.
+    var encoder = new TextEncoder();
+    return lines.map(function (line) {
+      var result = "", length = 0;
+      for (var character of line) {
+        var bytes = encoder.encode(character).length;
+        if (length + bytes > 75) { result += "\r\n "; length = 1; }
+        result += character;
+        length += bytes;
+      }
+      return result;
+    }).join("\r\n") + "\r\n";
+  }
+  if (exportCalendar && calendarStatus) exportCalendar.addEventListener("click", function () {
+    var dates = renderUpcoming();
+    if (!dates.length) return;
+    try {
+      downloadText(calendarText(dates, new Date().toISOString()), "aiplorer-transition-dates.ics", "text/calendar;charset=utf-8");
+      calendarStatus.textContent = "Calendar download requested. This file does not sync.";
+    } catch (error) {
+      calendarStatus.textContent = "Could not download the calendar. Check the dates above or try another browser.";
+    }
+  });
+  exportBrief.addEventListener("click", function () {
+    var visible = entries.filter(function (entry) { return !entry.hidden; });
+    if (!visible.length) return;
+    var status = root.querySelector("[data-change-status]");
+    try {
+      var now = new Date().toISOString();
+      downloadText(briefText(visible, now), "aiplorer-announcements-" + now.slice(0, 10) + ".txt", "text/plain;charset=utf-8");
+      status.textContent = "Download requested for " + visible.length + " updates. Review the file before sharing; read status is unchanged.";
+    } catch (error) {
+      status.textContent = "Could not download this brief. Open the official links or try another browser.";
     }
   });
   function updateReadState(change) {

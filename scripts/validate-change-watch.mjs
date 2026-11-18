@@ -90,9 +90,14 @@ assert(watch.includes(scriptPath));
 assert.deepEqual(readFileSync(resolve(root, "public", scriptPath.slice(1))), watchScript);
 assert(!home.includes(scriptPath));
 assert(!home.includes("data-change-upcoming"));
+assert(!home.includes("data-change-export-calendar"));
 const dated = data.entries.filter(entry => Object.hasOwn(entry, "transitionDate") || Object.hasOwn(entry, "transitionLabel"));
 const schedule = watch.match(/<section\b[^>]*data-change-upcoming\b[^>]*\bhidden(?=[\s=>])[^>]*>[\s\S]*?<\/section>/)?.[0];
 assert.equal(Boolean(schedule), dated.length > 0);
+if (schedule) {
+  assert(/<button\b[^>]*data-change-export-calendar\b[^>]*>[\s\S]*?Download calendar \(\.ics\)<\/button>/.test(schedule));
+  assert(/<p\b[^>]*role=(?:"status"|status)[^>]*data-change-calendar-status\b/.test(schedule));
+}
 const scheduleRows = [...(schedule || "").matchAll(/<li\b[^>]*data-change-transition-date="?([\d-]+)"?[^>]*>[\s\S]*?<\/li>/g)];
 assert.deepEqual(scheduleRows.map(([, value]) => value), dated.map(entry => entry.transitionDate).sort());
 assert.equal((watch.match(/\bdata-change-scheduled\b/g) || []).length, dated.length);
@@ -100,7 +105,9 @@ for (const entry of dated) {
   calendarDate(entry.transitionDate);
   assert(entry.transitionDate >= entry.announcedAt);
   assert(typeof entry.transitionLabel === "string" && entry.transitionLabel.trim());
-  assert(scheduleRows.some(([row, value]) => value === entry.transitionDate && row.includes("?changesSaved=0#change-" + entry.id)));
+  const row = scheduleRows.find(([line, value]) => value === entry.transitionDate && line.includes("?changesSaved=0#change-" + entry.id));
+  assert(row && row[0].includes("data-change-transition-id=") && row[0].includes("data-change-transition-source="));
+  assert(row[0].includes(entry.sourceUrl));
 }
 assert(/<button\b[^>]*data-change-first-unread\b[^>]*\bdisabled(?=[\s=>])[^>]*>First unread<\/button>/.test(watch));
 const catchUp = watch.match(/<div\b[^>]*data-change-caught-up\b[^>]*\bhidden(?=[\s=>])[^>]*>[\s\S]*?<\/div>/)?.[0];

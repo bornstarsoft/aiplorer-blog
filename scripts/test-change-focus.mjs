@@ -18,8 +18,21 @@ function fixture(query = "", blocked = false, view = null, dates = []) {
   function control(values = []) { return { value: "", checked: false, disabled: false, options: values.map(value => ({ value })), events: {}, focus() { this.focused = true; }, addEventListener(name, fn) { this.events[name] = fn; } }; }
   const saved = control(), unread = control(), tool = control(["", "cursor", "replit"]), topic = control(["", "Access", "Workflow"]), read = control(), reset = control(), exportButton = control(), status = {}, empty = {}, controls = {};
   const firstUnread = control(), caughtUp = {}, showRead = control(), followOnly = control();
-  const transitions = dates.map(date => ({ hidden: true, dataset: { changeTransitionDate: date } }));
-  const upcoming = dates.length ? { hidden: true, querySelectorAll: () => transitions } : null;
+  const exportCalendar = control(), calendarStatus = {};
+  const transitions = dates.map((date, index) => ({
+    hidden: true,
+    dataset: {
+      changeTransitionDate: date,
+      changeTransitionId: "transition-" + index,
+      changeTransitionSource: "https://official.example/transition-" + index,
+    },
+    title: { textContent: "Transition " + index },
+    querySelector() { return this.title; },
+  }));
+  const upcoming = dates.length ? {
+    hidden: true, querySelectorAll: () => transitions,
+    querySelector: selector => selector === "[data-change-export-calendar]" ? exportCalendar : calendarStatus,
+  } : null;
   const entries = [
     ["cursor-new:2", "cursor", "Access"], ["cursor-old:1", "cursor", "Workflow"], ["replit-one:1", "replit", "Access"]
   ].map(([id, slug, category]) => ({ dataset: { changeId: id, changeTool: "/ai-tools/tools/" + slug + "/", changeTopic: category }, badge: {}, checkbox: control(), readControl: {}, querySelector(selector) { return selector === "[data-change-entry-read]" ? this.checkbox : selector === "[data-change-entry-read-control]" ? this.readControl : this.badge; } }));
@@ -53,11 +66,11 @@ function fixture(query = "", blocked = false, view = null, dates = []) {
     body: { appendChild() {} },
     createElement: () => ({ click() { if (downloadFails) throw Error("blocked"); downloads.at(-1).filename = this.download; }, remove() { downloads.at(-1).removed = true; } })
   };
-  runInNewContext(source, { document, window, URL, URLSearchParams, Blob,
+  runInNewContext(source, { document, window, URL, URLSearchParams, Blob, TextEncoder,
     Date: class extends Date { constructor(...args) { super(...(args.length ? args : [now])); } },
     localStorage: { getItem: k => { if (blocked) throw Error("blocked"); return storage.get(k); }, setItem: (k, v) => { if (blocked) throw Error("blocked"); storage.set(k, v); }, removeItem: k => { if (blocked) throw Error("blocked"); storage.delete(k); } }
   });
-  return { saved, unread, tool, topic, read, firstUnread, caughtUp, showRead, followOnly, upcoming, transitions, setLocalTime: (year, month, day, hour = 0) => { now = new Date(year, month - 1, day, hour); }, reset, exportButton, downloads, revoked, timers, failDownload: () => { downloadFails = true; }, status, empty, entries, storage, events, url: () => url, navigate: value => { url = new URL(value, url); }, visible: () => entries.filter(e => !e.hidden) };
+  return { saved, unread, tool, topic, read, firstUnread, caughtUp, showRead, followOnly, upcoming, transitions, exportCalendar, calendarStatus, setLocalTime: (year, month, day, hour = 0) => { now = new Date(year, month - 1, day, hour); }, reset, exportButton, downloads, revoked, timers, failDownload: () => { downloadFails = true; }, status, empty, entries, storage, events, url: () => url, navigate: value => { url = new URL(value, url); }, visible: () => entries.filter(e => !e.hidden) };
 }
 
 test("upcoming transitions retain local today and hide expired dates when revisiting", () => {
@@ -76,6 +89,60 @@ test("upcoming transitions retain local today and hide expired dates when revisi
   assert.equal(f.visible().length, 0);
   assert.equal(f.url().href, href);
   assert.deepEqual([...f.storage], initialStorage);
+});
+
+test("calendar exports only current and future dates as all-day public events", async () => {
+  const f = fixture("?tool=cursor&followup=1#tool-changes", false, null, ["2026-11-30", "2026-12-11", "2027-03-31"]);
+  f.setLocalTime(2026, 12, 11, 22);
+  f.storage.set("aiplorer-candidate-notes-v1", "PRIVATE_NOTE_SENTINEL");
+  const before = [...f.storage], href = f.url().href;
+  f.exportCalendar.events.click();
+  assert.equal(f.downloads.length, 1);
+  assert.equal(f.downloads[0].filename, "aiplorer-transition-dates.ics");
+  assert.equal(f.downloads[0].blob.type, "text/calendar;charset=utf-8");
+  const raw = await f.downloads[0].blob.text();
+  const lines = raw.replace(/\r\n /g, "").split("\r\n");
+  assert.deepEqual(lines.slice(0, 2), ["BEGIN:VCALENDAR", "VERSION:2.0"]);
+  assert.deepEqual(lines.slice(-2), ["END:VCALENDAR", ""]);
+  assert.deepEqual(lines.filter(line => line.startsWith("DTSTART")), ["DTSTART;VALUE=DATE:20261211", "DTSTART;VALUE=DATE:20270331"]);
+  assert.deepEqual(lines.filter(line => line.startsWith("UID:")), ["UID:transition-1@aiplorer.com", "UID:transition-2@aiplorer.com"]);
+  assert(lines.includes("URL:https://aiplorer.com/ai-tools/review-updates/#change-transition-1"));
+  assert(lines.some(line => line.startsWith("DESCRIPTION:") && line.includes("Official source: https://official.example/transition-1")));
+  assert(lines.filter(line => line.startsWith("DTSTAMP:")).every(line => /^DTSTAMP:\d{8}T\d{6}Z$/.test(line)));
+  assert.doesNotMatch(raw, /20261130|BEGIN:VALARM|PRIVATE_NOTE_SENTINEL|followup=1/);
+  assert.equal(f.downloads[0].removed, true);
+  assert.deepEqual([...f.storage], before);
+  assert.equal(f.url().href, href);
+  assert.match(f.calendarStatus.textContent, /does not sync/);
+});
+
+test("calendar escapes text and folds UTF-8 lines before download", async () => {
+  const f = fixture("", false, null, ["2027-03-31"]);
+  f.setLocalTime(2026, 11, 18);
+  const title = "\u00e9".repeat(43) + ", model; beta\\release\nNext line";
+  f.transitions[0].title.textContent = title;
+  f.exportCalendar.events.click();
+  const raw = await f.downloads[0].blob.text();
+  assert(raw.includes("\r\n "));
+  assert(raw.split("\r\n").every(line => Buffer.byteLength(line, "utf8") <= 75));
+  const unfolded = raw.replace(/\r\n /g, "");
+  assert(unfolded.includes("SUMMARY:Scheduled: " + "\u00e9".repeat(43) + "\\, model\\; beta\\\\release\\nNext line"));
+  assert.doesNotMatch(raw, /\ufffd/);
+});
+
+test("calendar handles a blocked download and skips an expired schedule", () => {
+  const f = fixture("", false, null, ["2027-03-31"]);
+  f.setLocalTime(2026, 11, 18);
+  f.failDownload();
+  f.exportCalendar.events.click();
+  assert.match(f.calendarStatus.textContent, /Could not download the calendar/);
+  assert.equal(f.downloads[0].removed, true);
+  f.timers.forEach(fn => fn());
+  assert.deepEqual(f.revoked, ["blob:brief"]);
+  f.setLocalTime(2027, 4, 1);
+  f.exportCalendar.events.click();
+  assert.equal(f.upcoming.hidden, true);
+  assert.equal(f.downloads.length, 1);
 });
 
 test("tool deep link shows only that tool and does not mark records read", () => {

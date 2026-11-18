@@ -22,12 +22,16 @@
         <h3 id="change-upcoming-heading">Upcoming transitions</h3>
         <ul>
           {{ range sort . "transitionDate" "asc" }}
-            <li data-change-transition-date="{{ .transitionDate }}" hidden>
+            <li data-change-transition-date="{{ .transitionDate }}" data-change-transition-id="{{ .id }}" data-change-transition-source="{{ .sourceUrl }}" hidden>
               <time datetime="{{ .transitionDate }}">{{ time.Format "Jan 2, 2006" .transitionDate }}</time>
               &middot; <a href="?changesSaved=0#change-{{ .id }}">{{ .toolTitle }}: {{ .transitionLabel }}</a>
             </li>
           {{ end }}
         </ul>
+        <div class="aiplorer-actions">
+          <button class="aiplorer-button aiplorer-button--light" type="button" data-change-export-calendar>{{ partial "aiplorer-icon.html" "download" }} Download calendar (.ics)</button>
+        </div>
+        <p class="aiplorer-change-watch__status" role="status" data-change-calendar-status></p>
         <p class="aiplorer-change-watch__status">Selected provider dates; check the official notice before acting.</p>
       </section>
     {{ end }}
