@@ -1,0 +1,35 @@
+PUBLIC DOCUMENT RELEASE CHECKLIST
+Version 1. One copy per deliverable version.
+
+Document or release ID:
+Version checked:
+Intended audience and destination:
+Reviewer and date:
+
+01 FACTS
+Approved source and version:
+Match key dates, locations, status, and promises against the source.
+Keep anything unresolved out of the public copy or label it clearly.
+Result (Pass / Hold / Not checked):
+Evidence location or open question:
+
+02 SHARING SCOPE
+Check body text, titles, captions, footers, links, and, where relevant,
+comments, metadata, or embedded content. Remove internal-only details
+and confirm the recipient needs what remains.
+Result (Pass / Hold / Not checked):
+Evidence location or open question:
+
+03 FINAL FILE
+Open the exact export the recipient will receive. Check required page size,
+selectable and searchable text, and each approved link and access level.
+Result (Pass / Hold / Not checked):
+Evidence location or open question:
+
+Release decision (Ready / Hold):
+Unresolved issue and owner:
+When to recheck:
+
+Hold if a required check is unresolved. Recheck after changes to the
+source, audience, or export. Keep sensitive evidence in an approved
+location and do not put private record details in a shared checklist.

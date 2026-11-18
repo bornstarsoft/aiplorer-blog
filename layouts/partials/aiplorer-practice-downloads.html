@@ -1,6 +1,11 @@
 <section class="aiplorer-shell aiplorer-article-index aiplorer-practice-packs" aria-labelledby="practice-downloads" data-practice-shelf>
   <h2 id="practice-downloads" tabindex="-1">Practice packs <span>{{ len . }}</span></h2>
   <p>Fictional inputs for repeat checks. Keep review keys out of the AI conversation; keep completed worksheets in your own approved location.</p>
+  {{ with site.GetPage "/use-cases/review-an-ai-assisted-document-before-sharing/" }}
+    {{ if and (eq .Params.reviewStatus "reviewed") (not .Draft) }}
+      <div class="aiplorer-article-jumps"><a href="{{ .RelPermalink }}">Review a public document before sharing {{ partial "aiplorer-icon.html" "square-check" }}</a></div>
+    {{ end }}
+  {{ end }}
   <p class="aiplorer-practice-count" data-practice-count hidden></p>
   <div class="aiplorer-practice-resume" data-practice-resume hidden>
     <a data-practice-resume-link>Continue practice: <span data-practice-resume-title></span></a>

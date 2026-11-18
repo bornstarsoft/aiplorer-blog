@@ -44,3 +44,35 @@ const useCases = read("public/use-cases/index.html");
 assert(useCases.includes("3 text downloads"), "Make the reference pack's resources visible");
 assert(!read("public/index.html").includes("aiplorer-article-index.css"), "Keep new styles off home");
 assert(!read("public/ai-tools/tools/index.html").includes("aiplorer-article-index.css"), "Scope styles to article hubs");
+
+const documentPath = "/use-cases/review-an-ai-assisted-document-before-sharing/";
+const documentHtml = read(`public${documentPath}index.html`);
+const shelf = useCases.indexOf("data-practice-shelf");
+const recent = useCases.indexOf("practice-recent-title", shelf);
+const shelfIntro = useCases.slice(shelf, recent);
+const links = html => [...html.matchAll(/<a\b[^>]*>/g)].map(([tag]) => tag);
+assert.equal(links(shelfIntro).filter(tag => attr(tag, "href") === documentPath).length, 1);
+assert(!read("public/index.html").includes(documentPath), "Keep the workflow off the homepage");
+
+const practiceRoutes = [
+  "/use-cases/check-an-ai-event-announcement-against-a-brief/",
+  "/use-cases/check-an-ai-redaction-before-sharing/",
+  "/use-cases/check-an-ai-export-plan-against-delivery-requirements/",
+];
+assert.deepEqual(links(documentHtml).map(tag => attr(tag, "href")).filter(href => practiceRoutes.includes(href)), practiceRoutes);
+for (const route of practiceRoutes) assert(read(`public${route}index.html`).includes("Download test input"));
+assert(links(documentHtml).some(tag => attr(tag, "href") === "/use-cases/#practice-downloads"));
+assert(!documentHtml.includes("/js/aiplorer-practice-resume."));
+
+const checklist = "public-document-review-v1.txt";
+const download = links(documentHtml).find(tag => attr(tag, "download") === checklist);
+assert(download && attr(download, "href") === documentPath + checklist);
+const checklistText = read(`public${documentPath}${checklist}`);
+assert.equal(checklistText, read(`content${documentPath}${checklist}`));
+assert.deepEqual(checklistText.match(/^0\d [A-Z ]+$/gm), ["01 FACTS", "02 SHARING SCOPE", "03 FINAL FILE"]);
+assert(checklistText.includes("Release decision (Ready / Hold):") && checklistText.includes("When to recheck:"));
+
+const canonical = [...documentHtml.matchAll(/<link\b[^>]*>/g)].map(([tag]) => tag).find(tag => attr(tag, "rel") === "canonical");
+assert.equal(attr(canonical, "href"), "https://aiplorer.com" + documentPath);
+assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${documentPath}</loc>`).length, 2);
+console.log("PASS: public document workflow, three ordered practice links, exact checklist, and canonical.");
