@@ -58,7 +58,7 @@ const officialHosts = new Map([
   ["/ai-tools/tools/windsurf/", ["docs.devin.ai"]],
   ["/ai-tools/tools/replit/", ["docs.replit.com", "replit.com"]],
   ["/ai-tools/tools/notion-ai/", ["www.notion.com"]],
-  ["/ai-tools/tools/claude/", ["www.anthropic.com"]],
+  ["/ai-tools/tools/claude/", ["www.anthropic.com", "platform.claude.com"]],
   ["/ai-tools/tools/perplexity/", ["www.perplexity.ai"]],
   ["/ai-tools/tools/runway/", ["runway.com"]],
   ["/ai-tools/tools/adobe-firefly/", ["blog.adobe.com", "helpx.adobe.com"]],
