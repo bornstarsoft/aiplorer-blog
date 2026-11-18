@@ -17,6 +17,7 @@ function node(properties = {}) {
     hidden: true, textContent: "", ...properties,
     getAttribute: name => attributes.get(name),
     setAttribute: (name, value) => attributes.set(name, value),
+    toggleAttribute: (name, force) => force ? attributes.set(name, "") : attributes.delete(name),
     removeAttribute: name => attributes.delete(name),
     addEventListener(name, handler) { this[name] = handler; },
   };
@@ -98,6 +99,11 @@ function setup(saved = null, mode = "", practicedSaved = null, planned = null, i
   const nextStep = node({ value: "" }), nextStatus = node();
   const stepDownload = node();
   const practicedCount = node();
+  const recent = [chartId, retryId, "practice-missing"].map(id => {
+    const status = node();
+    status.setAttribute("data-practice-recent-status", id);
+    return status;
+  });
   const filterControls = node(), filter = node({ value: "all" }), filterEmpty = node(), taskNav = node();
   const chartOption = node({ value: chartId }), retryOption = node({ value: retryId });
   const unsafeOption = node({ value: "javascript:bad" });
@@ -171,7 +177,8 @@ function setup(saved = null, mode = "", practicedSaved = null, planned = null, i
     "[data-practice-plan-status]": planStatus,
   };
   const shelf = { querySelector: s => children[s], querySelectorAll: s =>
-    s === "[data-practice-task]" ? [chart.task, retry.task, ...(includeThird ? [third.task] : [])] :
+    s === "[data-practice-recent-status]" ? recent :
+      s === "[data-practice-task]" ? [chart.task, retry.task, ...(includeThird ? [third.task] : [])] :
       [chart, retry, ...(includeThird ? [third] : []), unsafe] };
   const localStorage = {
     getItem(k) {
@@ -190,7 +197,7 @@ function setup(saved = null, mode = "", practicedSaved = null, planned = null, i
     },
   };
   vm.runInNewContext(source, { document, window, localStorage });
-  return { chart, retry, unsafe, resume, link, title, nextStep, nextStatus, stepDownload, practicedCount, window, storage, writes,
+  return { chart, retry, unsafe, resume, link, title, nextStep, nextStatus, stepDownload, practicedCount, recent, window, storage, writes,
     filter, filterControls, filterEmpty, taskNav, document, chooser, choice, choiceDetails, choiceDescription, choiceLink,
     choiceEmpty, reviewReset, roundProgress, roundRecap, roundList, choiceLabel, choiceMode, newMode, reviewMode, chartOption, retryOption, unsafeOption, chartGroup, retryGroup,
     plan, planTitle, planStart, planDone, planClear, planSave, planStatus,
@@ -209,6 +216,36 @@ test("does not save on visit and leaves native controls usable", () => {
   assert.equal(p.chart.finish.hidden, true);
   assert.equal(p.chart.restart.hidden, true);
   assert.deepEqual(p.writes, []);
+});
+
+test("recent labels reflect existing practice marks and refresh without extra writes", () => {
+  const saved = JSON.stringify({ id: retryId, step: "compare" });
+  const p = setup(saved, "", JSON.stringify([chartId]), retryId);
+  const [chart, retry, missing] = p.recent;
+  assert.deepEqual(p.recent.map(label => label.textContent), ["Practiced", "Not practiced yet", ""]);
+  assert.equal(chart.getAttribute("data-practiced"), "");
+  assert.equal(retry.getAttribute("data-practiced"), undefined);
+  assert.equal(missing.hidden, true);
+  assert.deepEqual(p.writes, []);
+  p.chart.practiced.checked = false;
+  p.chart.practiced.change();
+  assert.equal(chart.textContent, "Not practiced yet");
+  p.retry.practiced.checked = true;
+  p.retry.practiced.change();
+  assert.equal(retry.textContent, "Practiced");
+  assert.deepEqual(p.writes, [[practicedKey, null], [practicedKey, JSON.stringify([retryId])]]);
+  p.storage.set(practicedKey, JSON.stringify([chartId]));
+  p.window.storage({ key: practicedKey });
+  assert.deepEqual(p.recent.map(label => label.textContent), ["Practiced", "Not practiced yet", ""]);
+  p.storage.delete(practicedKey);
+  p.window.pageshow();
+  assert.deepEqual(p.recent.map(label => label.textContent), ["Not practiced yet", "Not practiced yet", ""]);
+  assert.equal(p.writes.length, 2);
+  assert.equal(p.storage.get(key), saved);
+  assert.equal(p.storage.get(planKey), retryId);
+  const blocked = setup(saved, "read blocked", JSON.stringify([chartId]));
+  assert(blocked.recent.every(label => label.hidden && label.textContent === ""));
+  assert.deepEqual(blocked.writes, []);
 });
 
 test("starting a practiced pack again opens and focuses its input without changing any stored state", () => {

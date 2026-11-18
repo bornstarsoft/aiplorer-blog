@@ -1,0 +1,28 @@
+AI EXPERIMENT SUMMARY REVIEW - INPUTS - VERSION 1
+
+Fictional workshop signup test. Use the supplied plan and results only.
+
+TEST PLAN
+P1. Compare first-time visitors assigned to the original or revised
+    signup form. Exclude internal staff trials from the comparison.
+P2. The primary outcome is confirmed signup. Attendance is not tracked.
+P3. Pause rollout if the revised group has more than 5 form errors
+    per 100 eligible visitors, even if confirmed signup is higher.
+
+RESULTS
+Original: 100 eligible visitors, 42 confirmed signups, 3 form errors.
+Revised: 100 eligible visitors, 49 confirmed signups, 8 form errors.
+Separate staff trials of the revised form: 10 visitors, 10 confirmations.
+
+TEST-01
+Draft: The revised form had 59 confirmations from 110 eligible visitors.
+
+TEST-02
+Draft: The revised form increased workshop attendance from 42 to 49.
+
+TEST-03
+Draft: Roll out the revised form because it had more confirmations.
+
+For each ID, cite the rule or result that matters and correct the
+claim. Do not add outcomes, causes, or recommendations not supported
+by the supplied material.

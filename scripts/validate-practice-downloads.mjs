@@ -46,6 +46,7 @@ const tasks = [
   ["check-an-ai-document-index-against-a-file-manifest", "Check a document index"],
   ["check-an-ai-quote-against-a-transcript", "Check a transcript quote"],
   ["check-an-ai-dashboard-summary-against-metric-definitions", "Check a dashboard summary"],
+  ["check-an-ai-experiment-summary-against-a-test-plan", "Check an experiment summary"],
 ];
 assert.equal((html.match(/data-practice-pack\b/g) || []).length, tasks.length);
 const jumps = [...html.matchAll(/<a\b[^>]*\bdata-practice-task\b[^>]*>[\s\S]*?<\/a>/g)].map(([link]) => link);
@@ -84,7 +85,7 @@ for (const preview of previews) {
   assert(status && attr(status, "role") === "status" && attr(status, "aria-live") === "polite");
 }
 assert(html.includes("/js/aiplorer-practice-copy.js?v=20261024a"));
-assert(html.includes("/js/aiplorer-practice-resume.js?v=20261110z"));
+assert(html.includes("/js/aiplorer-practice-resume.js?v=20261118a"));
 const pickers = [...html.matchAll(/<div\b[^>]*data-practice-recap-picker\b[^>]*>[\s\S]*?<\/div>/g)];
 assert.equal(pickers.length, tasks.length);
 const recapPickerIds = new Set();
@@ -216,6 +217,7 @@ const packs = [
   ["check-an-ai-document-index-against-a-file-manifest", "manifest"],
   ["check-an-ai-quote-against-a-transcript", "quote"],
   ["check-an-ai-dashboard-summary-against-metric-definitions", "metric"],
+  ["check-an-ai-experiment-summary-against-a-test-plan", "experiment"],
 ];
 const downloadOrder = new Map();
 for (const [pack] of html.matchAll(/<li\b[^>]*data-practice-pack\b[^>]*>[\s\S]*?<\/li>/g)) {
@@ -586,13 +588,32 @@ for (const role of ["inputs", "answer-key", "worksheet"]) {
 const metricPreview = previews.find(tag => attr(tag, "data-practice-preview") === metricRoute + "metric-check-inputs-v1.txt");
 assert(metricPreview.includes("125 total including tests") && !metricPreview.includes("10 percentage points"));
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${metricRoute}</loc>`).length, 2);
+const experimentRoute = "/use-cases/check-an-ai-experiment-summary-against-a-test-plan/";
+const experimentArticle = read(`public${experimentRoute}index.html`);
+assert(!experimentArticle.includes("aiplorer-practice-resume.js"));
+for (const role of ["inputs", "answer-key", "worksheet"]) {
+  const file = `experiment-check-${role}-v1.txt`;
+  assert(experimentArticle.includes(experimentRoute + file));
+  for (const id of ["TEST-01", "TEST-02", "TEST-03"]) assert(read(`public${experimentRoute}${file}`).includes(id));
+}
+const experimentPreview = previews.find(tag => attr(tag, "data-practice-preview") === experimentRoute + "experiment-check-inputs-v1.txt");
+assert(experimentPreview.includes("Separate staff trials") && !experimentPreview.includes("do not override the stop rule"));
+assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${experimentRoute}</loc>`).length, 2);
 
 const recent = html.match(/<nav\b[^>]*aria-labelledby=["']?practice-recent-title\b[^>]*>[\s\S]*?<\/nav>/)?.[0];
 assert(recent?.includes("Recently added"));
 const recentRoutes = JSON.parse(read("data/recent_practice.json")).map(slug => `/use-cases/${slug}/`);
 assert(recentRoutes.length >= 1 && recentRoutes.length <= 3);
 assert.equal(new Set(recentRoutes).size, recentRoutes.length);
-assert.deepEqual([...recent.matchAll(/<a\b[^>]*>/g)].map(([tag]) => attr(tag, "href")), recentRoutes);
+const recentLinks = [...recent.matchAll(/<a\b[^>]*>/g)].map(([tag]) => tag);
+const recentLabels = [...recent.matchAll(/<span\b[^>]*data-practice-recent-status\b[^>]*><\/span>/g)].map(([tag]) => tag);
+assert.deepEqual(recentLinks.map(tag => attr(tag, "href")), recentRoutes);
+assert.equal(recentLabels.length, recentLinks.length);
+for (const [i, label] of recentLabels.entries()) {
+  assert.match(label, /\bhidden(?:[\s=>])/);
+  assert.equal(attr(recentLinks[i], "aria-describedby"), attr(label, "id"));
+  assert.equal(attr(label, "data-practice-recent-status"), "practice-" + recentRoutes[i].split("/")[2]);
+}
 for (const route of recentRoutes) assert(previewPaths.some(path => path.startsWith(route)));
 assert(!read("public/index.html").includes("practice-recent-title"), "Home must not show the recent practice list");
 console.log(`PASS: ${tasks.length} input-only previews, ${downloadCount} exact step-ordered downloads, guide entry links, script scoped to use-cases hub.`);

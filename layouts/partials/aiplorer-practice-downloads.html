@@ -28,7 +28,13 @@
   <nav aria-labelledby="practice-recent-title">
     <h3 id="practice-recent-title">Recently added</h3>
     <div class="aiplorer-article-jumps">
-      {{ range . }}<a href="{{ .RelPermalink }}">{{ .Params.practiceTask | default .Title }}</a>{{ end }}
+      {{ range . }}
+        {{ $slug := path.Base .RelPermalink }}
+        <div class="aiplorer-practice-recent-item">
+          <a href="{{ .RelPermalink }}" aria-describedby="practice-recent-{{ $slug }}">{{ .Params.practiceTask | default .Title }}</a>
+          <span id="practice-recent-{{ $slug }}" data-practice-recent-status="practice-{{ $slug }}" hidden></span>
+        </div>
+      {{ end }}
     </div>
   </nav>
   {{ end }}

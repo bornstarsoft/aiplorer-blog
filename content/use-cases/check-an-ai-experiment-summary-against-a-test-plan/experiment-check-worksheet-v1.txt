@@ -1,0 +1,13 @@
+AI EXPERIMENT SUMMARY REVIEW - COMPARISON WORKSHEET - VERSION 1
+
+First run: ____________________  Date: __________
+Later run: ____________________  Date: __________
+Use the same test plan, results, and claims for both runs.
+
+ID      | First run evidence | Later run evidence | What to verify
+TEST-01 |                    |                    | Staff trials excluded
+TEST-02 |                    |                    | Confirmation, not attendance
+TEST-03 |                    |                    | Stop rule applied
+
+Any unsupported outcome or recommendation: ____________________
+One rule to confirm before sharing a real recap: ______________

@@ -20,6 +20,7 @@
       "check-an-ai-csv-merge-against-original-records",
       "check-an-ai-survey-summary-against-response-counts",
       "check-an-ai-dashboard-summary-against-metric-definitions",
+      "check-an-ai-experiment-summary-against-a-test-plan",
       "check-an-ai-product-listing-against-a-spec-sheet",
       "check-an-ai-spreadsheet-formula-before-copying-it",
       "check-an-ai-test-plan-against-acceptance-criteria",

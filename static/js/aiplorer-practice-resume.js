@@ -10,6 +10,7 @@
   const nextStatus = shelf.querySelector("[data-practice-next-status]");
   const stepDownload = shelf.querySelector("[data-practice-step-download]");
   const practicedCount = shelf.querySelector("[data-practice-count]");
+  const recentStatuses = shelf.querySelectorAll("[data-practice-recent-status]");
   const filterControls = shelf.querySelector("[data-practice-filter-controls]");
   const filter = shelf.querySelector("[data-practice-filter]");
   const filterEmpty = shelf.querySelector("[data-practice-empty]");
@@ -183,6 +184,14 @@
     try { ids = readPracticed(); } catch { /* Storage is unavailable. */ }
     practicedCount.hidden = !ids?.size;
     practicedCount.textContent = ids?.size ? `${ids.size} of ${packs.size} practiced in this browser` : "";
+    for (const status of recentStatuses) {
+      const id = status.getAttribute("data-practice-recent-status");
+      const known = Boolean(ids && packs.has(id));
+      const practiced = known && ids.has(id);
+      status.hidden = !known;
+      status.textContent = known ? (practiced ? "Practiced" : "Not practiced yet") : "";
+      status.toggleAttribute("data-practiced", practiced);
+    }
     for (const [id, pack] of packs) {
       const practiced = ids?.has(id) ?? false;
       if (pack.restart) pack.restart.hidden = !practiced;

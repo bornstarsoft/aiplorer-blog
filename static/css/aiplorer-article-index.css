@@ -17,6 +17,26 @@
   text-underline-offset: 0.2em;
 }
 
+.aiplorer-practice-recent-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 0.5rem;
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.aiplorer-practice-recent-item span {
+  color: var(--aiplorer-muted, #52616d);
+  font-size: 0.8125rem;
+}
+
+.aiplorer-practice-recent-item span[data-practiced] {
+  color: var(--aiplorer-teal, #087c73);
+  font-weight: 650;
+}
+
 .aiplorer-article-index {
   padding-top: 1.5rem;
   padding-bottom: 3rem;

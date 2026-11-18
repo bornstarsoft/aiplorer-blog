@@ -63,6 +63,7 @@ provides a buggy function and local regression tests.
 | Review a document index | [File manifest pack](/use-cases/check-an-ai-document-index-against-a-file-manifest/) | Check file versions, sharing scope, and missing attachments |
 | Review a transcript quote | [Transcript excerpt pack](/use-cases/check-an-ai-quote-against-a-transcript/) | Check wording, attribution, and omitted conditions |
 | Review a dashboard summary | [Metric definitions pack](/use-cases/check-an-ai-dashboard-summary-against-metric-definitions/) | Check denominators, units of change, and period cutoffs |
+| Review an experiment summary | [Test plan and results pack](/use-cases/check-an-ai-experiment-summary-against-a-test-plan/) | Check eligibility, measured outcomes, and rollout rules |
 
 The [practice downloads](/use-cases/#practice-downloads) collect the
 packs in one place. These checks do not cover every workflow. If your
