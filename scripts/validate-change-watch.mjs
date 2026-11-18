@@ -12,13 +12,14 @@ const today = new Intl.DateTimeFormat("en-CA", {
   timeZone: "Asia/Seoul", year: "numeric", month: "2-digit", day: "2-digit"
 }).format(new Date());
 const officialHosts = new Map([
+  ["/ai-tools/tools/chatgpt/", ["help.openai.com"]],
   ["/ai-tools/tools/pipedream/", ["pipedream.com"]],
   ["/ai-tools/tools/speechify/", ["docs.speechify.ai"]],
   ["/ai-tools/tools/murf-ai/", ["murf.ai"]],
   ["/ai-tools/tools/adobe-podcast/", ["podcast.adobe.com"]],
   ["/ai-tools/tools/heygen/", ["www.heygen.com"]],
   ["/ai-tools/tools/fathom/", ["help.fathom.video"]],
-  ["/ai-tools/tools/gemini/", ["knowledge.workspace.google.com"]],
+  ["/ai-tools/tools/gemini/", ["knowledge.workspace.google.com", "blog.google"]],
   ["/ai-tools/tools/microsoft-copilot/", ["support.microsoft.com"]],
   ["/ai-tools/tools/midjourney/", ["updates.midjourney.com"]],
   ["/ai-tools/tools/leonardo-ai/", ["docs.leonardo.ai"]],
@@ -77,12 +78,14 @@ assert(Array.isArray(data.entries) && data.entries.length > 0);
 const ids = new Set();
 const watch = readFileSync(resolve(root, "public/ai-tools/review-updates/index.html"), "utf8");
 const feed = readFileSync(resolve(root, "public/ai-tools/review-updates/index.xml"), "utf8");
+const home = readFileSync(resolve(root, "public/index.html"), "utf8");
+const shortlist = readFileSync(resolve(root, "public/ai-tools/shortlist/index.html"), "utf8");
 const watchScript = readFileSync(resolve(root, "static/js/aiplorer-change-watch.js"));
 const hash = createHash("sha256").update(watchScript).digest("hex");
 const scriptPath = `/js/aiplorer-change-watch.${hash}.js`;
 assert(watch.includes(scriptPath));
 assert.deepEqual(readFileSync(resolve(root, "public", scriptPath.slice(1))), watchScript);
-assert(!readFileSync(resolve(root, "public/index.html"), "utf8").includes(scriptPath));
+assert(!home.includes(scriptPath));
 assert(/<button\b[^>]*data-change-first-unread\b[^>]*\bdisabled(?=[\s=>])[^>]*>First unread<\/button>/.test(watch));
 const catchUp = watch.match(/<div\b[^>]*data-change-caught-up\b[^>]*\bhidden(?=[\s=>])[^>]*>[\s\S]*?<\/div>/)?.[0];
 assert(catchUp && catchUp.includes("You have read all updates in this view."));
@@ -121,5 +124,7 @@ for (const entry of data.entries) {
   }
   assert(watch.includes(`change-${entry.id}`), `Entry excluded from HTML: ${entry.id}`);
   assert(feed.includes(`aiplorer-change:${entry.id}:${entry.revision}`), `Entry excluded from RSS: ${entry.id}`);
+  assert(home.includes(`${entry.id}:${entry.revision}`), `Entry excluded from saved updates: ${entry.id}`);
+  assert(shortlist.includes(`${entry.id}:${entry.revision}`), `Entry excluded from shortlist: ${entry.id}`);
 }
-console.log(`Change Watch: ${ids.size} official-source records passed date, identity, link, HTML, and RSS checks.`);
+console.log(`Change Watch: ${ids.size} official-source records passed date, identity, link, HTML, RSS, and saved-tool checks.`);

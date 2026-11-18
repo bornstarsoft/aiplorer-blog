@@ -1,6 +1,49 @@
 {
-  "checkedAt": "2026-10-15",
+  "checkedAt": "2026-11-18",
   "entries": [
+    {
+      "id": "gemini-app-history-and-training-controls-2026-11-16",
+      "tool": "/ai-tools/tools/gemini/",
+      "announcedAt": "2026-11-16",
+      "checkedAt": "2026-11-18",
+      "revision": 1,
+      "topic": "Privacy controls",
+      "title": "Recheck Gemini chat history and model-training settings",
+      "summary": "Google announced a phased Gemini app update that separates keeping chat history from allowing its use in model training. Google says that once the new controls apply, disabling History still leaves future chats retained for about two months. The rollout is not an assertion that every account already has the settings.",
+      "action": "Check which controls are available in your account before uploading files. Review training, history, feedback and connected-app settings separately. Turning off one setting is not a no-retention guarantee or approval to share confidential material.",
+      "sourceTitle": "Google: Updated Gemini app controls, November 16",
+      "sourceUrl": "https://blog.google/innovation-and-ai/products/gemini-app/updated-controls/",
+      "guide": "/guides/review-connected-ai-app-permissions/"
+    },
+    {
+      "id": "copilot-model-deprecations-confirmed-2026-11-16",
+      "tool": "/ai-tools/tools/github-copilot/",
+      "announcedAt": "2026-11-16",
+      "dateLabel": "Retirement confirmed",
+      "checkedAt": "2026-11-18",
+      "revision": 1,
+      "topic": "Model availability",
+      "title": "Recheck pinned Copilot models after the November retirements",
+      "summary": "GitHub confirmed the November 16 retirement of Claude Opus 4.8, Claude Opus 5 and GPT-5.6 Terra in most Copilot experiences. GitHub lists an annual individual-plan exception for Opus 4.8 and limited runtime fallback for Opus 5. This is separate from the October model retirements.",
+      "action": "Check saved model selections and team instructions against the official list. Confirm which replacements are available under your organization's policies, then rerun a small non-sensitive task and review the result before switching a regular workflow.",
+      "sourceTitle": "GitHub Changelog: Copilot model retirements confirmed, November 16",
+      "sourceUrl": "https://github.blog/changelog/2026-11-16-github-copilot-models-deprecated-on-november-16-2026/",
+      "guide": "/guides/cursor-vs-github-copilot-for-repository-work/"
+    },
+    {
+      "id": "chatgpt-advanced-standard-voice-retirement-notice-2026-11-10",
+      "tool": "/ai-tools/tools/chatgpt/",
+      "announcedAt": "2026-11-10",
+      "checkedAt": "2026-11-18",
+      "revision": 1,
+      "topic": "Voice transition",
+      "title": "Try ChatGPT Live Voice before the December voice transition",
+      "summary": "OpenAI notified users on November 10 that Advanced and Standard voice conversations are scheduled to retire on December 11, 2026, with Live becoming the default for affected users. OpenAI says live video and screen sharing will continue to use Advanced voice until Live supports them. This is not the end of ChatGPT Voice or Read Aloud.",
+      "action": "If you rely on an older voice mode, try a short, non-sensitive task in Live and check whether it fits your workflow. Verify video, screen sharing and Read Aloud separately in the current help guidance before relying on them.",
+      "sourceTitle": "OpenAI Help Center: Retiring Advanced and Standard Voice in ChatGPT",
+      "sourceUrl": "https://help.openai.com/en/articles/20001638-retiring-advanced-and-standard-voice-in-chatgpt",
+      "guide": "/guides/keep-your-work-portable-when-an-ai-service-changes/"
+    },
     {
       "id": "pipedream-workflows-sunset-notice-checked-2026-10-15",
       "tool": "/ai-tools/tools/pipedream/",
