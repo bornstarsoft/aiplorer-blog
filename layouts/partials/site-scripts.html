@@ -32,7 +32,8 @@
 {{ end }}
 {{ if eq .RelPermalink "/ai-tools/review-updates/" }}
   <link rel="stylesheet" href="/css/aiplorer-change-focus.css?v=20261023d">
-  <script defer src="/js/aiplorer-change-watch.js?v=20261023d"></script>
+  {{ $watch := resources.FromString "js/aiplorer-change-watch.js" (readFile "static/js/aiplorer-change-watch.js") | fingerprint }}
+  <script defer src="{{ $watch.RelPermalink }}"></script>
   <script defer src="/js/aiplorer-review-return.js?v=20260726e"></script>
 {{ end }}
 {{ if eq .RelPermalink "/ai-tools/decision-path/" }}

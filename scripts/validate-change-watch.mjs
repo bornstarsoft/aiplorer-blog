@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { readFileSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { resolve, dirname } from "node:path";
@@ -76,6 +77,19 @@ assert(Array.isArray(data.entries) && data.entries.length > 0);
 const ids = new Set();
 const watch = readFileSync(resolve(root, "public/ai-tools/review-updates/index.html"), "utf8");
 const feed = readFileSync(resolve(root, "public/ai-tools/review-updates/index.xml"), "utf8");
+const watchScript = readFileSync(resolve(root, "static/js/aiplorer-change-watch.js"));
+const hash = createHash("sha256").update(watchScript).digest("hex");
+const scriptPath = `/js/aiplorer-change-watch.${hash}.js`;
+assert(watch.includes(scriptPath));
+assert.deepEqual(readFileSync(resolve(root, "public", scriptPath.slice(1))), watchScript);
+assert(!readFileSync(resolve(root, "public/index.html"), "utf8").includes(scriptPath));
+assert(/<button\b[^>]*data-change-first-unread\b[^>]*\bdisabled(?=[\s=>])[^>]*>First unread<\/button>/.test(watch));
+const navs = [...watch.matchAll(/<div\b[^>]*data-change-reading-nav\b[^>]*\bhidden(?=[\s=>])[^>]*>[\s\S]*?<\/div>/g)];
+assert.equal(navs.length, data.entries.length);
+for (const [nav] of navs) {
+  assert.match(nav, /data-change-next-unread\b[^>]*\bhidden(?=[\s=>])[^>]*>Next unread<\/button>/);
+  assert.match(nav, /data-change-back-to-filters\b[^>]*>Back to filters<\/button>/);
+}
 for (const entry of data.entries) {
   for (const field of ["id", "tool", "topic", "title", "summary", "action", "sourceTitle", "sourceUrl", "guide"]) {
     assert(typeof entry[field] === "string" && entry[field].trim(), `Missing ${field}`);

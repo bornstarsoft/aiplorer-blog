@@ -9,12 +9,14 @@
   var tool = root.querySelector("select[data-change-tool]");
   var reset = root.querySelector("[data-change-reset]");
   var markRead = root.querySelector("[data-change-read]");
+  var firstUnread = root.querySelector("[data-change-first-unread]");
   var exportBrief = root.querySelector("[data-change-export]");
   var storageKey = "aiplorer-change-read-v1";
   var storageAvailable = true;
   var viewKey = "aiplorer-change-view-v1";
   var viewStorageAvailable = true;
   var resumedView = false;
+  var readingIndex = -1;
 
   function readSet(key, fallback) {
     try {
@@ -83,6 +85,30 @@
   restoreView();
   resumeView();
 
+  function nextUnreadIndex(afterIndex) {
+    return entries.findIndex(function (entry, index) {
+      return index > afterIndex && !entry.hidden && !seen.has(entry.dataset.changeId);
+    });
+  }
+  function renderReadingNavigation() {
+    if (firstUnread) firstUnread.disabled = nextUnreadIndex(-1) < 0;
+    if (readingIndex >= 0 && entries[readingIndex].hidden) readingIndex = -1;
+    entries.forEach(function (entry, index) {
+      var nav = entry.querySelector("[data-change-reading-nav]");
+      if (!nav) return;
+      nav.hidden = index !== readingIndex;
+      var next = nav.querySelector("[data-change-next-unread]");
+      next.hidden = nav.hidden || nextUnreadIndex(index) < 0;
+    });
+  }
+  function goToUnread(afterIndex) {
+    var index = nextUnreadIndex(afterIndex);
+    if (index < 0) return;
+    readingIndex = index;
+    renderReadingNavigation();
+    entries[index].querySelector("[data-brief-title]").focus();
+  }
+
   function render() {
     var saved = readSet("aiplorer-shortlist-v1");
     var visible = 0;
@@ -105,6 +131,7 @@
     markRead.disabled = unread === 0;
     exportBrief.disabled = visible === 0;
     reset.disabled = !(savedOnly.checked || unreadOnly.checked || tool.value || topic.value);
+    renderReadingNavigation();
   }
 
   [savedOnly, unreadOnly, topic, tool].forEach(function (control) {
@@ -170,6 +197,18 @@
     render();
   }
   entries.forEach(function (entry, index) {
+    var nav = entry.querySelector("[data-change-reading-nav]");
+    if (nav) {
+      nav.querySelector("[data-change-next-unread]").addEventListener("click", function () {
+        if (readingIndex === index) goToUnread(index);
+      });
+      nav.querySelector("[data-change-back-to-filters]").addEventListener("click", function () {
+        if (readingIndex !== index) return;
+        readingIndex = -1;
+        renderReadingNavigation();
+        (firstUnread && !firstUnread.disabled ? firstUnread : unreadOnly).focus();
+      });
+    }
     var checkbox = entry.querySelector("[data-change-entry-read]");
     checkbox.addEventListener("change", function () {
       var checked = checkbox.checked;
@@ -183,6 +222,7 @@
       }
     });
   });
+  if (firstUnread) firstUnread.addEventListener("click", function () { goToUnread(-1); });
   markRead.addEventListener("click", function () {
     updateReadState(function () {
       entries.forEach(function (entry) { if (!entry.hidden) seen.add(entry.dataset.changeId); });

@@ -32,6 +32,7 @@
           {{ range sort (uniq $topics) }}<option value="{{ . }}">{{ . }}</option>{{ end }}
         </select>
       </label>
+      <button type="button" data-change-first-unread disabled>First unread</button>
       <button type="button" data-change-read>Mark visible updates read</button>
       <button type="button" data-change-export title="Download visible updates as a text brief">{{ partial "aiplorer-icon.html" "download" }} <span>Download brief</span></button>
       <button type="button" data-change-reset disabled>Clear filters</button>
@@ -64,6 +65,10 @@
               <a href="/guides/review-connected-ai-app-permissions/">Connected-app permission checklist <span aria-hidden="true">&rarr;</span></a>
               {{ end }}
             </nav>
+            <div class="aiplorer-actions" data-change-reading-nav hidden>
+              <button class="aiplorer-button aiplorer-button--light" type="button" data-change-next-unread hidden>Next unread</button>
+              <button class="aiplorer-button aiplorer-button--light" type="button" data-change-back-to-filters>Back to filters</button>
+            </div>
           </div>
         </article>
       {{ end }}

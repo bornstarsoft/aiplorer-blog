@@ -15,14 +15,19 @@ function fixture(query = "", blocked = false, view = null) {
   if (view !== null) storage.set(viewKey, view);
   function control(values = []) { return { value: "", checked: false, disabled: false, options: values.map(value => ({ value })), events: {}, focus() { this.focused = true; }, addEventListener(name, fn) { this.events[name] = fn; } }; }
   const saved = control(), unread = control(), tool = control(["", "cursor", "replit"]), topic = control(["", "Access", "Workflow"]), read = control(), reset = control(), exportButton = control(), status = {}, empty = {}, controls = {};
+  const firstUnread = control();
   const entries = [
     ["cursor-new:2", "cursor", "Access"], ["cursor-old:1", "cursor", "Workflow"], ["replit-one:1", "replit", "Access"]
   ].map(([id, slug, category]) => ({ dataset: { changeId: id, changeTool: "/ai-tools/tools/" + slug + "/", changeTopic: category }, badge: {}, checkbox: control(), readControl: {}, querySelector(selector) { return selector === "[data-change-entry-read]" ? this.checkbox : selector === "[data-change-entry-read-control]" ? this.readControl : this.badge; } }));
   entries.forEach(entry => {
     const id = entry.dataset.changeId.split(":")[0], slug = entry.dataset.changeTool.split("/")[3];
+    entry.nextUnread = control();
+    entry.backToFilters = control();
+    entry.readingNav = { querySelector: s => s === "[data-change-next-unread]" ? entry.nextUnread : entry.backToFilters };
     entry.brief = {
+      "[data-change-reading-nav]": entry.readingNav,
       "[data-brief-tool]": { textContent: slug },
-      "[data-brief-title]": { textContent: id + " announcement", getAttribute: () => "#change-" + id },
+      "[data-brief-title]": { ...control(), textContent: id + " announcement", getAttribute: () => "#change-" + id },
       "[data-brief-date]": { textContent: "Announced 2026-10 (exact day not published)" },
       "[data-brief-checked]": { textContent: "2026-10-15" },
       "[data-brief-summary]": { textContent: "Public summary for " + id },
@@ -32,7 +37,7 @@ function fixture(query = "", blocked = false, view = null) {
     const original = entry.querySelector.bind(entry);
     entry.querySelector = selector => entry.brief[selector] || original(selector);
   });
-  const elements = { "[data-change-saved]": saved, "[data-change-unread]": unread, "select[data-change-tool]": tool, "select[data-change-topic]": topic, "[data-change-read]": read, "[data-change-reset]": reset, "[data-change-export]": exportButton, "[data-change-status]": status, "[data-change-empty]": empty, "[data-change-controls]": controls };
+  const elements = { "[data-change-saved]": saved, "[data-change-unread]": unread, "select[data-change-tool]": tool, "select[data-change-topic]": topic, "[data-change-read]": read, "[data-change-first-unread]": firstUnread, "[data-change-reset]": reset, "[data-change-export]": exportButton, "[data-change-status]": status, "[data-change-empty]": empty, "[data-change-controls]": controls };
   const window = { get location() { return url; }, history: { state: { retained: true }, replaceState(state, _, target) { assert.deepEqual(state, { retained: true }); url = new URL(target, url); } }, addEventListener: (event, fn) => { events[event] = fn; } };
   window.URL = { createObjectURL: blob => { downloads.push({ blob }); return "blob:brief"; }, revokeObjectURL: value => revoked.push(value) };
   window.setTimeout = fn => timers.push(fn);
@@ -44,7 +49,7 @@ function fixture(query = "", blocked = false, view = null) {
   runInNewContext(source, { document, window, URL, URLSearchParams, Blob,
     localStorage: { getItem: k => { if (blocked) throw Error("blocked"); return storage.get(k); }, setItem: (k, v) => { if (blocked) throw Error("blocked"); storage.set(k, v); }, removeItem: k => { if (blocked) throw Error("blocked"); storage.delete(k); } }
   });
-  return { saved, unread, tool, topic, read, reset, exportButton, downloads, revoked, timers, failDownload: () => { downloadFails = true; }, status, empty, entries, storage, events, url: () => url, navigate: value => { url = new URL(value, url); }, visible: () => entries.filter(e => !e.hidden) };
+  return { saved, unread, tool, topic, read, firstUnread, reset, exportButton, downloads, revoked, timers, failDownload: () => { downloadFails = true; }, status, empty, entries, storage, events, url: () => url, navigate: value => { url = new URL(value, url); }, visible: () => entries.filter(e => !e.hidden) };
 }
 
 test("tool deep link shows only that tool and does not mark records read", () => {
@@ -93,6 +98,44 @@ test("unknown tool/topic values fall back to all; saved-empty state stays empty"
   saved.navigate("?changesSaved=1&view=tools"); saved.events.pageshow();
   assert.equal(saved.visible().length, 0);
 });
+test("read navigation follows only visible unread records and returns without changing state", () => {
+  const f = fixture("?tool=cursor&changesSaved=1&view=guides#tool-changes", false, remembered);
+  const [first, second, other] = f.entries;
+  const initial = [...f.storage];
+  const url = f.url().href;
+  assert(f.entries.every(entry => entry.readingNav.hidden));
+  assert.equal(f.firstUnread.disabled, false);
+  f.firstUnread.events.click();
+  assert.equal(first.brief["[data-brief-title]"].focused, true);
+  assert.equal(first.nextUnread.hidden, false);
+  first.nextUnread.events.click();
+  assert.equal(first.readingNav.hidden, true);
+  assert.equal(second.brief["[data-brief-title]"].focused, true);
+  assert.equal(second.readingNav.hidden, false);
+  assert.equal(second.nextUnread.hidden, true);
+  assert.equal(other.readingNav.hidden, true);
+  second.backToFilters.events.click();
+  assert.equal(f.firstUnread.focused, true);
+  assert(f.entries.every(entry => entry.readingNav.hidden));
+  assert.equal(f.url().href, url);
+  assert.deepEqual([...f.storage], initial);
+});
+
+test("read navigation skips previously read records and updates when results disappear", () => {
+  const f = fixture("?tool=cursor&unread=1");
+  const [first, second] = f.entries;
+  f.storage.set(readKey, JSON.stringify(["cursor-new:2"]));
+  f.events.storage({ key: readKey });
+  f.firstUnread.events.click();
+  assert.equal(first.readingNav.hidden, true);
+  assert.equal(second.readingNav.hidden, false);
+  f.storage.set(readKey, JSON.stringify(["cursor-new:2", "cursor-old:1"]));
+  f.events.storage({ key: readKey });
+  assert.equal(second.readingNav.hidden, true);
+  assert.equal(f.firstUnread.disabled, true);
+  assert.equal(f.empty.hidden, false);
+});
+
 test("return and cross-tab changes refresh read state; revisions remain unread", () => {
   const f = fixture("?tool=cursor&unread=1");
   f.storage.set(readKey, JSON.stringify(["cursor-new:1", "cursor-old:1"]));
