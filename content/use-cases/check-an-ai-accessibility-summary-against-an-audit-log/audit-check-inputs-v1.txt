@@ -1,0 +1,25 @@
+AI ACCESSIBILITY SUMMARY REVIEW - INPUTS - VERSION 1
+
+Fictional workshop sign-up form. Use the audit log only.
+Do not extend an observation to an untested page or method.
+
+AUDIT LOG
+L1. Build 14: automated scan found no missing input labels on the
+    sign-up form. The scan did not test keyboard focus in the date picker.
+L2. Build 14: in a manual keyboard test, focus was lost after closing
+    the date picker. The tester could not continue from the trigger.
+L3. Build 15: a focus-return change was added. The manual date-picker
+    test has not been repeated.
+L4. Screen reader announcement of invalid fields: NOT RUN.
+
+AUDIT-01
+Draft: Build 14 passed accessibility checks with no issues.
+
+AUDIT-02
+Draft: Build 15 verified that focus returns to the date-picker trigger.
+
+AUDIT-03
+Draft: The screen reader correctly announces every invalid field.
+
+For each ID, cite the relevant log entries and correct the claim.
+Separate passed checks, observed failures, and checks not yet run.

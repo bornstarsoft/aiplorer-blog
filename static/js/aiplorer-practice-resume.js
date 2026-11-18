@@ -67,6 +67,7 @@
       finish: pack.querySelector("[data-practice-finish]"),
       restart: pack.querySelector("[data-practice-restart]"),
       reviewProgress: pack.querySelector("[data-practice-active-review-progress]"),
+      recentReturn: pack.querySelector("[data-practice-recent-return]"),
       recapReturn: pack.querySelector("[data-practice-recap-return]"),
       recapPrevious: pack.querySelector("[data-practice-recap-previous]"),
       recapNext: pack.querySelector("[data-practice-recap-next]"),
@@ -90,6 +91,7 @@
   let reviewChoices = false;
   let preferReview = false;
   let choosingAfterReview = false;
+  let recentReturn = null;
   let recapPreview = null;
   const recapEntries = new Map();
   const recapDirections = [
@@ -482,11 +484,18 @@
     return openPracticeInput("#" + id, true, entry);
   }
 
+  function clearRecentReturn() {
+    if (!recentReturn) return;
+    recentReturn.control.hidden = true;
+    recentReturn = null;
+  }
+
   function openPracticeInput(hash, focusPreview = false, entry = null) {
     const pack = hash?.startsWith("#") && packs.get(hash.slice(1));
     if (!pack) return;
     revealPack(hash);
     clearRecapPreview();
+    clearRecentReturn();
     const preview = pack.element.querySelector("[data-practice-preview]");
     if (preview) {
       preview.open = true;
@@ -526,8 +535,16 @@
       if (button.hidden) return;
       let ids;
       try { ids = readPracticed(); } catch { /* Storage is unavailable. */ }
-      if (ids && !ids.has(id)) openPracticeInput("#" + id, true);
-      else refreshPracticed();
+      if (!ids || ids.has(id)) {
+        refreshPracticed();
+        return;
+      }
+      if (!openPracticeInput("#" + id, true)) return;
+      const control = packs.get(id).recentReturn;
+      if (control) {
+        recentReturn = { control, source: button };
+        control.hidden = false;
+      }
     });
   }
   reviewReset?.addEventListener("click", () => {
@@ -587,6 +604,13 @@
 
   for (const [id, pack] of packs) {
     pack.controls.hidden = false;
+    pack.recentReturn?.addEventListener("click", () => {
+      if (recentReturn?.control !== pack.recentReturn) return;
+      const { source } = recentReturn;
+      const target = source.hidden ? source.closest(".aiplorer-practice-recent-item")?.querySelector("a") : source;
+      clearRecentReturn();
+      target?.focus();
+    });
     if (pack.recapPicker && pack.recapSelect && pack.recapOpen) {
       const target = () => {
         const value = pack.recapSelect.value;

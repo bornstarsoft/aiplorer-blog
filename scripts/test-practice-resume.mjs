@@ -38,6 +38,7 @@ function pack(id, title) {
   const restart = node();
   const reviewProgress = node();
   const recapReturn = node();
+  const recentReturn = node();
   const recapPrevious = node();
   const recapNext = node();
   const recapPosition = node();
@@ -68,6 +69,7 @@ function pack(id, title) {
     "[data-practice-restart]": restart,
     "[data-practice-active-review-progress]": reviewProgress,
     "[data-practice-recap-return]": recapReturn,
+    "[data-practice-recent-return]": recentReturn,
     "[data-practice-recap-previous]": recapPrevious,
     "[data-practice-recap-next]": recapNext,
     "[data-practice-recap-position]": recapPosition,
@@ -79,7 +81,7 @@ function pack(id, title) {
   };
   return {
     controls, button, status, downloads, mark, practiced, task, heading, preview, summary, finish, restart, reviewProgress, recapReturn, recapPrevious, recapNext, recapPosition,
-    recapPicker, recapSearch, recapResults, recapSelect, recapOpen, hidden: false,
+    recapPicker, recapSearch, recapResults, recapSelect, recapOpen, recentReturn, hidden: false,
     contains: element => Object.values(children).includes(element),
     querySelector: selector => children[selector], querySelectorAll: () => downloads,
   };
@@ -140,6 +142,11 @@ function setup(saved = null, mode = "", practicedSaved = null, planned = null, i
       focus() { document.activeElement = this; },
     }),
   };
+  for (const button of recentPreviews) {
+    button.focus = () => { document.activeElement = button; };
+    button.titleLink = node({ focus() { document.activeElement = this; } });
+    button.closest = () => ({ querySelector: () => button.titleLink });
+  }
   filter.focus = () => { document.activeElement = filter; };
   choice.focus = () => { document.activeElement = choice; };
   choiceEmpty.focus = () => { document.activeElement = choiceEmpty; };
@@ -287,6 +294,48 @@ test("recent input previews reveal only unpracticed targets and do not start or 
   assert.equal(retry.hidden, false);
   assert.deepEqual(p.writes, []);
   assert(setup(saved, "read blocked", marks).recentPreviews.every(button => button.hidden));
+});
+
+test("recent preview returns to its originating control without changing practice records", () => {
+  const saved = JSON.stringify({ id: chartId, step: "compare" });
+  const marks = JSON.stringify([chartId]);
+  const p = setup(saved, "", marks, chartId);
+  const [, source] = p.recentPreviews;
+  p.retry.preview.open = true;
+  assert.equal(p.retry.recentReturn.hidden, true);
+  source.click();
+  assert.equal(p.retry.recentReturn.hidden, false);
+  assert.equal(p.chart.recentReturn.hidden, true);
+  p.retry.recentReturn.click();
+  assert.equal(p.document.activeElement, source);
+  assert.equal(p.retry.recentReturn.hidden, true);
+  assert.equal(p.retry.preview.open, true);
+  assert.equal(p.retry.finish.hidden, true);
+  assert.deepEqual(p.writes, []);
+  assert.equal(p.storage.get(key), saved);
+  assert.equal(p.storage.get(planKey), chartId);
+  assert.equal(p.storage.get(practicedKey), marks);
+
+  source.click();
+  p.storage.set(practicedKey, JSON.stringify([chartId, retryId]));
+  p.window.storage({ key: practicedKey });
+  assert.equal(source.hidden, true);
+  p.retry.recentReturn.click();
+  assert.equal(p.document.activeElement, source.titleLink);
+  assert.equal(p.retry.recentReturn.hidden, true);
+  assert.deepEqual(p.writes, []);
+});
+
+test("opening another practice clears the earlier recent preview return action", () => {
+  const p = setup(null, "", JSON.stringify([chartId]));
+  p.recentPreviews[1].click();
+  assert.equal(p.retry.recentReturn.hidden, false);
+  p.chart.restart.click();
+  assert.equal(p.retry.recentReturn.hidden, true);
+  assert.equal(p.chart.recentReturn.hidden, true);
+  p.retry.recentReturn.click();
+  assert.equal(p.document.activeElement, null);
+  assert.deepEqual(p.writes, []);
 });
 
 test("starting a practiced pack again opens and focuses its input without changing any stored state", () => {

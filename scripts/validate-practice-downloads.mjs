@@ -48,6 +48,7 @@ const tasks = [
   ["check-an-ai-dashboard-summary-against-metric-definitions", "Check a dashboard summary"],
   ["check-an-ai-experiment-summary-against-a-test-plan", "Check an experiment summary"],
   ["check-an-ai-project-estimate-against-an-assumptions-log", "Check a project estimate"],
+  ["check-an-ai-accessibility-summary-against-an-audit-log", "Check an accessibility summary"],
 ];
 assert.equal((html.match(/data-practice-pack\b/g) || []).length, tasks.length);
 const jumps = [...html.matchAll(/<a\b[^>]*\bdata-practice-task\b[^>]*>[\s\S]*?<\/a>/g)].map(([link]) => link);
@@ -86,7 +87,7 @@ for (const preview of previews) {
   assert(status && attr(status, "role") === "status" && attr(status, "aria-live") === "polite");
 }
 assert(html.includes("/js/aiplorer-practice-copy.js?v=20261024a"));
-assert(html.includes("/js/aiplorer-practice-resume.js?v=20261118b"));
+assert(html.includes("/js/aiplorer-practice-resume.js?v=20261118c"));
 const pickers = [...html.matchAll(/<div\b[^>]*data-practice-recap-picker\b[^>]*>[\s\S]*?<\/div>/g)];
 assert.equal(pickers.length, tasks.length);
 const recapPickerIds = new Set();
@@ -220,6 +221,7 @@ const packs = [
   ["check-an-ai-dashboard-summary-against-metric-definitions", "metric"],
   ["check-an-ai-experiment-summary-against-a-test-plan", "experiment"],
   ["check-an-ai-project-estimate-against-an-assumptions-log", "estimate"],
+  ["check-an-ai-accessibility-summary-against-an-audit-log", "audit"],
 ];
 const downloadOrder = new Map();
 for (const [pack] of html.matchAll(/<li\b[^>]*data-practice-pack\b[^>]*>[\s\S]*?<\/li>/g)) {
@@ -612,6 +614,17 @@ for (const role of ["inputs", "answer-key", "worksheet"]) {
 const estimatePreview = previews.find(tag => attr(tag, "data-practice-preview") === estimateRoute + "estimate-check-inputs-v1.txt");
 assert(estimatePreview.includes("ASSUMPTIONS LOG") && !estimatePreview.includes("Fourteen is not the base scope"));
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${estimateRoute}</loc>`).length, 2);
+const auditRoute = "/use-cases/check-an-ai-accessibility-summary-against-an-audit-log/";
+const auditArticle = read(`public${auditRoute}index.html`);
+assert(!auditArticle.includes("aiplorer-practice-resume.js"));
+for (const role of ["inputs", "answer-key", "worksheet"]) {
+  const file = `audit-check-${role}-v1.txt`;
+  assert(auditArticle.includes(auditRoute + file));
+  for (const id of ["AUDIT-01", "AUDIT-02", "AUDIT-03"]) assert(read(`public${auditRoute}${file}`).includes(id));
+}
+const auditPreview = previews.find(tag => attr(tag, "data-practice-preview") === auditRoute + "audit-check-inputs-v1.txt");
+assert(auditPreview.includes("AUDIT LOG") && !auditPreview.includes("do not claim an overall pass"));
+assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${auditRoute}</loc>`).length, 2);
 
 const recent = html.match(/<nav\b[^>]*aria-labelledby=["']?practice-recent-title\b[^>]*>[\s\S]*?<\/nav>/)?.[0];
 assert(recent?.includes("Recently added"));
@@ -635,5 +648,8 @@ for (const button of recentButtons) {
   assert.equal(attr(button, "type"), "button");
   assert(attr(button, "aria-label").startsWith("Preview input: "));
 }
+const recentReturns = [...html.matchAll(/<button\b[^>]*data-practice-recent-return\b[^>]*>Back to recently added<\/button>/g)];
+assert.equal(recentReturns.length, recentButtons.length);
+assert(recentReturns.every(([tag]) => /\bhidden(?:[\s=>])/.test(tag) && attr(tag, "type") === "button"));
 assert(!read("public/index.html").includes("practice-recent-title"), "Home must not show the recent practice list");
 console.log(`PASS: ${tasks.length} input-only previews, ${downloadCount} exact step-ordered downloads, guide entry links, script scoped to use-cases hub.`);

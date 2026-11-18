@@ -1,0 +1,13 @@
+AI ACCESSIBILITY SUMMARY REVIEW - COMPARISON WORKSHEET - VERSION 1
+
+First run: ____________________  Date: __________
+Later run: ____________________  Date: __________
+Reuse the same audit log and draft sentences.
+
+ID       | First run evidence | Later run evidence | What to verify
+AUDIT-01 |                    |                    | Scan scope and manual failure
+AUDIT-02 |                    |                    | Build and pending retest
+AUDIT-03 |                    |                    | Not run stays unknown
+
+Any overstated result: ________________________________________
+One check to repeat before sharing a real summary: ____________
