@@ -163,6 +163,9 @@ assert(choice);
 const topics = JSON.parse(read("data/practice_topics.json"));
 const groups = [...choice.matchAll(/(<optgroup\b[^>]*>)([\s\S]*?)<\/optgroup>/g)];
 assert.deepEqual(groups.map(([, tag]) => attr(tag, "label")), topics.map(topic => topic.label));
+const topicKeys = groups.map(([, tag]) => attr(tag, "data-practice-topic-key"));
+assert.equal(new Set(topicKeys).size, topics.length);
+assert(topicKeys.every(key => key && key !== "all" && /^[a-z0-9-]+$/.test(key)));
 const taskLabels = new Map(tasks.map(([slug, label]) => ["practice-" + slug, label]));
 const pickerIds = [];
 for (const [i, [, , body]] of groups.entries()) {
@@ -174,6 +177,13 @@ for (const [i, [, , body]] of groups.entries()) {
 }
 assert.deepEqual(pickerIds.sort(), [...taskLabels.keys()].sort(), "One picker option per published pack");
 assert.match(html, /<div\b[^>]*data-practice-filter-controls\b[^>]*\bhidden(?:[\s=>])/);
+assert.match(html, /<div\b[^>]*data-practice-progress-controls\b[^>]*\bhidden(?:[\s=>])/);
+assert.match(html, /<label\b[^>]*for=["']?practice-topic\b[^>]*>Topic<\/label>/);
+const topicFilter = html.match(/<select\b[^>]*data-practice-topic-filter\b[^>]*>[\s\S]*?<\/select>/)?.[0];
+assert(topicFilter);
+const topicOptions = [...topicFilter.matchAll(/(<option\b[^>]*>)([^<]+)/g)]
+  .map(([, tag, label]) => [attr(tag, "value"), label.trim()]);
+assert.deepEqual(topicOptions, [["all", "All topics"], ...topics.map(({ label }, i) => [topicKeys[i], label])]);
 assert.match(html, /<label\b[^>]*for=["']?practice-filter\b[^>]*>Show practice packs<\/label>/);
 const filter = html.match(/<select\b[^>]*data-practice-filter\b[^>]*>[\s\S]*?<\/select>/)?.[0];
 assert(filter);

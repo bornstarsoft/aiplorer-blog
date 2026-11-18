@@ -96,7 +96,7 @@
         {{ $packs := . }}
         {{ range site.Data.practice_topics }}
           {{ $topic := . }}
-          <optgroup label="{{ .label }}">
+          <optgroup label="{{ .label }}" data-practice-topic-key="{{ .label | urlize }}">
             {{ range $packs }}
               {{ $slug := path.Base .RelPermalink }}
               {{ if in $topic.packs $slug }}
@@ -124,20 +124,31 @@
       <button type="button" class="aiplorer-button aiplorer-button--light" data-practice-review-reset hidden>Start a new review round</button>
     </div>
   </div>
-  <div class="aiplorer-practice-filter" data-practice-filter-controls hidden>
-    <label for="practice-filter">Show practice packs</label>
-    <select id="practice-filter" data-practice-filter>
-      <option value="all">All packs</option>
-      <option value="unpracticed">Not practiced yet</option>
-      <option value="practiced">Practiced</option>
-    </select>
+  <div data-practice-filter-controls hidden>
+    <div class="aiplorer-practice-filter">
+      <label for="practice-topic">Topic</label>
+      <select id="practice-topic" data-practice-topic-filter>
+        <option value="all">All topics</option>
+        {{ range site.Data.practice_topics }}
+          <option value="{{ .label | urlize }}">{{ .label }}</option>
+        {{ end }}
+      </select>
+    </div>
+    <div class="aiplorer-practice-filter" data-practice-progress-controls hidden>
+      <label for="practice-filter">Show practice packs</label>
+      <select id="practice-filter" data-practice-filter>
+        <option value="all">All packs</option>
+        <option value="unpracticed">Not practiced yet</option>
+        <option value="practiced">Practiced</option>
+      </select>
+    </div>
   </div>
+  <p class="aiplorer-practice-count" data-practice-empty role="status" hidden></p>
   <nav class="aiplorer-article-jumps" aria-label="Practice pack tasks" data-practice-tasks>
     {{ range . }}
       <a href="#practice-{{ path.Base .RelPermalink }}" data-practice-task>{{ .Params.practiceTask | default .Title }}{{ partial "aiplorer-icon.html" "chevron-down" }}</a>
     {{ end }}
   </nav>
-  <p class="aiplorer-practice-count" data-practice-empty role="status" hidden></p>
   <ul>
     {{ range . }}
       {{ $page := . }}

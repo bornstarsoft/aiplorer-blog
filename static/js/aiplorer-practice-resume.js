@@ -24,7 +24,9 @@
   ];
   const filterControls = shelf.querySelector("[data-practice-filter-controls]");
   const filter = shelf.querySelector("[data-practice-filter]");
-  const filterEmpty = shelf.querySelector("[data-practice-empty]");
+  const progressControls = shelf.querySelector("[data-practice-progress-controls]");
+  const topicFilter = shelf.querySelector("[data-practice-topic-filter]");
+  const filterStatus = shelf.querySelector("[data-practice-empty]");
   const taskNav = shelf.querySelector("[data-practice-tasks]");
   const chooser = shelf.querySelector("[data-practice-chooser]");
   const choice = shelf.querySelector("[data-practice-choice]");
@@ -44,6 +46,10 @@
   const roundList = shelf.querySelector("[data-practice-round-list]");
   const reviewReset = shelf.querySelector("[data-practice-review-reset]");
   const choiceGroups = choice ? [...choice.querySelectorAll("optgroup")] : [];
+  const topicPacks = new Map(choiceGroups.flatMap(group => {
+    const topic = group.getAttribute("data-practice-topic-key");
+    return topic ? [[topic, new Set([...group.querySelectorAll("option")].map(option => option.value))]] : [];
+  }));
   const plan = shelf.querySelector("[data-practice-plan]");
   const planTitle = shelf.querySelector("[data-practice-plan-title]");
   const planStart = shelf.querySelector("[data-practice-plan-start]");
@@ -411,32 +417,36 @@
   }
 
   function renderFilter(ids) {
-    if (!filterControls || !filter || !filterEmpty || !taskNav) return;
+    if (!filterControls || !filter || !filterStatus || !taskNav) return;
     const mode = filter.value;
-    const filtered = Boolean(ids) && (mode === "practiced" || mode === "unpracticed");
-    filterControls.hidden = !ids;
+    const progressFiltered = Boolean(ids) && (mode === "practiced" || mode === "unpracticed");
+    const topic = topicPacks.get(topicFilter?.value);
+    const filterActive = progressFiltered || Boolean(topic);
+    filterControls.hidden = !ids && !topicFilter;
+    if (progressControls) progressControls.hidden = !ids;
     let visible = 0;
     for (const [id, pack] of packs) {
-      const hidden = Boolean(filtered && ids.has(id) !== (mode === "practiced"));
+      const hidden = Boolean((topic && !topic.has(id)) || (progressFiltered && ids.has(id) !== (mode === "practiced")));
       if (hidden && (pack.element.contains(document.activeElement) || pack.task === document.activeElement)) {
-        filter.focus();
+        (progressFiltered ? filter : topicFilter)?.focus();
       }
       pack.element.hidden = hidden;
       if (pack.task) pack.task.hidden = hidden;
       if (!hidden) visible++;
     }
-    const empty = filtered && visible === 0;
+    const empty = filterActive && visible === 0;
     taskNav.hidden = empty;
-    filterEmpty.hidden = !empty;
-    filterEmpty.textContent = empty
-      ? (mode === "practiced" ? "No practiced packs yet." : "All packs have been practiced.")
-      : "";
+    setProgressMessage(filterStatus, empty
+      ? (topic ? (progressFiltered ? "No packs match this topic and progress status." : "No packs match this topic.")
+        : (mode === "practiced" ? "No practiced packs yet." : "All packs have been practiced."))
+      : (topic ? `${visible} of ${packs.size} packs shown.` : ""));
   }
 
   function revealPack(hash) {
     const pack = hash && packs.get(hash.slice(1));
     if (!filter || !pack?.element.hidden) return null;
     filter.value = "all";
+    if (topicFilter) topicFilter.value = "all";
     refreshPracticed();
     return pack.heading;
   }
@@ -594,8 +604,23 @@
     refreshPracticed();
   }
 
+  if (filterControls && filter && filterStatus && taskNav) {
+    filter.addEventListener("change", refreshPracticed);
+    topicFilter?.addEventListener("change", refreshPracticed);
+    link.addEventListener("click", () => revealPack(link.getAttribute("href")));
+    window.addEventListener("hashchange", () => {
+      const heading = revealPack(window.location.hash);
+      if (heading) {
+        heading.focus({ preventScroll: true });
+        heading.scrollIntoView();
+      }
+    });
+  }
   try { render(read()); }
-  catch { return; }
+  catch {
+    renderFilter();
+    return;
+  }
   refreshPracticed();
   for (const [entries, completed] of recentInputModes) {
     for (const entry of entries) {
@@ -662,18 +687,6 @@
     planClear.addEventListener("click", () => updatePlan(null));
     planStart.addEventListener("click", () => openPracticeInput(planStart.getAttribute("href")));
   }
-  if (filterControls && filter && filterEmpty && taskNav) {
-    filter.addEventListener("change", refreshPracticed);
-    link.addEventListener("click", () => revealPack(link.getAttribute("href")));
-    window.addEventListener("hashchange", () => {
-      const heading = revealPack(window.location.hash);
-      if (heading) {
-        heading.focus({ preventScroll: true });
-        heading.scrollIntoView();
-      }
-    });
-  }
-
   for (const [id, pack] of packs) {
     pack.controls.hidden = false;
     pack.recentReturn?.addEventListener("click", () => {

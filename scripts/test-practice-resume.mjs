@@ -124,11 +124,14 @@ function setup(saved = null, mode = "", practicedSaved = null, planned = null, i
     return button;
   });
   const filterControls = node(), filter = node({ value: "all" }), filterEmpty = node(), taskNav = node();
+  const progressControls = node(), topicFilter = node({ value: "all", focus() { document.activeElement = this; } });
   const chartOption = node({ value: chartId }), retryOption = node({ value: retryId });
   const unsafeOption = node({ value: "javascript:bad" });
   const thirdOption = node({ value: thirdId });
   const chartGroup = node({ querySelectorAll: () => [chartOption] });
   const retryGroup = node({ querySelectorAll: () => [retryOption, ...(includeThird ? [thirdOption] : []), unsafeOption] });
+  chartGroup.setAttribute("data-practice-topic-key", "creative-and-media");
+  retryGroup.setAttribute("data-practice-topic-key", "meetings-and-workflows");
   const chooser = node(), choice = node({ value: "", querySelectorAll: () => [chartGroup, retryGroup] });
   const choiceDetails = node(), choiceDescription = node(), choiceLink = node(), choiceEmpty = node();
   const reviewReset = node();
@@ -178,6 +181,8 @@ function setup(saved = null, mode = "", practicedSaved = null, planned = null, i
     "[data-practice-recent-progress]": recentProgress,
     "[data-practice-recent-more]": recentMore,
     "[data-practice-filter-controls]": filterControls,
+    "[data-practice-progress-controls]": progressControls,
+    "[data-practice-topic-filter]": topicFilter,
     "[data-practice-filter]": filter,
     "[data-practice-empty]": filterEmpty,
     "[data-practice-tasks]": taskNav,
@@ -229,7 +234,7 @@ function setup(saved = null, mode = "", practicedSaved = null, planned = null, i
   };
   vm.runInNewContext(source, { document, window, localStorage });
   return { chart, retry, unsafe, resume, link, title, nextStep, nextStatus, stepDownload, practicedCount, recent, recentPreviews, recentRepeats, window, storage, writes,
-    recentProgress, recentMore, filter, filterControls, filterEmpty, taskNav, document, chooser, choice, choiceDetails, choiceDescription, choiceLink,
+    recentProgress, recentMore, filter, filterControls, progressControls, topicFilter, filterEmpty, taskNav, document, chooser, choice, choiceDetails, choiceDescription, choiceLink,
     choiceEmpty, reviewReset, roundProgress, roundRecap, roundList, choiceLabel, choiceMode, newMode, reviewMode, chartOption, retryOption, unsafeOption, chartGroup, retryGroup,
     plan, planTitle, planStart, planDone, planClear, planSave, planStatus,
     choiceControls, afterReview, afterNew, afterRepeat, third, thirdOption };
@@ -1217,7 +1222,8 @@ test("refreshes after back navigation and cross-tab changes without writing", ()
 test("blocked reads leave the save controls hidden", () => {
   const p = setup(chartId, "read blocked");
   assert.equal(p.chart.controls.hidden, true);
-  assert.equal(p.filterControls.hidden, true);
+  assert.equal(p.filterControls.hidden, false);
+  assert.equal(p.progressControls.hidden, true);
   assert.equal(p.chooser.hidden, true);
   assert.equal(p.chart.hidden, false);
   assert.equal(p.chart.mark.hidden, true);
@@ -1455,6 +1461,50 @@ test("updates filtered views and empty messages after marks change", () => {
   assert.equal(p.filterEmpty.hidden, false);
 });
 
+test("topics intersect completion status and filter only the shelf and its jump links", () => {
+  const p = setup(chartId, "", JSON.stringify([retryId]), thirdId, true);
+  p.topicFilter.value = "meetings-and-workflows";
+  p.topicFilter.change();
+  assert.equal(p.filterEmpty.textContent, "2 of 3 packs shown.");
+  assert.equal(p.chart.hidden, true);
+  assert.equal(p.chart.task.hidden, true);
+  assert.equal(p.retry.hidden, false);
+  assert.equal(p.third.hidden, false);
+  assert.equal(p.chartOption.hidden, false, "The independent chooser still includes other topics");
+  assert.equal(p.planStart.getAttribute("href"), "#" + thirdId);
+  p.filter.value = "unpracticed";
+  p.filter.change();
+  assert.equal(p.filterEmpty.textContent, "1 of 3 packs shown.");
+  assert.equal(p.retry.task.hidden, true);
+  assert.equal(p.third.task.hidden, false);
+  p.storage.set(practicedKey, JSON.stringify([retryId, thirdId]));
+  p.window.storage({ key: practicedKey });
+  assert.equal(p.filterEmpty.textContent, "No packs match this topic and progress status.");
+  assert.equal(p.taskNav.hidden, true);
+  p.topicFilter.value = "all";
+  p.topicFilter.change();
+  assert.equal(p.chart.hidden, false);
+  assert.equal(p.taskNav.hidden, false);
+  assert.equal(p.storage.get(key), chartId);
+  assert.equal(p.storage.get(planKey), thirdId);
+  assert.deepEqual(p.writes, []);
+});
+
+test("topic browsing does not depend on progress storage and moves focus off hidden items", () => {
+  const p = setup(null, "read blocked");
+  p.document.activeElement = p.chart.task;
+  p.filter.value = "practiced";
+  p.topicFilter.value = "meetings-and-workflows";
+  p.topicFilter.change();
+  assert.equal(p.filterControls.hidden, false);
+  assert.equal(p.progressControls.hidden, true);
+  assert.equal(p.chart.hidden, true);
+  assert.equal(p.retry.hidden, false);
+  assert.equal(p.filterEmpty.textContent, "1 of 2 packs shown.");
+  assert.equal(p.document.activeElement, p.topicFilter);
+  assert.deepEqual(p.writes, []);
+});
+
 test("returns focus to the filter when a marked pack disappears", () => {
   const p = setup();
   p.filter.value = "unpracticed";
@@ -1468,19 +1518,25 @@ test("returns focus to the filter when a marked pack disappears", () => {
 
 test("continue and direct anchors reveal filtered packs without rewriting storage", () => {
   const p = setup(chartId, "", JSON.stringify([chartId]));
+  p.topicFilter.value = "meetings-and-workflows";
+  p.topicFilter.change();
   p.filter.value = "unpracticed";
   p.filter.change();
   p.link.click();
   assert.equal(p.filter.value, "all");
+  assert.equal(p.topicFilter.value, "all");
   assert.equal(p.chart.hidden, false);
   assert.equal(p.link.getAttribute("href"), "#" + chartId);
   p.filter.value = "practiced";
   p.filter.change();
+  p.topicFilter.value = "creative-and-media";
+  p.topicFilter.change();
   p.retry.heading.focus = () => { p.document.activeElement = p.retry.heading; };
   p.retry.heading.scrollIntoView = () => {};
   p.window.location.hash = "#" + retryId;
   p.window.hashchange();
   assert.equal(p.retry.hidden, false);
+  assert.equal(p.topicFilter.value, "all");
   assert.equal(p.document.activeElement, p.retry.heading);
   assert.deepEqual(p.writes, []);
 });
