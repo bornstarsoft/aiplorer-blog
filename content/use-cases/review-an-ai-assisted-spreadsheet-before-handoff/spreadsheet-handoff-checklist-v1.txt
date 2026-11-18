@@ -1,0 +1,34 @@
+SPREADSHEET HANDOFF CHECKLIST
+Version 1. Keep one copy per workbook refresh.
+
+Workbook and version:
+Source export names or approved record links:
+Schema version and date:
+Reviewer and date:
+
+01 FIELD DEFINITIONS
+Confirm units, identifier format, code mapping, and blank meanings.
+Key fields checked:
+Result (Pass / Hold / Not checked):
+Evidence or open issue:
+
+02 MERGE
+Confirm join keys and how duplicate or unmatched rows are handled.
+Check examples against the original records, not just row totals.
+Sample keys checked (avoid private IDs in shared copies):
+Result (Pass / Hold / Not checked):
+Evidence or open issue:
+
+03 FORMULAS
+Compare expected and actual values for a normal case, a blank,
+the threshold, and a row after fill-down.
+Cell references and result:
+Result (Pass / Hold / Not checked):
+Evidence or open issue:
+
+Handoff decision (Ready / Hold):
+Unresolved issue and owner:
+Recheck when:
+
+Hold if a required check is unresolved. Keep source exports intact.
+Repeat affected checks when the schema, merge logic, or formula changes.

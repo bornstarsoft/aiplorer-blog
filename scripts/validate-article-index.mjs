@@ -47,14 +47,20 @@ assert(!read("public/ai-tools/tools/index.html").includes("aiplorer-article-inde
 
 const documentPath = "/use-cases/review-an-ai-assisted-document-before-sharing/";
 const researchPath = "/use-cases/check-an-ai-research-brief-against-its-sources/";
+const spreadsheetPath = "/use-cases/review-an-ai-assisted-spreadsheet-before-handoff/";
 const shelf = useCases.indexOf("data-practice-shelf");
 const recent = useCases.indexOf("practice-recent-title", shelf);
 const shelfIntro = useCases.slice(shelf, recent);
 const links = html => [...html.matchAll(/<a\b[^>]*>/g)].map(([tag]) => tag);
 const pathNav = [...shelfIntro.matchAll(/<nav\b[^>]*>[\s\S]*?<\/nav>/g)]
   .map(([nav]) => nav).find(nav => attr(nav.slice(0, nav.indexOf(">") + 1), "aria-label") === "Practice paths");
-assert(pathNav, "Keep the two workflows together in the practice shelf");
-assert.deepEqual(links(pathNav).map(tag => attr(tag, "href")), [documentPath, researchPath]);
+assert(pathNav, "Keep the workflows together in the practice shelf");
+const pathNavTag = pathNav.slice(0, pathNav.indexOf(">") + 1);
+assert.equal(attr(pathNavTag, "id"), "practice-paths");
+assert.equal(attr(pathNavTag, "tabindex"), "-1");
+assert.equal(links(useCases.slice(0, shelf)).filter(tag => attr(tag, "href") === "#practice-paths").length, 1);
+assert(!read("public/guides/index.html").includes("#practice-paths"));
+assert.deepEqual(links(pathNav).map(tag => attr(tag, "href")), [documentPath, researchPath, spreadsheetPath]);
 
 const home = read("public/index.html");
 const sitemap = read("public/sitemap.xml");
@@ -92,4 +98,11 @@ const claimLog = validatePracticePath(researchPath, [
 for (const field of ["Exact claim in the draft:", "Evidence location (page / section / timestamp):", "Not supported / Unverified", "Recheck when:"]) {
   assert(claimLog.includes(field));
 }
-console.log("PASS: both practice paths, ordered exercises, exact downloads, and canonicals.");
+const handoff = validatePracticePath(spreadsheetPath, [
+  "/use-cases/check-an-ai-data-dictionary-against-a-schema/",
+  "/use-cases/check-an-ai-csv-merge-against-original-records/",
+  "/use-cases/check-an-ai-spreadsheet-formula-before-copying-it/",
+], "spreadsheet-handoff-checklist-v1.txt");
+assert.deepEqual(handoff.match(/^0\d [A-Z ]+$/gm), ["01 FIELD DEFINITIONS", "02 MERGE", "03 FORMULAS"]);
+assert(handoff.includes("Handoff decision (Ready / Hold):") && handoff.includes("Recheck when:"));
+console.log("PASS: three practice paths, jump target, ordered exercises, exact downloads, and canonicals.");

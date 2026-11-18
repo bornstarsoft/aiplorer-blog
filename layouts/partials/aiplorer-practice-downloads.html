@@ -3,7 +3,8 @@
   <p>Fictional inputs for repeat checks. Keep review keys out of the AI conversation; keep completed worksheets in your own approved location.</p>
   {{ $paths := slice
     (dict "route" "/use-cases/review-an-ai-assisted-document-before-sharing/" "label" "Review a public document before sharing")
-    (dict "route" "/use-cases/check-an-ai-research-brief-against-its-sources/" "label" "Verify a research brief") }}
+    (dict "route" "/use-cases/check-an-ai-research-brief-against-its-sources/" "label" "Verify a research brief")
+    (dict "route" "/use-cases/review-an-ai-assisted-spreadsheet-before-handoff/" "label" "Review a spreadsheet before handoff") }}
   {{ $reviewedPaths := slice }}
   {{ range $paths }}
     {{ $label := .label }}
@@ -14,7 +15,7 @@
     {{ end }}
   {{ end }}
   {{ with $reviewedPaths }}
-    <nav class="aiplorer-article-jumps" aria-label="Practice paths">
+    <nav class="aiplorer-article-jumps" id="practice-paths" aria-label="Practice paths" tabindex="-1">
       {{ range . }}
         <a href="{{ .href }}">{{ .label }} {{ partial "aiplorer-icon.html" "square-check" }}</a>
       {{ end }}
