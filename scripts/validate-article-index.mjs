@@ -50,6 +50,7 @@ const researchPath = "/use-cases/check-an-ai-research-brief-against-its-sources/
 const spreadsheetPath = "/use-cases/review-an-ai-assisted-spreadsheet-before-handoff/";
 const reconnectionPath = "/use-cases/verify-an-ai-workflow-after-reconnecting-an-app/";
 const trainingPath = "/use-cases/retest-an-ai-training-handout-before-reuse/";
+const meetingPath = "/use-cases/review-an-ai-meeting-follow-up-before-sending/";
 const shelf = useCases.indexOf("data-practice-shelf");
 const recent = useCases.indexOf("practice-recent-title", shelf);
 const shelfIntro = useCases.slice(shelf, recent);
@@ -62,7 +63,7 @@ assert.equal(attr(pathNavTag, "id"), "practice-paths");
 assert.equal(attr(pathNavTag, "tabindex"), "-1");
 assert.equal(links(useCases.slice(0, shelf)).filter(tag => attr(tag, "href") === "#practice-paths").length, 1);
 assert(!read("public/guides/index.html").includes("#practice-paths"));
-assert.deepEqual(links(pathNav).map(tag => attr(tag, "href")), [documentPath, researchPath, spreadsheetPath, reconnectionPath, trainingPath]);
+assert.deepEqual(links(pathNav).map(tag => attr(tag, "href")), [documentPath, researchPath, spreadsheetPath, reconnectionPath, trainingPath, meetingPath]);
 
 const home = read("public/index.html");
 const sitemap = read("public/sitemap.xml");
@@ -129,4 +130,15 @@ for (const field of ["Checks not run:", "Reuse decision (Ready / Hold):", "When 
   assert(training.includes(field));
 }
 assert(links(read(`public${studyGuideRoute}index.html`)).some(tag => attr(tag, "href") === trainingPath));
-console.log("PASS: five practice paths, jump target, ordered exercises, exact downloads, and canonicals.");
+const meeting = validatePracticePath(meetingPath, [
+  "/use-cases/check-ai-meeting-actions-against-decisions/",
+  "/use-cases/check-an-ai-schedule-across-time-zones/",
+  "/use-cases/check-an-ai-redaction-before-sharing/",
+], "meeting-follow-up-checklist-v1.txt");
+assert.deepEqual(meeting.match(/^0\d [A-Z ]+$/gm), ["01 COMMITMENTS", "02 DEADLINES", "03 SHARING"]);
+for (const field of ["Recipient's date, time, and time zone:", "Attachments and link access checked:", "Send decision (Ready / Hold):", "Recheck at the next meeting:"]) {
+  assert(meeting.includes(field));
+}
+assert(links(read("public/use-cases/how-to-turn-ai-meeting-notes-into-action-items/index.html"))
+  .some(tag => attr(tag, "href") === meetingPath));
+console.log("PASS: six practice paths, jump target, ordered exercises, exact downloads, and canonicals.");

@@ -1,0 +1,25 @@
+REVIEW A MEETING FOLLOW-UP BEFORE SENDING
+Aiplorer practice checklist v1
+
+Meeting / approved notes reference:
+Message version / intended recipients:
+
+01 COMMITMENTS
+Decision or proposal / source location:
+Confirmed owner / item still open:
+
+02 DEADLINES
+Agreed date, time, and time zone (or "not agreed"):
+Recipient's date, time, and time zone:
+Conversion checked by:
+
+03 SHARING
+Attachments and link access checked:
+Internal material excluded from the recipient version:
+Checks not run:
+
+Send decision (Ready / Hold):
+Open item / owner:
+Recheck at the next meeting:
+
+Keep private notes and transcripts in the approved meeting record.

@@ -119,3 +119,6 @@ is shorter, clearer, and safer to share than the raw AI output.
 Start with the [meeting actions practice pack](/use-cases/check-ai-meeting-actions-against-decisions/)
 to check a conditional proposal, a cancellation, and a reviewer mistaken
 for an owner using fictional notes.
+
+When the draft is ready to send, [review the full meeting follow-up](/use-cases/review-an-ai-meeting-follow-up-before-sending/)
+for confirmed commitments, time zones, and the recipient's access.
