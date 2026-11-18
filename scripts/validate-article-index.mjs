@@ -48,6 +48,7 @@ assert(!read("public/ai-tools/tools/index.html").includes("aiplorer-article-inde
 const documentPath = "/use-cases/review-an-ai-assisted-document-before-sharing/";
 const researchPath = "/use-cases/check-an-ai-research-brief-against-its-sources/";
 const spreadsheetPath = "/use-cases/review-an-ai-assisted-spreadsheet-before-handoff/";
+const reconnectionPath = "/use-cases/verify-an-ai-workflow-after-reconnecting-an-app/";
 const shelf = useCases.indexOf("data-practice-shelf");
 const recent = useCases.indexOf("practice-recent-title", shelf);
 const shelfIntro = useCases.slice(shelf, recent);
@@ -60,7 +61,7 @@ assert.equal(attr(pathNavTag, "id"), "practice-paths");
 assert.equal(attr(pathNavTag, "tabindex"), "-1");
 assert.equal(links(useCases.slice(0, shelf)).filter(tag => attr(tag, "href") === "#practice-paths").length, 1);
 assert(!read("public/guides/index.html").includes("#practice-paths"));
-assert.deepEqual(links(pathNav).map(tag => attr(tag, "href")), [documentPath, researchPath, spreadsheetPath]);
+assert.deepEqual(links(pathNav).map(tag => attr(tag, "href")), [documentPath, researchPath, spreadsheetPath, reconnectionPath]);
 
 const home = read("public/index.html");
 const sitemap = read("public/sitemap.xml");
@@ -105,4 +106,15 @@ const handoff = validatePracticePath(spreadsheetPath, [
 ], "spreadsheet-handoff-checklist-v1.txt");
 assert.deepEqual(handoff.match(/^0\d [A-Z ]+$/gm), ["01 FIELD DEFINITIONS", "02 MERGE", "03 FORMULAS"]);
 assert(handoff.includes("Handoff decision (Ready / Hold):") && handoff.includes("Recheck when:"));
-console.log("PASS: three practice paths, jump target, ordered exercises, exact downloads, and canonicals.");
+const reconnection = validatePracticePath(reconnectionPath, [
+  "/use-cases/check-an-ai-automation-for-permission-scope/",
+  "/use-cases/check-an-ai-incident-timeline-against-an-event-log/",
+  "/use-cases/check-an-automation-before-retrying/",
+], "reconnection-checklist-v1.txt");
+assert.deepEqual(reconnection.match(/^0\d [A-Z ]+$/gm), ["01 CONNECTION", "02 SAMPLE RUN", "03 BACKLOG"]);
+for (const field of ["What the destination shows:", "Uncertain or still pending (hold):", "Resume scheduled processing (Ready / Hold):", "Recheck when:"]) {
+  assert(reconnection.includes(field));
+}
+assert(links(read("public/guides/review-connected-ai-app-permissions/index.html"))
+  .some(tag => attr(tag, "href") === reconnectionPath));
+console.log("PASS: four practice paths, jump target, ordered exercises, exact downloads, and canonicals.");

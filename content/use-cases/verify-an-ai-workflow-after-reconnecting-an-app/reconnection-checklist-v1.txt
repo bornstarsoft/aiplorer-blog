@@ -1,0 +1,27 @@
+VERIFY A WORKFLOW AFTER RECONNECTING AN APP
+Aiplorer practice checklist v1
+
+Workflow / responsible owner:
+Reason for reconnection:
+
+01 CONNECTION
+Approved account and source:
+Expected and observed workspace / destination:
+Allowed actions / missing or excessive access:
+
+02 SAMPLE RUN
+Approved test destination and fictional request ID:
+Expected result / destinations that must stay unchanged:
+What the run log shows:
+What the destination shows:
+Checks not run:
+
+03 BACKLOG
+Already written (do not replay):
+Missing (review for approval before replay):
+Uncertain or still pending (hold):
+Resume scheduled processing (Ready / Hold):
+Open issue / owner:
+Recheck when:
+
+Keep secrets and private request contents out of this worksheet.

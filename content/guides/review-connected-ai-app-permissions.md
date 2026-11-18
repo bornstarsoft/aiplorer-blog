@@ -74,6 +74,9 @@ approved resolution instead of silently restoring broad access.
 Use the [automation permission practice pack](/use-cases/check-an-ai-automation-for-permission-scope/)
 to rehearse action, resource, and time checks with fictional approvals.
 
+Already reconnected an app? [Verify the workflow before resuming it](/use-cases/verify-an-ai-workflow-after-reconnecting-an-app/)
+by checking a test result and deciding what to do with missed work.
+
 ## Leave A Useful Review Note
 
 ```text
