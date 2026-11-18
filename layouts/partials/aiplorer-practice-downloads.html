@@ -1,10 +1,24 @@
 <section class="aiplorer-shell aiplorer-article-index aiplorer-practice-packs" aria-labelledby="practice-downloads" data-practice-shelf>
   <h2 id="practice-downloads" tabindex="-1">Practice packs <span>{{ len . }}</span></h2>
   <p>Fictional inputs for repeat checks. Keep review keys out of the AI conversation; keep completed worksheets in your own approved location.</p>
-  {{ with site.GetPage "/use-cases/review-an-ai-assisted-document-before-sharing/" }}
-    {{ if and (eq .Params.reviewStatus "reviewed") (not .Draft) }}
-      <div class="aiplorer-article-jumps"><a href="{{ .RelPermalink }}">Review a public document before sharing {{ partial "aiplorer-icon.html" "square-check" }}</a></div>
+  {{ $paths := slice
+    (dict "route" "/use-cases/review-an-ai-assisted-document-before-sharing/" "label" "Review a public document before sharing")
+    (dict "route" "/use-cases/check-an-ai-research-brief-against-its-sources/" "label" "Verify a research brief") }}
+  {{ $reviewedPaths := slice }}
+  {{ range $paths }}
+    {{ $label := .label }}
+    {{ with site.GetPage .route }}
+      {{ if and (eq .Params.reviewStatus "reviewed") (not .Draft) }}
+        {{ $reviewedPaths = $reviewedPaths | append (dict "href" .RelPermalink "label" $label) }}
+      {{ end }}
     {{ end }}
+  {{ end }}
+  {{ with $reviewedPaths }}
+    <nav class="aiplorer-article-jumps" aria-label="Practice paths">
+      {{ range . }}
+        <a href="{{ .href }}">{{ .label }} {{ partial "aiplorer-icon.html" "square-check" }}</a>
+      {{ end }}
+    </nav>
   {{ end }}
   <p class="aiplorer-practice-count" data-practice-count hidden></p>
   <div class="aiplorer-practice-resume" data-practice-resume hidden>

@@ -1,0 +1,23 @@
+RESEARCH CLAIM LOG
+Version 1. Copy the claim entry for each consequential claim.
+
+Brief title and version:
+Reviewer and date:
+
+Exact claim in the draft:
+Decision this claim could change:
+Original source and version:
+Evidence location (page / section / timestamp):
+Supporting passage or evidence gap:
+Scope (group / timeframe / measure):
+Quote check, if applicable (speaker / wording / context):
+
+Judgment (Supported / Partly supported / Not supported / Unverified):
+Action (Keep / Narrow / Remove / Hold for verification):
+Approved wording or next check:
+Recheck when:
+
+Use Unverified if you cannot inspect the evidence. Use Not supported
+if you inspected it and it does not substantiate the claim.
+Keep earlier entries when a source or draft changes. Store sensitive
+evidence in an approved location, not in a shared copy of this log.
