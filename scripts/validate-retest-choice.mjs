@@ -54,6 +54,7 @@ const packs = [
   "check-an-ai-data-dictionary-against-a-schema",
   "check-an-ai-study-guide-against-learning-objectives",
   "check-an-ai-event-announcement-against-a-brief",
+  "check-an-ai-troubleshooting-guide-against-a-runbook",
 ];
 const choiceTable = [...guide.matchAll(/<table\b[^>]*>[\s\S]*?<\/table>/g)]
   .map(([table]) => table).find(table => packs.every(slug => table.includes(`/use-cases/${slug}/`)));

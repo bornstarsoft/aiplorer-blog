@@ -1,0 +1,15 @@
+TROUBLESHOOTING GUIDE CHECK: COMPARISON WORKSHEET
+Version 1. Repeat with the same input before comparing tools.
+
+Tool and date:
+Run conditions:
+
+HELP-01: Kept files and checked the destination first? Yes / No
+Evidence in the answer:
+HELP-02: Waited, retried once, and escalated if needed? Yes / No
+Evidence in the answer:
+HELP-03: Stopped and requested only allowed diagnostics? Yes / No
+Evidence in the answer:
+
+Did either run combine the error branches or add an unapproved step?
+What would you verify on a disposable project before publishing?

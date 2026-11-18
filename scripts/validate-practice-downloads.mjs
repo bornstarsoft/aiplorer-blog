@@ -53,6 +53,7 @@ const tasks = [
   ["check-an-ai-data-dictionary-against-a-schema", "Check a data dictionary"],
   ["check-an-ai-study-guide-against-learning-objectives", "Check a study guide"],
   ["check-an-ai-event-announcement-against-a-brief", "Check an event announcement"],
+  ["check-an-ai-troubleshooting-guide-against-a-runbook", "Check a troubleshooting guide"],
 ];
 assert.equal((html.match(/data-practice-pack\b/g) || []).length, tasks.length);
 const jumps = [...html.matchAll(/<a\b[^>]*\bdata-practice-task\b[^>]*>[\s\S]*?<\/a>/g)].map(([link]) => link);
@@ -234,6 +235,7 @@ const packs = [
   ["check-an-ai-data-dictionary-against-a-schema", "dictionary"],
   ["check-an-ai-study-guide-against-learning-objectives", "study"],
   ["check-an-ai-event-announcement-against-a-brief", "event"],
+  ["check-an-ai-troubleshooting-guide-against-a-runbook", "runbook"],
 ];
 const downloadOrder = new Map();
 for (const [pack] of html.matchAll(/<li\b[^>]*data-practice-pack\b[^>]*>[\s\S]*?<\/li>/g)) {
@@ -673,8 +675,24 @@ const eventPreview = previews.find(tag => attr(tag, "data-practice-preview") ===
 assert(eventPreview?.includes("CONFIRMED ORGANIZER BRIEF") && !eventPreview.includes("Compare after the first run."));
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${eventRoute}</loc>`).length, 2);
 
+const runbookRoute = "/use-cases/check-an-ai-troubleshooting-guide-against-a-runbook/";
+const runbookArticle = read(`public${runbookRoute}index.html`);
+assert(!runbookArticle.includes("/js/aiplorer-practice-resume."));
+for (const role of ["inputs", "answer-key", "worksheet"]) {
+  const file = `runbook-check-${role}-v1.txt`;
+  assert(runbookArticle.includes(runbookRoute + file));
+  for (const id of ["HELP-01", "HELP-02", "HELP-03"]) assert(read(`public${runbookRoute}${file}`).includes(id));
+}
+const runbookPreview = previews.find(tag => attr(tag, "data-practice-preview") === runbookRoute + "runbook-check-inputs-v1.txt");
+assert(runbookPreview?.includes("APPROVED SUPPORT RUNBOOK") && !runbookPreview.includes("Compare after the first run."));
+assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${runbookRoute}</loc>`).length, 2);
+
 const recent = html.match(/<nav\b[^>]*aria-labelledby=["']?practice-recent-title\b[^>]*>[\s\S]*?<\/nav>/)?.[0];
 assert(recent?.includes("Recently added"));
+const recentProgress = recent.match(/<p\b[^>]*data-practice-recent-progress\b[^>]*><\/p>/)?.[0];
+assert(recentProgress && attr(recentProgress, "role") === "status" && /\bhidden(?:[\s=>])/.test(recentProgress));
+const recentMore = recent.match(/<button\b[^>]*data-practice-recent-more\b[^>]*>Choose an unpracticed pack<\/button>/)?.[0];
+assert(recentMore && attr(recentMore, "type") === "button" && /\bhidden(?:[\s=>])/.test(recentMore));
 const recentRoutes = JSON.parse(read("data/recent_practice.json")).map(slug => `/use-cases/${slug}/`);
 assert(recentRoutes.length >= 1 && recentRoutes.length <= 3);
 assert.equal(new Set(recentRoutes).size, recentRoutes.length);

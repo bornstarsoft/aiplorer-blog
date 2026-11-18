@@ -27,6 +27,7 @@
   {{ with $recent }}
   <nav aria-labelledby="practice-recent-title">
     <h3 id="practice-recent-title">Recently added</h3>
+    <p class="aiplorer-practice-count" role="status" data-practice-recent-progress hidden></p>
     <div class="aiplorer-article-jumps">
       {{ range . }}
         {{ $slug := path.Base .RelPermalink }}
@@ -38,6 +39,9 @@
           {{ end }}
         </div>
       {{ end }}
+    </div>
+    <div class="aiplorer-practice-plan-actions">
+      <button type="button" class="aiplorer-button aiplorer-button--light" data-practice-recent-more hidden>Choose an unpracticed pack</button>
     </div>
   </nav>
   {{ end }}

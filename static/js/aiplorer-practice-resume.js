@@ -11,6 +11,8 @@
   const stepDownload = shelf.querySelector("[data-practice-step-download]");
   const practicedCount = shelf.querySelector("[data-practice-count]");
   const recentStatuses = shelf.querySelectorAll("[data-practice-recent-status]");
+  const recentProgress = shelf.querySelector("[data-practice-recent-progress]");
+  const recentMore = shelf.querySelector("[data-practice-recent-more]");
   const recentPreviews = [...shelf.querySelectorAll("[data-practice-recent-preview]")]
     .map(button => [button, button.getAttribute("data-practice-recent-preview")]);
   const recentDirections = [
@@ -195,6 +197,8 @@
     try { ids = readPracticed(); } catch { /* Storage is unavailable. */ }
     practicedCount.hidden = !ids?.size;
     practicedCount.textContent = ids?.size ? `${ids.size} of ${packs.size} practiced in this browser` : "";
+    let recentCount = 0;
+    let recentPracticed = 0;
     for (const status of recentStatuses) {
       const id = status.getAttribute("data-practice-recent-status");
       const known = Boolean(ids && packs.has(id));
@@ -202,7 +206,12 @@
       status.hidden = !known;
       status.textContent = known ? (practiced ? "Practiced" : "Not practiced yet") : "";
       status.toggleAttribute("data-practiced", practiced);
+      if (known) recentCount++;
+      if (practiced) recentPracticed++;
     }
+    const recentNoun = recentCount === 1 ? "pack" : "packs";
+    setProgressMessage(recentProgress, recentCount ? `${recentPracticed} of ${recentCount} recent ${recentNoun} practiced` : "");
+    if (recentMore) recentMore.hidden = !(recentCount && recentPracticed === recentCount && ids.size < packs.size && choice && choiceLink);
     for (const [button, id] of recentPreviews) {
       button.hidden = !canPreviewRecent(id, ids);
     }
@@ -221,13 +230,13 @@
     const inReview = ids?.has(reviewingId);
     const progress = ids?.size ? `Review round: ${reviewedThisRound.size} finished, ${remaining} left.` : "";
     const showRound = inReview || choosingAfterReview || reviewChoices || !remaining;
-    setReviewProgress(roundProgress, showRound ? progress : "");
+    setProgressMessage(roundProgress, showRound ? progress : "");
     for (const [id, pack] of packs) {
-      setReviewProgress(pack.reviewProgress, inReview && id === reviewingId ? progress : "");
+      setProgressMessage(pack.reviewProgress, inReview && id === reviewingId ? progress : "");
     }
   }
 
-  function setReviewProgress(element, message) {
+  function setProgressMessage(element, message) {
     if (!element) return;
     element.hidden = !message;
     if (element.textContent !== message) element.textContent = message;
@@ -605,13 +614,17 @@
     refreshPracticed();
     (choice.disabled ? choiceEmpty : choice).focus();
   });
+  function openChoiceMode(review) {
+    choosingAfterReview = false;
+    preferReview = review;
+    refreshPracticed();
+    (choice.disabled ? choiceEmpty : choice).focus();
+  }
+
   for (const [button, review] of [[afterNew, false], [afterRepeat, true]]) {
     button?.addEventListener("click", () => {
       if (!choosingAfterReview || afterReview.hidden) return;
-      choosingAfterReview = false;
-      preferReview = review;
-      refreshPracticed();
-      (choice.disabled ? choiceEmpty : choice).focus();
+      openChoiceMode(review);
     });
   }
   for (const option of modeOptions) {
@@ -622,6 +635,9 @@
     });
   }
   if (choice && choiceLink) {
+    recentMore?.addEventListener("click", () => {
+      if (!recentMore.hidden) openChoiceMode(false);
+    });
     choice.addEventListener("change", refreshPracticed);
     choiceLink.addEventListener("click", () => {
       const review = reviewChoices;

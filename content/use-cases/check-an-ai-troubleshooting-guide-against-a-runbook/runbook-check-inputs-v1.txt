@@ -1,0 +1,23 @@
+TROUBLESHOOTING GUIDE CHECK: PHOTO EXPORT
+Version 1. Fictional application and error messages.
+
+APPROVED SUPPORT RUNBOOK
+HELP-01: If an export seems missing, confirm the destination shown
+in the export panel. Do not delete existing exports or source files.
+HELP-02: If the panel reports "Export busy," wait for the current
+job to finish, then retry once. If the message returns, stop and
+contact support.
+HELP-03: If the panel reports "Cannot write," do not retry. Contact
+support with the app version and exact error text. If the message
+contains personal information, redact it. Never attach source photos.
+
+DRAFT TROUBLESHOOTING GUIDE
+HELP-01: Delete all prior exports and then check the destination.
+HELP-02: If you see "Export busy," keep retrying immediately.
+HELP-03: If you see "Cannot write," retry and send support a ZIP
+of your original photos.
+
+TASK
+For each ID, cite the relevant runbook evidence and rewrite the
+draft step. Keep the error branches separate. Do not add new
+instructions or ask for more data than the runbook allows.

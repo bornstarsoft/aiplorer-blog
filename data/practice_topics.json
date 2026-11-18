@@ -5,6 +5,7 @@
       "retest-ai-summaries-with-a-reference-pack",
       "check-an-ai-study-guide-against-learning-objectives",
       "check-an-ai-event-announcement-against-a-brief",
+      "check-an-ai-troubleshooting-guide-against-a-runbook",
       "check-an-ai-rewrite-without-changing-the-promise",
       "check-an-ai-translation-against-a-product-glossary",
       "check-an-ai-faq-against-a-support-policy",

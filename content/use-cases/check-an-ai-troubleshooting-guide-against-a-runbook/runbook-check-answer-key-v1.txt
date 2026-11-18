@@ -1,0 +1,15 @@
+TROUBLESHOOTING GUIDE CHECK: REVIEW KEY
+Version 1. Compare after the first run.
+
+HELP-01: Deletion is not an approved first step.
+Correction: Check the destination in the export panel. Leave both
+existing exports and source files intact.
+
+HELP-02: Immediate repeated retries ignore the stop rule.
+Correction: Wait for the current job, retry once, and contact
+support if "Export busy" returns.
+
+HELP-03: "Cannot write" calls for escalation without retry. Sending
+photos exceeds the approved diagnostics.
+Correction: Contact support with the app version and exact error
+text, redacting any personal information. Do not attach photos.
