@@ -72,6 +72,7 @@
       restart: pack.querySelector("[data-practice-restart]"),
       reviewProgress: pack.querySelector("[data-practice-active-review-progress]"),
       recentReturn: pack.querySelector("[data-practice-recent-return]"),
+      recentPosition: pack.querySelector("[data-practice-recent-position]"),
       recentPrevious: pack.querySelector("[data-practice-recent-previous]"),
       recentNext: pack.querySelector("[data-practice-recent-next]"),
       recapReturn: pack.querySelector("[data-practice-recap-return]"),
@@ -504,8 +505,16 @@
 
   function updateRecentNavigation(ids) {
     if (!recentPreview) return;
+    const { pack, entry } = recentPreview;
+    if (pack.recentPosition) {
+      const available = recentPreviews.filter(([, id]) => canPreviewRecent(id, ids));
+      const index = available.indexOf(entry);
+      const noun = available.length === 1 ? "input" : "inputs";
+      pack.recentPosition.hidden = index < 0;
+      pack.recentPosition.textContent = index < 0 ? "" : ` (${index + 1} of ${available.length} unpracticed recent ${noun})`;
+    }
     for (const [name, direction, label] of recentDirections) {
-      const control = recentPreview.pack[name];
+      const control = pack[name];
       if (!control) continue;
       const target = nearbyRecentEntry(ids, direction);
       control.hidden = !target;
@@ -516,12 +525,14 @@
 
   function openRecentInput(entry, ids) {
     const [, id] = entry;
-    if (!canPreviewRecent(id, ids) || !openPracticeInput("#" + id, true)) return;
+    if (!canPreviewRecent(id, ids) || !openPracticeInput("#" + id)) return;
     const pack = packs.get(id);
-    if (!pack.recentReturn) return;
-    recentPreview = { pack, entry };
-    pack.recentReturn.hidden = false;
-    updateRecentNavigation(ids);
+    if (pack.recentReturn) {
+      recentPreview = { pack, entry };
+      pack.recentReturn.hidden = false;
+      updateRecentNavigation(ids);
+    }
+    pack.element.querySelector("[data-practice-preview]").querySelector("summary")?.focus();
   }
 
   function clearRecentPreview() {

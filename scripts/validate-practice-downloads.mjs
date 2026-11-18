@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 
 const root = new URL("../", import.meta.url);
@@ -51,6 +52,7 @@ const tasks = [
   ["check-an-ai-accessibility-summary-against-an-audit-log", "Check an accessibility summary"],
   ["check-an-ai-data-dictionary-against-a-schema", "Check a data dictionary"],
   ["check-an-ai-study-guide-against-learning-objectives", "Check a study guide"],
+  ["check-an-ai-event-announcement-against-a-brief", "Check an event announcement"],
 ];
 assert.equal((html.match(/data-practice-pack\b/g) || []).length, tasks.length);
 const jumps = [...html.matchAll(/<a\b[^>]*\bdata-practice-task\b[^>]*>[\s\S]*?<\/a>/g)].map(([link]) => link);
@@ -89,7 +91,12 @@ for (const preview of previews) {
   assert(status && attr(status, "role") === "status" && attr(status, "aria-live") === "polite");
 }
 assert(html.includes("/js/aiplorer-practice-copy.js?v=20261024a"));
-assert(html.includes("/js/aiplorer-practice-resume.js?v=20261118e"));
+const resumeSource = read("static/js/aiplorer-practice-resume.js");
+const resumeHash = createHash("sha256").update(resumeSource).digest("hex");
+const resumePath = `/js/aiplorer-practice-resume.${resumeHash}.js`;
+assert(html.includes(resumePath), "Practice resume must use the fingerprint of its exact source");
+assert.equal(read("public" + resumePath), resumeSource);
+assert(!html.includes("/js/aiplorer-practice-resume.js?v="));
 const pickers = [...html.matchAll(/<div\b[^>]*data-practice-recap-picker\b[^>]*>[\s\S]*?<\/div>/g)];
 assert.equal(pickers.length, tasks.length);
 const recapPickerIds = new Set();
@@ -226,6 +233,7 @@ const packs = [
   ["check-an-ai-accessibility-summary-against-an-audit-log", "audit"],
   ["check-an-ai-data-dictionary-against-a-schema", "dictionary"],
   ["check-an-ai-study-guide-against-learning-objectives", "study"],
+  ["check-an-ai-event-announcement-against-a-brief", "event"],
 ];
 const downloadOrder = new Map();
 for (const [pack] of html.matchAll(/<li\b[^>]*data-practice-pack\b[^>]*>[\s\S]*?<\/li>/g)) {
@@ -273,7 +281,7 @@ for (const file of codeFiles) {
 for (const file of ["public/index.html", "public/guides/index.html", "public/ai-tools/tools/index.html"]) {
   assert(!read(file).includes("data-practice-download"), `Unexpected download shelf: ${file}`);
   assert(!read(file).includes("aiplorer-practice-copy.js"), `Unexpected clipboard script: ${file}`);
-  assert(!read(file).includes("aiplorer-practice-resume.js"), `Unexpected practice save script: ${file}`);
+  assert(!read(file).includes("/js/aiplorer-practice-resume."), `Unexpected practice save script: ${file}`);
 }
 assert(!read("public/use-cases/fix-a-zero-value-default-with-ai/index.html").includes("aiplorer-practice-copy.js"));
 const retryRoute = "/use-cases/check-an-automation-before-retrying/";
@@ -287,19 +295,19 @@ for (const role of ["inputs", "answer-key", "worksheet"]) {
 assert(read("public/use-cases/how-to-test-an-ai-automation-before-relying-on-it/index.html").includes(retryRoute));
 const chartRoute = "/use-cases/check-an-ai-slide-chart-before-sharing/";
 const chart = read(`public${chartRoute}index.html`);
-assert(!chart.includes("aiplorer-practice-resume.js"));
+assert(!chart.includes("/js/aiplorer-practice-resume."));
 for (const role of ["inputs", "answer-key", "worksheet"])
   assert(chart.includes(chartRoute + `chart-check-${role}-v1.txt`));
 assert(read("public/guides/ai-presentation-client-handoff-checklist/index.html").includes(chartRoute));
 const captionRoute = "/use-cases/check-ai-captions-against-a-reference/";
 const caption = read(`public${captionRoute}index.html`);
-assert(!caption.includes("aiplorer-practice-resume.js"));
+assert(!caption.includes("/js/aiplorer-practice-resume."));
 for (const role of ["inputs", "answer-key", "worksheet"])
   assert(caption.includes(captionRoute + `caption-check-${role}-v1.txt`));
 assert(read("public/guides/how-to-use-ai-meeting-tools-responsibly/index.html").includes(captionRoute));
 const scheduleRoute = "/use-cases/check-an-ai-schedule-across-time-zones/";
 const schedule = read(`public${scheduleRoute}index.html`);
-assert(!schedule.includes("aiplorer-practice-resume.js"));
+assert(!schedule.includes("/js/aiplorer-practice-resume."));
 for (const role of ["inputs", "answer-key", "worksheet"]) {
   const file = `schedule-check-${role}-v1.txt`;
   assert(schedule.includes(scheduleRoute + file));
@@ -310,7 +318,7 @@ assert(read("public/guides/how-to-use-ai-meeting-tools-responsibly/index.html").
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${scheduleRoute}</loc>`).length, 2);
 const redactionRoute = "/use-cases/check-an-ai-redaction-before-sharing/";
 const redaction = read(`public${redactionRoute}index.html`);
-assert(!redaction.includes("aiplorer-practice-resume.js"));
+assert(!redaction.includes("/js/aiplorer-practice-resume."));
 for (const role of ["inputs", "answer-key", "worksheet"]) {
   const file = `redaction-check-${role}-v1.txt`;
   assert(redaction.includes(redactionRoute + file));
@@ -323,7 +331,7 @@ assert(read("public/guides/review-an-ai-tool-decision-brief-before-sharing/index
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${redactionRoute}</loc>`).length, 2);
 const formulaRoute = "/use-cases/check-an-ai-spreadsheet-formula-before-copying-it/";
 const formulaArticle = read(`public${formulaRoute}index.html`);
-assert(!formulaArticle.includes("aiplorer-practice-resume.js"));
+assert(!formulaArticle.includes("/js/aiplorer-practice-resume."));
 for (const role of ["inputs", "answer-key", "worksheet"]) {
   const file = `formula-check-${role}-v1.txt`;
   assert(formulaArticle.includes(formulaRoute + file));
@@ -335,7 +343,7 @@ assert(read("public/use-cases/test-ai-data-extraction-with-missing-values/index.
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${formulaRoute}</loc>`).length, 2);
 const actionRoute = "/use-cases/check-ai-meeting-actions-against-decisions/";
 const actionArticle = read(`public${actionRoute}index.html`);
-assert(!actionArticle.includes("aiplorer-practice-resume.js"));
+assert(!actionArticle.includes("/js/aiplorer-practice-resume."));
 for (const role of ["inputs", "answer-key", "worksheet"]) {
   const file = `action-check-${role}-v1.txt`;
   assert(actionArticle.includes(actionRoute + file));
@@ -347,7 +355,7 @@ assert(read("public/use-cases/how-to-turn-ai-meeting-notes-into-action-items/ind
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${actionRoute}</loc>`).length, 2);
 const shotRoute = "/use-cases/check-an-ai-video-shot-list-before-sharing/";
 const shotArticle = read(`public${shotRoute}index.html`);
-assert(!shotArticle.includes("aiplorer-practice-resume.js"));
+assert(!shotArticle.includes("/js/aiplorer-practice-resume."));
 for (const role of ["inputs", "answer-key", "worksheet"]) {
   const file = `shot-check-${role}-v1.txt`;
   assert(shotArticle.includes(shotRoute + file));
@@ -359,7 +367,7 @@ assert(read("public/use-cases/plan-a-product-video-without-inventing-claims/inde
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${shotRoute}</loc>`).length, 2);
 const handoffRoute = "/use-cases/check-an-ai-file-handoff-before-switching-tools/";
 const handoffArticle = read(`public${handoffRoute}index.html`);
-assert(!handoffArticle.includes("aiplorer-practice-resume.js"));
+assert(!handoffArticle.includes("/js/aiplorer-practice-resume."));
 for (const role of ["inputs", "answer-key", "worksheet"]) {
   const file = `handoff-check-${role}-v1.txt`;
   assert(handoffArticle.includes(handoffRoute + file));
@@ -371,7 +379,7 @@ assert(read("public/guides/keep-your-work-portable-when-an-ai-service-changes/in
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${handoffRoute}</loc>`).length, 2);
 const comparisonRoute = "/use-cases/check-an-ai-tool-comparison-against-test-records/";
 const comparisonArticle = read(`public${comparisonRoute}index.html`);
-assert(!comparisonArticle.includes("aiplorer-practice-resume.js"));
+assert(!comparisonArticle.includes("/js/aiplorer-practice-resume."));
 for (const role of ["inputs", "answer-key", "worksheet"]) {
   const file = `comparison-check-${role}-v1.txt`;
   assert(comparisonArticle.includes(comparisonRoute + file));
@@ -383,7 +391,7 @@ assert(read("public/use-cases/compare-two-ai-tools-when-results-disagree/index.h
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${comparisonRoute}</loc>`).length, 2);
 const permissionRoute = "/use-cases/check-an-ai-automation-for-permission-scope/";
 const permissionArticle = read(`public${permissionRoute}index.html`);
-assert(!permissionArticle.includes("aiplorer-practice-resume.js"));
+assert(!permissionArticle.includes("/js/aiplorer-practice-resume."));
 for (const role of ["inputs", "answer-key", "worksheet"]) {
   const file = `permission-check-${role}-v1.txt`;
   assert(permissionArticle.includes(permissionRoute + file));
@@ -395,7 +403,7 @@ assert(read("public/guides/review-connected-ai-app-permissions/index.html").incl
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${permissionRoute}</loc>`).length, 2);
 const imageEditRoute = "/use-cases/check-an-ai-image-edit-against-a-brief/";
 const imageEditArticle = read(`public${imageEditRoute}index.html`);
-assert(!imageEditArticle.includes("aiplorer-practice-resume.js"));
+assert(!imageEditArticle.includes("/js/aiplorer-practice-resume."));
 for (const role of ["inputs", "answer-key", "worksheet"]) {
   const file = `image-edit-check-${role}-v1.txt`;
   assert(imageEditArticle.includes(imageEditRoute + file));
@@ -407,7 +415,7 @@ assert(read("public/guides/how-to-plan-a-multimodal-ai-creative-workflow/index.h
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${imageEditRoute}</loc>`).length, 2);
 const audioRoute = "/use-cases/check-an-ai-audio-cleanup-against-a-brief/";
 const audioArticle = read(`public${audioRoute}index.html`);
-assert(!audioArticle.includes("aiplorer-practice-resume.js"));
+assert(!audioArticle.includes("/js/aiplorer-practice-resume."));
 for (const role of ["inputs", "answer-key", "worksheet"]) {
   const file = `audio-check-${role}-v1.txt`;
   assert(audioArticle.includes(audioRoute + file));
@@ -419,7 +427,7 @@ assert(read("public/guides/how-to-plan-a-multimodal-ai-creative-workflow/index.h
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${audioRoute}</loc>`).length, 2);
 const releaseRoute = "/use-cases/check-ai-release-notes-against-a-change-log/";
 const releaseArticle = read(`public${releaseRoute}index.html`);
-assert(!releaseArticle.includes("aiplorer-practice-resume.js"));
+assert(!releaseArticle.includes("/js/aiplorer-practice-resume."));
 for (const role of ["inputs", "answer-key", "worksheet"]) {
   const file = `release-check-${role}-v1.txt`;
   assert(releaseArticle.includes(releaseRoute + file));
@@ -431,7 +439,7 @@ assert(read("public/use-cases/turn-ai-tool-updates-into-a-team-check-in/index.ht
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${releaseRoute}</loc>`).length, 2);
 const testPlanRoute = "/use-cases/check-an-ai-test-plan-against-acceptance-criteria/";
 const testPlanArticle = read(`public${testPlanRoute}index.html`);
-assert(!testPlanArticle.includes("aiplorer-practice-resume.js"));
+assert(!testPlanArticle.includes("/js/aiplorer-practice-resume."));
 for (const role of ["inputs", "answer-key", "worksheet"]) {
   const file = `test-plan-check-${role}-v1.txt`;
   assert(testPlanArticle.includes(testPlanRoute + file));
@@ -443,7 +451,7 @@ assert(read("public/use-cases/check-an-ai-pilot-result-before-expanding/index.ht
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${testPlanRoute}</loc>`).length, 2);
 const incidentRoute = "/use-cases/check-an-ai-incident-timeline-against-an-event-log/";
 const incidentArticle = read(`public${incidentRoute}index.html`);
-assert(!incidentArticle.includes("aiplorer-practice-resume.js"));
+assert(!incidentArticle.includes("/js/aiplorer-practice-resume."));
 for (const role of ["inputs", "answer-key", "worksheet"]) {
   const file = `incident-check-${role}-v1.txt`;
   assert(incidentArticle.includes(incidentRoute + file));
@@ -455,7 +463,7 @@ assert(read("public/use-cases/how-to-test-an-ai-automation-before-relying-on-it/
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${incidentRoute}</loc>`).length, 2);
 const mergeRoute = "/use-cases/check-an-ai-csv-merge-against-original-records/";
 const mergeArticle = read(`public${mergeRoute}index.html`);
-assert(!mergeArticle.includes("aiplorer-practice-resume.js"));
+assert(!mergeArticle.includes("/js/aiplorer-practice-resume."));
 for (const role of ["inputs", "answer-key", "worksheet"]) {
   const file = `merge-check-${role}-v1.txt`;
   assert(mergeArticle.includes(mergeRoute + file));
@@ -467,7 +475,7 @@ assert(read("public/use-cases/test-ai-data-extraction-with-missing-values/index.
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${mergeRoute}</loc>`).length, 2);
 const renameRoute = "/use-cases/check-an-ai-file-rename-plan-before-applying-it/";
 const renameArticle = read(`public${renameRoute}index.html`);
-assert(!renameArticle.includes("aiplorer-practice-resume.js"));
+assert(!renameArticle.includes("/js/aiplorer-practice-resume."));
 for (const role of ["inputs", "answer-key", "worksheet"]) {
   const file = `rename-check-${role}-v1.txt`;
   assert(renameArticle.includes(renameRoute + file));
@@ -479,7 +487,7 @@ assert(handoffArticle.includes(renameRoute));
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${renameRoute}</loc>`).length, 2);
 const glossaryRoute = "/use-cases/check-an-ai-translation-against-a-product-glossary/";
 const glossaryArticle = read(`public${glossaryRoute}index.html`);
-assert(!glossaryArticle.includes("aiplorer-practice-resume.js"));
+assert(!glossaryArticle.includes("/js/aiplorer-practice-resume."));
 for (const role of ["inputs", "answer-key", "worksheet"]) {
   const file = `glossary-check-${role}-v1.txt`;
   assert(glossaryArticle.includes(glossaryRoute + file));
@@ -491,7 +499,7 @@ assert(renameArticle.includes(glossaryRoute));
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${glossaryRoute}</loc>`).length, 2);
 const faqRoute = "/use-cases/check-an-ai-faq-against-a-support-policy/";
 const faqArticle = read(`public${faqRoute}index.html`);
-assert(!faqArticle.includes("aiplorer-practice-resume.js"));
+assert(!faqArticle.includes("/js/aiplorer-practice-resume."));
 for (const role of ["inputs", "answer-key", "worksheet"]) {
   const file = `faq-check-${role}-v1.txt`;
   assert(faqArticle.includes(faqRoute + file));
@@ -503,7 +511,7 @@ assert(glossaryArticle.includes(faqRoute));
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${faqRoute}</loc>`).length, 2);
 const surveyRoute = "/use-cases/check-an-ai-survey-summary-against-response-counts/";
 const surveyArticle = read(`public${surveyRoute}index.html`);
-assert(!surveyArticle.includes("aiplorer-practice-resume.js"));
+assert(!surveyArticle.includes("/js/aiplorer-practice-resume."));
 for (const role of ["inputs", "answer-key", "worksheet"]) {
   const file = `survey-check-${role}-v1.txt`;
   assert(surveyArticle.includes(surveyRoute + file));
@@ -515,7 +523,7 @@ assert(faqArticle.includes(surveyRoute));
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${surveyRoute}</loc>`).length, 2);
 const outlineRoute = "/use-cases/check-an-ai-slide-outline-against-a-brief/";
 const outlineArticle = read(`public${outlineRoute}index.html`);
-assert(!outlineArticle.includes("aiplorer-practice-resume.js"));
+assert(!outlineArticle.includes("/js/aiplorer-practice-resume."));
 for (const role of ["inputs", "answer-key", "worksheet"]) {
   const file = `outline-check-${role}-v1.txt`;
   assert(outlineArticle.includes(outlineRoute + file));
@@ -527,7 +535,7 @@ assert(surveyArticle.includes(outlineRoute));
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${outlineRoute}</loc>`).length, 2);
 const workflowRoute = "/use-cases/check-an-ai-process-guide-against-a-workflow/";
 const workflowArticle = read(`public${workflowRoute}index.html`);
-assert(!workflowArticle.includes("aiplorer-practice-resume.js"));
+assert(!workflowArticle.includes("/js/aiplorer-practice-resume."));
 for (const role of ["inputs", "answer-key", "worksheet"]) {
   const file = `workflow-check-${role}-v1.txt`;
   assert(workflowArticle.includes(workflowRoute + file));
@@ -539,7 +547,7 @@ assert(outlineArticle.includes(workflowRoute));
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${workflowRoute}</loc>`).length, 2);
 const promptRoute = "/use-cases/check-an-ai-prompt-template-before-reusing-it/";
 const promptArticle = read(`public${promptRoute}index.html`);
-assert(!promptArticle.includes("aiplorer-practice-resume.js"));
+assert(!promptArticle.includes("/js/aiplorer-practice-resume."));
 for (const role of ["inputs", "answer-key", "worksheet"]) {
   const file = `prompt-check-${role}-v1.txt`;
   assert(promptArticle.includes(promptRoute + file));
@@ -551,7 +559,7 @@ assert(workflowArticle.includes(promptRoute));
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${promptRoute}</loc>`).length, 2);
 const listingRoute = "/use-cases/check-an-ai-product-listing-against-a-spec-sheet/";
 const listingArticle = read(`public${listingRoute}index.html`);
-assert(!listingArticle.includes("aiplorer-practice-resume.js"));
+assert(!listingArticle.includes("/js/aiplorer-practice-resume."));
 for (const role of ["inputs", "answer-key", "worksheet"]) {
   const file = `listing-check-${role}-v1.txt`;
   assert(listingArticle.includes(listingRoute + file));
@@ -563,7 +571,7 @@ assert(promptArticle.includes(listingRoute));
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${listingRoute}</loc>`).length, 2);
 const manifestRoute = "/use-cases/check-an-ai-document-index-against-a-file-manifest/";
 const manifestArticle = read(`public${manifestRoute}index.html`);
-assert(!manifestArticle.includes("aiplorer-practice-resume.js"));
+assert(!manifestArticle.includes("/js/aiplorer-practice-resume."));
 for (const role of ["inputs", "answer-key", "worksheet"]) {
   const file = `manifest-check-${role}-v1.txt`;
   assert(manifestArticle.includes(manifestRoute + file));
@@ -575,7 +583,7 @@ assert(listingArticle.includes(manifestRoute));
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${manifestRoute}</loc>`).length, 2);
 const quoteRoute = "/use-cases/check-an-ai-quote-against-a-transcript/";
 const quoteArticle = read(`public${quoteRoute}index.html`);
-assert(!quoteArticle.includes("aiplorer-practice-resume.js"));
+assert(!quoteArticle.includes("/js/aiplorer-practice-resume."));
 for (const role of ["inputs", "answer-key", "worksheet"]) {
   const file = `quote-check-${role}-v1.txt`;
   assert(quoteArticle.includes(quoteRoute + file));
@@ -587,7 +595,7 @@ assert(manifestArticle.includes(quoteRoute));
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${quoteRoute}</loc>`).length, 2);
 const metricRoute = "/use-cases/check-an-ai-dashboard-summary-against-metric-definitions/";
 const metricArticle = read(`public${metricRoute}index.html`);
-assert(!metricArticle.includes("aiplorer-practice-resume.js"));
+assert(!metricArticle.includes("/js/aiplorer-practice-resume."));
 for (const role of ["inputs", "answer-key", "worksheet"]) {
   const file = `metric-check-${role}-v1.txt`;
   assert(metricArticle.includes(metricRoute + file));
@@ -598,7 +606,7 @@ assert(metricPreview.includes("125 total including tests") && !metricPreview.inc
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${metricRoute}</loc>`).length, 2);
 const experimentRoute = "/use-cases/check-an-ai-experiment-summary-against-a-test-plan/";
 const experimentArticle = read(`public${experimentRoute}index.html`);
-assert(!experimentArticle.includes("aiplorer-practice-resume.js"));
+assert(!experimentArticle.includes("/js/aiplorer-practice-resume."));
 for (const role of ["inputs", "answer-key", "worksheet"]) {
   const file = `experiment-check-${role}-v1.txt`;
   assert(experimentArticle.includes(experimentRoute + file));
@@ -609,7 +617,7 @@ assert(experimentPreview.includes("Separate staff trials") && !experimentPreview
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${experimentRoute}</loc>`).length, 2);
 const estimateRoute = "/use-cases/check-an-ai-project-estimate-against-an-assumptions-log/";
 const estimateArticle = read(`public${estimateRoute}index.html`);
-assert(!estimateArticle.includes("aiplorer-practice-resume.js"));
+assert(!estimateArticle.includes("/js/aiplorer-practice-resume."));
 for (const role of ["inputs", "answer-key", "worksheet"]) {
   const file = `estimate-check-${role}-v1.txt`;
   assert(estimateArticle.includes(estimateRoute + file));
@@ -620,7 +628,7 @@ assert(estimatePreview.includes("ASSUMPTIONS LOG") && !estimatePreview.includes(
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${estimateRoute}</loc>`).length, 2);
 const auditRoute = "/use-cases/check-an-ai-accessibility-summary-against-an-audit-log/";
 const auditArticle = read(`public${auditRoute}index.html`);
-assert(!auditArticle.includes("aiplorer-practice-resume.js"));
+assert(!auditArticle.includes("/js/aiplorer-practice-resume."));
 for (const role of ["inputs", "answer-key", "worksheet"]) {
   const file = `audit-check-${role}-v1.txt`;
   assert(auditArticle.includes(auditRoute + file));
@@ -631,7 +639,7 @@ assert(auditPreview.includes("AUDIT LOG") && !auditPreview.includes("do not clai
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${auditRoute}</loc>`).length, 2);
 const dictionaryRoute = "/use-cases/check-an-ai-data-dictionary-against-a-schema/";
 const dictionaryArticle = read(`public${dictionaryRoute}index.html`);
-assert(!dictionaryArticle.includes("aiplorer-practice-resume.js"));
+assert(!dictionaryArticle.includes("/js/aiplorer-practice-resume."));
 for (const role of ["inputs", "answer-key", "worksheet"]) {
   const file = `dictionary-check-${role}-v1.txt`;
   assert(dictionaryArticle.includes(dictionaryRoute + file));
@@ -643,7 +651,7 @@ assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${dictio
 
 const studyRoute = "/use-cases/check-an-ai-study-guide-against-learning-objectives/";
 const studyArticle = read(`public${studyRoute}index.html`);
-assert(!studyArticle.includes("aiplorer-practice-resume.js"));
+assert(!studyArticle.includes("/js/aiplorer-practice-resume."));
 for (const role of ["inputs", "answer-key", "worksheet"]) {
   const file = `study-check-${role}-v1.txt`;
   assert(studyArticle.includes(studyRoute + file));
@@ -652,6 +660,18 @@ for (const role of ["inputs", "answer-key", "worksheet"]) {
 const studyPreview = previews.find(tag => attr(tag, "data-practice-preview") === studyRoute + "study-check-inputs-v1.txt");
 assert(studyPreview?.includes("APPROVED LEARNING BRIEF") && !studyPreview.includes("Compare after the first run."));
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${studyRoute}</loc>`).length, 2);
+
+const eventRoute = "/use-cases/check-an-ai-event-announcement-against-a-brief/";
+const eventArticle = read(`public${eventRoute}index.html`);
+assert(!eventArticle.includes("/js/aiplorer-practice-resume."));
+for (const role of ["inputs", "answer-key", "worksheet"]) {
+  const file = `event-check-${role}-v1.txt`;
+  assert(eventArticle.includes(eventRoute + file));
+  for (const id of ["EVENT-01", "EVENT-02", "EVENT-03"]) assert(read(`public${eventRoute}${file}`).includes(id));
+}
+const eventPreview = previews.find(tag => attr(tag, "data-practice-preview") === eventRoute + "event-check-inputs-v1.txt");
+assert(eventPreview?.includes("CONFIRMED ORGANIZER BRIEF") && !eventPreview.includes("Compare after the first run."));
+assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${eventRoute}</loc>`).length, 2);
 
 const recent = html.match(/<nav\b[^>]*aria-labelledby=["']?practice-recent-title\b[^>]*>[\s\S]*?<\/nav>/)?.[0];
 assert(recent?.includes("Recently added"));
@@ -669,6 +689,8 @@ for (const [i, label] of recentLabels.entries()) {
 }
 const recentButtons = [...recent.matchAll(/<button\b[^>]*data-practice-recent-preview\b[^>]*>/g)].map(([tag]) => tag);
 const recentPreviewTargets = recentRoutes.filter(route => previewPaths.some(path => path.startsWith(route)));
+const recentPositions = previews.filter(tag => /<summary>[^<]*<span\b[^>]*data-practice-recap-position[^>]*><\/span><span\b[^>]*data-practice-recent-position\b[^>]*\bhidden(?:[\s=>])/.test(tag));
+assert.deepEqual(recentPositions.map(tag => attr(tag, "data-practice-preview").replace(/[^/]+$/, "")).sort(), [...recentPreviewTargets].sort());
 assert.deepEqual(recentButtons.map(tag => attr(tag, "data-practice-recent-preview")), recentPreviewTargets.map(route => "practice-" + route.split("/")[2]));
 for (const button of recentButtons) {
   assert.match(button, /\bhidden(?:[\s=>])/);

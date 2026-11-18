@@ -40,6 +40,7 @@ function pack(id, title) {
   const recapReturn = node();
   const recentReturn = node();
   const recentPrevious = node();
+  const recentPosition = node();
   const recentNext = node();
   const recapPrevious = node();
   const recapNext = node();
@@ -73,6 +74,7 @@ function pack(id, title) {
     "[data-practice-recap-return]": recapReturn,
     "[data-practice-recent-return]": recentReturn,
     "[data-practice-recent-previous]": recentPrevious,
+    "[data-practice-recent-position]": recentPosition,
     "[data-practice-recent-next]": recentNext,
     "[data-practice-recap-previous]": recapPrevious,
     "[data-practice-recap-next]": recapNext,
@@ -85,7 +87,7 @@ function pack(id, title) {
   };
   return {
     controls, button, status, downloads, mark, practiced, task, heading, preview, summary, finish, restart, reviewProgress, recapReturn, recapPrevious, recapNext, recapPosition,
-    recapPicker, recapSearch, recapResults, recapSelect, recapOpen, recentReturn, recentPrevious, recentNext, hidden: false,
+    recapPicker, recapSearch, recapResults, recapSelect, recapOpen, recentReturn, recentPrevious, recentPosition, recentNext, hidden: false,
     contains: element => Object.values(children).includes(element),
     querySelector: selector => children[selector], querySelectorAll: () => downloads,
   };
@@ -393,6 +395,25 @@ test("recent previous skips completed inputs, stops at the first item, and never
   assert.equal(p.storage.get(key), saved);
   assert.equal(p.storage.get(planKey), retryId);
   assert.equal(p.storage.get(practicedKey), marks);
+  assert.deepEqual(p.writes, []);
+});
+
+test("recent preview position tracks eligible inputs only and clears on return", () => {
+  const p = setup(null, "", JSON.stringify([retryId]), null, true);
+  assert.equal(p.chart.recentPosition.hidden, true);
+  p.recentPreviews[2].click();
+  assert.equal(p.third.recentPosition.hidden, false);
+  assert.equal(p.third.recentPosition.textContent, " (2 of 2 unpracticed recent inputs)");
+  p.third.recentPrevious.click();
+  assert.equal(p.third.recentPosition.hidden, true);
+  assert.equal(p.chart.recentPosition.textContent, " (1 of 2 unpracticed recent inputs)");
+  p.storage.set(practicedKey, JSON.stringify([retryId, thirdId]));
+  p.window.storage({ key: practicedKey });
+  assert.equal(p.chart.recentPosition.textContent, " (1 of 1 unpracticed recent input)");
+  assert.equal(p.chart.recentNext.hidden, true);
+  p.chart.recentReturn.click();
+  assert.equal(p.chart.recentPosition.hidden, true);
+  assert.equal(p.chart.recentPosition.textContent, "");
   assert.deepEqual(p.writes, []);
 });
 

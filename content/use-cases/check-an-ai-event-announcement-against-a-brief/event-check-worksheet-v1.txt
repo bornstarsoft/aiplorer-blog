@@ -1,0 +1,15 @@
+EVENT ANNOUNCEMENT CHECK: COMPARISON WORKSHEET
+Version 1. Repeat with the same input before comparing tools.
+
+Tool and date:
+Run conditions:
+
+EVENT-01: Used the confirmed room? Yes / No
+Evidence in the answer:
+EVENT-02: Changed the action to waitlist without promising a seat? Yes / No
+Evidence in the answer:
+EVENT-03: Removed the replay and delivery promise? Yes / No
+Evidence in the answer:
+
+Did either run add unsupported event details?
+What would you reconfirm before publishing a real announcement?

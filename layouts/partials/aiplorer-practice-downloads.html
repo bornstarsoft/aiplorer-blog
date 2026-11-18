@@ -114,6 +114,7 @@
   <ul>
     {{ range . }}
       {{ $page := . }}
+      {{ $isRecent := where $recent "RelPermalink" .RelPermalink }}
       <li data-practice-pack>
         <h3 id="practice-{{ path.Base .RelPermalink }}" tabindex="-1" data-practice-heading><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
         <p data-practice-description>{{ .Description }}</p>
@@ -124,7 +125,7 @@
           {{ end }}
           {{ with $page.Resources.Get $file }}
             <details class="aiplorer-practice-preview" data-practice-preview="{{ .RelPermalink }}">
-              <summary>Preview test input<span data-practice-recap-position hidden></span><span class="aiplorer-visually-hidden"> for {{ $page.Title }}</span></summary>
+              <summary>Preview test input<span data-practice-recap-position hidden></span>{{ if $isRecent }}<span data-practice-recent-position hidden></span>{{ end }}<span class="aiplorer-visually-hidden"> for {{ $page.Title }}</span></summary>
               <div class="aiplorer-practice-copy" data-practice-copy-controls hidden>
                 <button type="button" class="aiplorer-button aiplorer-button--light" data-practice-copy aria-label="Copy test input for {{ $page.Title }}">{{ partial "aiplorer-icon.html" "copy" }}Copy input</button>
                 <span role="status" aria-live="polite" data-practice-copy-status></span>
@@ -140,7 +141,7 @@
               <button type="button" class="aiplorer-button aiplorer-button--light" data-practice-recap-open disabled>Open input</button>
             </div>
             <div class="aiplorer-practice-plan-actions" data-practice-recap-actions>
-              {{ if where $recent "RelPermalink" $page.RelPermalink }}
+              {{ if $isRecent }}
                 <button type="button" class="aiplorer-button aiplorer-button--light" data-practice-recent-return hidden>Back to recently added</button>
                 <button type="button" class="aiplorer-button aiplorer-button--light" data-practice-recent-previous hidden>Preview previous unpracticed input</button>
                 <button type="button" class="aiplorer-button aiplorer-button--light" data-practice-recent-next hidden>Preview next unpracticed input</button>

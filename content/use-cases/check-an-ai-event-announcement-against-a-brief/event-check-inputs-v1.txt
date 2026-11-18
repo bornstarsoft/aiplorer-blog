@@ -1,0 +1,20 @@
+EVENT ANNOUNCEMENT CHECK: REPAIR CAFE WORKSHOP
+Version 1. Fictional workshop and booking information.
+
+CONFIRMED ORGANIZER BRIEF
+EVENT-01: Use the Maple Room. The Willow Room was listed in an
+early draft but is no longer the venue.
+EVENT-02: All seats are taken. The booking page accepts waitlist
+requests only, and joining the list does not guarantee a seat.
+EVENT-03: The organizer has not decided whether to offer a replay.
+Do not promise a recording, delivery date, or access for non-attendees.
+
+DRAFT ANNOUNCEMENT
+EVENT-01: Join our Repair Cafe workshop in the Willow Room.
+EVENT-02: Register now to secure your seat.
+EVENT-03: Can't make it? We'll email everyone the replay the next day.
+
+TASK
+For each ID, flag the mismatch, cite the evidence from the confirmed
+brief, and suggest a corrected line or an omission. Do not add details
+the organizer has not confirmed.

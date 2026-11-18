@@ -1,0 +1,13 @@
+EVENT ANNOUNCEMENT CHECK: REVIEW KEY
+Version 1. Compare after the first run.
+
+EVENT-01: Willow is the superseded venue. The brief confirms Maple.
+Correction: Join our Repair Cafe workshop in the Maple Room.
+
+EVENT-02: The booking page accepts waitlist requests, not confirmed
+registrations. Correction: Seats are full. Join the waitlist on the
+booking page; a place is not guaranteed.
+
+EVENT-03: Neither a replay nor next-day email delivery is confirmed.
+Omit the replay sentence, or state only that a replay is not confirmed
+if readers need that information.
