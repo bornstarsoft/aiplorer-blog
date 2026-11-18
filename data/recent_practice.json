@@ -1,5 +1,5 @@
 [
+  "check-an-ai-data-dictionary-against-a-schema",
   "check-an-ai-accessibility-summary-against-an-audit-log",
-  "check-an-ai-project-estimate-against-an-assumptions-log",
-  "check-an-ai-experiment-summary-against-a-test-plan"
+  "check-an-ai-project-estimate-against-an-assumptions-log"
 ]

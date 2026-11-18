@@ -1,0 +1,14 @@
+AI DATA DICTIONARY REVIEW - REVIEW KEY - VERSION 1
+Keep this file out of the test conversation.
+
+FIELD-01
+loan_minutes stores the planned duration in whole minutes, not hours.
+Do not change the stored unit or claim it is the actual duration.
+
+FIELD-02
+A blank returned_on means no return date is recorded. It does not
+establish that a loan is overdue. No due date is supplied.
+
+FIELD-03
+loan_status is a category code, not a numeric count. Its defined
+values are 10 for reserved, 20 for checked out, and 30 for closed.

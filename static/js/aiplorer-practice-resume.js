@@ -68,6 +68,7 @@
       restart: pack.querySelector("[data-practice-restart]"),
       reviewProgress: pack.querySelector("[data-practice-active-review-progress]"),
       recentReturn: pack.querySelector("[data-practice-recent-return]"),
+      recentNext: pack.querySelector("[data-practice-recent-next]"),
       recapReturn: pack.querySelector("[data-practice-recap-return]"),
       recapPrevious: pack.querySelector("[data-practice-recap-previous]"),
       recapNext: pack.querySelector("[data-practice-recap-next]"),
@@ -91,7 +92,7 @@
   let reviewChoices = false;
   let preferReview = false;
   let choosingAfterReview = false;
-  let recentReturn = null;
+  let recentPreview = null;
   let recapPreview = null;
   const recapEntries = new Map();
   const recapDirections = [
@@ -197,9 +198,9 @@
       status.toggleAttribute("data-practiced", practiced);
     }
     for (const [button, id] of recentPreviews) {
-      const pack = packs.get(id);
-      button.hidden = !ids || ids.has(id) || !pack?.element.querySelector("[data-practice-preview]");
+      button.hidden = !canPreviewRecent(id, ids);
     }
+    updateRecentNext(ids);
     for (const [id, pack] of packs) {
       const practiced = ids?.has(id) ?? false;
       if (pack.restart) pack.restart.hidden = !practiced;
@@ -484,10 +485,43 @@
     return openPracticeInput("#" + id, true, entry);
   }
 
-  function clearRecentReturn() {
-    if (!recentReturn) return;
-    recentReturn.control.hidden = true;
-    recentReturn = null;
+  function canPreviewRecent(id, ids) {
+    return Boolean(ids && !ids.has(id) && packs.get(id)?.element.querySelector("[data-practice-preview]"));
+  }
+
+  function nextRecentEntry(ids) {
+    return recentPreviews.slice(recentPreviews.indexOf(recentPreview.entry) + 1)
+      .find(([, id]) => canPreviewRecent(id, ids));
+  }
+
+  function updateRecentNext(ids) {
+    const control = recentPreview?.pack.recentNext;
+    if (!control) return;
+    const next = nextRecentEntry(ids);
+    control.hidden = !next;
+    if (next) control.setAttribute("aria-label", `Preview next unpracticed input: ${packs.get(next[1]).heading.textContent.trim()}`);
+    else control.removeAttribute("aria-label");
+  }
+
+  function openRecentInput(entry, ids) {
+    const [, id] = entry;
+    if (!canPreviewRecent(id, ids) || !openPracticeInput("#" + id, true)) return;
+    const pack = packs.get(id);
+    if (!pack.recentReturn) return;
+    recentPreview = { pack, entry };
+    pack.recentReturn.hidden = false;
+    updateRecentNext(ids);
+  }
+
+  function clearRecentPreview() {
+    if (!recentPreview) return;
+    const { pack } = recentPreview;
+    pack.recentReturn.hidden = true;
+    if (pack.recentNext) {
+      pack.recentNext.hidden = true;
+      pack.recentNext.removeAttribute("aria-label");
+    }
+    recentPreview = null;
   }
 
   function openPracticeInput(hash, focusPreview = false, entry = null) {
@@ -495,7 +529,7 @@
     if (!pack) return;
     revealPack(hash);
     clearRecapPreview();
-    clearRecentReturn();
+    clearRecentPreview();
     const preview = pack.element.querySelector("[data-practice-preview]");
     if (preview) {
       preview.open = true;
@@ -530,21 +564,17 @@
   try { render(read()); }
   catch { return; }
   refreshPracticed();
-  for (const [button, id] of recentPreviews) {
+  for (const entry of recentPreviews) {
+    const [button, id] = entry;
     button.addEventListener("click", () => {
       if (button.hidden) return;
       let ids;
       try { ids = readPracticed(); } catch { /* Storage is unavailable. */ }
-      if (!ids || ids.has(id)) {
+      if (!canPreviewRecent(id, ids)) {
         refreshPracticed();
         return;
       }
-      if (!openPracticeInput("#" + id, true)) return;
-      const control = packs.get(id).recentReturn;
-      if (control) {
-        recentReturn = { control, source: button };
-        control.hidden = false;
-      }
+      openRecentInput(entry, ids);
     });
   }
   reviewReset?.addEventListener("click", () => {
@@ -605,11 +635,22 @@
   for (const [id, pack] of packs) {
     pack.controls.hidden = false;
     pack.recentReturn?.addEventListener("click", () => {
-      if (recentReturn?.control !== pack.recentReturn) return;
-      const { source } = recentReturn;
+      if (recentPreview?.pack !== pack) return;
+      const [source] = recentPreview.entry;
       const target = source.hidden ? source.closest(".aiplorer-practice-recent-item")?.querySelector("a") : source;
-      clearRecentReturn();
+      clearRecentPreview();
       target?.focus();
+    });
+    pack.recentNext?.addEventListener("click", () => {
+      if (recentPreview?.pack !== pack || pack.recentNext.hidden) return;
+      let ids;
+      try { ids = readPracticed(); } catch { /* Storage is unavailable. */ }
+      const next = nextRecentEntry(ids);
+      if (next) openRecentInput(next, ids);
+      else {
+        refreshPracticed();
+        pack.recentReturn.focus();
+      }
     });
     if (pack.recapPicker && pack.recapSelect && pack.recapOpen) {
       const target = () => {

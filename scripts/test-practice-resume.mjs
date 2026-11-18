@@ -39,6 +39,7 @@ function pack(id, title) {
   const reviewProgress = node();
   const recapReturn = node();
   const recentReturn = node();
+  const recentNext = node();
   const recapPrevious = node();
   const recapNext = node();
   const recapPosition = node();
@@ -70,6 +71,7 @@ function pack(id, title) {
     "[data-practice-active-review-progress]": reviewProgress,
     "[data-practice-recap-return]": recapReturn,
     "[data-practice-recent-return]": recentReturn,
+    "[data-practice-recent-next]": recentNext,
     "[data-practice-recap-previous]": recapPrevious,
     "[data-practice-recap-next]": recapNext,
     "[data-practice-recap-position]": recapPosition,
@@ -81,7 +83,7 @@ function pack(id, title) {
   };
   return {
     controls, button, status, downloads, mark, practiced, task, heading, preview, summary, finish, restart, reviewProgress, recapReturn, recapPrevious, recapNext, recapPosition,
-    recapPicker, recapSearch, recapResults, recapSelect, recapOpen, recentReturn, hidden: false,
+    recapPicker, recapSearch, recapResults, recapSelect, recapOpen, recentReturn, recentNext, hidden: false,
     contains: element => Object.values(children).includes(element),
     querySelector: selector => children[selector], querySelectorAll: () => downloads,
   };
@@ -101,7 +103,7 @@ function setup(saved = null, mode = "", practicedSaved = null, planned = null, i
   const nextStep = node({ value: "" }), nextStatus = node();
   const stepDownload = node();
   const practicedCount = node();
-  const recent = [chartId, retryId, "practice-missing"].map(id => {
+  const recent = [chartId, retryId, ...(includeThird ? [thirdId] : []), "practice-missing"].map(id => {
     const status = node();
     status.setAttribute("data-practice-recent-status", id);
     return status;
@@ -146,6 +148,9 @@ function setup(saved = null, mode = "", practicedSaved = null, planned = null, i
     button.focus = () => { document.activeElement = button; };
     button.titleLink = node({ focus() { document.activeElement = this; } });
     button.closest = () => ({ querySelector: () => button.titleLink });
+  }
+  for (const pack of [chart, retry, third]) {
+    pack.recentReturn.focus = () => { document.activeElement = pack.recentReturn; };
   }
   filter.focus = () => { document.activeElement = filter; };
   choice.focus = () => { document.activeElement = choice; };
@@ -335,6 +340,50 @@ test("opening another practice clears the earlier recent preview return action",
   assert.equal(p.chart.recentReturn.hidden, true);
   p.retry.recentReturn.click();
   assert.equal(p.document.activeElement, null);
+  assert.deepEqual(p.writes, []);
+});
+
+test("recent next skips completed inputs and returns to the destination item without writing progress", () => {
+  const saved = JSON.stringify({ id: retryId, step: "compare" });
+  const marks = JSON.stringify([retryId]);
+  const p = setup(saved, "", marks, retryId, true);
+  const [source, , destination] = p.recentPreviews;
+  assert.equal(p.chart.recentNext.hidden, true);
+  source.click();
+  assert.equal(p.chart.recentNext.hidden, false);
+  assert.equal(p.chart.recentNext.getAttribute("aria-label"), "Preview next unpracticed input: Third check");
+  p.chart.recentNext.click();
+  assert.equal(p.retry.preview.open, false);
+  assert.equal(p.third.preview.open, true);
+  assert.equal(p.third.summary.focused, true);
+  assert.equal(p.chart.recentReturn.hidden, true);
+  assert.equal(p.chart.recentNext.hidden, true);
+  assert.equal(p.third.recentReturn.hidden, false);
+  assert.equal(p.third.recentNext.hidden, true);
+  assert.equal(p.third.finish.hidden, true);
+  p.third.recentReturn.click();
+  assert.equal(p.document.activeElement, destination);
+  assert.equal(p.storage.get(key), saved);
+  assert.equal(p.storage.get(planKey), retryId);
+  assert.equal(p.storage.get(practicedKey), marks);
+  assert.deepEqual(p.writes, []);
+});
+
+test("recent next recalculates from current marks and stops when the last candidate is completed", () => {
+  const p = setup(null, "", JSON.stringify([retryId]), null, true);
+  p.recentPreviews[0].click();
+  p.storage.set(practicedKey, JSON.stringify([retryId, thirdId]));
+  p.chart.recentNext.click();
+  assert.equal(p.third.preview.open, false);
+  assert.equal(p.chart.recentNext.hidden, true);
+  assert.equal(p.document.activeElement, p.chart.recentReturn);
+  p.storage.set(practicedKey, JSON.stringify([thirdId]));
+  p.window.storage({ key: practicedKey });
+  assert.equal(p.chart.recentNext.hidden, false);
+  assert.equal(p.chart.recentNext.getAttribute("aria-label"), "Preview next unpracticed input: Retry check");
+  p.chart.recentNext.click();
+  assert.equal(p.retry.preview.open, true);
+  assert.equal(p.retry.recentNext.hidden, true);
   assert.deepEqual(p.writes, []);
 });
 

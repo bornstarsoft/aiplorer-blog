@@ -1,0 +1,28 @@
+AI DATA DICTIONARY REVIEW - INPUTS - VERSION 1
+
+Fictional community equipment-loan export. Use this schema only.
+
+SCHEMA
+loan_id: Text identifier for one loan.
+loan_minutes: Planned loan duration, in whole minutes.
+returned_on: Calendar date of the recorded return. Blank means no
+  return date has been recorded; it does not indicate why.
+loan_status: Enumerated text code: 10 = reserved, 20 = checked out,
+  30 = closed.
+
+SAMPLE EXPORT
+loan_id,loan_minutes,returned_on,loan_status
+L-08,90,,20
+L-09,120,2026-10-21,30
+
+FIELD-01
+Draft: loan_minutes stores the planned loan duration in hours.
+
+FIELD-02
+Draft: A blank returned_on means the item is overdue.
+
+FIELD-03
+Draft: loan_status counts how many times an item has been checked out.
+
+For each ID, cite the controlling schema entry, explain the mismatch,
+and write a replacement description. Do not infer a due date or add codes.

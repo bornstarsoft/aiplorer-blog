@@ -1,0 +1,13 @@
+AI DATA DICTIONARY REVIEW - COMPARISON WORKSHEET - VERSION 1
+
+First run: ___________________  Date: __________
+Later run: ___________________  Date: __________
+Reuse the same schema and draft field descriptions.
+
+ID       | First run evidence | Later run evidence | What to verify
+FIELD-01 |                    |                    | Planned whole minutes
+FIELD-02 |                    |                    | No date recorded
+FIELD-03 |                    |                    | Codes are categories
+
+Any invented definition: ______________________________________
+One detail to confirm before documenting a real export: _______
