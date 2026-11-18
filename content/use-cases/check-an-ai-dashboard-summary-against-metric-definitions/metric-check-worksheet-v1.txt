@@ -1,0 +1,13 @@
+AI DASHBOARD SUMMARY REVIEW - COMPARISON WORKSHEET - VERSION 1
+
+First run: ____________________  Date: __________
+Later run: ____________________   Date: __________
+Use the same definitions, figures, and claims for both runs.
+
+ID        | First run evidence | Later run evidence | What to verify
+METRIC-01 |                    |                    | Eligible denominator
+METRIC-02 |                    |                    | Correct change unit
+METRIC-03 |                    |                    | Partial period named
+
+Any unsupported trend or cause: ______________________________
+One definition to confirm before sharing a real summary: _____

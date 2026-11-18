@@ -16,6 +16,22 @@
       <span role="status" data-practice-next-status></span>
     </div>
   </div>
+  {{ $recent := slice }}
+  {{ $packs := . }}
+  {{ range first 3 site.Data.recent_practice }}
+    {{ $route := printf "/use-cases/%s/" . }}
+    {{ range where $packs "RelPermalink" $route }}
+      {{ $recent = $recent | append . }}
+    {{ end }}
+  {{ end }}
+  {{ with $recent }}
+  <nav aria-labelledby="practice-recent-title">
+    <h3 id="practice-recent-title">Recently added</h3>
+    <div class="aiplorer-article-jumps">
+      {{ range . }}<a href="{{ .RelPermalink }}">{{ .Params.practiceTask | default .Title }}</a>{{ end }}
+    </div>
+  </nav>
+  {{ end }}
   <div class="aiplorer-practice-chooser" data-practice-chooser hidden>
     <div class="aiplorer-practice-plan" data-practice-plan hidden>
       <p>Next practice: <strong data-practice-plan-title></strong></p>

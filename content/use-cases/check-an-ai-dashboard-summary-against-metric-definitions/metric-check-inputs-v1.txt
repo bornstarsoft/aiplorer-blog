@@ -1,0 +1,26 @@
+AI DASHBOARD SUMMARY REVIEW - INPUTS - VERSION 1
+
+Fictional booking dashboard. Use only the definitions and figures below.
+
+DEFINITIONS
+D1. Completion rate = completed bookings / eligible bookings.
+    Test bookings are excluded from eligible bookings.
+D2. The reporting week runs Monday through Sunday. A week still in
+    progress must be labeled partial. No daily breakdown is available.
+
+FIGURES
+Prior full week: 40 completed, 100 eligible, 120 total including tests.
+Latest full week: 50 completed, 100 eligible, 125 total including tests.
+Current partial week (Monday through Wednesday): 24 completed.
+
+METRIC-01
+Draft: The latest full week's completion rate was 40% (50 of 125).
+
+METRIC-02
+Draft: Completion rate increased by 10% between the two full weeks.
+
+METRIC-03
+Draft: Completed bookings fell from 50 last week to 24 this week.
+
+For each ID, identify the mismatch, cite the definition or figures,
+and write a corrected sentence. Do not estimate missing daily values.

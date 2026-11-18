@@ -1,0 +1,17 @@
+AI DASHBOARD SUMMARY REVIEW - REVIEW KEY - VERSION 1
+Keep this file out of the test conversation.
+
+METRIC-01
+D1 excludes tests. The latest full week's completion rate was 50%
+(50 of 100 eligible bookings), not 40%.
+
+METRIC-02
+The two full-week rates were 40% and 50%. The difference is
+10 percentage points. A relative increase, if given, is 25% of the
+prior rate: (50 - 40) / 40.
+
+METRIC-03
+The current week has 24 completed bookings through Wednesday.
+The 50 figure covers the previous full week. These periods do not
+support a weekly decline claim. Wait for a complete week or use
+matching date ranges when the data becomes available.

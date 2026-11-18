@@ -45,6 +45,7 @@ const tasks = [
   ["check-an-ai-product-listing-against-a-spec-sheet", "Check a product listing"],
   ["check-an-ai-document-index-against-a-file-manifest", "Check a document index"],
   ["check-an-ai-quote-against-a-transcript", "Check a transcript quote"],
+  ["check-an-ai-dashboard-summary-against-metric-definitions", "Check a dashboard summary"],
 ];
 assert.equal((html.match(/data-practice-pack\b/g) || []).length, tasks.length);
 const jumps = [...html.matchAll(/<a\b[^>]*\bdata-practice-task\b[^>]*>[\s\S]*?<\/a>/g)].map(([link]) => link);
@@ -214,6 +215,7 @@ const packs = [
   ["check-an-ai-product-listing-against-a-spec-sheet", "listing"],
   ["check-an-ai-document-index-against-a-file-manifest", "manifest"],
   ["check-an-ai-quote-against-a-transcript", "quote"],
+  ["check-an-ai-dashboard-summary-against-metric-definitions", "metric"],
 ];
 const downloadOrder = new Map();
 for (const [pack] of html.matchAll(/<li\b[^>]*data-practice-pack\b[^>]*>[\s\S]*?<\/li>/g)) {
@@ -573,4 +575,24 @@ const quotePreview = previews.find(tag => attr(tag, "data-practice-preview") ===
 assert(quotePreview.includes("TRANSCRIPT EXCERPT") && !quotePreview.includes("T02 is Jo"));
 assert(manifestArticle.includes(quoteRoute));
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${quoteRoute}</loc>`).length, 2);
+const metricRoute = "/use-cases/check-an-ai-dashboard-summary-against-metric-definitions/";
+const metricArticle = read(`public${metricRoute}index.html`);
+assert(!metricArticle.includes("aiplorer-practice-resume.js"));
+for (const role of ["inputs", "answer-key", "worksheet"]) {
+  const file = `metric-check-${role}-v1.txt`;
+  assert(metricArticle.includes(metricRoute + file));
+  for (const id of ["METRIC-01", "METRIC-02", "METRIC-03"]) assert(read(`public${metricRoute}${file}`).includes(id));
+}
+const metricPreview = previews.find(tag => attr(tag, "data-practice-preview") === metricRoute + "metric-check-inputs-v1.txt");
+assert(metricPreview.includes("125 total including tests") && !metricPreview.includes("10 percentage points"));
+assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${metricRoute}</loc>`).length, 2);
+
+const recent = html.match(/<nav\b[^>]*aria-labelledby=["']?practice-recent-title\b[^>]*>[\s\S]*?<\/nav>/)?.[0];
+assert(recent?.includes("Recently added"));
+const recentRoutes = JSON.parse(read("data/recent_practice.json")).map(slug => `/use-cases/${slug}/`);
+assert(recentRoutes.length >= 1 && recentRoutes.length <= 3);
+assert.equal(new Set(recentRoutes).size, recentRoutes.length);
+assert.deepEqual([...recent.matchAll(/<a\b[^>]*>/g)].map(([tag]) => attr(tag, "href")), recentRoutes);
+for (const route of recentRoutes) assert(previewPaths.some(path => path.startsWith(route)));
+assert(!read("public/index.html").includes("practice-recent-title"), "Home must not show the recent practice list");
 console.log(`PASS: ${tasks.length} input-only previews, ${downloadCount} exact step-ordered downloads, guide entry links, script scoped to use-cases hub.`);
