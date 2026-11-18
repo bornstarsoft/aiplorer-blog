@@ -1,9 +1,11 @@
 {{- $entries := partial "aiplorer-change-data.html" . -}}
 {{- $tools := slice -}}
 {{- $topics := slice -}}
+{{- $transitions := slice -}}
 {{- range $entries -}}
   {{- $tools = $tools | append .tool -}}
   {{- $topics = $topics | append .topic -}}
+  {{- if .transitionDate -}}{{- $transitions = $transitions | append . -}}{{- end -}}
 {{- end -}}
 <section class="aiplorer-change-watch" id="tool-changes" aria-labelledby="change-watch-heading" data-change-watch data-change-url="{{ .Permalink }}">
   <div class="aiplorer-shell">
@@ -15,6 +17,20 @@
       </div>
       <a class="aiplorer-text-link" href="{{ .RelPermalink }}index.xml">Subscribe via RSS <span aria-hidden="true">&rarr;</span></a>
     </div>
+    {{ with $transitions }}
+      <section id="upcoming-transitions" aria-labelledby="change-upcoming-heading" data-change-upcoming hidden>
+        <h3 id="change-upcoming-heading">Upcoming transitions</h3>
+        <ul>
+          {{ range sort . "transitionDate" "asc" }}
+            <li data-change-transition-date="{{ .transitionDate }}" hidden>
+              <time datetime="{{ .transitionDate }}">{{ time.Format "Jan 2, 2006" .transitionDate }}</time>
+              &middot; <a href="?changesSaved=0#change-{{ .id }}">{{ .toolTitle }}: {{ .transitionLabel }}</a>
+            </li>
+          {{ end }}
+        </ul>
+        <p class="aiplorer-change-watch__status">Selected provider dates; check the official notice before acting.</p>
+      </section>
+    {{ end }}
     <div class="aiplorer-change-watch__controls" data-change-controls hidden>
       <label><input type="checkbox" data-change-saved> My saved tools</label>
       <label><input type="checkbox" data-change-unread> Unread only</label>
@@ -52,6 +68,7 @@
             <a href="{{ .tool }}" data-brief-tool>{{ .toolTitle }}</a>
             <span>{{ .topic }}</span>
             <span data-brief-date>{{ .dateLabel | default "Announced" }} <time datetime="{{ .announcedAt }}">{{ .announcedAt }}</time>{{ if eq .datePrecision "month" }} (exact day not published){{ end }}</span>
+            {{ with .transitionDate }}<span data-change-scheduled>Scheduled date <time datetime="{{ . }}">{{ time.Format "Jan 2, 2006" . }}</time></span>{{ end }}
             <span>Checked <time datetime="{{ .checkedAt }}" data-brief-checked>{{ .checkedAt }}</time></span>
             <strong data-change-badge hidden>Unread</strong>
             <label class="aiplorer-change-entry__read" data-change-entry-read-control hidden>

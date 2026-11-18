@@ -8,8 +8,9 @@ const readKey = "aiplorer-change-read-v1", savedKey = "aiplorer-shortlist-v1";
 const viewKey = "aiplorer-change-view-v1";
 const followKey = "aiplorer-change-follow-up-v1";
 const remembered = JSON.stringify({ version: 1, saved: true, unread: true, tool: "cursor", topic: "Access" });
-function fixture(query = "", blocked = false, view = null) {
+function fixture(query = "", blocked = false, view = null, dates = []) {
   let url = new URL("https://aiplorer.com/ai-tools/review-updates/" + query);
+  let now = new Date();
   const events = {}, storage = new Map([[savedKey, JSON.stringify(["/ai-tools/tools/cursor/"])]]);
   const downloads = [], revoked = [], timers = [];
   let downloadFails = false;
@@ -17,6 +18,8 @@ function fixture(query = "", blocked = false, view = null) {
   function control(values = []) { return { value: "", checked: false, disabled: false, options: values.map(value => ({ value })), events: {}, focus() { this.focused = true; }, addEventListener(name, fn) { this.events[name] = fn; } }; }
   const saved = control(), unread = control(), tool = control(["", "cursor", "replit"]), topic = control(["", "Access", "Workflow"]), read = control(), reset = control(), exportButton = control(), status = {}, empty = {}, controls = {};
   const firstUnread = control(), caughtUp = {}, showRead = control(), followOnly = control();
+  const transitions = dates.map(date => ({ hidden: true, dataset: { changeTransitionDate: date } }));
+  const upcoming = dates.length ? { hidden: true, querySelectorAll: () => transitions } : null;
   const entries = [
     ["cursor-new:2", "cursor", "Access"], ["cursor-old:1", "cursor", "Workflow"], ["replit-one:1", "replit", "Access"]
   ].map(([id, slug, category]) => ({ dataset: { changeId: id, changeTool: "/ai-tools/tools/" + slug + "/", changeTopic: category }, badge: {}, checkbox: control(), readControl: {}, querySelector(selector) { return selector === "[data-change-entry-read]" ? this.checkbox : selector === "[data-change-entry-read-control]" ? this.readControl : this.badge; } }));
@@ -41,7 +44,7 @@ function fixture(query = "", blocked = false, view = null) {
     const original = entry.querySelector.bind(entry);
     entry.querySelector = selector => entry.brief[selector] || original(selector);
   });
-  const elements = { "[data-change-saved]": saved, "[data-change-unread]": unread, "[data-change-follow-only]": followOnly, "select[data-change-tool]": tool, "select[data-change-topic]": topic, "[data-change-read]": read, "[data-change-first-unread]": firstUnread, "[data-change-caught-up]": caughtUp, "[data-change-show-read]": showRead, "[data-change-reset]": reset, "[data-change-export]": exportButton, "[data-change-status]": status, "[data-change-empty]": empty, "[data-change-controls]": controls };
+  const elements = { "[data-change-saved]": saved, "[data-change-unread]": unread, "[data-change-follow-only]": followOnly, "select[data-change-tool]": tool, "select[data-change-topic]": topic, "[data-change-read]": read, "[data-change-first-unread]": firstUnread, "[data-change-caught-up]": caughtUp, "[data-change-show-read]": showRead, "[data-change-reset]": reset, "[data-change-export]": exportButton, "[data-change-status]": status, "[data-change-empty]": empty, "[data-change-controls]": controls, "[data-change-upcoming]": upcoming };
   const window = { get location() { return url; }, history: { state: { retained: true }, replaceState(state, _, target) { assert.deepEqual(state, { retained: true }); url = new URL(target, url); } }, addEventListener: (event, fn) => { events[event] = fn; } };
   window.URL = { createObjectURL: blob => { downloads.push({ blob }); return "blob:brief"; }, revokeObjectURL: value => revoked.push(value) };
   window.setTimeout = fn => timers.push(fn);
@@ -51,10 +54,29 @@ function fixture(query = "", blocked = false, view = null) {
     createElement: () => ({ click() { if (downloadFails) throw Error("blocked"); downloads.at(-1).filename = this.download; }, remove() { downloads.at(-1).removed = true; } })
   };
   runInNewContext(source, { document, window, URL, URLSearchParams, Blob,
+    Date: class extends Date { constructor(...args) { super(...(args.length ? args : [now])); } },
     localStorage: { getItem: k => { if (blocked) throw Error("blocked"); return storage.get(k); }, setItem: (k, v) => { if (blocked) throw Error("blocked"); storage.set(k, v); }, removeItem: k => { if (blocked) throw Error("blocked"); storage.delete(k); } }
   });
-  return { saved, unread, tool, topic, read, firstUnread, caughtUp, showRead, followOnly, reset, exportButton, downloads, revoked, timers, failDownload: () => { downloadFails = true; }, status, empty, entries, storage, events, url: () => url, navigate: value => { url = new URL(value, url); }, visible: () => entries.filter(e => !e.hidden) };
+  return { saved, unread, tool, topic, read, firstUnread, caughtUp, showRead, followOnly, upcoming, transitions, setLocalTime: (year, month, day, hour = 0) => { now = new Date(year, month - 1, day, hour); }, reset, exportButton, downloads, revoked, timers, failDownload: () => { downloadFails = true; }, status, empty, entries, storage, events, url: () => url, navigate: value => { url = new URL(value, url); }, visible: () => entries.filter(e => !e.hidden) };
 }
+
+test("upcoming transitions retain local today and hide expired dates when revisiting", () => {
+  const f = fixture("?changesSaved=1&followup=1&tool=cursor#tool-changes", false, null, ["2026-11-30", "2026-12-11", "2027-03-31"]);
+  const href = f.url().href, initialStorage = [...f.storage];
+  f.setLocalTime(2026, 11, 30, 23);
+  f.events.focus();
+  assert.equal(f.upcoming.hidden, false);
+  assert.deepEqual(f.transitions.map(item => item.hidden), [false, false, false]);
+  f.setLocalTime(2026, 12, 1);
+  f.events.pageshow();
+  assert.deepEqual(f.transitions.map(item => item.hidden), [true, false, false]);
+  f.setLocalTime(2027, 4, 1);
+  f.events.focus();
+  assert.equal(f.upcoming.hidden, true);
+  assert.equal(f.visible().length, 0);
+  assert.equal(f.url().href, href);
+  assert.deepEqual([...f.storage], initialStorage);
+});
 
 test("tool deep link shows only that tool and does not mark records read", () => {
   const f = fixture("?tool=cursor#change-cursor-new");

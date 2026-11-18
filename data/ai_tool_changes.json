@@ -32,6 +32,8 @@
     },
     {
       "id": "claude-api-sonnet-45-retirement-notice-2026-09-30",
+      "transitionDate": "2026-11-30",
+      "transitionLabel": "Sonnet 4.5 API retirement",
       "tool": "/ai-tools/tools/claude/",
       "announcedAt": "2026-09-30",
       "dateLabel": "Deprecation notice",
@@ -76,6 +78,8 @@
     },
     {
       "id": "chatgpt-advanced-standard-voice-retirement-notice-2026-11-10",
+      "transitionDate": "2026-12-11",
+      "transitionLabel": "Advanced and Standard voice conversation retirement",
       "tool": "/ai-tools/tools/chatgpt/",
       "announcedAt": "2026-11-10",
       "checkedAt": "2026-11-18",
@@ -90,6 +94,8 @@
     },
     {
       "id": "pipedream-workflows-sunset-notice-checked-2026-10-15",
+      "transitionDate": "2027-03-31",
+      "transitionLabel": "Workflows and String shutdown",
       "tool": "/ai-tools/tools/pipedream/",
       "announcedAt": "2026-10-15",
       "dateLabel": "Notice checked",

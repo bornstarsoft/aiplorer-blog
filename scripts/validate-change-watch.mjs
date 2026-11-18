@@ -68,9 +68,12 @@ const officialHosts = new Map([
   ["/ai-tools/tools/n8n/", ["docs.n8n.io"]],
   ["/ai-tools/tools/zapier/", ["community.zapier.com", "help.zapier.com"]]
 ]);
-function date(value) {
+function calendarDate(value) {
   assert.match(value, /^\d{4}-\d{2}-\d{2}$/);
   assert.equal(new Date(value).toISOString().slice(0, 10), value, "Invalid calendar date");
+}
+function date(value) {
+  calendarDate(value);
   assert(value <= today, "Future dates cannot be presented as checked announcements");
 }
 date(data.checkedAt);
@@ -86,6 +89,19 @@ const scriptPath = `/js/aiplorer-change-watch.${hash}.js`;
 assert(watch.includes(scriptPath));
 assert.deepEqual(readFileSync(resolve(root, "public", scriptPath.slice(1))), watchScript);
 assert(!home.includes(scriptPath));
+assert(!home.includes("data-change-upcoming"));
+const dated = data.entries.filter(entry => Object.hasOwn(entry, "transitionDate") || Object.hasOwn(entry, "transitionLabel"));
+const schedule = watch.match(/<section\b[^>]*data-change-upcoming\b[^>]*\bhidden(?=[\s=>])[^>]*>[\s\S]*?<\/section>/)?.[0];
+assert.equal(Boolean(schedule), dated.length > 0);
+const scheduleRows = [...(schedule || "").matchAll(/<li\b[^>]*data-change-transition-date="?([\d-]+)"?[^>]*>[\s\S]*?<\/li>/g)];
+assert.deepEqual(scheduleRows.map(([, value]) => value), dated.map(entry => entry.transitionDate).sort());
+assert.equal((watch.match(/\bdata-change-scheduled\b/g) || []).length, dated.length);
+for (const entry of dated) {
+  calendarDate(entry.transitionDate);
+  assert(entry.transitionDate >= entry.announcedAt);
+  assert(typeof entry.transitionLabel === "string" && entry.transitionLabel.trim());
+  assert(scheduleRows.some(([row, value]) => value === entry.transitionDate && row.includes("?changesSaved=0#change-" + entry.id)));
+}
 assert(/<button\b[^>]*data-change-first-unread\b[^>]*\bdisabled(?=[\s=>])[^>]*>First unread<\/button>/.test(watch));
 const catchUp = watch.match(/<div\b[^>]*data-change-caught-up\b[^>]*\bhidden(?=[\s=>])[^>]*>[\s\S]*?<\/div>/)?.[0];
 assert(catchUp && catchUp.includes("You have read all updates in this view."));

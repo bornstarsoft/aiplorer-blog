@@ -3,6 +3,7 @@
   var root = document.querySelector("[data-change-watch]");
   if (!root) return;
   var entries = Array.from(root.querySelectorAll("[data-change-entry]"));
+  var upcoming = root.querySelector("[data-change-upcoming]");
   var savedOnly = root.querySelector("[data-change-saved]");
   var unreadOnly = root.querySelector("[data-change-unread]");
   var followOnly = root.querySelector("[data-change-follow-only]");
@@ -101,6 +102,19 @@
   }
   restoreView();
   resumeView();
+
+  function renderUpcoming() {
+    if (!upcoming) return;
+    var now = new Date();
+    var today = now.getFullYear() + "-" + String(now.getMonth() + 1).padStart(2, "0") +
+      "-" + String(now.getDate()).padStart(2, "0");
+    var hasUpcoming = false;
+    upcoming.querySelectorAll("[data-change-transition-date]").forEach(function (item) {
+      item.hidden = item.dataset.changeTransitionDate < today;
+      if (!item.hidden) hasUpcoming = true;
+    });
+    upcoming.hidden = !hasUpcoming;
+  }
 
   function nextUnreadIndex(afterIndex) {
     return entries.findIndex(function (entry, index) {
@@ -305,12 +319,15 @@
     render();
   });
   window.addEventListener("aiplorer:shortlist-change", render);
+  window.addEventListener("focus", renderUpcoming);
   window.addEventListener("popstate", function () { resumedView = false; restoreView(); render(); });
   window.addEventListener("pageshow", function () {
+    renderUpcoming();
     if (storageAvailable) seen = readSet(storageKey, seen);
     if (followStorageAvailable) followed = readSet(followKey, followed);
     render();
   });
   root.querySelector("[data-change-controls]").hidden = false;
+  renderUpcoming();
   render();
 })();
