@@ -33,6 +33,9 @@
         <div class="aiplorer-practice-recent-item">
           <a href="{{ .RelPermalink }}" aria-describedby="practice-recent-{{ $slug }}">{{ .Params.practiceTask | default .Title }}</a>
           <span id="practice-recent-{{ $slug }}" data-practice-recent-status="practice-{{ $slug }}" hidden></span>
+          {{ if .Params.practicePreview }}
+            <button type="button" class="aiplorer-button aiplorer-button--light" aria-label="Preview input: {{ .Title }}" data-practice-recent-preview="practice-{{ $slug }}" hidden>Preview input</button>
+          {{ end }}
         </div>
       {{ end }}
     </div>

@@ -64,6 +64,7 @@ provides a buggy function and local regression tests.
 | Review a transcript quote | [Transcript excerpt pack](/use-cases/check-an-ai-quote-against-a-transcript/) | Check wording, attribution, and omitted conditions |
 | Review a dashboard summary | [Metric definitions pack](/use-cases/check-an-ai-dashboard-summary-against-metric-definitions/) | Check denominators, units of change, and period cutoffs |
 | Review an experiment summary | [Test plan and results pack](/use-cases/check-an-ai-experiment-summary-against-a-test-plan/) | Check eligibility, measured outcomes, and rollout rules |
+| Review a project estimate | [Assumptions log pack](/use-cases/check-an-ai-project-estimate-against-an-assumptions-log/) | Check effort units, optional scope, and dependencies |
 
 The [practice downloads](/use-cases/#practice-downloads) collect the
 packs in one place. These checks do not cover every workflow. If your

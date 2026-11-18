@@ -47,6 +47,7 @@ const tasks = [
   ["check-an-ai-quote-against-a-transcript", "Check a transcript quote"],
   ["check-an-ai-dashboard-summary-against-metric-definitions", "Check a dashboard summary"],
   ["check-an-ai-experiment-summary-against-a-test-plan", "Check an experiment summary"],
+  ["check-an-ai-project-estimate-against-an-assumptions-log", "Check a project estimate"],
 ];
 assert.equal((html.match(/data-practice-pack\b/g) || []).length, tasks.length);
 const jumps = [...html.matchAll(/<a\b[^>]*\bdata-practice-task\b[^>]*>[\s\S]*?<\/a>/g)].map(([link]) => link);
@@ -85,7 +86,7 @@ for (const preview of previews) {
   assert(status && attr(status, "role") === "status" && attr(status, "aria-live") === "polite");
 }
 assert(html.includes("/js/aiplorer-practice-copy.js?v=20261024a"));
-assert(html.includes("/js/aiplorer-practice-resume.js?v=20261118a"));
+assert(html.includes("/js/aiplorer-practice-resume.js?v=20261118b"));
 const pickers = [...html.matchAll(/<div\b[^>]*data-practice-recap-picker\b[^>]*>[\s\S]*?<\/div>/g)];
 assert.equal(pickers.length, tasks.length);
 const recapPickerIds = new Set();
@@ -218,6 +219,7 @@ const packs = [
   ["check-an-ai-quote-against-a-transcript", "quote"],
   ["check-an-ai-dashboard-summary-against-metric-definitions", "metric"],
   ["check-an-ai-experiment-summary-against-a-test-plan", "experiment"],
+  ["check-an-ai-project-estimate-against-an-assumptions-log", "estimate"],
 ];
 const downloadOrder = new Map();
 for (const [pack] of html.matchAll(/<li\b[^>]*data-practice-pack\b[^>]*>[\s\S]*?<\/li>/g)) {
@@ -599,6 +601,17 @@ for (const role of ["inputs", "answer-key", "worksheet"]) {
 const experimentPreview = previews.find(tag => attr(tag, "data-practice-preview") === experimentRoute + "experiment-check-inputs-v1.txt");
 assert(experimentPreview.includes("Separate staff trials") && !experimentPreview.includes("do not override the stop rule"));
 assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${experimentRoute}</loc>`).length, 2);
+const estimateRoute = "/use-cases/check-an-ai-project-estimate-against-an-assumptions-log/";
+const estimateArticle = read(`public${estimateRoute}index.html`);
+assert(!estimateArticle.includes("aiplorer-practice-resume.js"));
+for (const role of ["inputs", "answer-key", "worksheet"]) {
+  const file = `estimate-check-${role}-v1.txt`;
+  assert(estimateArticle.includes(estimateRoute + file));
+  for (const id of ["EST-01", "EST-02", "EST-03"]) assert(read(`public${estimateRoute}${file}`).includes(id));
+}
+const estimatePreview = previews.find(tag => attr(tag, "data-practice-preview") === estimateRoute + "estimate-check-inputs-v1.txt");
+assert(estimatePreview.includes("ASSUMPTIONS LOG") && !estimatePreview.includes("Fourteen is not the base scope"));
+assert.equal(read("public/sitemap.xml").split(`<loc>https://aiplorer.com${estimateRoute}</loc>`).length, 2);
 
 const recent = html.match(/<nav\b[^>]*aria-labelledby=["']?practice-recent-title\b[^>]*>[\s\S]*?<\/nav>/)?.[0];
 assert(recent?.includes("Recently added"));
@@ -614,6 +627,13 @@ for (const [i, label] of recentLabels.entries()) {
   assert.equal(attr(recentLinks[i], "aria-describedby"), attr(label, "id"));
   assert.equal(attr(label, "data-practice-recent-status"), "practice-" + recentRoutes[i].split("/")[2]);
 }
-for (const route of recentRoutes) assert(previewPaths.some(path => path.startsWith(route)));
+const recentButtons = [...recent.matchAll(/<button\b[^>]*data-practice-recent-preview\b[^>]*>/g)].map(([tag]) => tag);
+const recentPreviewTargets = recentRoutes.filter(route => previewPaths.some(path => path.startsWith(route)));
+assert.deepEqual(recentButtons.map(tag => attr(tag, "data-practice-recent-preview")), recentPreviewTargets.map(route => "practice-" + route.split("/")[2]));
+for (const button of recentButtons) {
+  assert.match(button, /\bhidden(?:[\s=>])/);
+  assert.equal(attr(button, "type"), "button");
+  assert(attr(button, "aria-label").startsWith("Preview input: "));
+}
 assert(!read("public/index.html").includes("practice-recent-title"), "Home must not show the recent practice list");
 console.log(`PASS: ${tasks.length} input-only previews, ${downloadCount} exact step-ordered downloads, guide entry links, script scoped to use-cases hub.`);

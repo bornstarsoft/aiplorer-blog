@@ -1,0 +1,27 @@
+AI PROJECT ESTIMATE REVIEW - INPUTS - VERSION 1
+
+Fictional project: update the handout for the Cedar workshop.
+Check the draft estimate against this log. Do not assume extra work
+has been approved or that a date is confirmed.
+
+ASSUMPTIONS LOG
+A1. Base scope: copy update (3 person-hours), layout (4 person-hours),
+    and proof check (2 person-hours). Staff availability and review
+    turnaround have not been confirmed.
+A2. An illustrated cover adds 5 person-hours if separately approved.
+    No cover approval is recorded.
+A3. Layout needs the final session list from the organizer. The list
+    has not arrived. Friday is a target, not a confirmed delivery date.
+
+EST-01
+Draft: The base handout will be ready nine hours after work starts.
+
+EST-02
+Draft: The required handout scope takes fourteen person-hours.
+
+EST-03
+Draft: Delivery on Friday is confirmed.
+
+For each ID, cite the relevant assumption, explain the mismatch,
+and write a corrected sentence. Do not guess staff hours, approval,
+or when the session list will arrive.

@@ -27,6 +27,17 @@
   overflow-wrap: anywhere;
 }
 
+.aiplorer-practice-recent-item button:not([hidden]) {
+  width: auto;
+  max-width: 100%;
+  min-height: 44px;
+  font-size: 0.8125rem;
+}
+
+.aiplorer-practice-recent-item button[hidden] {
+  display: none;
+}
+
 .aiplorer-practice-recent-item span {
   color: var(--aiplorer-muted, #52616d);
   font-size: 0.8125rem;

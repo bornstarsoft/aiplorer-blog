@@ -11,6 +11,8 @@
   const stepDownload = shelf.querySelector("[data-practice-step-download]");
   const practicedCount = shelf.querySelector("[data-practice-count]");
   const recentStatuses = shelf.querySelectorAll("[data-practice-recent-status]");
+  const recentPreviews = [...shelf.querySelectorAll("[data-practice-recent-preview]")]
+    .map(button => [button, button.getAttribute("data-practice-recent-preview")]);
   const filterControls = shelf.querySelector("[data-practice-filter-controls]");
   const filter = shelf.querySelector("[data-practice-filter]");
   const filterEmpty = shelf.querySelector("[data-practice-empty]");
@@ -191,6 +193,10 @@
       status.hidden = !known;
       status.textContent = known ? (practiced ? "Practiced" : "Not practiced yet") : "";
       status.toggleAttribute("data-practiced", practiced);
+    }
+    for (const [button, id] of recentPreviews) {
+      const pack = packs.get(id);
+      button.hidden = !ids || ids.has(id) || !pack?.element.querySelector("[data-practice-preview]");
     }
     for (const [id, pack] of packs) {
       const practiced = ids?.has(id) ?? false;
@@ -515,6 +521,15 @@
   try { render(read()); }
   catch { return; }
   refreshPracticed();
+  for (const [button, id] of recentPreviews) {
+    button.addEventListener("click", () => {
+      if (button.hidden) return;
+      let ids;
+      try { ids = readPracticed(); } catch { /* Storage is unavailable. */ }
+      if (ids && !ids.has(id)) openPracticeInput("#" + id, true);
+      else refreshPracticed();
+    });
+  }
   reviewReset?.addEventListener("click", () => {
     if (reviewReset.hidden) return;
     reviewedThisRound.clear();

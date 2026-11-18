@@ -1,0 +1,15 @@
+AI PROJECT ESTIMATE REVIEW - REVIEW KEY - VERSION 1
+Keep this file out of the test conversation.
+
+EST-01
+A1 gives nine person-hours of base work (3 + 4 + 2).
+Do not turn that effort into elapsed time without staff availability
+and review timing.
+
+EST-02
+A1 and A2 give a nine-person-hour base estimate, plus five person-hours
+for the optional cover if approved. Fourteen is not the base scope.
+
+EST-03
+A3 says Friday is a target. Layout depends on receiving the final
+session list. Confirm the dependency and schedule before committing.

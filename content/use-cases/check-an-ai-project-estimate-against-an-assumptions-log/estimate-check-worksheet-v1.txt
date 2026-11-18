@@ -1,0 +1,13 @@
+AI PROJECT ESTIMATE REVIEW - COMPARISON WORKSHEET - VERSION 1
+
+First run: ____________________  Date: __________
+Later run: ____________________  Date: __________
+Reuse the same assumptions log and draft sentences.
+
+ID     | First run evidence | Later run evidence | What to verify
+EST-01 |                    |                    | Effort unit preserved
+EST-02 |                    |                    | Optional work separate
+EST-03 |                    |                    | Dependency and date status
+
+Any unsupported commitment: ___________________________________
+One assumption to confirm before sharing a real estimate: _____
