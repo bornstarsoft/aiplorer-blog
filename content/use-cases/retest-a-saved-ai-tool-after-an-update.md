@@ -70,6 +70,7 @@ provides a buggy function and local regression tests.
 | Review a study guide | [Learning objectives pack](/use-cases/check-an-ai-study-guide-against-learning-objectives/) | Check prerequisites, practice tasks, and passing criteria |
 | Review an event announcement | [Event brief pack](/use-cases/check-an-ai-event-announcement-against-a-brief/) | Check venue, registration status, and an unconfirmed replay |
 | Review a troubleshooting guide | [Support runbook pack](/use-cases/check-an-ai-troubleshooting-guide-against-a-runbook/) | Check the first step, recovery retries, and when to escalate |
+| Review a PDF export plan | [Delivery requirements pack](/use-cases/check-an-ai-export-plan-against-delivery-requirements/) | Check page size, selectable text, and clickable links |
 
 The [practice downloads](/use-cases/#practice-downloads) collect the
 packs in one place. These checks do not cover every workflow. If your

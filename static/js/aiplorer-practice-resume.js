@@ -15,6 +15,9 @@
   const recentMore = shelf.querySelector("[data-practice-recent-more]");
   const recentPreviews = [...shelf.querySelectorAll("[data-practice-recent-preview]")]
     .map(button => [button, button.getAttribute("data-practice-recent-preview")]);
+  const recentRepeats = [...shelf.querySelectorAll("[data-practice-recent-repeat]")]
+    .map(button => [button, button.getAttribute("data-practice-recent-repeat")]);
+  const recentInputModes = [[recentPreviews, false], [recentRepeats, true]];
   const recentDirections = [
     ["recentPrevious", -1, "Preview previous unpracticed input"],
     ["recentNext", 1, "Preview next unpracticed input"],
@@ -212,8 +215,8 @@
     const recentNoun = recentCount === 1 ? "pack" : "packs";
     setProgressMessage(recentProgress, recentCount ? `${recentPracticed} of ${recentCount} recent ${recentNoun} practiced` : "");
     if (recentMore) recentMore.hidden = !(recentCount && recentPracticed === recentCount && ids.size < packs.size && choice && choiceLink);
-    for (const [button, id] of recentPreviews) {
-      button.hidden = !canPreviewRecent(id, ids);
+    for (const [entries, completed] of recentInputModes) {
+      for (const [button, id] of entries) button.hidden = !canPreviewRecent(id, ids, completed);
     }
     updateRecentNavigation(ids);
     for (const [id, pack] of packs) {
@@ -500,12 +503,14 @@
     return openPracticeInput("#" + id, true, entry);
   }
 
-  function canPreviewRecent(id, ids) {
-    return Boolean(ids && !ids.has(id) && packs.get(id)?.element.querySelector("[data-practice-preview]"));
+  function canPreviewRecent(id, ids, completed = false) {
+    return Boolean(ids && ids.has(id) === completed && packs.get(id)?.element.querySelector("[data-practice-preview]"));
   }
 
   function nearbyRecentEntry(ids, direction) {
-    for (let index = recentPreviews.indexOf(recentPreview.entry) + direction;
+    const current = recentPreviews.indexOf(recentPreview.entry);
+    if (current < 0) return;
+    for (let index = current + direction;
       index >= 0 && index < recentPreviews.length; index += direction) {
       const entry = recentPreviews[index];
       if (canPreviewRecent(entry[1], ids)) return entry;
@@ -532,9 +537,9 @@
     }
   }
 
-  function openRecentInput(entry, ids) {
+  function openRecentInput(entry, ids, completed = false) {
     const [, id] = entry;
-    if (!canPreviewRecent(id, ids) || !openPracticeInput("#" + id)) return;
+    if (!canPreviewRecent(id, ids, completed) || !openPracticeInput("#" + id)) return;
     const pack = packs.get(id);
     if (pack.recentReturn) {
       recentPreview = { pack, entry };
@@ -592,18 +597,20 @@
   try { render(read()); }
   catch { return; }
   refreshPracticed();
-  for (const entry of recentPreviews) {
-    const [button, id] = entry;
-    button.addEventListener("click", () => {
-      if (button.hidden) return;
-      let ids;
-      try { ids = readPracticed(); } catch { /* Storage is unavailable. */ }
-      if (!canPreviewRecent(id, ids)) {
-        refreshPracticed();
-        return;
-      }
-      openRecentInput(entry, ids);
-    });
+  for (const [entries, completed] of recentInputModes) {
+    for (const entry of entries) {
+      const [button, id] = entry;
+      button.addEventListener("click", () => {
+        if (button.hidden) return;
+        let ids;
+        try { ids = readPracticed(); } catch { /* Storage is unavailable. */ }
+        if (!canPreviewRecent(id, ids, completed)) {
+          refreshPracticed();
+          return;
+        }
+        openRecentInput(entry, ids, completed);
+      });
+    }
   }
   reviewReset?.addEventListener("click", () => {
     if (reviewReset.hidden) return;

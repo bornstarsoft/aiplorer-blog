@@ -1,0 +1,15 @@
+PDF EXPORT PLAN CHECK: COMPARISON WORKSHEET
+Version 1. Repeat with the same input before comparing tools.
+
+Tool and date:
+Run conditions:
+
+EXPORT-01: Preserved portrait A4 and checked the final page size? Yes / No
+Evidence in the answer:
+EXPORT-02: Kept real text and tested selection and search? Yes / No
+Evidence in the answer:
+EXPORT-03: Preserved both clickable links and verified destinations? Yes / No
+Evidence in the answer:
+
+Did either run invent a tool setting, link address, or requirement?
+Which step would you test first on a disposable sample?

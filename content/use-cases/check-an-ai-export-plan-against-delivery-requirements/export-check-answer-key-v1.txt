@@ -1,0 +1,13 @@
+PDF EXPORT PLAN CHECK: REVIEW KEY
+Version 1. Compare after the first run.
+
+EXPORT-01: US Letter does not match the A4 requirement. Export as
+portrait A4 and verify the size in the exported PDF.
+
+EXPORT-02: Full-page screenshots replace the selectable text.
+Keep the headings and body as text. In the delivered PDF, select
+a heading and search for a phrase from a paragraph.
+
+EXPORT-03: Plain icons do not satisfy the clickable link requirement.
+Retain the two links. Open each link from the final PDF and compare
+its destination with the approved one in the source document.

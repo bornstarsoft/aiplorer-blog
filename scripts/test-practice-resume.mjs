@@ -118,6 +118,11 @@ function setup(saved = null, mode = "", practicedSaved = null, planned = null, i
     button.setAttribute("data-practice-recent-preview", status.getAttribute("data-practice-recent-status"));
     return button;
   });
+  const recentRepeats = recent.map(status => {
+    const button = node();
+    button.setAttribute("data-practice-recent-repeat", status.getAttribute("data-practice-recent-status"));
+    return button;
+  });
   const filterControls = node(), filter = node({ value: "all" }), filterEmpty = node(), taskNav = node();
   const chartOption = node({ value: chartId }), retryOption = node({ value: retryId });
   const unsafeOption = node({ value: "javascript:bad" });
@@ -149,7 +154,7 @@ function setup(saved = null, mode = "", practicedSaved = null, planned = null, i
       focus() { document.activeElement = this; },
     }),
   };
-  for (const button of recentPreviews) {
+  for (const button of [...recentPreviews, ...recentRepeats]) {
     button.focus = () => { document.activeElement = button; };
     button.titleLink = node({ focus() { document.activeElement = this; } });
     button.closest = () => ({ querySelector: () => button.titleLink });
@@ -203,6 +208,7 @@ function setup(saved = null, mode = "", practicedSaved = null, planned = null, i
   const shelf = { querySelector: s => children[s], querySelectorAll: s =>
     s === "[data-practice-recent-status]" ? recent :
       s === "[data-practice-recent-preview]" ? recentPreviews :
+      s === "[data-practice-recent-repeat]" ? recentRepeats :
       s === "[data-practice-task]" ? [chart.task, retry.task, ...(includeThird ? [third.task] : [])] :
       [chart, retry, ...(includeThird ? [third] : []), unsafe] };
   const localStorage = {
@@ -222,7 +228,7 @@ function setup(saved = null, mode = "", practicedSaved = null, planned = null, i
     },
   };
   vm.runInNewContext(source, { document, window, localStorage });
-  return { chart, retry, unsafe, resume, link, title, nextStep, nextStatus, stepDownload, practicedCount, recent, recentPreviews, window, storage, writes,
+  return { chart, retry, unsafe, resume, link, title, nextStep, nextStatus, stepDownload, practicedCount, recent, recentPreviews, recentRepeats, window, storage, writes,
     recentProgress, recentMore, filter, filterControls, filterEmpty, taskNav, document, chooser, choice, choiceDetails, choiceDescription, choiceLink,
     choiceEmpty, reviewReset, roundProgress, roundRecap, roundList, choiceLabel, choiceMode, newMode, reviewMode, chartOption, retryOption, unsafeOption, chartGroup, retryGroup,
     plan, planTitle, planStart, planDone, planClear, planSave, planStatus,
@@ -307,6 +313,47 @@ test("recent progress counts known packs and opens the unpracticed chooser witho
   const blocked = setup(saved, "read blocked", marks, retryId, true, false);
   assert.equal(blocked.recentProgress.hidden, true);
   assert.equal(blocked.recentMore.hidden, true);
+});
+
+test("a completed recent input can be previewed and returned to without starting a review", () => {
+  const saved = JSON.stringify({ id: retryId, step: "compare" });
+  const marks = JSON.stringify([chartId]);
+  const p = setup(saved, "", marks, retryId, true);
+  const [completed, newPack, , missing] = p.recentRepeats;
+  assert.equal(completed.hidden, false);
+  assert.equal(newPack.hidden, true);
+  assert.equal(missing.hidden, true);
+  assert.equal(p.recentPreviews[0].hidden, true);
+  completed.click();
+  assert.equal(p.chart.preview.open, true);
+  assert.equal(p.chart.summary.focused, true);
+  assert.equal(p.chart.recentReturn.hidden, false);
+  assert.equal(p.chart.recentPrevious.hidden, true);
+  assert.equal(p.chart.recentNext.hidden, true);
+  assert.equal(p.chart.recentPosition.hidden, true);
+  assert.equal(p.chart.finish.hidden, true);
+  assert.equal(p.chart.reviewProgress.hidden, true);
+  assert.equal(p.chart.practiced.checked, true);
+  p.chart.recentReturn.click();
+  assert.equal(p.document.activeElement, completed);
+  assert.equal(p.chart.recentReturn.hidden, true);
+  assert.equal(p.storage.get(key), saved);
+  assert.equal(p.storage.get(planKey), retryId);
+  assert.equal(p.storage.get(practicedKey), marks);
+  assert.deepEqual(p.writes, []);
+});
+
+test("a stale recent replay refreshes the actions without opening a now-unpracticed pack", () => {
+  const p = setup(null, "", JSON.stringify([chartId]));
+  const repeat = p.recentRepeats[0];
+  assert.equal(repeat.hidden, false);
+  p.storage.delete(practicedKey);
+  repeat.click();
+  assert.equal(repeat.hidden, true);
+  assert.equal(p.recentPreviews[0].hidden, false);
+  assert.equal(p.chart.preview.open, false);
+  assert.deepEqual(p.writes, []);
+  assert(setup(null, "read blocked", JSON.stringify([chartId])).recentRepeats.every(button => button.hidden));
 });
 
 test("recent input previews reveal only unpracticed targets and do not start or save a practice", () => {

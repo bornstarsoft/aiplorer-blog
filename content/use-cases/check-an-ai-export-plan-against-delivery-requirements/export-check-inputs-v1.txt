@@ -1,0 +1,19 @@
+PDF EXPORT PLAN CHECK: COMMUNITY HANDBOOK
+Version 1. Fictional delivery brief.
+
+APPROVED DELIVERY REQUIREMENTS
+EXPORT-01: Deliver a portrait PDF on A4 paper size.
+EXPORT-02: Keep headings and paragraphs selectable and searchable.
+Do not replace full pages with screenshots.
+EXPORT-03: Keep the contact and schedule links clickable. Verify
+both links point to the destinations approved in the source document.
+
+DRAFT EXPORT PLAN
+EXPORT-01: Export in portrait at US Letter size.
+EXPORT-02: Screenshot each page first so the layout cannot move.
+EXPORT-03: Replace both links with non-clickable icons.
+
+TASK
+For each ID, identify the mismatch, cite the requirement, and write
+one corrected step plus a check on the final file. Do not invent
+link addresses, tool-specific controls, or additional requirements.
