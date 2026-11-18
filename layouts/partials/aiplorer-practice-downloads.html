@@ -124,7 +124,7 @@
       <button type="button" class="aiplorer-button aiplorer-button--light" data-practice-review-reset hidden>Start a new review round</button>
     </div>
   </div>
-  <div data-practice-filter-controls hidden>
+  <div id="practice-filters" data-practice-filter-controls hidden>
     <div class="aiplorer-practice-filter">
       <label for="practice-topic">Topic</label>
       <select id="practice-topic" data-practice-topic-filter>
@@ -141,6 +141,10 @@
         <option value="unpracticed">Not practiced yet</option>
         <option value="practiced">Practiced</option>
       </select>
+    </div>
+    <div class="aiplorer-practice-filter aiplorer-practice-plan-actions" data-practice-view-copy hidden>
+      <button type="button" class="aiplorer-button aiplorer-button--light aiplorer-button--icon" data-practice-copy-view>{{ partial "aiplorer-icon.html" "copy" }}Copy view link</button>
+      <span role="status" data-practice-view-copy-status></span>
     </div>
   </div>
   <p class="aiplorer-practice-count" data-practice-empty role="status" hidden></p>

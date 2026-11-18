@@ -177,6 +177,12 @@ for (const [i, [, , body]] of groups.entries()) {
 }
 assert.deepEqual(pickerIds.sort(), [...taskLabels.keys()].sort(), "One picker option per published pack");
 assert.match(html, /<div\b[^>]*data-practice-filter-controls\b[^>]*\bhidden(?:[\s=>])/);
+const filterControls = html.match(/<div\b[^>]*data-practice-filter-controls\b[^>]*>/)?.[0];
+assert.equal(attr(filterControls, "id"), "practice-filters");
+assert.equal((html.match(/id=["']?practice-filters\b/g) || []).length, 1);
+assert.match(html, /<div\b[^>]*data-practice-view-copy\b[^>]*\bhidden(?:[\s=>])/);
+assert.match(html, /<button\b[^>]*data-practice-copy-view\b[^>]*>[\s\S]*?Copy view link<\/button>/);
+assert.match(html, /<span\b[^>]*role=["']?status\b[^>]*data-practice-view-copy-status\b/);
 assert.match(html, /<div\b[^>]*data-practice-progress-controls\b[^>]*\bhidden(?:[\s=>])/);
 assert.match(html, /<label\b[^>]*for=["']?practice-topic\b[^>]*>Topic<\/label>/);
 const topicFilter = html.match(/<select\b[^>]*data-practice-topic-filter\b[^>]*>[\s\S]*?<\/select>/)?.[0];

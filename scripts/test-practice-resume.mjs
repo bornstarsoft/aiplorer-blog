@@ -93,7 +93,7 @@ function pack(id, title) {
   };
 }
 
-function setup(saved = null, mode = "", practicedSaved = null, planned = null, includeThird = false, recentIncludesThird = includeThird) {
+function setup(saved = null, mode = "", practicedSaved = null, planned = null, includeThird = false, recentIncludesThird = includeThird, view = {}) {
   const storage = new Map([["unrelated", "preserve"]]);
   if (saved !== null) storage.set(key, saved);
   if (practicedSaved !== null) storage.set(practicedKey, practicedSaved);
@@ -125,6 +125,8 @@ function setup(saved = null, mode = "", practicedSaved = null, planned = null, i
   });
   const filterControls = node(), filter = node({ value: "all" }), filterEmpty = node(), taskNav = node();
   const progressControls = node(), topicFilter = node({ value: "all", focus() { document.activeElement = this; } });
+  const copyViewControls = node(), copyView = node(), copyViewStatus = node();
+  const copied = [], historyWrites = [];
   const chartOption = node({ value: chartId }), retryOption = node({ value: retryId });
   const unsafeOption = node({ value: "javascript:bad" });
   const thirdOption = node({ value: thirdId });
@@ -164,12 +166,28 @@ function setup(saved = null, mode = "", practicedSaved = null, planned = null, i
   }
   for (const pack of [chart, retry, third]) {
     pack.recentReturn.focus = () => { document.activeElement = pack.recentReturn; };
+    pack.heading.focus = () => { document.activeElement = pack.heading; };
+    pack.heading.scrollIntoView = () => {};
   }
   filter.focus = () => { document.activeElement = filter; };
   choice.focus = () => { document.activeElement = choice; };
   choiceEmpty.focus = () => { document.activeElement = choiceEmpty; };
   afterNew.focus = () => { document.activeElement = afterNew; };
-  window.location = { hash: "" };
+  window.location = new URL("https://aiplorer.com/use-cases/" + (view.suffix ?? ""));
+  window.history = {
+    state: { existing: true },
+    replaceState(state, _, path) {
+      assert.equal(state, this.state);
+      if (view.historyBlocked) throw new Error("History unavailable");
+      historyWrites.push(path);
+      window.location = new URL(path, window.location);
+    },
+  };
+  window.isSecureContext = view.clipboard !== "unavailable";
+  const navigator = { clipboard: { async writeText(href) {
+    if (view.clipboard === "denied") throw new Error("Clipboard unavailable");
+    copied.push(href);
+  } } };
   const children = {
     "[data-practice-resume]": resume,
     "[data-practice-resume-link]": link,
@@ -183,6 +201,9 @@ function setup(saved = null, mode = "", practicedSaved = null, planned = null, i
     "[data-practice-filter-controls]": filterControls,
     "[data-practice-progress-controls]": progressControls,
     "[data-practice-topic-filter]": topicFilter,
+    "[data-practice-view-copy]": copyViewControls,
+    "[data-practice-copy-view]": copyView,
+    "[data-practice-view-copy-status]": copyViewStatus,
     "[data-practice-filter]": filter,
     "[data-practice-empty]": filterEmpty,
     "[data-practice-tasks]": taskNav,
@@ -232,12 +253,12 @@ function setup(saved = null, mode = "", practicedSaved = null, planned = null, i
       storage.delete(k);
     },
   };
-  vm.runInNewContext(source, { document, window, localStorage });
+  vm.runInNewContext(source, { document, window, navigator, localStorage, URL, URLSearchParams });
   return { chart, retry, unsafe, resume, link, title, nextStep, nextStatus, stepDownload, practicedCount, recent, recentPreviews, recentRepeats, window, storage, writes,
     recentProgress, recentMore, filter, filterControls, progressControls, topicFilter, filterEmpty, taskNav, document, chooser, choice, choiceDetails, choiceDescription, choiceLink,
     choiceEmpty, reviewReset, roundProgress, roundRecap, roundList, choiceLabel, choiceMode, newMode, reviewMode, chartOption, retryOption, unsafeOption, chartGroup, retryGroup,
     plan, planTitle, planStart, planDone, planClear, planSave, planStatus,
-    choiceControls, afterReview, afterNew, afterRepeat, third, thirdOption };
+    choiceControls, afterReview, afterNew, afterRepeat, third, thirdOption, copyViewControls, copyView, copyViewStatus, copied, historyWrites };
 }
 
 test("does not save on visit and leaves native controls usable", () => {
@@ -1503,6 +1524,74 @@ test("topic browsing does not depend on progress storage and moves focus off hid
   assert.equal(p.filterEmpty.textContent, "1 of 2 packs shown.");
   assert.equal(p.document.activeElement, p.topicFilter);
   assert.deepEqual(p.writes, []);
+});
+
+test("URL views restore known filters and use only this browser's progress", () => {
+  const suffix = "?practiceTopic=meetings-and-workflows&practiceStatus=practiced#practice-filters";
+  const done = setup(null, "", JSON.stringify([retryId]), null, false, false, { suffix });
+  const fresh = setup(null, "", null, null, false, false, { suffix });
+  const blocked = setup(null, "read blocked", null, null, false, false, { suffix });
+  assert.equal(done.topicFilter.value, "meetings-and-workflows");
+  assert.equal(done.filter.value, "practiced");
+  assert.equal(done.chart.hidden, true);
+  assert.equal(done.retry.hidden, false);
+  assert.equal(fresh.retry.hidden, true);
+  assert.equal(blocked.progressControls.hidden, true);
+  assert.equal(blocked.chart.hidden, true);
+  assert.equal(blocked.retry.hidden, false);
+  for (const p of [done, fresh, blocked]) {
+    assert.deepEqual(p.writes, []);
+    assert.deepEqual(p.historyWrites, []);
+  }
+  done.window.location.search = "?practiceTopic=unknown&practiceStatus=bad";
+  done.window.popstate();
+  assert.equal(done.topicFilter.value, "all");
+  assert.equal(done.filter.value, "all");
+  assert.equal(done.chart.hidden, false);
+});
+
+test("changing filters updates the bookmark and copied links omit unrelated parameters", async () => {
+  const p = setup(chartId, "", JSON.stringify([chartId]), retryId, false, false, { suffix: "?source=keep#practice-paths" });
+  p.topicFilter.value = "creative-and-media";
+  p.topicFilter.change();
+  p.filter.value = "practiced";
+  p.filter.change();
+  assert.equal(p.window.location.href, "https://aiplorer.com/use-cases/?source=keep&practiceTopic=creative-and-media&practiceStatus=practiced#practice-filters");
+  assert.equal(p.copyViewControls.hidden, false);
+  await p.copyView.click();
+  assert.deepEqual(p.copied, ["https://aiplorer.com/use-cases/?practiceTopic=creative-and-media&practiceStatus=practiced#practice-filters"]);
+  assert.equal(p.copyViewStatus.textContent, "View link copied.");
+  p.filter.value = "all";
+  p.filter.change();
+  assert.equal(p.window.location.searchParams.has("practiceStatus"), false);
+  assert.equal(p.copyViewStatus.textContent, "");
+  assert.deepEqual(p.writes, []);
+});
+
+test("a direct pack link takes precedence over incompatible bookmarked filters", () => {
+  const suffix = "?practiceTopic=creative-and-media&practiceStatus=practiced&source=keep#" + retryId;
+  const p = setup(null, "", JSON.stringify([chartId]), null, false, false, { suffix });
+  assert.equal(p.retry.hidden, false);
+  assert.equal(p.document.activeElement, p.retry.heading);
+  assert.equal(p.topicFilter.value, "all");
+  assert.equal(p.window.location.search, "?source=keep");
+  assert.equal(p.window.location.hash, "#" + retryId);
+  assert.deepEqual(p.writes, []);
+});
+
+test("clipboard or history failures do not prevent browsing or report a false copy", async () => {
+  const p = setup(null, "", null, null, false, false, { clipboard: "denied", historyBlocked: true });
+  p.topicFilter.value = "creative-and-media";
+  p.topicFilter.change();
+  assert.equal(p.retry.hidden, true);
+  await p.copyView.click();
+  assert.deepEqual(p.copied, []);
+  assert.equal(p.copyViewStatus.textContent, "Could not copy the view link.");
+  const noClipboard = setup(null, "", null, null, false, false, { clipboard: "unavailable" });
+  assert.equal(noClipboard.copyViewControls.hidden, true);
+  noClipboard.topicFilter.value = "creative-and-media";
+  noClipboard.topicFilter.change();
+  assert.equal(noClipboard.window.location.searchParams.get("practiceTopic"), "creative-and-media");
 });
 
 test("returns focus to the filter when a marked pack disappears", () => {

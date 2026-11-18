@@ -27,6 +27,9 @@
   const progressControls = shelf.querySelector("[data-practice-progress-controls]");
   const topicFilter = shelf.querySelector("[data-practice-topic-filter]");
   const filterStatus = shelf.querySelector("[data-practice-empty]");
+  const copyViewControls = shelf.querySelector("[data-practice-view-copy]");
+  const copyView = shelf.querySelector("[data-practice-copy-view]");
+  const copyViewStatus = shelf.querySelector("[data-practice-view-copy-status]");
   const taskNav = shelf.querySelector("[data-practice-tasks]");
   const chooser = shelf.querySelector("[data-practice-chooser]");
   const choice = shelf.querySelector("[data-practice-choice]");
@@ -50,6 +53,7 @@
     const topic = group.getAttribute("data-practice-topic-key");
     return topic ? [[topic, new Set([...group.querySelectorAll("option")].map(option => option.value))]] : [];
   }));
+  const progressModes = new Set(["practiced", "unpracticed"]);
   const plan = shelf.querySelector("[data-practice-plan]");
   const planTitle = shelf.querySelector("[data-practice-plan-title]");
   const planStart = shelf.querySelector("[data-practice-plan-start]");
@@ -419,7 +423,7 @@
   function renderFilter(ids) {
     if (!filterControls || !filter || !filterStatus || !taskNav) return;
     const mode = filter.value;
-    const progressFiltered = Boolean(ids) && (mode === "practiced" || mode === "unpracticed");
+    const progressFiltered = Boolean(ids) && progressModes.has(mode);
     const topic = topicPacks.get(topicFilter?.value);
     const filterActive = progressFiltered || Boolean(topic);
     filterControls.hidden = !ids && !topicFilter;
@@ -442,13 +446,62 @@
       : (topic ? `${visible} of ${packs.size} packs shown.` : ""));
   }
 
+  function restoreFilterView() {
+    const params = new URLSearchParams(window.location.search);
+    const topic = params.get("practiceTopic");
+    const progress = params.get("practiceStatus");
+    if (topicFilter) topicFilter.value = topicPacks.has(topic) ? topic : "all";
+    if (filter) filter.value = progressModes.has(progress) ? progress : "all";
+  }
+
+  function writeFilterParams(url) {
+    const topic = topicFilter?.value;
+    const progress = filter?.value;
+    if (topicPacks.has(topic)) url.searchParams.set("practiceTopic", topic);
+    else url.searchParams.delete("practiceTopic");
+    if (!progressControls?.hidden && progressModes.has(progress)) url.searchParams.set("practiceStatus", progress);
+    else url.searchParams.delete("practiceStatus");
+  }
+
+  function filterViewLink() {
+    // Start from the page path so copied links never include unrelated parameters.
+    const url = new URL(window.location.pathname, window.location.origin);
+    writeFilterParams(url);
+    url.hash = "practice-filters";
+    return url.href;
+  }
+
+  function saveFilterView(keepHash = false) {
+    if (copyViewStatus) copyViewStatus.textContent = "";
+    const url = new URL(window.location.href);
+    writeFilterParams(url);
+    if (!keepHash) url.hash = "practice-filters";
+    try { window.history.replaceState(window.history.state, "", url.pathname + url.search + url.hash); }
+    catch { /* The filters and copied link still work when history is unavailable. */ }
+  }
+
   function revealPack(hash) {
-    const pack = hash && packs.get(hash.slice(1));
+    const pack = packs.get(hash?.slice(1));
     if (!filter || !pack?.element.hidden) return null;
     filter.value = "all";
     if (topicFilter) topicFilter.value = "all";
     refreshPracticed();
+    saveFilterView(true);
     return pack.heading;
+  }
+
+  function revealLinkedPack() {
+    const heading = revealPack(window.location.hash);
+    if (!heading) return;
+    heading.focus({ preventScroll: true });
+    heading.scrollIntoView();
+  }
+
+  function refreshFilterView() {
+    restoreFilterView();
+    refreshPracticed();
+    revealLinkedPack();
+    if (copyViewStatus) copyViewStatus.textContent = "";
   }
 
   function clearRecapPreview() {
@@ -605,23 +658,40 @@
   }
 
   if (filterControls && filter && filterStatus && taskNav) {
-    filter.addEventListener("change", refreshPracticed);
-    topicFilter?.addEventListener("change", refreshPracticed);
+    const changeView = () => {
+      refreshPracticed();
+      saveFilterView();
+    };
+    restoreFilterView();
+    filter.addEventListener("change", changeView);
+    topicFilter?.addEventListener("change", changeView);
     link.addEventListener("click", () => revealPack(link.getAttribute("href")));
-    window.addEventListener("hashchange", () => {
-      const heading = revealPack(window.location.hash);
-      if (heading) {
-        heading.focus({ preventScroll: true });
-        heading.scrollIntoView();
-      }
+    window.addEventListener("hashchange", revealLinkedPack);
+    window.addEventListener("popstate", refreshFilterView);
+  }
+  window.addEventListener("pageshow", () => {
+    refresh();
+    refreshFilterView();
+  });
+  if (copyViewControls && copyView && copyViewStatus && window.isSecureContext &&
+      typeof navigator.clipboard?.writeText === "function") {
+    copyViewControls.hidden = false;
+    copyView.addEventListener("click", async () => {
+      const href = filterViewLink();
+      let message = "View link copied.";
+      try { await navigator.clipboard.writeText(href); }
+      catch { message = "Could not copy the view link."; }
+      if (href === filterViewLink()) copyViewStatus.textContent = message;
     });
   }
   try { render(read()); }
   catch {
     renderFilter();
+    revealLinkedPack();
     return;
   }
   refreshPracticed();
+  revealLinkedPack();
   for (const [entries, completed] of recentInputModes) {
     for (const entry of entries) {
       const [button, id] = entry;
@@ -792,10 +862,6 @@
       refresh();
       nextStatus.textContent = "Could not update the next step.";
     }
-  });
-  window.addEventListener("pageshow", () => {
-    refresh();
-    refreshPracticed();
   });
   window.addEventListener("storage", event => {
     if (event.key === key || event.key === null) refresh();
