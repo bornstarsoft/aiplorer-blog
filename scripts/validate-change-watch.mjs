@@ -84,6 +84,9 @@ assert(watch.includes(scriptPath));
 assert.deepEqual(readFileSync(resolve(root, "public", scriptPath.slice(1))), watchScript);
 assert(!readFileSync(resolve(root, "public/index.html"), "utf8").includes(scriptPath));
 assert(/<button\b[^>]*data-change-first-unread\b[^>]*\bdisabled(?=[\s=>])[^>]*>First unread<\/button>/.test(watch));
+const catchUp = watch.match(/<div\b[^>]*data-change-caught-up\b[^>]*\bhidden(?=[\s=>])[^>]*>[\s\S]*?<\/div>/)?.[0];
+assert(catchUp && catchUp.includes("You have read all updates in this view."));
+assert.match(catchUp, /<button\b[^>]*data-change-show-read\b[^>]*>Show read updates<\/button>/);
 const navs = [...watch.matchAll(/<div\b[^>]*data-change-reading-nav\b[^>]*\bhidden(?=[\s=>])[^>]*>[\s\S]*?<\/div>/g)];
 assert.equal(navs.length, data.entries.length);
 for (const [nav] of navs) {

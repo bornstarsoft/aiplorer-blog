@@ -10,6 +10,8 @@
   var reset = root.querySelector("[data-change-reset]");
   var markRead = root.querySelector("[data-change-read]");
   var firstUnread = root.querySelector("[data-change-first-unread]");
+  var caughtUp = root.querySelector("[data-change-caught-up]");
+  var showRead = root.querySelector("[data-change-show-read]");
   var exportBrief = root.querySelector("[data-change-export]");
   var storageKey = "aiplorer-change-read-v1";
   var storageAvailable = true;
@@ -103,21 +105,25 @@
   }
   function goToUnread(afterIndex) {
     var index = nextUnreadIndex(afterIndex);
-    if (index < 0) return;
+    if (index < 0) return false;
     readingIndex = index;
     renderReadingNavigation();
     entries[index].querySelector("[data-brief-title]").focus();
+    return true;
   }
 
   function render() {
     var saved = readSet("aiplorer-shortlist-v1");
+    var matches = 0;
     var visible = 0;
     var unread = 0;
     entries.forEach(function (entry) {
       var isUnread = !seen.has(entry.dataset.changeId);
-      entry.hidden = (savedOnly.checked && !saved.has(entry.dataset.changeTool)) ||
-        (unreadOnly.checked && !isUnread) || (topic.value && topic.value !== entry.dataset.changeTopic) ||
-        (tool.value && entry.dataset.changeTool !== "/ai-tools/tools/" + tool.value + "/");
+      var inScope = !((savedOnly.checked && !saved.has(entry.dataset.changeTool)) ||
+        (topic.value && topic.value !== entry.dataset.changeTopic) ||
+        (tool.value && entry.dataset.changeTool !== "/ai-tools/tools/" + tool.value + "/"));
+      if (inScope) matches++;
+      entry.hidden = !inScope || (unreadOnly.checked && !isUnread);
       entry.querySelector("[data-change-badge]").hidden = !isUnread;
       entry.querySelector("[data-change-entry-read]").checked = !isUnread;
       entry.querySelector("[data-change-entry-read-control]").hidden = false;
@@ -127,20 +133,30 @@
       " updates shown; " + unread + " unread" + (resumedView ? ". Last view restored." : "") +
       (viewStorageAvailable ? "" : ". Filters last for this visit; saved view is unavailable.") +
       (storageAvailable ? "" : ". Read status lasts for this visit; browser storage is unavailable.");
-    root.querySelector("[data-change-empty]").hidden = visible > 0;
+    var finished = Boolean(caughtUp && showRead && unreadOnly.checked && matches > 0 && visible === 0);
+    if (caughtUp) caughtUp.hidden = !finished;
+    root.querySelector("[data-change-empty]").hidden = visible > 0 || finished;
     markRead.disabled = unread === 0;
     exportBrief.disabled = visible === 0;
     reset.disabled = !(savedOnly.checked || unreadOnly.checked || tool.value || topic.value);
     renderReadingNavigation();
   }
 
+  function applyFilters() { rememberView(); saveView(); render(); }
   [savedOnly, unreadOnly, topic, tool].forEach(function (control) {
-    control.addEventListener("change", function () { rememberView(); saveView(); render(); });
+    control.addEventListener("change", applyFilters);
   });
   reset.addEventListener("click", function () {
     savedOnly.checked = false; unreadOnly.checked = false;
     tool.value = ""; topic.value = "";
-    rememberView(); saveView(); render();
+    applyFilters();
+  });
+  if (caughtUp && showRead) showRead.addEventListener("click", function () {
+    if (caughtUp.hidden) return;
+    unreadOnly.checked = false;
+    applyFilters();
+    var first = entries.find(function (entry) { return !entry.hidden; });
+    (first ? first.querySelector("[data-brief-title]") : unreadOnly).focus();
   });
   function briefText(visible, exportedAt) {
     var lines = [
@@ -212,11 +228,19 @@
     var checkbox = entry.querySelector("[data-change-entry-read]");
     checkbox.addEventListener("change", function () {
       var checked = checkbox.checked;
+      var wasReading = readingIndex === index;
       updateReadState(function () {
         if (checked) seen.add(entry.dataset.changeId);
         else seen.delete(entry.dataset.changeId);
       });
       if (entry.hidden) {
+        if (wasReading) {
+          if (!goToUnread(index)) {
+            if (caughtUp && !caughtUp.hidden) showRead.focus();
+            else (firstUnread && !firstUnread.disabled ? firstUnread : unreadOnly).focus();
+          }
+          return;
+        }
         var next = entries.slice(index + 1).concat(entries.slice(0, index)).find(function (item) { return !item.hidden; });
         (next ? next.querySelector("[data-change-entry-read]") : unreadOnly).focus();
       }
@@ -227,6 +251,7 @@
     updateReadState(function () {
       entries.forEach(function (entry) { if (!entry.hidden) seen.add(entry.dataset.changeId); });
     });
+    if (caughtUp && !caughtUp.hidden) showRead.focus();
   });
   window.addEventListener("storage", function (event) {
     if (!event.key || event.key === storageKey) seen = readSet(storageKey, seen);

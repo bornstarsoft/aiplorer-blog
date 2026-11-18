@@ -15,7 +15,7 @@ function fixture(query = "", blocked = false, view = null) {
   if (view !== null) storage.set(viewKey, view);
   function control(values = []) { return { value: "", checked: false, disabled: false, options: values.map(value => ({ value })), events: {}, focus() { this.focused = true; }, addEventListener(name, fn) { this.events[name] = fn; } }; }
   const saved = control(), unread = control(), tool = control(["", "cursor", "replit"]), topic = control(["", "Access", "Workflow"]), read = control(), reset = control(), exportButton = control(), status = {}, empty = {}, controls = {};
-  const firstUnread = control();
+  const firstUnread = control(), caughtUp = {}, showRead = control();
   const entries = [
     ["cursor-new:2", "cursor", "Access"], ["cursor-old:1", "cursor", "Workflow"], ["replit-one:1", "replit", "Access"]
   ].map(([id, slug, category]) => ({ dataset: { changeId: id, changeTool: "/ai-tools/tools/" + slug + "/", changeTopic: category }, badge: {}, checkbox: control(), readControl: {}, querySelector(selector) { return selector === "[data-change-entry-read]" ? this.checkbox : selector === "[data-change-entry-read-control]" ? this.readControl : this.badge; } }));
@@ -37,7 +37,7 @@ function fixture(query = "", blocked = false, view = null) {
     const original = entry.querySelector.bind(entry);
     entry.querySelector = selector => entry.brief[selector] || original(selector);
   });
-  const elements = { "[data-change-saved]": saved, "[data-change-unread]": unread, "select[data-change-tool]": tool, "select[data-change-topic]": topic, "[data-change-read]": read, "[data-change-first-unread]": firstUnread, "[data-change-reset]": reset, "[data-change-export]": exportButton, "[data-change-status]": status, "[data-change-empty]": empty, "[data-change-controls]": controls };
+  const elements = { "[data-change-saved]": saved, "[data-change-unread]": unread, "select[data-change-tool]": tool, "select[data-change-topic]": topic, "[data-change-read]": read, "[data-change-first-unread]": firstUnread, "[data-change-caught-up]": caughtUp, "[data-change-show-read]": showRead, "[data-change-reset]": reset, "[data-change-export]": exportButton, "[data-change-status]": status, "[data-change-empty]": empty, "[data-change-controls]": controls };
   const window = { get location() { return url; }, history: { state: { retained: true }, replaceState(state, _, target) { assert.deepEqual(state, { retained: true }); url = new URL(target, url); } }, addEventListener: (event, fn) => { events[event] = fn; } };
   window.URL = { createObjectURL: blob => { downloads.push({ blob }); return "blob:brief"; }, revokeObjectURL: value => revoked.push(value) };
   window.setTimeout = fn => timers.push(fn);
@@ -49,7 +49,7 @@ function fixture(query = "", blocked = false, view = null) {
   runInNewContext(source, { document, window, URL, URLSearchParams, Blob,
     localStorage: { getItem: k => { if (blocked) throw Error("blocked"); return storage.get(k); }, setItem: (k, v) => { if (blocked) throw Error("blocked"); storage.set(k, v); }, removeItem: k => { if (blocked) throw Error("blocked"); storage.delete(k); } }
   });
-  return { saved, unread, tool, topic, read, firstUnread, reset, exportButton, downloads, revoked, timers, failDownload: () => { downloadFails = true; }, status, empty, entries, storage, events, url: () => url, navigate: value => { url = new URL(value, url); }, visible: () => entries.filter(e => !e.hidden) };
+  return { saved, unread, tool, topic, read, firstUnread, caughtUp, showRead, reset, exportButton, downloads, revoked, timers, failDownload: () => { downloadFails = true; }, status, empty, entries, storage, events, url: () => url, navigate: value => { url = new URL(value, url); }, visible: () => entries.filter(e => !e.hidden) };
 }
 
 test("tool deep link shows only that tool and does not mark records read", () => {
@@ -65,7 +65,9 @@ test("topic, tool, saved and unread combine; only visible records are marked rea
   f.read.events.click();
   assert.deepEqual(JSON.parse(f.storage.get(readKey)), ["cursor-new:2"]);
   assert.equal(f.visible().length, 0);
-  assert.equal(f.empty.hidden, false);
+  assert.equal(f.empty.hidden, true);
+  assert.equal(f.caughtUp.hidden, false);
+  assert.equal(f.showRead.focused, true);
   assert.equal(f.read.disabled, true);
 });
 test("filter changes create a bookmarkable view and preserve unrelated query state", () => {
@@ -133,7 +135,65 @@ test("read navigation skips previously read records and updates when results dis
   f.events.storage({ key: readKey });
   assert.equal(second.readingNav.hidden, true);
   assert.equal(f.firstUnread.disabled, true);
+  assert.equal(f.empty.hidden, true);
+  assert.equal(f.caughtUp.hidden, false);
+});
+
+test("reading a guided unread record advances and the last record focuses the caught-up action", () => {
+  const f = fixture("?tool=cursor&unread=1");
+  const [first, second] = f.entries;
+  const href = f.url().href;
+  f.firstUnread.events.click();
+  first.checkbox.checked = true; first.checkbox.events.change();
+  assert.equal(first.readingNav.hidden, true);
+  assert.equal(second.readingNav.hidden, false);
+  assert.equal(second.brief["[data-brief-title]"].focused, true);
+  assert.deepEqual(JSON.parse(f.storage.get(readKey)), ["cursor-new:2"]);
+  second.checkbox.checked = true; second.checkbox.events.change();
+  assert.equal(f.caughtUp.hidden, false);
+  assert.equal(f.showRead.focused, true);
+  assert.deepEqual(JSON.parse(f.storage.get(readKey)), ["cursor-new:2", "cursor-old:1"]);
+  assert.equal(f.url().href, href);
+});
+
+test("guided reading stops instead of returning to an earlier skipped unread record", () => {
+  const f = fixture("?tool=cursor&unread=1");
+  const [first, second] = f.entries;
+  f.firstUnread.events.click();
+  first.nextUnread.events.click();
+  second.checkbox.checked = true; second.checkbox.events.change();
+  assert.equal(first.readingNav.hidden, true);
+  assert.equal(first.checkbox.checked, false);
+  assert.equal(f.caughtUp.hidden, true);
+  assert.equal(f.firstUnread.focused, true);
+});
+
+test("showing read updates clears only the unread filter and preserves read state", () => {
+  const f = fixture("?changesSaved=1&unread=1&tool=cursor&topic=Access&view=guides");
+  f.storage.set(readKey, JSON.stringify(["cursor-new:2", "other:1"]));
+  f.events.storage({ key: readKey });
+  assert.equal(f.caughtUp.hidden, false);
+  f.showRead.events.click();
+  assert.deepEqual(f.visible().map(entry => entry.dataset.changeId), ["cursor-new:2"]);
+  assert.equal(f.entries[0].brief["[data-brief-title]"].focused, true);
+  assert.equal(f.caughtUp.hidden, true);
+  assert.equal(f.unread.checked, false);
+  for (const [key, value] of [["changesSaved", "1"], ["tool", "cursor"], ["topic", "Access"], ["view", "guides"]]) {
+    assert.equal(f.url().searchParams.get(key), value);
+  }
+  assert.equal(f.url().searchParams.has("unread"), false);
+  assert.deepEqual(JSON.parse(f.storage.get(viewKey)), { version: 1, saved: true, unread: false, tool: "cursor", topic: "Access" });
+  assert.deepEqual(JSON.parse(f.storage.get(readKey)), ["cursor-new:2", "other:1"]);
+});
+
+test("an empty filter scope is not treated as caught up", () => {
+  const f = fixture("?tool=replit&topic=Workflow&unread=1");
+  assert.equal(f.visible().length, 0);
   assert.equal(f.empty.hidden, false);
+  assert.equal(f.caughtUp.hidden, true);
+  f.showRead.events.click();
+  assert.equal(f.unread.checked, true);
+  assert.equal(f.storage.has(viewKey), false);
 });
 
 test("return and cross-tab changes refresh read state; revisions remain unread", () => {
