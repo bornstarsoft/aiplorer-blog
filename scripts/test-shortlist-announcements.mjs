@@ -5,27 +5,32 @@ import test from "node:test";
 
 const source = readFileSync(new URL("../static/js/aiplorer-shortlist-announcements.js", import.meta.url), "utf8");
 const key = "aiplorer-change-read-v1";
+const followKey = "aiplorer-change-follow-up-v1";
+const savedKey = "aiplorer-shortlist-v1";
 function fixture(read = [], blocked = false) {
   const storage = new Map([[key, JSON.stringify(read)]]);
   const listeners = {};
-  const makePanel = (entries) => {
+  const queue = { textContent: "" }, summary = { hidden: true, querySelector: () => queue };
+  const makePanel = (entries, slug) => {
     const status = { textContent: "Announcement checks" }, link = {};
+    const follow = { hidden: true, setAttribute(name, value) { this[name] = value; } };
     const attrs = { "data-shortlist-announcements": JSON.stringify(entries) };
-    return { status, link, attrs,
+    const card = { getAttribute: name => name === "data-shortlist-item" ? "/ai-tools/tools/" + slug + "/" : slug };
+    return { status, link, follow, attrs, closest: () => card,
       getAttribute: name => attrs[name],
       setAttribute: (name, value) => { attrs[name] = value; },
-      querySelector: name => name === "[data-announcement-status]" ? status : link
+      querySelector: name => name === "[data-announcement-status]" ? status : name === "[data-announcement-follow-link]" ? follow : link
     };
   };
   const first = { key: "first:2", title: "Newer notice", href: "/ai-tools/review-updates/?saved=1#change-first" };
   const older = { key: "older:1", title: "Older notice", href: "/ai-tools/review-updates/?saved=1#change-older" };
-  const panels = [makePanel([first, older]), makePanel([]), makePanel([{ ...first, key: "other:1" }])];
+  const panels = [makePanel([first, older], "cursor"), makePanel([], "gemini"), makePanel([{ ...first, key: "other:1" }], "replit")];
   runInNewContext(source, {
-    document: { querySelectorAll: () => panels },
+    document: { querySelectorAll: () => panels, querySelector: () => summary },
     window: { localStorage: { getItem: k => { if (blocked) throw new Error("blocked"); return storage.get(k); } },
       addEventListener: (name, cb) => { listeners[name] = cb; } }
   });
-  return { panels, storage, listeners };
+  return { panels, storage, listeners, queue, summary };
 }
 
 test("counts per tool and links to the newest unread check without writing read state", () => {
@@ -80,4 +85,47 @@ test("unrelated storage events do not change the display; malformed panel stays 
   assert.match(f.panels[0].status.textContent, /2 unread/);
   f.panels[0].attrs["data-shortlist-announcements"] = "{";
   assert.doesNotThrow(() => f.listeners.pageshow());
+});
+
+test("shortlist follow-ups include already read notices for saved tools only", () => {
+  const f = fixture(["first:2", "older:1"]);
+  f.storage.set(savedKey, JSON.stringify(["/ai-tools/tools/cursor/", "/ai-tools/tools/gemini/"]));
+  f.storage.set(followKey, JSON.stringify(["first", "older", "other", "removed-record"]));
+  const original = [...f.storage];
+  f.listeners.pageshow();
+  assert.equal(f.summary.hidden, false);
+  assert.equal(f.queue.textContent, "Review 2 saved-tool follow-ups");
+  assert.equal(f.panels[0].status.textContent, "All recorded checks read");
+  assert.equal(f.panels[0].follow.hidden, false);
+  assert.equal(f.panels[0].follow.textContent, "2 follow-ups");
+  assert.equal(f.panels[0].follow["aria-label"], "2 follow-ups for cursor");
+  assert.equal(f.panels[1].follow.hidden, true);
+  assert.equal(f.panels[2].follow.hidden, true);
+  assert.deepEqual([...f.storage], original);
+});
+
+test("shortlist follow-up links refresh for marking, unsaving and storage events", () => {
+  const f = fixture();
+  f.storage.set(savedKey, JSON.stringify(["/ai-tools/tools/cursor/"]));
+  f.storage.set(followKey, JSON.stringify(["first", "other"]));
+  f.listeners.storage({ key: followKey });
+  assert.equal(f.queue.textContent, "Review 1 saved-tool follow-up");
+  assert.equal(f.panels[0].follow.hidden, false);
+  f.storage.set(savedKey, JSON.stringify(["/ai-tools/tools/replit/"]));
+  f.listeners.storage({ key: savedKey });
+  assert.equal(f.panels[0].follow.hidden, true);
+  assert.equal(f.panels[2].follow.hidden, false);
+  f.storage.set(savedKey, "[]");
+  f.listeners["aiplorer:shortlist-change"]();
+  assert.equal(f.summary.hidden, true);
+});
+
+test("malformed follow-up storage hides optional links without disrupting unread checks", () => {
+  const f = fixture();
+  f.storage.set(savedKey, JSON.stringify(["/ai-tools/tools/cursor/"]));
+  f.storage.set(followKey, "{}");
+  f.listeners.storage({ key: followKey });
+  assert.equal(f.panels[0].status.textContent, "2 unread announcement checks");
+  assert.equal(f.panels[0].follow.hidden, true);
+  assert.equal(f.summary.hidden, true);
 });

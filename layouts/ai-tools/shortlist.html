@@ -33,6 +33,9 @@
           <div>
             <h2 id="saved-tools-heading">Saved tools <span data-shortlist-count>0</span></h2>
             <p class="aiplorer-section-heading__note" data-shortlist-visible-summary role="status" aria-live="polite"></p>
+            <p class="aiplorer-shortlist-followup" data-shortlist-follow-summary hidden>
+              <a href="/ai-tools/review-updates/?changesSaved=1&amp;followup=1#tool-changes" data-shortlist-follow-queue>Review saved-tool follow-ups</a>
+            </p>
           </div>
         </div>
 
@@ -136,14 +139,15 @@
               <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
               <p data-shortlist-description>{{ .Params.description }}</p>
               {{- $toolAnnouncements := slice -}}
+              {{- $slug := path.Base .RelPermalink -}}
               {{- range where $announcements "tool" .RelPermalink -}}
-                {{- $slug := strings.TrimSuffix "/" (strings.TrimPrefix "/ai-tools/tools/" .tool) -}}
                 {{- $toolAnnouncements = $toolAnnouncements | append (dict "key" (printf "%s:%v" .id .revision) "href" (printf "/ai-tools/review-updates/?tool=%s#change-%s" $slug .id) "title" .title) -}}
               {{- end -}}
               <div class="aiplorer-shortlist-announcements" data-shortlist-announcements="{{ $toolAnnouncements | jsonify }}">
                 <strong data-announcement-status>Announcement checks</strong>
                 {{ if $toolAnnouncements }}
                 <a data-announcement-link href="{{ (index $toolAnnouncements 0).href }}">{{ (index $toolAnnouncements 0).title }}</a>
+                <a data-announcement-follow-link href="{{ printf "/ai-tools/review-updates/?%s#tool-changes" (querify "followup" "1" "tool" $slug) }}" hidden>Review follow-ups</a>
                 {{ else }}
                 <small>No checks recorded here; changes may be unlisted.</small>
                 {{ end }}

@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 
 const publicRoot = new URL("../public/", import.meta.url);
@@ -37,5 +38,32 @@ assert.equal((shortlist.match(/<details\b/g) || []).length, savedPaths.length + 
   "Keep per-tool evaluation plus filters, progress, backup, and privacy disclosures");
 assert(shortlist.includes("Privacy and review notes"), "Privacy notes must remain accessible");
 assert(shortlist.includes("/ai-tools/compare/?view=shortlist"), "Saved comparison link is missing");
+
+const source = readFileSync(new URL("../static/js/aiplorer-shortlist-announcements.js", import.meta.url));
+const scriptPath = "js/aiplorer-shortlist-announcements." + createHash("sha256").update(source).digest("hex") + ".js";
+assert(shortlist.includes("/" + scriptPath));
+assert.deepEqual(readFileSync(new URL(scriptPath, publicRoot)), source);
+const home = readFileSync(new URL("index.html", publicRoot), "utf8");
+assert(!home.includes(scriptPath) && !home.includes("data-shortlist-follow-queue"));
+assert(/<p\b[^>]*data-shortlist-follow-summary\b[^>]*\bhidden(?=[\s=>])[^>]*>/.test(shortlist));
+const queue = shortlist.match(/<a\b[^>]*data-shortlist-follow-queue\b[^>]*>/)?.[0];
+assert(queue, "No saved-tool follow-up link");
+function followUrl(tag) {
+  const href = attributeValues(tag, "href")[0].replaceAll("&amp;", "&");
+  const url = new URL(href, "https://aiplorer.com");
+  assert.equal(url.origin, "https://aiplorer.com");
+  assert.equal(url.pathname, "/ai-tools/review-updates/");
+  assert.equal(url.hash, "#tool-changes");
+  assert.equal(url.searchParams.get("followup"), "1");
+  assert.equal(url.searchParams.has("unread"), false);
+  return url;
+}
+assert.equal(followUrl(queue).searchParams.get("changesSaved"), "1");
+const followLinks = [...shortlist.matchAll(/<a\b[^>]*data-announcement-follow-link\b[^>]*>/g)].map(([tag]) => tag);
+const announcements = JSON.parse(readFileSync(new URL("../data/ai_tool_changes.json", import.meta.url), "utf8")).entries;
+assert.deepEqual(followLinks.map(tag => {
+  assert(/\bhidden(?=[\s=>])/.test(tag));
+  return "/ai-tools/tools/" + followUrl(tag).searchParams.get("tool") + "/";
+}).sort(), [...new Set(announcements.map(entry => entry.tool))].sort());
 
 console.log(`PASS: shortlist retains ${savedPaths.length} reviewed candidates, evaluation/backup controls, and tools-first layout.`);

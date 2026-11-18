@@ -27,7 +27,8 @@
 {{ end }}
 {{ if eq .RelPermalink "/ai-tools/shortlist/" }}
   <link rel="stylesheet" href="/css/aiplorer-shortlist-announcements.css?v=20261023a">
-  <script defer src="/js/aiplorer-shortlist-announcements.js?v=20261023a"></script>
+  {{ $announcements := resources.FromString "js/aiplorer-shortlist-announcements.js" (readFile "static/js/aiplorer-shortlist-announcements.js") | fingerprint }}
+  <script defer src="{{ $announcements.RelPermalink }}"></script>
   <script defer src="/js/aiplorer-shortlist-trial.js?v=20261023b"></script>
 {{ end }}
 {{ if eq .RelPermalink "/ai-tools/review-updates/" }}
