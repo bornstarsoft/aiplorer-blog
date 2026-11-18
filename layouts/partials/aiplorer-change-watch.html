@@ -18,6 +18,7 @@
     <div class="aiplorer-change-watch__controls" data-change-controls hidden>
       <label><input type="checkbox" data-change-saved> My saved tools</label>
       <label><input type="checkbox" data-change-unread> Unread only</label>
+      <label><input type="checkbox" data-change-follow-only> Follow-up only</label>
       <label>Tool
         <select data-change-tool>
           <option value="">All covered tools</option>
@@ -57,6 +58,10 @@
               <input type="checkbox" data-change-entry-read aria-label="Read: {{ .title }}">
               <span>Read</span>
             </label>
+            <label class="aiplorer-change-entry__read" data-change-follow-control hidden>
+              <input type="checkbox" data-change-entry-follow aria-label="Follow up: {{ .title }}">
+              <span>Follow up</span>
+            </label>
           </div>
           <div class="aiplorer-change-entry__body">
             <h3><a href="#change-{{ .id }}" data-brief-title>{{ .title }}</a></h3>
@@ -77,6 +82,6 @@
         </article>
       {{ end }}
     </div>
-    <p class="aiplorer-change-watch__note">Announcement checks are separate from full tool reviews. Availability and terms may change. Unlisted changes are unknown, not proof that a service is unchanged. Read status and filter preferences stay in this browser. <a href="/guides/follow-ai-tool-changes-with-rss/">RSS catch-up guide</a></p>
+    <p class="aiplorer-change-watch__note">Announcement checks are separate from full tool reviews. Availability and terms may change. Unlisted changes are unknown, not proof that a service is unchanged. Read status, follow-up flags, and filter preferences stay in this browser. <a href="/guides/follow-ai-tool-changes-with-rss/">RSS catch-up guide</a></p>
   </div>
 </section>

@@ -6,6 +6,7 @@ import test from "node:test";
 const source = readFileSync(new URL("../static/js/aiplorer-change-watch.js", import.meta.url), "utf8");
 const readKey = "aiplorer-change-read-v1", savedKey = "aiplorer-shortlist-v1";
 const viewKey = "aiplorer-change-view-v1";
+const followKey = "aiplorer-change-follow-up-v1";
 const remembered = JSON.stringify({ version: 1, saved: true, unread: true, tool: "cursor", topic: "Access" });
 function fixture(query = "", blocked = false, view = null) {
   let url = new URL("https://aiplorer.com/ai-tools/review-updates/" + query);
@@ -15,7 +16,7 @@ function fixture(query = "", blocked = false, view = null) {
   if (view !== null) storage.set(viewKey, view);
   function control(values = []) { return { value: "", checked: false, disabled: false, options: values.map(value => ({ value })), events: {}, focus() { this.focused = true; }, addEventListener(name, fn) { this.events[name] = fn; } }; }
   const saved = control(), unread = control(), tool = control(["", "cursor", "replit"]), topic = control(["", "Access", "Workflow"]), read = control(), reset = control(), exportButton = control(), status = {}, empty = {}, controls = {};
-  const firstUnread = control(), caughtUp = {}, showRead = control();
+  const firstUnread = control(), caughtUp = {}, showRead = control(), followOnly = control();
   const entries = [
     ["cursor-new:2", "cursor", "Access"], ["cursor-old:1", "cursor", "Workflow"], ["replit-one:1", "replit", "Access"]
   ].map(([id, slug, category]) => ({ dataset: { changeId: id, changeTool: "/ai-tools/tools/" + slug + "/", changeTopic: category }, badge: {}, checkbox: control(), readControl: {}, querySelector(selector) { return selector === "[data-change-entry-read]" ? this.checkbox : selector === "[data-change-entry-read-control]" ? this.readControl : this.badge; } }));
@@ -23,9 +24,12 @@ function fixture(query = "", blocked = false, view = null) {
     const id = entry.dataset.changeId.split(":")[0], slug = entry.dataset.changeTool.split("/")[3];
     entry.nextUnread = control();
     entry.backToFilters = control();
+    entry.follow = control();
+    entry.followControl = { querySelector: () => entry.follow };
     entry.readingNav = { querySelector: s => s === "[data-change-next-unread]" ? entry.nextUnread : entry.backToFilters };
     entry.brief = {
       "[data-change-reading-nav]": entry.readingNav,
+      "[data-change-follow-control]": entry.followControl,
       "[data-brief-tool]": { textContent: slug },
       "[data-brief-title]": { ...control(), textContent: id + " announcement", getAttribute: () => "#change-" + id },
       "[data-brief-date]": { textContent: "Announced 2026-10 (exact day not published)" },
@@ -37,7 +41,7 @@ function fixture(query = "", blocked = false, view = null) {
     const original = entry.querySelector.bind(entry);
     entry.querySelector = selector => entry.brief[selector] || original(selector);
   });
-  const elements = { "[data-change-saved]": saved, "[data-change-unread]": unread, "select[data-change-tool]": tool, "select[data-change-topic]": topic, "[data-change-read]": read, "[data-change-first-unread]": firstUnread, "[data-change-caught-up]": caughtUp, "[data-change-show-read]": showRead, "[data-change-reset]": reset, "[data-change-export]": exportButton, "[data-change-status]": status, "[data-change-empty]": empty, "[data-change-controls]": controls };
+  const elements = { "[data-change-saved]": saved, "[data-change-unread]": unread, "[data-change-follow-only]": followOnly, "select[data-change-tool]": tool, "select[data-change-topic]": topic, "[data-change-read]": read, "[data-change-first-unread]": firstUnread, "[data-change-caught-up]": caughtUp, "[data-change-show-read]": showRead, "[data-change-reset]": reset, "[data-change-export]": exportButton, "[data-change-status]": status, "[data-change-empty]": empty, "[data-change-controls]": controls };
   const window = { get location() { return url; }, history: { state: { retained: true }, replaceState(state, _, target) { assert.deepEqual(state, { retained: true }); url = new URL(target, url); } }, addEventListener: (event, fn) => { events[event] = fn; } };
   window.URL = { createObjectURL: blob => { downloads.push({ blob }); return "blob:brief"; }, revokeObjectURL: value => revoked.push(value) };
   window.setTimeout = fn => timers.push(fn);
@@ -49,7 +53,7 @@ function fixture(query = "", blocked = false, view = null) {
   runInNewContext(source, { document, window, URL, URLSearchParams, Blob,
     localStorage: { getItem: k => { if (blocked) throw Error("blocked"); return storage.get(k); }, setItem: (k, v) => { if (blocked) throw Error("blocked"); storage.set(k, v); }, removeItem: k => { if (blocked) throw Error("blocked"); storage.delete(k); } }
   });
-  return { saved, unread, tool, topic, read, firstUnread, caughtUp, showRead, reset, exportButton, downloads, revoked, timers, failDownload: () => { downloadFails = true; }, status, empty, entries, storage, events, url: () => url, navigate: value => { url = new URL(value, url); }, visible: () => entries.filter(e => !e.hidden) };
+  return { saved, unread, tool, topic, read, firstUnread, caughtUp, showRead, followOnly, reset, exportButton, downloads, revoked, timers, failDownload: () => { downloadFails = true; }, status, empty, entries, storage, events, url: () => url, navigate: value => { url = new URL(value, url); }, visible: () => entries.filter(e => !e.hidden) };
 }
 
 test("tool deep link shows only that tool and does not mark records read", () => {
@@ -224,6 +228,76 @@ test("individual read and unread toggles change only that announcement", () => {
   checkbox.checked = false; checkbox.events.change();
   assert.deepEqual(JSON.parse(f.storage.get(readKey)), []);
   assert.equal(f.entries[0].badge.hidden, false);
+});
+
+test("follow-up flags are independent of revisioned read status and preserve other entries", () => {
+  const f = fixture("?tool=cursor");
+  f.storage.set(followKey, JSON.stringify(["future-record"]));
+  f.storage.set(readKey, JSON.stringify(["cursor-new:1"]));
+  const [updated] = f.entries;
+  updated.follow.checked = true; updated.follow.events.change();
+  assert.deepEqual(JSON.parse(f.storage.get(followKey)), ["future-record", "cursor-new"]);
+  assert.deepEqual(JSON.parse(f.storage.get(readKey)), ["cursor-new:1"]);
+  assert.equal(updated.followControl.hidden, false);
+  f.events.pageshow();
+  assert.equal(updated.follow.checked, true);
+  assert.equal(updated.checkbox.checked, false);
+  updated.checkbox.checked = true; updated.checkbox.events.change();
+  assert.equal(updated.follow.checked, true);
+  assert.deepEqual(JSON.parse(f.storage.get(followKey)), ["future-record", "cursor-new"]);
+});
+
+test("the follow-up filter restores on a plain visit and combines with all current filters", () => {
+  const f = fixture("?changesSaved=1&tool=cursor&topic=Access&view=guides");
+  f.storage.set(followKey, JSON.stringify(["cursor-new", "cursor-old", "replit-one"]));
+  f.storage.set(readKey, JSON.stringify(["cursor-new:2"]));
+  f.events.storage({ key: null });
+  f.followOnly.checked = true; f.followOnly.events.change();
+  assert.deepEqual(f.visible().map(entry => entry.dataset.changeId), ["cursor-new:2"]);
+  assert.equal(f.entries[0].checkbox.checked, true);
+  assert.equal(f.url().searchParams.get("followup"), "1");
+  assert.equal(f.url().searchParams.get("view"), "guides");
+  const next = fixture("", false, f.storage.get(viewKey));
+  assert.equal(next.followOnly.checked, true);
+  assert.equal(next.url().searchParams.get("followup"), "1");
+  const linked = fixture("#change-cursor-new", false, f.storage.get(viewKey));
+  assert.equal(linked.followOnly.checked, false);
+  assert.equal(linked.visible().length, 3);
+  f.unread.checked = true; f.unread.events.change();
+  assert.equal(f.caughtUp.hidden, false);
+  f.showRead.events.click();
+  assert.equal(f.followOnly.checked, true);
+  assert.deepEqual(f.visible().map(entry => entry.dataset.changeId), ["cursor-new:2"]);
+  f.reset.events.click();
+  assert.equal(f.followOnly.checked, false);
+  assert.equal(f.url().searchParams.has("followup"), false);
+  assert.equal(JSON.parse(f.storage.get(followKey)).length, 3);
+});
+
+test("clearing a visible flag focuses the next flag or the filter and honors storage updates", () => {
+  const f = fixture("?followup=1");
+  const [first, second] = f.entries;
+  f.storage.set(followKey, JSON.stringify(["cursor-new", "cursor-old"]));
+  f.events.storage({ key: followKey });
+  assert.equal(f.visible().length, 2);
+  first.follow.checked = false; first.follow.events.change();
+  assert.equal(first.hidden, true);
+  assert.equal(second.follow.focused, true);
+  second.follow.checked = false; second.follow.events.change();
+  assert.equal(f.empty.hidden, false);
+  assert.equal(f.followOnly.focused, true);
+  assert.deepEqual(JSON.parse(f.storage.get(followKey)), []);
+  assert.equal(f.storage.has(readKey), false);
+});
+
+test("follow-up flags remain usable for this visit if storage is unavailable", () => {
+  const f = fixture("", true);
+  const [first] = f.entries;
+  first.follow.checked = true; first.follow.events.change();
+  f.events.pageshow();
+  assert.equal(first.follow.checked, true);
+  assert.match(f.status.textContent, /Follow-up flags are only available for this visit/);
+  assert.equal(f.storage.has(followKey), false);
 });
 test("individual actions preserve other-tab and newer-page read keys", () => {
   const f = fixture();

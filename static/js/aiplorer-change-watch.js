@@ -5,6 +5,7 @@
   var entries = Array.from(root.querySelectorAll("[data-change-entry]"));
   var savedOnly = root.querySelector("[data-change-saved]");
   var unreadOnly = root.querySelector("[data-change-unread]");
+  var followOnly = root.querySelector("[data-change-follow-only]");
   var topic = root.querySelector("select[data-change-topic]");
   var tool = root.querySelector("select[data-change-tool]");
   var reset = root.querySelector("[data-change-reset]");
@@ -17,6 +18,8 @@
   var storageAvailable = true;
   var viewKey = "aiplorer-change-view-v1";
   var viewStorageAvailable = true;
+  var followKey = "aiplorer-change-follow-up-v1";
+  var followStorageAvailable = true;
   var resumedView = false;
   var readingIndex = -1;
 
@@ -27,10 +30,18 @@
       return new Set(value.filter(function (item) { return typeof item === "string"; }));
     } catch (error) {
       if (key === storageKey) storageAvailable = false;
+      if (key === followKey) followStorageAvailable = false;
       return fallback || new Set();
     }
   }
   var seen = readSet(storageKey);
+  var followed = readSet(followKey);
+  function followId(entry) {
+    return entry.dataset.changeId.split(":", 1)[0];
+  }
+  function followingOnly() {
+    return Boolean(followOnly && followOnly.checked);
+  }
   function selectKnown(select, value) {
     select.value = Array.from(select.options).some(function (option) { return option.value === value; }) ? value : "";
   }
@@ -39,13 +50,14 @@
     // The lower review-activity panel owns the legacy `saved` parameter too.
     savedOnly.checked = query.has("changesSaved") ? query.get("changesSaved") === "1" : query.get("saved") === "1";
     unreadOnly.checked = query.get("unread") === "1";
+    if (followOnly) followOnly.checked = query.get("followup") === "1";
     selectKnown(tool, query.get("tool"));
     selectKnown(topic, query.get("topic"));
   }
   function saveView(keepHash) {
     var url = new URL(window.location.href);
     [["changesSaved", savedOnly.checked ? "1" : (url.searchParams.has("saved") ? "0" : "")], ["unread", unreadOnly.checked ? "1" : ""],
-      ["tool", tool.value], ["topic", topic.value]].forEach(function (pair) {
+      ["followup", followingOnly() ? "1" : ""], ["tool", tool.value], ["topic", topic.value]].forEach(function (pair) {
       if (pair[1]) url.searchParams.set(pair[0], pair[1]);
       else url.searchParams.delete(pair[0]);
     });
@@ -56,20 +68,22 @@
   function rememberView() {
     resumedView = false;
     try {
-      if (!(savedOnly.checked || unreadOnly.checked || tool.value || topic.value)) {
+      if (!(savedOnly.checked || unreadOnly.checked || followingOnly() || tool.value || topic.value)) {
         localStorage.removeItem(viewKey);
       } else {
-        localStorage.setItem(viewKey, JSON.stringify({
+        var view = {
           version: 1, saved: savedOnly.checked, unread: unreadOnly.checked,
           tool: tool.value, topic: topic.value
-        }));
+        };
+        if (followingOnly()) view.followup = true;
+        localStorage.setItem(viewKey, JSON.stringify(view));
       }
     } catch (error) { viewStorageAvailable = false; }
   }
   function resumeView() {
     var query = new URLSearchParams(window.location.search);
     // Shared views and RSS/direct record anchors must never be hidden by a preference.
-    if (["changesSaved", "saved", "unread", "tool", "topic"].some(function (key) { return query.has(key); }) ||
+    if (["changesSaved", "saved", "unread", "followup", "tool", "topic"].some(function (key) { return query.has(key); }) ||
         window.location.hash.indexOf("#change-") === 0) return;
     try {
       var value = JSON.parse(localStorage.getItem(viewKey) || "null");
@@ -78,9 +92,10 @@
           typeof value.topic !== "string") return;
       savedOnly.checked = value.saved;
       unreadOnly.checked = value.unread;
+      if (followOnly) followOnly.checked = value.followup === true;
       selectKnown(tool, value.tool);
       selectKnown(topic, value.topic);
-      resumedView = Boolean(savedOnly.checked || unreadOnly.checked || tool.value || topic.value);
+      resumedView = Boolean(savedOnly.checked || unreadOnly.checked || followingOnly() || tool.value || topic.value);
       if (resumedView) saveView(true);
     } catch (error) { viewStorageAvailable = false; }
   }
@@ -117,9 +132,13 @@
     var matches = 0;
     var visible = 0;
     var unread = 0;
+    var followCount = 0;
+    var filterFollow = followingOnly();
     entries.forEach(function (entry) {
       var isUnread = !seen.has(entry.dataset.changeId);
+      var isFollowed = followed.has(followId(entry));
       var inScope = !((savedOnly.checked && !saved.has(entry.dataset.changeTool)) ||
+        (filterFollow && !isFollowed) ||
         (topic.value && topic.value !== entry.dataset.changeTopic) ||
         (tool.value && entry.dataset.changeTool !== "/ai-tools/tools/" + tool.value + "/"));
       if (inScope) matches++;
@@ -127,27 +146,35 @@
       entry.querySelector("[data-change-badge]").hidden = !isUnread;
       entry.querySelector("[data-change-entry-read]").checked = !isUnread;
       entry.querySelector("[data-change-entry-read-control]").hidden = false;
-      if (!entry.hidden) { visible++; if (isUnread) unread++; }
+      var followControl = entry.querySelector("[data-change-follow-control]");
+      if (followControl) {
+        followControl.hidden = false;
+        followControl.querySelector("[data-change-entry-follow]").checked = isFollowed;
+      }
+      if (!entry.hidden) { visible++; if (isUnread) unread++; if (isFollowed) followCount++; }
     });
     root.querySelector("[data-change-status]").textContent = visible + " of " + entries.length +
-      " updates shown; " + unread + " unread" + (resumedView ? ". Last view restored." : "") +
+      " updates shown; " + unread + " unread" +
+      (followCount ? "; " + followCount + " marked for follow-up" : "") + (resumedView ? ". Last view restored." : "") +
       (viewStorageAvailable ? "" : ". Filters last for this visit; saved view is unavailable.") +
-      (storageAvailable ? "" : ". Read status lasts for this visit; browser storage is unavailable.");
+      (storageAvailable ? "" : ". Read status lasts for this visit; browser storage is unavailable.") +
+      (followStorageAvailable ? "" : ". Follow-up flags are only available for this visit.");
     var finished = Boolean(caughtUp && showRead && unreadOnly.checked && matches > 0 && visible === 0);
     if (caughtUp) caughtUp.hidden = !finished;
     root.querySelector("[data-change-empty]").hidden = visible > 0 || finished;
     markRead.disabled = unread === 0;
     exportBrief.disabled = visible === 0;
-    reset.disabled = !(savedOnly.checked || unreadOnly.checked || tool.value || topic.value);
+    reset.disabled = !(savedOnly.checked || unreadOnly.checked || filterFollow || tool.value || topic.value);
     renderReadingNavigation();
   }
 
   function applyFilters() { rememberView(); saveView(); render(); }
-  [savedOnly, unreadOnly, topic, tool].forEach(function (control) {
-    control.addEventListener("change", applyFilters);
+  [savedOnly, unreadOnly, followOnly, topic, tool].forEach(function (control) {
+    if (control) control.addEventListener("change", applyFilters);
   });
   reset.addEventListener("click", function () {
     savedOnly.checked = false; unreadOnly.checked = false;
+    if (followOnly) followOnly.checked = false;
     tool.value = ""; topic.value = "";
     applyFilters();
   });
@@ -213,6 +240,25 @@
     render();
   }
   entries.forEach(function (entry, index) {
+    var followControl = entry.querySelector("[data-change-follow-control]");
+    if (followControl) {
+      var flag = followControl.querySelector("[data-change-entry-follow]");
+      flag.addEventListener("change", function () {
+        if (followStorageAvailable) followed = readSet(followKey, followed);
+        if (flag.checked) followed.add(followId(entry));
+        else followed.delete(followId(entry));
+        if (followStorageAvailable) {
+          try { localStorage.setItem(followKey, JSON.stringify(Array.from(followed))); }
+          catch (error) { followStorageAvailable = false; }
+        }
+        render();
+        if (entry.hidden && followOnly) {
+          var next = entries.slice(index + 1).find(function (item) { return !item.hidden; });
+          var nextControl = next && next.querySelector("[data-change-follow-control]");
+          (nextControl ? nextControl.querySelector("[data-change-entry-follow]") : followOnly).focus();
+        }
+      });
+    }
     var nav = entry.querySelector("[data-change-reading-nav]");
     if (nav) {
       nav.querySelector("[data-change-next-unread]").addEventListener("click", function () {
@@ -255,12 +301,14 @@
   });
   window.addEventListener("storage", function (event) {
     if (!event.key || event.key === storageKey) seen = readSet(storageKey, seen);
+    if (!event.key || event.key === followKey) followed = readSet(followKey, followed);
     render();
   });
   window.addEventListener("aiplorer:shortlist-change", render);
   window.addEventListener("popstate", function () { resumedView = false; restoreView(); render(); });
   window.addEventListener("pageshow", function () {
     if (storageAvailable) seen = readSet(storageKey, seen);
+    if (followStorageAvailable) followed = readSet(followKey, followed);
     render();
   });
   root.querySelector("[data-change-controls]").hidden = false;

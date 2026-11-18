@@ -90,6 +90,10 @@ assert(/<button\b[^>]*data-change-first-unread\b[^>]*\bdisabled(?=[\s=>])[^>]*>F
 const catchUp = watch.match(/<div\b[^>]*data-change-caught-up\b[^>]*\bhidden(?=[\s=>])[^>]*>[\s\S]*?<\/div>/)?.[0];
 assert(catchUp && catchUp.includes("You have read all updates in this view."));
 assert.match(catchUp, /<button\b[^>]*data-change-show-read\b[^>]*>Show read updates<\/button>/);
+assert.equal((watch.match(/\bdata-change-follow-only\b/g) || []).length, 1);
+assert.equal((watch.match(/<label\b[^>]*data-change-follow-control\b[^>]*\bhidden(?=[\s=>])[^>]*>/g) || []).length, data.entries.length);
+assert.equal((watch.match(/<input\b[^>]*data-change-entry-follow\b[^>]*aria-label="Follow up: [^"]+"/g) || []).length, data.entries.length);
+assert(!home.includes("data-change-follow-only"));
 const navs = [...watch.matchAll(/<div\b[^>]*data-change-reading-nav\b[^>]*\bhidden(?=[\s=>])[^>]*>[\s\S]*?<\/div>/g)];
 assert.equal(navs.length, data.entries.length);
 for (const [nav] of navs) {
