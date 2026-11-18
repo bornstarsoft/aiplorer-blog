@@ -1,0 +1,25 @@
+RETEST A TRAINING HANDOUT BEFORE REUSE
+Aiplorer practice checklist v1
+
+Handout revision / planned session:
+Approved procedure and objective references:
+What changed since the last check (or "no verified baseline"):
+
+01 PROCEDURE
+Normal path / expected outcome / result:
+Exception / expected outcome / result:
+
+02 LEARNING TASK
+Skill the learner should demonstrate:
+Passing evidence / observed result:
+
+03 DELIVERED FILE
+Export version and viewing conditions:
+Checks run / observed results:
+Checks not run:
+
+Reuse decision (Ready / Hold):
+Open issue / owner:
+When to recheck:
+
+Use fictional test data and keep learner details out of this record.

@@ -5,7 +5,8 @@
     (dict "route" "/use-cases/review-an-ai-assisted-document-before-sharing/" "label" "Review a public document before sharing")
     (dict "route" "/use-cases/check-an-ai-research-brief-against-its-sources/" "label" "Verify a research brief")
     (dict "route" "/use-cases/review-an-ai-assisted-spreadsheet-before-handoff/" "label" "Review a spreadsheet before handoff")
-    (dict "route" "/use-cases/verify-an-ai-workflow-after-reconnecting-an-app/" "label" "Verify a reconnected workflow") }}
+    (dict "route" "/use-cases/verify-an-ai-workflow-after-reconnecting-an-app/" "label" "Verify a reconnected workflow")
+    (dict "route" "/use-cases/retest-an-ai-training-handout-before-reuse/" "label" "Retest a training handout") }}
   {{ $reviewedPaths := slice }}
   {{ range $paths }}
     {{ $label := .label }}

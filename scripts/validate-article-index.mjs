@@ -49,6 +49,7 @@ const documentPath = "/use-cases/review-an-ai-assisted-document-before-sharing/"
 const researchPath = "/use-cases/check-an-ai-research-brief-against-its-sources/";
 const spreadsheetPath = "/use-cases/review-an-ai-assisted-spreadsheet-before-handoff/";
 const reconnectionPath = "/use-cases/verify-an-ai-workflow-after-reconnecting-an-app/";
+const trainingPath = "/use-cases/retest-an-ai-training-handout-before-reuse/";
 const shelf = useCases.indexOf("data-practice-shelf");
 const recent = useCases.indexOf("practice-recent-title", shelf);
 const shelfIntro = useCases.slice(shelf, recent);
@@ -61,7 +62,7 @@ assert.equal(attr(pathNavTag, "id"), "practice-paths");
 assert.equal(attr(pathNavTag, "tabindex"), "-1");
 assert.equal(links(useCases.slice(0, shelf)).filter(tag => attr(tag, "href") === "#practice-paths").length, 1);
 assert(!read("public/guides/index.html").includes("#practice-paths"));
-assert.deepEqual(links(pathNav).map(tag => attr(tag, "href")), [documentPath, researchPath, spreadsheetPath, reconnectionPath]);
+assert.deepEqual(links(pathNav).map(tag => attr(tag, "href")), [documentPath, researchPath, spreadsheetPath, reconnectionPath, trainingPath]);
 
 const home = read("public/index.html");
 const sitemap = read("public/sitemap.xml");
@@ -117,4 +118,15 @@ for (const field of ["What the destination shows:", "Uncertain or still pending 
 }
 assert(links(read("public/guides/review-connected-ai-app-permissions/index.html"))
   .some(tag => attr(tag, "href") === reconnectionPath));
-console.log("PASS: four practice paths, jump target, ordered exercises, exact downloads, and canonicals.");
+const studyGuideRoute = "/use-cases/check-an-ai-study-guide-against-learning-objectives/";
+const training = validatePracticePath(trainingPath, [
+  "/use-cases/check-an-ai-process-guide-against-a-workflow/",
+  studyGuideRoute,
+  "/use-cases/check-an-ai-accessibility-summary-against-an-audit-log/",
+], "training-handout-retest-v1.txt");
+assert.deepEqual(training.match(/^0\d [A-Z ]+$/gm), ["01 PROCEDURE", "02 LEARNING TASK", "03 DELIVERED FILE"]);
+for (const field of ["Checks not run:", "Reuse decision (Ready / Hold):", "When to recheck:"]) {
+  assert(training.includes(field));
+}
+assert(links(read(`public${studyGuideRoute}index.html`)).some(tag => attr(tag, "href") === trainingPath));
+console.log("PASS: five practice paths, jump target, ordered exercises, exact downloads, and canonicals.");

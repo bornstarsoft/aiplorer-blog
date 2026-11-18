@@ -40,4 +40,7 @@ Give the AI only the test input. Check its findings against the separate review 
 
 For a real course, verify the objectives and scoring rules with the instructor before sharing the guide with learners.
 
+Preparing the next session? [Retest the full training handout](/use-cases/retest-an-ai-training-handout-before-reuse/)
+against the current procedure, learning task, and delivered file.
+
 Return to the [study guide practice pack](/use-cases/#practice-check-an-ai-study-guide-against-learning-objectives) or [choose your next check](/use-cases/retest-a-saved-ai-tool-after-an-update/#choose-your-next-check).
