@@ -67,6 +67,7 @@ provides a buggy function and local regression tests.
 | Review a project estimate | [Assumptions log pack](/use-cases/check-an-ai-project-estimate-against-an-assumptions-log/) | Check effort units, optional scope, and dependencies |
 | Review an accessibility summary | [Audit log pack](/use-cases/check-an-ai-accessibility-summary-against-an-audit-log/) | Check test scope, pending retests, and untested results |
 | Review a data dictionary | [Schema pack](/use-cases/check-an-ai-data-dictionary-against-a-schema/) | Check units, blanks, and category codes |
+| Review a study guide | [Learning objectives pack](/use-cases/check-an-ai-study-guide-against-learning-objectives/) | Check prerequisites, practice tasks, and passing criteria |
 
 The [practice downloads](/use-cases/#practice-downloads) collect the
 packs in one place. These checks do not cover every workflow. If your

@@ -1,0 +1,18 @@
+STUDY GUIDE CHECK: REVIEW KEY
+Version 1. Compare after the first run.
+
+LEARN-01: The sign-in requirement is unsupported. The brief says all
+examples use supplied records and no library account is needed.
+Correction: Use the supplied sample records; no account is required.
+
+LEARN-02: Defining the filter does not demonstrate query revision.
+The brief requires a revised query with both a topic keyword and a
+publication-year filter.
+Correction: Rewrite the sample query using a specific topic keyword
+and a publication-year filter.
+
+LEARN-03: Naming a field alone omits the relevance explanation.
+The brief requires citing a field and explaining how it supports
+relevance. Both parts are needed to pass.
+Correction: Cite a field from the sample result and explain how it
+shows the result fits the query. Include both parts to pass.

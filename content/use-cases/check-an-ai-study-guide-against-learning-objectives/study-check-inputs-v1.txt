@@ -1,0 +1,22 @@
+STUDY GUIDE CHECK: LIBRARY SEARCH WORKSHOP
+Version 1. Fictional workshop and materials.
+
+APPROVED LEARNING BRIEF
+LEARN-01: The workshop is for beginners. All examples use supplied
+sample records; learners do not need a library account.
+LEARN-02: Given an unfocused catalog query, write a revised query
+using a specific topic keyword and a publication-year filter.
+LEARN-03: Given a sample result, cite one field that shows why it
+fits the query and explain how that field supports relevance.
+Both parts are required to pass this check.
+
+DRAFT STUDY GUIDE
+LEARN-01: Sign in with an active library account before attending.
+LEARN-02: Define the term "publication-year filter" in one sentence.
+LEARN-03: Name one field in a sample result. Any field name earns
+full credit; no explanation is needed.
+
+TASK
+For each ID, identify the mismatch, quote the relevant evidence from
+the brief, and propose one corrected line for the guide. Do not add
+new prerequisites or change the passing criteria.

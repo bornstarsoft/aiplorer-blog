@@ -13,6 +13,10 @@
   const recentStatuses = shelf.querySelectorAll("[data-practice-recent-status]");
   const recentPreviews = [...shelf.querySelectorAll("[data-practice-recent-preview]")]
     .map(button => [button, button.getAttribute("data-practice-recent-preview")]);
+  const recentDirections = [
+    ["recentPrevious", -1, "Preview previous unpracticed input"],
+    ["recentNext", 1, "Preview next unpracticed input"],
+  ];
   const filterControls = shelf.querySelector("[data-practice-filter-controls]");
   const filter = shelf.querySelector("[data-practice-filter]");
   const filterEmpty = shelf.querySelector("[data-practice-empty]");
@@ -68,6 +72,7 @@
       restart: pack.querySelector("[data-practice-restart]"),
       reviewProgress: pack.querySelector("[data-practice-active-review-progress]"),
       recentReturn: pack.querySelector("[data-practice-recent-return]"),
+      recentPrevious: pack.querySelector("[data-practice-recent-previous]"),
       recentNext: pack.querySelector("[data-practice-recent-next]"),
       recapReturn: pack.querySelector("[data-practice-recap-return]"),
       recapPrevious: pack.querySelector("[data-practice-recap-previous]"),
@@ -200,7 +205,7 @@
     for (const [button, id] of recentPreviews) {
       button.hidden = !canPreviewRecent(id, ids);
     }
-    updateRecentNext(ids);
+    updateRecentNavigation(ids);
     for (const [id, pack] of packs) {
       const practiced = ids?.has(id) ?? false;
       if (pack.restart) pack.restart.hidden = !practiced;
@@ -489,18 +494,24 @@
     return Boolean(ids && !ids.has(id) && packs.get(id)?.element.querySelector("[data-practice-preview]"));
   }
 
-  function nextRecentEntry(ids) {
-    return recentPreviews.slice(recentPreviews.indexOf(recentPreview.entry) + 1)
-      .find(([, id]) => canPreviewRecent(id, ids));
+  function nearbyRecentEntry(ids, direction) {
+    for (let index = recentPreviews.indexOf(recentPreview.entry) + direction;
+      index >= 0 && index < recentPreviews.length; index += direction) {
+      const entry = recentPreviews[index];
+      if (canPreviewRecent(entry[1], ids)) return entry;
+    }
   }
 
-  function updateRecentNext(ids) {
-    const control = recentPreview?.pack.recentNext;
-    if (!control) return;
-    const next = nextRecentEntry(ids);
-    control.hidden = !next;
-    if (next) control.setAttribute("aria-label", `Preview next unpracticed input: ${packs.get(next[1]).heading.textContent.trim()}`);
-    else control.removeAttribute("aria-label");
+  function updateRecentNavigation(ids) {
+    if (!recentPreview) return;
+    for (const [name, direction, label] of recentDirections) {
+      const control = recentPreview.pack[name];
+      if (!control) continue;
+      const target = nearbyRecentEntry(ids, direction);
+      control.hidden = !target;
+      if (target) control.setAttribute("aria-label", `${label}: ${packs.get(target[1]).heading.textContent.trim()}`);
+      else control.removeAttribute("aria-label");
+    }
   }
 
   function openRecentInput(entry, ids) {
@@ -510,17 +521,14 @@
     if (!pack.recentReturn) return;
     recentPreview = { pack, entry };
     pack.recentReturn.hidden = false;
-    updateRecentNext(ids);
+    updateRecentNavigation(ids);
   }
 
   function clearRecentPreview() {
     if (!recentPreview) return;
     const { pack } = recentPreview;
     pack.recentReturn.hidden = true;
-    if (pack.recentNext) {
-      pack.recentNext.hidden = true;
-      pack.recentNext.removeAttribute("aria-label");
-    }
+    updateRecentNavigation(null);
     recentPreview = null;
   }
 
@@ -641,17 +649,20 @@
       clearRecentPreview();
       target?.focus();
     });
-    pack.recentNext?.addEventListener("click", () => {
-      if (recentPreview?.pack !== pack || pack.recentNext.hidden) return;
-      let ids;
-      try { ids = readPracticed(); } catch { /* Storage is unavailable. */ }
-      const next = nextRecentEntry(ids);
-      if (next) openRecentInput(next, ids);
-      else {
-        refreshPracticed();
-        pack.recentReturn.focus();
-      }
-    });
+    for (const [name, direction] of recentDirections) {
+      const control = pack[name];
+      control?.addEventListener("click", () => {
+        if (recentPreview?.pack !== pack || control.hidden) return;
+        let ids;
+        try { ids = readPracticed(); } catch { /* Storage is unavailable. */ }
+        const target = nearbyRecentEntry(ids, direction);
+        if (target) openRecentInput(target, ids);
+        else {
+          refreshPracticed();
+          pack.recentReturn.focus();
+        }
+      });
+    }
     if (pack.recapPicker && pack.recapSelect && pack.recapOpen) {
       const target = () => {
         const value = pack.recapSelect.value;
