@@ -10,6 +10,8 @@ AI image tools can help generate visuals, explore design directions, edit existi
 
 Try [Krea](/ai-tools/tools/krea/) when you want to compare visual directions while revising a sketch. Try [Recraft](/ai-tools/tools/recraft/) when the next person needs an editable SVG. Judge the first against the brief and the second in the editor where it will be used.
 
+For images you already have, compare [Upscayl Desktop](/ai-tools/tools/upscayl/) for enlargement with [Topaz Photo](/ai-tools/tools/topaz-photo/) for noise reduction and sharpening. Keep the original and check lettering and fine texture before reusing the edited image.
+
 Generated and edited images should be reviewed before publishing or sharing. Check facts and text, likeness and consent, copyright, trademarks, media licenses, brand requirements, privacy, sensitive content, and commercial-use rules carefully.
 
 Features, plans, pricing, credits, limits, output options, access methods, model details, licensing, commercial-use rules, privacy terms, security details, and availability can change. Check each official website and the terms for the specific product, service, or model before relying on it.
