@@ -1,18 +1,19 @@
 ---
 title: "Local LLM Tools"
-description: "Choose a desktop app, model runner, or self-hosted interface for using language models on your own hardware."
+description: "Find a language model and choose a desktop app, runner, or self-hosted interface for your own hardware."
 type: "ai-tools"
 layout: "category"
 toolCategory: "Local LLM Tools"
 lastmod: "2026-10-03T00:00:00+09:00"
 ---
 
-A local LLM runs a language model on a computer you control. The model is the downloaded set of weights; the tools below help load it, chat with it, or connect it to another application. They are not interchangeable subscriptions to the same AI.
+A local LLM runs a language model on a computer you control. The tools below help you find a model, load its weights, chat with it, or connect it to another application. They are not interchangeable subscriptions to the same AI.
 
 ## Choose your starting point
 
+- **Find a model before running it:** [Hugging Face Hub](/ai-tools/tools/hugging-face-hub/) helps you inspect the publisher, license, and revision. A model catalog is not a local runner.
 - **A desktop chat app:** [LM Studio](/ai-tools/tools/lm-studio/), [Jan](/ai-tools/tools/jan/), or [GPT4All](/ai-tools/tools/gpt4all/). Start here when you want to try a model without building a chat interface.
-- **A model runner:** [Ollama](/ai-tools/tools/ollama/) for managing a local model workflow, or [llama.cpp](/ai-tools/tools/llama-cpp/) for more hands-on runtime configuration.
+- **A model runner:** [Ollama](/ai-tools/tools/ollama/) for managing a local model workflow, [llama.cpp](/ai-tools/tools/llama-cpp/) for more hands-on configuration, or [MLX LM](/ai-tools/tools/mlx-lm/) for trying a compatible model on Apple silicon.
 - **A browser interface for a model backend:** [Open WebUI](/ai-tools/tools/open-webui/). It still needs a configured model connection; the interface alone is not a language model.
 
 ## Before downloading
