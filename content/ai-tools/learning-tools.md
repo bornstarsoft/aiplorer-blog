@@ -10,6 +10,8 @@ AI learning tools can help with research questions, source review, summaries, st
 
 For a literature review, use [ResearchRabbit](/ai-tools/tools/researchrabbit/) to find more papers from a short reading list, and [Scite](/ai-tools/tools/scite/) to check how a particular study was cited. Finding a related paper is not the same as finding evidence for your claim.
 
+For working through a PDF, [Adobe Acrobat AI Assistant](/ai-tools/tools/acrobat-ai-assistant/) can help locate a passage to read, while [Mathpix Snip](/ai-tools/tools/mathpix-snip/) converts scanned equations and tables into editable text. Check the answer or converted values against the original page.
+
 These tools should be treated as support for reading and thinking, not as final authorities. Verify original sources, review citations and summaries carefully, and take extra care with academic, legal, medical, financial, confidential, or sensitive documents.
 
 Features, pricing, plans, source behavior, citation behavior, and availability can change. Check each official website before relying on a specific feature or workflow.
