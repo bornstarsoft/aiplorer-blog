@@ -10,6 +10,8 @@ AI productivity tools can help summarize documents, organize notes, draft meetin
 
 For visual planning, [Miro AI](/ai-tools/tools/miro-ai/) can help group workshop notes, while [Whimsical AI](/ai-tools/tools/whimsical-ai/) can draft a flowchart from a process brief. Check each proposed theme or decision path against the original before sharing it.
 
+For a workflow people need to repeat, [Scribe](/ai-tools/tools/scribe/) creates a screenshot-based guide, while [Guidde](/ai-tools/tools/guidde/) focuses on narrated video walkthroughs. Use a demo account and verify the steps before sharing either format.
+
 Generated summaries, drafts, answers, and recommendations should be reviewed before they are sent, published, or used for decisions. Verify important facts and sources, follow workplace and account policies, and handle private, confidential, customer, employee, legal, medical, or financial information carefully.
 
 Meeting transcription and note-taking tools require additional care. Obtain any required participant consent, follow recording laws and workplace policy, and review transcript, summary, sharing, retention, and connected-account settings before use.
