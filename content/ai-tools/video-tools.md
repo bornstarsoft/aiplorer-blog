@@ -4,7 +4,7 @@ description: "AI tools for video generation, editing, story ideas, and short-for
 type: "ai-tools"
 layout: "category"
 toolCategory: "Video Tools"
-lastmod: "2026-10-03T00:00:00+09:00"
+lastmod: "2026-11-19T00:00:00+09:00"
 ---
 
 AI video tools can help with short clips, video drafts, editing support, captions, and creative ideation. This category is for users exploring video workflows without a complex production setup.
@@ -14,6 +14,8 @@ AI video tools can help with short clips, video drafts, editing support, caption
 - **A scene from a prompt or reference:** explore [Seedance](/ai-tools/tools/seedance/), [Kling AI](/ai-tools/tools/kling-ai/), or [Google Veo](/ai-tools/tools/google-veo/). Seedance and Veo are model families; check the service that actually provides access before subscribing.
 - **A presenter-led explanation:** explore [HeyGen](/ai-tools/tools/heygen/) and [Synthesia](/ai-tools/tools/synthesia/), with consent for any real person's face or voice.
 - **An editing-led workflow:** explore [Descript](/ai-tools/tools/descript/) or [Runway](/ai-tools/tools/runway/) before replacing your existing production process.
+- **A short clip from a long recording:** explore [OpusClip](/ai-tools/tools/opusclip/) and check that cuts and captions preserve the speaker's meaning.
+- **A cleaner version of existing footage:** try [Topaz Video](/ai-tools/tools/topaz-video/) on a short sample; check for altered details and whether the render stays on your device.
 
 Start with one short scene or script. Compare revision effort as well as the first result. These are task-fit examples, not rankings.
 
