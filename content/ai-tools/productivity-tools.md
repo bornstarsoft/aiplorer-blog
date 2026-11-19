@@ -12,6 +12,8 @@ For visual planning, [Miro AI](/ai-tools/tools/miro-ai/) can help group workshop
 
 For a workflow people need to repeat, [Scribe](/ai-tools/tools/scribe/) creates a screenshot-based guide, while [Guidde](/ai-tools/tools/guidde/) focuses on narrated video walkthroughs. Use a demo account and verify the steps before sharing either format.
 
+For project work, [Linear](/ai-tools/tools/linear/) can surface related incoming issues, while [Asana AI](/ai-tools/tools/asana-ai/) can draft a status update. Confirm the evidence before marking a duplicate or reporting that a milestone is complete.
+
 Generated summaries, drafts, answers, and recommendations should be reviewed before they are sent, published, or used for decisions. Verify important facts and sources, follow workplace and account policies, and handle private, confidential, customer, employee, legal, medical, or financial information carefully.
 
 Meeting transcription and note-taking tools require additional care. Obtain any required participant consent, follow recording laws and workplace policy, and review transcript, summary, sharing, retention, and connected-account settings before use.
