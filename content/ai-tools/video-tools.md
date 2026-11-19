@@ -14,6 +14,7 @@ AI video tools can help with short clips, video drafts, editing support, caption
 - **A scene from a prompt or reference:** explore [Seedance](/ai-tools/tools/seedance/), [Kling AI](/ai-tools/tools/kling-ai/), or [Google Veo](/ai-tools/tools/google-veo/). Seedance and Veo are model families; check the service that actually provides access before subscribing.
 - **A presenter-led explanation:** explore [HeyGen](/ai-tools/tools/heygen/) and [Synthesia](/ai-tools/tools/synthesia/), with consent for any real person's face or voice.
 - **An editing-led workflow:** explore [Descript](/ai-tools/tools/descript/) or [Runway](/ai-tools/tools/runway/) before replacing your existing production process.
+- **Captions or a transcript-based cut:** try [CapCut](/ai-tools/tools/capcut/) for captions on a short clip or [DaVinci Resolve Studio](/ai-tools/tools/davinci-resolve-studio/) for checking a timeline edit against the original speech.
 - **A short clip from a long recording:** explore [OpusClip](/ai-tools/tools/opusclip/) and check that cuts and captions preserve the speaker's meaning.
 - **A cleaner version of existing footage:** try [Topaz Video](/ai-tools/tools/topaz-video/) on a short sample; check for altered details and whether the render stays on your device.
 
