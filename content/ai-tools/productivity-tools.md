@@ -1,12 +1,14 @@
 ---
 title: "AI Productivity Tools"
-description: "AI tools for summaries, meetings, notes, documents, and daily work."
+description: "AI tools for summaries, meetings, notes, documents, and visual planning."
 type: "ai-tools"
 layout: "category"
 toolCategory: "Productivity Tools"
 ---
 
 AI productivity tools can help summarize documents, organize notes, draft meeting follow-ups, and reduce repetitive information work. This category is for people who want practical support in daily work.
+
+For visual planning, [Miro AI](/ai-tools/tools/miro-ai/) can help group workshop notes, while [Whimsical AI](/ai-tools/tools/whimsical-ai/) can draft a flowchart from a process brief. Check each proposed theme or decision path against the original before sharing it.
 
 Generated summaries, drafts, answers, and recommendations should be reviewed before they are sent, published, or used for decisions. Verify important facts and sources, follow workplace and account policies, and handle private, confidential, customer, employee, legal, medical, or financial information carefully.
 
